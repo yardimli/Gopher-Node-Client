@@ -29,13 +29,18 @@ function getFile(filePath,res,page404,mimeType){
             //read the fiule, run the anonymous function
             fs.readFile(filePath,function(err,contents){
                 if(!err){
-					
-					var options = {};
-					options.locations = true; 
-					
-					parsed = acorn.parse(contents, options); 	
-					
-					console.log(parsed);
+
+					//if javascript file try parsing it
+					if ( (mimeType=="application/javascript") && (filePath.indexOf("jquery")==-1) )
+					{
+						var options = {};
+						options.locations = true; 
+						var compact = false;
+
+						parsed = acorn.parse(contents, options); 	
+						console.log(JSON.stringify(parsed, null, compact ? null : 2)); 						
+						
+					}	
 					
                     //if there was no error
                     //send the contents with the default 200/ok header
@@ -77,7 +82,7 @@ function startServer(debug)
 	{
 		var fileName = path.basename(request.url) || 'index.html';
 		var	ext = path.extname(fileName);
-		var	localFolder = __dirname + '/public';
+		var	localFolder = __dirname + '/liveparser-root';
 		var	page404 = localFolder + '/404.html';
 		var filePathName = path.dirname(request.url);
 		if (filePathName=="/") { } else { filePathName+="/";}
