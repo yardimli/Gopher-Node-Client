@@ -63,17 +63,8 @@ function getFile(filePath,res,page404,mimeType){
 function startServer(debug)
 {
 	// on request event
-	function onRequest(request, response) {
-
-		// parse the requested url into pathname. pathname will be compared
-		// in route.js to handle (var content), if it matches the a page will 
-		// come up. Otherwise a 404 will be given. 
-		/*
-		var pathname = url.parse(request.url).pathname; 
-		console.log("Request for " + pathname + " received");
-		var content = route(handle,pathname,response,request,debug);
-		*/
-	  
+	function onRequest(request, response) 
+	{
 		var fileName = path.basename(request.url) || 'index.html';
 		var	ext = path.extname(fileName);
 		var	localFolder = __dirname + '/public';
@@ -91,10 +82,6 @@ function startServer(debug)
 			response.end("<html><head></head><body>The requested file type is not supported</body></html>");
 		};
  
-		//call our helper function
-		//pass in the path to the file we want,
-		//the response object, and the 404 page path
-		//in case the requestd file is not found
 		getFile((localFolder + filePathName + fileName),response,page404,extensions[ext]);	  
 	}
 	
@@ -110,16 +97,6 @@ function startServer(debug)
 	//childProcess.exec('start chrome http://localhost:1337 --user-data-dir=c:\tempchrome --kiosk');
 }
 
-
-//			socket.emit('CardResponse',{CardNumber:InputCardNumber,OpStatus:"release",LockerID:i}); 
-
-
-
-function closelocker(data)
-{			
-	console.log(data);
-}
-
 function initSocketIO(httpServer,debug)
 {
 	socketServer = socketio.listen(httpServer);
@@ -130,14 +107,14 @@ function initSocketIO(httpServer,debug)
 	
 	socketServer.on('connection', function (socket) {
 		console.log("user connected");
-		socket.emit('onconnection', {pollOneValue:sendData});
+		socket.emit('onconnection', {version:"0.1 alfa"});
 		
-		socketServer.on('update', function(data) {
-			socket.emit('updateData',{pollOneValue:data});
+		socket.on('hellogopher', function(data) {
+			console.log("hello gopher "+data);
+			socket.emit('hiGopher',{text:"this is from Gopher Server"});
 		});
-    });
+	});
 }
-
 
 var debug = false;
 
