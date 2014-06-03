@@ -1,9 +1,0 @@
-main_splash is self explanitory. just the main image that loads during startup
-processing displays after credit card is swiped
-locker full displays when all lockers are full
-declined shows when credit card authorization fails
-open locker displays after succesful credit card authorization
-door closed displays after user closes locker door
-retrieve phone shows after second credit card swipe
-
-

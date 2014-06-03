@@ -1,6 +1,10 @@
 var isBusy=false;
 
 var iosocket;
+<<<<<<< HEAD
+
+
+=======
 var pollOneH = 0;
 var poll1;
 var text;
@@ -28,6 +32,7 @@ function ReturnToMain()
 	isBusy = false;
 }
   
+>>>>>>> 30d15eb5fd25f66b26c9c7b2389ea9f9d93d532e
 function initSocketIO()
 {
 	iosocket = io.connect();
@@ -39,6 +44,17 @@ function initSocketIO()
 			$("#rData").html(recievedData.pollOneValue+" "+Date());
 		});
 		
+<<<<<<< HEAD
+
+		//iosocket.emit('turnchargeroff', (parseInt(recievedData.LockerID,10)) );
+	});
+}
+  
+$(document).ready(function() {
+	initSocketIO(); 
+	iosocket.emit("hello", "" );
+});
+=======
 		// recieve card data
 		iosocket.on('CardResponse', function (recievedData) {
 			
@@ -182,3 +198,4 @@ $(document).ready(function() {
 		iosocket.emit('buttonval',toggleVal);
 	});
 });
+>>>>>>> 30d15eb5fd25f66b26c9c7b2389ea9f9d93d532e
