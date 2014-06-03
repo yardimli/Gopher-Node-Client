@@ -38,7 +38,8 @@ function getFile(filePath,res,page404,mimeType){
 						var compact = false;
 
 						parsed = acorn.parse(contents, options); 	
-						console.log(JSON.stringify(parsed, null, compact ? null : 2)); 						
+						//console.log(JSON.stringify(parsed, null, compact ? null : 2));
+						fs.writeFile(filePath+".gopher",JSON.stringify(parsed, null, compact ? null : 2));
 						
 					}	
 					
