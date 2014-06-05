@@ -1,12 +1,11 @@
 var cloneFiles = function(_projectDirectory) {
   var fileTypes = ['php', 'js', 'html', 'htm'];
   var fs = require('fs');
-  this.starts = function() {
+  this.starts = function(w) {
     fs.exists(_projectDirectory, function(exists) {
       if (exists) {
-        console.log(' read dir called');
         fs.readdir(_projectDirectory, function(err, files) {
-          console.log(files);
+          w(files);
         });
       } else {
         console.log('directory doens\'t exist.');
@@ -15,4 +14,6 @@ var cloneFiles = function(_projectDirectory) {
   };
 };
 var doIt = new cloneFiles('c:\\wamp\\www');
-doIt.starts();
+doIt.starts(function(whatever){
+  console.log(whatever);
+});
