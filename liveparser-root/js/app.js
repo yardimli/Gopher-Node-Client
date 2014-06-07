@@ -6,3 +6,7 @@ $(document).ready(function() {
 	$("#debug_console").html(str1);
 	
 });
+
+var str2;
+
+str2 = 1;
