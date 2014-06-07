@@ -20,6 +20,8 @@ var extensions = {
     ".jpg" : "image/jpeg"
 };
 
+
+
 //helper function handles file verification for the admin folder
 function getFileAdmin(filePath,res,page404,mimeType){
     //does the requested file exist?
@@ -61,7 +63,7 @@ function getFileAdmin(filePath,res,page404,mimeType){
 };
 
 
-//helper function handles file verification
+//helper function handles file verification for the client files that will be converted
 function getFile(filePath,res,page404,mimeType){
     //does the requested file exist?
 	console.log(filePath);
