@@ -2,57 +2,60 @@ var cloneFiles = function(_projectDirectory) {
   var dir = _projectDirectory;
   var fileTypes = ['php', 'js', 'html', 'htm'];
   var fs = require('fs');
-  this.starts = function() {
-    function dive(dir,end){
-      var output=[];
-    }
-    var output = [];
-    (function dive(entity,fn){
-      //console.log('call dive');
-      fs.readdir(entity,function(err,files){
-        
-          
-        
-        var fileIndex=0;
-        (function diveIn(){
-          var file = files[fileIndex];
-          fileIndex++;
-          //console.log(fileIndex);
-          if(!file){
-            return false;
-          }
-          file = entity + '\\'+file;  
-          fs.stat(file,function(err,stat){
-            if(stat && stat.isDirectory()){
-              //console.log('directory:'+file);
-              dive(file,function(err,res){
-                output = output.contact(res);
-                diveIn();
-              });
-            }else{
-              //console.log('file:'+file);
-              output.push(file);
-              diveIn();            
-            }
-          });
-        })();
-        
-        
-      
-      });
-      
-    })(_projectDirectory,function(output){
-      console.log(output);
-    });
+  this.starts = function(w) {
+	(function dive(dir){
+		var output=[];
+		var c=0;
+		(function circle(dir){
+			c++;
+			if(c<4){
+			fs.readdir(dir,function(err,files){
+				files.forEach(function(file){
+					output.push(file);
+					circle(dir);
+				});	
+			console.log(c);
+			
+			});
+			}else{
+				return w(output);
+			}
+		})(dir);
+		
+	})(dir);
+	
+    /*w((function dive(entity,w){
+		var output = {
+			'path':entity,
+			'children':[]
+		}
+		fs.readdir(entity,function(err,files){
+		
+			var fl = files.length;
+			if(!fl){
+				return w(null,output);
+			}
+			files.forEach(function(file){
+				fs.stat(entity+'\\'+file,function(err,stat){
+					if(stat.isDirectory()){
+						//console.log(true);
+					}else{
+						output.children.push({'path':entity+'\\'+file});
+						if(!fl){
+							return output;
+						}
+						//console.log(output);
+					}
+					console.log(output);
+				});
+				
+			});
+			
+		});
+		return output;
+    })(_projectDirectory,w));*/
     return this.starts;
   };
-  function dive(entity){
-    console.log('dive'+entity);
-    fs.readdir(entity,function(err,files){
-      console.log('readdir');
-      console.log(err);
-    }); 
-  }
   function findFileExtension(file) {
     var nameArr = file.split('.');
     return nameArr[nameArr.length-1];
@@ -74,5 +77,5 @@ var cloneFiles = function(_projectDirectory) {
 };
 var doIt = new cloneFiles('c:\\wamp\\www\\EgeFlipCard');
 doIt.starts(function(whatever) {
-  //console.log(whatever);
+  console.log(whatever);
 });
