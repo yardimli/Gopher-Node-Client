@@ -1,6 +1,109 @@
-var Globals = require("../project_modules/Globals.js"); 
+var Globals = require("../project_modules/Globals.js");
+var cheerio = require('cheerio');
+
 var	localFolder = __dirname + '/../liveparser-root';
 var	page404 = localFolder + '/404.html';
+var jQuery;
+var TreeHTML;
+
+//----------------------------------------------------------------------------------------
+function json2xml(o, tab) {
+   var toXml = function(v, name, ind) {
+      var xml = "";
+      if (v instanceof Array) {
+         for (var i=0, n=v.length; i<n; i++)
+            xml += ind + toXml(v[i], name, ind+"\t") + "\n";
+      }
+      else if (typeof(v) == "object") {
+         var hasChild = false;
+         xml += ind + "<" + name;
+         for (var m in v) {
+            if (m.charAt(0) == "@")
+               xml += " " + m.substr(1) + "=\"" + v[m].toString() + "\"";
+            else
+               hasChild = true;
+         }
+         xml += hasChild ? ">" : "/>";
+         if (hasChild) {
+            for (var m in v) {
+               if (m == "#text")
+                  xml += v[m];
+               else if (m == "#cdata")
+                  xml += "<![CDATA[" + v[m] + "]]>";
+               else if (m.charAt(0) != "@")
+                  xml += toXml(v[m], m, ind+"\t");
+            }
+            xml += (xml.charAt(xml.length-1)=="\n"?ind:"") + "</" + name + ">";
+         }
+      }
+      else {
+         xml += ind + "<" + name + ">" + v.toString() +  "</" + name + ">";
+      }
+      return xml;
+   }, xml="";
+   for (var m in o)
+      xml += toXml(o[m], m, "");
+   return tab ? xml.replace(/\t/g, tab) : xml.replace(/\t|\n/g, "");
+}
+
+
+//----------------------------------------------------------------------------------------
+function recurse(key, val) 
+{
+//		list += "<li>";
+	if (val instanceof Object) {
+
+		if (key=="loc")
+		{
+			TreeHTML += key + "<ul>";
+			
+			Object.keys(val).forEach(function(key) {  recurse(key, val[key] ); } );
+			TreeHTML += "</ul>";
+		} else
+		{
+			TreeHTML += "<li>"+ key + "<ul>";
+			Object.keys(val).forEach(function(key) {  recurse(key, val[key] ); } );
+			TreeHTML += "</ul></li>";
+		}
+	} else {
+		if (key=="start") {} else
+		if (key=="end") {} else
+		{
+			TreeHTML +=  "<li>" + key +  " = " + val + "</li>";
+		}
+
+		if ( (key=="type") && (val=="AssignmentExpression") )
+		{
+			SaveAssignment = true;
+		}
+	}
+//		list += "</li>";
+}
+
+
+
+
+//----------------------------------------------------------------------------------------
+function AssignmentExpression(ExpressionPoint)
+{
+	var XLine = ExpressionPoint.find("loc").find("start").find("line").first().text();
+
+	var Xoperator = ExpressionPoint.find("operator").first().text();
+
+	var XLeftType = ExpressionPoint.find("left").find("type").first().text();
+	var XLeftName = ExpressionPoint.find("left").find("name").first().text();
+	var XLeftValue = ExpressionPoint.find("left").find("value").first().text();
+
+	var XRightType = ExpressionPoint.find("right").find("type").first().text();
+	var XRightName = ExpressionPoint.find("right").find("name").first().text();
+	var XRightValue = ExpressionPoint.find("right").find("value").first().text();
+
+	if (Globals.socketVar!=0) { 
+		Globals.socketVar.emit('UpdateParserView',{
+			htmlcode:"> Operator: "+ Xoperator +", Line:"+XLine+", Left: Type:"+XLeftType+", Name:"+XLeftName+", Value:"+XLeftValue+", Right: Type:"+XRightType+", Name:"+XRightName+", Value:"+XRightValue+", <br>"
+		});
+	}
+}
 
 
 //helper function handles file verification for the client files that will be converted
@@ -45,6 +148,47 @@ this.getFile = function(request, response)
 						//console.log(JSON.stringify(parsed, null, compact ? null : 2));
 						Globals.fs.writeFile(filePath+".gopher",JSON.stringify(parsed, null, compact ? null : 2));
 						Globals.fs.writeFile(filePath+".gopher.pure",JSON.stringify(parsed));
+						
+						TreeHTML = "<ul>";
+						Object.keys(parsed).forEach(function(key) {  recurse(key, parsed[key] ); } );
+						TreeHTML += "</ul>";
+						
+						if (Globals.socketVar!=0) { 
+							Globals.socketVar.emit('UpdateTreeView',{
+								htmlcode:TreeHTML
+							});
+						}
+						
+						//use json object convert it to xml and parse it with jQuery
+						var xmldata = "<project>"+ json2xml(parsed)+ "</project>";
+						var ExpressionPoint;
+						
+						var jQuery = cheerio.load(xmldata);
+
+						jQuery(xmldata).find('expression').each(function(){
+
+							var ExpressionPoint = jQuery(this);
+
+							var FirstLoop = true; //use Boolean to find to make sure the first type is AssignmentExpression, otherwise type could be a function with another type AssignmentExpression within 
+							//seems like using :first has the same effect
+
+							ExpressionPoint.find('type').each(function(){
+
+								if ((jQuery(this).text() == "AssignmentExpression") && (FirstLoop))
+								{
+								//	$("#AssignmentExpression").append("> "+ $(this).text() +"<br>");
+									AssignmentExpression(ExpressionPoint);
+								}
+								FirstLoop = false;
+							});
+						});
+
+
+
+
+
+
+						
 						if (Globals.socketVar!=0) { 
 							Globals.socketVar.emit('ParsedGopher',{
 								filename:filePath,

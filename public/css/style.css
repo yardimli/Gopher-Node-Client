@@ -5,3 +5,20 @@ body {
     font-size: 13px;
 }
 
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 30px;
+  background-color: #f5f5f5;
+}
+
+.highlight {
+padding: 9px 14px;
+margin-bottom: 14px;
+background-color: #f7f7f9;
+border: 1px solid #e1e1e8;
+border-radius: 4px;
+color:black;
+}
