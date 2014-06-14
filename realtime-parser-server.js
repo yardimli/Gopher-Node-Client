@@ -1,5 +1,5 @@
 var Globals = require("./project_modules/Globals.js"); 
-var AdminServer = require("./project_modules/AdminServer.js"); 
+var RealTimeConsole = require("./project_modules/RealTimeConsole.js"); 
 var ProjectManegerServer = require("./project_modules/ProjectManagerServer.js"); 
 var ClientServer = require("./project_modules/ClientServer.js"); 
 
@@ -17,7 +17,7 @@ function startServer(debug)
 		} else
 		if (request.url.search("/admin/")!=-1)
 		{
-			AdminServer.getFileAdmin( request, response );
+			RealTimeConsole.getFile( request, response );
 		} else
 		{
 			ClientServer.getFile( request, response );
@@ -43,7 +43,7 @@ function initSocketIO(httpServer,debug)
 	Globals.socketServer.on('connection', function (socket) {
 		console.log("user connected");
 		ProjectManegerServer.InitLocalSocket(socket);
-		AdminServer.InitLocalSocket(socket);
+		RealTimeConsole.InitLocalSocket(socket);
 		ClientServer.InitLocalSocket(socket);
 	});
 	

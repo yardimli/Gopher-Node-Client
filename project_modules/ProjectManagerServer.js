@@ -6,7 +6,7 @@ var SocketIOHandle;
 this.getFile = function(request, response){
 
 	var	localFolderAdmin = __dirname + '/../';
-	var	page404 = localFolderAdmin + '/404.html';
+	var	page404 = localFolderAdmin + 'admin/manager/404.html';
 	
 	var fileName = Globals.path.basename(request.url) || 'index.html';
 	var	ext = Globals.path.extname(fileName);
