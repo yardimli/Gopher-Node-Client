@@ -17,7 +17,4 @@ exports.extensions = {
 };
 
 exports.socketServer;
-exports.socketVar = 0;
-exports.sendData = "";
 exports.httpServer;
-exports.socketServer;

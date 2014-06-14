@@ -23,8 +23,10 @@ function initSocketIO()
 		$("#debug_console").append(getTimeStamp()+"> connected to server<br>");
 	});
 	
-	// recieve changed values by other client from server
-	iosocket.on('hiGopher', function (recievedData) {
+	$("#debug_console").append(getTimeStamp()+"> call server<br>");
+	iosocket.emit("HiAdmin", "" ); 
+
+	iosocket.on('HiAdminClient', function (recievedData) {
 		$("#debug_console").append(getTimeStamp()+"> "+recievedData.text+"<br>");
 	});
 
@@ -50,12 +52,4 @@ function initSocketIO()
 $(document).ready(function() {
 
 	initSocketIO(); 
-	
-	setTimeout(function() {
-		$("#debug_console").append(getTimeStamp()+"> call server<br>");
-		console.log("call server");
-		iosocket.emit("hellogopher", "" ); 
-	},3000);
-	
-	
 });

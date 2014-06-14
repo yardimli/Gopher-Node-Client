@@ -40,29 +40,19 @@ function initSocketIO(httpServer,debug)
 		Globals.socketServer.set('log level', 1); // socket IO debug off
 	}
 
-	Globals.socketServer.on('connect', function (socket) {
+	Globals.socketServer.on('connection', function (socket) {
 		console.log("user connected");
 		ProjectManegerServer.InitLocalSocket(socket);
+		AdminServer.InitLocalSocket(socket);
+		ClientServer.InitLocalSocket(socket);
 	});
 	
-	Globals.socketServer.emit('onconnection', {version:"0.1 alfa"});
-
-	Globals.socketVar = Globals.socketServer;
 	/*
-	
-	Globals.socketServer.on('connection', function (socket) {
-		Globals.socketVar = socket;
-		console.log("user connected");
-		socket.emit('onconnection', {version:"0.1 alfa"});
-		
-		socket.on('hellogopher', function(data) {
-			console.log("hello gopher "+data);
-			socket.emit('hiGopher',{text:"this is from Gopher Server"});
-		});
-		*/
-	 
-		
-//	});
+	socket.on('hellogopher', function(data) {
+		console.log("hello gopher "+data);
+		socket.emit('hiGopher',{text:"this is from Gopher Server"});
+	});
+	*/
 }
 
 var debug = false;

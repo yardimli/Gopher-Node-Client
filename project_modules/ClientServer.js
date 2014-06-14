@@ -1,6 +1,8 @@
 var Globals = require("../project_modules/Globals.js");
 var cheerio = require('cheerio'); //https://github.com/cheeriojs/cheerio
 
+var SocketIOHandle;
+
 var	localFolder = __dirname + '/../liveparser-root';
 var	page404 = localFolder + '/404.html';
 
@@ -106,11 +108,9 @@ function AssignmentExpression(ExpressionPoint,VarArray)
 	NewQ.VarName = XLeftName;
 	VarArray.push(NewQ); 
 
-	if (Globals.socketVar!=0) { 
-		Globals.socketVar.emit('UpdateParserView',{
+	SocketIOHandle.emit('UpdateParserView',{
 			htmlcode:"> Operator: "+ Xoperator +", Line:"+XLine+", Left: Type:"+XLeftType+", Name:"+XLeftName+", Value:"+XLeftValue+", Right: Type:"+XRightType+", Name:"+XRightName+", Value:"+XRightValue+", <br>"
 		});
-	}
 }
 
 
@@ -164,11 +164,7 @@ this.getFile = function(request, response)
 						Object.keys(parsed).forEach(function(key) {  TreeHTML2 = recurse(TreeHTML2, key, parsed[key] ); } );
 						TreeHTML2 += "</ul>";
 						
-						if (Globals.socketVar!=0) { 
-							Globals.socketVar.emit('UpdateTreeView',{
-								htmlcode:TreeHTML2
-							});
-						}
+						SocketIOHandle.emit('UpdateTreeView',{	htmlcode:TreeHTML2 });
 						
 						//use json object convert it to xml and parse it with jQuery
 						var xmldata = "<project>"+ json2xml(parsed)+ "</project>";
@@ -210,12 +206,10 @@ this.getFile = function(request, response)
 						
 
 						
-						if (Globals.socketVar!=0) { 
-							Globals.socketVar.emit('ParsedGopher',{
-								filename:filePath,
-								jsondata:JSON.stringify(parsed, null, compact ? null : 2) 
-							});
-						}
+						SocketIOHandle.emit('ParsedGopher',{
+							filename:filePath,
+							jsondata:JSON.stringify(parsed, null, compact ? null : 2) 
+						});
 
 						response.writeHead(200,{
 								"Content-type" : mimeType,
@@ -253,4 +247,14 @@ this.getFile = function(request, response)
 			});
 		}
 	});
+}
+
+this.InitLocalSocket = function(socket){
+	
+	SocketIOHandle = socket; // store socket so we can use it in the rest of the module
+	
+	socket.on('HiClientServer', function(data) {
+		socket.emit('HiClient', { text:"this is from Gopher Client Server"});
+	});
+
 }

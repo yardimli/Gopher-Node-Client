@@ -1,6 +1,8 @@
 var Globals = require("../project_modules/Globals.js"); 
 
-//helper function handles file verification for the admin folder
+var SocketIOHandle;
+
+
 this.getFile = function(request, response){
 
 	var	localFolderAdmin = __dirname + '/../';
@@ -63,10 +65,10 @@ this.getFile = function(request, response){
     });
 };
 
-
-//helper function handles file verification for the admin folder
 this.InitLocalSocket = function(socket){
-
+	
+	SocketIOHandle = socket; // store socket so we can use it in the rest of the module
+	
 	socket.on('HiManager', function(data) {
 		socket.emit('HiManagerClient', { text:"this is from Gopher Manager Server"});
 	});

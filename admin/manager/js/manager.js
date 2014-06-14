@@ -8,7 +8,12 @@ function getTimeStamp() {
 function initSocketIO()
 {
 	iosocket = io.connect();
+
+	iosocket.on('onconnection', function(value) {
+		$("#debug_console").append(getTimeStamp()+"> connected to server<br>");
+	});
 	
+	$("#debug_console").append(getTimeStamp()+"> call server<br>");
 	iosocket.emit("HiManager", "" ); 
 
 	// recieve changed values by other client from server
