@@ -1,5 +1,6 @@
 var Globals = require("./project_modules/Globals.js"); 
 var AdminServer = require("./project_modules/AdminServer.js"); 
+var ProjectManegerServer = require("./project_modules/ProjectManagerServer.js"); 
 var ClientServer = require("./project_modules/ClientServer.js"); 
 
 
@@ -10,6 +11,10 @@ function startServer(debug)
 	// on request event
 	function onRequest(request, response) 
 	{
+		if (request.url.search("/admin/manager/")!=-1)
+		{
+			ProjectManegerServer.getFile( request, response );
+		} else
 		if (request.url.search("/admin/")!=-1)
 		{
 			AdminServer.getFileAdmin( request, response );
@@ -34,6 +39,16 @@ function initSocketIO(httpServer,debug)
 	if(debug == false){
 		Globals.socketServer.set('log level', 1); // socket IO debug off
 	}
+
+	Globals.socketServer.on('connect', function (socket) {
+		console.log("user connected");
+		ProjectManegerServer.InitLocalSocket(socket);
+	});
+	
+	Globals.socketServer.emit('onconnection', {version:"0.1 alfa"});
+
+	Globals.socketVar = Globals.socketServer;
+	/*
 	
 	Globals.socketServer.on('connection', function (socket) {
 		Globals.socketVar = socket;
@@ -44,7 +59,10 @@ function initSocketIO(httpServer,debug)
 			console.log("hello gopher "+data);
 			socket.emit('hiGopher',{text:"this is from Gopher Server"});
 		});
-	});
+		*/
+	 
+		
+//	});
 }
 
 var debug = false;

@@ -1,21 +1,16 @@
 var Globals = require("../project_modules/Globals.js"); 
-var	localFolderAdmin = __dirname + '/../admin';
-var	page404 = localFolderAdmin + '/404.html';
-
 
 //helper function handles file verification for the admin folder
-this.getFileAdmin = function(request, response){
+this.getFile = function(request, response){
+
+	var	localFolderAdmin = __dirname + '/../';
+	var	page404 = localFolderAdmin + '/404.html';
 	
-	 // (localFolderAdmin + filePathName + fileName),response,page404,Globals.extensions[ext]);	  
-	
-	var fileName = Globals.path.basename(request.url) || '/index.html';
+	var fileName = Globals.path.basename(request.url) || 'index.html';
 	var	ext = Globals.path.extname(fileName);
 	var mimeType = Globals.extensions[ext];
 	var filePathName = Globals.path.dirname(request.url);
 	if (filePathName=="/") { } else { filePathName+="/";}
-
-	filePathName = filePathName.replace("/admin/","/");
-
 
 	console.log("path:"+filePathName+" file:"+fileName+" url:"+request.url+" ext:"+ext+" ");
 	console.log("url:"+request.url);
@@ -67,3 +62,13 @@ this.getFileAdmin = function(request, response){
         };
     });
 };
+
+
+//helper function handles file verification for the admin folder
+this.InitLocalSocket = function(socket){
+
+	socket.on('HiManager', function(data) {
+		socket.emit('HiManagerClient', { text:"this is from Gopher Manager Server"});
+	});
+
+}
