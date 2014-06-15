@@ -1,9 +1,8 @@
 var Globals = require("../project_modules/Globals.js");
 var SocketIOHandle;
-var fs = require('fs');
-var OpenProject = require('./OpenProject.js');
+var OpenProject = require('./WalkDirectory.js');
 
-exports.getFile = function(request, response) {
+this.getFile = function(request, response) {
 
   var localFolderAdmin = __dirname + '/../';
   var page404 = localFolderAdmin + 'admin/manager/404.html';
@@ -72,16 +71,21 @@ exports.getFile = function(request, response) {
   });
 };
 
-exports.InitLocalSocket = function(socket) {
-
+this.InitLocalSocket = function(socket) {
   SocketIOHandle = socket; // store socket so we can use it in the rest of the module
-
   socket.on('HiManager', function(data) {
     socket.emit('HiManagerClient', {text: "this is from Gopher Manager Server"});
   });
-  socket.on('getDirTree', function(data,fn) {
-    OpenProject.open('c:\\wamp\\www\\EgeFlipCard',function(projectTree){
-      socket.emit('getDirTreeClient', {text: projectTree});
+  socket.on('getDirTree', function(data) {
+    OpenProject.open(data.target, function(projectTree) {
+      var response = {};
+      if(projectTree.errno > 0){
+        response.success = false;
+      }else{
+        response.success = true
+        response.data = projectTree;
+      }
+      socket.emit('getDirTreeClient', response);
     });
   });
 };

@@ -1,4 +1,4 @@
-var fs = require('fs');
+var Globals = require("../project_modules/Globals.js");
 function fileNode(_path,_children){
   this.path = _path;
   this.children = _children;
@@ -7,17 +7,18 @@ var scan = function(dir) {
   this.starts = function(w) {
     dig(dir, function(err, results) {
       if (err){
-        throw err;
+        w(err);
+      }else{
+         w(results);
       }
-      w(results);
     });
   };
   function dig(dir, end) {
     //var output = [];
     var output = new fileNode(dir,[]);
-    fs.readdir(dir, function(err, list) {
+    Globals.fs.readdir(dir, function(err, list) {
       if (err){
-        return done(err);
+        return end(err);
       }
       var pending = list.length;
       if (!pending){
@@ -25,7 +26,7 @@ var scan = function(dir) {
       }
       list.forEach(function(file) {
         file = dir + '\\' + file;
-        fs.stat(file, function(err, stat) {
+        Globals.fs.stat(file, function(err, stat) {
           if (stat && stat.isDirectory()) {
             dig(file, function(err, res) {
               //output = output.concat(res);
@@ -66,9 +67,6 @@ var parseGopherTunnel = function(t){
   }
 };
 
-exports.open =function(test){
-  
-};
 this.open = function(path, gopher) {
   var gopherWalk = new scan(path);
   gopherWalk.starts(function(whatever) {

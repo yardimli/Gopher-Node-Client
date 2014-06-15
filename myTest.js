@@ -1,4 +1,4 @@
-var OpenProject = require('./project_modules/OpenProject.js');
-OpenProject.open('c:\\wamp\\www\\EgeFlipCard',function(projectTree){
-  console.log(projectTree);
+var OpenProject = require('./project_modules/WalkDirectory.js');
+OpenProject.open('c:\\wamp\\www\\EgeFlipCard2',function(projectTree){
+  console.log(projectTree.errno);
 });

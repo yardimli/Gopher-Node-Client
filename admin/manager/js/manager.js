@@ -1,5 +1,5 @@
-
-var iosocket;
+$(document).ready(function() {
+  var iosocket;
 var test_dir_holder;
 function getTimeStamp() {
        var now = new Date();
@@ -22,20 +22,22 @@ function initSocketIO()
 		$("#debug_console").append(getTimeStamp()+"> "+recievedData.text+"<br>");
 	});
   
-  iosocket.on('getDirTreeClient',function(recievedData){
-    test_dir_holder = recievedData.text;
-    console.log('on iosocet getDirTreeClient');
-    console.log(test_dir_holder);
+  iosocket.on('getDirTreeClient',function(response){
+    console.log(response);
+    if(response.success == false){
+      
+    }else{
+      console.log('on iosocet getDirTreeClient');
+      console.log(response.data);
+    }    
   });
 }
-$(document).ready(function() {
-  
 	initSocketIO(); 
   $('#dialog_select_dir').on('show.bs.modal',function(){
-    iosocket.emit('getDirTree',function(data){
-      console.log('dialog opens');
-      console.log(test_dir_holder);
-    });
+    console.log('dialog opens');
+    var sendData = {};
+    sendData.target='c:\\wamp\\www\\EgeFlipCard';
+    iosocket.emit('getDirTree',sendData);
     //$('#target_dir').html(test_dir_holder);
     
   });
