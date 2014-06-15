@@ -52,13 +52,13 @@ function recurse(TreeHTML, key, val)
 
 		if (key=="loc")
 		{
-			TreeHTML += key + "<ul>";
-			
+//			TreeHTML += key + "<ul>";
+			TreeHTML += "<li><a>"+ key + "</a><ul>";
 			Object.keys(val).forEach(function(key) {  TreeHTML = recurse(TreeHTML, key, val[key] ); } );
 			TreeHTML += "</ul>";
 		} else
 		{
-			TreeHTML += "<li>"+ key + "<ul>";
+			TreeHTML += "<li><a>"+ key + "</a><ul>";
 			Object.keys(val).forEach(function(key) {  TreeHTML = recurse(TreeHTML, key, val[key] ); } );
 			TreeHTML += "</ul></li>";
 		}
@@ -66,7 +66,7 @@ function recurse(TreeHTML, key, val)
 //		if (key=="start") {} else
 //		if (key=="end") {} else
 		{
-			TreeHTML +=  "<li>" + key +  " = " + val + "</li>";
+			TreeHTML +=  "<li><a>" + key +  " = " + val + "</a></li>";
 		}
 
 		if ( (key=="type") && (val=="AssignmentExpression") )
@@ -148,6 +148,7 @@ this.getFile = function(request, response)
 						var SourceCode = contents.toString();
 						
 						
+						//use https://github.com/balupton/jquery-syntaxhighlighter for highlighting
 						SocketIOHandle.emit('UpdateSourceView',{	sourcecode:'<pre class="language-javascript">'+SourceCode+'</pre>' });
 
 						parsed = Globals.acorn.parse(contents, options); 	
@@ -159,7 +160,7 @@ this.getFile = function(request, response)
 						Object.keys(parsed).forEach(function(key) {  TreeHTML2 = recurse(TreeHTML2, key, parsed[key] ); } );
 						TreeHTML2 += "</ul>";
 						
-						SocketIOHandle.emit('UpdateTreeView',{	htmlcode:TreeHTML2 });
+						SocketIOHandle.emit('UpdateTreeView',{	htmlcode:'<div class="tree">'+TreeHTML2+'</div>' });
 						
 						//use json object convert it to xml and parse it with jQuery
 						var xmldata = "<project>"+ json2xml(parsed)+ "</project>";

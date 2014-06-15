@@ -45,7 +45,27 @@ function initSocketIO()
 
 	iosocket.on('UpdateTreeView', function (recievedData) {
 		$("#debug_console").append(getTimeStamp()+"> Update Tree<br>");
-		$("#tree1").html(recievedData.htmlcode);		
+		$("#tree1").html(recievedData.htmlcode);
+
+		    $( '.tree li' ).each( function() {
+		        if( $( this ).children( 'ul' ).length > 0 ) {
+		            $( this ).addClass( 'parent' );     
+		        }
+		    });
+		 
+		    $( '.tree li.parent > a' ).click( function( ) {
+		        $( this ).parent().toggleClass( 'active' );
+		        $( this ).parent().children( 'ul' ).slideToggle( 'fast' );
+		    });
+		 
+		    $( '#all' ).click( function() {
+		 
+		        $( '.tree li' ).each( function() {
+		            $( this ).toggleClass( 'active' );
+		            $( this ).children( 'ul' ).slideToggle( 'fast' );
+		        });
+		    });
+		
 	});
 	
 	iosocket.on('UpdateParserView', function (recievedData) {
