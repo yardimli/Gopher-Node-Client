@@ -37,11 +37,17 @@ function initSocketIO()
 		
 	});
 	
+	iosocket.on('UpdateSourceView', function (recievedData) {
+		$("#debug_console").append(getTimeStamp()+"> Update Source<br>");
+		$("#source1").html(recievedData.sourcecode);
+		$("#source1").syntaxHighlight(); 
+	});
+
 	iosocket.on('UpdateTreeView', function (recievedData) {
 		$("#debug_console").append(getTimeStamp()+"> Update Tree<br>");
 		$("#tree1").html(recievedData.htmlcode);		
 	});
-							
+	
 	iosocket.on('UpdateParserView', function (recievedData) {
 		$("#debug_console").append(getTimeStamp()+"> Update Parser<br>");
 		$("#AssignmentExpression").append(recievedData.htmlcode);		
@@ -50,6 +56,6 @@ function initSocketIO()
 }
  
 $(document).ready(function() {
-
+	$.SyntaxHighlighter.init(); 
 	initSocketIO(); 
 });

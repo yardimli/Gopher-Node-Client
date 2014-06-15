@@ -18,6 +18,6 @@ i = j;
 i = add1(i,6);
 
 $(document).ready(function() {
-	str1 = "hello world";
+ str1 = "hello world";
 	$("#debug_console").html(str1);
 });

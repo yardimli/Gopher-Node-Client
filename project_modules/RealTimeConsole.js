@@ -5,17 +5,20 @@ var SocketIOHandle;
 
 this.getFile = function(request, response){
 	
-	var	localFolderAdmin = __dirname + '/../';
-	var	page404 = localFolderAdmin + 'admin/404.html';
+	var	localFolder = __dirname + '/..';
 	
-	var fileName = Globals.path.basename(request.url) || '/index.html';
+	localFolder = localFolder.replace(/\\/g,'/');
+	
+	var	page404 = localFolder + '/admin/404.html';
+	
+	var fileName = request.url;
+	if ((request.url=="/admin") || (request.url=="/admin/")) { 
+		fileName = '/admin/index.html'; 
+	}
+	
+	
 	var	ext = Globals.path.extname(fileName);
 	var mimeType = Globals.extensions[ext];
-	var filePathName = Globals.path.dirname(request.url);
-	if (filePathName=="/") { } else { filePathName+="/";}
-
-	console.log("path:"+filePathName+" file:"+fileName+" url:"+request.url+" ext:"+ext+" ");
-	console.log("url:"+request.url);
 
 	//do we support the requested file type?
 	if(!Globals.extensions[ext]){
@@ -25,10 +28,11 @@ this.getFile = function(request, response){
 	};
 	
 	
-	var filePath = localFolderAdmin+filePathName+fileName;
+	var filePath = localFolder+fileName;
+
+	console.log("file:"+fileName+" url:"+request.url+" ext:"+ext+" filePath:"+filePath);
 	
 	//does the requested file exist?
-	console.log("ADMIN:"+filePath);
     Globals.fs.exists(filePath,function(exists){
         //if it does...
         if(exists){

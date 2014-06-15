@@ -3,9 +3,6 @@ var cheerio = require('cheerio'); //https://github.com/cheeriojs/cheerio
 
 var SocketIOHandle;
 
-var	localFolder = __dirname + '/../liveparser-root';
-var	page404 = localFolder + '/404.html';
-
 //----------------------------------------------------------------------------------------
 function json2xml(o, tab) {
    var toXml = function(v, name, ind) {
@@ -87,46 +84,39 @@ function recurse(TreeHTML, key, val)
 //----------------------------------------------------------------------------------------
 function AssignmentExpression(ExpressionPoint,VarArray)
 {
-	var XLine = ExpressionPoint.find("loc").find("end").find("line").first().text();
-	var XColumn = ExpressionPoint.find("loc").find("end").find("column").first().text();
-	var XEndPosition = ExpressionPoint.find("end").first().text();
-
-	var Xoperator = ExpressionPoint.find("operator").first().text();
-
-	var XLeftType = ExpressionPoint.find("left").find("type").first().text();
-	var XLeftName = ExpressionPoint.find("left").find("name").first().text();
-	var XLeftValue = ExpressionPoint.find("left").find("value").first().text();
-
-	var XRightType = ExpressionPoint.find("right").find("type").first().text();
-	var XRightName = ExpressionPoint.find("right").find("name").first().text();
-	var XRightValue = ExpressionPoint.find("right").find("value").first().text();
-
 	NewQ = new Object();
-	NewQ.XLine = XLine;
-	NewQ.XColumn = XColumn;
-	NewQ.XEndPosition = parseInt(XEndPosition,10);
-	NewQ.VarName = XLeftName;
+	NewQ.XLine = ExpressionPoint.find("loc").find("end").find("line").first().text();
+	NewQ.XColumn = ExpressionPoint.find("loc").find("end").find("column").first().text();
+	NewQ.XEndPosition = parseInt(ExpressionPoint.find("end").first().text(),10);
+	NewQ.VarName = ExpressionPoint.find("left").find("name").first().text();
+	NewQ.Xoperator = ExpressionPoint.find("operator").first().text();
 	VarArray.push(NewQ); 
 
 	SocketIOHandle.emit('UpdateParserView',{
-			htmlcode:"> Operator: "+ Xoperator +", Line:"+XLine+", Left: Type:"+XLeftType+", Name:"+XLeftName+", Value:"+XLeftValue+", Right: Type:"+XRightType+", Name:"+XRightName+", Value:"+XRightValue+", <br>"
+			htmlcode:"> Operator: "+ NewQ.Xoperator +", Line:"+NewQ.XLine+", Name:"+NewQ.VarName+" <br>"
 		});
 }
+
+
+
 
 
 //helper function handles file verification for the client files that will be converted
 this.getFile = function(request, response)
 {
-	// (localFolder + filePathName + fileName),response,page404,Globals.extensions[ext]);	  	
-	var fileName = Globals.path.basename(request.url) || 'index.html';
+	var	localFolder = __dirname + '/../liveparser-root';
+	localFolder = localFolder.replace(/\\/g,'/');
+
+	var	page404 = localFolder + '/404.html';
+
+	var fileName = request.url;
+	if ((request.url=="") || (request.url=="/")) { 
+		fileName = '/index.html'; 
+	}
+	
 	var	ext = Globals.path.extname(fileName);
 	var mimeType = Globals.extensions[ext];
-	var filePathName = Globals.path.dirname(request.url);
-	if (filePathName=="/") { } else { filePathName+="/";}
-
-	console.log("path:"+filePathName+" file:"+fileName+" url:"+request.url+" ext:"+ext+" ");
-	console.log("url:"+request.url);
-
+	
 	//do we support the requested file type?
 	if(!Globals.extensions[ext]){
 		//for now just send a 404 and a short message
@@ -134,10 +124,10 @@ this.getFile = function(request, response)
 		response.end("<html><head></head><body>The requested file type is not supported</body></html>");
 	};
 
-	var filePath = localFolder+filePathName+fileName;
+	var filePath = localFolder+fileName;
 
-	
-	console.log(filePath);
+	console.log("file:"+fileName+" url:"+request.url+" ext:"+ext+" filePath:"+filePath);
+
 	Globals.fs.exists(filePath,function(exists)
 	{
 		//if it does...
@@ -154,6 +144,11 @@ this.getFile = function(request, response)
 						var ExpressionPoint;
 						var jQuery;
 						var TreeHTML2;
+
+						var SourceCode = contents.toString();
+						
+						
+						SocketIOHandle.emit('UpdateSourceView',{	sourcecode:'<pre class="language-javascript">'+SourceCode+'</pre>' });
 
 						parsed = Globals.acorn.parse(contents, options); 	
 						//console.log(JSON.stringify(parsed, null, compact ? null : 2));
