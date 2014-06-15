@@ -10,21 +10,19 @@
 
     <title>Gopher Node Realtime Client - Project Manager</title>
 
-	<script src="js/jquery-1.10.2.js"></script>
-	<script src="js/jquery-ui-1.10.4.js"></script> 
-	<script src="/socket.io/socket.io.js"></script>
+    <script src="js/jquery-1.10.2.js"></script>
+    <script src="js/jquery-ui-1.10.4.js"></script> 
+    <script src="/socket.io/socket.io.js"></script>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <script src="js/bootstrap.min.js"></script>
-	
-	<link href="css/style.css" rel="stylesheet">
-	<script src="js/manager.js"></script> 
-	
+
+    <link href="css/style.css" rel="stylesheet">
+    <script src="js/centralizeDialog.js"></script>
+    <script src="js/manager.js"></script> 
   </head>
-
   <body>
-
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
@@ -45,21 +43,47 @@
       </div>
     </div>
 
-    <div class="container">
-		
-		<div id="debug_console" style="z-index:2; position:absolute; right:10px; top:50px; width:450px; height:400px; border:1px solid white; background-color: rgba(0,0,0,0.5); border-radius:5px; color:white; padding:5px; overflow:auto ">
-		PARSER DEBUG CONSOLE:<br>
-		</div> 
-	  
-	  
+    <div class="container manager-content">
+      <div class="row" style="width:800px;">
+        <div class="col-md-6"><button type="button" class="btn btn-default btn-block" data-toggle="modal" data-target="#dialog_select_dir">Select my project Directory</button></div>
+        <div class="col-md-6"><input type="text" class="form-control" placeholder="Project Directory Path"></div>   
+      </div>
+      <div id="debug_console" style="z-index:2; position:absolute; right:10px; top:50px; width:450px; height:400px; border:1px solid white; background-color: rgba(0,0,0,0.5); border-radius:5px; color:white; padding:5px; overflow:auto ">
+        PARSER DEBUG CONSOLE:<br>
+      </div> 
     </div><!-- /.container -->
 
-   <div id="footer">
+    <div id="dialog_select_dir" class="modal fade " tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-dialogw="884" data-dialogh="465">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">Select Project Directory</h4>
+          </div>
+          <div class="modal-body" style="margin-bottom:0px; padding-bottom:0px;">
+            <div class="alert alert-warning" style="display:none;">
+              <strong>No courses are added to the Gamification.</strong>
+            </div>
+            <div data-role="template-loader">
+              <img src="images/ajax-loader.gif"/>
+            </div>
+            <div id="target_dir">
+              
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" id="add_courses_to_gm" data-btnlabel="Add to Gamification">Add to Gamification</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div id="footer">
       <div class="container">
         <p class="text-muted">Place sticky footer content here.</p>
       </div>
     </div>
 
-	
+
   </body>
 </html>

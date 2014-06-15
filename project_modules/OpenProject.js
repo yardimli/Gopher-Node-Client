@@ -1,15 +1,20 @@
 var fs = require('fs');
-
+function fileNode(_path,_children){
+  this.path = _path;
+  this.children = _children;
+}
 var scan = function(dir) {
   this.starts = function(w) {
     dig(dir, function(err, results) {
-      if (err)
+      if (err){
         throw err;
+      }
       w(results);
     });
   };
   function dig(dir, end) {
-    var output = [];
+    //var output = [];
+    var output = new fileNode(dir,[]);
     fs.readdir(dir, function(err, list) {
       if (err){
         return done(err);
@@ -23,12 +28,15 @@ var scan = function(dir) {
         fs.stat(file, function(err, stat) {
           if (stat && stat.isDirectory()) {
             dig(file, function(err, res) {
-              output = output.concat(res);
+              //output = output.concat(res);
+              output.children.push(res);
               if (!--pending)
                 end(null, output);
             });
           } else {
-            output.push(file);
+            //output.push(file);
+            //output.children.push({"path":file});
+            output.children.push(new fileNode(file,null));
             if (!--pending)
               end(null, output);
           }
@@ -58,6 +66,9 @@ var parseGopherTunnel = function(t){
   }
 };
 
+exports.open =function(test){
+  
+};
 this.open = function(path, gopher) {
   var gopherWalk = new scan(path);
   gopherWalk.starts(function(whatever) {
