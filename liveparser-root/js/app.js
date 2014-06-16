@@ -11,6 +11,13 @@ str2 = 1;
 
 var i;
 var j;
+
+j = 0;
+for (var i1=0; i1<10; i1++)
+{
+	j = j + i1;
+}
+
 j = 4;
 
 i = j;

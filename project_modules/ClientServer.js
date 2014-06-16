@@ -92,7 +92,7 @@ function AssignmentExpression(ExpressionPoint,VarArray)
 	NewQ.Xoperator = ExpressionPoint.find("operator").first().text();
 	VarArray.push(NewQ); 
 
-	SocketIOHandle.emit('UpdateParserView',{
+	Globals.socketServer.sockets.in("room1").emit('UpdateParserView',{
 			htmlcode:"> Operator: "+ NewQ.Xoperator +", Line:"+NewQ.XLine+", Name:"+NewQ.VarName+" <br>"
 		});
 }
@@ -126,7 +126,7 @@ this.getFile = function(request, response)
 
 	var filePath = localFolder+fileName;
 
-	console.log("file:"+fileName+" url:"+request.url+" ext:"+ext+" filePath:"+filePath);
+//	console.log("file:"+fileName+" url:"+request.url+" ext:"+ext+" filePath:"+filePath);
 
 	Globals.fs.exists(filePath,function(exists)
 	{
@@ -144,12 +144,12 @@ this.getFile = function(request, response)
 						var ExpressionPoint;
 						var jQuery;
 						var TreeHTML2;
-
+						
 						var SourceCode = contents.toString();
 						
 						
 						//use https://github.com/balupton/jquery-syntaxhighlighter for highlighting
-						SocketIOHandle.emit('UpdateSourceView',{	sourcecode:'<pre class="language-javascript">'+SourceCode+'</pre>' });
+						Globals.socketServer.sockets.in("room1").emit('UpdateSourceView',{	sourcecode:'<pre class="language-javascript">'+SourceCode+'</pre>' });
 
 						parsed = Globals.acorn.parse(contents, options); 	
 						//console.log(JSON.stringify(parsed, null, compact ? null : 2));
@@ -159,15 +159,50 @@ this.getFile = function(request, response)
 						TreeHTML2 = "<ul>";
 						Object.keys(parsed).forEach(function(key) {  TreeHTML2 = recurse(TreeHTML2, key, parsed[key] ); } );
 						TreeHTML2 += "</ul>";
+						Globals.fs.writeFile(filePath+".gopher.tree.html",TreeHTML2);
 						
-						SocketIOHandle.emit('UpdateTreeView',{	htmlcode:'<div class="tree">'+TreeHTML2+'</div>' });
+						Globals.socketServer.sockets.in("room1").emit('UpdateTreeView',{	htmlcode:'<div class="tree">'+TreeHTML2+'</div>' });
 						
 						//use json object convert it to xml and parse it with jQuery
+//						parsed = parsed.replace(/</g,'&lt;');
+//						parsed = parsed.replace(/>/g,'&gt;');
+
 						var xmldata = "<project>"+ json2xml(parsed)+ "</project>";
 						Globals.fs.writeFile(filePath+".gopher.xml",xmldata );
 						
+						var VarArray = [];
 						var jQuery = cheerio.load(xmldata, {xmlMode: true});
+						var i=0;
+						jQuery(xmldata).children('body').each(function(){
 
+							Globals.socketServer.sockets.in("room1").emit('UpdateParserView',{
+									htmlcode:"> "+i+": "+ jQuery(this).find("type").first().text() +"<br>"
+							});
+							
+							if (jQuery(this).find("type").first().text() == "ExpressionStatement")
+							{
+
+								if (jQuery(this).find("expression").first().find("type").first().text() == "AssignmentExpression")
+								{
+
+									NewQ = new Object();
+									NewQ.XLine = jQuery(this).find("expression").first().find("loc").find("end").find("line").first().text();
+									NewQ.XColumn = jQuery(this).find("expression").first().find("loc").find("end").find("column").first().text();
+									NewQ.XEndPosition = parseInt(jQuery(this).find("expression").first().find("end").first().text(),10);
+									NewQ.VarName = jQuery(this).find("expression").first().find("left").find("name").first().text();
+									NewQ.Xoperator = jQuery(this).find("expression").first().find("operator").first().text();
+									VarArray.push(NewQ); 
+
+									Globals.socketServer.sockets.in("room1").emit('UpdateParserView',{
+											htmlcode:"> Operator: "+ NewQ.Xoperator +", Line:"+NewQ.XLine+", Name:"+NewQ.VarName+" <br>"
+										});
+								}
+							}
+							
+							i++;
+						
+						});
+/*
 						var VarArray = [];
 						jQuery(xmldata).find('expression').each(function(){
 
@@ -186,7 +221,7 @@ this.getFile = function(request, response)
 								FirstLoop = false;
 							});
 						});
-						
+	*/					
 						var nCount = VarArray.length;
 						while ( nCount > 0)
 						{
@@ -195,17 +230,19 @@ this.getFile = function(request, response)
 						
 							contents = 
 								[contents.slice(0, VarArray[nCount].XEndPosition+1), 
-								"\nconsole.log('Line "+ VarArray[nCount].XLine + ": Variable ["+VarArray[nCount].VarName+"] set to:'+"+VarArray[nCount].VarName+");" , 
+								"\niosocket.emit('Gopher.Tell','Line "+ VarArray[nCount].XLine + ": Variable ["+VarArray[nCount].VarName+"] set to:'+"+VarArray[nCount].VarName+");" , 
 								contents.slice(VarArray[nCount].XEndPosition+1)].join('');
 							
 						}
 						
+						contents = "\n\
+var iosocket;\n\
+iosocket = io.connect();\n\
+iosocket.emit('HiGopherB','');\n\
+iosocket.emit('HiClientServer','');\n\
+\n\n" +  contents;
 
 						
-						SocketIOHandle.emit('ParsedGopher',{
-							filename:filePath,
-							jsondata:JSON.stringify(parsed, null, compact ? null : 2) 
-						});
 
 						response.writeHead(200,{
 								"Content-type" : mimeType,
@@ -246,11 +283,16 @@ this.getFile = function(request, response)
 }
 
 this.InitLocalSocket = function(socket){
-	
+
+	console.log("Call binding Client Server socket");
+
 	SocketIOHandle = socket; // store socket so we can use it in the rest of the module
-	
+
 	socket.on('HiClientServer', function(data) {
-		socket.emit('HiClient', { text:"this is from Gopher Client Server"});
+		console.log("HiClientServer called from client: "+socket.id);
+
+		Globals.socketServer.sockets.in("room1").emit('HiClient', { text:"this is from Gopher Client Server"});
 	});
+		
 
 }

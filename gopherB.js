@@ -3,7 +3,6 @@ var RealTimeConsole = require("./project_modules/RealTimeConsole.js");
 var ProjectManegerServer = require("./project_modules/ProjectManagerServer.js"); 
 var ClientServer = require("./project_modules/ClientServer.js"); 
 
-
 // handle contains locations to browse to (vote and poll); pathnames.
 //function startServer(route,handle,debug)
 function startServer(debug)
@@ -37,15 +36,25 @@ function initSocketIO(httpServer,debug)
 	Globals.socketServer = Globals.socketio.listen(httpServer);
 
 	if(debug == false){
-		Globals.socketServer.set('log level', 1); // socket IO debug off
+//		Globals.socketServer.set('log level', 1); // socket IO debug off
 	}
 
-	Globals.socketServer.on('connection', function (socket) {
-		console.log("user connected");
+	Globals.socketServer.sockets.on('connection', function (socket) {
+		console.log("          user connected to gopherB: "+socket.id);
+
+		socket.on('HiGopherB', function(data) {
+			console.log(socket.id+" joins 'room1'");
+			socket.join('room1');
+		});
+
+	
 		ProjectManegerServer.InitLocalSocket(socket);
 		RealTimeConsole.InitLocalSocket(socket);
 		ClientServer.InitLocalSocket(socket);
 	});
+
+
+	
 	
 	/*
 	socket.on('hellogopher', function(data) {

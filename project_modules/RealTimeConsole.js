@@ -30,7 +30,7 @@ this.getFile = function(request, response){
 	
 	var filePath = localFolder+fileName;
 
-	console.log("file:"+fileName+" url:"+request.url+" ext:"+ext+" filePath:"+filePath);
+	//console.log("file:"+fileName+" url:"+request.url+" ext:"+ext+" filePath:"+filePath);
 	
 	//does the requested file exist?
     Globals.fs.exists(filePath,function(exists){
@@ -70,11 +70,19 @@ this.getFile = function(request, response){
 };
 
 this.InitLocalSocket = function(socket){
-	
+
+	console.log("Call binding Real Time Console socket");
+
 	SocketIOHandle = socket; // store socket so we can use it in the rest of the module
 	
 	socket.on('HiAdmin', function(data) {
-		socket.emit('HiAdminClient', { text:"this is from Gopher Admin Server"});
+		console.log("HiAdmin called from client: "+socket.id);
+		
+		Globals.socketServer.sockets.in("room1").emit('HiAdminClient', { text:"this is from Gopher Admin Server"});
 	});
 
+	socket.on('Gopher.Tell', function(data) {
+//		console.log(data);
+		Globals.socketServer.sockets.in("room1").emit('ConsoleTell', { text:data});
+	});
 }
