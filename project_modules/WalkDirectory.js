@@ -28,30 +28,41 @@ var scan = function(dir, findSubDir, onlyDir) {
       list.forEach(function(file) {
         file = dir + '\\' + file;
         Globals.fs.stat(file, function(err, stat) {
-          if (stat && stat.isDirectory()) {
-            if(findSubDir){
-              dig(file, function(err, res) {
-                output.children.push(res);
-                if (!--pending){
-                  end(null, output);
-                  console.log(file);
-                  console.log('here');
+          if(findSubDir){
+            if (stat && stat.isDirectory()) {
+                dig(file, function(err, res) {
+                    output.children.push(res);
+                    if (!--pending){
+                      end(null, output);
+                    }
+                  });
+              } else {
+                if(onlyDir){
+                  if (!--pending){
+                      end(null, output);
+                  }
+                }else{
+                  output.children.push(new fileNode(file, null));
+                  if (!--pending){
+                      end(null, output);
+                  }
                 }
-              });
-            }else{
+              }
+          }else{
+            if (stat && stat.isDirectory()) {
               output.children.push(new fileNode(file, []));
-              if (!--pending){
-                end(null, output);
+                  if (!--pending){
+                    end(null, output);
+                  }
+            } else {
+              if(onlyDir){
+                --pending;
+              }else{
+                output.children.push(new fileNode(file, null));
+                if (!--pending){
+                    end(null, output);
+                }
               }
-            }
-          } else {
-            if(onlyDir === false){
-              output.children.push(new fileNode(file, null));
-              if (!--pending){
-                end(null, output);
-              }
-            }else{
-              --pending;
             }
           }
         });
