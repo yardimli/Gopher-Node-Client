@@ -2,7 +2,9 @@ var str1;
 
 function add1(a,b)
 {
-	return a+b;
+	total = a+b;
+	
+	return total;
 }
 
 var str2;

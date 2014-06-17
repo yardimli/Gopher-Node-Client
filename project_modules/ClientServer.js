@@ -81,8 +81,97 @@ function recurse(TreeHTML, key, val)
 
 
 
+function loopBody(tree,parentType,Xlevel,VarArray)
+{
+	var i=0;
+	Xlevel++;
+	
+	var jQuery = cheerio.load(tree, {xmlMode: true});
+	
+	jQuery(tree).children('body').each(function(){
+		var BodyType = jQuery(this).find("type").first().text();
+	//	console.log('l:'+Xlevel+', t:'+BodyType+', p:'+ parentType +', b:'+jQuery(this).find('body').length);
+		
+		
+		Globals.socketServer.sockets.in("room1").emit('UpdateParserView',{
+				htmlcode:'l:'+Xlevel+', t:'+BodyType+', p:'+ parentType +', b:'+jQuery(this).children('body').length +'<br>'
+		});
+		//------------------------------------------------------------------------------------------------
+		
+		if (BodyType == "FunctionDeclaration")
+		{
+				var parentNode =jQuery(this);
+				NewQ = new Object();
+				NewQ.Type = "FunctionDeclaration";
+				NewQ.XLine = parentNode.find("loc").find("end").find("line").first().text();
+				NewQ.XColumn = parentNode.find("loc").find("end").find("column").first().text();
+				NewQ.XStartPosition = parseInt(parentNode.find("start").first().text(),10);
+				NewQ.VarName = parentNode.find("id").find("name").first().text();
+				VarArray.push(NewQ); 
+
+				Globals.socketServer.sockets.in("room1").emit('UpdateParserView',{
+						htmlcode:"  >Function Line:"+NewQ.XLine+", Name:"+NewQ.VarName+"<br>"
+					});
+
+		}
 
 
+		if (BodyType == "VariableDeclaration")
+		{
+			if (jQuery(this).find("declarations").first().find("type").first().text() == "VariableDeclarator")
+			{
+				var parentNode =jQuery(this).find("declarations").first();
+				NewQ = new Object();
+				NewQ.Type = "VariableDeclaration";
+				NewQ.XLine = parentNode.find("loc").find("end").find("line").first().text();
+				NewQ.XColumn = parentNode.find("loc").find("end").find("column").first().text();
+				NewQ.XEndPosition = parseInt(parentNode.find("end").first().text(),10);
+
+				NewQ.VarName = parentNode.find("id").find("name").first().text();
+
+				if (parentNode.find("init").first().text()=="")
+					{ NewQ.InitValue = "null"; } else
+					{ NewQ.InitValue = parentNode.find("init").find("value").first().text(); }
+				VarArray.push(NewQ); 
+
+				Globals.socketServer.sockets.in("room1").emit('UpdateParserView',{
+						htmlcode:"  >Decleration Line:"+NewQ.XLine+", Name:"+NewQ.VarName+" Init:"+NewQ.InitValue+" <br>"
+					});
+
+			}
+		}
+
+		if (BodyType == "ExpressionStatement")
+		{
+
+			if (jQuery(this).find("expression").first().find("type").first().text() == "AssignmentExpression")
+			{
+
+				var parentNode =jQuery(this).find("expression").first();
+				NewQ = new Object();
+				NewQ.Type = "AssignmentExpression";
+				NewQ.XLine = parentNode.find("loc").find("end").find("line").first().text();
+				NewQ.XColumn = parentNode.find("loc").find("end").find("column").first().text();
+				NewQ.XEndPosition = parseInt(parentNode.find("end").first().text(),10);
+				NewQ.VarName = parentNode.find("left").find("name").first().text();
+				NewQ.Xoperator = parentNode.find("operator").first().text();
+				VarArray.push(NewQ); 
+
+				Globals.socketServer.sockets.in("room1").emit('UpdateParserView',{
+						htmlcode:"  >Assignment Line:"+NewQ.XLine+", Name:"+NewQ.VarName+", Operator: "+ NewQ.Xoperator +"<br>"
+					});
+			}
+		}
+		//------------------------------------------------------------------------------------------------
+		
+		//if this node has a body inside loop it 
+		if ( jQuery(this).children('body').length > 0)
+		{
+			loopBody(this,parentType+" --> "+BodyType,Xlevel,VarArray );
+		}
+	});
+	return VarArray;
+}
 
 //helper function handles file verification for the client files that will be converted
 this.getFile = function(request, response)
@@ -154,95 +243,12 @@ this.getFile = function(request, response)
 						Globals.fs.writeFile(filePath+".gopher.xml",xmldata );
 						
 						var VarArray = [];
-						var jQuery = cheerio.load(xmldata, {xmlMode: true});
-						var i=0;
-						jQuery(xmldata).find('body').each(function(){
-							
-							var BodyType = jQuery(this).find("type").first().text();
-
-							Globals.socketServer.sockets.in("room1").emit('UpdateParserView',{
-									htmlcode:"> "+i+": "+ BodyType +"<br>"
-							});
-
-							if (BodyType == "FunctionDeclaration")
-							{
-									var parentNode =jQuery(this);
-									NewQ = new Object();
-									NewQ.Type = "FunctionDeclaration";
-									NewQ.XLine = parentNode.find("loc").find("end").find("line").first().text();
-									NewQ.XColumn = parentNode.find("loc").find("end").find("column").first().text();
-									NewQ.XEndPosition = parseInt(parentNode.find("end").first().text(),10);
-									
-									NewQ.VarName = parentNode.find("id").find("name").first().text();
-
-									if (parentNode.find("init").first().text()=="")
-										{ NewQ.InitValue = "null"; } else
-										{ NewQ.InitValue = parentNode.find("init").find("value").first().text(); }
-									VarArray.push(NewQ); 
-
-									Globals.socketServer.sockets.in("room1").emit('UpdateParserView',{
-											htmlcode:">Decleration Line:"+NewQ.XLine+", Name:"+NewQ.VarName+" Init:"+NewQ.InitValue+" <br>"
-										});
-								
-							}
-
-								
-							if (BodyType == "VariableDeclaration")
-							{
-								if (jQuery(this).find("declarations").first().find("type").first().text() == "VariableDeclarator")
-								{
-									var parentNode =jQuery(this).find("declarations").first();
-									NewQ = new Object();
-									NewQ.Type = "VariableDeclaration";
-									NewQ.XLine = parentNode.find("loc").find("end").find("line").first().text();
-									NewQ.XColumn = parentNode.find("loc").find("end").find("column").first().text();
-									NewQ.XEndPosition = parseInt(parentNode.find("end").first().text(),10);
-									
-									NewQ.VarName = parentNode.find("id").find("name").first().text();
-
-									if (parentNode.find("init").first().text()=="")
-										{ NewQ.InitValue = "null"; } else
-										{ NewQ.InitValue = parentNode.find("init").find("value").first().text(); }
-									VarArray.push(NewQ); 
-
-									Globals.socketServer.sockets.in("room1").emit('UpdateParserView',{
-											htmlcode:">Decleration Line:"+NewQ.XLine+", Name:"+NewQ.VarName+" Init:"+NewQ.InitValue+" <br>"
-										});
-									
-								}
-							}
-							
-							if (BodyType == "ExpressionStatement")
-							{
-
-								if (jQuery(this).find("expression").first().find("type").first().text() == "AssignmentExpression")
-								{
-
-									var parentNode =jQuery(this).find("expression").first();
-									NewQ = new Object();
-									NewQ.Type = "AssignmentExpression";
-									NewQ.XLine = parentNode.find("loc").find("end").find("line").first().text();
-									NewQ.XColumn = parentNode.find("loc").find("end").find("column").first().text();
-									NewQ.XEndPosition = parseInt(parentNode.find("end").first().text(),10);
-									NewQ.VarName = parentNode.find("left").find("name").first().text();
-									NewQ.Xoperator = parentNode.find("operator").first().text();
-									VarArray.push(NewQ); 
-
-									Globals.socketServer.sockets.in("room1").emit('UpdateParserView',{
-											htmlcode:"> Operator: "+ NewQ.Xoperator +", Line:"+NewQ.XLine+", Name:"+NewQ.VarName+" <br>"
-										});
-								}
-							}
-							
-							i++;
-						
-						});
+						VarArray = loopBody(xmldata,"BODY",0,VarArray);
 
 						var nCount = VarArray.length;
 						while ( nCount > 0)
 						{
 							nCount--;
-							
 							
 							if (VarArray[nCount].Type == "AssignmentExpression")
 							{
@@ -262,7 +268,20 @@ this.getFile = function(request, response)
 									[contents.slice(0, VarArray[nCount].XEndPosition+1), 
 									"\niosocket.emit('Gopher.Tell','Line "+ VarArray[nCount].XLine + ": Variable Decleration ["+VarArray[nCount].VarName+"] set to:"+VarArray[nCount].InitValue+"');" , 
 									contents.slice(VarArray[nCount].XEndPosition+1)].join('');
-							}
+							} else
+								
+							if (VarArray[nCount].Type == "FunctionDeclaration")
+							{
+								
+								var tempstring = contents.substring(VarArray[nCount].XStartPosition);
+								
+								var FirstCurleyBracket = tempstring.indexOf("{");
+								
+								contents = 
+									[contents.slice(0, VarArray[nCount].XStartPosition+FirstCurleyBracket+1), 
+									"\niosocket.emit('Gopher.Tell','Line "+ VarArray[nCount].XLine + ": Function Call ["+VarArray[nCount].VarName+"]');" , 
+									contents.slice(VarArray[nCount].XStartPosition+FirstCurleyBracket+1)].join('');
+							}	
 						}
 						
 						contents = "\n\
