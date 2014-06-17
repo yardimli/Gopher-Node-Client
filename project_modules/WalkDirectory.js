@@ -1,52 +1,65 @@
 var Globals = require("../project_modules/Globals.js");
-function fileNode(_path,_children){
+function fileNode(_path, _children) {
   this.path = _path;
   this.children = _children;
 }
-var scan = function(dir) {
+var scan = function(dir, findSubDir, onlyDir) {
   this.starts = function(w) {
     dig(dir, function(err, results) {
-      if (err){
+      if (err) {
         w(err);
-      }else{
-         w(results);
+      } else {
+        w(results);
       }
     });
   };
+  
   function dig(dir, end) {
     //var output = [];
-    var output = new fileNode(dir,[]);
+    var output = new fileNode(dir, []);
     Globals.fs.readdir(dir, function(err, list) {
-      if (err){
+      if (err) {
         return end(err);
       }
       var pending = list.length;
-      if (!pending){
+      if (!pending) {
         return end(null, output);
       }
       list.forEach(function(file) {
         file = dir + '\\' + file;
         Globals.fs.stat(file, function(err, stat) {
           if (stat && stat.isDirectory()) {
-            dig(file, function(err, res) {
-              //output = output.concat(res);
-              output.children.push(res);
-              if (!--pending)
+            if(findSubDir){
+              dig(file, function(err, res) {
+                output.children.push(res);
+                if (!--pending){
+                  end(null, output);
+                  console.log(file);
+                  console.log('here');
+                }
+              });
+            }else{
+              output.children.push(new fileNode(file, []));
+              if (!--pending){
                 end(null, output);
-            });
+              }
+            }
           } else {
-            //output.push(file);
-            //output.children.push({"path":file});
-            output.children.push(new fileNode(file,null));
-            if (!--pending)
-              end(null, output);
+            if(onlyDir === false){
+              output.children.push(new fileNode(file, null));
+              if (!--pending){
+                end(null, output);
+              }
+            }else{
+              --pending;
+            }
           }
         });
       });
     });
   }
 };
-var parseGopherTunnel = function(t){
+var parseGopherTunnel = function(t) {
   function findFileExtension(file) {
     var nameArr = file.split('.');
     return nameArr[nameArr.length - 1];
@@ -67,8 +80,8 @@ var parseGopherTunnel = function(t){
   }
 };
 
-this.open = function(path, gopher) {
-  var gopherWalk = new scan(path);
+this.open = function(path, findSubDir, onlyDir, gopher) {
+  var gopherWalk = new scan(path, findSubDir, onlyDir);
   gopherWalk.starts(function(whatever) {
     gopher(whatever);
   });
