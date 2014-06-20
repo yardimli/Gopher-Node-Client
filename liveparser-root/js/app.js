@@ -1,4 +1,5 @@
 var str1;
+var str2;
 
 function add1(a,b)
 {
@@ -6,8 +7,6 @@ function add1(a,b)
 	
 	return total;
 }
-
-var str2;
 
 str2 = 1;
 
