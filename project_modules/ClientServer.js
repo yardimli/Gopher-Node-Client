@@ -107,6 +107,13 @@ function loopBody(tree,parentType,Xlevel,VarArray)
 				NewQ.XColumn = parentNode.find("loc").find("end").find("column").first().text();
 				NewQ.XStartPosition = parseInt(parentNode.find("start").first().text(),10);
 				NewQ.VarName = parentNode.find("id").find("name").first().text();
+
+				NewQ.VarParameters = [];
+				jQuery(parentNode).children("params").each(function(){
+					NewQ.VarParameters.push(jQuery(this).find("name").text());
+					//console.log( jQuery(this).find("name").text() );
+				});
+				
 				VarArray.push(NewQ); 
 
 				Globals.socketServer.sockets.in("room1").emit('UpdateParserView',{
@@ -273,13 +280,21 @@ this.getFile = function(request, response)
 							if (VarArray[nCount].Type == "FunctionDeclaration")
 							{
 								
+							  var ParamsText = "";
+								var ParamsValue = "";
+								for (var pcounter=0; pcounter< VarArray[nCount].VarParameters.length; pcounter++ )
+								{
+									ParamsText += VarArray[nCount].VarParameters[pcounter] + ", ";
+									ParamsValue += "'+" + VarArray[nCount].VarParameters[pcounter] + "+', ";
+								}
+								
 								var tempstring = contents.substring(VarArray[nCount].XStartPosition);
 								
 								var FirstCurleyBracket = tempstring.indexOf("{");
 								
 								contents = 
 									[contents.slice(0, VarArray[nCount].XStartPosition+FirstCurleyBracket+1), 
-									"\niosocket.emit('Gopher.Tell','Line "+ VarArray[nCount].XLine + ": Function Call ["+VarArray[nCount].VarName+"]');" , 
+									"\niosocket.emit('Gopher.Tell','Line "+ VarArray[nCount].XLine + ": Function Call ["+VarArray[nCount].VarName+"] parameters:"+ ParamsText +" values: "+ParamsValue+"');" , 
 									contents.slice(VarArray[nCount].XStartPosition+FirstCurleyBracket+1)].join('');
 							}	
 						}
