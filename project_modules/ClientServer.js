@@ -79,7 +79,151 @@ function recurse(TreeHTML, key, val)
 }
 
 
+function parseVariableDeclaration(VarObj)
+{
+	var NewQ = new Object();
+	NewQ.Type = "VariableDeclaration";
+	NewQ.XLine = VarObj.find("loc").find("end").find("line").first().text();
+	NewQ.XColumn = VarObj.find("loc").find("end").find("column").first().text();
+	NewQ.XEndPosition = parseInt(VarObj.find("end").first().text(),10);
 
+	NewQ.VarName = VarObj.find("id").find("name").first().text();
+
+	if (VarObj.find("init").first().text()=="")
+		{ NewQ.InitValue = "null"; } else
+		{ NewQ.InitValue = VarObj.find("init").find("value").first().text(); }
+
+	return NewQ;
+}
+
+function parseAssignmentExpression(varObj)
+{
+	var NewQ = new Object();
+	NewQ.Type = "AssignmentExpression";
+	NewQ.XLine = varObj.find("loc").find("end").find("line").first().text();
+	NewQ.XColumn = varObj.find("loc").find("end").find("column").first().text();
+	NewQ.XStartPosition = parseInt(varObj.find("start").first().text(),10);
+	NewQ.XEndPosition = parseInt(varObj.find("end").first().text(),10);
+	NewQ.VarName = varObj.find("left").find("name").first().text();
+	NewQ.Xoperator = varObj.find("operator").first().text();
+	
+	NewQ.RightSideType = varObj.find("right").find("type").first().text();
+	NewQ.RightSideValue = "";
+	if (NewQ.RightSideType == "Literal")
+	{
+		NewQ.RightSideValue = varObj.find("right").find("value").first().text();
+	}
+	
+	return NewQ;
+}
+
+
+function parseBinaryExpression(varObj)
+{
+	var NewQ = new Object();
+	NewQ.Type = "BinaryExpression";
+	NewQ.XLine = varObj.find("loc").find("start").find("line").first().text();
+	NewQ.XColumn = varObj.find("loc").find("start").find("column").first().text();
+	NewQ.XStartPosition = parseInt(varObj.find("start").first().text(),10);
+	NewQ.XEndPosition = parseInt(varObj.find("end").first().text(),10);
+
+	NewQ.LeftSideName = varObj.find("left").find("name").first().text();
+	NewQ.LeftSideType = varObj.find("left").find("type").first().text();
+	NewQ.LeftSideValue = "";
+	if (NewQ.LeftSideType == "Literal")
+	{
+		NewQ.LeftSideValue = varObj.find("left").find("value").first().text();
+	}
+	
+	NewQ.Xoperator = varObj.find("operator").first().text();
+	
+	NewQ.RightSideName = varObj.find("right").find("name").first().text();
+	NewQ.RightSideType = varObj.find("right").find("type").first().text();
+	NewQ.RightSideValue = "";
+	if (NewQ.RightSideType == "Literal")
+	{
+		NewQ.RightSideValue = varObj.find("right").find("value").first().text();
+	}
+	
+	return NewQ;
+}
+
+
+function parseForStatement(varObj)
+{
+	var NewQ = new Object();
+	NewQ.Type = "ForStatement";
+	NewQ.XLine = varObj.find("loc").find("start").find("line").first().text();
+	NewQ.XColumn = varObj.find("loc").find("start").find("column").first().text();
+	NewQ.XStartPosition = parseInt(varObj.find("start").first().text(),10);
+
+	NewQ.InitName = "null";
+	NewQ.InitValue = "null";
+
+	if (varObj.find("init").find("type").first().text() == "AssignmentExpression")
+	{
+		var parentNode2 = varObj.find("init");
+		var NewQ2 = parseAssignmentExpression(parentNode2);
+
+		NewQ.InitName = NewQ2.VarName;
+		NewQ.InitValue = NewQ2.RightSideValue;
+	} else
+	if (varObj.find("init").find("type").first().text() == "VariableDeclaration")
+	{
+		var parentNode2 = varObj.find("init").find("declarations").first();
+		var NewQ2 = parseVariableDeclaration(parentNode2);
+
+		NewQ.InitName = NewQ2.VarName;
+		NewQ.InitValue = NewQ2.InitValue;
+	}
+
+	if (varObj.find("test").find("type").first().text() == "BinaryExpression")
+	{
+		var parentNode2 = varObj.find("test").first();
+		var NewQ2 = parseBinaryExpression(parentNode2);
+
+		NewQ.TestLeftSideName = NewQ2.LeftSideName;
+		NewQ.TestLeftSideType = NewQ2.LeftSideType;
+		NewQ.TestLeftSideValue = NewQ2.LeftSideValue;
+
+		NewQ.TestOperator = NewQ2.Xoperator;
+
+		NewQ.TestRightSideName = NewQ2.RightSideName;
+		NewQ.TestRigthSideType = NewQ2.RightSideType;
+		NewQ.TestRightSideValue = NewQ2.RightSideValue;
+	}
+
+	var jQuery = cheerio.load(varObj, {xmlMode: true});
+
+	NewQ.VarParameters = [];
+	jQuery(varObj).children("params").each(function(){
+		NewQ.VarParameters.push(jQuery(this).find("name").text());
+		//console.log( jQuery(this).find("name").text() );
+	});
+	
+	return NewQ;
+}
+
+function parseFunctionDeclaration(varObj)
+{
+	var NewQ = new Object();
+	NewQ.Type = "FunctionDeclaration";
+	NewQ.XLine = varObj.find("loc").find("start").find("line").first().text();
+	NewQ.XColumn = varObj.find("loc").find("start").find("column").first().text();
+	NewQ.XStartPosition = parseInt(varObj.find("start").first().text(),10);
+	NewQ.VarName = varObj.find("id").find("name").first().text();
+
+	NewQ.VarParameters = [];
+	
+	var jQuery = cheerio.load(varObj, {xmlMode: true});
+
+	jQuery(varObj).children("params").each(function(){
+		NewQ.VarParameters.push(jQuery(this).find("name").text());
+		//console.log( jQuery(this).find("name").text() );
+	});
+
+	return NewQ;
+}
 
 function loopBody(tree,parentType,Xlevel,VarArray)
 {
@@ -94,32 +238,31 @@ function loopBody(tree,parentType,Xlevel,VarArray)
 		
 		
 		Globals.socketServer.sockets.in("room1").emit('UpdateParserView',{
-				htmlcode:'l:'+Xlevel+', t:'+BodyType+', p:'+ parentType +', b:'+jQuery(this).children('body').length +'<br>'
+				htmlcode:'l:'+Xlevel+', b:'+jQuery(this).children('body').length +' p:'+ parentType +', t:'+BodyType+'<br>'
 		});
 		//------------------------------------------------------------------------------------------------
 		
+		if (BodyType == "ForStatement")
+		{
+				var parentNode =jQuery(this);
+				NewQ = parseForStatement(parentNode);
+				VarArray.push(NewQ); 
+
+//				Globals.socketServer.sockets.in("room1").emit('UpdateParserView',{
+//						htmlcode:"  >Function Line:"+NewQ.XLine+", Name:"+NewQ.VarName+"<br>"
+//					});
+
+		}
+
 		if (BodyType == "FunctionDeclaration")
 		{
 				var parentNode =jQuery(this);
-				NewQ = new Object();
-				NewQ.Type = "FunctionDeclaration";
-				NewQ.XLine = parentNode.find("loc").find("end").find("line").first().text();
-				NewQ.XColumn = parentNode.find("loc").find("end").find("column").first().text();
-				NewQ.XStartPosition = parseInt(parentNode.find("start").first().text(),10);
-				NewQ.VarName = parentNode.find("id").find("name").first().text();
-
-				NewQ.VarParameters = [];
-				jQuery(parentNode).children("params").each(function(){
-					NewQ.VarParameters.push(jQuery(this).find("name").text());
-					//console.log( jQuery(this).find("name").text() );
-				});
-				
+				NewQ = parseFunctionDeclaration(parentNode);
 				VarArray.push(NewQ); 
 
-				Globals.socketServer.sockets.in("room1").emit('UpdateParserView',{
-						htmlcode:"  >Function Line:"+NewQ.XLine+", Name:"+NewQ.VarName+"<br>"
-					});
-
+//				Globals.socketServer.sockets.in("room1").emit('UpdateParserView',{
+//						htmlcode:"  >Function Line:"+NewQ.XLine+", Name:"+NewQ.VarName+"<br>"
+//					});
 		}
 
 
@@ -127,46 +270,27 @@ function loopBody(tree,parentType,Xlevel,VarArray)
 		{
 			if (jQuery(this).find("declarations").first().find("type").first().text() == "VariableDeclarator")
 			{
-				var parentNode =jQuery(this).find("declarations").first();
-				NewQ = new Object();
-				NewQ.Type = "VariableDeclaration";
-				NewQ.XLine = parentNode.find("loc").find("end").find("line").first().text();
-				NewQ.XColumn = parentNode.find("loc").find("end").find("column").first().text();
-				NewQ.XEndPosition = parseInt(parentNode.find("end").first().text(),10);
-
-				NewQ.VarName = parentNode.find("id").find("name").first().text();
-
-				if (parentNode.find("init").first().text()=="")
-					{ NewQ.InitValue = "null"; } else
-					{ NewQ.InitValue = parentNode.find("init").find("value").first().text(); }
+				var parentNode = jQuery(this).find("declarations").first();
+				NewQ = parseVariableDeclaration(parentNode);
 				VarArray.push(NewQ); 
 
-				Globals.socketServer.sockets.in("room1").emit('UpdateParserView',{
-						htmlcode:"  >Decleration Line:"+NewQ.XLine+", Name:"+NewQ.VarName+" Init:"+NewQ.InitValue+" <br>"
-					});
-
+//				Globals.socketServer.sockets.in("room1").emit('UpdateParserView',{
+//						htmlcode:"  >Decleration Line:"+NewQ.XLine+", Name:"+NewQ.VarName+" Init:"+NewQ.InitValue+" <br>"
+//					});
 			}
 		}
 
 		if (BodyType == "ExpressionStatement")
 		{
-
 			if (jQuery(this).find("expression").first().find("type").first().text() == "AssignmentExpression")
 			{
-
-				var parentNode =jQuery(this).find("expression").first();
-				NewQ = new Object();
-				NewQ.Type = "AssignmentExpression";
-				NewQ.XLine = parentNode.find("loc").find("end").find("line").first().text();
-				NewQ.XColumn = parentNode.find("loc").find("end").find("column").first().text();
-				NewQ.XEndPosition = parseInt(parentNode.find("end").first().text(),10);
-				NewQ.VarName = parentNode.find("left").find("name").first().text();
-				NewQ.Xoperator = parentNode.find("operator").first().text();
+				var parentNode =jQuery(this).find("expression").first();				
+				NewQ = parseAssignmentExpression(parentNode);
 				VarArray.push(NewQ); 
 
-				Globals.socketServer.sockets.in("room1").emit('UpdateParserView',{
-						htmlcode:"  >Assignment Line:"+NewQ.XLine+", Name:"+NewQ.VarName+", Operator: "+ NewQ.Xoperator +"<br>"
-					});
+//				Globals.socketServer.sockets.in("room1").emit('UpdateParserView',{
+//						htmlcode:"  >Assignment Line:"+NewQ.XLine+", Name:"+NewQ.VarName+", Operator: "+ NewQ.Xoperator +"<br>"
+//					});
 			}
 		}
 		//------------------------------------------------------------------------------------------------
@@ -263,8 +387,24 @@ this.getFile = function(request, response)
 
 								contents = 
 									[contents.slice(0, VarArray[nCount].XEndPosition+1), 
-									"\niosocket.emit('Gopher.Tell','Line "+ VarArray[nCount].XLine + ": Variable ["+VarArray[nCount].VarName+"] set to:'+"+VarArray[nCount].VarName+");" , 
+									"\niosocket.emit('Gopher.Tell','Line "+ VarArray[nCount].XLine + ": Variable ["+VarArray[nCount].VarName+"] set to:'+"+VarArray[nCount].VarName+"+', Right Side Type/Value:["+ VarArray[nCount].RightSideType + "/" + VarArray[nCount].RightSideValue+"]');" , 
 									contents.slice(VarArray[nCount].XEndPosition+1)].join('');
+
+								contents = 
+									[contents.slice(0, VarArray[nCount].XStartPosition), 
+									"\niosocket.emit('Gopher.Tell','Line "+ VarArray[nCount].XLine + ": Variable ["+VarArray[nCount].VarName+"] is being set as Type/Value ["+ VarArray[nCount].RightSideType + "/" + VarArray[nCount].RightSideValue + "]');\n" , 
+									contents.slice(VarArray[nCount].XStartPosition)].join('');
+							
+							} else
+
+							if (VarArray[nCount].Type == "ForStatement")
+							{
+//								console.log(VarArray[nCount].VarName + " " + VarArray[nCount].XEndPosition);
+
+									var GopherTellStr = "\niosocket.emit('Gopher.Tell','Line "+ VarArray[nCount].XLine + ": For Loop init[name:"+ VarArray[nCount].InitName + ", value:"+ VarArray[nCount].InitValue + "] test[ operator["+ VarArray[nCount].TestOperator +"] left[name:"+ VarArray[nCount].TestLeftSideName + ", type:"+ VarArray[nCount].TestLeftSideType + ", value:"+ VarArray[nCount].TestLeftSideValue + "] right[name:"+ VarArray[nCount].TestRightSideName + ", type:"+ VarArray[nCount].TestRigthSideType + ", value:"+ VarArray[nCount].TestRightSideValue + "] ]' );\n"; 
+		
+							
+								contents = [contents.slice(0, VarArray[nCount].XStartPosition), GopherTellStr , contents.slice(VarArray[nCount].XStartPosition)].join('');
 							} else
 							
 							if (VarArray[nCount].Type == "VariableDeclaration")
