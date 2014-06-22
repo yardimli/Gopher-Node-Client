@@ -71,22 +71,25 @@ this.getFile = function(request, response) {
   });
 };
 
+var count=0;
 this.InitLocalSocket = function(socket) {
   SocketIOHandle = socket; // store socket so we can use it in the rest of the module
   socket.on('HiManager', function(data) {
     socket.emit('HiManagerClient', {text: "this is from Gopher Manager Server"});
   });
   socket.on('getItemsInDir', function(data) {
-    OpenProject.open(data.target, false, true, function(projectTree) {
+    count++;
+    socket.emit('getItemsInDirClient',{data:count});
+    /*OpenProject.open(data.target, false, true, function(projectTree) {
       var response = {};
       if(projectTree.errno > 0){
         response.success = false;
       }else{
-        response.success = true
+        response.success = true;
         response.data = projectTree;
       }
       socket.emit('getItemsInDirClient', response);
-    });
+    });*/
   });
 };
 

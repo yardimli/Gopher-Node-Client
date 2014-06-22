@@ -28,12 +28,13 @@ $(document).ready(function() {
 
     iosocket.on('getItemsInDirClient', function(response) {
       console.log('getItemInDirClient:');
-      console.log(response.data);
       if (response.success == false) {
         
       } else {
-        dirInDrive.setData(response.data);
-        dirInDrive.showItemsInDir();
+        console.log(response.data);
+        $('#target_dir').html('<ul><li><span>'+response.data+'</span></li></ul>')
+        //dirInDrive.setData(response.data);
+        //dirInDrive.showItemsInDir();
       }
     });
   })();
@@ -49,7 +50,7 @@ $(document).ready(function() {
       _data = data;
     };
     this.showItemsInDir = function(){
-      console.log(_data);
+      //console.log(_data);
       $('#target_dir').empty();
       $('#current_dir').text(_data.path);
       $('#target_dir').append($('<ul></ul>'));
@@ -75,7 +76,7 @@ $(document).ready(function() {
   });
   
   $('#target_dir').on('click','li span',function(){
-    console.log('click');
+    //console.log('click');
     iosocket.emit('getItemsInDir', {target:$(this).parent('li').data('path')});
   });
 });
