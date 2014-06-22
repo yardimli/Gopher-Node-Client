@@ -76,8 +76,8 @@ this.InitLocalSocket = function(socket) {
   socket.on('HiManager', function(data) {
     socket.emit('HiManagerClient', {text: "this is from Gopher Manager Server"});
   });
-  socket.on('getDirTree', function(data) {
-    OpenProject.open(data.target, false, false, function(projectTree) {
+  socket.on('getItemsInDir', function(data) {
+    OpenProject.open(data.target, false, true, function(projectTree) {
       var response = {};
       if(projectTree.errno > 0){
         response.success = false;
@@ -85,7 +85,7 @@ this.InitLocalSocket = function(socket) {
         response.success = true
         response.data = projectTree;
       }
-      socket.emit('getDirTreeClient', response);
+      socket.emit('getItemsInDirClient', response);
     });
   });
 };

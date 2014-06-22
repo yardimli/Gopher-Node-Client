@@ -1,6 +1,5 @@
 $(document).ready(function() {
-$('.modal[id^="dialog_"]').on('show.bs.modal', function (e) {
-  console.log('called');
+$('.modal[id^="dialog_"]').on('show.bs.modal', function (e) { 
     var setWidth = Number($(this).data('dialogw'));
     var setHeight = Number($(this).data('dialogh'));
     $(this).find('.modal-content').css({

@@ -29,3 +29,10 @@ color:black;
 .manager-content .row div[class^="col-md-"]{
   padding: 2px;
 }
+
+.target-dir{
+  overflow: auto;
+}
+.target-dir ul li span{
+  cursor: pointer;
+}

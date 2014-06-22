@@ -61,18 +61,13 @@
             <h4 class="modal-title">Select Project Directory</h4>
           </div>
           <div class="modal-body" style="margin-bottom:0px; padding-bottom:0px;">
-            <div class="alert alert-warning" style="display:none;">
-              <strong>No courses are added to the Gamification.</strong>
-            </div>
-            <div data-role="template-loader">
-              <img src="images/ajax-loader.gif"/>
-            </div>
-            <div id="target_dir">
+            <div id="current_dir"></div>
+            <div id="target_dir" class="target-dir">
               
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary" id="add_courses_to_gm" data-btnlabel="Add to Gamification">Add to Gamification</button>
+            <button type="button" class="btn btn-primary" id="add_courses_to_gm" data-btnlabel="Add to Gamification">Open Directory</button>
           </div>
         </div>
       </div>
