@@ -32,9 +32,9 @@ $(document).ready(function() {
         
       } else {
         console.log(response.data);
-        $('#target_dir').html('<ul><li><span>'+response.data+'</span></li></ul>')
-        //dirInDrive.setData(response.data);
-        //dirInDrive.showItemsInDir();
+        //$('#target_dir').html('<ul><li><span>'+response.data+'</span></li></ul>')
+        dirInDrive.setData(response.data);
+        dirInDrive.showItemsInDir();
       }
     });
   })();

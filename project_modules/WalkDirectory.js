@@ -1,72 +1,55 @@
 var Globals = require("../project_modules/Globals.js");
+//var util = require('util');
+
 function fileNode(_path, _children) {
   this.path = _path;
   this.children = _children;
 }
-var scan = function(dir, findSubDir, onlyDir) {
-  this.starts = function(w) {
-    dig(dir, function(err, results) {
+
+function scanFolder(_folderPath, _findSubFolders, _onlyFindFolders) {
+  this.starts = function(_callBack) {
+    finder(_folderPath, function(err, results) {
       if (err) {
-        w(err);
+        _callBack(err);
       } else {
-        w(results);
+        _callBack(results);
       }
     });
   };
   
-  function dig(dir, end) {
-    //var output = [];
-    var output = new fileNode(dir, []);
-    Globals.fs.readdir(dir, function(err, list) {
+  function finder(_folderPath, end) {
+    var output = new fileNode(_folderPath, []);
+    var stat;
+    Globals.fs.readdir(_folderPath, function(err, list) {
       if (err) {
         return end(err);
       }
       var pending = list.length;
-      if (!pending) {
-        return end(null, output);
-      }
       list.forEach(function(file) {
-        file = dir + '\\' + file;
-        Globals.fs.stat(file, function(err, stat) {
-          if(findSubDir){
-            if (stat && stat.isDirectory()) {
-                dig(file, function(err, res) {
-                    output.children.push(res);
-                    if (!--pending){
-                      end(null, output);
-                    }
-                  });
-              } else {
-                if(onlyDir){
-                  if (!--pending){
-                      end(null, output);
-                  }
-                }else{
-                  output.children.push(new fileNode(file, null));
-                  if (!--pending){
-                      end(null, output);
-                  }
-                }
-              }
-          }else{
-            if (stat && stat.isDirectory()) {
-              output.children.push(new fileNode(file, []));
-                  if (!--pending){
-                    end(null, output);
-                  }
+        pending--;
+        file = _folderPath + '\\' + file;
+        stat = Globals.fs.statSync(file);
+        if(_findSubFolders){
+          if (stat.isDirectory()) {
+              dig(file, function(err, res) {
+                  output.children.push(res);
+                });
             } else {
-              if(onlyDir){
-                --pending;
-              }else{
+              if(!_onlyFindFolders){
                 output.children.push(new fileNode(file, null));
-                if (!--pending){
-                    end(null, output);
-                }
               }
             }
+        }else{
+            if (stat.isDirectory()) {
+              output.children.push(new fileNode(file, []));
+          } else {
+            if(!_onlyFindFolders){
+              output.children.push(new fileNode(file, null));
+            }
           }
-        });
+        }
       });
+      return end(null, output);
     });
   }
 };
@@ -91,10 +74,12 @@ var parseGopherTunnel = function(t) {
   }
 };
 
-this.open = function(path, findSubDir, onlyDir, gopher) {
-  var gopherWalk = new scan(path, findSubDir, onlyDir);
-  gopherWalk.starts(function(whatever) {
-    gopher(whatever);
+this.findFilesFoldersIn = function(_filePath, _findSubFolders, _onlyFindFolders, _callBack) {
+  var fileFolderScanner = new scanFolder(_filePath, _findSubFolders, _onlyFindFolders);
+  fileFolderScanner.starts(function(result) {
+    _callBack(result);
   });
 };
+
+
 
