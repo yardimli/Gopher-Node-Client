@@ -7,8 +7,11 @@ var SaveAssignmentRight = false;
 var list = "<ul>";
 
 function getTimeStamp() {
-       var now = new Date();
-       return ((now.getMonth() + 1) + '/' + (now.getDate()) + '/' + now.getFullYear() + " " + now.getHours() + ':' + ((now.getMinutes() < 10) ? ("0" + now.getMinutes()) : (now.getMinutes())) + ':' + ((now.getSeconds() < 10) ? ("0" + now.getSeconds()) : (now.getSeconds())));
+	var now = new Date();
+	//return ((now.getMonth() + 1) + '/' + (now.getDate()) + '/' + now.getFullYear() + " " + now.getHours() + ':' + ((now.getMinutes() < 10) ? ("0" + now.getMinutes()) : (now.getMinutes())) + ':' + ((now.getSeconds() < 10) ? ("0" + now.getSeconds()) : (now.getSeconds())));
+
+	return (now.getHours() + ':' + ((now.getMinutes() < 10) ? ("0" + now.getMinutes()) : (now.getMinutes())) + ':' + ((now.getSeconds() < 10) ? ("0" + now.getSeconds()) : (now.getSeconds())));
+
 }
 
 
@@ -76,7 +79,7 @@ function initSocketIO()
 	});
 
 	iosocket.on('ConsoleTell', function (recievedData) {
-		$("#debug_console").append(getTimeStamp()+"> "+ recievedData.text +"<br>");		
+		$("#debug_console").append(recievedData.text +"<br>");		//getTimeStamp()+"> "+ 
 	});
 }
  

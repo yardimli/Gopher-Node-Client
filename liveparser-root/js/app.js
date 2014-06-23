@@ -1,11 +1,20 @@
 var str1;
 var str2;
 
-function add1(a,b)
+function DoubleNumber(a)
 {
-	total = a+b;
+	return a*2; 
+}
+
+function AddNumbers(a,b)
+{
+	var total = 0;
+	for (var i=0; i<3; i++)
+	{
+		total = total+a+b;
+	}
 	
-	return total;
+	return DoubleNumber(total);
 }
 
 str2 = 1;
@@ -15,17 +24,17 @@ var j;
 var i1;
 
 j = 0;
-for (i1=0; i1 < 10; i1++)
+for (i1=0; i1 < 3; i1++)
 {
 	j = j + i1;
 }
 
-for (var i2=10; i2<20; i2++)
+for (var i2=10; i2<12; i2++)
 {
 	j = j + i2;
 }
 
-i = add1(i,6);
+i = AddNumbers(i,6);
 
 $(document).ready(function() {
  str1 = "hello world";
