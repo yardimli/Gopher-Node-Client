@@ -47,7 +47,7 @@ $(document).ready(function() {
       var strArr = path.split('\\');
       return strArr[(strArr.length-1)];
     };
-    this.previousFolder = '';
+    this.previousFolder = [];
     this.setData = function(data){
       _data = data;
     };
@@ -60,8 +60,8 @@ $(document).ready(function() {
         liClass='four';
       }
       $('#target_dir').append($('<ul class="'+liClass+'"></ul>'));
-      if(this.previousFolder !== ''){
-        $('#target_dir').find('ul').append('<li class="up" data-path="'+safeFilePath(this.previousFolder)+'"><b>[...]</b></li>');
+      if(this.previousFolder.length>0){
+        $('#target_dir').find('ul').append('<li class="up" data-path="'+safeFilePath(this.previousFolder[this.previousFolder.length-1])+'"><b>[...]</b></li>');
       }
       if(_data.children.length>0){
         for(var i=0; i<_data.children.length; i++){
@@ -85,8 +85,15 @@ $(document).ready(function() {
   });
   
   $('#target_dir').on('click','li',function(){
-    //console.log('click');
-    dirInDrive.previousFolder = $('#current_dir').text();
+    var liClass = $(this).attr('class');
+    switch(liClass){
+      case 'item':
+        dirInDrive.previousFolder.push($('#current_dir').text());
+        break;
+      case 'up':
+        dirInDrive.previousFolder.splice(dirInDrive.previousFolder.length-1,1);
+        break;
+    }
     iosocket.emit('getItemsInDir', {target:$(this).data('path')});
   });
 });
