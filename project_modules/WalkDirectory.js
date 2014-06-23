@@ -24,9 +24,9 @@ function scanFolder(_folderPath, _findSubFolders, _onlyFindFolders) {
       if (err) {
         return end(err);
       }
-      var pending = list.length;
+      //var pending = list.length;
       list.forEach(function(file) {
-        pending--;
+        //pending--;
         file = _folderPath + '\\' + file;
         stat = Globals.fs.statSync(file);
         if(_findSubFolders){

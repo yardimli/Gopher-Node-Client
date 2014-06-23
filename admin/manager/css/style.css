@@ -29,10 +29,44 @@ color:black;
 .manager-content .row div[class^="col-md-"]{
   padding: 2px;
 }
-
+.current-dir{
+  font-weight: bolder;
+  margin-bottom: 8px;
+  border-bottom: 1px solid #efefef;
+}
 .target-dir{
   overflow: auto;
 }
-.target-dir ul li span{
+.target-dir ul{
+  list-style-type: none;
+  list-style:none;
+  padding-left:0;
+  overflow: auto;
+}
+.target-dir ul li{
+  float:left;
+  display:inline;
+  width:50%;
+  height:20px;
+  padding-left:24px;
+  margin-bottom:6px;
+  line-height: 20px;
+}
+.target-dir ul li.item{
+  background:url('../images/folder-white.png') no-repeat left top;
+}
+.target-dir ul li.up{
+  background:url('../images/up-white.png') no-repeat left top;
+  width:100%;
+  clear:both;
+}
+.target-dir .two li{
+  width:50%;
+}
+.target-dir .four li{
+  width:25%;
+}
+
+.target-dir ul li{
   cursor: pointer;
 }

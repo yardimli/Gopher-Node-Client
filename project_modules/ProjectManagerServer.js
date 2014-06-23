@@ -71,16 +71,13 @@ this.getFile = function(request, response) {
   });
 };
 
-var count=0;
+
 this.InitLocalSocket = function(socket) {
   SocketIOHandle = socket; // store socket so we can use it in the rest of the module
   socket.on('HiManager', function(data) {
     socket.emit('HiManagerClient', {text: "this is from Gopher Manager Server"});
   });
   socket.on('getItemsInDir', function(data) {
-    console.log('getItemsInDir'+data.target);
-    //count++;
-    //socket.emit('getItemsInDirClient',{data:count});
     OpenProject.findFilesFoldersIn(data.target, false, true, function(result) {
       var response = {};
       if(result.errno > 0){
