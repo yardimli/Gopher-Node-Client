@@ -26,10 +26,7 @@ this.getFile = function(request, response) {
     response.end("<html><head></head><body>The requested file type is not supported</body></html>");
   }
   ;
-
-
   var filePath = localFolderAdmin + filePathName + fileName;
-
   //does the requested file exist?
   console.log("ADMIN:" + filePath);
   Globals.fs.exists(filePath, function(exists) {
@@ -77,16 +74,19 @@ this.InitLocalSocket = function(socket) {
   socket.on('HiManager', function(data) {
     socket.emit('HiManagerClient', {text: "this is from Gopher Manager Server"});
   });
+  
   socket.on('getItemsInDir', function(data) {
     OpenProject.findFilesFoldersIn(data.target, false, true, function(result) {
       var response = {};
-      if(result.errno > 0){
+      if (result.errno > 0) {
         response.success = false;
-      }else{
+      } else {
         response.success = true;
         response.data = result;
       }
       socket.emit('getItemsInDirClient', response);
     });
   });
+  
+  
 };
