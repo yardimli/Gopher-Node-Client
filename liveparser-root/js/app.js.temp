@@ -19,7 +19,7 @@ function AddNumbers(a,b)
 		total = total+a+b;
 	}
 	
-	return DoubleNumber(total);
+	return DoubleNumber(total,'22:'+(GopherCallerIDCouter++));
 }
 
 str2 = 1;
@@ -37,13 +37,13 @@ for (i1=0; i1 < 3; i1++)
 for (var i2=10; i2<14; i2++)
 {
 	j = j + i2;
-	i = 5+3+2+AddNumbers(i,j);
+	i = 5+3+2+AddNumbers(i,j,'40:'+(GopherCallerIDCouter++));
 
 }
 
-i = 5+3+2+AddNumbers(i,6);
+i = 5+3+2+AddNumbers(i,6,'44:'+(GopherCallerIDCouter++));
 
-cool();
+cool('46:'+(GopherCallerIDCouter++));
 
 $(document).ready(function() {
  str1 = "hello world";
