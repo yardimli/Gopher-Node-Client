@@ -83,6 +83,6 @@ this.InitLocalSocket = function(socket){
 
 	socket.on('Gopher.Tell', function(data) {
 //		console.log(data);
-		Globals.socketServer.sockets.in("room1").emit('ConsoleTell', { text:data.GopherMsg+", parent:"+data.ParentID+",		CallerID:"+data.GopherCallerID });
+		Globals.socketServer.sockets.in("room1").emit('ConsoleTell', { text:"L:"+data.CodeLine+": "+ data.GopherCallerID+" - "+data.GopherMsg+", <b>parent:</b>"+data.ParentID });
 	});
 }

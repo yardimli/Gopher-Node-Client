@@ -85,72 +85,63 @@ function recurse(TreeHTML, key, val)
 
 
 //----------------------------------------------------------------------------------------
+//todo parse multiple declerations
 function parseVariableDeclaration(VarObj)
 {
 	var NewQ = new Object();
 	NewQ.Type = "VariableDeclaration";
 	NewQ.XLine = VarObj.find("loc").find("end").find("line").first().text();
 	NewQ.XColumn = VarObj.find("loc").find("end").find("column").first().text();
-	NewQ.XEndPosition = parseInt(VarObj.find("end").first().text(),10);
+	NewQ.XStartPosition = parseInt(VarObj.parent().find("start").first().text(),10);
+	NewQ.XEndPosition = parseInt(VarObj.parent().find("end").first().text(),10);
 
 	NewQ.VarName = VarObj.find("id").find("name").first().text();
 
-	if (VarObj.find("init").first().text()=="")
-		{ NewQ.InitValue = "null"; } else
-		{ NewQ.InitValue = VarObj.find("init").find("value").first().text(); }
-
 	return NewQ;
 }
 
 //----------------------------------------------------------------------------------------
-function parseAssignmentExpression(varObj)
+function parseAssignmentExpression(VarObj)
 {
 	var NewQ = new Object();
 	NewQ.Type = "AssignmentExpression";
-	NewQ.XLine = varObj.find("loc").find("end").find("line").first().text();
-	NewQ.XColumn = varObj.find("loc").find("end").find("column").first().text();
-	NewQ.XStartPosition = parseInt(varObj.find("start").first().text(),10);
-	NewQ.XEndPosition = parseInt(varObj.find("end").first().text(),10);
-	NewQ.VarName = varObj.find("left").find("name").first().text();
-	NewQ.Xoperator = varObj.find("operator").first().text();
+	NewQ.XLine = VarObj.find("loc").find("end").find("line").first().text();
+	NewQ.XColumn = VarObj.find("loc").find("end").find("column").first().text();
+	NewQ.XStartPosition = parseInt(VarObj.find("start").first().text(),10);
+	NewQ.XEndPosition = parseInt(VarObj.find("end").first().text(),10);
 	
-	NewQ.RightSideType = varObj.find("right").find("type").first().text();
-	NewQ.RightSideValue = "";
-	if (NewQ.RightSideType == "Literal")
-	{
-		NewQ.RightSideValue = varObj.find("right").find("value").first().text();
-	}
+	NewQ.VarName = VarObj.find("left").find("name").first().text();
 	
 	return NewQ;
 }
 
 
 //----------------------------------------------------------------------------------------
-function parseBinaryExpression(varObj)
+function parseBinaryExpression(VarObj)
 {
 	var NewQ = new Object();
 	NewQ.Type = "BinaryExpression";
-	NewQ.XLine = varObj.find("loc").find("start").find("line").first().text();
-	NewQ.XColumn = varObj.find("loc").find("start").find("column").first().text();
-	NewQ.XStartPosition = parseInt(varObj.find("start").first().text(),10);
-	NewQ.XEndPosition = parseInt(varObj.find("end").first().text(),10);
+	NewQ.XLine = VarObj.find("loc").find("start").find("line").first().text();
+	NewQ.XColumn = VarObj.find("loc").find("start").find("column").first().text();
+	NewQ.XStartPosition = parseInt(VarObj.find("start").first().text(),10);
+	NewQ.XEndPosition = parseInt(VarObj.find("end").first().text(),10);
 
-	NewQ.LeftSideName = varObj.find("left").find("name").first().text();
-	NewQ.LeftSideType = varObj.find("left").find("type").first().text();
+	NewQ.LeftSideName = VarObj.find("left").find("name").first().text();
+	NewQ.LeftSideType = VarObj.find("left").find("type").first().text();
 	NewQ.LeftSideValue = "";
 	if (NewQ.LeftSideType == "Literal")
 	{
-		NewQ.LeftSideValue = varObj.find("left").find("value").first().text();
+		NewQ.LeftSideValue = VarObj.find("left").find("value").first().text();
 	}
 	
-	NewQ.Xoperator = varObj.find("operator").first().text();
+	NewQ.Xoperator = VarObj.find("operator").first().text();
 	
-	NewQ.RightSideName = varObj.find("right").find("name").first().text();
-	NewQ.RightSideType = varObj.find("right").find("type").first().text();
+	NewQ.RightSideName = VarObj.find("right").find("name").first().text();
+	NewQ.RightSideType = VarObj.find("right").find("type").first().text();
 	NewQ.RightSideValue = "";
 	if (NewQ.RightSideType == "Literal")
 	{
-		NewQ.RightSideValue = varObj.find("right").find("value").first().text();
+		NewQ.RightSideValue = VarObj.find("right").find("value").first().text();
 	}
 	
 	return NewQ;
@@ -158,37 +149,37 @@ function parseBinaryExpression(varObj)
 
 
 //----------------------------------------------------------------------------------------
-function parseForStatement(varObj)
+function parseForStatement(VarObj)
 {
 	var NewQ = new Object();
 	NewQ.Type = "ForStatement";
-	NewQ.XLine = varObj.find("loc").find("start").find("line").first().text();
-	NewQ.XColumn = varObj.find("loc").find("start").find("column").first().text();
-	NewQ.XStartPosition = parseInt(varObj.find("start").first().text(),10);
+	NewQ.XLine = VarObj.find("loc").find("start").find("line").first().text();
+	NewQ.XColumn = VarObj.find("loc").find("start").find("column").first().text();
+	NewQ.XStartPosition = parseInt(VarObj.find("start").first().text(),10);
+
+//	console.log("loop:"+VarObj.find("body").first().find("start").first().text());
+	NewQ.XBodyStartPosition = parseInt(VarObj.find("body").first().find("start").first().text(),10);
 
 	NewQ.InitName = "null";
-	NewQ.InitValue = "null";
 
-	if (varObj.find("init").find("type").first().text() == "AssignmentExpression")
+	if (VarObj.find("init").find("type").first().text() == "AssignmentExpression")
 	{
-		var parentNode2 = varObj.find("init");
+		var parentNode2 = VarObj.find("init");
 		var NewQ2 = parseAssignmentExpression(parentNode2);
 
 		NewQ.InitName = NewQ2.VarName;
-		NewQ.InitValue = NewQ2.RightSideValue;
 	} else
-	if (varObj.find("init").find("type").first().text() == "VariableDeclaration")
+	if (VarObj.find("init").find("type").first().text() == "VariableDeclaration")
 	{
-		var parentNode2 = varObj.find("init").find("declarations").first();
+		var parentNode2 = VarObj.find("init").find("declarations").first();
 		var NewQ2 = parseVariableDeclaration(parentNode2);
 
 		NewQ.InitName = NewQ2.VarName;
-		NewQ.InitValue = NewQ2.InitValue;
 	}
 
-	if (varObj.find("test").find("type").first().text() == "BinaryExpression")
+	if (VarObj.find("test").find("type").first().text() == "BinaryExpression")
 	{
-		var parentNode2 = varObj.find("test").first();
+		var parentNode2 = VarObj.find("test").first();
 		var NewQ2 = parseBinaryExpression(parentNode2);
 
 		NewQ.TestLeftSideName = NewQ2.LeftSideName;
@@ -202,10 +193,10 @@ function parseForStatement(varObj)
 		NewQ.TestRightSideValue = NewQ2.RightSideValue;
 	}
 
-	var jQuery = cheerio.load(varObj, {xmlMode: true});
+	var jQuery = cheerio.load(VarObj, {xmlMode: true});
 
 	NewQ.VarParameters = [];
-	jQuery(varObj).children("params").each(function(){
+	jQuery(VarObj).children("params").each(function(){
 		NewQ.VarParameters.push(jQuery(this).find("name").text());
 		//console.log( jQuery(this).find("name").text() );
 	});
@@ -214,20 +205,20 @@ function parseForStatement(varObj)
 }
 
 //----------------------------------------------------------------------------------------
-function parseFunctionDeclaration(varObj)
+function parseFunctionDeclaration(VarObj)
 {
 	var NewQ = new Object();
 	NewQ.Type = "FunctionDeclaration";
-	NewQ.XLine = varObj.find("loc").find("start").find("line").first().text();
-	NewQ.XColumn = varObj.find("loc").find("start").find("column").first().text();
-	NewQ.XStartPosition = parseInt(varObj.find("start").first().text(),10);
-	NewQ.VarName = varObj.find("id").find("name").first().text();
+	NewQ.XLine = VarObj.find("loc").find("start").find("line").first().text();
+	NewQ.XColumn = VarObj.find("loc").find("start").find("column").first().text();
+	NewQ.XStartPosition = parseInt(VarObj.find("start").first().text(),10);
+	NewQ.VarName = VarObj.find("id").find("name").first().text();
 
 	NewQ.VarParameters = [];
 	
-	var jQuery = cheerio.load(varObj, {xmlMode: true});
+	var jQuery = cheerio.load(VarObj, {xmlMode: true});
 
-	jQuery(varObj).children("params").each(function(){
+	jQuery(VarObj).children("params").each(function(){
 		NewQ.VarParameters.push(jQuery(this).find("name").text());
 		//console.log( jQuery(this).find("name").text() );
 	});
@@ -409,9 +400,7 @@ function InsertGopherTells(contents,JSGopherObjectsArray)
 
 			returnstr = returnstr.replace("return","var returnstr = " );
 
-			var GopherTellInsert = returnstr + "\n GopherTell('Line "+ JSGopherObjectsArray[nCount].XLine + ": Return:'+ returnstr + '','"+ JSGopherObjectsArray[nCount].parentID  +"',GopherCallerID); \n return returnstr;";
-
-//			console.log (returnstr2);
+			var GopherTellInsert = returnstr + "\n GopherTell("+ JSGopherObjectsArray[nCount].XLine + ",'<b>Return:</b>'+ returnstr + '','"+ JSGopherObjectsArray[nCount].parentID  +"',GopherCallerID); \n return returnstr;";
 
 			contents = 
 				[contents.slice(0, JSGopherObjectsArray[nCount].XStartPosition), 
@@ -422,16 +411,14 @@ function InsertGopherTells(contents,JSGopherObjectsArray)
 
 		if (JSGopherObjectsArray[nCount].Type == "AssignmentExpression")
 		{
-//			console.log(JSGopherObjectsArray[nCount].VarName + " " + JSGopherObjectsArray[nCount].XEndPosition);
-
-			var GopherTellInsert = "\nGopherTell('Line "+ JSGopherObjectsArray[nCount].XLine + ": Variable ["+JSGopherObjectsArray[nCount].VarName+"] set to:'+"+JSGopherObjectsArray[nCount].VarName+"+', Right Side Type/Value:["+ JSGopherObjectsArray[nCount].RightSideType + "/" + JSGopherObjectsArray[nCount].RightSideValue+"]','"+ JSGopherObjectsArray[nCount].parentID  +"',GopherCallerID);";
+			var GopherTellInsert = "\nGopherTell("+ JSGopherObjectsArray[nCount].XLine + ",'<b>Variable</b> ["+JSGopherObjectsArray[nCount].VarName+"] set to:'+"+JSGopherObjectsArray[nCount].VarName+",'"+ JSGopherObjectsArray[nCount].parentID  +"',GopherCallerID);";
 			
 			contents = 
 				[contents.slice(0, JSGopherObjectsArray[nCount].XEndPosition+1), 
 				GopherTellInsert , 
 				contents.slice(JSGopherObjectsArray[nCount].XEndPosition+1)].join('');
 
-			GopherTellInsert = "\nGopherTell('Line "+ JSGopherObjectsArray[nCount].XLine + ": Variable ["+JSGopherObjectsArray[nCount].VarName+"] is being set as Type/Value ["+ JSGopherObjectsArray[nCount].RightSideType + "/" + JSGopherObjectsArray[nCount].RightSideValue + "]','"+ JSGopherObjectsArray[nCount].parentID  +"',GopherCallerID);\n";
+			GopherTellInsert = "\nGopherTell("+ JSGopherObjectsArray[nCount].XLine + ",'<b>Variable</b> ["+JSGopherObjectsArray[nCount].VarName+"] is being set...','"+ JSGopherObjectsArray[nCount].parentID  +"',GopherCallerID);\n";
 
 			contents = 
 				[contents.slice(0, JSGopherObjectsArray[nCount].XStartPosition), 
@@ -440,11 +427,36 @@ function InsertGopherTells(contents,JSGopherObjectsArray)
 
 		} else
 
-		if (JSGopherObjectsArray[nCount].Type == "ForStatement")
+		if (JSGopherObjectsArray[nCount].Type == "VariableDeclaration")
 		{
-			var GopherTellInsert = "\nGopherTell('Line "+ JSGopherObjectsArray[nCount].XLine + 
-							": For Loop init[name:"+ JSGopherObjectsArray[nCount].InitName + 
-							", value:"+ JSGopherObjectsArray[nCount].InitValue + 
+			console.log("===="+JSGopherObjectsArray[nCount].XEndPosition+" "+JSGopherObjectsArray[nCount].XStartPosition);
+			var GopherTellInsert = "\nGopherTell("+ JSGopherObjectsArray[nCount].XLine + ",'<b>Variable</b> ["+JSGopherObjectsArray[nCount].VarName+"] set to:'+"+JSGopherObjectsArray[nCount].VarName+",'"+ JSGopherObjectsArray[nCount].parentID  +"',GopherCallerID);";
+			
+			contents = 
+				[contents.slice(0, JSGopherObjectsArray[nCount].XEndPosition+1), 
+				GopherTellInsert , 
+				contents.slice(JSGopherObjectsArray[nCount].XEndPosition+1)].join('');
+
+		var GopherTellInsert = "\nGopherTell("+ JSGopherObjectsArray[nCount].XLine + ",'<b>Var Decl.</b> ["+JSGopherObjectsArray[nCount].VarName+"]','"+ JSGopherObjectsArray[nCount].parentID  +"',GopherCallerID);";
+
+			contents = 
+				[contents.slice(0, JSGopherObjectsArray[nCount].XStartPosition), 
+				GopherTellInsert , 
+				contents.slice(JSGopherObjectsArray[nCount].XStartPosition)].join('');
+		} else
+
+	if (JSGopherObjectsArray[nCount].Type == "ForStatement")
+		{
+			
+			var GopherTellInsert = "\nGopherTell("+ JSGopherObjectsArray[nCount].XLine + ",'" +
+							"<b>For Loop</b> var:"+ JSGopherObjectsArray[nCount].InitName + 
+							", value:'+"+ JSGopherObjectsArray[nCount].InitName + "+'', '" +
+							JSGopherObjectsArray[nCount].parentID  +"',GopherCallerID);\n"; 
+		
+			contents = [contents.slice(0, JSGopherObjectsArray[nCount].XBodyStartPosition+1), GopherTellInsert , contents.slice(JSGopherObjectsArray[nCount].XBodyStartPosition+1)].join('');
+			
+			var GopherTellInsert = "GopherTell("+ JSGopherObjectsArray[nCount].XLine + ",'" +
+							"<b>For Loop Init</b> [name:"+ JSGopherObjectsArray[nCount].InitName + 
 							"] test[ operator["+ JSGopherObjectsArray[nCount].TestOperator +
 							"] left[name:"+ JSGopherObjectsArray[nCount].TestLeftSideName + 
 							", type:"+ JSGopherObjectsArray[nCount].TestLeftSideType + 
@@ -455,16 +467,6 @@ function InsertGopherTells(contents,JSGopherObjectsArray)
 							JSGopherObjectsArray[nCount].parentID  +"',GopherCallerID);\n"; 
 
 			contents = [contents.slice(0, JSGopherObjectsArray[nCount].XStartPosition), GopherTellInsert , contents.slice(JSGopherObjectsArray[nCount].XStartPosition)].join('');
-		} else
-
-		if (JSGopherObjectsArray[nCount].Type == "VariableDeclaration")
-		{
-			var GopherTellInsert = "\nGopherTell('Line "+ JSGopherObjectsArray[nCount].XLine + ": Variable Decleration ["+JSGopherObjectsArray[nCount].VarName+"] set to:"+JSGopherObjectsArray[nCount].InitValue+"','"+ JSGopherObjectsArray[nCount].parentID  +"',GopherCallerID);";
-
-			contents = 
-				[contents.slice(0, JSGopherObjectsArray[nCount].XEndPosition+1), 
-				GopherTellInsert , 
-				contents.slice(JSGopherObjectsArray[nCount].XEndPosition+1)].join('');
 		} else
 
 		if (JSGopherObjectsArray[nCount].Type == "FunctionDeclaration")
@@ -482,7 +484,7 @@ function InsertGopherTells(contents,JSGopherObjectsArray)
 			var FirstCurleyBracket = tempstring.indexOf("{");
 
 			var GopherTellInsert = "\nvar GopherCallerID = arguments.length ? arguments[arguments.length - 1] : 'default';"+
-"\nGopherTell('Line "+ JSGopherObjectsArray[nCount].XLine + ": Function Call ["+JSGopherObjectsArray[nCount].VarName+"] parameters:"+ ParamsText +" values: "+ParamsValue+"','"+ JSGopherObjectsArray[nCount].parentID +"',GopherCallerID);";
+"\nGopherTell("+ JSGopherObjectsArray[nCount].XLine + ",'<b>Function Run</b> ["+JSGopherObjectsArray[nCount].VarName+"] parameters:"+ ParamsText +" values: "+ParamsValue+"','"+ JSGopherObjectsArray[nCount].parentID +"',GopherCallerID);";
 
 			contents = 
 				[contents.slice(0, JSGopherObjectsArray[nCount].XStartPosition+FirstCurleyBracket+1), 
@@ -493,14 +495,14 @@ function InsertGopherTells(contents,JSGopherObjectsArray)
 
 	contents =	"//GopherB node Socket setup \n"+
 							"var iosocket;\n"+
-							"var GopherCallerIDCouter = 0;;\n"+
+							"var GopherCallerIDCouter = 100;;\n"+
 							"iosocket = io.connect();\n"+
 							"iosocket.emit('HiGopherB','');\n"+
 							"iosocket.emit('HiClientServer','');\n"+
 							"\n\n" +
-							"var GopherCallerID = 'main';\n"+
-							"function GopherTell(xGopherMsg, xParentID, xGopherCallerID ) {\n" +
-							" iosocket.emit( 'Gopher.Tell', {GopherMsg:xGopherMsg, ParentID:xParentID, GopherCallerID:xGopherCallerID } );\n"+
+							"var GopherCallerID = '0:0';\n"+
+							"function GopherTell(xCodeLine, xGopherMsg, xParentID, xGopherCallerID ) {\n" +
+							" iosocket.emit( 'Gopher.Tell', {CodeLine:xCodeLine, GopherMsg:xGopherMsg, ParentID:xParentID, GopherCallerID:xGopherCallerID } );\n"+
 							"}\n\n"+
 							"//------------------------------------------------------------------------------\n"+
 							"\n\n"+

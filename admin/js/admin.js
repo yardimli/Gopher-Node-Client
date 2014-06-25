@@ -74,12 +74,11 @@ function initSocketIO()
 	});
 	
 	iosocket.on('UpdateParserView', function (recievedData) {
-//		$("#debug_console").append(getTimeStamp()+"> Update Parser<br>");
-		$("#AssignmentExpression").append(recievedData.htmlcode);		
+		$("#debug_console").append(recievedData.htmlcode);		
 	});
 
 	iosocket.on('ConsoleTell', function (recievedData) {
-		$("#debug_console").append(recievedData.text +"<br>");		//getTimeStamp()+"> "+ 
+		$("#big_console").append(recievedData.text +"<br>");		//getTimeStamp()+"> "+ 
 	});
 }
  

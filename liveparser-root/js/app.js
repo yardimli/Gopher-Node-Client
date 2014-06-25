@@ -1,9 +1,18 @@
-var str1;
-var str2;
+var str1,str2;
+
+str1,str2 = "hello";
 
 function cool()
 {
-	return "cool";
+	var person = {fname:"John", lname:"Doe", age:25}; 
+
+	var text = "";
+	var x;
+	for (x in person) {
+		text += person[x];
+	}
+	
+	return text;
 }
 
 function DoubleNumber(a)
@@ -23,6 +32,8 @@ function AddNumbers(a,b)
 }
 
 str2 = 1;
+
+var initTest = AddNumbers(3,4);
 
 var i=5;
 var j;
