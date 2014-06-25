@@ -46,7 +46,10 @@
     <div class="container manager-content">
       <div class="row" style="width:800px;">
         <div class="col-md-6"><button type="button" class="btn btn-default btn-block" data-toggle="modal" data-target="#dialog_select_dir">Select my project Directory</button></div>
-        <div class="col-md-6"><input type="text" class="form-control" placeholder="Project Directory Path"></div>   
+        <div class="col-md-6"><input type="text" class="form-control" placeholder="Project Directory Path" id="in_projectDir"></div>   
+      </div>
+      <div style="width:800px">
+        
       </div>
       <div id="debug_console" style="z-index:2; position:absolute; right:10px; top:50px; width:450px; height:400px; border:1px solid white; background-color: rgba(0,0,0,0.5); border-radius:5px; color:white; padding:5px; overflow:auto ">
         PARSER DEBUG CONSOLE:<br>
@@ -67,7 +70,7 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary" id="add_courses_to_gm" data-btnlabel="Add to Gamification">Open Directory</button>
+            <button type="button" class="btn btn-primary" id="btn_openProjectDir" data-btnlabel="Add to Gamification" data-dismiss="modal">Open Directory</button>
           </div>
         </div>
       </div>
