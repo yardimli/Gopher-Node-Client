@@ -1,11 +1,22 @@
-var str1,str2;
+var str1,str2,str3 = 'ff';
 
-str1,str2 = "hello";
+str1 = "ac",str2 = "hello",str3= "hi";
+
+var str3 = "";
+
+var i=5;
+var j;
+var i1;
+
+j = 0;
+
+var initTest = AddNumbers(3,4);
+
+
+var person = {fname:"John", lname:"Doe", age:25}; 
 
 function cool()
 {
-	var person = {fname:"John", lname:"Doe", age:25}; 
-
 	var text = "";
 	var x;
 	for (x in person) {
@@ -31,15 +42,7 @@ function AddNumbers(a,b)
 	return DoubleNumber(total);
 }
 
-str2 = 1;
 
-var initTest = AddNumbers(3,4);
-
-var i=5;
-var j;
-var i1;
-
-j = 0;
 for (i1=0; i1 < 3; i1++)
 {
 	j = j + i1;
