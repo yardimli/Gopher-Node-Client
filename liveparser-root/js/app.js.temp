@@ -1,11 +1,22 @@
-var str1,str2;
+var str1,str2,str3 = 'ff';
 
-str1,str2 = "hello";
+str1 = "ac",str2 = "hello",str3= "hi";
+
+var str3 = "";
+
+var i=5;
+var j;
+var i1;
+
+j = 0;
+
+var initTest = AddNumbers(3,4,'13:'+(GopherCallerIDCouter++));
+
+
+var person = {fname:"John", lname:"Doe", age:25}; 
 
 function cool()
 {
-	var person = {fname:"John", lname:"Doe", age:25}; 
-
 	var text = "";
 	var x;
 	for (x in person) {
@@ -28,18 +39,10 @@ function AddNumbers(a,b)
 		total = total+a+b;
 	}
 	
-	return DoubleNumber(total,'31:'+(GopherCallerIDCouter++));
+	return DoubleNumber(total,'42:'+(GopherCallerIDCouter++));
 }
 
-str2 = 1;
 
-var initTest = AddNumbers(3,4,'36:'+(GopherCallerIDCouter++));
-
-var i=5;
-var j;
-var i1;
-
-j = 0;
 for (i1=0; i1 < 3; i1++)
 {
 	j = j + i1;
@@ -48,13 +51,13 @@ for (i1=0; i1 < 3; i1++)
 for (var i2=10; i2<14; i2++)
 {
 	j = j + i2;
-	i = 5+3+2+AddNumbers(i,j,'51:'+(GopherCallerIDCouter++));
+	i = 5+3+2+AddNumbers(i,j,'54:'+(GopherCallerIDCouter++));
 
 }
 
-i = 5+3+2+AddNumbers(i,6,'55:'+(GopherCallerIDCouter++));
+i = 5+3+2+AddNumbers(i,6,'58:'+(GopherCallerIDCouter++));
 
-cool('57:'+(GopherCallerIDCouter++));
+cool('60:'+(GopherCallerIDCouter++));
 
 $(document).ready(function() {
  str1 = "hello world";
