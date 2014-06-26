@@ -31,7 +31,7 @@ function scanFolder(_folderPath, _findSubFolders, _onlyFindFolders) {
         stat = Globals.fs.statSync(file);
         if(_findSubFolders){
           if (stat.isDirectory()) {
-              dig(file, function(err, res) {
+              finder(file, function(err, res) {
                   output.children.push(res);
                 });
             } else {

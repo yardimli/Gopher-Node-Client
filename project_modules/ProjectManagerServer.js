@@ -68,25 +68,34 @@ this.getFile = function(request, response) {
   });
 };
 
+function socketResponse(result) {
+  var response = {};
+  if (result.errno > 0) {
+    response.success = false;
+    response.error = result;
+  } else {
+    response.success = true;
+    response.data = result;
+  }
+  return response;
+}
 
 this.InitLocalSocket = function(socket) {
   SocketIOHandle = socket; // store socket so we can use it in the rest of the module
   socket.on('HiManager', function(data) {
     socket.emit('HiManagerClient', {text: "this is from Gopher Manager Server"});
   });
-  
+
   socket.on('getItemsInDir', function(data) {
     OpenProject.findFilesFoldersIn(data.target, false, true, function(result) {
-      var response = {};
-      if (result.errno > 0) {
-        response.success = false;
-      } else {
-        response.success = true;
-        response.data = result;
-      }
-      socket.emit('getItemsInDirClient', response);
+      socket.emit('getItemsInDirClient', socketResponse(result));
     });
   });
-  
-  
+
+  socket.on('_openProjectFolder', function(data) {
+    OpenProject.findFilesFoldersIn(data.target, true, false, function(result) {
+      socket.emit('openProjectFolder', socketResponse(result));
+    });
+  });
+
 };
