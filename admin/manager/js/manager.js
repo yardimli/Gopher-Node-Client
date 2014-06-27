@@ -78,8 +78,8 @@ $(document).ready(function() {
     };
     this.displaySelectedProjectFiles = function(){
       $('#project_files_view').empty();
-      console.log(JSON.stringify(convertToJstreeObj()));
-      $('#project_files_view').jstree({'core':{'data':convertToJstreeObj()}});
+      //console.log(JSON.stringify(convertToJstreeObj(_data)));
+      $('#project_files_view').jstree({'core':{'data':convertToJstreeObj(_data)}});
     };
     function safeFilePath(_filePath) {
       return _filePath.replace(/\\/g, '\\');
@@ -96,6 +96,27 @@ $(document).ready(function() {
           return {text:this.text,state:this.state,children:this.children};
         };
       }
+      console.log(obj);
+      console.log(obj.children.length);
+      function makeJstreeObj(_callBack){
+        for(var i=0; i<obj.children.length; i++){
+          var newnode = new node();
+          newnode.text = fileName(obj.children[i].path);
+          newnode.state(false,false);
+          /*if(obj.children[i].length > 0){
+            makeJstreeObj(function(res){
+              newnode.children.push(res);
+            });
+          }*/
+          root.push(newnode);
+        }
+        //return _callBack(root);
+      }
+      /*makeJstreeObj(function(result){
+        return result;
+      });*/
+      makeJstreeObj();
+      return root;
       /*var node1 = {
         text:'folder1',
         state:{
@@ -104,23 +125,12 @@ $(document).ready(function() {
         },
         children:null
       };*/
-      function make(fn){
-        for(var i=0; i<obj.length; i++){
-          var newnode = new node();
-          newnode.text = fileName(obj[i].path);
-          newnode.state(false,false);
-          if(obj[i].children !== null){
-            make(function())
-          }
-          root.push(newnode);
-        }
-      }
-      var newnode = new node();
+      /*var newnode = new node();
       newnode.text = 'folder1';
       newnode.state(false,false);
       newnode.children = [newnode.getNode()];
       root.push(newnode.getNode());
-      return root;
+      return root;*/
     }
     return this;
   }

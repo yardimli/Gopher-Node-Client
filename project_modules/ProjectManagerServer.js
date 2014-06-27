@@ -87,13 +87,19 @@ this.InitLocalSocket = function(socket) {
   });
 
   socket.on('getItemsInDir', function(data) {
+    console.log('-------manager server:getItemsInDir-------');
+    console.log(data);
     OpenProject.findFilesFoldersIn(data.target, false, true, function(result) {
+      console.log('========manager server:getItemsInDir findFilesFoldersIn callback=================');
+      console.log(result);
       socket.emit('getItemsInDirClient', socketResponse(result));
     });
   });
 
   socket.on('_openProjectFolder', function(data) {
     OpenProject.findFilesFoldersIn(data.target, true, false, function(result) {
+      console.log('-------manager server-------');
+      console.log(result);
       socket.emit('openProjectFolder', socketResponse(result));
     });
   });
