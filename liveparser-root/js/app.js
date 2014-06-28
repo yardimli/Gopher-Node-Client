@@ -1,8 +1,18 @@
-var str1,str2,str3 = 'ff';
+var str5 = 'ff';
+var initTest = AddNumbers(3,4);
+var person = {fname:"John", lname:"Doe", age:25}; 
+var i=5;
+var j=i*4;
+var k=(j+i)/3;
+var m=k*AddNumbers(k,4);
+var n="hi "+cool();
 
+var str1,str2,str3 = 'ff';
 str1 = "ac",str2 = "hello",str3= "hi";
 
 var str3 = "";
+
+str3 = "a"+"b";
 
 var i=5;
 var j;
@@ -10,10 +20,8 @@ var i1;
 
 j = 0;
 
-var initTest = AddNumbers(3,4);
 
 
-var person = {fname:"John", lname:"Doe", age:25}; 
 
 function cool()
 {
