@@ -83,11 +83,16 @@ this.InitLocalSocket = function(socket){
 
 	socket.on('Gopher.Tell', function(data) {
 //		console.log(data);
-		Globals.socketServer.sockets.in("room1").emit('ConsoleTell', { text:"L:"+data.CodeLine+": "+data.GopherMsg+", <b>parent:</b>"+data.ParentID });
+		Globals.socketServer.sockets.in("room1").emit('ConsoleTell', { text:"L:"+data.CodeLine+" "+data.GopherCallerID +": "+data.GopherMsg+", <b>parent:</b>"+data.ParentID });
 	});
 
 	socket.on('Gopher.VarDecl', function(data) {
 //		console.log(data);
-		Globals.socketServer.sockets.in("room1").emit('ConsoleTell', { text:"L:"+data.CodeLine+": Var "+ data.VarName+" set t "+data.VarValue+", ("+data.VarStr+")" });
+		Globals.socketServer.sockets.in("room1").emit('ConsoleTell', { text:"L:"+data.CodeLine+" "+data.GopherCallerID +": <b>Var "+ data.VarName+"</b> set to <b>"+data.VarValue+"</b>, ("+data.VarStr+")" });
+	});	
+	
+	socket.on('Gopher.GopherAssignment', function(data) {
+//		console.log(data);
+		Globals.socketServer.sockets.in("room1").emit('ConsoleTell', { text:"L:"+data.CodeLine+" "+data.GopherCallerID +": <b>Assignment("+ data.VarOperator +") "+ data.VarName+"</b> set to <b>"+data.VarValue+"</b>, ("+data.VarStr+")" });
 	});	
 }

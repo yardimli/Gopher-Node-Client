@@ -304,22 +304,6 @@ function loopBody(tree,parentType,Xlevel,JSGopherObjectsArray,ParentName,sourcec
 			RecursiveParentName = ParentName + "/" + "F"+ JSGopherObjectsArray.FunctionCounter +": "+NewQ.VarName;
 		}
 
-
-		if (BodyType == "ExpressionStatement")
-		{
-			if (jQuery(this).find("expression").first().find("type").first().text() == "CallExpression")
-			{
-				
-			} else
-
-			if (jQuery(this).find("expression").first().find("type").first().text() == "AssignmentExpression")
-			{
-				var parentNode =jQuery(this).find("expression").first();
-				NewQ = parseAssignmentExpression(parentNode);
-				NewQ.parentID = ParentName;
-				JSGopherObjectsArray.push(NewQ); 
-			}
-		}
 		//------------------------------------------------------------------------------------------------
 		
 		//if this node has a body inside loop it 
@@ -354,7 +338,6 @@ function loopVariableDeclerations(tree,sourcecode)
 
 			if (!isNaN(VarStart))
 			{
-				var NewQ2 = new Object();
 				VarDeclTrackID++;
 				NewQ.VarName = jQuery(this).parent().find("id").find("name").first().text();
 				NewQ.VarSource = sourcecode.slice(VarStart,VarEnd);
@@ -369,6 +352,46 @@ function loopVariableDeclerations(tree,sourcecode)
 	});
 
 	return JSGopherVarDeclerationArray;
+}
+
+//----------------------------------------------------------------------------------------
+function loopAssignmentExpressions(tree,sourcecode)
+{
+	var JSGopherAssignmentExpressionArray = [];
+	var jQuery = cheerio.load(tree, {xmlMode: true});
+	var VarDeclTrackID = 0;
+	
+	jQuery(tree).find('type').each(function(){
+		var BodyType = jQuery(this).first().text();
+		if (BodyType == "AssignmentExpression")
+		{
+			var NewQ = new Object();
+			NewQ.XLine = jQuery(this).parent().find("loc").find("end").find("line").first().text();
+			NewQ.XColumn = jQuery(this).parent().find("loc").find("end").find("column").first().text();
+			NewQ.XStartPosition = parseInt(jQuery(this).parent().find("start").first().text(),10);
+			NewQ.XEndPosition = parseInt(jQuery(this).parent().find("end").first().text(),10);
+
+	
+			var VarStart = parseInt(jQuery(this).parent().find("right").find("start").first().text(),10);
+			var VarEnd = parseInt(jQuery(this).parent().find("right").find("end").first().text(),10); 
+
+			if (!isNaN(VarStart))
+			{
+				VarDeclTrackID++;
+				NewQ.VarName = jQuery(this).parent().find("left").find("name").first().text();
+				NewQ.VarOperator = jQuery(this).parent().find("operator").first().text();
+				NewQ.VarSource = sourcecode.slice(VarStart,VarEnd);
+				NewQ.DeclStart = VarStart;
+				NewQ.DeclEnd = VarEnd;
+				NewQ.VarDeclTrackID = VarDeclTrackID;
+				JSGopherAssignmentExpressionArray.push( NewQ );
+
+				console.log("Assignment Expression: --------- Name:" + jQuery(this).parent().find("left").find("name").first().text() +  " Init:" + VarStart + " " + VarEnd + " " + sourcecode.slice(VarStart,VarEnd)  );
+			}
+		}
+	});
+
+	return JSGopherAssignmentExpressionArray;
 }
 
 //----------------------------------------------------------------------------------------
@@ -389,7 +412,7 @@ function loopFunctionCalls(tree,sourcecode)
 			var CalleParamCount = 0;
 			jQuery(this).parent().children("arguments").each(function(){ CalleParamCount++;});
 			
-			if ( (CalleType == "Identifier") && (CalleName!="$") && (CalleName!="GopherVarDecl") )
+			if ( (CalleType == "Identifier") && (CalleName!="$") && (CalleName!="GopherVarDecl") && (CalleName!="GopherAssignment") )
 			{
 				
 				console.log("FUNCTION: "+ sourcecode.slice(CalleStart,CalleEnd) + " - " + BodyType + " - " + CalleLine +" - "+CalleName+" - "+CalleEnd+" - "+CalleParamCount);
@@ -427,7 +450,7 @@ function InsertGopherTells(contents,JSGopherObjectsArray)
 
 			returnstr = returnstr.replace("return","var returnstr = " );
 
-			var GopherTellInsert = returnstr + "\n GopherTell("+ JSGopherObjectsArray[nCount].XLine + ",'<b>Return:</b>'+ returnstr + '','"+ JSGopherObjectsArray[nCount].parentID  +"'); \n return returnstr;";
+			var GopherTellInsert = returnstr + "\n GopherTell("+ JSGopherObjectsArray[nCount].XLine + ",'<b>Return:</b>'+ returnstr + '','"+ JSGopherObjectsArray[nCount].parentID  +"',GopherCallerID); \n return returnstr;";
 
 			contents = 
 				[contents.slice(0, JSGopherObjectsArray[nCount].XStartPosition), 
@@ -437,11 +460,12 @@ function InsertGopherTells(contents,JSGopherObjectsArray)
 
 
 		//========================================
+		/*
 		if (JSGopherObjectsArray[nCount].Type == "AssignmentExpression")
 		{
 			for (var pcounter=0; pcounter< JSGopherObjectsArray[nCount].VarNames.length; pcounter++ )
 			{
-				var GopherTellInsert = "\nGopherTell("+ JSGopherObjectsArray[nCount].XLine + ",'<b>Variable</b> ["+JSGopherObjectsArray[nCount].VarNames[pcounter]+"] set to:'+"+JSGopherObjectsArray[nCount].VarNames[pcounter]+",'"+ JSGopherObjectsArray[nCount].parentID  +"');";
+				var GopherTellInsert = "\nGopherTell("+ JSGopherObjectsArray[nCount].XLine + ",'<b>Variable</b> ["+JSGopherObjectsArray[nCount].VarNames[pcounter]+"] set to:'+"+JSGopherObjectsArray[nCount].VarNames[pcounter]+",'"+ JSGopherObjectsArray[nCount].parentID  +"',GopherCallerID);";
 
 				contents = 
 					[contents.slice(0, JSGopherObjectsArray[nCount].XEndPosition+1), 
@@ -451,7 +475,7 @@ function InsertGopherTells(contents,JSGopherObjectsArray)
 			
 			for (var pcounter=0; pcounter< JSGopherObjectsArray[nCount].VarNames.length; pcounter++ )
 			{
-				GopherTellInsert = "\nGopherTell("+ JSGopherObjectsArray[nCount].XLine + ",'<b>Variable</b> ["+JSGopherObjectsArray[nCount].VarNames[pcounter]+"] is being set...','"+ JSGopherObjectsArray[nCount].parentID  +"');\n";
+				GopherTellInsert = "\nGopherTell("+ JSGopherObjectsArray[nCount].XLine + ",'<b>Variable</b> ["+JSGopherObjectsArray[nCount].VarNames[pcounter]+"] is being set...','"+ JSGopherObjectsArray[nCount].parentID  +"',GopherCallerID);\n";
 
 				contents = 
 					[contents.slice(0, JSGopherObjectsArray[nCount].XStartPosition), 
@@ -460,18 +484,22 @@ function InsertGopherTells(contents,JSGopherObjectsArray)
 			}
 			
 		}
+		*/
 
 		//========================================
 		if (JSGopherObjectsArray[nCount].Type == "ForStatement")
 		{
 			
+			/*
+			 * will not need this because the test part of loop will become a function
 			var GopherTellInsert = "\nGopherTell("+ JSGopherObjectsArray[nCount].XLine + ",'" +
 							"<b>For Loop</b> var:"+ JSGopherObjectsArray[nCount].InitName + 
 							", value:'+"+ JSGopherObjectsArray[nCount].InitName + "+'', '" +
-							JSGopherObjectsArray[nCount].parentID  +"');\n"; 
+							JSGopherObjectsArray[nCount].parentID  +"',GopherCallerID);\n"; 
 		
 			contents = [contents.slice(0, JSGopherObjectsArray[nCount].XBodyStartPosition+1), GopherTellInsert , contents.slice(JSGopherObjectsArray[nCount].XBodyStartPosition+1)].join('');
-			
+			*/
+/*			
 			var GopherTellInsert = "GopherTell("+ JSGopherObjectsArray[nCount].XLine + ",'" +
 							"<b>For Loop Init</b> [name:"+ JSGopherObjectsArray[nCount].InitName + 
 							"] test[ operator["+ JSGopherObjectsArray[nCount].TestOperator +
@@ -481,7 +509,10 @@ function InsertGopherTells(contents,JSGopherObjectsArray)
 							"] right[name:"+ JSGopherObjectsArray[nCount].TestRightSideName + 
 							", type:"+ JSGopherObjectsArray[nCount].TestRigthSideType + 
 							", value:"+ JSGopherObjectsArray[nCount].TestRightSideValue + "] ]','"+ 
-							JSGopherObjectsArray[nCount].parentID  +"');\n"; 
+							JSGopherObjectsArray[nCount].parentID  +"',GopherCallerID);\n"; 
+*/
+			var GopherTellInsert = "GopherTell("+ JSGopherObjectsArray[nCount].XLine + ",'<b>For Loop Init</b>','"+ 
+							JSGopherObjectsArray[nCount].parentID  +"',GopherCallerID);\n"; 
 
 			contents = [contents.slice(0, JSGopherObjectsArray[nCount].XStartPosition), GopherTellInsert , contents.slice(JSGopherObjectsArray[nCount].XStartPosition)].join('');
 		}
@@ -501,7 +532,8 @@ function InsertGopherTells(contents,JSGopherObjectsArray)
 
 			var FirstCurleyBracket = tempstring.indexOf("{");
 
-			var GopherTellInsert = "\nGopherTell("+ JSGopherObjectsArray[nCount].XLine + ",'<b>Function Run</b> [" + JSGopherObjectsArray[nCount].VarName+"] parameters:" + ParamsText + " values: "+ParamsValue + "','" +  JSGopherObjectsArray[nCount].parentID + "');";
+			var GopherTellInsert = "\nvar GopherCallerID = arguments.length ? arguments[arguments.length - 1] : 'default';"+
+"\nGopherTell("+ JSGopherObjectsArray[nCount].XLine + ",'<b>Function Run</b> ["+JSGopherObjectsArray[nCount].VarName+"] parameters:"+ ParamsText +" values: "+ParamsValue+"','"+ JSGopherObjectsArray[nCount].parentID +"',GopherCallerID);";
 
 			contents = 
 				[contents.slice(0, JSGopherObjectsArray[nCount].XStartPosition+FirstCurleyBracket+1), 
@@ -518,21 +550,29 @@ function InsertGopherTells(contents,JSGopherObjectsArray)
 							"iosocket.emit('HiGopherB','');\n"+
 							"iosocket.emit('HiClientServer','');\n"+
 							"\n\n" +
+							"var GopherCallerIDCouter = 100;\n"+
+							"var GopherCallerID = '0:0';\n"+
 							
 							
-							"function GopherTell(xCodeLine, xGopherMsg, xParentID) {\n" +
-							" iosocket.emit( 'Gopher.Tell', {CodeLine:xCodeLine, GopherMsg:xGopherMsg, ParentID:xParentID } );\n"+
+							"function GopherTell(xCodeLine, xGopherMsg, xParentID, xGopherCallerID) {\n" +
+							" iosocket.emit( 'Gopher.Tell', {CodeLine:xCodeLine, GopherMsg:xGopherMsg, ParentID:xParentID, GopherCallerID:xGopherCallerID } );\n"+
 							"}\n\n"+
 							
 							"//------------------------------------------------------------------------------\n"+
-							"function GopherVarDecl(xCodeLine, xVarDeclTrackID, xVarName, xVarValue, xVarStr ) {\n" +
-							" iosocket.emit( 'Gopher.VarDecl', {CodeLine:xCodeLine, VarDeclTrackID:xVarDeclTrackID, VarName:xVarName, VarValue:xVarValue, VarStr:xVarStr} );\n"+
+							"function GopherVarDecl(xCodeLine, xVarDeclTrackID, xVarName, xVarValue, xVarStr, xGopherCallerID ) {\n" +
+							" iosocket.emit( 'Gopher.VarDecl', {CodeLine:xCodeLine, VarDeclTrackID:xVarDeclTrackID, VarName:xVarName, VarValue:xVarValue, VarStr:xVarStr, GopherCallerID:xGopherCallerID } );\n"+
 							"return xVarValue;\n"+
 							"}\n\n"+
-
+							
 							"//------------------------------------------------------------------------------\n"+
-							"function GopherFunctionCall(xCodeLine, xFuncTrackID, xFuncStr, xFuncValue) {\n" +
-							" iosocket.emit( 'Gopher.FuncCall', {CodeLine:xCodeLine, FuncTrackID:xFuncTrackID, VarStr:xFuncStr, FuncValue:xFuncValue} );\n"+
+							"function GopherAssignment(xCodeLine, xVarDeclTrackID, xVarName, xVarValue, xVarStr, xGopherCallerID, xVarOperator, VarOperator ) {\n" +
+							" iosocket.emit( 'Gopher.GopherAssignment', {CodeLine:xCodeLine, VarDeclTrackID:xVarDeclTrackID, VarName:xVarName, VarValue:xVarValue, VarStr:xVarStr, GopherCallerID:xGopherCallerID, VarOperator:xVarOperator } );\n"+
+							"return xVarValue;\n"+
+							"}\n\n"+
+							
+							"//------------------------------------------------------------------------------\n"+
+							"function GopherFunctionCall(xCodeLine, xFuncTrackID, xFuncStr, xFuncValue, xGopherCallerID) {\n" +
+							" iosocket.emit( 'Gopher.FuncCall', {CodeLine:xCodeLine, FuncTrackID:xFuncTrackID, VarStr:xFuncStr, FuncValue:xFuncValue, GopherCallerID:xGopherCallerID } );\n"+
 							"return xFuncValue;\n"+
 							"}\n\n"+
 					
@@ -577,7 +617,7 @@ this.getFile = function(request, response)
 						
 						var parsed = MakeJSONTreeFromJS(contents,filePath);
 
-						//-------------------------------- INSERT EXTRA PARAMETER TO ALL FUNCTION CALLS
+						//-------------------------------- MAKE ALL VARIABLE DECLERATIONS A FUCTION CALL
 						
 						var xmldata = "<project>"+ json2xml(parsed)+ "</project>";
 						Globals.fs.writeFile(filePath+".gopher.xml",xmldata );
@@ -592,9 +632,10 @@ this.getFile = function(request, response)
 							
 							//========================================
 							var GopherTellInsert = "GopherVarDecl("+ JSGopherVariableDeclerationArray[nCount].XLine + 
+											"," + JSGopherVariableDeclerationArray[nCount].VarDeclTrackID + 
 											",'" + JSGopherVariableDeclerationArray[nCount].VarName+"'," + 
 											JSGopherVariableDeclerationArray[nCount].VarSource + "," + 
-											"'" + escapeSingleQuuote(JSGopherVariableDeclerationArray[nCount].VarSource) + "')";
+											"'" + escapeSingleQuuote(JSGopherVariableDeclerationArray[nCount].VarSource) + "',GopherCallerID)";
 
 							console.log(GopherTellInsert);
 
@@ -606,7 +647,38 @@ this.getFile = function(request, response)
 						Globals.fs.writeFile(filePath+".vardec.temp",contents);
 
 						parsed = MakeJSONTreeFromJS(contents,filePath);
-						///----------------------------------------------------------------------------
+
+						//-------------------------------- MAKE ALL Assignment Expressions a FUCTION CALL
+						
+						var xmldata = "<project>"+ json2xml(parsed)+ "</project>";
+
+						var JSGopherAssignmentExpressionArray = [];
+
+						JSGopherAssignmentExpressionArray = loopAssignmentExpressions(xmldata,contents);
+						var nCount = JSGopherAssignmentExpressionArray.length;
+						while ( nCount > 0)
+						{
+							nCount--;
+							
+							//========================================
+							var GopherTellInsert = "GopherAssignment("+ JSGopherAssignmentExpressionArray[nCount].XLine + 
+											"," + JSGopherAssignmentExpressionArray[nCount].VarDeclTrackID + 
+											",'" + JSGopherAssignmentExpressionArray[nCount].VarName+"'," + 
+											JSGopherAssignmentExpressionArray[nCount].VarSource + "," + 
+											"'" + escapeSingleQuuote(JSGopherAssignmentExpressionArray[nCount].VarSource) + "',GopherCallerID,'" + JSGopherAssignmentExpressionArray[nCount].VarOperator + "')";
+
+							console.log(GopherTellInsert);
+
+							contents = 
+								[contents.slice(0, JSGopherAssignmentExpressionArray[nCount].DeclStart), 
+								GopherTellInsert , 
+								contents.slice(JSGopherAssignmentExpressionArray[nCount].DeclEnd)].join('');
+						}
+						Globals.fs.writeFile(filePath+".vardec.2.temp",contents);
+
+						parsed = MakeJSONTreeFromJS(contents,filePath);
+
+						//-------------------------------- INSERT EXTRA PARAMETER TO ALL FUNCTIONS
 						var xmldata = "<project>"+ json2xml(parsed)+ "</project>";
 						var JSGopherFuctionCallArray = [];
 
@@ -615,7 +687,7 @@ this.getFile = function(request, response)
 						while ( nCount > 0)
 						{
 							nCount--;
-							/*
+
 							var GopherTellInsert = "";
 							if (JSGopherFuctionCallArray[nCount].CalleParamCount>0)
 							{
@@ -628,9 +700,8 @@ this.getFile = function(request, response)
 								[contents.slice(0, JSGopherFuctionCallArray[nCount].CalleEnd-1), 
 								GopherTellInsert , 
 								contents.slice(JSGopherFuctionCallArray[nCount].CalleEnd-1)].join('');
-							*/
-						}
-						Globals.fs.writeFile(filePath+".temp",contents);
+						}	
+						Globals.fs.writeFile(filePath+".funcdec.temp",contents);
 
 						parsed = MakeJSONTreeFromJS(contents,filePath);
 
@@ -643,11 +714,11 @@ this.getFile = function(request, response)
 						JSGopherObjectsArray.VarDeclTrackID = 0;
 						JSGopherObjectsArray = loopBody(xmldata,"BODY",0,JSGopherObjectsArray,"body",contents);
 
-						
 						contents = InsertGopherTells(contents,JSGopherObjectsArray)
 
 						response.writeHead(200,{ "Content-type" : mimeType, "Content-Length" : contents.length });
 						response.end(contents);
+						
 					}	else
 					{
 						response.writeHead(200,{ "Content-type" : mimeType, "Content-Length" : contents.length });

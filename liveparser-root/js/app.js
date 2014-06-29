@@ -1,4 +1,5 @@
 var str5 = 'ff';
+var xheight = $(window).height();
 var initTest = AddNumbers(3,4);
 var person = {fname:"John", lname:"Doe", age:25}; 
 var i=5;
