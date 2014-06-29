@@ -29,7 +29,7 @@ function scanFolder(_folderPath, _findSubFolders, _onlyFindFolders) {
       }
       var pending = list.length;
       if (!pending) {
-        console.log('---------WalkDirectory !pending--------------');
+        console.log('---------WalkDirectory !pending '+pending+'--------------');
         return end(null, output);
       }
       list.forEach(function(file) {
@@ -67,7 +67,7 @@ function scanFolder(_folderPath, _findSubFolders, _onlyFindFolders) {
                 if (!--pending){
                     end(null, output);
                 }
-                console.log('---------WalkDirectory _onlyFindFolders pending '+pending+'--------------');
+                console.log('---------WalkDirectory skip subFolders/_onlyFindFolders pending '+pending+'--------------');
               }else{
                 output.children.push(new fileNode(file, null));
                 if (!--pending){
@@ -106,7 +106,6 @@ this.findFilesFoldersIn = function(_filePath, _findSubFolders, _onlyFindFolders,
   var fileFolderScanner = new scanFolder(_filePath, _findSubFolders, _onlyFindFolders);
   fileFolderScanner.starts(function(result) {
     console.log('---------WalkDirectory findFilesFoldersIn is called--------------');
-    console.log(result);
     _callBack(result);
   });
 };

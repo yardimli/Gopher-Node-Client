@@ -78,59 +78,159 @@ $(document).ready(function() {
     };
     this.displaySelectedProjectFiles = function(){
       $('#project_files_view').empty();
-      //console.log(JSON.stringify(convertToJstreeObj(_data)));
-      $('#project_files_view').jstree({'core':{'data':convertToJstreeObj(_data)}});
+      console.log(_data);
+      //console.log(JSON.stringify(_data));
+      //$('#project_files_view').jstree({'core':{'data':convertToJstreeObj(_data)}});
+      //convertToJstreeObj(_data);
+      //$('#project_files_view').jstree({'core':{'data':convertToJstreeObj()}});
+      console.log(convertToJstreeObj(_data));
     };
     function safeFilePath(_filePath) {
       return _filePath.replace(/\\/g, '\\');
     }
-    function convertToJstreeObj(obj){
-      var root = [];
-      function node(){
-        this.text = '';
-        this.state = function(_opened,_selected){
-          return {opened:_opened,selected:_selected};
+    function convertToJstreeObj(_obj){
+      function node(_text,_opened,_selected,_children){
+        var text = _text;
+        this.setText = function(_text){
+          text = _text;
         };
-        this.children = null;
-        this.getNode = function(){
-          return {text:this.text,state:this.state,children:this.children};
-        };
+        return {text:text,
+                state:{opened:_opened,selected:_selected},
+                children:_children};
       }
-      console.log(obj);
+      /*console.log(obj);
       console.log(obj.children.length);
-      function makeJstreeObj(_callBack){
-        for(var i=0; i<obj.children.length; i++){
+      function makeJstreeObj(parentObj,end){
+        var finalResult=[];
+        var pending = parentObj.children.length;
+        
+        for(var i=0; i<parentObj.children.length; i++){
           var newnode = new node();
-          newnode.text = fileName(obj.children[i].path);
+          newnode.text = fileName(parentObj.children[i].path);
           newnode.state(false,false);
-          /*if(obj.children[i].length > 0){
-            makeJstreeObj(function(res){
+          if(parentObj.children[i].children.length > 0){
+            makeJstreeObj(parentObj.children[i],function(res){
+              console.log(res);
               newnode.children.push(res);
+              finalResult.push(newnode);
+              if(!--pending){
+                end(finalResult);
+              }
             });
-          }*/
-          root.push(newnode);
+          }else{
+            finalResult.push(newnode);
+            if(!--pending){
+                end(finalResult);
+            }
+            
+          }
+          if(!pending){
+         // return end(finalResult);
+         console.log(finalResult);
         }
-        //return _callBack(root);
+        }
+        
       }
-      /*makeJstreeObj(function(result){
-        return result;
-      });*/
-      makeJstreeObj();
-      return root;
-      /*var node1 = {
-        text:'folder1',
-        state:{
-          opened:true,
-          selected:false
-        },
-        children:null
-      };*/
-      /*var newnode = new node();
-      newnode.text = 'folder1';
-      newnode.state(false,false);
-      newnode.children = [newnode.getNode()];
-      root.push(newnode.getNode());
+      makeJstreeObj(obj,function(result){
+        console.log(result);
+      });
+       
+      return */
+ 
+      /*var root = [];
+      var subnode = [];
+      subnode.push(new node('sub folder 1',false,false,null));
+      root.push(new node('folder1',false,false,subnode));
       return root;*/
+      
+      /*var testObj = {
+        name:'Root',
+        children:[{name:'folder1',children:null},{name:'folder2',children:[{name:'subFolder1',children:null},{name:'subFolder2',children:null}]}]
+      };
+      function test(obj,output){
+        console.log(Object.keys(obj).length);
+        var keys = Object.keys(obj);
+        for(var i=0; i<keys.length; i++){
+          
+          console.log(obj[keys[i]]);
+        }
+        var childNode = [];
+        for(var i=0; i<obj.length; i++){
+          test(obj.children[i],function(res){
+            var ch = [];
+            ch.push(res);
+            console.log(res);
+            //childNode.push(new node(obj.children[i].name,false,false,ch));
+          });
+          var ch = [];
+          if(obj[i].children.length>0){
+            ch.push(obj[i].children);
+          }
+          childNode.push(new node(obj[i].name,false,false,ch));
+          console.log(childNode);
+          if(i===obj.length-1){
+            //console.log(childNode);
+            return output(childNode);
+          }
+        } 
+      };
+      var jstreeObj;
+      test(testObj,function(result){
+        jstreeObj = result;
+      });
+      return jstreeObj;*/
+      //var testObj = {path:'flipcard',children:[{path:'blabla\\git',children:null},{path:'blabla\\nbproject',children:[{path:'blabla\\history',children:null}]}]};
+      //console.log('======testObj=======');
+      //console.log(testObj);
+      if(_obj !== undefined){
+        //_obj = testObj;
+        var jstreeObj = [];
+        function test(title,runObj,end){
+          console.log('*'+runObj[0].path+'*');
+          var output = new node(title,false,false,[]);
+          console.log('-----test is called:'+JSON.stringify(runObj)+'-----');
+          for(var i=0; i<runObj.length; i++){
+            console.log('---i:'+i+'------');
+            if(runObj[i].children!==null){
+              console.log('----- runObj[i].children!==null,'+runObj[i].path+'------');
+              //jstreeObj.push(new node(runObj[i].path,false,false,runObj[i].children));
+              //output.setText(runObj[i].path);
+              test(runObj[i].path,runObj[i].children,function(res){
+                console.log('----- res ----');
+                console.log(res);
+                console.log('----- end of res ----');
+                output.children.push(res);
+                end(output);
+              });
+            }else{
+              console.log('----- runObj[i].children!==null else,'+runObj[i].path+'------')
+              //jstreeObj.push(new node(runObj[i].path,false,false,null));
+              output.children.push(new node(runObj[i].path,false,false,null));
+              end(output);
+            }
+          }
+          
+          
+          /*var keys = Object.keys(runObj);
+          if(runObj[keys[1]].length>0){
+            jstreeObj.push(new node(runObj[keys[0]],false,false,runObj[keys[1]]));
+            for(var i=0; i<runObj[keys[1]].length; i++){
+              test(runObj[keys[1]]);
+            }
+          }else{
+            jstreeObj.push(new node(runObj[keys[0]],false,false,null));
+          }*/
+        }
+        test('root',_obj.children,function(result){
+          jstreeObj=result;
+        });
+        console.log('======jstreeObj========');
+        console.log(jstreeObj);
+        console.log(JSON.stringify(jstreeObj));
+        console.log('======end of jstreeObj========');
+      }else{
+        return null;
+      }
     }
     return this;
   }
