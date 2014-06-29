@@ -1,20 +1,21 @@
 var str5 = GopherVarDecl(1,1,'str5','ff','\'ff\'',GopherCallerID);
-var initTest = GopherVarDecl(2,2,'initTest',AddNumbers(3,4),'AddNumbers(3,4)',GopherCallerID);
-var person = GopherVarDecl(3,3,'person',{fname:"John", lname:"Doe", age:25},'{fname:"John", lname:"Doe", age:25}',GopherCallerID); 
-var i=GopherVarDecl(4,4,'i',5,'5',GopherCallerID);
-var j=GopherVarDecl(5,5,'j',i*4,'i*4',GopherCallerID);
-var k=GopherVarDecl(6,6,'k',(j+i)/3,'(j+i)/3',GopherCallerID);
-var m=GopherVarDecl(7,7,'m',k*AddNumbers(k,4),'k*AddNumbers(k,4)',GopherCallerID);
-var n=GopherVarDecl(8,8,'n',"hi "+cool(),'"hi "+cool()',GopherCallerID);
+var xheight = GopherVarDecl(2,2,'xheight',$(window).height(),'$(window).height()',GopherCallerID);
+var initTest = GopherVarDecl(3,3,'initTest',AddNumbers(3,4),'AddNumbers(3,4)',GopherCallerID);
+var person = GopherVarDecl(4,4,'person',{fname:"John", lname:"Doe", age:25},'{fname:"John", lname:"Doe", age:25}',GopherCallerID); 
+var i=GopherVarDecl(5,5,'i',5,'5',GopherCallerID);
+var j=GopherVarDecl(6,6,'j',i*4,'i*4',GopherCallerID);
+var k=GopherVarDecl(7,7,'k',(j+i)/3,'(j+i)/3',GopherCallerID);
+var m=GopherVarDecl(8,8,'m',k*AddNumbers(k,4),'k*AddNumbers(k,4)',GopherCallerID);
+var n=GopherVarDecl(9,9,'n',"hi "+cool(),'"hi "+cool()',GopherCallerID);
 
-var str1,str2,str3 = GopherVarDecl(10,9,'str3','ff','\'ff\'',GopherCallerID);
+var str1,str2,str3 = GopherVarDecl(11,10,'str3','ff','\'ff\'',GopherCallerID);
 str1 = "ac",str2 = "hello",str3= "hi";
 
-var str3 = GopherVarDecl(13,10,'str3',"",'""',GopherCallerID);
+var str3 = GopherVarDecl(14,11,'str3',"",'""',GopherCallerID);
 
 str3 = "a"+"b";
 
-var i=GopherVarDecl(17,11,'i',5,'5',GopherCallerID);
+var i=GopherVarDecl(18,12,'i',5,'5',GopherCallerID);
 var j;
 var i1;
 
@@ -25,7 +26,7 @@ j = 0;
 
 function cool()
 {
-	var text = GopherVarDecl(28,12,'text',"",'""',GopherCallerID);
+	var text = GopherVarDecl(29,13,'text',"",'""',GopherCallerID);
 	var x;
 	for (x in person) {
 		text += person[x];
@@ -41,8 +42,8 @@ function DoubleNumber(a)
 
 function AddNumbers(a,b)
 {
-	var total = GopherVarDecl(44,13,'total',0,'0',GopherCallerID);
-	for (var i=GopherVarDecl(45,14,'i',0,'0',GopherCallerID); i<3; i++)
+	var total = GopherVarDecl(45,14,'total',0,'0',GopherCallerID);
+	for (var i=GopherVarDecl(46,15,'i',0,'0',GopherCallerID); i<3; i++)
 	{
 		total = total+a+b;
 	}
@@ -56,7 +57,7 @@ for (i1=0; i1 < 3; i1++)
 	j = j + i1;
 }
 
-for (var i2=GopherVarDecl(59,15,'i2',10,'10',GopherCallerID); i2<14; i2++)
+for (var i2=GopherVarDecl(60,16,'i2',10,'10',GopherCallerID); i2<14; i2++)
 {
 	j = j + i2;
 	i = 5+3+2+AddNumbers(i,j);

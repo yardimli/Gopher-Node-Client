@@ -88,6 +88,11 @@ this.InitLocalSocket = function(socket){
 
 	socket.on('Gopher.VarDecl', function(data) {
 //		console.log(data);
-		Globals.socketServer.sockets.in("room1").emit('ConsoleTell', { text:"L:"+data.CodeLine+" "+data.GopherCallerID +": Var "+ data.VarName+" set to "+data.VarValue+", ("+data.VarStr+")" });
+		Globals.socketServer.sockets.in("room1").emit('ConsoleTell', { text:"L:"+data.CodeLine+" "+data.GopherCallerID +": <b>Var "+ data.VarName+"</b> set to <b>"+data.VarValue+"</b>, ("+data.VarStr+")" });
+	});	
+	
+	socket.on('Gopher.GopherAssignment', function(data) {
+//		console.log(data);
+		Globals.socketServer.sockets.in("room1").emit('ConsoleTell', { text:"L:"+data.CodeLine+" "+data.GopherCallerID +": <b>Assignment("+ data.VarOperator +") "+ data.VarName+"</b> set to <b>"+data.VarValue+"</b>, ("+data.VarStr+")" });
 	});	
 }
