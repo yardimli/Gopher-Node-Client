@@ -86,11 +86,7 @@ $(document).ready(function() {
     }
     function convertToJstreeObj(_obj){
       function node(_text,_opened,_selected,_children){
-        var text = _text;
-        this.setText = function(_text){
-          text = _text;
-        };
-        return {text:text,
+        return {text:_text,
                 state:{opened:_opened,selected:_selected},
                 children:_children};
       }
@@ -100,43 +96,43 @@ $(document).ready(function() {
       if(_obj !== undefined){
         //_obj = testObj;
         var jstreeObj = [];
-        function test(title,runObj,end){
+        function makeJstreeObj(title,runObj,end){
           //console.log('*'+runObj[0].path+'*');
           var output = new node(title,false,false,[]);
           //console.log('-----test is called:'+JSON.stringify(runObj)+'-----');
-          var pending = runObj.length;
+          var unfinished = runObj.length;
           //console.log(title);
-          //console.log('-----first pending:'+pending+'-------');
-          if(!pending){
+          //console.log('-----first unfinished:'+unfinished+'-------');
+          if(!unfinished){
             return end(output);
           }
           for(var i=0; i<runObj.length; i++){
             //console.log('---i:'+i+'------');
             if(runObj[i].children!==null){
               //console.log('----- runObj[i].children!==null,'+runObj[i].path+'------');
-              test(runObj[i].path,runObj[i].children,function(res){
+              makeJstreeObj(fileName(runObj[i].path),runObj[i].children,function(res){
                 /*console.log('----- res ----');
                 console.log(res);
                 console.log('----- end of res ----');*/
                 output.children.push(res);
-                pending--;
-                if(pending<=0){
-                  //console.log(pending);
+                unfinished--;
+                if(unfinished<=0){
+                  //console.log(unfinished);
                   end(output);
                 }
               });
             }else{
               //console.log('----- runObj[i].children!==null else,'+runObj[i].path+'------')
-              output.children.push(new node(runObj[i].path,false,false,null));
-              pending--;
-              if(pending<=0){
-                  //console.log(pending);
+              output.children.push(new node(fileName(runObj[i].path),false,false,null));
+              unfinished--;
+              if(unfinished<=0){
+                  //console.log(unfinished);
                   end(output);
               }
             }
           }
         }
-        test('root',_obj.children,function(result){
+        makeJstreeObj(_obj.path,_obj.children,function(result){
           jstreeObj.push(result);
         });
         /*console.log('======jstreeObj========');
