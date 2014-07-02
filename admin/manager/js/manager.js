@@ -77,9 +77,11 @@ $(document).ready(function() {
       }
     };
     this.displaySelectedProjectFiles = function(){
-      $('#project_files_view').empty();
-      $('#project_files_view').jstree({'core':{'data':convertToJstreeObj(_data)}});
-      //console.log(convertToJstreeObj(_data));
+      $('#project_files_view').jstree({'core':{'data':convertToJstreeObj(_data)}}); 
+      if($('#project_files_view').find('ul').length>0){
+        $('#project_files_view').jstree(true).settings.core.data = convertToJstreeObj(_data);
+        $('#project_files_view').jstree(true).refresh(); 
+      }
     };
     function safeFilePath(_filePath) {
       return _filePath.replace(/\\/g, '\\');

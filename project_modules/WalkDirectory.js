@@ -1,12 +1,34 @@
 var Globals = require("../project_modules/Globals.js");
 //var util = require('util');
+var acceptedFileType = ['js','JS','html','htm','HTML','HTM'];
 
 function fileNode(_path, _children) {
   this.path = _path;
   this.children = _children;
 }
 
-function scanFolder(_folderPath, _findSubFolders, _onlyFindFolders) {
+function scanFolder(_settings) {
+  var _folderPath = _settings.folderPath, 
+     _findSubFolders = _settings.findSubFolders,
+     _onlyFindFolders = _settings.onlyFindFolders,
+     _acceptAllTypes = _settings.acceptAllTypes;
+  var fileExtension = function(_file) {
+    var nameArr = _file.split('.');
+    return nameArr[nameArr.length - 1];
+  };
+  var isFileAccepted = function(_file) {
+    var countMatch = 0;
+    for (var i = 0; i < acceptedFileType.length; i++) {
+      if (acceptedFileType[i].indexOf(fileExtension(_file)) > -1) {
+        countMatch++;
+      }
+    }
+    if (countMatch > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  };
   
   this.starts = function(_callBack) {
     finder(_folderPath, function(err, results) {
@@ -50,7 +72,9 @@ function scanFolder(_folderPath, _findSubFolders, _onlyFindFolders) {
                       end(null, output);
                   }
                 }else{
-                  output.children.push(new fileNode(file, null));
+                  if(_acceptAllTypes || (_acceptAllTypes==false && isFileAccepted(file))){
+                    output.children.push(new fileNode(file, null));
+                  }
                   if (!--pending){
                       end(null, output);
                   }
@@ -69,7 +93,9 @@ function scanFolder(_folderPath, _findSubFolders, _onlyFindFolders) {
                 }
                 console.log('---------WalkDirectory skip subFolders/_onlyFindFolders pending '+pending+'--------------');
               }else{
-                output.children.push(new fileNode(file, null));
+                if(_acceptAllTypes || (_acceptAllTypes==false && isFileAccepted(file))){
+                  output.children.push(new fileNode(file, null));
+                }
                 if (!--pending){
                     end(null, output);
                 }
@@ -79,31 +105,10 @@ function scanFolder(_folderPath, _findSubFolders, _onlyFindFolders) {
       });
     });
   }
-
-};
-var parseGopherTunnel = function(t) {
-  function findFileExtension(file) {
-    var nameArr = file.split('.');
-    return nameArr[nameArr.length - 1];
-  }
-  ;
-  function isFileAccepted(file) {
-    var countMatch = 0;
-    for (var i = 0; i < fileTypes.length; i++) {
-      if (fileTypes[i].indexOf(findFileExtension(file)) > -1) {
-        countMatch++;
-      }
-    }
-    if (countMatch > 0) {
-      return true;
-    } else {
-      return false;
-    }
-  }
 };
 
-this.findFilesFoldersIn = function(_filePath, _findSubFolders, _onlyFindFolders, _callBack) {
-  var fileFolderScanner = new scanFolder(_filePath, _findSubFolders, _onlyFindFolders);
+this.findFilesFoldersIn = function(_settings, _callBack) {
+  var fileFolderScanner = new scanFolder(_settings);
   fileFolderScanner.starts(function(result) {
     console.log('---------WalkDirectory findFilesFoldersIn is called--------------');
     _callBack(result);
