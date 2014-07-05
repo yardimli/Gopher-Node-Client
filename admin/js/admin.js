@@ -65,10 +65,13 @@ function initSocketIO()
 		});
 		 
 		$( '#all' ).click( function() {
+			alert("!");
+			$( '.tree li' ).children( 'ul' ).slideToggle( 'fast' );
+			/*
 			$( '.tree li' ).each( function() {
 				$( this ).toggleClass( 'active' );
-				$( this ).children( 'ul' ).slideToggle( 'fast' );
 			});
+			*/
 		});
 
 	});

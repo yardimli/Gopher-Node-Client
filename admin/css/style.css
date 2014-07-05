@@ -28,7 +28,7 @@ color:black;
 
 
 .tree ul {
-	
+	white-space: nowrap;
     list-style: none outside none;
 }
 .tree li a {
