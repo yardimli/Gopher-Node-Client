@@ -153,9 +153,10 @@ $(document).ready(function() {
         var nodeItem = $('#' + data.node.id).find('a.jstree-anchor');
         var nodeWidth = $(nodeItem).width();
         var nodeOffset = $(nodeItem).offset();
+        var nodePosition = $(nodeItem).position();
         $('#btn_ignoreFile').css({
-          top: nodeOffset.top + 'px',
-          left: nodeOffset.left + nodeWidth + 5 + 'px'
+          top: nodePosition.top + 'px',
+          left: nodePosition.left + nodeWidth + 5 + 'px'
         });
         $('#btn_ignoreFile').show();
         $('#btn_ignoreFile').fadeIn();
@@ -260,5 +261,10 @@ $(document).ready(function() {
   });
   $(document).mouseover(function(e){
     eventsOnPage.document_mouseover(e);
+  });
+  $('#debug_console').click(function(){
+    //var _offset = $(this).offset();
+    //$(this).css({left:_offset.left+'px'}).animate({left:(Number(_offset.left)+300)+'px'},'normal');
+    $(this).toggleClass('hideme');
   });
 });

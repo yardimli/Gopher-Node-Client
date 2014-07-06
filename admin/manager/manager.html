@@ -20,13 +20,16 @@
     <!-- TreeView plugin -->
     <link href="Lib/jstree/themes/default/style.min.css" rel="stylesheet"/>
     <script src="Lib/jstree/jstree.min.js" type="text/javascript"></script>
-    
+
     <!-- Mine -->
     <link href="css/style.css" rel="stylesheet">
     <script src="js/centralizeDialog.js" type="text/javascript"></script>
     <script src="js/manager.js" type="text/javascript"></script> 
   </head>
   <body>
+    <div id="debug_console" class="debug-console">
+      PARSER DEBUG CONSOLE:<br>
+    </div>
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
@@ -48,18 +51,34 @@
     </div>
 
     <div class="container manager-content">
-      <div class="row" style="width:800px;">
-        <div class="col-md-6"><button type="button" class="btn btn-default btn-block" data-toggle="modal" data-target="#dialog_select_dir">Select my project Directory</button></div>
-        <div class="col-md-6"><input type="text" class="form-control" placeholder="Project Directory Path" id="in_projectDir"></div>  
+      <div class="row">
         <div class="col-md-12">
-          <div id="project_files_view" class="project-file-view">
+          <div class="col-md-4"><button type="button" class="btn btn-default btn-block" data-toggle="modal" data-target="#dialog_select_dir">Select my project Directory</button></div>
+          <div class="col-md-8"><input type="text" class="form-control" placeholder="Project Directory Path" id="in_projectDir"></div>
+        </div>
+        <div class="col-md-12">
+          <div class="col-md-8">
+
+            <div class="col-md-12">
+              <div id="project_files_view" class="project-file-view">
+              </div>
+              <a role="button" href="#" class="btn btn-default btn-xs" id="btn_ignoreFile">Ignore It</a>
+            </div>
+
+
+          </div>
+          <div class="col-md-4">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">Ignored Files or Folders</h3>
+              </div>
+              <div class="panel-body">
+                ...
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <a role="button" href="#" class="btn btn-default btn-xs" id="btn_ignoreFile">Ignore It</a>
-      <div id="debug_console" style="z-index:2; position:absolute; right:10px; top:50px; width:450px; height:400px; border:1px solid white; background-color: rgba(0,0,0,0.5); border-radius:5px; color:white; padding:5px; overflow:auto ">
-        PARSER DEBUG CONSOLE:<br>
-      </div> 
     </div><!-- /.container -->
 
     <div id="dialog_select_dir" class="modal fade " tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-dialogw="884" data-dialogh="465">
@@ -72,7 +91,7 @@
           <div class="modal-body" style="margin-bottom:0px; padding-bottom:0px;">
             <div id="current_dir" class="current-dir"></div>
             <div id="target_dir" class="target-dir">
-              
+
             </div>
           </div>
           <div class="modal-footer">
@@ -81,7 +100,7 @@
         </div>
       </div>
     </div>
-    
+
     <div id="footer">
       <div class="container">
         <p class="text-muted">Place sticky footer content here.</p>
