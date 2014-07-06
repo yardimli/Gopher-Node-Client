@@ -1,5 +1,6 @@
 var Globals = require("../project_modules/Globals.js");
 var cheerio = require('cheerio'); //https://github.com/cheeriojs/cheerio
+var util = require('util');
 
 var SocketIOHandle;
 
@@ -109,7 +110,7 @@ function parseAssignmentExpression(VarObj)
 
 
 //----------------------------------------------------------------------------------------
-function MakeJSONTreeFromJS(contents)
+function MakeJSONTreeFromJS(contents,EmitData)
 {
 	var options = {};
 	options.locations = true; 
@@ -124,12 +125,14 @@ function MakeJSONTreeFromJS(contents)
 	parsed = Globals.acorn.parse(contents, options); 	
 	//console.log(JSON.stringify(parsed, null, compact ? null : 2));
 
-	TreeHTML2 = "<ul>";
-	Object.keys(parsed).forEach(function(key) {  TreeHTML2 = recurse(TreeHTML2, key, parsed[key] ); } );
-	TreeHTML2 += "</ul>";
+	if (EmitData)
+	{
+		TreeHTML2 = "<ul>";
+		Object.keys(parsed).forEach(function(key) {  TreeHTML2 = recurse(TreeHTML2, key, parsed[key] ); } );
+		TreeHTML2 += "</ul>";
 
-	Globals.socketServer.sockets.in("room1").emit('UpdateTreeView',{	htmlcode:'<div class="tree">'+TreeHTML2+'</div>' });
-	
+		Globals.socketServer.sockets.in("room1").emit('UpdateTreeView',{	htmlcode:'<div class="tree" style="width:1200px">'+TreeHTML2+'</div>' });
+	}
 // TODO: escape characters that will break the conversion from JSON to XML
 //						parsed = parsed.replace(/</g,'&lt;');
 //						parsed = parsed.replace(/>/g,'&gt;');
@@ -268,7 +271,7 @@ function loopBody(tree,parentType,Xlevel,JSGopherObjectsArray,ParentName,sourcec
 		if (BodyType == "ReturnStatement")
 		{
 			var parentNode =jQuery(this);
-			console.log( parseInt(parentNode.find("start").first().text(),10) );
+			//console.log( parseInt(parentNode.find("start").first().text(),10) );
 			var NewQ = new Object();
 			NewQ.Type = "ReturnStatement";
 			NewQ.XLine = parentNode.find("loc").find("start").find("line").first().text();
@@ -582,6 +585,77 @@ function InsertGopherTells(contents,JSGopherObjectsArray)
 	return contents;
 }
 
+function LoopLeft(tree,sourcecode,indent)
+{
+	var jQuery = cheerio.load(tree, {xmlMode: true});
+	
+	jQuery(tree).children().each(function(){
+		
+		var xstr = "";
+		var xtrue = false;
+		for (var i=0; i<indent; i++) { xstr += "  "; }
+		
+
+		if ( (jQuery(this)[0]["name"]=="left" )  )
+		{
+			
+			var CalleLine = jQuery(this).parent().find("loc").find("start").find("line").first().text()
+			var LeftSide = sourcecode.slice( parseInt( jQuery(this).parent().children('left').first().find("start").first().text() , 10)  , 
+													 parseInt( jQuery(this).parent().children('left').first().find("end").first().text() , 10) );
+
+			var RightSide = sourcecode.slice( parseInt( jQuery(this).parent().children('right').first().find("start").first().text() , 10)  , 
+													  parseInt( jQuery(this).parent().children('right').first().find("end").first().text() , 10) );
+
+			var xOperator = jQuery(this).parent().children('operator').first().text(); 
+			
+			var xType = jQuery(this).find('type').first().text(); 
+			
+
+			var TempX = jQuery(this).parent();
+			var ParentType = TempX.text("")[0]["name"];
+
+			if ( (xOperator=="==") || (xOperator=="===") || (xOperator=="!=") || (xOperator=="!==") || (xOperator==">") || (xOperator==">=") || (xOperator=="<") || (xOperator=="<=") || (xOperator=="&&") || (xOperator=="||") || (xOperator=="!") )
+			{
+				if (xType=="BinaryExpression") {
+					console.log(xstr+"LEFT-RIGTH(P): "+CalleLine+" L:"+LeftSide+" O:"+xOperator+" R:"+RightSide+" P:"+ParentType);
+				} else
+				{
+					console.log(xstr+"LEFT-RIGTH: "+CalleLine+" L:"+LeftSide+" O:"+xOperator+" R:"+RightSide+" P:"+ParentType);
+				}
+			}
+		}
+		
+		if ( jQuery(this).children().length  > 0)
+		{
+			LoopLeft(this,sourcecode,indent+1);
+		}
+	});
+	/*
+	
+	jQuery(xmldata).find('left').each(function(){
+		var BodyType = jQuery(this).parent().find("type").first().text();
+
+		var CalleLine = jQuery(this).parent().find("loc").find("start").find("line").first().text()
+		var LeftSide = contents.slice( parseInt( jQuery(this).parent().children('left').first().find("start").first().text() , 10)  , 
+												 parseInt( jQuery(this).parent().children('left').first().find("end").first().text() , 10) );
+
+		var RightSide = contents.slice( parseInt( jQuery(this).parent().children('right').first().find("start").first().text() , 10)  , 
+												  parseInt( jQuery(this).parent().children('right').first().find("end").first().text() , 10) );
+
+		var xOperator = jQuery(this).parent().children('operator').first().text(); 
+
+		var TempX = jQuery(this).parent();
+		var ParentType = TempX.text("")[0]["name"];
+
+		if (xOperator!="=")
+		{
+			console.log("LEFT-RIGTH: "+BodyType+" "+CalleLine+" L:"+LeftSide+" O:"+xOperator+" R:"+RightSide+" P:"+ParentType);
+		}
+	});
+	*/
+	
+
+}
 
 //----------------------------------------------------------------------------------------
 //helper function handles file verification for the client files that will be converted
@@ -616,8 +690,21 @@ this.getFile = function(request, response)
 						Globals.socketServer.sockets.in("room1").emit('UpdateSourceView',{	sourcecode:'<pre class="language-javascript">'+contents+'</pre>' });
 						
 						///----------------------------------------------------------------------------
-						var parsed = MakeJSONTreeFromJS(contents);
+						var parsed = MakeJSONTreeFromJS(contents,true);
 						var xmldata = "<project>"+ json2xml(parsed)+ "</project>";
+
+						/* LOOP EXPERIMENT
+						var jQuery = cheerio.load(xmldata, {xmlMode: true});
+						var i = 0;
+						jQuery(xmldata).find("type").each(function(){
+							i++;
+							console.log(i+" "+jQuery(this).text());
+							if (i==2) { console.log( util.inspect( jQuery(this) ) );  }
+						});
+						*/
+						
+						
+						LoopLeft(xmldata,contents,0,false);
 
 						var JSGopherObjectsArray = [];
 						JSGopherObjectsArray.FunctionCounter = 0;
@@ -628,7 +715,7 @@ this.getFile = function(request, response)
 						contents = InsertGopherTells(contents,JSGopherObjectsArray);
 						
 						//-------------------------------- INSERT EXTRA PARAMETER TO ALL FUNCTIONS
-						var parsed = MakeJSONTreeFromJS(contents);
+						var parsed = MakeJSONTreeFromJS(contents,false);
 						var xmldata = "<project>"+ json2xml(parsed)+ "</project>";
 						var JSGopherFuctionCallArray = [];
 
@@ -645,7 +732,7 @@ this.getFile = function(request, response)
 								GopherTellInsert = ",";
 							}
 							GopherTellInsert += "'" + JSGopherFuctionCallArray[nCount].CalleLine + ":'+(GopherCallerIDCouter++)";
-							console.log(GopherTellInsert);
+							//console.log(GopherTellInsert);
 							
 							contents = 
 								[contents.slice(0, JSGopherFuctionCallArray[nCount].CalleEnd-1), 
@@ -696,7 +783,6 @@ this.getFile = function(request, response)
 
 						response.writeHead(200,{ "Content-type" : mimeType, "Content-Length" : contents.length });
 						response.end(contents);
-						
 					}	else
 					{
 						response.writeHead(200,{ "Content-type" : mimeType, "Content-Length" : contents.length });

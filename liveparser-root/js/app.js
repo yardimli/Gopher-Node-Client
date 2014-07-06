@@ -1,4 +1,15 @@
+var j=0;
+for (var i2=0; i2 < 3; i2++)
+{
+	j = j + i2;
+}
+
+var bool1 = 5>8;
 var str5 = 'ff';
+var bool2 = str5.indexOf("f")>0;
+var bool3 = ((3>5) || (3>2));
+var bool4 = DoubleNumber(2)>5;
+
 var xheight = $(window).height();
 var initTest = AddNumbers(3,4);
 var person = {fname:"John", lname:"Doe", age:25}; 
