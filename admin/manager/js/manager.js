@@ -1,14 +1,73 @@
 $(document).ready(function() {
   $('#btn_ignoreFile').hide();
-  
-  
   var iosocket;
   var selectProjectFolder;
   var selectedProjectFolder;
   var template = {
     fileItem: $('#target_dir').find('div[data-role="template"]').prop('outerHTML')
   };
-
+  /****** EVENTS ***************************************************************************************/
+  var eventsOnPage = {
+    isMouseMoveOverTree:false,
+    project_files_view_mouseover:function(_senderJ){
+      eventsOnPage.isMouseMoveOverTree = true;
+    },
+    project_files_view_mouseout: function(_senderJ){
+     eventsOnPage.isMouseMoveOverTree = false;
+    },
+    document_mouseover: function(e){
+      if(eventsOnPage.isMouseMoveOverTree){
+        if($(e.target).is(':not(#btn_ignoreFile,a.jstree-anchor,a.jstree-anchor>i.jstree-icon)')){
+          $('#btn_ignoreFile').hide();
+        }
+      }
+    }
+  };
+  var eventsOnDialog = {
+    dialog_select_dir_show: function() {
+      $('#target_dir').css({
+        'height': ($('#dialog_select_dir').find('.modal-body').height() - 14) + 'px',
+        'width': $('#dialog_select_dir').find('.modal-body').width() + 'px'
+      });
+      iosocket.emit('getItemsInDir', {target: 'c:\\wamp\\www'});
+    },
+    target_dir_li_click: function(_senderJ) {
+      $('#target_dir').find('li').removeClass('selected');
+      $(_senderJ).addClass('selected');
+      var clickCount = $(_senderJ).find('input[type=hidden]').val();
+      if ($(_senderJ).hasClass('item')) {
+        if (Number(clickCount) === 0) {
+          var doubleClick = setTimeout(function() {
+            var watchCount = $(_senderJ).find('input[type=hidden]').val();
+            $(_senderJ).find('input[type=hidden]').val(0);
+            if (Number(watchCount) >= 2) {
+              $(_senderJ).removeClass('selected');
+              selectProjectFolder.previousFolder.push($('#current_dir').text());
+              iosocket.emit('getItemsInDir', {target: $(_senderJ).data('path')});
+            }
+          }, 300);
+        }
+        clickCount++;
+        $(_senderJ).find('input[type=hidden]').val(clickCount);
+      } else if ($(_senderJ).hasClass('up')) {
+        selectProjectFolder.previousFolder.splice(selectProjectFolder.previousFolder.length - 1, 1);
+        iosocket.emit('getItemsInDir', {target: $(_senderJ).data('path')});
+      }
+    },
+    btn_openProjectDir: function(_folderPath){
+      var folderPath;
+      if(_folderPath == undefined){
+        folderPath = $('#target_dir').find('li.selected').data('path');
+      }else{
+        folderPath = _folderPath;
+      }
+      $('#in_projectDir').val(folderPath);
+      iosocket.emit('_openProjectFolder', {target: folderPath});
+    }
+  };
+  
+  
+  /****** INITIAL ***************************************************************************************/
   (function initSocketIO()
   {
     iosocket = io.connect();
@@ -33,19 +92,28 @@ $(document).ready(function() {
       if (response.success == false) {
 
       } else {
-        selectProjectFolder.setData(response.data);
+        selectProjectFolder = new displayFilesFolders(response.data);
         selectProjectFolder.displayItemsInList();
       }
     });
 
     iosocket.on('openProjectFolder', function(response) {
       if (response.success) {
+        localStorage['selectedProjectPath'] = response.data.path;
         selectedProjectFolder = new displayFilesFolders(response.data);
-        selectedProjectFolder.displaySelectedProjectFiles();
+        selectedProjectFolder.displaySelectedProjectFilesInTree();
       }
     });
   })();
+  if(localStorage['selectedProjectPath']!==undefined && localStorage['selectedProjectPath']!==''){
+    var originalPath = localStorage['selectedProjectPath'];
+    originalPath = originalPath.replace(/\\\\/g,'\\');
+    console.log('has local selectedProject path');
+    eventsOnDialog.btn_openProjectDir(localStorage['selectedProjectPath']);
+    
+  }
 
+  /****** FUNCTIONS ***************************************************************************************/
   function getTimeStamp() {
     var now = new Date();
     return ((now.getMonth() + 1) + '/' + (now.getDate()) + '/' + now.getFullYear() + " " + now.getHours() + ':' + ((now.getMinutes() < 10) ? ("0" + now.getMinutes()) : (now.getMinutes())) + ':' + ((now.getSeconds() < 10) ? ("0" + now.getSeconds()) : (now.getSeconds())));
@@ -79,9 +147,9 @@ $(document).ready(function() {
         ;
       }
     };
-    this.displaySelectedProjectFiles = function() {
+    this.displaySelectedProjectFilesInTree = function() {
       $('#project_files_view').on('hover_node.jstree',function(e,data){
-        console.log(data.node);
+        //console.log(data.node.original);
         var nodeItem = $('#' + data.node.id).find('a.jstree-anchor');
         var nodeWidth = $(nodeItem).width();
         var nodeOffset = $(nodeItem).offset();
@@ -164,94 +232,33 @@ $(document).ready(function() {
          console.log(jstreeObj);
          console.log(JSON.stringify(jstreeObj));
          console.log('======end of jstreeObj========');*/
+        localStorage['currentJstreeData'] = JSON.stringify(jstreeObj);
         return jstreeObj;
       } else {
+        localStorage['currentJstreeData'] = '';
         return null;
       }
     }
     return this;
   }
 
-
-
-
-  /****** EVENTS ***************************************************************************************/
-  var eventsOnPage = {
-    isMouseMoveOverTree:false,
-    project_files_view_mouseover:function(_senderJ){
-      var nodeOffset = $(_senderJ).offset();
-      $('#btn_ignoreFile').css({
-        top: nodeOffset.top + 'px',
-        left: nodeOffset.left + $(_senderJ).width() + 5 + 'px'
-      });
-      $('#btn_ignoreFile').show();
-      $('#btn_ignoreFile').fadeIn();
-    },
-    project_files_view_mouseout: function(_senderJ){
-     //$('#btn_ignoreFile').hide();
-    }
-  };
-  var eventsOnDialog = {
-    dialog_select_dir_show: function() {
-      selectProjectFolder = new displayFilesFolders();
-      $('#target_dir').css({
-        'height': ($('#dialog_select_dir').find('.modal-body').height() - 14) + 'px',
-        'width': $('#dialog_select_dir').find('.modal-body').width() + 'px'
-      });
-      iosocket.emit('getItemsInDir', {target: 'c:\\wamp\\www'});
-    },
-    target_dir_li_click: function(_senderJ) {
-      $('#target_dir').find('li').removeClass('selected');
-      $(_senderJ).addClass('selected');
-      var clickCount = $(_senderJ).find('input[type=hidden]').val();
-      if ($(_senderJ).hasClass('item')) {
-        if (Number(clickCount) === 0) {
-          var doubleClick = setTimeout(function() {
-            var watchCount = $(_senderJ).find('input[type=hidden]').val();
-            $(_senderJ).find('input[type=hidden]').val(0);
-            if (Number(watchCount) >= 2) {
-              $(_senderJ).removeClass('selected');
-              selectProjectFolder.previousFolder.push($('#current_dir').text());
-              iosocket.emit('getItemsInDir', {target: $(_senderJ).data('path')});
-            }
-          }, 300);
-        }
-        clickCount++;
-        $(_senderJ).find('input[type=hidden]').val(clickCount);
-      } else if ($(_senderJ).hasClass('up')) {
-        selectProjectFolder.previousFolder.splice(selectProjectFolder.previousFolder.length - 1, 1);
-        iosocket.emit('getItemsInDir', {target: $(_senderJ).data('path')});
-      }
-    },
-    dialog_select_dir_hidden: function() {
-      var folderPath = $('#target_dir').find('li.selected').data('path');
-      $('#in_projectDir').val(folderPath);
-      iosocket.emit('_openProjectFolder', {target: folderPath});
-    }
-  };
-
   //******** jQUERY EVENT BEINDING **************************************************************************/
   $('#dialog_select_dir').on('show.bs.modal', function() {
     eventsOnDialog.dialog_select_dir_show();
   });
-  $('#dialog_select_dir').on('hidden.bs.modal', function() {
-    eventsOnDialog.dialog_select_dir_hidden();
+  $('#btn_openProjectDir').click(function(){
+    eventsOnDialog.btn_openProjectDir();
   });
   $('#target_dir').on('click', 'li', function() {
     eventsOnDialog.target_dir_li_click($(this));
   });
   $('#project_files_view').mouseout(function(){
-    eventsOnPage.isMouseMoveOverTree = false;
+    eventsOnPage.project_files_view_mouseout($(this));
   });
   $('#project_files_view').mouseover(function(){
-    eventsOnPage.isMouseMoveOverTree = true;
+    eventsOnPage.project_files_view_mouseover($(this));
   });
   $(document).mouseover(function(e){
-    console.log(eventsOnPage.isMouseMoveOverTree);
-    if(eventsOnPage.isMouseMoveOverTree){
-      if($(e.target).is(':not(#btn_ignoreFile,a.jstree-anchor,a.jstree-anchor>i.jstree-icon)')){
-        $('#btn_ignoreFile').hide();
-      }
-    }
+    eventsOnPage.document_mouseover(e);
   });
 });

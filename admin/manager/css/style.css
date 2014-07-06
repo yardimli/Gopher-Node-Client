@@ -66,7 +66,7 @@ color:black;
 }
 .target-dir ul li:hover{
   background-color: #485563 !important;
-  border:1px solid #3C4956;
+  /*border:1px solid #3C4956;*/
 }
 .target-dir ul li.item{
   background:url('../images/folder-white.png') no-repeat left top;
@@ -77,7 +77,7 @@ color:black;
   clear:both;
 }
 .target-dir ul li.selected{
-  background-color: #485563;
+  background-color: #3a4653;
 }
 .target-dir .two li{
   width:48%;
@@ -92,12 +92,11 @@ color:black;
 
 .project-file-view{
   width:797px;
-  margin-top:5px;
-  background-color: #FFF;
+  background-color: #E5E5E5;
   border:1px solid #485563;
   color:#000;
   padding:15px;
-  min-height: 250px;
+  min-height: 350px;
   max-height: 500px;
   overflow: auto;
 }
@@ -107,4 +106,5 @@ color:black;
   top: 100px;
   left: 100px;
   height:24px;
+  border-radius: 2px;
 }
