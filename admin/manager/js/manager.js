@@ -1,4 +1,7 @@
 $(document).ready(function() {
+  $('#btn_ignoreFile').hide();
+  
+  
   var iosocket;
   var selectProjectFolder;
   var selectedProjectFolder;
@@ -34,9 +37,9 @@ $(document).ready(function() {
         selectProjectFolder.displayItemsInList();
       }
     });
-    
-    iosocket.on('openProjectFolder', function(response){
-      if(response.success){
+
+    iosocket.on('openProjectFolder', function(response) {
+      if (response.success) {
         selectedProjectFolder = new displayFilesFolders(response.data);
         selectedProjectFolder.displaySelectedProjectFiles();
       }
@@ -76,85 +79,117 @@ $(document).ready(function() {
         ;
       }
     };
-    this.displaySelectedProjectFiles = function(){
-      $('#project_files_view').jstree({'core':{'data':convertToJstreeObj(_data)}}); 
-      if($('#project_files_view').find('ul').length>0){
+    this.displaySelectedProjectFiles = function() {
+      $('#project_files_view').on('hover_node.jstree',function(e,data){
+        console.log(data.node);
+        var nodeItem = $('#' + data.node.id).find('a.jstree-anchor');
+        var nodeWidth = $(nodeItem).width();
+        var nodeOffset = $(nodeItem).offset();
+        $('#btn_ignoreFile').css({
+          top: nodeOffset.top + 'px',
+          left: nodeOffset.left + nodeWidth + 5 + 'px'
+        });
+        $('#btn_ignoreFile').show();
+        $('#btn_ignoreFile').fadeIn();
+      }).jstree({
+        core: {
+          data: convertToJstreeObj(_data)}
+      });
+      if ($('#project_files_view').find('ul').length > 0) {
         $('#project_files_view').jstree(true).settings.core.data = convertToJstreeObj(_data);
-        $('#project_files_view').jstree(true).refresh(); 
+        $('#project_files_view').jstree(true).refresh();
       }
     };
     function safeFilePath(_filePath) {
       return _filePath.replace(/\\/g, '\\');
     }
-    function convertToJstreeObj(_obj){
-      function node(_text,_opened,_selected,_children){
-        return {text:_text,
-                state:{opened:_opened,selected:_selected},
-                children:_children};
+    function convertToJstreeObj(_obj) {
+      function node(_text, _opened, _selected, _icon, _children) {
+        var icon;
+        if(_icon!==null){
+          icon = _icon;
+        }
+        return {
+          text: _text,
+          state: {opened: _opened, selected: _selected},
+          icon: icon,
+          children: _children};
       }
       //var testObj = {path:'flipcard',children:[{path:'main.js',children:null},{path:'index.html',children:null},{path:'card.json',children:null},{path:'git',children:[{path:'config',children:[{path:'git\\maing.config',children:null},{path:'git\\sub.config',children:null}]}]},{path:'blabla\\nbproject',children:[{path:'blabla\\history',children:null}]}]};
       //console.log('======testObj=======');
       //console.log(testObj);
-      if(_obj !== undefined){
+      if (_obj !== undefined) {
         //_obj = testObj;
         var jstreeObj = [];
-        function makeJstreeObj(title,runObj,end){
+        function makeJstreeObj(title, runObj, end) {
           //console.log('*'+runObj[0].path+'*');
-          var output = new node(title,false,false,[]);
+          var output = new node(title, false, false,null,[]);
           //console.log('-----test is called:'+JSON.stringify(runObj)+'-----');
           var unfinished = runObj.length;
           //console.log(title);
           //console.log('-----first unfinished:'+unfinished+'-------');
-          if(!unfinished){
+          if (!unfinished) {
             return end(output);
           }
-          for(var i=0; i<runObj.length; i++){
+          for (var i = 0; i < runObj.length; i++) {
             //console.log('---i:'+i+'------');
-            if(runObj[i].children!==null){
+            if (runObj[i].children !== null) {
               //console.log('----- runObj[i].children!==null,'+runObj[i].path+'------');
-              makeJstreeObj(fileName(runObj[i].path),runObj[i].children,function(res){
+              makeJstreeObj(fileName(runObj[i].path), runObj[i].children, function(res) {
                 /*console.log('----- res ----');
-                console.log(res);
-                console.log('----- end of res ----');*/
+                 console.log(res);
+                 console.log('----- end of res ----');*/
                 output.children.push(res);
                 unfinished--;
-                if(unfinished<=0){
+                if (unfinished <= 0) {
                   //console.log(unfinished);
                   end(output);
                 }
               });
-            }else{
+            } else {
               //console.log('----- runObj[i].children!==null else,'+runObj[i].path+'------')
-              output.children.push(new node(fileName(runObj[i].path),false,false,null));
+              output.children.push(new node(fileName(runObj[i].path), false, false,'images/file-32.png', null));
               unfinished--;
-              if(unfinished<=0){
-                  //console.log(unfinished);
-                  end(output);
+              if (unfinished <= 0) {
+                //console.log(unfinished);
+                end(output);
               }
             }
           }
         }
-        makeJstreeObj(_obj.path,_obj.children,function(result){
+        makeJstreeObj(_obj.path, _obj.children, function(result) {
           jstreeObj.push(result);
         });
         /*console.log('======jstreeObj========');
-        console.log(jstreeObj);
-        console.log(JSON.stringify(jstreeObj));
-        console.log('======end of jstreeObj========');*/
+         console.log(jstreeObj);
+         console.log(JSON.stringify(jstreeObj));
+         console.log('======end of jstreeObj========');*/
         return jstreeObj;
-      }else{
+      } else {
         return null;
       }
     }
     return this;
   }
-  
-  
+
+
 
 
   /****** EVENTS ***************************************************************************************/
   var eventsOnPage = {
-    
+    isMouseMoveOverTree:false,
+    project_files_view_mouseover:function(_senderJ){
+      var nodeOffset = $(_senderJ).offset();
+      $('#btn_ignoreFile').css({
+        top: nodeOffset.top + 'px',
+        left: nodeOffset.left + $(_senderJ).width() + 5 + 'px'
+      });
+      $('#btn_ignoreFile').show();
+      $('#btn_ignoreFile').fadeIn();
+    },
+    project_files_view_mouseout: function(_senderJ){
+     //$('#btn_ignoreFile').hide();
+    }
   };
   var eventsOnDialog = {
     dialog_select_dir_show: function() {
@@ -188,7 +223,7 @@ $(document).ready(function() {
         iosocket.emit('getItemsInDir', {target: $(_senderJ).data('path')});
       }
     },
-    dialog_select_dir_hidden: function(){
+    dialog_select_dir_hidden: function() {
       var folderPath = $('#target_dir').find('li.selected').data('path');
       $('#in_projectDir').val(folderPath);
       iosocket.emit('_openProjectFolder', {target: folderPath});
@@ -199,13 +234,24 @@ $(document).ready(function() {
   $('#dialog_select_dir').on('show.bs.modal', function() {
     eventsOnDialog.dialog_select_dir_show();
   });
-
   $('#dialog_select_dir').on('hidden.bs.modal', function() {
     eventsOnDialog.dialog_select_dir_hidden();
   });
-
   $('#target_dir').on('click', 'li', function() {
     eventsOnDialog.target_dir_li_click($(this));
   });
-
+  $('#project_files_view').mouseout(function(){
+    eventsOnPage.isMouseMoveOverTree = false;
+  });
+  $('#project_files_view').mouseover(function(){
+    eventsOnPage.isMouseMoveOverTree = true;
+  });
+  $(document).mouseover(function(e){
+    console.log(eventsOnPage.isMouseMoveOverTree);
+    if(eventsOnPage.isMouseMoveOverTree){
+      if($(e.target).is(':not(#btn_ignoreFile,a.jstree-anchor,a.jstree-anchor>i.jstree-icon)')){
+        $('#btn_ignoreFile').hide();
+      }
+    }
+  });
 });

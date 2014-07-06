@@ -91,14 +91,20 @@ color:black;
 }
 
 .project-file-view{
-  width:800px;
-  margin-top:10px;
-  background-color: #f5f5f5;
+  width:797px;
+  margin-top:5px;
+  background-color: #FFF;
   border:1px solid #485563;
-  border-radius: 8px;
   color:#000;
   padding:15px;
   min-height: 250px;
   max-height: 500px;
   overflow: auto;
+}
+#btn_ignoreFile{
+  position:absolute;
+  z-index: 100;
+  top: 100px;
+  left: 100px;
+  height:24px;
 }
