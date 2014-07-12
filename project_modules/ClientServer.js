@@ -334,7 +334,7 @@ function loopBody(tree,parentType,Xlevel,JSGopherObjectsArray,ParentName,sourcec
 						NewQ.parentID = ParentName;
 						JSGopherObjectsArray.push( NewQ );
 
-						console.log("Var Dec Null: --------- Name:" + jQuery(this).parent().find("id").find("name").first().text()  );
+						//--- console.log("Var Dec Null: --------- Name:" + jQuery(this).parent().find("id").find("name").first().text()  );
 					}
 
 					if (!isNaN(VarStart))
@@ -355,7 +355,7 @@ function loopBody(tree,parentType,Xlevel,JSGopherObjectsArray,ParentName,sourcec
 						NewQ.parentID = ParentName;
 						JSGopherObjectsArray.push( NewQ );
 
-						console.log("Var Dec: --------- Name:" + jQuery(this).parent().find("id").find("name").first().text() +  " Init:" + VarStart + " " + VarEnd + " " + sourcecode.slice(VarStart,VarEnd)  );
+						//--- console.log("Var Dec: --------- Name:" + jQuery(this).parent().find("id").find("name").first().text() +  " Init:" + VarStart + " " + VarEnd + " " + sourcecode.slice(VarStart,VarEnd)  );
 					}
 				}
 			});
@@ -390,7 +390,7 @@ function loopBody(tree,parentType,Xlevel,JSGopherObjectsArray,ParentName,sourcec
 						NewQ.parentID = ParentName;
 						JSGopherObjectsArray.push( NewQ );
 
-						console.log("Assignment Expression: --------- Name:" + jQuery(this).parent().find("left").find("name").first().text() +  " Init:" + VarStart + " " + VarEnd + " " + sourcecode.slice(VarStart,VarEnd)  );
+						//--- console.log("Assignment Expression: --------- Name:" + jQuery(this).parent().find("left").find("name").first().text() +  " Init:" + VarStart + " " + VarEnd + " " + sourcecode.slice(VarStart,VarEnd)  );
 					}
 				}
 			});
@@ -430,7 +430,7 @@ function loopFunctionCalls(tree,sourcecode)
 			if ( (CalleType == "Identifier") && (CalleName!="$") && (CalleName!="GopherTell") && (CalleName!="GopherVarDecl") && (CalleName!="GopherAssignment") )
 			{
 				
-				console.log("FUNCTION: "+ sourcecode.slice(CalleStart,CalleEnd) + " - " + BodyType + " - " + CalleLine +" - "+CalleName+" - "+CalleEnd+" - "+CalleParamCount);
+				//--- console.log("FUNCTION: "+ sourcecode.slice(CalleStart,CalleEnd) + " - " + BodyType + " - " + CalleLine +" - "+CalleName+" - "+CalleEnd+" - "+CalleParamCount);
 				var NewQ = new Object();
 				NewQ.CalleLine = CalleLine;
 				NewQ.CalleEnd = CalleEnd;
@@ -662,13 +662,15 @@ function loopBodyCommands(tree,sourcecode)
 	
 	jQuery(tree).find('declarations').each(function(){
 		console.log( "D: " + jQuery(this).find("loc").find("start").find("line").first().text() + ": " +
-			sourcecode.slice( parseInt( jQuery(this).find("start").first().text() , 10) , parseInt( jQuery(this).find("end").first().text() , 10)  )
+			sourcecode.slice( parseInt( jQuery(this).find("start").first().text() , 10) , parseInt( jQuery(this).find("end").first().text() , 10)  ) +
+			" T:" + jQuery(this).find("type").first().text()
 		);
 	});
 	
 	jQuery(tree).find('expressions').each(function(){
 		console.log( "E: " + jQuery(this).find("loc").find("start").find("line").first().text() + ": " +
-			sourcecode.slice( parseInt( jQuery(this).find("start").first().text() , 10) , parseInt( jQuery(this).find("end").first().text() , 10)  )
+			sourcecode.slice( parseInt( jQuery(this).find("start").first().text() , 10) , parseInt( jQuery(this).find("end").first().text() , 10)  ) +
+			" T:" + jQuery(this).find("type").first().text()
 		);
 	});
 	
@@ -676,13 +678,60 @@ function loopBodyCommands(tree,sourcecode)
 		if (jQuery(this).find("expressions").length == 0 )
 		{
 			console.log( "X: " + jQuery(this).find("loc").find("start").find("line").first().text() + ": " +
-				sourcecode.slice( parseInt( jQuery(this).find("start").first().text() , 10) , parseInt( jQuery(this).find("end").first().text() , 10)  )
+				sourcecode.slice( parseInt( jQuery(this).find("start").first().text() , 10) , parseInt( jQuery(this).find("end").first().text() , 10)  ) +
+				" T:" + jQuery(this).find("type").first().text()
 			);
 		}
 	});
 	
+
 }
 
+//----------------------------------------------------------------------------------------
+function GopherTellUpdateExpressions(sourcecode)
+{
+	//TODO:
+	//find UPDATEEXPRESSIONS 
+	//save loactions with variablename to array
+	//loop array in reverse insert gophertells after update with update method
+	//do it twice
+
+	//rebuild xml from updated source
+	var parsed = MakeJSONTreeFromJS(sourcecode,true);
+	var xmldata = "<project>"+ json2xml(parsed)+ "</project>";
+	var jQuery = cheerio.load(xmldata, {xmlMode: true});
+	
+	//add gopher tells besides update expressions like ++ --
+	jQuery(xmldata).find('expressions').each(function(){
+		if (jQuery(this).find("type").first().text()=="UpdateExpression")
+		{
+			console.log( "UPDATE E: " + jQuery(this).find("loc").find("start").find("line").first().text() + ": " +
+				sourcecode.slice( parseInt( jQuery(this).find("start").first().text() , 10) , parseInt( jQuery(this).find("end").first().text() , 10)  ) +
+				" T:" + jQuery(this).find("type").first().text()
+			);
+		}
+	});
+	
+	//rebuild xml from updated source
+	var parsed = MakeJSONTreeFromJS(sourcecode,true);
+	var xmldata = "<project>"+ json2xml(parsed)+ "</project>";
+	var jQuery = cheerio.load(xmldata, {xmlMode: true});
+	
+	jQuery(xmldata).find('expression').each(function(){
+		if (jQuery(this).find("expressions").length == 0 )
+		{
+			if (jQuery(this).find("type").first().text()=="UpdateExpression")
+			{
+				console.log( "UPDATE X: " + jQuery(this).find("loc").find("start").find("line").first().text() + ": " +
+					sourcecode.slice( parseInt( jQuery(this).find("start").first().text() , 10) , parseInt( jQuery(this).find("end").first().text() , 10)  ) +
+					" T:" + jQuery(this).find("type").first().text()
+				);
+			}
+		}
+	});
+	
+	return sourcecode;
+}
 
 //----------------------------------------------------------------------------------------
 //helper function handles file verification for the client files that will be converted
@@ -712,7 +761,6 @@ this.getFile = function(request, response)
 					if ( (mimeType=="application/javascript") && 
 							 (filePath.indexOf("jquery")==-1) ) //if javascript file try parsing it
 					{
-						
 						//use https://github.com/balupton/jquery-syntaxhighlighter for highlighting
 						Globals.socketServer.sockets.in("room1").emit('UpdateSourceView',{	sourcecode:'<pre class="language-javascript">'+contents+'</pre>' });
 						
@@ -732,7 +780,9 @@ this.getFile = function(request, response)
 						
 						loopBodyCommands(xmldata,contents);
 						
-						LoopLeft(xmldata,contents,0,false);
+						contents = GopherTellUpdateExpressions(contents);
+						
+						//LoopLeft(xmldata,contents,0,false);
 
 						var JSGopherObjectsArray = [];
 						JSGopherObjectsArray.FunctionCounter = 0;
@@ -767,7 +817,7 @@ this.getFile = function(request, response)
 								GopherTellInsert , 
 								contents.slice(JSGopherFuctionCallArray[nCount].CalleEnd-1)].join('');
 						}	
-						Globals.fs.writeFile(filePath+".funcdec.temp",contents);
+						//Globals.fs.writeFile(filePath+".funcdec.temp",contents);
 						
 						//========================================
 						//Insert the gohper callback fuctions and socket.io setup
@@ -841,7 +891,7 @@ this.getFile = function(request, response)
 //----------------------------------------------------------------------------------------
 this.InitLocalSocket = function(socket){
 
-	console.log("Call binding Client Server socket");
+//	console.log("Call binding Client Server socket");
 
 	SocketIOHandle = socket; // store socket so we can use it in the rest of the module
 

@@ -24,8 +24,7 @@ function startServer(debug)
 	}
 	
 	Globals.httpServer = Globals.http.createServer(onRequest).listen(1337, function(){
-		console.log("Listening at: http://localhost:1337");
-		console.log("Server is up");
+		console.log("Listening at: http://localhost:1337 - Server is up");
 	}); 
 	
 	initSocketIO(Globals.httpServer,debug);

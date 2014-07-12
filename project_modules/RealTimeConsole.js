@@ -71,7 +71,7 @@ this.getFile = function(request, response){
 
 this.InitLocalSocket = function(socket){
 
-	console.log("Call binding Real Time Console socket");
+	// console.log("Call binding Real Time Console socket");
 
 	SocketIOHandle = socket; // store socket so we can use it in the rest of the module
 	

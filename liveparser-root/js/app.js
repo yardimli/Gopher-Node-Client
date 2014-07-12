@@ -1,9 +1,12 @@
 var numberA = 5;
 ++numberA;
+BoolX = numberA>5;
 numberA++;
 numberA--;
+numberA--,numberB--;
 numberA += 1;
 numberA -= 1;
+var numberZ = numberA;
 var numberB = 8;
 var strA = 'Test String';
 var boolA = numberA>numberB;
