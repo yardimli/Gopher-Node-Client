@@ -614,13 +614,13 @@ function LoopLeft(tree,sourcecode,indent)
 			var TempX = jQuery(this).parent();
 			var ParentType = TempX.text("")[0]["name"];
 
-			if ( (xOperator=="==") || (xOperator=="===") || (xOperator=="!=") || (xOperator=="!==") || (xOperator==">") || (xOperator==">=") || (xOperator=="<") || (xOperator=="<=") || (xOperator=="&&") || (xOperator=="||") || (xOperator=="!") )
+//			if ( (xOperator=="==") || (xOperator=="===") || (xOperator=="!=") || (xOperator=="!==") || (xOperator==">") || (xOperator==">=") || (xOperator=="<") || (xOperator=="<=") || (xOperator=="&&") || (xOperator=="||") || (xOperator=="!") )
 			{
 				if (xType=="BinaryExpression") {
-					console.log(xstr+"LEFT-RIGTH(P): "+CalleLine+" L:"+LeftSide+" O:"+xOperator+" R:"+RightSide+" P:"+ParentType);
+					console.log(xstr+"LEFT-RIGTH(P): "+CalleLine+" L:"+LeftSide+" O:"+xOperator+" R:"+RightSide+" P:"+ParentType+" "+xType);
 				} else
 				{
-					console.log(xstr+"LEFT-RIGTH: "+CalleLine+" L:"+LeftSide+" O:"+xOperator+" R:"+RightSide+" P:"+ParentType);
+					console.log(xstr+"LEFT-RIGTH: "+CalleLine+" L:"+LeftSide+" O:"+xOperator+" R:"+RightSide+" P:"+ParentType+" "+xType);
 				}
 			}
 		}
@@ -653,9 +653,36 @@ function LoopLeft(tree,sourcecode,indent)
 		}
 	});
 	*/
-	
-
 }
+
+//----------------------------------------------------------------------------------------
+function loopBodyCommands(tree,sourcecode)
+{
+	var jQuery = cheerio.load(tree, {xmlMode: true});
+	
+	jQuery(tree).find('declarations').each(function(){
+		console.log( "D: " + jQuery(this).find("loc").find("start").find("line").first().text() + ": " +
+			sourcecode.slice( parseInt( jQuery(this).find("start").first().text() , 10) , parseInt( jQuery(this).find("end").first().text() , 10)  )
+		);
+	});
+	
+	jQuery(tree).find('expressions').each(function(){
+		console.log( "E: " + jQuery(this).find("loc").find("start").find("line").first().text() + ": " +
+			sourcecode.slice( parseInt( jQuery(this).find("start").first().text() , 10) , parseInt( jQuery(this).find("end").first().text() , 10)  )
+		);
+	});
+	
+	jQuery(tree).find('expression').each(function(){
+		if (jQuery(this).find("expressions").length == 0 )
+		{
+			console.log( "X: " + jQuery(this).find("loc").find("start").find("line").first().text() + ": " +
+				sourcecode.slice( parseInt( jQuery(this).find("start").first().text() , 10) , parseInt( jQuery(this).find("end").first().text() , 10)  )
+			);
+		}
+	});
+	
+}
+
 
 //----------------------------------------------------------------------------------------
 //helper function handles file verification for the client files that will be converted
@@ -703,6 +730,7 @@ this.getFile = function(request, response)
 						});
 						*/
 						
+						loopBodyCommands(xmldata,contents);
 						
 						LoopLeft(xmldata,contents,0,false);
 

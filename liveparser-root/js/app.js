@@ -1,15 +1,18 @@
-var j=0;
-for (var i2=0; i2 < 3; i2++)
-{
-	j = j + i2;
-}
-
-var bool1 = 5>8;
-var str5 = 'ff';
-var bool2 = str5.indexOf("f")>0;
-var bool3 = ((3>5) || (3>2));
-var bool4 = DoubleNumber(2)>5;
-
+var numberA = 5;
+++numberA;
+numberA++;
+numberA--;
+numberA += 1;
+numberA -= 1;
+var numberB = 8;
+var strA = 'Test String';
+var boolA = numberA>numberB;
+var boolB = strA.indexOf("f")>0;
+var boolC = !boolA;
+var boolF = boolC;
+var boolD = !(boolC || boolB);
+var boolD = ((numberA<numberB) || !(boolD));
+var bool4 = DoubleNumber(numberA)>numberB;
 var xheight = $(window).height();
 var initTest = AddNumbers(3,4);
 var person = {fname:"John", lname:"Doe", age:25}; 
@@ -32,6 +35,11 @@ var i1;
 
 j = 0;
 
+var j=0;
+for (var i2=0; i2 < 3; i2++)
+{
+	j = j + i2;
+}
 
 
 
