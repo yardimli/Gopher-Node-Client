@@ -1,8 +1,6 @@
 var MANAGERJS = {
 	iosocket : null,
 	viewedFolders : [],
-	selectProjectFolder : null,
-	selectedProjectFolder : null,
 	initSocketIO : function() {
 		MANAGERJS.iosocket = io.connect();
 		var timeStamp = function() {
@@ -29,8 +27,6 @@ var MANAGERJS = {
 			if (response.success == false) {
 
 			} else {
-				//MANAGERJS.selectProjectFolder = new displayFilesFolders(response.data);
-				//MANAGERJS.selectProjectFolder.displayItemsInList();
 				MANAGERJS.displayFilesFolders.asList(response.data);
 			}
 		});
@@ -38,9 +34,13 @@ var MANAGERJS = {
 		MANAGERJS.iosocket.on('openProjectFolder', function(response) {
 			if (response.success) {
 				localStorage['selectedProjectPath'] = response.data.path;
-				//MANAGERJS.selectedProjectFolder = new displayFilesFolders(response.data);
-				//MANAGERJS.selectedProjectFolder.displaySelectedProjectFilesInTree();
 				MANAGERJS.displayFilesFolders.asJstree(response.data);
+			}
+		});
+		
+		MANAGERJS.iosocket.on('duplicateProjectFiles',function(response){
+			if(response.success){
+				
 			}
 		});
 	}
@@ -154,7 +154,7 @@ MANAGERJS.displayFilesFolders = {
 				data : convertToJstreeObj(_data)
 			}
 		});
-		
+
 		if ($('#project_files_view').find('ul').length > 0) {
 			$('#project_files_view').jstree(true).settings.core.data = convertToJstreeObj(_data);
 			$('#project_files_view').jstree(true).refresh();
@@ -270,4 +270,5 @@ $(document).ready(function() {
 	$('#debug_console').click(function() {
 		$(this).toggleClass('hideme');
 	});
+
 });

@@ -1,6 +1,6 @@
 var Globals = require("../project_modules/Globals.js");
 var SocketIOHandle;
-var OpenProject = require('./WalkDirectory.js');
+var FileManager = require('./FileManager.js');
 
 this.getFile = function(request, response) {
 
@@ -87,31 +87,43 @@ this.InitLocalSocket = function(socket) {
   });
 
   socket.on('getItemsInDir', function(data) {
-    console.log('-------manager server:getItemsInDir-------');
-    console.log(data);
-    OpenProject.findFilesFoldersIn({
-      folderPath:data.target,
-      findSubFolders: false,
-      onlyFindFolders:true,
-      acceptAllTypes:true
-    },function(result){
-      console.log('========manager server:getItemsInDir findFilesFoldersIn callback=================');
-      console.log(result);
-      socket.emit('getItemsInDirClient', socketResponse(result));
+    //console.log('-------manager server:getItemsInDir-------');
+    //console.log(data);
+    var setSettings = new FileManager.finderPreferences();
+    setSettings.root = data.target;
+    setSettings.findSubFolders = false;
+    setSettings.onlyFindFolders = false;
+    setSettings.acceptAllTypes = true;
+    
+    FileManager.findFilesFoldersIn(setSettings,function(result){
+	      console.log('========manager server:getItemsInDir findFilesFoldersIn callback=================');
+	      console.log(result);
+	      socket.emit('getItemsInDirClient', socketResponse(result));
     });
   });
 
   socket.on('_openProjectFolder', function(data) {
-    OpenProject.findFilesFoldersIn({
-      folderPath:data.target,
-      findSubFolders:true,
-      onlyFindFolders:false,
-      acceptAllTypes:false
-    },function(result){
-      console.log('-------manager server-------');
-      console.log(result);
-      socket.emit('openProjectFolder', socketResponse(result));
+  	var setSettings = new FileManager.finderPreferences();
+    setSettings.root = data.target;
+    setSettings.findSubFolders = true;
+    setSettings.onlyFindFolders = false;
+    setSettings.acceptAllTypes = false;
+    
+    FileManager.findFilesFoldersIn(setSettings,function(result){
+	      //console.log('-------manager server-------');
+	      //console.log(result);
+	      socket.emit('openProjectFolder', socketResponse(result));
     });
+  });
+  
+  socket.on('_dubplicateProjectFiles',function(data){
+  	var setSettings = new FileManager.finderPreferences();
+    setSettings.root = data.target;
+    setSettings.findSubFolders = true;
+    setSettings.onlyFindFolders = false;
+    setSettings.acceptAllTypes = true;
+    setSettings.duplicateFiles = true;
+    setSettings.duplicateModified = data.onlyModified;
   });
 
 };
