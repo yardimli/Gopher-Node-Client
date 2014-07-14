@@ -7,10 +7,10 @@ var CommonMethods = {
 		return nameArr[nameArr.length - 1];
 	},
 	isFileAccepted : function(_file) {
-		var acceptedFileType = ['js', 'JS', 'html', 'htm', 'HTML', 'HTM'];
+		var acceptedFileType = ['js', 'html', 'htm'];
 		var countMatch = 0;
 		for (var i = 0; i < acceptedFileType.length; i++) {
-			if (acceptedFileType[i].indexOf(CommonMethods.getFileExtention(_file)) > -1) {
+			if (acceptedFileType[i].toLowerCase().indexOf(CommonMethods.getFileExtention(_file)) > -1) {
 				countMatch++;
 			}
 		}
@@ -19,8 +19,21 @@ var CommonMethods = {
 		} else {
 			return false;
 		}
+	},
+	getFileName : function(_filePath) {
+		var fileArr = _filePath.split('\\');
+		var targetFile = fileArr[fileArr.length - 1];
+		return targetFile;
+	},
+	getFileNameWithoutExt : function(_filePath) {
+		var fileArr = _filePath.split('\\');
+		var targetFile = fileArr[fileArr.length - 1];
+		var nameArr = targetFile.split('.');
+		var nameWithoutExt = targetFile.substring(0, targetFile.length - ('.' + nameArr[nameArr.length - 1]).length);
+		return nameWithoutExt;
 	}
 };
+
 
 function fileNode(_path, _children) {
 	this.path = _path;
@@ -38,7 +51,7 @@ function finderPreferences() {
 }
 
 function finder(_folderPath, _preferences, end) {
-	console.log('---------WalkDirectory finder is called--------------');
+	//console.log('---------WalkDirectory finder is called--------------');
 	var output = new fileNode(_folderPath, []);
 	var stat;
 	Globals.fs.readdir(_folderPath, function(err, list) {
@@ -48,12 +61,12 @@ function finder(_folderPath, _preferences, end) {
 		}
 		var pending = list.length;
 		if (!pending) {
-			console.log('---------WalkDirectory !pending ' + pending + '--------------');
+			//console.log('---------WalkDirectory !pending ' + pending + '--------------');
 			return end(null, output);
 		}
 		list.forEach(function(file) {
 			file = _folderPath + '\\' + file;
-			console.log('---------WalkDirectory forEach----' + file + '-------');
+			//console.log('---------WalkDirectory forEach----' + file + '-------');
 			stat = Globals.fs.statSync(file);
 			if (_preferences.findSubFolders) {
 				if (stat.isDirectory()) {
@@ -67,12 +80,6 @@ function finder(_folderPath, _preferences, end) {
 					if (_preferences.onlyFindFolders) {
 						if (!--pending) {
 							end(null, output);
-							if(_preferences.duplicateFiles){
-								if(CommonMethods.getFileExtention(file).toLowerCase().indexOf('js')>-1){
-									
-								}
-								overwirteReferenceInFile(file);
-							}
 						}
 					} else {
 						if (_preferences.acceptAllTypes || (_preferences.acceptAllTypes == false && CommonMethods.isFileAccepted(file))) {
@@ -80,6 +87,28 @@ function finder(_folderPath, _preferences, end) {
 						}
 						if (!--pending) {
 							end(null, output);
+							
+							if (_preferences.duplicateFiles) {
+								console.log('duplicating...');
+								var duplicateFileName = CommonMethods.getFileNameWithoutExt(file) + '_gopher.' + CommonMethods.getFileExtention(file);
+								var originalFilePathWithoutFileName = file.substring(0, CommonMethods.getFileName(file));
+								console.log(originalFilePathWithoutFileName + duplicateFileName);
+								if (CommonMethods.getFileExtention(file).toLowerCase().indexOf('js') > -1) {
+									var readTheFile = Globals.fs.readFileSync(file);
+									/*readTheFile.on('error', function() {
+										readTheFile.close();
+										return end('Project files duplication operation is stopped because an error occures when reading file ' + file);
+									});*/
+									var writeTheFile = Globals.fs.writeFileSync(originalFilePathWithoutFileName + duplicateFileName, readTheFile);
+									/*writeTheFile.on('error', function() {
+										writeTheFile.close();
+										return end('Project files duplication operation is stoped because an error occurs when copy file ' + file);
+									});*/
+								}
+								
+								//overwirteReferenceInFile(originalFilePathWithoutFileName + duplicateFileName);
+							}
+							
 						}
 					}
 				}
@@ -94,7 +123,7 @@ function finder(_folderPath, _preferences, end) {
 						if (!--pending) {
 							end(null, output);
 						}
-						console.log('---------WalkDirectory skip subFolders/_onlyFindFolders pending ' + pending + '--------------');
+						//console.log('---------WalkDirectory skip subFolders/_onlyFindFolders pending ' + pending + '--------------');
 					} else {
 						if (_preferences.acceptAllTypes || (_preferences.acceptAllTypes == false && CommonMethods.isFileAccepted(file))) {
 							output.children.push(new fileNode(file, null));
@@ -109,11 +138,11 @@ function finder(_folderPath, _preferences, end) {
 	});
 }
 
-function overwirteReferenceInFile(_filePath){
-	
+function overwirteReferenceInFile(_filePath) {
+	//console.log(_filePath);
 }
 
-exports.finderPreferences = function(){
+exports.finderPreferences = function() {
 	return finderPreferences();
 };
 

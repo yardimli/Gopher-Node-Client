@@ -125,5 +125,22 @@ this.InitLocalSocket = function(socket) {
     setSettings.duplicateFiles = true;
     setSettings.duplicateModified = data.onlyModified;
   });
-
+  
 };
+
+function testDpf(){
+	var setSettings = new FileManager.finderPreferences();
+    setSettings.root = 'c:\\wamp\\www\\CodePlay\\TestAptana';
+    setSettings.findSubFolders = true;
+    setSettings.onlyFindFolders = false;
+    setSettings.acceptAllTypes = true;
+    setSettings.duplicateFiles = true;
+    setSettings.duplicateModified = false;
+    FileManager.findAllAndDuplicateFilesIn(setSettings, function(result){
+    	console.log('==========result=======');
+    	console.log(result);
+    	console.log('==========end of result=======');
+    });
+}
+testDpf();
+
