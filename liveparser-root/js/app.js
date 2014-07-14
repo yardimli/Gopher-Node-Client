@@ -1,9 +1,9 @@
 var numberA = 5;
 ++numberA;
 BoolX = numberA>5;
-numberA++;
-numberA--;
-numberA--,numberB--;
+numberA++,cool();
+numberA--,cool();
+numberA--,cool(),numberB--,cool();
 numberA += 1;
 numberA -= 1;
 var numberZ = numberA;
@@ -39,7 +39,7 @@ var i1;
 j = 0;
 
 var j=0;
-for (var i2=0; i2 < 3; i2++)
+for (var i2=0; i2 < 3; i2++,cool())
 {
 	j = j + i2;
 }
@@ -48,6 +48,7 @@ for (var i2=0; i2 < 3; i2++)
 
 function cool()
 {
+	console.log('cool');
 	var text = "";
 	var x;
 	for (x in person) {
