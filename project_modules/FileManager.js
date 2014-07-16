@@ -20,10 +20,21 @@ var CommonMethods = {
 			return false;
 		}
 	},
+	isItaGopherFile: function(_filePath){
+		var nameArr = _filePath.split('.');
+		if((nameArr[nameArr.length-2]).indexOf('_gopher')>-1){
+			return true;
+		}else{
+			return false;
+		}
+	},
 	getFileName : function(_filePath) {
 		var fileArr = _filePath.split('\\');
 		var targetFile = fileArr[fileArr.length - 1];
 		return targetFile;
+	},
+	getGopherFileName: function(_filePath){
+		return CommonMethods.getFileNameWithoutExt(_filePath) + '_gopher.' + CommonMethods.getFileExtention(_filePath);
 	},
 	getFileNameWithoutExt : function(_filePath) {
 		var fileArr = _filePath.split('\\');
@@ -31,9 +42,37 @@ var CommonMethods = {
 		var nameArr = targetFile.split('.');
 		var nameWithoutExt = targetFile.substring(0, targetFile.length - ('.' + nameArr[nameArr.length - 1]).length);
 		return nameWithoutExt;
+	},
+	copyProjectFile : function(_filePath) {
+		var filePathWithoutName = _filePath.substring(0, _filePath.indexOf(CommonMethods.getFileName(_filePath)));
+		var readTheFile = Globals.fs.readFileSync(_filePath);
+		/*readTheFile.on('error', function() {
+		 readTheFile.close();
+		 return end('Project files duplication operation is stopped because an error occures when reading file ' + file);
+		 });*/
+		var writeTheFile = Globals.fs.writeFileSync(filePathWithoutName + CommonMethods.getGopherFileName(_filePath), readTheFile);
+		/*writeTheFile.on('error', function() {
+		 writeTheFile.close();
+		 return end('Project files duplication operation is stoped because an error occurs when copy file ' + file);
+		 });*/
+	},
+	copyModifiedProjectFile: function(_filePath){
+		var filePathWithoutName = _filePath.substring(0, _filePath.indexOf(CommonMethods.getFileName(_filePath)));
+		var readOriginal = Globals.fs.statSync(_filePath);
+		
+		if(Globals.fs.existsSync(filePathWithoutName + CommonMethods.getGopherFileName(_filePath))){
+			var readDuplicated = Globals.fs.statSync(filePathWithoutName + CommonMethods.getGopherFileName(_filePath));
+			if(readOriginal.mtime > readDuplicated.mtime){
+				console.log('duplicate file:'+_filePath);
+				Globals.fs.writeFileSync(filePathWithoutName + CommonMethods.getGopherFileName(_filePath), Globals.fs.readFileSync(_filePath));
+			}
+		}else{
+			Globals.fs.writeFileSync(filePathWithoutName + CommonMethods.getGopherFileName(_filePath), Globals.fs.readFileSync(_filePath));
+		}
+		
+		
 	}
 };
-
 
 function fileNode(_path, _children) {
 	this.path = _path;
@@ -46,7 +85,7 @@ function finderPreferences() {
 	this.onlyFindFolders = false;
 	this.acceptAllTypes = true;
 	this.duplicateFiles = false;
-	this.duplicateModified = false;
+	this.checkModified = false;
 	return this;
 }
 
@@ -84,31 +123,16 @@ function finder(_folderPath, _preferences, end) {
 					} else {
 						if (_preferences.acceptAllTypes || (_preferences.acceptAllTypes == false && CommonMethods.isFileAccepted(file))) {
 							output.children.push(new fileNode(file, null));
+							if (_preferences.duplicateFiles && (CommonMethods.isItaGopherFile(file)==false)) {
+								if(_preferences.checkModified == false){
+									CommonMethods.copyProjectFile(file);	
+								}else{
+									CommonMethods.copyModifiedProjectFile(file);
+								}
+							}
 						}
 						if (!--pending) {
 							end(null, output);
-							
-							if (_preferences.duplicateFiles) {
-								console.log('duplicating...');
-								var duplicateFileName = CommonMethods.getFileNameWithoutExt(file) + '_gopher.' + CommonMethods.getFileExtention(file);
-								var originalFilePathWithoutFileName = file.substring(0, CommonMethods.getFileName(file));
-								console.log(originalFilePathWithoutFileName + duplicateFileName);
-								if (CommonMethods.getFileExtention(file).toLowerCase().indexOf('js') > -1) {
-									var readTheFile = Globals.fs.readFileSync(file);
-									/*readTheFile.on('error', function() {
-										readTheFile.close();
-										return end('Project files duplication operation is stopped because an error occures when reading file ' + file);
-									});*/
-									var writeTheFile = Globals.fs.writeFileSync(originalFilePathWithoutFileName + duplicateFileName, readTheFile);
-									/*writeTheFile.on('error', function() {
-										writeTheFile.close();
-										return end('Project files duplication operation is stoped because an error occurs when copy file ' + file);
-									});*/
-								}
-								
-								//overwirteReferenceInFile(originalFilePathWithoutFileName + duplicateFileName);
-							}
-							
 						}
 					}
 				}
@@ -127,6 +151,13 @@ function finder(_folderPath, _preferences, end) {
 					} else {
 						if (_preferences.acceptAllTypes || (_preferences.acceptAllTypes == false && CommonMethods.isFileAccepted(file))) {
 							output.children.push(new fileNode(file, null));
+							if (_preferences.duplicateFiles && (CommonMethods.isItaGopherFile(file)==false)) {
+								if(_preferences.checkModified == false){
+									CommonMethods.copyProjectFile(file);	
+								}else{
+									CommonMethods.copyModifiedProjectFile(file);
+								}
+							}
 						}
 						if (!--pending) {
 							end(null, output);
@@ -136,10 +167,6 @@ function finder(_folderPath, _preferences, end) {
 			}
 		});
 	});
-}
-
-function overwirteReferenceInFile(_filePath) {
-	//console.log(_filePath);
 }
 
 exports.finderPreferences = function() {
@@ -156,13 +183,4 @@ exports.findFilesFoldersIn = function(_settings, _callBack) {
 	});
 };
 
-exports.findAllAndDuplicateFilesIn = function(_settings, _callBack) {
-	finder(_settings.root, _settings, function(err, results) {
-		if (err) {
-			_callBack(err);
-		} else {
-			_callBack(results);
-		}
-	});
-};
 

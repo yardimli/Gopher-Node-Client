@@ -96,8 +96,8 @@ this.InitLocalSocket = function(socket) {
     setSettings.acceptAllTypes = true;
     
     FileManager.findFilesFoldersIn(setSettings,function(result){
-	      console.log('========manager server:getItemsInDir findFilesFoldersIn callback=================');
-	      console.log(result);
+	      //console.log('========manager server:getItemsInDir findFilesFoldersIn callback=================');
+	      //console.log(result);
 	      socket.emit('getItemsInDirClient', socketResponse(result));
     });
   });
@@ -110,37 +110,23 @@ this.InitLocalSocket = function(socket) {
     setSettings.acceptAllTypes = false;
     
     FileManager.findFilesFoldersIn(setSettings,function(result){
-	      //console.log('-------manager server-------');
-	      //console.log(result);
 	      socket.emit('openProjectFolder', socketResponse(result));
     });
   });
   
-  socket.on('_dubplicateProjectFiles',function(data){
+  socket.on('_duplicateAllProjectFiles',function(data){
   	var setSettings = new FileManager.finderPreferences();
     setSettings.root = data.target;
     setSettings.findSubFolders = true;
     setSettings.onlyFindFolders = false;
     setSettings.acceptAllTypes = true;
     setSettings.duplicateFiles = true;
-    setSettings.duplicateModified = data.onlyModified;
+    setSettings.checkModified = data.checkModified;
+    FileManager.findFilesFoldersIn(setSettings, function(result){
+    	socket.emit('duplicateAllProjectFiles',socketResponse(result));
+    });
   });
-  
+
 };
 
-function testDpf(){
-	var setSettings = new FileManager.finderPreferences();
-    setSettings.root = 'c:\\wamp\\www\\CodePlay\\TestAptana';
-    setSettings.findSubFolders = true;
-    setSettings.onlyFindFolders = false;
-    setSettings.acceptAllTypes = true;
-    setSettings.duplicateFiles = true;
-    setSettings.duplicateModified = false;
-    FileManager.findAllAndDuplicateFilesIn(setSettings, function(result){
-    	console.log('==========result=======');
-    	console.log(result);
-    	console.log('==========end of result=======');
-    });
-}
-testDpf();
 

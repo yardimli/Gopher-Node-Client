@@ -38,11 +38,14 @@ var MANAGERJS = {
 			}
 		});
 		
-		MANAGERJS.iosocket.on('duplicateProjectFiles',function(response){
+		MANAGERJS.iosocket.on('duplicateAllProjectFiles',function(response){
 			if(response.success){
-				
+				MANAGERJS.iosocket.emit('_openProjectFolder', {
+					target : response.data.path
+				});
 			}
 		});
+		
 	}
 };
 
@@ -106,8 +109,9 @@ MANAGERJS.myEvents = {
 			folderPath = _folderPath;
 		}
 		$('#in_projectDir').val(folderPath);
-		MANAGERJS.iosocket.emit('_openProjectFolder', {
-			target : folderPath
+		MANAGERJS.iosocket.emit('_duplicateAllProjectFiles',{
+			target: folderPath,
+			checkModified: false
 		});
 	}
 };
@@ -246,7 +250,12 @@ $(document).ready(function() {
 		var originalPath = localStorage['selectedProjectPath'];
 		originalPath = originalPath.replace(/\\\\/g, '\\');
 		console.log('has local selectedProject path');
-		MANAGERJS.myEvents.btn_openProjectDir(localStorage['selectedProjectPath']);
+		
+		$('#in_projectDir').val(localStorage['selectedProjectPath']);
+		MANAGERJS.iosocket.emit('_duplicateAllProjectFiles',{
+			target: localStorage['selectedProjectPath'],
+			checkModified: true
+		});
 	}
 
 	$('#dialog_select_dir').on('show.bs.modal', function() {
