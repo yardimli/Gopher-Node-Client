@@ -299,9 +299,12 @@ function loopBody(tree,parentType,Xlevel,JSGopherObjectsArray,ParentName,sourcec
 						NewQ.DeclEnd = VarEnd;
 						NewQ.VarDeclTrackID = JSGopherObjectsArray.VarDeclTrackID;
 						NewQ.parentID = ParentName;
+						
+						
 						JSGopherObjectsArray.push( NewQ );
 
-						//--- console.log("Var Dec: --------- Name:" + jQuery(this).parent().find("id").find("name").first().text() +  " Init:" + VarStart + " " + VarEnd + " " + sourcecode.slice(VarStart,VarEnd)  );
+						// --- console.log("Var Dec: --------- Name:" + jQuery(this).parent().find("id").find("name").first().text() +  " Init:" + VarStart + " " + VarEnd + " " + sourcecode.slice(VarStart,VarEnd));
+						
 					}
 				}
 			});
@@ -616,51 +619,6 @@ function loopBodyCommands(tree,sourcecode)
 
 }
 
-//----------------------------------------------------------------------------------------
-function GopherTellUpdateExpressions(sourcecode,inFile)
-{
-	//TODO:
-	//find UPDATEEXPRESSIONS 
-	//save loactions with variablename to array
-	//loop array in reverse insert gophertells after update with update method
-	//do it twice
-
-	//rebuild xml from updated source
-	var parsed = MakeJSONTreeFromJS(sourcecode,false,inFile);
-	var xmldata = "<project>"+ json2xml(parsed)+ "</project>";
-	var jQuery = cheerio.load(xmldata, {xmlMode: true});
-	
-	//add gopher tells besides update expressions like ++ --
-	jQuery(xmldata).find('expressions').each(function(){
-		if (jQuery(this).find("type").first().text()=="UpdateExpression")
-		{
-			console.log( "UPDATE E: " + jQuery(this).find("loc").find("start").find("line").first().text() + ": " +
-				sourcecode.slice( parseInt( jQuery(this).find("start").first().text() , 10) , parseInt( jQuery(this).find("end").first().text() , 10)  ) +
-				" T:" + jQuery(this).find("type").first().text() + " OP:" + jQuery(this).find("operator").first().text()
-			);
-		}
-	});
-	
-	//rebuild xml from updated source
-	var parsed = MakeJSONTreeFromJS(sourcecode,false,inFile);
-	var xmldata = "<project>"+ json2xml(parsed)+ "</project>";
-	var jQuery = cheerio.load(xmldata, {xmlMode: true});
-	
-	jQuery(xmldata).find('expression').each(function(){
-		if (jQuery(this).find("expressions").length == 0 )
-		{
-			if (jQuery(this).find("type").first().text()=="UpdateExpression")
-			{
-				console.log( "UPDATE X: " + jQuery(this).find("loc").find("start").find("line").first().text() + ": " +
-					sourcecode.slice( parseInt( jQuery(this).find("start").first().text() , 10) , parseInt( jQuery(this).find("end").first().text() , 10)  ) +
-					" T:" + jQuery(this).find("type").first().text()
-				);
-			}
-		}
-	});
-	
-	return sourcecode;
-}
 
 
 
@@ -672,11 +630,53 @@ function GopherTellFile(inFile)
 			var parsed = MakeJSONTreeFromJS(contents,true,inFile);
 			var xmldata = "<project>"+ json2xml(parsed)+ "</project>";
 			
-			loopBodyCommands(xmldata,contents);
+//			loopBodyCommands(xmldata,contents);
+			LoopLeft(xmldata,contents,0,false);
+/*
+			var HasUnaryExpression = true;
 			
-			contents = GopherTellUpdateExpressions(contents,inFile);
+			while (HasUnaryExpression)
+			{
+				HasUnaryExpression = false;
+				var parsed = MakeJSONTreeFromJS(contents,false,inFile);
+				var xmldata = "<project>"+ json2xml(parsed)+ "</project>";
+				var jQuery = cheerio.load(xmldata, {xmlMode: true});
+
+				
+				jQuery(xmldata).find('type:contains("UnaryExpression")').each(function(){
+					if (!HasUnaryExpression)
+					{
+						HasUnaryExpression = true;
+						var NewQ = new Object();
+						NewQ.XLine = jQuery(this).parent().find("loc").find("start").find("line").first().text();
+						NewQ.XColumn = jQuery(this).parent().find("loc").find("start").find("column").first().text();
+						NewQ.XStartPosition1 = parseInt( jQuery(this).parent().find("start").first().text() , 10);
+						NewQ.XStartPosition2 = parseInt( jQuery(this).parent().find("argument").find("start").first().text() , 10);
+						NewQ.XEndPosition = parseInt( jQuery(this).parent().find("argument").find("end").first().text() , 10);
+						NewQ.Type = "UnaryExpression";
+
+						console.log( "UnaryExpression: " + jQuery(this).parent().find("loc").find("start").find("line").first().text() + ": " +
+							contents.slice( parseInt( jQuery(this).parent().find("start").first().text() , 10) , parseInt( jQuery(this).parent().find("end").first().text() , 10)  ) + " = " +
+							
+							contents.slice( parseInt( jQuery(this).parent().find("argument").find("start").first().text() , 10) , parseInt( jQuery(this).parent().find("argument").find("end").first().text() , 10)  ) 
+
+							);
+
+						var UnaryExpressionParam = contents.slice(NewQ.XStartPosition2,NewQ.XEndPosition);
+						var GopherTellInsert = " GopherUnaryExpr("+ NewQ.XLine + ",'"+ UnaryExpressionParam + "',"+ UnaryExpressionParam  +")";
+
+						contents = 
+							[contents.slice(0, NewQ.XStartPosition1), 
+							GopherTellInsert , 
+							contents.slice(NewQ.XEndPosition)].join('');
+					}
+				});
+			}
+			console.log(contents);
+*/			
+			var parsed = MakeJSONTreeFromJS(contents,false,inFile);
+			var xmldata = "<project>"+ json2xml(parsed)+ "</project>";
 	
-			//LoopLeft(xmldata,contents,0,false);
 
 			var JSGopherObjectsArray = [];
 			JSGopherObjectsArray.FunctionCounter = 0;
@@ -729,6 +729,13 @@ function GopherTellFile(inFile)
 
 			"function GopherTell(xCodeLine, xGopherMsg, xParentID, xGopherCallerID) {\n" +
 			" iosocket.emit( 'Gopher.Tell', {CodeLine:xCodeLine, GopherMsg:xGopherMsg, ParentID:xParentID, GopherCallerID:xGopherCallerID } );\n"+
+			"}\n\n"+
+
+			"//------------------------------------------------------------------------------\n"+
+			"function GopherUnaryExpr(xCodeLine, xVarStr, xVarValue) {\n" +
+			" xVarValue = !xVarValue;\n" +
+			" iosocket.emit( 'Gopher.GopherUnaryExp', {CodeLine:xCodeLine, VarStr:xVarStr, VarValue:xVarValue, } );\n"+
+			" return xVarValue;\n"+
 			"}\n\n"+
 
 			"//------------------------------------------------------------------------------\n"+
@@ -858,6 +865,11 @@ this.InitLocalSocket = function(socket){
 	socket.on('Gopher.Tell', function(data) {
 //		console.log(data);
 		Globals.socketServer.sockets.in("room1").emit('ConsoleTell', { text:"L:"+data.CodeLine+" C:"+data.GopherCallerID +": "+data.GopherMsg+", <b>parent:</b>"+data.ParentID });
+	});
+
+	socket.on('Gopher.GopherUnaryExp', function(data) {
+//		console.log(data);
+		Globals.socketServer.sockets.in("room1").emit('ConsoleTell', { text:"L:" + data.CodeLine + " C:0:0: <b>UNARY</b>:" + data.VarStr + " set to: " + data.VarValue });
 	});
 
 	socket.on('Gopher.VarDecl', function(data) {

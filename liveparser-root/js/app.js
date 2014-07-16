@@ -1,4 +1,4 @@
-var numberA = 5;
+var numberA = 5;	
 ++numberA;
 BoolX = numberA>5;
 numberA++,cool();
@@ -14,7 +14,23 @@ var boolB = strA.indexOf("f")>0;
 var boolC = !boolA;
 var boolF = boolC;
 var boolD = !(boolC || boolB);
-var boolD = ((numberA<numberB) || !(boolD));
+
+boolD = !((numberA<numberB) || !(boolD));
+
+Temp1 = numberA<numberB;
+Temp2 = !(boolD);
+Temp3 = (Temp1 || Temp2);
+Temp4 = !Temp3;
+boolD = Temp4;
+
+Temp_BoolD_1 = Helper("BoolD","Temp_BoolD_1",1,19,"numberA","numberB","<",numberA,numberB);
+Temp_BoolD_2 = HelperNot("BoolD","Temp_BoolD_2",2,19,"boolD",boolD);
+Temp_BoolD_3 = Helper("BoolD","Temp_BoolD_3",3,19,"Temp_BoolD_1","Temp_BoolD_2","||",Temp_BoolD_1,Temp_BoolD_2);
+Temp_BoolD_4 = HelperNot("BoolD","Temp_BoolD_4",2,19,"Temp_BoolD_3",Temp_BoolD_3);
+boolD = HelperSet(19,"boolD",Temp_BoolD_4,"boolD = !((numberA<numberB) || !(boolD));");
+
+
+var boolG = !(boolC || ! boolB);
 var bool4 = DoubleNumber(numberA)>numberB;
 var xheight = $(window).height();
 var initTest = AddNumbers(3,4);
