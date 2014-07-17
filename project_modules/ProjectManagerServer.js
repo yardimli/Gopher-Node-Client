@@ -119,7 +119,7 @@ this.InitLocalSocket = function(socket) {
     setSettings.root = data.target;
     setSettings.findSubFolders = true;
     setSettings.onlyFindFolders = false;
-    setSettings.acceptAllTypes = true;
+    setSettings.acceptAllTypes = false;
     setSettings.duplicateFiles = true;
     setSettings.checkModified = data.checkModified;
     FileManager.findFilesFoldersIn(setSettings, function(result){
