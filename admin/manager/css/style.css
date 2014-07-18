@@ -101,6 +101,7 @@ color:black;
   overflow: auto;
 }
 #btn_ignoreFile{
+	display:none;
   position:absolute;
   z-index: 100;
   top: 100px;
@@ -118,5 +119,8 @@ color:black;
 
 .strikeNode a:link{
 	text-decoration:line-through;
+}
+.manager-content div[role="alert"]{
+	display:none;
 }
 

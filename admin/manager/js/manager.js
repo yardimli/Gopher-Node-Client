@@ -109,6 +109,7 @@ MANAGERJS.myEvents = {
 	btn_ignoreFile_click: function(_senderJ){
 		var selectedNodeId = $('#input_setSelectedNodeId').val();
 		var selectedNodeObj = $('#project_files_view').jstree('get_node',selectedNodeId);
+		console.log(selectedNodeObj);
 		
 		if($('#project_files_view').jstree('is_disabled',selectedNodeObj.id) == false){
 			$(_senderJ).text('Remove it from ignore list');
@@ -122,13 +123,14 @@ MANAGERJS.myEvents = {
 		}else{
 			$(_senderJ).text('Ignore it');
 			$('#project_files_view').jstree('deselect_node',selectedNodeObj.id);
-			$('#project_files_view').jstree('enable_node',selectedNodeObj.id);	
+			$('#project_files_view').jstree('enable_node',selectedNodeObj.id);
 			if(selectedNodeObj.children_d.length>0){
 				$('#project_files_view').jstree('deselect_node',selectedNodeObj.children_d);
 				$('#project_files_view').jstree('enable_node',selectedNodeObj.children_d);
 			}	
 		}
 		checkChildrenState(selectedNodeObj.id,0);
+		MANAGERJS.ignoredFilesFolders.display();
 		
 		function checkChildrenState(_jstreeId,_countParentChecked){
 			var treeNode = $('#project_files_view').jstree('get_node', _jstreeId);
@@ -158,7 +160,8 @@ MANAGERJS.myEvents = {
 				}
 			}
 		}
-		//console.log($('#project_files_view').jstree().get_selected());
+		
+		//console.log($('#project_files_view').jstree().get_selected(true));
 	}
 };
 
@@ -190,7 +193,7 @@ MANAGERJS.displayFilesFolders = {
 	asJstree : function(_data) {
 		$('#project_files_view').on('hover_node.jstree', function(e, data) {
 			//console.log(data.node.original);
-			if(data.node.id !== 'j1_1'){
+			
 				if($('#project_files_view').jstree('is_disabled',data.node.id)==false){
 					$('#btn_ignoreFile').text('Ignore it');
 				}else{
@@ -207,6 +210,10 @@ MANAGERJS.displayFilesFolders = {
 				$('#btn_ignoreFile').show();
 				$('#btn_ignoreFile').fadeIn();
 				$('#input_setSelectedNodeId').val(data.node.id);
+			
+		}).on('disable_node.jstree',function(e,data){
+			if(data.node.id == 'j1_1'){
+				$('#select_projectfiles').find('div[role="alert"]').fadeIn();
 			}
 		}).jstree({
 			core : {
@@ -220,13 +227,14 @@ MANAGERJS.displayFilesFolders = {
 		}
 
 		function convertToJstreeObj(_obj) {
-			function node(_text, _opened, _selected, _icon, _children) {
+			function node(_text, _path, _opened, _selected, _icon, _children) {
 				var icon;
 				if (_icon !== null) {
 					icon = _icon;
 				}
 				return {
 					text : _text,
+					path : _path,
 					state : {
 						opened : _opened,
 						selected : _selected
@@ -242,9 +250,9 @@ MANAGERJS.displayFilesFolders = {
 			if (_obj !== undefined) {
 				//_obj = testObj;
 				var jstreeObj = [];
-				function makeJstreeObj(title, runObj, end) {
+				function makeJstreeObj(title, path, runObj, end) {
 					//console.log('*'+runObj[0].path+'*');
-					var output = new node(title, false, false, null, []);
+					var output = new node(title, path, false, false, null, []);
 					//console.log('-----test is called:'+JSON.stringify(runObj)+'-----');
 					var unfinished = runObj.length;
 					//console.log(title);
@@ -256,7 +264,7 @@ MANAGERJS.displayFilesFolders = {
 						//console.log('---i:'+i+'------');
 						if (runObj[i].children !== null) {
 							//console.log('----- runObj[i].children!==null,'+runObj[i].path+'------');
-							makeJstreeObj(MANAGERJS.displayFilesFolders.fileName(runObj[i].path), runObj[i].children, function(res) {
+							makeJstreeObj(MANAGERJS.displayFilesFolders.fileName(runObj[i].path), runObj[i].path, runObj[i].children, function(res) {
 								/*console.log('----- res ----');
 								 console.log(res);
 								 console.log('----- end of res ----');*/
@@ -269,7 +277,7 @@ MANAGERJS.displayFilesFolders = {
 							});
 						} else {
 							//console.log('----- runObj[i].children!==null else,'+runObj[i].path+'------')
-							output.children.push(new node(MANAGERJS.displayFilesFolders.fileName(runObj[i].path), false, false, 'images/file-32.png', null));
+							output.children.push(new node(MANAGERJS.displayFilesFolders.fileName(runObj[i].path), runObj[i].path, false, false, 'images/file-32.png', null));
 							unfinished--;
 							if (unfinished <= 0) {
 								//console.log(unfinished);
@@ -279,7 +287,7 @@ MANAGERJS.displayFilesFolders = {
 					}
 				}
 
-				makeJstreeObj(_obj.path, _obj.children, function(result) {
+				makeJstreeObj(_obj.path, _obj.path, _obj.children, function(result) {
 					jstreeObj.push(result);
 				});
 				/*console.log('======jstreeObj========');
@@ -293,14 +301,34 @@ MANAGERJS.displayFilesFolders = {
 				return null;
 			}
 		}
+	},
+};
 
+MANAGERJS.ignoredFilesFolders = {
+	getList: function(){
+		var jstreeNodeId = $('#project_files_view').jstree().get_selected();
+		console.log(jstreeNodeId);
+		var list = [];
+		for(var i=0; i<jstreeNodeId.length; i++){
+			var nodeId = jstreeNodeId[i];
+			var nodeObj = $('#project_files_view').jstree('get_node', nodeId);
+			list.push({path: nodeObj.original.path, treeNodeId: nodeId});
+		}
+		return list;
+	},
+	display: function(){
+		var gotList = MANAGERJS.ignoredFilesFolders.getList();
+		console.log(gotList);
+		$('#project_ignorefiles_view').empty();
+		for(var i=0; i<gotList.length; i++){
+			$('#project_ignorefiles_view').append('<div data-treenodeid="'+gotList[i].treeNodeId+'">'+gotList[i].path+'</div>');
+		}
 	}
 };
 
 
 $(document).ready(function() {
 	$('#debug_console').toggleClass('hideme');
-	$('#btn_ignoreFile').hide();
 	MANAGERJS.initSocketIO();
 
 	if (localStorage['selectedProjectPath'] !== undefined && localStorage['selectedProjectPath'] !== '') {
@@ -334,5 +362,6 @@ $(document).ready(function() {
 	$('#btn_ignoreFile').click(function(){
 		MANAGERJS.myEvents.btn_ignoreFile_click($(this));
 	});
-
+	
+	
 });
