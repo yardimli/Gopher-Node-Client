@@ -540,7 +540,7 @@ function InsertGopherTells(contents,JSGopherObjectsArray)
 	return contents;
 }
 
-function LoopLeft(tree,sourcecode,indent)
+function LoopLeft(tree,treeparent,sourcecode,indent)
 {
 	var jQuery = cheerio.load(tree, {xmlMode: true});
 	
@@ -553,8 +553,18 @@ function LoopLeft(tree,sourcecode,indent)
 
 		if ( (jQuery(this)[0]["name"]=="left" )  )
 		{
+			var TempX = jQuery(this).parent();
+			var ParentType = TempX[0]["name"];
 			
 			var CalleLine = jQuery(this).parent().find("loc").find("start").find("line").first().text()
+
+			if (treeparent.find("type").first().text()=="VariableDeclarator" )
+			{
+				var xstr2 = "";
+				for (var i=0; i<(indent-1); i++) { xstr2 += "  "; }
+				console.log(xstr2+"L(P) "+CalleLine+": VariableDeclarator"); 
+			}
+			
 			var LeftSide = sourcecode.slice( parseInt( jQuery(this).parent().children('left').first().find("start").first().text() , 10)  , 
 													 parseInt( jQuery(this).parent().children('left').first().find("end").first().text() , 10) );
 
@@ -566,23 +576,21 @@ function LoopLeft(tree,sourcecode,indent)
 			var xType = jQuery(this).find('type').first().text(); 
 			
 
-			var TempX = jQuery(this).parent();
-			var ParentType = TempX.text("")[0]["name"];
 
 //			if ( (xOperator=="==") || (xOperator=="===") || (xOperator=="!=") || (xOperator=="!==") || (xOperator==">") || (xOperator==">=") || (xOperator=="<") || (xOperator=="<=") || (xOperator=="&&") || (xOperator=="||") || (xOperator=="!") )
 			{
-				if (xType=="BinaryExpression") {
-					console.log(xstr+"LEFT-RIGTH(P): "+CalleLine+" L:"+LeftSide+" O:"+xOperator+" R:"+RightSide+" P:"+ParentType+" "+xType);
+				if ( (ParentType=="expression")  || (ParentType=="test") ) {
+					console.log(xstr+"L(P) "+CalleLine+": ("+LeftSide+" ("+xOperator+") "+RightSide+") P:"+ParentType+" "+xType);
 				} else
 				{
-					console.log(xstr+"LEFT-RIGTH: "+CalleLine+" L:"+LeftSide+" O:"+xOperator+" R:"+RightSide+" P:"+ParentType+" "+xType);
+					console.log(xstr+"L-R "+CalleLine+": ("+LeftSide+" ("+xOperator+") "+RightSide+") P:"+ParentType+" "+xType);
 				}
 			}
 		}
 		
 		if ( jQuery(this).children().length  > 0)
 		{
-			LoopLeft(this,sourcecode,indent+1);
+			LoopLeft(this,jQuery(this).parent(),sourcecode,indent+1);
 		}
 	});
 }
@@ -621,7 +629,6 @@ function loopBodyCommands(tree,sourcecode)
 
 
 
-
 function GopherTellFile(inFile)
 {
 	Globals.fs.readFile(inFile,function(err,contents){
@@ -631,7 +638,7 @@ function GopherTellFile(inFile)
 			var xmldata = "<project>"+ json2xml(parsed)+ "</project>";
 			
 //			loopBodyCommands(xmldata,contents);
-			LoopLeft(xmldata,contents,0,false);
+			LoopLeft(xmldata,null,contents,0,false);
 /*
 			var HasUnaryExpression = true;
 			
