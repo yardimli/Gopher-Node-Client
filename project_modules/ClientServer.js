@@ -44,6 +44,9 @@ this.getFile = function(request, response)
 							Globals.fs.readFile(filePath.replace("-gopher.js",".js"),function(err,contents)
 							{
 								//use https://github.com/balupton/jquery-syntaxhighlighter for highlighting
+								contents = contents.toString();
+								contents = contents.replace(/</g,"&lt;");
+								contents = contents.replace(/>/g,"&gt;");
 								Globals.socketServer.sockets.in("room1").emit('UpdateSourceView',{	sourcecode:'<pre class="language-javascript">'+contents+'</pre>' });
 							});
 						
