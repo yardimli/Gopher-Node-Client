@@ -121,14 +121,21 @@ function finder(_folderPath, _preferences, end) {
 							end(null, output);
 						}
 					} else {
-						if (_preferences.acceptAllTypes || (_preferences.acceptAllTypes == false && CommonMethods.isFileAccepted(file))) {
-							output.children.push(new fileNode(file, null));
-							if (_preferences.duplicateFiles && (CommonMethods.isItaGopherFile(file)==false)) {
-								if(_preferences.checkModified == false){
-									CommonMethods.copyProjectFile(file);	
-								}else{
-									CommonMethods.copyModifiedProjectFile(file);
-								}
+						if(CommonMethods.isItaGopherFile(file)==false){
+							if (_preferences.acceptAllTypes || (_preferences.acceptAllTypes == false && CommonMethods.isFileAccepted(file))) {
+									output.children.push(new fileNode(file, null));
+									if (_preferences.duplicateFiles) {
+										if(_preferences.checkModified == false){
+											CommonMethods.copyProjectFile(file);	
+										}else{
+											CommonMethods.copyModifiedProjectFile(file);
+										}
+									}					
+							}
+						}else{
+							var originalProjectFile = file.substring(0,file.indexOf('_gopher.'+CommonMethods.getFileExtention(file))) + '.'+ CommonMethods.getFileExtention(file);
+							if(Globals.fs.existsSync(originalProjectFile) == false){
+								Globals.fs.unlinkSync(file);
 							}
 						}
 						if (!--pending) {
@@ -149,14 +156,21 @@ function finder(_folderPath, _preferences, end) {
 						}
 						//console.log('---------WalkDirectory skip subFolders/_onlyFindFolders pending ' + pending + '--------------');
 					} else {
-						if (_preferences.acceptAllTypes || (_preferences.acceptAllTypes == false && CommonMethods.isFileAccepted(file))) {
-							output.children.push(new fileNode(file, null));
-							if (_preferences.duplicateFiles && (CommonMethods.isItaGopherFile(file)==false)) {
-								if(_preferences.checkModified == false){
-									CommonMethods.copyProjectFile(file);	
-								}else{
-									CommonMethods.copyModifiedProjectFile(file);
+						if(CommonMethods.isItaGopherFile(file)==false){
+							if (_preferences.acceptAllTypes || (_preferences.acceptAllTypes == false && CommonMethods.isFileAccepted(file))) {
+								output.children.push(new fileNode(file, null));
+								if (_preferences.duplicateFiles) {
+									if(_preferences.checkModified == false){
+										CommonMethods.copyProjectFile(file);	
+									}else{
+										CommonMethods.copyModifiedProjectFile(file);
+									}
 								}
+							}
+						}else{
+							var originalProjectFile = file.substring(0,file.indexOf('_gopher.'+CommonMethods.getFileExtention(file))) + '.'+CommonMethods.getFileExtention(file);
+							if(Globals.fs.existsSync(originalProjectFile) == false){
+								Globals.fs.unlinkSync(file);
 							}
 						}
 						if (!--pending) {

@@ -40,9 +40,7 @@ var MANAGERJS = {
 		
 		MANAGERJS.iosocket.on('duplicateAllProjectFiles',function(response){
 			if(response.success){
-				MANAGERJS.iosocket.emit('_openProjectFolder', {
-					target : response.data.path
-				});
+				
 			}
 		});
 		
@@ -60,6 +58,7 @@ MANAGERJS.myEvents = {
 	document_mouseover : function(e) {
 		if (MANAGERJS.myEvents.isMouseMoveOverTree) {
 			if ($(e.target).is(':not(#btn_ignoreFile,a.jstree-anchor,a.jstree-anchor>i.jstree-icon)')) {
+				$('#btn_ignoreFile').find('input[type="hidden"]').val('');
 				$('#btn_ignoreFile').hide();
 			}
 		}
@@ -102,19 +101,67 @@ MANAGERJS.myEvents = {
 		}
 	},
 	btn_openProjectDir : function(_folderPath) {
-		var folderPath;
-		if (_folderPath == undefined) {
-			folderPath = $('#target_dir').find('li.selected').data('path');
-		} else {
-			folderPath = _folderPath;
+		$('#in_projectDir').val(_folderPath);		
+		MANAGERJS.iosocket.emit('_openProjectFolder', {
+			target : _folderPath
+		}); 
+	},
+	btn_ignoreFile_click: function(_senderJ){
+		var selectedNodeId = $('#input_setSelectedNodeId').val();
+		var selectedNodeObj = $('#project_files_view').jstree('get_node',selectedNodeId);
+		
+		if($('#project_files_view').jstree('is_disabled',selectedNodeObj.id) == false){
+			$(_senderJ).text('Remove it from ignore list');
+			$('#project_files_view').jstree('select_node',selectedNodeObj.id);
+			$('#project_files_view').jstree('disable_node',selectedNodeObj.id);
+			
+			if(selectedNodeObj.children_d.length>0){
+				$('#project_files_view').jstree('select_node',selectedNodeObj.children_d);
+				$('#project_files_view').jstree('disable_node',selectedNodeObj.children_d);
+			}
+		}else{
+			$(_senderJ).text('Ignore it');
+			$('#project_files_view').jstree('deselect_node',selectedNodeObj.id);
+			$('#project_files_view').jstree('enable_node',selectedNodeObj.id);	
+			if(selectedNodeObj.children_d.length>0){
+				$('#project_files_view').jstree('deselect_node',selectedNodeObj.children_d);
+				$('#project_files_view').jstree('enable_node',selectedNodeObj.children_d);
+			}	
 		}
-		$('#in_projectDir').val(folderPath);
-		MANAGERJS.iosocket.emit('_duplicateAllProjectFiles',{
-			target: folderPath,
-			checkModified: false
-		});
+		checkChildrenState(selectedNodeObj.id,0);
+		
+		function checkChildrenState(_jstreeId,_countParentChecked){
+			var treeNode = $('#project_files_view').jstree('get_node', _jstreeId);
+			
+			if(_countParentChecked < treeNode.parents.length){
+				if (treeNode.parents[_countParentChecked] !== '#') {
+					var childNodeIds = $('#project_files_view').jstree('get_node', treeNode.parents[_countParentChecked]).children_d;
+					var countDisabled = 0, countEnabled = 0;
+					for (var j = 0; j < childNodeIds.length; j++) {
+						if ($('#project_files_view').jstree('is_disabled', childNodeIds[j])) {
+							countDisabled++;
+						}else{
+							countEnabled++;
+						}
+					}
+					if (countDisabled == childNodeIds.length) {
+						$('#project_files_view').jstree('select_node', treeNode.parents[_countParentChecked]);
+						$('#project_files_view').jstree('disable_node', treeNode.parents[_countParentChecked]);
+						_countParentChecked++;
+						checkChildrenState(_jstreeId,_countParentChecked);
+					}else if(countEnabled == childNodeIds.length || countDisabled<childNodeIds.length){
+						$('#project_files_view').jstree('deselect_node', treeNode.parents[_countParentChecked]);
+						$('#project_files_view').jstree('enable_node', treeNode.parents[_countParentChecked]);
+						_countParentChecked++;
+						checkChildrenState(_jstreeId,_countParentChecked);
+					}
+				}
+			}
+		}
+		//console.log($('#project_files_view').jstree().get_selected());
 	}
 };
+
 MANAGERJS.displayFilesFolders = {
 	fileName : function(_takePath) {
 		var strArr = _takePath.split('\\');
@@ -143,16 +190,24 @@ MANAGERJS.displayFilesFolders = {
 	asJstree : function(_data) {
 		$('#project_files_view').on('hover_node.jstree', function(e, data) {
 			//console.log(data.node.original);
-			var nodeItem = $('#' + data.node.id).find('a.jstree-anchor');
-			var nodeWidth = $(nodeItem).width();
-			var nodeOffset = $(nodeItem).offset();
-			var nodePosition = $(nodeItem).position();
-			$('#btn_ignoreFile').css({
-				top : nodePosition.top + 'px',
-				left : nodePosition.left + nodeWidth + 5 + 'px'
-			});
-			$('#btn_ignoreFile').show();
-			$('#btn_ignoreFile').fadeIn();
+			if(data.node.id !== 'j1_1'){
+				if($('#project_files_view').jstree('is_disabled',data.node.id)==false){
+					$('#btn_ignoreFile').text('Ignore it');
+				}else{
+					$('#btn_ignoreFile').text('Remove it from ignore list');
+				}
+				var nodeItem = $('#' + data.node.id).find('a.jstree-anchor');
+				var nodeWidth = $(nodeItem).width();
+				var nodeOffset = $(nodeItem).offset();
+				var nodePosition = $(nodeItem).position();
+				$('#btn_ignoreFile').css({
+					top : nodePosition.top + 'px',
+					left : nodePosition.left + nodeWidth + 5 + 'px'
+				});
+				$('#btn_ignoreFile').show();
+				$('#btn_ignoreFile').fadeIn();
+				$('#input_setSelectedNodeId').val(data.node.id);
+			}
 		}).jstree({
 			core : {
 				data : convertToJstreeObj(_data)
@@ -242,27 +297,24 @@ MANAGERJS.displayFilesFolders = {
 	}
 };
 
+
 $(document).ready(function() {
+	$('#debug_console').toggleClass('hideme');
 	$('#btn_ignoreFile').hide();
 	MANAGERJS.initSocketIO();
 
 	if (localStorage['selectedProjectPath'] !== undefined && localStorage['selectedProjectPath'] !== '') {
-		var originalPath = localStorage['selectedProjectPath'];
+		/*var originalPath = localStorage['selectedProjectPath'];
 		originalPath = originalPath.replace(/\\\\/g, '\\');
-		console.log('has local selectedProject path');
-		
-		$('#in_projectDir').val(localStorage['selectedProjectPath']);
-		MANAGERJS.iosocket.emit('_duplicateAllProjectFiles',{
-			target: localStorage['selectedProjectPath'],
-			checkModified: true
-		});
+		console.log('has local selectedProject path');*/
+		MANAGERJS.myEvents.btn_openProjectDir(localStorage['selectedProjectPath']);
 	}
 
 	$('#dialog_select_dir').on('show.bs.modal', function() {
 		MANAGERJS.myEvents.dialog_select_dir_show();
 	});
 	$('#btn_openProjectDir').click(function() {
-		MANAGERJS.myEvents.btn_openProjectDir();
+		MANAGERJS.myEvents.btn_openProjectDir($('#target_dir').find('li.selected').data('path'));
 	});
 	$('#target_dir').on('click', 'li', function() {
 		MANAGERJS.myEvents.target_dir_li_click($(this));
@@ -278,6 +330,9 @@ $(document).ready(function() {
 	});
 	$('#debug_console').click(function() {
 		$(this).toggleClass('hideme');
+	});
+	$('#btn_ignoreFile').click(function(){
+		MANAGERJS.myEvents.btn_ignoreFile_click($(this));
 	});
 
 });
