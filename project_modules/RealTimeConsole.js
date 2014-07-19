@@ -540,57 +540,109 @@ function InsertGopherTells(contents,JSGopherObjectsArray)
 	return contents;
 }
 
-function LoopLeft(tree,treeparent,sourcecode,indent)
+function LoopLeft(xmldata,sourcecode,indent)
 {
-	var jQuery = cheerio.load(tree, {xmlMode: true});
-	
-	jQuery(tree).children().each(function(){
+	var jQuery = cheerio.load(xmldata, {xmlMode: true});
+
+	jQuery(xmldata).children().each(function(){
 		
 		var xstr = "";
 		var xtrue = false;
 		for (var i=0; i<indent; i++) { xstr += "  "; }
 		
 
-		if ( (jQuery(this)[0]["name"]=="left" )  )
+		if ( (jQuery(this)[0]["name"]=="left" ) || (jQuery(this)[0]["name"]=="init" )  )
 		{
+		
 			var TempX = jQuery(this).parent();
 			var ParentType = TempX[0]["name"];
+			var ThisName = jQuery(this)[0]["name"];
 			
 			var CalleLine = jQuery(this).parent().find("loc").find("start").find("line").first().text()
 
-			if (treeparent.find("type").first().text()=="VariableDeclarator" )
+//			if (treeparent!=null)
 			{
-				var xstr2 = "";
-				for (var i=0; i<(indent-1); i++) { xstr2 += "  "; }
-				console.log(xstr2+"L(P) "+CalleLine+": VariableDeclarator"); 
+				if (jQuery(this).parent().find("type").first().text()=="VariableDeclarator" )
+				{
+					var xstr2 = "";
+					for (var i=0; i<(indent-2); i++) { xstr2 += "  "; }
+					console.log(xstr2+"L(P) "+CalleLine+": VariableDeclaration ("+ThisName+")"); 
+
+					var xstr2 = "";
+					for (var i=0; i<(indent-1); i++) { xstr2 += "  "; }
+					console.log(xstr2+"L(P) "+CalleLine+": VariableDeclarator ("+ThisName+")"); 
+				} else
+
+				if (jQuery(this).parent().find("type").first().text()=="SequenceExpression" )
+				{
+					var xstr2 = "";
+					for (var i=0; i<(indent-1); i++) { xstr2 += "  "; }
+					console.log(xstr2+"L(P) "+CalleLine+": SequenceExpression ("+ThisName+")"); 
+				} else
+
+				if (jQuery(this).parent().find("type").first().text()=="ForStatement" )
+				{
+					var xstr2 = "";
+					for (var i=0; i<(indent-1); i++) { xstr2 += "  "; }
+					console.log(xstr2+"L(P) "+CalleLine+": ForStatement ("+ThisName+")"); 
+				} else
+				{
+					var xstr2 = "";
+					for (var i=0; i<(indent-1); i++) { xstr2 += "  "; }
+					console.log(xstr2+"L(P) "+CalleLine+": *"+jQuery(this).parent().find("type").first().text()+" ("+ThisName+")"); 
+				}
 			}
 			
-			var LeftSide = sourcecode.slice( parseInt( jQuery(this).parent().children('left').first().find("start").first().text() , 10)  , 
-													 parseInt( jQuery(this).parent().children('left').first().find("end").first().text() , 10) );
-
-			var RightSide = sourcecode.slice( parseInt( jQuery(this).parent().children('right').first().find("start").first().text() , 10)  , 
-													  parseInt( jQuery(this).parent().children('right').first().find("end").first().text() , 10) );
-
-			var xOperator = jQuery(this).parent().children('operator').first().text(); 
-			
-			var xType = jQuery(this).find('type').first().text(); 
-			
-
-
-//			if ( (xOperator=="==") || (xOperator=="===") || (xOperator=="!=") || (xOperator=="!==") || (xOperator==">") || (xOperator==">=") || (xOperator=="<") || (xOperator=="<=") || (xOperator=="&&") || (xOperator=="||") || (xOperator=="!") )
+			if ( (jQuery(this)[0]["name"]=="left" )   )
 			{
+				var LeftSide = sourcecode.slice( parseInt( jQuery(this).parent().children('left').first().find("start").first().text() , 10)  , 
+														 parseInt( jQuery(this).parent().children('left').first().find("end").first().text() , 10) );
+
+				var RightSide = sourcecode.slice( parseInt( jQuery(this).parent().children('right').first().find("start").first().text() , 10)  , 
+														  parseInt( jQuery(this).parent().children('right').first().find("end").first().text() , 10) );
+
+				var xOperator = jQuery(this).parent().children('operator').first().text(); 
+
+				var xType = jQuery(this).find('type').first().text(); 
+
+
+
+	//			if ( (xOperator=="==") || (xOperator=="===") || (xOperator=="!=") || (xOperator=="!==") || (xOperator==">") || (xOperator==">=") || (xOperator=="<") || (xOperator=="<=") || (xOperator=="&&") || (xOperator=="||") || (xOperator=="!") )
+
 				if ( (ParentType=="expression")  || (ParentType=="test") ) {
 					console.log(xstr+"L(P) "+CalleLine+": ("+LeftSide+" ("+xOperator+") "+RightSide+") P:"+ParentType+" "+xType);
 				} else
 				{
 					console.log(xstr+"L-R "+CalleLine+": ("+LeftSide+" ("+xOperator+") "+RightSide+") P:"+ParentType+" "+xType);
 				}
+			} else
+			if ( (jQuery(this)[0]["name"]=="init" )  )
+			{
+//				console.log( jQuery(this).parent().find('id').first().find("start").first().text() );
+				
+				var LeftSide = sourcecode.slice( parseInt( jQuery(this).parent().find('id').first().find("start").first().text() , 10)  , 
+														 parseInt( jQuery(this).parent().find('id').first().find("end").first().text() , 10) );
+
+				var RightSide = sourcecode.slice( parseInt( jQuery(this).parent().find('init').first().find("start").first().text() , 10)  , 
+														 parseInt( jQuery(this).parent().find('init').first().find("end").first().text() , 10) );
+		
+				var xOperator = "=";
+
+				var xType = jQuery(this).find('type').first().text(); 
+
+				if ( (ParentType=="expression")  || (ParentType=="test") ) {
+					console.log(xstr+"L(P) "+CalleLine+": ("+LeftSide+" ("+xOperator+") "+RightSide+") P:"+ParentType+" "+xType);
+				} else
+				{
+					console.log(xstr+"L-R "+CalleLine+": ("+LeftSide+" ("+xOperator+") "+RightSide+") P:"+ParentType+" "+xType);
+				}
+				
 			}
 		}
 		
 		if ( jQuery(this).children().length  > 0)
 		{
-			LoopLeft(this,jQuery(this).parent(),sourcecode,indent+1);
+			LoopLeft(jQuery(this),sourcecode,indent+1);
 		}
 	});
 }
@@ -638,7 +690,10 @@ function GopherTellFile(inFile)
 			var xmldata = "<project>"+ json2xml(parsed)+ "</project>";
 			
 //			loopBodyCommands(xmldata,contents);
-			LoopLeft(xmldata,null,contents,0,false);
+
+//			var jQuery = cheerio.load(xmldata, {xmlMode: true});
+			
+			LoopLeft(xmldata,contents,0);
 /*
 			var HasUnaryExpression = true;
 			

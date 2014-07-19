@@ -1,4 +1,6 @@
 var numberA = 5;	
+var numberC = numberA;
+var numberC = !numberA;
 var numberB = 5+4;	
 numberA = (((5+4) + (4+9)) * 5) / 3;
 
