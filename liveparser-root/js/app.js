@@ -1,8 +1,17 @@
+var boolD = !(numberC || boolB);
+boolD = !((numberA<numberB) || !(boolD));
+var bool4 = DoubleNumber(numberA)>numberB;
 var numberA = 5;	
 var numberC = numberA;
 var numberC = !numberA;
 var numberB = 5+4;	
 numberA = (((5+4) + (4+9)) * 5) / 3;
+
+var j=0;
+for (var i2=0; i2 < 3; i2++,cool())
+{
+	j = j + i2;
+}
 
 ++numberA;
 BoolX = numberA>5;
@@ -18,22 +27,6 @@ var boolA = numberA>numberB;
 var boolB = strA.indexOf("f")>0;
 var boolC = !boolA;
 var boolF = boolC;
-var boolD = !(boolC || boolB);
-
-boolD = !((numberA<numberB) || !(boolD));
-/*
-Temp1 = numberA<numberB;
-Temp2 = !(boolD);
-Temp3 = (Temp1 || Temp2);
-Temp4 = !Temp3;
-boolD = Temp4;
-
-Temp_BoolD_1 = Helper("BoolD","Temp_BoolD_1",1,19,"numberA","numberB","<",numberA,numberB);
-Temp_BoolD_2 = HelperNot("BoolD","Temp_BoolD_2",2,19,"boolD",boolD);
-Temp_BoolD_3 = Helper("BoolD","Temp_BoolD_3",3,19,"Temp_BoolD_1","Temp_BoolD_2","||",Temp_BoolD_1,Temp_BoolD_2);
-Temp_BoolD_4 = HelperNot("BoolD","Temp_BoolD_4",2,19,"Temp_BoolD_3",Temp_BoolD_3);
-boolD = HelperSet(19,"boolD",Temp_BoolD_4,"boolD = !((numberA<numberB) || !(boolD));");
-*/
 
 var boolG = !(boolC || ! boolB);
 var bool4 = DoubleNumber(numberA)>numberB;
@@ -59,11 +52,6 @@ var i1;
 
 j = 0;
 
-var j=0;
-for (var i2=0; i2 < 3; i2++,cool())
-{
-	j = j + i2;
-}
 
 
 
@@ -116,3 +104,18 @@ $(document).ready(function() {
  str1 = "hello world";
 	$("#debug_console").html(str1);
 });
+
+
+/*
+Temp1 = numberA<numberB;
+Temp2 = !(boolD);
+Temp3 = (Temp1 || Temp2);
+Temp4 = !Temp3;
+boolD = Temp4;
+
+Temp_BoolD_1 = Helper("BoolD","Temp_BoolD_1",1,19,"numberA","numberB","<",numberA,numberB);
+Temp_BoolD_2 = HelperNot("BoolD","Temp_BoolD_2",2,19,"boolD",boolD);
+Temp_BoolD_3 = Helper("BoolD","Temp_BoolD_3",3,19,"Temp_BoolD_1","Temp_BoolD_2","||",Temp_BoolD_1,Temp_BoolD_2);
+Temp_BoolD_4 = HelperNot("BoolD","Temp_BoolD_4",2,19,"Temp_BoolD_3",Temp_BoolD_3);
+boolD = HelperSet(19,"boolD",Temp_BoolD_4,"boolD = !((numberA<numberB) || !(boolD));");
+*/

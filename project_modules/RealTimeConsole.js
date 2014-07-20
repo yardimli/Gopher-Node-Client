@@ -551,48 +551,60 @@ function LoopLeft(xmldata,sourcecode,indent)
 		for (var i=0; i<indent; i++) { xstr += "  "; }
 		
 
-		if ( (jQuery(this)[0]["name"]=="left" ) || (jQuery(this)[0]["name"]=="init" )  )
+		if ( (jQuery(this).find("type").first().text() == "VariableDeclarator") || 
+		     (jQuery(this).find("type").first().text() == "AssignmentExpression") ||
+			  (jQuery(this).find("type").first().text() == "UnaryExpression") ||
+
+			  (jQuery(this).find("type").first().text() == "ForStatement") ||
+			  (jQuery(this).find("type").first().text() == "BlockStatement") ||
+			  (jQuery(this).find("type").first().text() == "VariableDeclaration") ||
+			  (jQuery(this).find("type").first().text() == "ExpressionStatement") ||
+			  (jQuery(this).find("type").first().text() == "SequenceExpression") ||
+			  
+			  (jQuery(this).find("type").first().text() == "UpdateExpression") ||
+			  (jQuery(this).find("type").first().text() == "BinaryExpression") ||
+			  (jQuery(this).find("type").first().text() == "LogicalExpression") ||
+			  (jQuery(this).find("type").first().text() == "Identifier") ||
+			  (jQuery(this).find("type").first().text() == "Literal") ||
+			  (jQuery(this).find("type").first().text() == "CallExpression")/* ||
+			  
+			  (jQuery(this)[0]["name"]=="callee" ) ||
+			  (jQuery(this)[0]["name"]=="init" ) ||
+			  (jQuery(this)[0]["name"]=="id" ) ||
+			  (jQuery(this)[0]["name"]=="left" ) ||
+			  (jQuery(this)[0]["name"]=="right" )*/
+		  ) 
+		
+		// [0]["name"]=="left" ) || (jQuery(this)[0]["name"]=="init" )  )
 		{
 		
 			var TempX = jQuery(this).parent();
 			var ParentType = TempX[0]["name"];
-			var ThisName = jQuery(this)[0]["name"];
+			var ThisName = "("+jQuery(this)[0]["name"]+")";
 			
-			var CalleLine = jQuery(this).parent().find("loc").find("start").find("line").first().text()
+			var CalleLine = jQuery(this).find("loc").find("start").find("line").first().text()
 
-//			if (treeparent!=null)
+			
+			if ( (jQuery(this).find("type").first().text() == "ForStatement") || 
+			     (jQuery(this).find("type").first().text() == "BlockStatement") ||
+				  (jQuery(this).find("type").first().text() == "VariableDeclaration") ||
+				  (jQuery(this).find("type").first().text() == "ExpressionStatement") ||
+				  (jQuery(this).find("type").first().text() == "SequenceExpression") )
 			{
-				if (jQuery(this).parent().find("type").first().text()=="VariableDeclarator" )
-				{
-					var xstr2 = "";
-					for (var i=0; i<(indent-2); i++) { xstr2 += "  "; }
-					console.log(xstr2+"L(P) "+CalleLine+": VariableDeclaration ("+ThisName+")"); 
-
-					var xstr2 = "";
-					for (var i=0; i<(indent-1); i++) { xstr2 += "  "; }
-					console.log(xstr2+"L(P) "+CalleLine+": VariableDeclarator ("+ThisName+")"); 
-				} else
-
-				if (jQuery(this).parent().find("type").first().text()=="SequenceExpression" )
-				{
-					var xstr2 = "";
-					for (var i=0; i<(indent-1); i++) { xstr2 += "  "; }
-					console.log(xstr2+"L(P) "+CalleLine+": SequenceExpression ("+ThisName+")"); 
-				} else
-
-				if (jQuery(this).parent().find("type").first().text()=="ForStatement" )
-				{
-					var xstr2 = "";
-					for (var i=0; i<(indent-1); i++) { xstr2 += "  "; }
-					console.log(xstr2+"L(P) "+CalleLine+": ForStatement ("+ThisName+")"); 
-				} else
-				{
-					var xstr2 = "";
-					for (var i=0; i<(indent-1); i++) { xstr2 += "  "; }
-					console.log(xstr2+"L(P) "+CalleLine+": *"+jQuery(this).parent().find("type").first().text()+" ("+ThisName+")"); 
-				}
+				console.log(xstr+" "+CalleLine+": "+jQuery(this).find("type").first().text()+" "+ThisName); 
+			} else
+			{
+				var xOperator = "";
+				xOperator = jQuery(this).children('operator').first().text(); 
+				if (xOperator!="") { xOperator = "("+xOperator+")"; }
+				if (jQuery(this).find("type").first().text() == "VariableDeclarator") { xOperator = "(=)"; }
+				var SourceX = sourcecode.slice( parseInt( jQuery(this).find("start").first().text() , 10)  , 
+														  parseInt( jQuery(this).find("end").first().text() , 10) );
+				console.log(xstr+" "+CalleLine+": "+jQuery(this).find("type").first().text()+" "+ThisName+" "+xOperator+" ["+SourceX+"]"); 
 			}
 			
+
+			/*
 			if ( (jQuery(this)[0]["name"]=="left" )   )
 			{
 				var LeftSide = sourcecode.slice( parseInt( jQuery(this).parent().children('left').first().find("start").first().text() , 10)  , 
@@ -609,12 +621,7 @@ function LoopLeft(xmldata,sourcecode,indent)
 
 	//			if ( (xOperator=="==") || (xOperator=="===") || (xOperator=="!=") || (xOperator=="!==") || (xOperator==">") || (xOperator==">=") || (xOperator=="<") || (xOperator=="<=") || (xOperator=="&&") || (xOperator=="||") || (xOperator=="!") )
 
-				if ( (ParentType=="expression")  || (ParentType=="test") ) {
-					console.log(xstr+"L(P) "+CalleLine+": ("+LeftSide+" ("+xOperator+") "+RightSide+") P:"+ParentType+" "+xType);
-				} else
-				{
-					console.log(xstr+"L-R "+CalleLine+": ("+LeftSide+" ("+xOperator+") "+RightSide+") P:"+ParentType+" "+xType);
-				}
+				console.log(xstr+" "+CalleLine+": Left ("+LeftSide+" ("+xOperator+") "+RightSide+") P:"+ParentType+" "+xType);
 			} else
 			if ( (jQuery(this)[0]["name"]=="init" )  )
 			{
@@ -631,13 +638,13 @@ function LoopLeft(xmldata,sourcecode,indent)
 				var xType = jQuery(this).find('type').first().text(); 
 
 				if ( (ParentType=="expression")  || (ParentType=="test") ) {
-					console.log(xstr+"L(P) "+CalleLine+": ("+LeftSide+" ("+xOperator+") "+RightSide+") P:"+ParentType+" "+xType);
+					console.log(xstr+" "+CalleLine+": Ini1 ("+LeftSide+" ("+xOperator+") "+RightSide+") P:"+ParentType+" "+xType);
 				} else
 				{
-					console.log(xstr+"L-R "+CalleLine+": ("+LeftSide+" ("+xOperator+") "+RightSide+") P:"+ParentType+" "+xType);
+					console.log(xstr+" "+CalleLine+": Ini2("+LeftSide+" ("+xOperator+") "+RightSide+") P:"+ParentType+" "+xType);
 				}
-				
 			}
+			*/
 		}
 		
 		if ( jQuery(this).children().length  > 0)
