@@ -101,6 +101,8 @@ this.InitLocalSocket = function(socket) {
 	      socket.emit('getItemsInDirClient', socketResponse(result));
     });
   });
+  
+  
 
   socket.on('_openProjectFolder', function(data) {
   	var setSettings = new FileManager.finderPreferences();
@@ -122,6 +124,8 @@ this.InitLocalSocket = function(socket) {
     setSettings.acceptAllTypes = false;
     setSettings.duplicateFiles = true;
     setSettings.checkModified = data.checkModified;
+    setSettings.ignoredFilesFolders = data.ignoredFileFolderList;
+    
     FileManager.findFilesFoldersIn(setSettings, function(result){
     	socket.emit('duplicateAllProjectFiles',socketResponse(result));
     });

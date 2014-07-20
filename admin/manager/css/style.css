@@ -124,3 +124,8 @@ color:black;
 	display:none;
 }
 
+.project-ignoreFiles-view{
+	min-height:280px;
+	max-height: 440px; overflow: auto;padding-bottom: 15px;
+}
+

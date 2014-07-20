@@ -33,8 +33,16 @@ var MANAGERJS = {
 
 		MANAGERJS.iosocket.on('openProjectFolder', function(response) {
 			if (response.success) {
+				if ($('#project_files_view').find('ul').length > 0) {
+					var selectedids = $('#project_files_view').jstree('get_selected');
+					$('#project_files_view').jstree('enable_node', selectedids);
+					$('#project_files_view').jstree('deselect_node', selectedids);
+				}
+				
+				$('#in_projectDir').val(response.data.path);	
 				localStorage['selectedProjectPath'] = response.data.path;
 				MANAGERJS.displayFilesFolders.asJstree(response.data);
+				$('#project_ignorefiles_view').empty();
 			}
 		});
 		
@@ -100,8 +108,7 @@ MANAGERJS.myEvents = {
 			});
 		}
 	},
-	btn_openProjectDir : function(_folderPath) {
-		$('#in_projectDir').val(_folderPath);		
+	btn_openProjectDir : function(_folderPath) {	
 		MANAGERJS.iosocket.emit('_openProjectFolder', {
 			target : _folderPath
 		}); 
@@ -112,7 +119,7 @@ MANAGERJS.myEvents = {
 		console.log(selectedNodeObj);
 		
 		if($('#project_files_view').jstree('is_disabled',selectedNodeObj.id) == false){
-			$(_senderJ).text('Remove it from ignore list');
+			$(_senderJ).text('Watch it');
 			$('#project_files_view').jstree('select_node',selectedNodeObj.id);
 			$('#project_files_view').jstree('disable_node',selectedNodeObj.id);
 			
@@ -160,8 +167,14 @@ MANAGERJS.myEvents = {
 				}
 			}
 		}
-		
 		//console.log($('#project_files_view').jstree().get_selected(true));
+	},
+	btn_doneSetup_click:function(_senderJ){
+		MANAGERJS.iosocket.emit('_duplicateAllProjectFiles', {
+			target : localStorage['selectedProjectPath'],
+			checkModified: false,
+			ignoredFileFolderList: MANAGERJS.ignoredFilesFolders.getList(true)
+		}); 
 	}
 };
 
@@ -197,7 +210,7 @@ MANAGERJS.displayFilesFolders = {
 				if($('#project_files_view').jstree('is_disabled',data.node.id)==false){
 					$('#btn_ignoreFile').text('Ignore it');
 				}else{
-					$('#btn_ignoreFile').text('Remove it from ignore list');
+					$('#btn_ignoreFile').text('Watch it');
 				}
 				var nodeItem = $('#' + data.node.id).find('a.jstree-anchor');
 				var nodeWidth = $(nodeItem).width();
@@ -305,23 +318,36 @@ MANAGERJS.displayFilesFolders = {
 };
 
 MANAGERJS.ignoredFilesFolders = {
-	getList: function(){
-		var jstreeNodeId = $('#project_files_view').jstree().get_selected();
-		console.log(jstreeNodeId);
+	getList: function(asRaw){
+		var jstreeNodeIds = $('#project_files_view').jstree().get_selected();
 		var list = [];
-		for(var i=0; i<jstreeNodeId.length; i++){
-			var nodeId = jstreeNodeId[i];
+		for(var i=0; i<jstreeNodeIds.length; i++){
+			var nodeId = jstreeNodeIds[i];
 			var nodeObj = $('#project_files_view').jstree('get_node', nodeId);
-			list.push({path: nodeObj.original.path, treeNodeId: nodeId});
+			if(asRaw){
+				list.push(nodeObj.original.path);
+			}else{
+				list.push({path: nodeObj.original.path, treeNodeId: nodeId});
+			}
 		}
 		return list;
 	},
 	display: function(){
-		var gotList = MANAGERJS.ignoredFilesFolders.getList();
-		console.log(gotList);
+		var gotList = MANAGERJS.ignoredFilesFolders.getList(false);
 		$('#project_ignorefiles_view').empty();
 		for(var i=0; i<gotList.length; i++){
-			$('#project_ignorefiles_view').append('<div data-treenodeid="'+gotList[i].treeNodeId+'">'+gotList[i].path+'</div>');
+			var displayName = gotList[i].path.replace($('#project_files_view').jstree('get_text','j1_1'),'');
+			displayName = markTheLastInPath(displayName);
+			$('#project_ignorefiles_view').append('<div data-treenodeid="'+gotList[i].treeNodeId+'">'+ displayName +'</div>');
+		}
+		$('#project_ignoreFiles_view').on('click','div',function(){
+			$('#project_files_view').jstree('select_node', $(this).data('treenodeid'));
+		});
+		
+		function markTheLastInPath(_filePath){
+			var namearr = _filePath.split('\\');
+			var allButLastPart = _filePath.substring(0,_filePath.indexOf(namearr[namearr.length-1]));
+			return allButLastPart + '<font color="#83ECFC"><b>'+namearr[namearr.length-1]+'</b></font>';
 		}
 	}
 };
@@ -361,6 +387,9 @@ $(document).ready(function() {
 	});
 	$('#btn_ignoreFile').click(function(){
 		MANAGERJS.myEvents.btn_ignoreFile_click($(this));
+	});
+	$('#btn_doneSetup').click(function(){
+		MANAGERJS.myEvents.btn_doneSetup_click($(this));
 	});
 	
 	

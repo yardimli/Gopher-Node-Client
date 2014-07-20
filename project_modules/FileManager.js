@@ -69,8 +69,21 @@ var CommonMethods = {
 		}else{
 			Globals.fs.writeFileSync(filePathWithoutName + CommonMethods.getGopherFileName(_filePath), Globals.fs.readFileSync(_filePath));
 		}
-		
-		
+	},
+	isFileFolderIgnored: function(_filePath,_ignoreList){
+		console.log('========isFileFolderIgnored===========');
+		console.log(_ignoreList);
+		var countMatch = 0;
+		for(var i=0; i<_ignoreList.length; i++){
+			if(_ignoreList[i] == _filePath){
+				countMatch ++;
+			}
+		}
+		if(countMatch>0){
+			return true;
+		}else{
+			return false;
+		}
 	}
 };
 
@@ -86,6 +99,7 @@ function finderPreferences() {
 	this.acceptAllTypes = true;
 	this.duplicateFiles = false;
 	this.checkModified = false;
+	this.ignoredFilesFolders = [];
 	return this;
 }
 
@@ -109,19 +123,21 @@ function finder(_folderPath, _preferences, end) {
 			stat = Globals.fs.statSync(file);
 			if (_preferences.findSubFolders) {
 				if (stat.isDirectory()) {
-					finder(file, _preferences, function(err, res) {
-						output.children.push(res);
-						if (!--pending) {
-							end(null, output);
-						}
-					});
+					if(CommonMethods.isFileFolderIgnored(file,_preferences.ignoredFilesFolders)==false){
+						finder(file, _preferences, function(err, res) {
+							output.children.push(res);
+							if (!--pending) {
+								end(null, output);
+							}
+						});
+					}
 				} else {
 					if (_preferences.onlyFindFolders) {
 						if (!--pending) {
 							end(null, output);
 						}
 					} else {
-						if(CommonMethods.isItaGopherFile(file)==false){
+						if(CommonMethods.isItaGopherFile(file)==false && CommonMethods.isFileFolderIgnored(file,_preferences.ignoredFilesFolders)==false){
 							if (_preferences.acceptAllTypes || (_preferences.acceptAllTypes == false && CommonMethods.isFileAccepted(file))) {
 									output.children.push(new fileNode(file, null));
 									if (_preferences.duplicateFiles) {
@@ -145,7 +161,9 @@ function finder(_folderPath, _preferences, end) {
 				}
 			} else {
 				if (stat.isDirectory()) {
-					output.children.push(new fileNode(file, []));
+					if(CommonMethods.isFileFolderIgnored(file,_preferences.ignoredFilesFolders)==false){
+						output.children.push(new fileNode(file, []));
+					}
 					if (!--pending) {
 						end(null, output);
 					}
@@ -156,7 +174,7 @@ function finder(_folderPath, _preferences, end) {
 						}
 						//console.log('---------WalkDirectory skip subFolders/_onlyFindFolders pending ' + pending + '--------------');
 					} else {
-						if(CommonMethods.isItaGopherFile(file)==false){
+						if(CommonMethods.isItaGopherFile(file)==false && CommonMethods.isFileFolderIgnored(file,_preferences.ignoredFilesFolders)==false){
 							if (_preferences.acceptAllTypes || (_preferences.acceptAllTypes == false && CommonMethods.isFileAccepted(file))) {
 								output.children.push(new fileNode(file, null));
 								if (_preferences.duplicateFiles) {
@@ -188,6 +206,8 @@ exports.finderPreferences = function() {
 };
 
 exports.findFilesFoldersIn = function(_settings, _callBack) {
+	console.log('========findFilesFoldersIn===========');
+	console.log(_settings.ignoredFilesFolders);
 	finder(_settings.root, _settings, function(err, results) {
 		if (err) {
 			_callBack(err);
@@ -196,5 +216,9 @@ exports.findFilesFoldersIn = function(_settings, _callBack) {
 		}
 	});
 };
+
+
+
+
 
 
