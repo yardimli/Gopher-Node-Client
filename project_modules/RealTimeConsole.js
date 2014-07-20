@@ -540,57 +540,116 @@ function InsertGopherTells(contents,JSGopherObjectsArray)
 	return contents;
 }
 
-function LoopLeft(tree,treeparent,sourcecode,indent)
+function LoopLeft(xmldata,sourcecode,indent)
 {
-	var jQuery = cheerio.load(tree, {xmlMode: true});
-	
-	jQuery(tree).children().each(function(){
+	var jQuery = cheerio.load(xmldata, {xmlMode: true});
+
+	jQuery(xmldata).children().each(function(){
 		
 		var xstr = "";
 		var xtrue = false;
 		for (var i=0; i<indent; i++) { xstr += "  "; }
 		
 
-		if ( (jQuery(this)[0]["name"]=="left" )  )
+		if ( (jQuery(this).find("type").first().text() == "VariableDeclarator") || 
+		     (jQuery(this).find("type").first().text() == "AssignmentExpression") ||
+			  (jQuery(this).find("type").first().text() == "UnaryExpression") ||
+
+			  (jQuery(this).find("type").first().text() == "ForStatement") ||
+			  (jQuery(this).find("type").first().text() == "BlockStatement") ||
+			  (jQuery(this).find("type").first().text() == "VariableDeclaration") ||
+			  (jQuery(this).find("type").first().text() == "ExpressionStatement") ||
+			  (jQuery(this).find("type").first().text() == "SequenceExpression") ||
+			  
+			  (jQuery(this).find("type").first().text() == "UpdateExpression") ||
+			  (jQuery(this).find("type").first().text() == "BinaryExpression") ||
+			  (jQuery(this).find("type").first().text() == "LogicalExpression") ||
+			  (jQuery(this).find("type").first().text() == "Identifier") ||
+			  (jQuery(this).find("type").first().text() == "Literal") ||
+			  (jQuery(this).find("type").first().text() == "CallExpression")/* ||
+			  
+			  (jQuery(this)[0]["name"]=="callee" ) ||
+			  (jQuery(this)[0]["name"]=="init" ) ||
+			  (jQuery(this)[0]["name"]=="id" ) ||
+			  (jQuery(this)[0]["name"]=="left" ) ||
+			  (jQuery(this)[0]["name"]=="right" )*/
+		  ) 
+		
+		// [0]["name"]=="left" ) || (jQuery(this)[0]["name"]=="init" )  )
 		{
+		
 			var TempX = jQuery(this).parent();
 			var ParentType = TempX[0]["name"];
+			var ThisName = "("+jQuery(this)[0]["name"]+")";
 			
-			var CalleLine = jQuery(this).parent().find("loc").find("start").find("line").first().text()
+			var CalleLine = jQuery(this).find("loc").find("start").find("line").first().text()
 
-			if (treeparent.find("type").first().text()=="VariableDeclarator" )
+			
+			if ( (jQuery(this).find("type").first().text() == "ForStatement") || 
+			     (jQuery(this).find("type").first().text() == "BlockStatement") ||
+				  (jQuery(this).find("type").first().text() == "VariableDeclaration") ||
+				  (jQuery(this).find("type").first().text() == "ExpressionStatement") ||
+				  (jQuery(this).find("type").first().text() == "SequenceExpression") )
 			{
-				var xstr2 = "";
-				for (var i=0; i<(indent-1); i++) { xstr2 += "  "; }
-				console.log(xstr2+"L(P) "+CalleLine+": VariableDeclarator"); 
+				console.log(xstr+" "+CalleLine+": "+jQuery(this).find("type").first().text()+" "+ThisName); 
+			} else
+			{
+				var xOperator = "";
+				xOperator = jQuery(this).children('operator').first().text(); 
+				if (xOperator!="") { xOperator = "("+xOperator+")"; }
+				if (jQuery(this).find("type").first().text() == "VariableDeclarator") { xOperator = "(=)"; }
+				var SourceX = sourcecode.slice( parseInt( jQuery(this).find("start").first().text() , 10)  , 
+														  parseInt( jQuery(this).find("end").first().text() , 10) );
+				console.log(xstr+" "+CalleLine+": "+jQuery(this).find("type").first().text()+" "+ThisName+" "+xOperator+" ["+SourceX+"]"); 
 			}
 			
-			var LeftSide = sourcecode.slice( parseInt( jQuery(this).parent().children('left').first().find("start").first().text() , 10)  , 
-													 parseInt( jQuery(this).parent().children('left').first().find("end").first().text() , 10) );
 
-			var RightSide = sourcecode.slice( parseInt( jQuery(this).parent().children('right').first().find("start").first().text() , 10)  , 
-													  parseInt( jQuery(this).parent().children('right').first().find("end").first().text() , 10) );
-
-			var xOperator = jQuery(this).parent().children('operator').first().text(); 
-			
-			var xType = jQuery(this).find('type').first().text(); 
-			
-
-
-//			if ( (xOperator=="==") || (xOperator=="===") || (xOperator=="!=") || (xOperator=="!==") || (xOperator==">") || (xOperator==">=") || (xOperator=="<") || (xOperator=="<=") || (xOperator=="&&") || (xOperator=="||") || (xOperator=="!") )
+			/*
+			if ( (jQuery(this)[0]["name"]=="left" )   )
 			{
+				var LeftSide = sourcecode.slice( parseInt( jQuery(this).parent().children('left').first().find("start").first().text() , 10)  , 
+														 parseInt( jQuery(this).parent().children('left').first().find("end").first().text() , 10) );
+
+				var RightSide = sourcecode.slice( parseInt( jQuery(this).parent().children('right').first().find("start").first().text() , 10)  , 
+														  parseInt( jQuery(this).parent().children('right').first().find("end").first().text() , 10) );
+
+				var xOperator = jQuery(this).parent().children('operator').first().text(); 
+
+				var xType = jQuery(this).find('type').first().text(); 
+
+
+
+	//			if ( (xOperator=="==") || (xOperator=="===") || (xOperator=="!=") || (xOperator=="!==") || (xOperator==">") || (xOperator==">=") || (xOperator=="<") || (xOperator=="<=") || (xOperator=="&&") || (xOperator=="||") || (xOperator=="!") )
+
+				console.log(xstr+" "+CalleLine+": Left ("+LeftSide+" ("+xOperator+") "+RightSide+") P:"+ParentType+" "+xType);
+			} else
+			if ( (jQuery(this)[0]["name"]=="init" )  )
+			{
+//				console.log( jQuery(this).parent().find('id').first().find("start").first().text() );
+				
+				var LeftSide = sourcecode.slice( parseInt( jQuery(this).parent().find('id').first().find("start").first().text() , 10)  , 
+														 parseInt( jQuery(this).parent().find('id').first().find("end").first().text() , 10) );
+
+				var RightSide = sourcecode.slice( parseInt( jQuery(this).parent().find('init').first().find("start").first().text() , 10)  , 
+														 parseInt( jQuery(this).parent().find('init').first().find("end").first().text() , 10) );
+		
+				var xOperator = "=";
+
+				var xType = jQuery(this).find('type').first().text(); 
+
 				if ( (ParentType=="expression")  || (ParentType=="test") ) {
-					console.log(xstr+"L(P) "+CalleLine+": ("+LeftSide+" ("+xOperator+") "+RightSide+") P:"+ParentType+" "+xType);
+					console.log(xstr+" "+CalleLine+": Ini1 ("+LeftSide+" ("+xOperator+") "+RightSide+") P:"+ParentType+" "+xType);
 				} else
 				{
-					console.log(xstr+"L-R "+CalleLine+": ("+LeftSide+" ("+xOperator+") "+RightSide+") P:"+ParentType+" "+xType);
+					console.log(xstr+" "+CalleLine+": Ini2("+LeftSide+" ("+xOperator+") "+RightSide+") P:"+ParentType+" "+xType);
 				}
 			}
+			*/
 		}
 		
 		if ( jQuery(this).children().length  > 0)
 		{
-			LoopLeft(this,jQuery(this).parent(),sourcecode,indent+1);
+			LoopLeft(jQuery(this),sourcecode,indent+1);
 		}
 	});
 }
@@ -638,7 +697,10 @@ function GopherTellFile(inFile)
 			var xmldata = "<project>"+ json2xml(parsed)+ "</project>";
 			
 //			loopBodyCommands(xmldata,contents);
-			LoopLeft(xmldata,null,contents,0,false);
+
+//			var jQuery = cheerio.load(xmldata, {xmlMode: true});
+			
+			LoopLeft(xmldata,contents,0);
 /*
 			var HasUnaryExpression = true;
 			
