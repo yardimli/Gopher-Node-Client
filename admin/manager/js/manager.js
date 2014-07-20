@@ -23,10 +23,8 @@ var MANAGERJS = {
 			$("#debug_console").append(timeStamp() + "> " + recievedData.text + "<br>");
 		});
 
-		MANAGERJS.iosocket.on('getItemsInDirClient', function(response) {
-			if (response.success == false) {
-
-			} else {
+		MANAGERJS.iosocket.on('getFolders', function(response) {
+			if (response.success) {
 				MANAGERJS.displayFilesFolders.asList(response.data);
 			}
 		});
@@ -77,7 +75,7 @@ MANAGERJS.myEvents = {
 			'width' : $('#dialog_select_dir').find('.modal-body').width() + 'px'
 		});
 		MANAGERJS.viewedFolders = [];
-		MANAGERJS.iosocket.emit('getItemsInDir', {
+		MANAGERJS.iosocket.emit('_getFolders', {
 			target : 'c:\\wamp\\www'
 		});
 	},
@@ -93,7 +91,7 @@ MANAGERJS.myEvents = {
 					if (Number(watchCount) >= 2) {
 						$(_senderJ).removeClass('selected');
 						MANAGERJS.viewedFolders.push($('#current_dir').text());
-						MANAGERJS.iosocket.emit('getItemsInDir', {
+						MANAGERJS.iosocket.emit('_getFolders', {
 							target : $(_senderJ).data('path')
 						});
 					}
@@ -103,7 +101,7 @@ MANAGERJS.myEvents = {
 			$(_senderJ).find('input[type=hidden]').val(clickCount);
 		} else if ($(_senderJ).hasClass('up')) {
 			MANAGERJS.viewedFolders.splice(MANAGERJS.viewedFolders.length - 1, 1);
-			MANAGERJS.iosocket.emit('getItemsInDir', {
+			MANAGERJS.iosocket.emit('_getFolders', {
 				target : $(_senderJ).data('path')
 			});
 		}
@@ -118,23 +116,40 @@ MANAGERJS.myEvents = {
 		var selectedNodeObj = $('#project_files_view').jstree('get_node',selectedNodeId);
 		console.log(selectedNodeObj);
 		
-		if($('#project_files_view').jstree('is_disabled',selectedNodeObj.id) == false){
-			$(_senderJ).text('Watch it');
-			$('#project_files_view').jstree('select_node',selectedNodeObj.id);
-			$('#project_files_view').jstree('disable_node',selectedNodeObj.id);
-			
-			if(selectedNodeObj.children_d.length>0){
-				$('#project_files_view').jstree('select_node',selectedNodeObj.children_d);
-				$('#project_files_view').jstree('disable_node',selectedNodeObj.children_d);
+		if ($('#project_files_view').jstree('is_disabled', selectedNodeObj.id)) {
+			$(_senderJ).text($(_senderJ).attr('data-whenenable'));
+		} else {
+			$(_senderJ).text($(_senderJ).attr('data-whendisable'));
+		}
+
+		var nameArr = selectedNodeObj.text.split('.');
+		if(nameArr.length>1){
+			if($('#project_files_view').jstree('is_disabled',selectedNodeObj.id)){
+				$('#project_files_view').jstree('deselect_node',selectedNodeObj.id);
+				$('#project_files_view').jstree('enable_node',selectedNodeObj.id);
+			}else{
+				$('#project_files_view').jstree('select_node',selectedNodeObj.id);
+				$('#project_files_view').jstree('disable_node',selectedNodeObj.id);
 			}
 		}else{
-			$(_senderJ).text('Ignore it');
-			$('#project_files_view').jstree('deselect_node',selectedNodeObj.id);
-			$('#project_files_view').jstree('enable_node',selectedNodeObj.id);
-			if(selectedNodeObj.children_d.length>0){
-				$('#project_files_view').jstree('deselect_node',selectedNodeObj.children_d);
-				$('#project_files_view').jstree('enable_node',selectedNodeObj.children_d);
-			}	
+			var selectCommand = '', enableCommand='';
+			if($('#project_files_view').jstree('is_disabled',selectedNodeObj.id)){
+				selectCommand = 'deselect_node';
+				enableCommand = 'enable_node';
+			}else{
+				selectCommand = 'select_node';
+				enableCommand = 'disable_node';
+			}
+			var childrenIds = selectedNodeObj.children_d;
+			for (var i = 0; i < childrenIds.length; i++) {
+				var childNode = $('#project_files_view').jstree('get_node', childrenIds[i]);
+				var nameArr = childNode.text.split('.');
+				if ((nameArr[nameArr.length - 1]).toLowerCase() == 'js') {
+					$('#project_files_view').jstree(selectCommand, childNode.id);
+					$('#project_files_view').jstree(enableCommand, childNode.id);
+					checkChildrenState(childNode.id,0);
+				}
+			}
 		}
 		checkChildrenState(selectedNodeObj.id,0);
 		MANAGERJS.ignoredFilesFolders.display();
@@ -205,14 +220,36 @@ MANAGERJS.displayFilesFolders = {
 	},
 	asJstree : function(_data) {
 		$('#project_files_view').on('hover_node.jstree', function(e, data) {
-			//console.log(data.node.original);
-			
-				if($('#project_files_view').jstree('is_disabled',data.node.id)==false){
-					$('#btn_ignoreFile').text('Ignore it');
+			var nameArr = data.node.text.split('.');	
+			$('#btn_ignoreFile').removeAttr('data-whenenable');		
+			$('#btn_ignoreFile').removeAttr('data-whendisable');
+			if(nameArr.length>1){
+				//it's  file node
+				if(nameArr[nameArr.length-1].toLowerCase() == 'js'){
+					/*if($('#project_files_view').jstree('is_disabled',data.node.id)==false){
+						$('#btn_ignoreFile').text('Ignore it');		
+					}else{
+						$('#btn_ignoreFile').text('Watch it');
+					}*/
+					$('#btn_ignoreFile').attr('data-whenenable','Ignore it');
+					$('#btn_ignoreFile').attr('data-whendisable','Watch it');
+					showIgnoreFileBtn(data.node.id);
 				}else{
-					$('#btn_ignoreFile').text('Watch it');
+					hideIgnoreFileBtn();
 				}
-				var nodeItem = $('#' + data.node.id).find('a.jstree-anchor');
+			}else{
+				//it's a folder
+				/*if($('#project_files_view').jstree('is_disabled',data.node.id)==false){
+					$('#btn_ignoreFile').text('Ignore all .js inside');
+				}else{
+					$('#btn_ignoreFile').text('Watch all .js inside');
+				}*/
+				$('#btn_ignoreFile').attr('data-whenenable','Ignore all .js insdie');
+				$('#btn_ignoreFile').attr('data-whendisable','Watch all .js inside');
+				showIgnoreFileBtn(data.node.id);
+			}
+			function showIgnoreFileBtn(treeNodeId){
+				var nodeItem = $('#' + treeNodeId).find('a.jstree-anchor');
 				var nodeWidth = $(nodeItem).width();
 				var nodeOffset = $(nodeItem).offset();
 				var nodePosition = $(nodeItem).position();
@@ -220,10 +257,19 @@ MANAGERJS.displayFilesFolders = {
 					top : nodePosition.top + 'px',
 					left : nodePosition.left + nodeWidth + 5 + 'px'
 				});
+				if($('#project_files_view').jstree('is_disabled',treeNodeId)==false){
+					$('#btn_ignoreFile').text($('#btn_ignoreFile').attr('data-whenenable'));
+				}else{
+					$('#btn_ignoreFile').text($('#btn_ignoreFile').attr('data-whendisable'));
+				}
 				$('#btn_ignoreFile').show();
 				$('#btn_ignoreFile').fadeIn();
-				$('#input_setSelectedNodeId').val(data.node.id);
-			
+				$('#input_setSelectedNodeId').val(treeNodeId);
+			}
+			function hideIgnoreFileBtn(){
+				$('#btn_ignoreFile').hide();
+				$('#input_setSelectedNodeId').val('');
+			}
 		}).on('disable_node.jstree',function(e,data){
 			if(data.node.id == 'j1_1'){
 				$('#select_projectfiles').find('div[role="alert"]').fadeIn();

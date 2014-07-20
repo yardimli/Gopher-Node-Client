@@ -102,14 +102,22 @@ this.InitLocalSocket = function(socket) {
     });
   });
   
-  
+  socket.on('_getFolders',function(data){
+  	var settings = new FileManager.finderPreferences();
+  	settings.root = data.target;
+  	settings.findSubFolders = false;
+  	settings.onlyFindFolders = true;
+  	FileManager.findFilesFoldersIn(settings,function(result){
+  		socket.emit('getFolders',socketResponse(result));
+  	});
+  });
 
   socket.on('_openProjectFolder', function(data) {
   	var setSettings = new FileManager.finderPreferences();
     setSettings.root = data.target;
     setSettings.findSubFolders = true;
     setSettings.onlyFindFolders = false;
-    setSettings.acceptAllTypes = false;
+    setSettings.acceptAllTypes = true;
     
     FileManager.findFilesFoldersIn(setSettings,function(result){
 	      socket.emit('openProjectFolder', socketResponse(result));

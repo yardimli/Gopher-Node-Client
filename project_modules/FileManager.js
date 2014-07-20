@@ -63,7 +63,7 @@ var CommonMethods = {
 		if(Globals.fs.existsSync(filePathWithoutName + CommonMethods.getGopherFileName(_filePath))){
 			var readDuplicated = Globals.fs.statSync(filePathWithoutName + CommonMethods.getGopherFileName(_filePath));
 			if(readOriginal.mtime > readDuplicated.mtime){
-				console.log('duplicate file:'+_filePath);
+				//console.log('duplicate file:'+_filePath);
 				Globals.fs.writeFileSync(filePathWithoutName + CommonMethods.getGopherFileName(_filePath), Globals.fs.readFileSync(_filePath));
 			}
 		}else{
@@ -71,8 +71,8 @@ var CommonMethods = {
 		}
 	},
 	isFileFolderIgnored: function(_filePath,_ignoreList){
-		console.log('========isFileFolderIgnored===========');
-		console.log(_ignoreList);
+		//console.log('========isFileFolderIgnored===========');
+		//console.log(_ignoreList);
 		var countMatch = 0;
 		for(var i=0; i<_ignoreList.length; i++){
 			if(_ignoreList[i] == _filePath){
@@ -206,8 +206,6 @@ exports.finderPreferences = function() {
 };
 
 exports.findFilesFoldersIn = function(_settings, _callBack) {
-	console.log('========findFilesFoldersIn===========');
-	console.log(_settings.ignoredFilesFolders);
 	finder(_settings.root, _settings, function(err, results) {
 		if (err) {
 			_callBack(err);
@@ -216,6 +214,9 @@ exports.findFilesFoldersIn = function(_settings, _callBack) {
 		}
 	});
 };
+
+var path = 'JS';
+console.log(path.split('.'));
 
 
 
