@@ -3,11 +3,15 @@ var Globals = require("../project_modules/Globals.js");
 
 var CommonMethods = {
 	getFileExtention : function(_file) {
-		var nameArr = _file.split('.');
-		return nameArr[nameArr.length - 1];
+		if(_file.indexOf('.')>-1){
+			var nameArr = _file.split('.');
+			return nameArr[nameArr.length - 1];
+		}else{
+			return '';
+		}
 	},
 	isFileAccepted : function(_file) {
-		var acceptedFileType = ['js', 'html', 'htm'];
+		var acceptedFileType = ['js', 'html', 'htm','php'];
 		var countMatch = 0;
 		for (var i = 0; i < acceptedFileType.length; i++) {
 			if (acceptedFileType[i].toLowerCase().indexOf(CommonMethods.getFileExtention(_file)) > -1) {
@@ -21,12 +25,15 @@ var CommonMethods = {
 		}
 	},
 	isItaGopherFile: function(_filePath){
+		console.log(_filePath);
+		var result = false;
 		var nameArr = _filePath.split('.');
-		if((nameArr[nameArr.length-2]).indexOf('_gopher')>-1){
-			return true;
-		}else{
-			return false;
+		if(nameArr.length>1){
+			if((nameArr[nameArr.length-2]).indexOf('_gopher')>-1){
+				result = true;
+			}
 		}
+		return result;		
 	},
 	getFileName : function(_filePath) {
 		var fileArr = _filePath.split('\\');
@@ -201,6 +208,17 @@ function finder(_folderPath, _preferences, end) {
 	});
 }
 
+function modifyJsReference(_projectFolderPath,end){
+	Globals.fs.readdir(_projectFolderPath,function(err,list){
+		list.forEach(function(file){
+			if(FileManager.CommonMethods.getFileExtension(file).toLowerCase() !== 'js' && FileManager.CommonMethods.isItaGopherFile(file)){
+				var readFile = Globals.fs.readFileSync(file,{encoding:'utf8'});
+				//readFile = readFile.replace('')
+			}
+		});
+	});
+}
+
 exports.finderPreferences = function() {
 	return finderPreferences();
 };
@@ -216,7 +234,8 @@ exports.findFilesFoldersIn = function(_settings, _callBack) {
 };
 
 var path = 'JS';
-console.log(path.split('.'));
+var pathArr = path.split('.');
+console.log(pathArr.length);
 
 
 

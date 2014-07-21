@@ -116,14 +116,10 @@ MANAGERJS.myEvents = {
 		var selectedNodeObj = $('#project_files_view').jstree('get_node',selectedNodeId);
 		console.log(selectedNodeObj);
 		
-		if ($('#project_files_view').jstree('is_disabled', selectedNodeObj.id)) {
-			$(_senderJ).text($(_senderJ).attr('data-whenenable'));
-		} else {
-			$(_senderJ).text($(_senderJ).attr('data-whendisable'));
-		}
+		
 
 		var nameArr = selectedNodeObj.text.split('.');
-		if(nameArr.length>1){
+		if(selectedNodeObj.children_d.length==0 && nameArr[nameArr.length-1].toLowerCase()=='js'){
 			if($('#project_files_view').jstree('is_disabled',selectedNodeObj.id)){
 				$('#project_files_view').jstree('deselect_node',selectedNodeObj.id);
 				$('#project_files_view').jstree('enable_node',selectedNodeObj.id);
@@ -131,6 +127,7 @@ MANAGERJS.myEvents = {
 				$('#project_files_view').jstree('select_node',selectedNodeObj.id);
 				$('#project_files_view').jstree('disable_node',selectedNodeObj.id);
 			}
+			toggleBtnLabel();
 		}else{
 			var selectCommand = '', enableCommand='';
 			if($('#project_files_view').jstree('is_disabled',selectedNodeObj.id)){
@@ -141,18 +138,34 @@ MANAGERJS.myEvents = {
 				enableCommand = 'disable_node';
 			}
 			var childrenIds = selectedNodeObj.children_d;
+			var countJsMatch = 0;
 			for (var i = 0; i < childrenIds.length; i++) {
 				var childNode = $('#project_files_view').jstree('get_node', childrenIds[i]);
 				var nameArr = childNode.text.split('.');
 				if ((nameArr[nameArr.length - 1]).toLowerCase() == 'js') {
 					$('#project_files_view').jstree(selectCommand, childNode.id);
 					$('#project_files_view').jstree(enableCommand, childNode.id);
+					countJsMatch ++;
 					checkChildrenState(childNode.id,0);
 				}
+			}
+			if(countJsMatch>0){
+				toggleBtnLabel();
+			}else{
+				$('#btn_ignoreFile').hide();
+				$('#input_setSelectedNodeId').val('');
 			}
 		}
 		checkChildrenState(selectedNodeObj.id,0);
 		MANAGERJS.ignoredFilesFolders.display();
+		
+		function toggleBtnLabel(){
+			if ($('#project_files_view').jstree('is_disabled', selectedNodeObj.id)) {
+				$(_senderJ).text($(_senderJ).attr('data-whendisable'));
+			} else {
+				$(_senderJ).text($(_senderJ).attr('data-whenenable'));
+			}
+		}
 		
 		function checkChildrenState(_jstreeId,_countParentChecked){
 			var treeNode = $('#project_files_view').jstree('get_node', _jstreeId);
@@ -223,14 +236,9 @@ MANAGERJS.displayFilesFolders = {
 			var nameArr = data.node.text.split('.');	
 			$('#btn_ignoreFile').removeAttr('data-whenenable');		
 			$('#btn_ignoreFile').removeAttr('data-whendisable');
-			if(nameArr.length>1){
+			if(data.node.children_d.length==0){
 				//it's  file node
 				if(nameArr[nameArr.length-1].toLowerCase() == 'js'){
-					/*if($('#project_files_view').jstree('is_disabled',data.node.id)==false){
-						$('#btn_ignoreFile').text('Ignore it');		
-					}else{
-						$('#btn_ignoreFile').text('Watch it');
-					}*/
 					$('#btn_ignoreFile').attr('data-whenenable','Ignore it');
 					$('#btn_ignoreFile').attr('data-whendisable','Watch it');
 					showIgnoreFileBtn(data.node.id);
@@ -239,14 +247,13 @@ MANAGERJS.displayFilesFolders = {
 				}
 			}else{
 				//it's a folder
-				/*if($('#project_files_view').jstree('is_disabled',data.node.id)==false){
-					$('#btn_ignoreFile').text('Ignore all .js inside');
+				if(data.node.text !== '.git' && data.node.id!=='j1_1'){
+					$('#btn_ignoreFile').attr('data-whenenable','Ignore all .js insdie');
+					$('#btn_ignoreFile').attr('data-whendisable','Watch all .js inside');
+					showIgnoreFileBtn(data.node.id);
 				}else{
-					$('#btn_ignoreFile').text('Watch all .js inside');
-				}*/
-				$('#btn_ignoreFile').attr('data-whenenable','Ignore all .js insdie');
-				$('#btn_ignoreFile').attr('data-whendisable','Watch all .js inside');
-				showIgnoreFileBtn(data.node.id);
+					hideIgnoreFileBtn();
+				}
 			}
 			function showIgnoreFileBtn(treeNodeId){
 				var nodeItem = $('#' + treeNodeId).find('a.jstree-anchor');
