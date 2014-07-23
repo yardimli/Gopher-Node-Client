@@ -2,20 +2,23 @@ var Globals = require("../project_modules/Globals.js");
 //var util = require('util');
 
 var CommonMethods = {
-	getFileExtention : function(_file) {
-		if(_file.indexOf('.')>-1){
-			var nameArr = _file.split('.');
+	getFileExtention : function(_filePath) {
+		var targetFile = CommonMethods.getFileName(_filePath);
+		if(targetFile.indexOf('.')>-1){
+			var nameArr = targetFile.split('.');
 			return nameArr[nameArr.length - 1];
 		}else{
 			return '';
 		}
 	},
-	isFileAccepted : function(_file) {
+	isFileAccepted : function(_filePath) {
 		var acceptedFileType = ['js', 'html', 'htm','php'];
 		var countMatch = 0;
-		for (var i = 0; i < acceptedFileType.length; i++) {
-			if (acceptedFileType[i].toLowerCase().indexOf(CommonMethods.getFileExtention(_file)) > -1) {
-				countMatch++;
+		if(CommonMethods.getFileExtention(_filePath)!== ''){
+			for (var i = 0; i < acceptedFileType.length; i++) {
+				if (acceptedFileType[i].toLowerCase().indexOf(CommonMethods.getFileExtention(_filePath)) > -1) {
+					countMatch++;
+				}
 			}
 		}
 		if (countMatch > 0) {
@@ -25,11 +28,14 @@ var CommonMethods = {
 		}
 	},
 	isItaGopherFile: function(_filePath){
-		console.log(_filePath);
 		var result = false;
-		var nameArr = _filePath.split('.');
+		var nameArr = CommonMethods.getFileName(_filePath).split('.');
 		if(nameArr.length>1){
 			if((nameArr[nameArr.length-2]).indexOf('_gopher')>-1){
+				result = true;
+			}
+		}else{
+			if(CommonMethods.getFileName(_filePath).indexOf('_gopher')>-1){
 				result = true;
 			}
 		}
@@ -41,13 +47,22 @@ var CommonMethods = {
 		return targetFile;
 	},
 	getGopherFileName: function(_filePath){
-		return CommonMethods.getFileNameWithoutExt(_filePath) + '_gopher.' + CommonMethods.getFileExtention(_filePath);
+		var fileExt = CommonMethods.getFileNameWithoutExt(_filePath);
+		if(fileExt!==''){
+			return CommonMethods.getFileNameWithoutExt(_filePath) + '_gopher.' + CommonMethods.getFileExtention(_filePath);
+		}else{
+			return CommonMethods.getFileNameWithoutExt(_filePath) + '_gopher';
+		}
 	},
 	getFileNameWithoutExt : function(_filePath) {
-		var fileArr = _filePath.split('\\');
-		var targetFile = fileArr[fileArr.length - 1];
+		var targetFile = CommonMethods.getFileName(_filePath);
 		var nameArr = targetFile.split('.');
-		var nameWithoutExt = targetFile.substring(0, targetFile.length - ('.' + nameArr[nameArr.length - 1]).length);
+		var nameWithoutExt;
+		if(nameArr.length>1){
+			nameWithoutExt = targetFile.substring(0, targetFile.length - ('.' + nameArr[nameArr.length - 1]).length);
+		}else{
+			nameWithoutExt = targetFile;
+		}
 		return nameWithoutExt;
 	},
 	copyProjectFile : function(_filePath) {
@@ -213,7 +228,7 @@ function modifyJsReference(_projectFolderPath,end){
 		list.forEach(function(file){
 			if(FileManager.CommonMethods.getFileExtension(file).toLowerCase() !== 'js' && FileManager.CommonMethods.isItaGopherFile(file)){
 				var readFile = Globals.fs.readFileSync(file,{encoding:'utf8'});
-				//readFile = readFile.replace('')
+				readFile = readFile.replace(/sss/g,'');
 			}
 		});
 	});
