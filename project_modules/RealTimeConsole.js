@@ -562,11 +562,18 @@ function LoopLeft(DataListSource,sourcecode,JSGopherObjectsArray)
 {
 	console.log("-------------");
 	var LoopLeftDebug = true;
+	var StartIndent = 0;
+	var LeftRightPairs = [];
 	
 	for (var C1=0; C1<DataListSource.length;C1++)
 	{
 		var FirstType = DataListSource[C1].XValue;
 		var FirstKey = DataListSource[C1].XSelf;
+
+		if ((StartIndent!=0) && (DataListSource[C1].XIndent<=StartIndent-1))
+		{
+			console.log("--------------- END --------------- "); StartIndent = 0;
+		}
 
 		if ( (FirstKey=="type")
 		&& ( (FirstType == "VariableDeclarator") || 
@@ -578,34 +585,27 @@ function LoopLeft(DataListSource,sourcecode,JSGopherObjectsArray)
 			  (FirstType == "VariableDeclaration") ||
 			  (FirstType == "ExpressionStatement") ||
 			  (FirstType == "SequenceExpression") ||
+			  (FirstType == "ReturnStatement") ||
+			  (FirstType == "FunctionDeclaration") ||
+			  (FirstType == "ObjectExpression") ||
+			  (FirstType == "ForInStatement") ||
+			  
 
 			  (FirstType == "UpdateExpression") ||
 			  (FirstType == "BinaryExpression") ||
 			  (FirstType == "LogicalExpression") ||
 			  (FirstType == "Identifier") ||
 			  (FirstType == "Literal") ||
-			  (FirstType == "CallExpression") 
+			  (FirstType == "CallExpression") ||
+			  (FirstType == "MemberExpression")
+			  
 		  )  )
 		{
-/*
-			console.log(
-							DataListSource[C1].XIndent+" "+ 
-							DataListSource[C1].XID+" "+ 
-							DataListSource[C1].XParentID+"."+DataListSource[C1].XPath+" "+ 
-							DataListSource[C1].XParentNode+"   "+ 
-							DataListSource[C1].XSelf+" = "+ 
-							DataListSource[C1].XValue);
 
-		*/
+//			console.log(DataListSource[C1].XIndent+" "+ 							DataListSource[C1].XID+" "+ 							DataListSource[C1].XParentID+"."+DataListSource[C1].XPath+" "+ 
+//							DataListSource[C1].XParentNode+"   "+ 							DataListSource[C1].XSelf+" = "+ 							DataListSource[C1].XValue);
 
-		/*
-			var TempX = jQuery(this).parent();
-			var ParentType = TempX[0]["name"];
-			var ThisName = "("+jQuery(this)[0]["name"]+")";
-		*/
-	  
 			var ParentType = DataListSource[DataListSource[C1].XParentID].XSelf;
-			var ThisName = "("+FirstKey+")";
 			var CalleLine = "0";
 			var CalleCol  = "0";
 
@@ -627,14 +627,17 @@ function LoopLeft(DataListSource,sourcecode,JSGopherObjectsArray)
 			}
 
 
-			if ( (FirstType == "ForStatement") || 
-				  (FirstType == "BlockStatement") ||
-				  (FirstType == "VariableDeclaration") ||
-				  (FirstType == "ExpressionStatement") ||
-				  (FirstType == "SequenceExpression") ||
-				  (FirstType == "CallExpression") )
+			if (	(FirstType == "ForStatement") || 
+					(FirstType == "BlockStatement") ||
+					(FirstType == "VariableDeclaration") ||
+					(FirstType == "ExpressionStatement") ||
+					(FirstType == "SequenceExpression") ||
+					(FirstType == "FunctionDeclaration") ||
+					(FirstType == "ObjectExpression") ||
+					(FirstType == "ForInStatement") 
+				)
 			{
-				if (LoopLeftDebug) console.log(CalleLine+": "+xstr+FirstType+" "+ThisName); 
+				if (LoopLeftDebug) console.log(CalleLine+": "+xstr+FirstType); 
 				//console.log(CalleLine);
 				/*
 				var NewQ = new Object();
@@ -655,6 +658,45 @@ function LoopLeft(DataListSource,sourcecode,JSGopherObjectsArray)
 				*/
 			} else
 			{
+				
+				var ThisIsLeft = false;
+				if (StartIndent>0)
+				{
+					if (LeftRightPairs.length==0)
+					{
+						ThisIsLeft = true;
+						var NewQ = new Object();
+						NewQ.XLeft = C1;
+						NewQ.XRight = 0;
+						NewQ.XIndent = DataListSource[C1].XIndent;
+						LeftRightPairs.push( NewQ );
+					} else
+					{
+						var C11 = -1;
+						for (var C10=0; C10<LeftRightPairs.length; C10++)
+						{
+							if ((LeftRightPairs[C10].XIndent == DataListSource[C1].XIndent) && (LeftRightPairs[C10].XRight==0))
+							{
+								C11 = C10;
+								break;
+							}
+						}
+						if (C11!=-1)
+						{
+							LeftRightPairs[C11].XRight = DataListSource[C1].XIndent;
+							ThisIsLeft = false;
+						} else
+						{
+							ThisIsLeft = true;
+							var NewQ = new Object();
+							NewQ.XLeft = C1;
+							NewQ.XRight = 0;
+							NewQ.XIndent = DataListSource[C1].XIndent;
+							LeftRightPairs.push( NewQ );
+						}
+						
+					}
+				}
 				
 				var CopyStart = 0;
 				var CopyEnd = 0;
@@ -682,8 +724,59 @@ function LoopLeft(DataListSource,sourcecode,JSGopherObjectsArray)
 				
 				var SourceX = sourcecode.slice( CopyStart  , CopyEnd );
 				if (FirstType == "VariableDeclarator") { xOperator = "="; }
+				
+				if (StartIndent==0)
+				{
+					if ((FirstType=="VariableDeclarator") && (xOperator == "=")) { 
+						console.log("--------------- START VAR --------------- "); 
+						StartIndent = DataListSource[C1].XIndent; 
+						LeftRightPairs = [];
+					} else
 
-				if (LoopLeftDebug) console.log(CalleLine+": "+xstr+FirstType+" "+ThisName+" ("+xOperator+") ["+SourceX+"] "); 
+					if ((FirstType=="AssignmentExpression") && (xOperator == "=")) { 
+						console.log("--------------- START ASSIGN --------------- "); 
+						StartIndent = DataListSource[C1].XIndent; 
+						LeftRightPairs = [];
+					} else
+
+					if ((FirstType=="AssignmentExpression")) { 
+						console.log("--------------- START ASSIGN --------------- "); 
+						StartIndent = DataListSource[C1].XIndent; 
+						LeftRightPairs = [];
+					} else
+
+					if (FirstType=="BinaryExpression") { 
+						console.log("--------------- START BINARY --------------- "); 
+						StartIndent = DataListSource[C1].XIndent; 
+						LeftRightPairs = [];
+					} else
+					
+					if (FirstType=="ReturnStatement") { 
+						console.log("--------------- START RETURN  --------------- "); 
+						StartIndent = DataListSource[C1].XIndent; 
+						LeftRightPairs = [];
+					} else
+					
+
+					if (FirstType=="UpdateExpression") { 
+						console.log("--------------- START UPDATE --------------- "); 
+						StartIndent = DataListSource[C1].XIndent; 
+						LeftRightPairs = [];
+					}
+					}
+
+				if (LoopLeftDebug) 
+				{
+					if ((StartIndent>0) && (DataListSource[C1].XIndent>StartIndent))
+					{
+						var XLeft="R:";
+						if (ThisIsLeft) {XLeft="L:"; }
+						console.log(CalleLine+": "+xstr+XLeft+DataListSource[C1].XIndent+" "+FirstType+" "+ParentType+" ("+xOperator+") ["+SourceX+"]  Parent:"+DataListSource[C1].XParentID+", Self:"+DataListSource[C1].XID); 
+					} else
+					{
+						console.log(CalleLine+": "+xstr+FirstType+" "+ParentType+" ("+xOperator+") ["+SourceX+"]  Parent:"+DataListSource[C1].XParentID+", Self:"+DataListSource[C1].XID); 
+					}
+				}
 				/*
 
 				var NewQ = new Object();
