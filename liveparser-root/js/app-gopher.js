@@ -44,110 +44,110 @@ return xFuncValue;
 //------------------------------------------------------------------------------
 
 
-var boolD = GopherVarDecl(1,1,'boolD',!(numberC || boolB),'!(numberC || boolB)','body',GopherCallerID);
-boolD = GopherAssignment(2,2,'boolD',!((numberA<numberB) || !(boolD)),'!((numberA<numberB) || !(boolD))','body',GopherCallerID,'=');
-var bool4 = GopherVarDecl(3,3,'bool4',DoubleNumber(numberA,'3:'+(GopherCallerIDCouter++))>numberB,'DoubleNumber(numberA)>numberB','body',GopherCallerID);
-var numberA = GopherVarDecl(4,4,'numberA',5,'5','body',GopherCallerID);	
-var numberC = GopherVarDecl(5,5,'numberC',numberA,'numberA','body',GopherCallerID);
-var numberC = GopherVarDecl(6,6,'numberC',!numberA,'!numberA','body',GopherCallerID);
-var numberB = GopherVarDecl(7,7,'numberB',5+4,'5+4','body',GopherCallerID);	
-numberA = GopherAssignment(8,8,'numberA',(((5+4) + (4+9)) * 5) / 3,'(((5+4) + (4+9)) * 5) / 3','body',GopherCallerID,'=');
+var boolD = !(numberC || boolB);
+boolD = !((numberA<numberB) || !(boolD));
+var bool4 = DoubleNumber(numberA)>numberB;
+var numberA = 5;	
+var numberC = numberA;
+var numberC = !numberA;
+var numberB = 5+4;	
+numberA = (((5+4) + (4+9)) * 5) / 3;
 
-var j=GopherVarDecl(10,9,'j',0,'0','body',GopherCallerID);
-GopherTell(11,'<b>For Loop Init</b>','body',GopherCallerID); for (var i2=0; i2 < 3; i2++,cool('11:'+(GopherCallerIDCouter++)))
+var j=0;
+for (var i2=0; i2 < 3; i2++,cool())
 {
-	j = GopherAssignment(13,10,'j',j + i2,'j + i2','body / l1',GopherCallerID,'=');
+	j = j + i2;
 }
 
-++numberA,GopherUpdateExpr(16,'numberA',numberA,'++','body',GopherCallerID);
-BoolX = GopherAssignment(17,12,'BoolX',numberA>5,'numberA>5','body',GopherCallerID,'=');
-numberA++,GopherUpdateExpr(18,'numberA',numberA,'++','body',GopherCallerID),cool('18:'+(GopherCallerIDCouter++));
-numberA--,GopherUpdateExpr(19,'numberA',numberA,'--','body',GopherCallerID),cool('19:'+(GopherCallerIDCouter++));
-numberA--,GopherUpdateExpr(20,'numberA',numberA,'--','body',GopherCallerID),cool('20:'+(GopherCallerIDCouter++)),numberB--,GopherUpdateExpr(20,'numberB',numberB,'--','body',GopherCallerID),cool('20:'+(GopherCallerIDCouter++));
-numberA += GopherAssignment(21,17,'numberA',1,'1','body',GopherCallerID,'+=');
-numberA -= GopherAssignment(22,18,'numberA',1,'1','body',GopherCallerID,'-=');
-var numberZ = GopherVarDecl(23,19,'numberZ',numberA,'numberA','body',GopherCallerID);
-var numberB = GopherVarDecl(24,20,'numberB',8,'8','body',GopherCallerID);
-var strA = GopherVarDecl(25,21,'strA','Test String','\'Test String\'','body',GopherCallerID);
-var boolA = GopherVarDecl(26,22,'boolA',numberA>numberB,'numberA>numberB','body',GopherCallerID);
-var boolB = GopherVarDecl(27,23,'boolB',strA.indexOf("f")>0,'strA.indexOf("f")>0','body',GopherCallerID);
-var boolC = GopherVarDecl(28,24,'boolC',!boolA,'!boolA','body',GopherCallerID);
-var boolF = GopherVarDecl(29,25,'boolF',boolC,'boolC','body',GopherCallerID);
+++numberA;
+BoolX = numberA>5;
+numberA++,cool();
+numberA--,cool();
+numberA--,cool(),numberB--,cool();
+numberA += 1;
+numberA -= 1;
+var numberZ = numberA;
+var numberB = 8;
+var strA = 'Test String';
+var boolA = numberA>numberB;
+var boolB = strA.indexOf("f")>0;
+var boolC = !boolA;
+var boolF = boolC;
 
-var boolG = GopherVarDecl(31,26,'boolG',!(boolC || ! boolB),'!(boolC || ! boolB)','body',GopherCallerID);
-var bool4 = GopherVarDecl(32,27,'bool4',DoubleNumber(numberA,'32:'+(GopherCallerIDCouter++))>numberB,'DoubleNumber(numberA)>numberB','body',GopherCallerID);
-var xheight = GopherVarDecl(33,28,'xheight',$(window).height(),'$(window).height()','body',GopherCallerID);
-var initTest = GopherVarDecl(34,29,'initTest',AddNumbers(3,4,'34:'+(GopherCallerIDCouter++)),'AddNumbers(3,4)','body',GopherCallerID);
-var person = GopherVarDecl(35,30,'person',{fname:"John", lname:"Doe", age:25},'{fname:"John", lname:"Doe", age:25}','body',GopherCallerID); 
-var i=GopherVarDecl(36,31,'i',5,'5','body',GopherCallerID);
-var j=GopherVarDecl(37,32,'j',i*4,'i*4','body',GopherCallerID);
-var k=GopherVarDecl(38,33,'k',(j+i)/3,'(j+i)/3','body',GopherCallerID);
-var m=GopherVarDecl(39,34,'m',k*AddNumbers(k,4,'39:'+(GopherCallerIDCouter++)),'k*AddNumbers(k,4)','body',GopherCallerID);
-var n=GopherVarDecl(40,35,'n',"hi "+cool('40:'+(GopherCallerIDCouter++)),'"hi "+cool()','body',GopherCallerID);
+var boolG = !(boolC || ! boolB);
+var bool4 = DoubleNumber(numberA)>numberB;
+var xheight = $(window).height();
+var initTest = AddNumbers(3,4);
+var person = {fname:"John", lname:"Doe", age:25}; 
+var i=5;
+var j=i*4;
+var k=(j+i)/3;
+var m=k*AddNumbers(k,4);
+var n="hi "+cool();
 
-var str1=GopherVarDecl(42,36,'str1',null,'null','body',GopherCallerID),str2=GopherVarDecl(42,37,'str2',null,'null','body',GopherCallerID),str3 = GopherVarDecl(42,38,'str3','ff','\'ff\'','body',GopherCallerID);
-str1 = GopherAssignment(43,39,'str1',"ac",'"ac"','body',GopherCallerID,'='),str2 = GopherAssignment(43,40,'str2',"hello",'"hello"','body',GopherCallerID,'='),str3= GopherAssignment(43,41,'str3',"hi",'"hi"','body',GopherCallerID,'=');
+var str1,str2,str3 = 'ff';
+str1 = "ac",str2 = "hello",str3= "hi";
 
-var str3 = GopherVarDecl(45,42,'str3',"",'""','body',GopherCallerID);
+var str3 = "";
 
-str3 = GopherAssignment(47,43,'str3',"a"+"b",'"a"+"b"','body',GopherCallerID,'=');
+str3 = "a"+"b";
 
-var i=GopherVarDecl(49,44,'i',5,'5','body',GopherCallerID);
-var j=GopherVarDecl(50,45,'j',null,'null','body',GopherCallerID);
-var i1=GopherVarDecl(51,46,'i1',null,'null','body',GopherCallerID);
+var i=5;
+var j;
+var i1;
 
-j = GopherAssignment(53,47,'j',0,'0','body',GopherCallerID,'=');
+j = 0;
 
 
 
 
 function cool()
-{ var GopherCallerID = arguments.length ? arguments[arguments.length - 1] : 'default'; GopherTell(58,'<b>Function Run</b> [cool] parameters: values: ','body',GopherCallerID);
+{
 	console.log('cool');
-	var text = GopherVarDecl(61,48,'text',"",'""','body / f1(cool)',GopherCallerID);
-	var x=GopherVarDecl(62,49,'x',null,'null','body / f1(cool)',GopherCallerID);
+	var text = "";
+	var x;
 	for (x in person) {
-		text += GopherAssignment(64,50,'text',person[x],'person[x]','body / f1(cool)',GopherCallerID,'+=');
+		text += person[x];
 	}
 	
-	var returnstr =  text; GopherTell(67,'<b>Return:</b>'+ returnstr + '','body / f1(cool)',GopherCallerID); return returnstr;
+	return text;
 }
 
 function DoubleNumber(a)
-{ var GopherCallerID = arguments.length ? arguments[arguments.length - 1] : 'default'; GopherTell(70,'<b>Function Run</b> [DoubleNumber] parameters:a,  values: '+a+', ','body',GopherCallerID);
-	var returnstr =  a*2; GopherTell(72,'<b>Return:</b>'+ returnstr + '','body / f2(DoubleNumber)',GopherCallerID); return returnstr; 
+{
+	return a*2; 
 }
 
 function AddNumbers(a,b)
-{ var GopherCallerID = arguments.length ? arguments[arguments.length - 1] : 'default'; GopherTell(75,'<b>Function Run</b> [AddNumbers] parameters:a, b,  values: '+a+', '+b+', ','body',GopherCallerID);
-	var total = GopherVarDecl(77,51,'total',0,'0','body / f3(AddNumbers)',GopherCallerID);
-	GopherTell(78,'<b>For Loop Init</b>','body / f3(AddNumbers)',GopherCallerID); for (var i=0; i<3; i++)
+{
+	var total = 0;
+	for (var i=0; i<3; i++)
 	{
-		total = GopherAssignment(80,52,'total',total+a+b,'total+a+b','body / f3(AddNumbers) / l2',GopherCallerID,'=');
+		total = total+a+b;
 	}
 	
-	var returnstr =  DoubleNumber(total,'83:'+(GopherCallerIDCouter++)); GopherTell(83,'<b>Return:</b>'+ returnstr + '','body / f3(AddNumbers)',GopherCallerID); return returnstr;
+	return DoubleNumber(total);
 }
 
 
-GopherTell(87,'<b>For Loop Init</b>','body',GopherCallerID); for (i1=0; i1 < 3; i1++)
+for (i1=0; i1 < 3; i1++)
 {
-	j = GopherAssignment(89,53,'j',j + i1,'j + i1','body / l3',GopherCallerID,'=');
+	j = j + i1;
 }
 
-GopherTell(92,'<b>For Loop Init</b>','body',GopherCallerID); for (var i2=10; i2<14; i2++)
+for (var i2=10; i2<14; i2++)
 {
-	j = GopherAssignment(94,54,'j',j + i2,'j + i2','body / l4',GopherCallerID,'=');
-	i = GopherAssignment(95,55,'i',5+3+2+AddNumbers(i,j,'95:'+(GopherCallerIDCouter++)),'5+3+2+AddNumbers(i,j)','body / l4',GopherCallerID,'=');
+	j = j + i2;
+	i = 5+3+2+AddNumbers(i,j);
 
 }
 
-i = GopherAssignment(99,56,'i',5+3+2+AddNumbers(i,6,'99:'+(GopherCallerIDCouter++)),'5+3+2+AddNumbers(i,6)','body',GopherCallerID,'=');
+i = 5+3+2+AddNumbers(i,6);
 
-cool('101:'+(GopherCallerIDCouter++));
+cool();
 
 $(document).ready(function() {
- str1 = GopherAssignment(104,57,'str1',"hello world",'"hello world"','body',GopherCallerID,'=');
+ str1 = "hello world";
 	$("#debug_console").html(str1);
 });
 

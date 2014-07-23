@@ -1,5 +1,4 @@
 var Globals = require("../project_modules/Globals.js"); 
-var cheerio = require('cheerio'); //https://github.com/cheeriojs/cheerio
 var util = require('util');
 
 var SocketIOHandle;
@@ -88,36 +87,55 @@ function recurse(TreeHTML, key, val)
 
 
 //----------------------------------------------------------------------------------------
-function MakeJSONTreeFromJS(contents,EmitData,filePath)
+function MakeJSONTreeFromJS(parsed,filePath)
 {
-	var options = {};
-	options.locations = true; 
-	var compact = false;
-	var ExpressionPoint;
-	var jQuery;
 	var TreeHTML2;
-	var parsed;
 
-	var SourceCode = contents.toString();
-
-	parsed = Globals.acorn.parse(contents, options); 	
 	//console.log(JSON.stringify(parsed, null, compact ? null : 2));
 
-	if (EmitData)
-	{
-		TreeHTML2 = "<ul>";
-		Object.keys(parsed).forEach(function(key) {  TreeHTML2 = recurse(TreeHTML2, key, parsed[key] ); } );
-		TreeHTML2 += "</ul>";
-		
-		Globals.fs.writeFile(filePath.replace(".js","-gopher.html"),TreeHTML2);
-	}
+	TreeHTML2 = "<ul>";
+	Object.keys(parsed).forEach(function(key) {  TreeHTML2 = recurse(TreeHTML2, key, parsed[key] ); } );
+	TreeHTML2 += "</ul>";
+
+	Globals.fs.writeFile(filePath.replace(".js","-gopher.html"),TreeHTML2);
 // TODO: escape characters that will break the conversion from JSON to XML
 //						parsed = parsed.replace(/</g,'&lt;');
 //						parsed = parsed.replace(/>/g,'&gt;');
 	
-	return parsed;
 }
 
+
+//----------------------------------------------------------------------------------------
+function loopBodyCommands(tree,sourcecode)
+{
+	var jQuery = cheerio.load(tree, {xmlMode: true});
+	
+	jQuery(tree).find('declarations').each(function(){
+		console.log( "D: " + jQuery(this).find("loc").find("start").find("line").first().text() + ": " +
+			sourcecode.slice( parseInt( jQuery(this).find("start").first().text() , 10) , parseInt( jQuery(this).find("end").first().text() , 10)  ) +
+			" T:" + jQuery(this).find("type").first().text()
+		);
+	});
+	
+	jQuery(tree).find('expressions').each(function(){
+		console.log( "E: " + jQuery(this).find("loc").find("start").find("line").first().text() + ": " +
+			sourcecode.slice( parseInt( jQuery(this).find("start").first().text() , 10) , parseInt( jQuery(this).find("end").first().text() , 10)  ) +
+			" T:" + jQuery(this).find("type").first().text()
+		);
+	});
+	
+	jQuery(tree).find('expression').each(function(){
+		if (jQuery(this).find("expressions").length == 0 )
+		{
+			console.log( "X: " + jQuery(this).find("loc").find("start").find("line").first().text() + ": " +
+				sourcecode.slice( parseInt( jQuery(this).find("start").first().text() , 10) , parseInt( jQuery(this).find("end").first().text() , 10)  ) +
+				" T:" + jQuery(this).find("type").first().text()
+			);
+		}
+	});
+	
+
+}
 
 //----------------------------------------------------------------------------------------
 function parseForStatement(VarObj)
@@ -540,229 +558,281 @@ function InsertGopherTells(contents,JSGopherObjectsArray)
 	return contents;
 }
 
-function LoopLeft(xmldata,sourcecode,indent)
+function LoopLeft(DataListSource,sourcecode,JSGopherObjectsArray)
 {
-	var jQuery = cheerio.load(xmldata, {xmlMode: true});
+	console.log("-------------");
+	var LoopLeftDebug = true;
+	
+	for (var C1=0; C1<DataListSource.length;C1++)
+	{
+		var FirstType = DataListSource[C1].XValue;
+		var FirstKey = DataListSource[C1].XSelf;
 
-	jQuery(xmldata).children().each(function(){
-		
-		var xstr = "";
-		var xtrue = false;
-		for (var i=0; i<indent; i++) { xstr += "  "; }
-		
+		if ( (FirstKey=="type")
+		&& ( (FirstType == "VariableDeclarator") || 
+			  (FirstType == "AssignmentExpression") ||
+			  (FirstType == "UnaryExpression") ||
 
-		if ( (jQuery(this).find("type").first().text() == "VariableDeclarator") || 
-		     (jQuery(this).find("type").first().text() == "AssignmentExpression") ||
-			  (jQuery(this).find("type").first().text() == "UnaryExpression") ||
+			  (FirstType == "ForStatement") ||
+			  (FirstType == "BlockStatement") ||
+			  (FirstType == "VariableDeclaration") ||
+			  (FirstType == "ExpressionStatement") ||
+			  (FirstType == "SequenceExpression") ||
 
-			  (jQuery(this).find("type").first().text() == "ForStatement") ||
-			  (jQuery(this).find("type").first().text() == "BlockStatement") ||
-			  (jQuery(this).find("type").first().text() == "VariableDeclaration") ||
-			  (jQuery(this).find("type").first().text() == "ExpressionStatement") ||
-			  (jQuery(this).find("type").first().text() == "SequenceExpression") ||
-			  
-			  (jQuery(this).find("type").first().text() == "UpdateExpression") ||
-			  (jQuery(this).find("type").first().text() == "BinaryExpression") ||
-			  (jQuery(this).find("type").first().text() == "LogicalExpression") ||
-			  (jQuery(this).find("type").first().text() == "Identifier") ||
-			  (jQuery(this).find("type").first().text() == "Literal") ||
-			  (jQuery(this).find("type").first().text() == "CallExpression")/* ||
-			  
-			  (jQuery(this)[0]["name"]=="callee" ) ||
-			  (jQuery(this)[0]["name"]=="init" ) ||
-			  (jQuery(this)[0]["name"]=="id" ) ||
-			  (jQuery(this)[0]["name"]=="left" ) ||
-			  (jQuery(this)[0]["name"]=="right" )*/
-		  ) 
-		
-		// [0]["name"]=="left" ) || (jQuery(this)[0]["name"]=="init" )  )
+			  (FirstType == "UpdateExpression") ||
+			  (FirstType == "BinaryExpression") ||
+			  (FirstType == "LogicalExpression") ||
+			  (FirstType == "Identifier") ||
+			  (FirstType == "Literal") ||
+			  (FirstType == "CallExpression") 
+		  )  )
 		{
-		
+/*
+			console.log(
+							DataListSource[C1].XIndent+" "+ 
+							DataListSource[C1].XID+" "+ 
+							DataListSource[C1].XParentID+"."+DataListSource[C1].XPath+" "+ 
+							DataListSource[C1].XParentNode+"   "+ 
+							DataListSource[C1].XSelf+" = "+ 
+							DataListSource[C1].XValue);
+
+		*/
+
+		/*
 			var TempX = jQuery(this).parent();
 			var ParentType = TempX[0]["name"];
 			var ThisName = "("+jQuery(this)[0]["name"]+")";
+		*/
+	  
+			var ParentType = DataListSource[DataListSource[C1].XParentID].XSelf;
+			var ThisName = "("+FirstKey+")";
+			var CalleLine = "0";
+			var CalleCol  = "0";
+
+			var xstr = "";
+			for (var i2=0; i2<DataListSource[C1].XIndent; i2++) { xstr += " "; }
 			
-			var CalleLine = jQuery(this).find("loc").find("start").find("line").first().text()
-
 			
-			if ( (jQuery(this).find("type").first().text() == "ForStatement") || 
-			     (jQuery(this).find("type").first().text() == "BlockStatement") ||
-				  (jQuery(this).find("type").first().text() == "VariableDeclaration") ||
-				  (jQuery(this).find("type").first().text() == "ExpressionStatement") ||
-				  (jQuery(this).find("type").first().text() == "SequenceExpression") )
+			for (var C2=C1; C2<DataListSource.length;C2++)
 			{
-				console.log(xstr+" "+CalleLine+": "+jQuery(this).find("type").first().text()+" "+ThisName); 
-			} else
-			{
-				var xOperator = "";
-				xOperator = jQuery(this).children('operator').first().text(); 
-				if (xOperator!="") { xOperator = "("+xOperator+")"; }
-				if (jQuery(this).find("type").first().text() == "VariableDeclarator") { xOperator = "(=)"; }
-				var SourceX = sourcecode.slice( parseInt( jQuery(this).find("start").first().text() , 10)  , 
-														  parseInt( jQuery(this).find("end").first().text() , 10) );
-				console.log(xstr+" "+CalleLine+": "+jQuery(this).find("type").first().text()+" "+ThisName+" "+xOperator+" ["+SourceX+"]"); 
-			}
-			
-
-			/*
-			if ( (jQuery(this)[0]["name"]=="left" )   )
-			{
-				var LeftSide = sourcecode.slice( parseInt( jQuery(this).parent().children('left').first().find("start").first().text() , 10)  , 
-														 parseInt( jQuery(this).parent().children('left').first().find("end").first().text() , 10) );
-
-				var RightSide = sourcecode.slice( parseInt( jQuery(this).parent().children('right').first().find("start").first().text() , 10)  , 
-														  parseInt( jQuery(this).parent().children('right').first().find("end").first().text() , 10) );
-
-				var xOperator = jQuery(this).parent().children('operator').first().text(); 
-
-				var xType = jQuery(this).find('type').first().text(); 
-
-
-
-	//			if ( (xOperator=="==") || (xOperator=="===") || (xOperator=="!=") || (xOperator=="!==") || (xOperator==">") || (xOperator==">=") || (xOperator=="<") || (xOperator=="<=") || (xOperator=="&&") || (xOperator=="||") || (xOperator=="!") )
-
-				console.log(xstr+" "+CalleLine+": Left ("+LeftSide+" ("+xOperator+") "+RightSide+") P:"+ParentType+" "+xType);
-			} else
-			if ( (jQuery(this)[0]["name"]=="init" )  )
-			{
-//				console.log( jQuery(this).parent().find('id').first().find("start").first().text() );
-				
-				var LeftSide = sourcecode.slice( parseInt( jQuery(this).parent().find('id').first().find("start").first().text() , 10)  , 
-														 parseInt( jQuery(this).parent().find('id').first().find("end").first().text() , 10) );
-
-				var RightSide = sourcecode.slice( parseInt( jQuery(this).parent().find('init').first().find("start").first().text() , 10)  , 
-														 parseInt( jQuery(this).parent().find('init').first().find("end").first().text() , 10) );
-		
-				var xOperator = "=";
-
-				var xType = jQuery(this).find('type').first().text(); 
-
-				if ( (ParentType=="expression")  || (ParentType=="test") ) {
-					console.log(xstr+" "+CalleLine+": Ini1 ("+LeftSide+" ("+xOperator+") "+RightSide+") P:"+ParentType+" "+xType);
-				} else
+				if ((DataListSource[C2].XPath == DataListSource[C1].XPath+".loc.start") && (DataListSource[C2].XSelf == "line"))
 				{
-					console.log(xstr+" "+CalleLine+": Ini2("+LeftSide+" ("+xOperator+") "+RightSide+") P:"+ParentType+" "+xType);
+					CalleLine = DataListSource[C2].XValue;
 				}
+				if ((DataListSource[C2].XPath == DataListSource[C1].XPath+".loc.start") && (DataListSource[C2].XSelf == "column"))
+				{
+					CalleCol = DataListSource[C2].XValue;
+				}
+				if ( (CalleLine!="0") && (CalleCol!="0")) { break; }
 			}
-			*/
+
+
+			if ( (FirstType == "ForStatement") || 
+				  (FirstType == "BlockStatement") ||
+				  (FirstType == "VariableDeclaration") ||
+				  (FirstType == "ExpressionStatement") ||
+				  (FirstType == "SequenceExpression") ||
+				  (FirstType == "CallExpression") )
+			{
+				if (LoopLeftDebug) console.log(CalleLine+": "+xstr+FirstType+" "+ThisName); 
+				//console.log(CalleLine);
+				/*
+				var NewQ = new Object();
+				NewQ.XLine = CalleLine;
+				NewQ.XColumn = CalleCol;
+				NewQ.XStartPosition = 0;
+				NewQ.XEndPosition = 0;
+				NewQ.Type = FirstType;
+				NewQ.XType = ThisName;
+				NewQ.Helper = true;
+				NewQ.Operator = "";
+				NewQ.xSource = "";
+				NewQ.Indent = indent;
+				NewQ.xID = JSGopherObjectsCount;
+				NewQ.ParentID = ParentID;
+				NewQ.HasChildren = false;
+				JSGopherObjectsArray.push( NewQ );
+				*/
+			} else
+			{
+				
+				var CopyStart = 0;
+				var CopyEnd = 0;
+				var xOperator = "";
+				for (var C2=C1; C2<DataListSource.length;C2++)
+				{
+					if ((DataListSource[C2].XPath == DataListSource[C1].XPath) && (DataListSource[C2].XSelf == "start"))
+					{
+						CopyStart = parseInt( DataListSource[C2].XValue, 10);
+					}
+					
+					if ((DataListSource[C2].XPath == DataListSource[C1].XPath) && (DataListSource[C2].XSelf == "end"))
+					{
+						CopyEnd = parseInt( DataListSource[C2].XValue, 10);
+					}
+
+					if ((DataListSource[C2].XPath == DataListSource[C1].XPath) && (DataListSource[C2].XSelf == "operator"))
+					{
+						xOperator = DataListSource[C2].XValue;
+					}
+					
+					if ( (CopyStart!=0) && (CopyEnd!=0) && (xOperator!="") ) { break; }
+					if (C2>C1+1000) { break; }
+				}
+				
+				var SourceX = sourcecode.slice( CopyStart  , CopyEnd );
+				if (FirstType == "VariableDeclarator") { xOperator = "="; }
+
+				if (LoopLeftDebug) console.log(CalleLine+": "+xstr+FirstType+" "+ThisName+" ("+xOperator+") ["+SourceX+"] "); 
+				/*
+
+				var NewQ = new Object();
+				NewQ.XLine = CalleLine;
+				NewQ.XColumn = CalleCol;
+
+				NewQ.XStartPosition = CopyStart;
+				NewQ.XEndPosition = CopyEnd;
+				NewQ.Type = FirstType;
+				NewQ.XType = ThisName;
+				NewQ.Helper = false;
+				NewQ.Operator = xOperator;
+				NewQ.xSource = SourceX.toString();
+				NewQ.Indent = indent;
+				NewQ.xID = JSGopherObjectsCount;
+				NewQ.ParentID = ParentID;
+				NewQ.HasChildren = false;
+				JSGopherObjectsArray.push( NewQ );
+				*/
+			}
 		}
-		
-		if ( jQuery(this).children().length  > 0)
-		{
-			LoopLeft(jQuery(this),sourcecode,indent+1);
-		}
-	});
+	}
+	return JSGopherObjectsArray;
 }
+
 
 //----------------------------------------------------------------------------------------
-function loopBodyCommands(tree,sourcecode)
+function recurseJSON(key, val, indent, JSGopherObjectsArray,parentStr,SelfValue,ParentID) 
 {
-	var jQuery = cheerio.load(tree, {xmlMode: true});
-	
-	jQuery(tree).find('declarations').each(function(){
-		console.log( "D: " + jQuery(this).find("loc").find("start").find("line").first().text() + ": " +
-			sourcecode.slice( parseInt( jQuery(this).find("start").first().text() , 10) , parseInt( jQuery(this).find("end").first().text() , 10)  ) +
-			" T:" + jQuery(this).find("type").first().text()
-		);
-	});
-	
-	jQuery(tree).find('expressions').each(function(){
-		console.log( "E: " + jQuery(this).find("loc").find("start").find("line").first().text() + ": " +
-			sourcecode.slice( parseInt( jQuery(this).find("start").first().text() , 10) , parseInt( jQuery(this).find("end").first().text() , 10)  ) +
-			" T:" + jQuery(this).find("type").first().text()
-		);
-	});
-	
-	jQuery(tree).find('expression').each(function(){
-		if (jQuery(this).find("expressions").length == 0 )
+	if (val instanceof Object) {
+		indent++;
+		var NewQ = new Object();
+		NewQ.XPath = parentStr;
+		NewQ.XSelf = key;
+		NewQ.XParentNode = true;
+		NewQ.XParentID = ParentID;
+		NewQ.XValue = '';
+		NewQ.XIndent = indent;
+		var TempVar = 0; if (JSGopherObjectsArray.length>0) { TempVar =JSGopherObjectsArray[JSGopherObjectsArray.length -1].XID+1; }
+		NewQ.XID = TempVar;
+
+		var xParentID = TempVar;
+		JSGopherObjectsArray.push( NewQ );
+		
+		if (SelfValue!="") {
+			var xParentStr = parentStr+"."+SelfValue;
+		} else
 		{
-			console.log( "X: " + jQuery(this).find("loc").find("start").find("line").first().text() + ": " +
-				sourcecode.slice( parseInt( jQuery(this).find("start").first().text() , 10) , parseInt( jQuery(this).find("end").first().text() , 10)  ) +
-				" T:" + jQuery(this).find("type").first().text()
-			);
+			var xParentStr = parentStr;
 		}
-	});
+		
+//		console.log("("+indent+" "+ParentID+" "+TempVar+"."+parentStr + ")");
+		
+		Object.keys(val).forEach(function(key) {
+			JSGopherObjectsArray = recurseJSON(key, val[key], indent, JSGopherObjectsArray, xParentStr, key, xParentID ); 
+		});
+	} else {
+		
+		var NewQ = new Object();
+		NewQ.XPath = parentStr;
+		NewQ.XSelf = SelfValue;
+		NewQ.XParentNode = false;
+		NewQ.XParentID = ParentID;
+		NewQ.XValue = val;
+		NewQ.XIndent = indent+1;
+		
+		var TempVar = 0; if (JSGopherObjectsArray.length>0) { TempVar =JSGopherObjectsArray[JSGopherObjectsArray.length -1].XID+1; }
+		NewQ.XID = TempVar;
+
+		JSGopherObjectsArray.push( NewQ );
+
+//		console.log(" "+(indent+1)+" "+ParentID+" "+ParentID+"."+parentStr +  " = " + val);
+	}
 	
-
+	return JSGopherObjectsArray;
 }
-
-
 
 function GopherTellFile(inFile)
 {
 	Globals.fs.readFile(inFile,function(err,contents){
 		if(!err){
-			///----------------------------------------------------------------------------
-			var parsed = MakeJSONTreeFromJS(contents,true,inFile);
-			var xmldata = "<project>"+ json2xml(parsed)+ "</project>";
-			
-//			loopBodyCommands(xmldata,contents);
+			///---------------------------------------------------------------------------
 
-//			var jQuery = cheerio.load(xmldata, {xmlMode: true});
+			var options = {};
+			options.locations = true; 
+			var parsed = Globals.acorn.parse(contents, options); 	
+
+//			console.log(util.inspect(parsed,true,20 ) );	
 			
-			LoopLeft(xmldata,contents,0);
-/*
-			var HasUnaryExpression = true;
+			MakeJSONTreeFromJS(parsed,inFile);
 			
-			while (HasUnaryExpression)
+			var DataList = [];
+
+			Object.keys(parsed).forEach(function(key) {  
+				DataList = recurseJSON(key, parsed[key],0,DataList, "p", "", 0);
+			});
+			
+			/*
+			for (var i=0; i<200; i++)
 			{
-				HasUnaryExpression = false;
-				var parsed = MakeJSONTreeFromJS(contents,false,inFile);
-				var xmldata = "<project>"+ json2xml(parsed)+ "</project>";
-				var jQuery = cheerio.load(xmldata, {xmlMode: true});
-
-				
-				jQuery(xmldata).find('type:contains("UnaryExpression")').each(function(){
-					if (!HasUnaryExpression)
-					{
-						HasUnaryExpression = true;
-						var NewQ = new Object();
-						NewQ.XLine = jQuery(this).parent().find("loc").find("start").find("line").first().text();
-						NewQ.XColumn = jQuery(this).parent().find("loc").find("start").find("column").first().text();
-						NewQ.XStartPosition1 = parseInt( jQuery(this).parent().find("start").first().text() , 10);
-						NewQ.XStartPosition2 = parseInt( jQuery(this).parent().find("argument").find("start").first().text() , 10);
-						NewQ.XEndPosition = parseInt( jQuery(this).parent().find("argument").find("end").first().text() , 10);
-						NewQ.Type = "UnaryExpression";
-
-						console.log( "UnaryExpression: " + jQuery(this).parent().find("loc").find("start").find("line").first().text() + ": " +
-							contents.slice( parseInt( jQuery(this).parent().find("start").first().text() , 10) , parseInt( jQuery(this).parent().find("end").first().text() , 10)  ) + " = " +
-							
-							contents.slice( parseInt( jQuery(this).parent().find("argument").find("start").first().text() , 10) , parseInt( jQuery(this).parent().find("argument").find("end").first().text() , 10)  ) 
-
-							);
-
-						var UnaryExpressionParam = contents.slice(NewQ.XStartPosition2,NewQ.XEndPosition);
-						var GopherTellInsert = " GopherUnaryExpr("+ NewQ.XLine + ",'"+ UnaryExpressionParam + "',"+ UnaryExpressionParam  +")";
-
-						contents = 
-							[contents.slice(0, NewQ.XStartPosition1), 
-							GopherTellInsert , 
-							contents.slice(NewQ.XEndPosition)].join('');
-					}
-				});
+				console.log(
+							   DataList[i].XIndent+" "+ 
+								DataList[i].XID+" "+ 
+								DataList[i].XParentID+"."+DataList[i].XPath+" "+ 
+								DataList[i].XParentNode+"   "+ 
+								DataList[i].XSelf+" = "+ 
+								DataList[i].XValue);
 			}
-			console.log(contents);
-*/			
-			var parsed = MakeJSONTreeFromJS(contents,false,inFile);
-			var xmldata = "<project>"+ json2xml(parsed)+ "</project>";
-	
+			*/
+			
+
+
+//			loopBodyCommands(xmldata,contents);
+			
+			var JSGopherObjectsArray = [];
+			JSGopherObjectsArray = LoopLeft(DataList,contents,JSGopherObjectsArray);
+			
+			/*
+			for (var i=0; i < JSGopherObjectsArray.length; i++)
+			{
+				var xstr = "";
+				for (var i2=0; i2<JSGopherObjectsArray[i].Indent; i2++) { xstr += " "; }
+				
+				//if (JSGopherObjectsArray[i].Operator !="") { console.log( xstr+JSGopherObjectsArray[i].xSource ); }
+				if (JSGopherObjectsArray[i].HasChildren) 
+				{ console.log( xstr+JSGopherObjectsArray[i].xID+" "+JSGopherObjectsArray[i].ParentID+" "+JSGopherObjectsArray[i].xSource + " ("+JSGopherObjectsArray[i].Operator+")*" ); } else
+				{ console.log( xstr+JSGopherObjectsArray[i].xID+" "+JSGopherObjectsArray[i].ParentID+" "+JSGopherObjectsArray[i].xSource + " ("+JSGopherObjectsArray[i].Operator+")" );}
+				
+			}
+			*/
+			
+			var parsed = Globals.acorn.parse(contents, options); 	
 
 			var JSGopherObjectsArray = [];
 			JSGopherObjectsArray.FunctionCounter = 0;
 			JSGopherObjectsArray.LoopCounter = 0;
 			JSGopherObjectsArray.VarDeclTrackID = 0;
-			JSGopherObjectsArray = loopBody(xmldata,"BODY",0,JSGopherObjectsArray,"body",contents);
+//			JSGopherObjectsArray = loopBody(xmldata,"BODY",0,JSGopherObjectsArray,"body",contents);
+										  
 
-			contents = InsertGopherTells(contents,JSGopherObjectsArray);
+//			contents = InsertGopherTells(contents,JSGopherObjectsArray);
 
 			Globals.fs.writeFile(inFile.replace(".js","-gopher.js"),contents);
 			
 			//-------------------------------- INSERT EXTRA PARAMETER TO ALL FUNCTIONS
-			var parsed = MakeJSONTreeFromJS(contents,false,inFile);
-			var xmldata = "<project>"+ json2xml(parsed)+ "</project>";
-			var JSGopherFuctionCallArray = [];
+			var parsed = Globals.acorn.parse(contents, options); 	
 
-			JSGopherFuctionCallArray = loopFunctionCalls(xmldata,contents);
+			var JSGopherFuctionCallArray = [];
+//			JSGopherFuctionCallArray = loopFunctionCalls(xmldata,contents);
 			
 			var nCount = JSGopherFuctionCallArray.length;
 			while ( nCount > 0)
@@ -840,6 +910,7 @@ function GopherTellFile(inFile)
 }
 
 GopherTellFile(__dirname + '/../liveparser-root/js/app.js');
+//GopherTellFile(__dirname + '/../liveparser-root/js/course-engine-video.js');
 
 /* LOOP EXPERIMENT
 var jQuery = cheerio.load(xmldata, {xmlMode: true});
