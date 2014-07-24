@@ -116,8 +116,6 @@ MANAGERJS.myEvents = {
 		var selectedNodeObj = $('#project_files_view').jstree('get_node',selectedNodeId);
 		console.log(selectedNodeObj);
 		
-		
-
 		var nameArr = selectedNodeObj.text.split('.');
 		if(selectedNodeObj.children_d.length==0 && nameArr[nameArr.length-1].toLowerCase()=='js'){
 			if($('#project_files_view').jstree('is_disabled',selectedNodeObj.id)){
@@ -198,11 +196,9 @@ MANAGERJS.myEvents = {
 		//console.log($('#project_files_view').jstree().get_selected(true));
 	},
 	btn_doneSetup_click:function(_senderJ){
-		MANAGERJS.iosocket.emit('_duplicateAllProjectFiles', {
-			target : localStorage['selectedProjectPath'],
-			checkModified: false,
-			ignoredFileFolderList: MANAGERJS.ignoredFilesFolders.getList(true)
-		}); 
+		/*
+		 NOT DONE YET!! Check any server script files, only duplicate files if this is a pure html5 project.s
+		 * */
 	}
 };
 

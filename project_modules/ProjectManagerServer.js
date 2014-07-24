@@ -93,7 +93,6 @@ this.InitLocalSocket = function(socket) {
     setSettings.root = data.target;
     setSettings.findSubFolders = false;
     setSettings.onlyFindFolders = false;
-    setSettings.acceptAllTypes = true;
     
     FileManager.findFilesFoldersIn(setSettings,function(result){
 	      //console.log('========manager server:getItemsInDir findFilesFoldersIn callback=================');
@@ -117,26 +116,14 @@ this.InitLocalSocket = function(socket) {
     setSettings.root = data.target;
     setSettings.findSubFolders = true;
     setSettings.onlyFindFolders = false;
-    setSettings.acceptAllTypes = true;
     
     FileManager.findFilesFoldersIn(setSettings,function(result){
 	      socket.emit('openProjectFolder', socketResponse(result));
     });
   });
   
-  socket.on('_duplicateAllProjectFiles',function(data){
-  	var setSettings = new FileManager.finderPreferences();
-    setSettings.root = data.target;
-    setSettings.findSubFolders = true;
-    setSettings.onlyFindFolders = false;
-    setSettings.acceptAllTypes = false;
-    setSettings.duplicateFiles = true;
-    setSettings.checkModified = data.checkModified;
-    setSettings.ignoredFilesFolders = data.ignoredFileFolderList;
+  socket.on('_duplicateAllProjectFiles',function(data){    
     
-    FileManager.findFilesFoldersIn(setSettings, function(result){
-    	socket.emit('duplicateAllProjectFiles',socketResponse(result));
-    });
   });
 
 };
