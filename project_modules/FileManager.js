@@ -12,7 +12,6 @@ var CommonMethods = {
 	},
 	isFileAccepted : function(_filePath,_fileTypes) {
 		if(_fileTypes.length==0 || _fileTypes == null){
-			console.log('here!');
 			return true;
 		}else{
 			var countMatch = 0;
@@ -46,36 +45,33 @@ var CommonMethods = {
 		}
 		return nameWithoutExt;
 	},
-	copyProjectFile : function(_filePath) {
+	/*copyProjectFile : function(_filePath) {
 		var filePathWithoutName = _filePath.substring(0, _filePath.indexOf(CommonMethods.getFileName(_filePath)));
 		var readTheFile = Globals.fs.readFileSync(_filePath);
-		/*readTheFile.on('error', function() {
-		 readTheFile.close();
-		 return end('Project files duplication operation is stopped because an error occures when reading file ' + file);
-		 });*/
+		// readTheFile.on('error', function() {
+		 // readTheFile.close();
+		 // return end('Project files duplication operation is stopped because an error occures when reading file ' + file);
+		 // });
 		var writeTheFile = Globals.fs.writeFileSync(watchProjectsPath+CommonMethods.getFileName(_filePath), readTheFile);
-		/*writeTheFile.on('error', function() {
-		 writeTheFile.close();
-		 return end('Project files duplication operation is stoped because an error occurs when copy file ' + file);
-		 });*/
+		// writeTheFile.on('error', function() {
+		 // writeTheFile.close();
+		 // return end('Project files duplication operation is stoped because an error occurs when copy file ' + file);
+		 // });
 	},
 	copyModifiedProjectFile : function(_filePath) {
-		/*
-		 NOT DONE YET!! Gopher files is no longer used. Need to change to compare the file from original project folder and the one on gopherB
-		 * */
+		 //NOT DONE YET!! Gopher files is no longer used. Need to change to compare the file from original project folder and the one on gopherB
 		var filePathWithoutName = _filePath.substring(0, _filePath.indexOf(CommonMethods.getFileName(_filePath)));
 		var readOriginal = Globals.fs.statSync(_filePath);
 
 		if (Globals.fs.existsSync(filePathWithoutName + CommonMethods.getGopherFileName(_filePath))) {
 			var readDuplicated = Globals.fs.statSync(filePathWithoutName + CommonMethods.getGopherFileName(_filePath));
 			if (readOriginal.mtime > readDuplicated.mtime) {
-				//console.log('duplicate file:'+_filePath);
 				Globals.fs.writeFileSync(filePathWithoutName + CommonMethods.getGopherFileName(_filePath), Globals.fs.readFileSync(_filePath));
 			}
 		} else {
 			Globals.fs.writeFileSync(filePathWithoutName + CommonMethods.getGopherFileName(_filePath), Globals.fs.readFileSync(_filePath));
 		}
-	},
+	},*/
 	isFileFolderIgnored : function(_filePath, _ignoreList) {
 		//console.log('========isFileFolderIgnored===========');
 		//console.log(_ignoreList);

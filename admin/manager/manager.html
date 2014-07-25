@@ -55,76 +55,11 @@
 			</div>
 		</div>
 
-		<div class="container manager-content">
-			<div class="row">
-				<h3>Initial Setup</h3>
-				<h4>Step1: Select your Project Folder</h4>
-				<div class="col-md-12">
-					<div class="col-md-4">
-						<button type="button" class="btn btn-default btn-block" data-toggle="modal" data-target="#dialog_select_dir">
-							Select a Folder
-						</button>
-					</div>
-					<div class="col-md-8">
-						<input type="text" class="form-control" placeholder="Project Directory Path" id="in_projectDir">
-					</div>
-				</div>
-				<div id="select_projectfiles" class="col-md-12" style="padding-top: 15px">
-					<h4>Step2: Select the javascript files you want Gopher to ignore</h4>
-					<div class="alert alert-warning alert-dismissible" role="alert">
-				  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-				  <strong>Warning!</strong> There are no files or folder selected for Gopher. Gopher View will not be working properly.
-				</div>
-					<div class="col-md-6">
-						<div class="col-md-12">	
-							<div id="project_files_view" class="project-file-view"></div>
-							<input type="hidden" value="" id="input_setSelectedNodeId"/>
-							<a role="button" href="#" class="btn btn-default btn-xs" id="btn_ignoreFile" data-whenenable="" data-whendisable="">Ignore It<input data-uselabel="whenDisable" type="hidden" value=""/><input data-uselabel="whenEnable" type="hidden" value=""/></a>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<div class="col-md-12">
-						<div class="panel panel-default" style="max-height: 500px;">
-							<div class="panel-heading">
-								<h3 class="panel-title">Ignored Files or Folders</h3>
-							</div>
-							<div class="panel-body">
-									<div id="project_ignorefiles_view" class="project-ignoreFiles-view"></div>	
-							</div>
-						</div>
-						</div>
-						<div class="col-md-12" style="text-align: right;">
-							<button type="button" class="btn btn-primary" style="width:250px;" id="btn_doneSetup">Done</button>
-						</div>
-					</div>
-				</div>
-			</div>
+		<div class="container myContent">
+			<button type="button" class="btn btn-primary" style="width:250px;">Create a new project</button>
 		</div><!-- /.container -->
 
-		<div id="dialog_select_dir" class="modal fade " tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-dialogw="884" data-dialogh="465">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-							&times;
-						</button>
-						<h4 class="modal-title">Select Project Directory</h4>
-					</div>
-					<div class="modal-body" style="margin-bottom:0px; padding-bottom:0px;">
-						<div id="current_dir" class="current-dir"></div>
-						<div id="target_dir" class="target-dir">
-
-						</div>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-primary" id="btn_openProjectDir" data-dismiss="modal">
-							Open Directory
-						</button>
-					</div>
-				</div>
-			</div>
-		</div>
-
+		
 		<div id="footer">
 			<div class="container">
 				<p class="text-muted">
