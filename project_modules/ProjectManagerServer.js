@@ -1,8 +1,12 @@
 var Globals = require("../project_modules/Globals.js");
 var SocketIOHandle;
 var FileManager = require('./FileManager.js');
+var MyProject = {
+	currentOpenedProject:[]/*(stirng array)folder path of the current opened project*/ 
+}
 
-this.getFile = function(request, response) {
+
+exports.getFile = function(request, response) {
 
   var localFolderAdmin = __dirname + '/../';
   var page404 = localFolderAdmin + 'admin/manager/404.html';
@@ -70,17 +74,27 @@ this.getFile = function(request, response) {
 
 function socketResponse(result) {
   var response = {};
-  if (result.errno > 0) {
-    response.success = false;
-    response.error = result;
-  } else {
-    response.success = true;
-    response.data = result;
+  if(typeof(result) == 'object'){
+	  if (result.errno > 0) {
+	    response.success = false;
+	    response.error = result;
+	  } else {
+	    response.success = true;
+	    response.data = result;
+	  }
+  }else{
+  	if(typeof(result) == 'undefined'){
+  		response.success = true;
+	  	response.data = '';
+  	}else{
+  		response.success = true;
+	  	response.data = result;
+	  }
   }
   return response;
 }
 
-this.InitLocalSocket = function(socket) {
+exports.InitLocalSocket = function(socket) {
   SocketIOHandle = socket; // store socket so we can use it in the rest of the module
   socket.on('HiManager', function(data) {
     socket.emit('HiManagerClient', {text: "this is from Gopher Manager Server"});
@@ -122,8 +136,13 @@ this.InitLocalSocket = function(socket) {
     });
   });
   
-  socket.on('_duplicateAllProjectFiles',function(data){    
-    
+  socket.on('_addCurrentOpenedProject',function(data){  
+  	MyProject.currentOpenedProject.push(data.filePath);
+  	socket.emit('addCurrentOpenedProject',socketResponse());
+  });
+  
+  socket.on('_getCurrentOpenedProject',function(data){
+  	socket.emit('getCurrentOpenedProject',socketResponse(MyProject.currentOpenedProject));
   });
 
 };
