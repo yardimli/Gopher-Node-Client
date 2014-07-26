@@ -1,9 +1,7 @@
 var Globals = require("../project_modules/Globals.js");
 var SocketIOHandle;
 var FileManager = require('./FileManager.js');
-var MyProject = {
-	currentOpenedProject:[]/*(stirng array)folder path of the current opened project*/ 
-}
+var ProjectCollection = require('./ProjectCollection.js');
 
 
 exports.getFile = function(request, response) {
@@ -136,15 +134,11 @@ exports.InitLocalSocket = function(socket) {
     });
   });
   
-  socket.on('_addCurrentOpenedProject',function(data){  
-  	MyProject.currentOpenedProject.push(data.filePath);
-  	socket.emit('addCurrentOpenedProject',socketResponse());
+  socket.on('_createANewProject',function(data){
+  	ProjectCollection.addNewProject(data,function(result){
+  		socket.emit('createANewProject',socketResponse(result));
+  	});
   });
-  
-  socket.on('_getCurrentOpenedProject',function(data){
-  	socket.emit('getCurrentOpenedProject',socketResponse(MyProject.currentOpenedProject));
-  });
-
 };
 
 

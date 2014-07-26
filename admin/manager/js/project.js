@@ -1,6 +1,7 @@
 var PROJECTJS = {
 	iosocket : null,
 	viewedFolders : [],
+	rawDataForJstree:null,
 	initSocketIO : function() {
 		PROJECTJS.iosocket = io.connect();
 		var timeStamp = function() {
@@ -37,19 +38,19 @@ var PROJECTJS = {
 					$('#project_files_view').jstree('deselect_node', selectedids);
 				}
 				
+				PROJECTJS.rawDataForJstree = response.data;
 				$('#in_projectDir').attr('placeholder',response.data.path);
-				localStorage['selectedProjectPath'] = response.data.path;
 				PROJECTJS.displayFilesFolders.asJstree(response.data);
 				$('#project_ignorefiles_view').empty();
 			}
 		});
 		
-		PROJECTJS.iosocket.on('duplicateAllProjectFiles',function(response){
+		PROJECTJS.iosocket.on('createANewProject',function(response){
 			if(response.success){
-				
+				console.log('added a new project');
+				console.log(response.data);
 			}
 		});
-		
 	}
 };
 
@@ -196,9 +197,12 @@ PROJECTJS.myEvents = {
 		//console.log($('#project_files_view').jstree().get_selected(true));
 	},
 	btn_doneSetup_click:function(_senderJ){
-		/*
-		 NOT DONE YET!! Check any server script files, only duplicate files if this is a pure html5 project.s
-		 * */
+		var projectObj = {
+			name: $('#in_projectName').val(),
+			filePaths: PROJECTJS.rawDataForJstree,
+			ignoredFileList: PROJECTJS.ignoredFilesFolders.getList(true)
+		};
+		PROJECTJS.iosocket.emit('_createANewProject',projectObj);
 	}
 };
 
@@ -356,10 +360,8 @@ PROJECTJS.displayFilesFolders = {
 				 console.log(jstreeObj);
 				 console.log(JSON.stringify(jstreeObj));
 				 console.log('======end of jstreeObj========');*/
-				localStorage['currentJstreeData'] = JSON.stringify(jstreeObj);
 				return jstreeObj;
 			} else {
-				localStorage['currentJstreeData'] = '';
 				return null;
 			}
 		}
@@ -367,13 +369,13 @@ PROJECTJS.displayFilesFolders = {
 };
 
 PROJECTJS.ignoredFilesFolders = {
-	getList: function(asRaw){
+	getList: function(asFlatList){
 		var jstreeNodeIds = $('#project_files_view').jstree().get_selected();
 		var list = [];
 		for(var i=0; i<jstreeNodeIds.length; i++){
 			var nodeId = jstreeNodeIds[i];
 			var nodeObj = $('#project_files_view').jstree('get_node', nodeId);
-			if(asRaw){
+			if(asFlatList){
 				list.push(nodeObj.original.path);
 			}else{
 				list.push({path: nodeObj.original.path, treeNodeId: nodeId});
@@ -406,12 +408,6 @@ $(document).ready(function() {
 	$('#debug_console').toggleClass('hideme');
 	PROJECTJS.initSocketIO();
 
-	if (localStorage['selectedProjectPath'] !== undefined && localStorage['selectedProjectPath'] !== '') {
-		/*var originalPath = localStorage['selectedProjectPath'];
-		originalPath = originalPath.replace(/\\\\/g, '\\');
-		console.log('has local selectedProject path');*/
-		PROJECTJS.myEvents.btn_openProjectDir(localStorage['selectedProjectPath']);
-	}
 
 	$('#dialog_select_dir').on('show.bs.modal', function() {
 		PROJECTJS.myEvents.dialog_select_dir_show();
