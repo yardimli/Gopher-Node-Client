@@ -49,6 +49,14 @@ var PROJECTJS = {
 			if(response.success){
 				console.log('added a new project');
 				console.log(response.data);
+				PROJECTJS.iosocket.emit('_findAProject',{id:response.data.id});
+			}
+		});
+		
+		PROJECTJS.iosocket.on('findAProject',function(response){
+			if(response.success){
+				console.log('Found a project');
+				console.log(response.data);
 			}
 		});
 	}
@@ -200,7 +208,7 @@ PROJECTJS.myEvents = {
 		var projectObj = {
 			name: $('#in_projectName').val(),
 			filePaths: PROJECTJS.rawDataForJstree,
-			ignoredFileList: PROJECTJS.ignoredFilesFolders.getList(true)
+			ignoredFileList: PROJECTJS.ignoredFilesFolders.getList(true,true)
 		};
 		PROJECTJS.iosocket.emit('_createANewProject',projectObj);
 	}
@@ -369,25 +377,37 @@ PROJECTJS.displayFilesFolders = {
 };
 
 PROJECTJS.ignoredFilesFolders = {
-	getList: function(asFlatList){
+	getList: function(asFlatList,skipFolders){
 		var jstreeNodeIds = $('#project_files_view').jstree().get_selected();
 		var list = [];
 		for(var i=0; i<jstreeNodeIds.length; i++){
 			var nodeId = jstreeNodeIds[i];
 			var nodeObj = $('#project_files_view').jstree('get_node', nodeId);
-			if(asFlatList){
-				list.push(nodeObj.original.path);
+			
+			if(skipFolders){
+				var pathArr = nodeObj.original.path.split('\\');
+				if(pathArr[pathArr.length-1].indexOf('.')>-1){
+					makeList(asFlatList,nodeObj.original.path,nodeId);
+				}
 			}else{
-				list.push({path: nodeObj.original.path, treeNodeId: nodeId});
-			}
+				makeList(asFlatList,nodeObj.original.path,nodeId);
+			}	
 		}
+		function makeList (asFlatList,path,nodeId) {
+				if(asFlatList){
+					list.push(path);
+				}else{
+					list.push({path: path, treeNodeId: nodeId});
+				}
+			}
 		return list;
 	},
 	display: function(){
-		var gotList = PROJECTJS.ignoredFilesFolders.getList(false);
+		var gotList = PROJECTJS.ignoredFilesFolders.getList(false,false);
 		$('#project_ignorefiles_view').empty();
+		var jstreeRootNode = $('#project_files_view').jstree('get_node','j1_1');
 		for(var i=0; i<gotList.length; i++){
-			var displayName = gotList[i].path.replace($('#project_files_view').jstree('get_text','j1_1'),'');
+			var displayName = gotList[i].path.replace(jstreeRootNode.original.path,'');
 			displayName = markTheLastInPath(displayName);
 			$('#project_ignorefiles_view').append('<div data-treenodeid="'+gotList[i].treeNodeId+'">'+ displayName +'</div>');
 		}
@@ -396,9 +416,9 @@ PROJECTJS.ignoredFilesFolders = {
 		});
 		
 		function markTheLastInPath(_filePath){
-			var namearr = _filePath.split('\\');
-			var allButLastPart = _filePath.substring(0,_filePath.indexOf(namearr[namearr.length-1]));
-			return allButLastPart + '<font color="#83ECFC"><b>'+namearr[namearr.length-1]+'</b></font>';
+			var patharr = _filePath.split('\\');
+			var allButLastPart = _filePath.substring(0,_filePath.indexOf(patharr[patharr.length-1]));
+			return allButLastPart + '<font color="#83ECFC"><b>'+patharr[patharr.length-1]+'</b></font>';
 		}
 	}
 };
@@ -407,6 +427,7 @@ PROJECTJS.ignoredFilesFolders = {
 $(document).ready(function() {
 	$('#debug_console').toggleClass('hideme');
 	PROJECTJS.initSocketIO();
+	//PROJECTJS.iosocket.emit('_findAProject',{id:'2014727134440'});
 
 
 	$('#dialog_select_dir').on('show.bs.modal', function() {

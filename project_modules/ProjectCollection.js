@@ -35,7 +35,12 @@ exports.addNewProject = function(_projectObj,_callBack){
 };
 
 exports.findAProject = function(_id,_callBack){
-	
+	for(var i=0; i<myProjects.length; i++){
+		if(_id == myProjects[i].id){
+			_callBack(myProjects[i]);
+			break;
+		}
+	}
 };
 
 

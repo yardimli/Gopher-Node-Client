@@ -139,6 +139,12 @@ exports.InitLocalSocket = function(socket) {
   		socket.emit('createANewProject',socketResponse(result));
   	});
   });
+  
+  socket.on('_findAProject',function(data){
+  	ProjectCollection.findAProject(data.id,function(result){
+  		socket.emit('findAProject',socketResponse(result));
+  	});
+  });
 };
 
 
