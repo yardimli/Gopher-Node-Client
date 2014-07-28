@@ -22,36 +22,8 @@ var MANAGERJS = {
 		MANAGERJS.iosocket.on('HiManagerClient', function(recievedData) {
 			$("#debug_console").append(timeStamp() + "> " + recievedData.text + "<br>");
 		});
-
-		MANAGERJS.iosocket.on('getFolders', function(response) {
-			if (response.success) {
-				MANAGERJS.displayFilesFolders.asList(response.data);
-			}
-		});
-
-		MANAGERJS.iosocket.on('openProjectFolder', function(response) {
-			if (response.success) {
-				if ($('#project_files_view').find('ul').length > 0) {
-					var selectedids = $('#project_files_view').jstree('get_selected');
-					$('#project_files_view').jstree('enable_node', selectedids);
-					$('#project_files_view').jstree('deselect_node', selectedids);
-				}
-				
-				$('#in_projectDir').val(response.data.path);	
-				localStorage['selectedProjectPath'] = response.data.path;
-				MANAGERJS.displayFilesFolders.asJstree(response.data);
-				$('#project_ignorefiles_view').empty();
-			}
-		});
-		
-		MANAGERJS.iosocket.on('duplicateAllProjectFiles',function(response){
-			if(response.success){
-				
-			}
-		});
-		
 	}
 };
 $(document).ready(function() {
-	
+	$('#debug_console').toggleClass('hideme');
 });

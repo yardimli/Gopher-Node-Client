@@ -5,54 +5,36 @@ var ProjectCollection = require('./ProjectCollection.js');
 
 
 exports.getFile = function(request, response) {
-  var fileMap = {
-  	root:__dirname + '/../',
-  	getCleanFileName: function(_requestUrl){
-  		var urlObj = Globals.url.parse(_requestUrl);
-  		
-  		if(urlObj.pathname !== ''){
-  			var pathArr = urlObj.pathname.split('/');
-  			return pathArr[pathArr.length-1];
-  		}else{
-  			return 'index.html';
-  		}
-  	},
-  	getFilePath: function(_requestUrl){
-  		var physicalDirName = Globals.path.dirname(_requestUrl);
-  		if(physicalDirName !== '/'){
-  			physicalDirName += '/';
-  		}
-  		return fileMap.root + physicalDirName + fileMap.getCleanFileName(_requestUrl);
-  	},
-  	getFileExtension: function(_requestUrl){
-  		var dotArr = (fileMap.getCleanFileName(_requestUrl)).split('.');
-  		if(dotArr.length>1 && dotArr[0]!==''){
-  			return '.'+ (dotArr[dotArr.length-1]).toLowerCase();
-  		}else{
-  			return '';
-  		}
-  	},
-  	getMimeType: function(_requestUrl){
-  		return Globals.extensions[fileMap.getFileExtension(_requestUrl)];
-  	}
-  };
+
+  var localFolderAdmin = __dirname + '/../';
+  var page404 = localFolderAdmin + 'admin/manager/404.html';
+
+  var fileName = Globals.path.basename(request.url) || 'index.html';
+  var ext = Globals.path.extname(fileName);
+  var mimeType = Globals.extensions[ext];
+  var filePathName = Globals.path.dirname(request.url);
+  if (filePathName == "/") {
+  } else {
+    filePathName += "/";
+  }
+
   console.log("===============================================================================");
-  console.log("cleanFileName:" + fileMap.getCleanFileName(request.url));
-  console.log("filePath:"+fileMap.getFilePath(request.url));
-  console.log("fileExtension:"+fileMap.getFileExtension(request.url));
-  console.log("request url:" + request.url);
+  console.log("path:" + filePathName + " file:" + fileName + " url:" + request.url + " ext:" + ext + " ");
+  console.log("url:" + request.url);
   console.log("===============================================================================");
+
   
   //do we support the requested file type?
-  if (!Globals.extensions[fileMap.getFileExtension(request.url)]) {
+  if (!Globals.extensions[ext]) {
     //for now just send a 404 and a short message
     response.writeHead(404, {'Content-Type': 'text/html'});
     response.end("<html><head></head><body>The requested file type is not supported</body></html>");
   }
-  //var filePath = localFolderAdmin + filePathName + fileName;
-  var filePath = fileMap.getFilePath(request.url);
+  ;
+  var filePath = localFolderAdmin + filePathName + fileName;
   //does the requested file exist?
   console.log("ADMIN:" + filePath);
+  //filePath = 'C:\Gopher\project_modules/..//admin/manager/project.html';
   Globals.fs.exists(filePath, function(exists) {
     //if it does...
     if (exists) {
@@ -62,7 +44,7 @@ exports.getFile = function(request, response) {
           //if there was no error
           //send the contents with the default 200/ok header
           response.writeHead(200, {
-            "Content-type": fileMap.getMimeType(request.url),
+            "Content-type": mimeType,
             "Content-Length": contents.length
           });
           response.end(contents);
