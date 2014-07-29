@@ -142,7 +142,7 @@ for (var i2=10; i2<14; i2++)
 
 }
 
-i = 5+3+2+AddNumbers(i,6);
+i = 5+3+2+AddNumbers(i,6+5+4+3+2+1);
 
 cool();
 

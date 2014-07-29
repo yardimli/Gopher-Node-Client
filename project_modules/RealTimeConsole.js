@@ -622,18 +622,27 @@ function LoopGopherS(DataListSource,SourceCode)
 					NewQ.xSource = SourceX.toString();
 					NewQ.Indent = DataListSource[C1].XIndent;
 					NewQ.xID = DataListSource[C1].XID;
-					NewQ.ParentID = DataListSource[C1].XParentID;
+					NewQ.ParentID = 0;
 					NewQ.LeftRight = true;
 					NewQ.IsLeft = ThisIsLeft;
 
 					NewQ.Processed = false;
+					NewQ.TempVarName  = SourceX.toString();
 
-					NewQParent.Records.push( NewQ );
-					
-					if (NewQParent.Records[NewQParent.Records.length-2].Indent == DataListSource[C1].XIndent-1 )
+					if (NewQParent.Records.length>0)
 					{
-						NewQParent.Records[NewQParent.Records.length-2].HasChildren = true;
+						for (jj=NewQParent.Records.length-1; jj>0; jj--)
+						{
+							if (NewQParent.Records[jj].Indent == DataListSource[C1].XIndent-1 )
+							{
+								NewQParent.Records[jj].HasChildren = true;
+								NewQ.ParentID = NewQParent.Records[jj].xID;
+								break;
+							}
+						}
 					}
+					
+					NewQParent.Records.push( NewQ );
 
 					if (LoopGopherSDebug) console.log(CalleLine+": "+xstr+XLeft+DataListSource[C1].XIndent+" "+FirstType+" "+ParentType+" ("+xOperator+") ["+SourceX+"]  Parent:"+DataListSource[C1].XParentID+", Self:"+DataListSource[C1].XID); 
 					
@@ -653,11 +662,25 @@ function LoopGopherS(DataListSource,SourceCode)
 						NewQ.xSource = SourceX.toString();
 						NewQ.Indent = DataListSource[C1].XIndent;
 						NewQ.xID = DataListSource[C1].XID;
-						NewQ.ParentID = DataListSource[C1].XParentID;
+						NewQ.ParentID = 0;
 						NewQ.LeftRight = false;
 						NewQ.IsLeft = false;
 						
 						NewQ.Processed = false;
+						NewQ.TempVarName  = SourceX.toString();
+
+						if (NewQParent.Records.length>0)
+						{
+							for (jj=NewQParent.Records.length-1; jj>0; jj--)
+							{
+								if (NewQParent.Records[jj].Indent == DataListSource[C1].XIndent-1 )
+								{
+									NewQParent.Records[jj].HasChildren = true;
+									NewQ.ParentID = NewQParent.Records[jj].xID;
+									break;
+								}
+							}
+						}
 
 						NewQParent.Records.push( NewQ );
 					}
@@ -695,6 +718,8 @@ function GopherTellify(contents,inFile)
 		if ( ( (GopherObjectsA[i].NewRecordType=="AssignmentExpression") || (GopherObjectsA[i].NewRecordType=="VariableDeclarator") ) && 
 			  ( GopherObjectsA[i].Records[0].Operator == "=" ) )
 		{
+			
+			//first print to screen
 			console.log( GopherObjectsA[i].NewRecordType + 
 			" Source: " + GopherObjectsA[i].Records[0].xSource + 
 			" Var Name: " + GopherObjectsA[i].Records[1].xSource + " " + GopherObjectsA[i].Records[0].Operator);
@@ -704,17 +729,83 @@ function GopherTellify(contents,inFile)
 				var xstr = "";
 				for (var i2=0; i2<GopherObjectsA[i].Records[j].Indent; i2++) { xstr += " "; }
 
-				if (GopherObjectsA[i].Records[j].HasChildren) {
-					console.log( xstr+GopherObjectsA[i].Records[j].XLine + 
-					  " Source: "+ GopherObjectsA[i].Records[j].xSource +
-					  " Op: "+ GopherObjectsA[i].Records[j].Operator );
-				} else
-				{
-					console.log( xstr+GopherObjectsA[i].Records[j].XLine + 
-					  " Source: "+ GopherObjectsA[i].Records[j].xSource);
-				}
+				console.log( " ID/Parent: "+ GopherObjectsA[i].Records[j].xID + " / "+ GopherObjectsA[i].Records[j].ParentID + xstr+GopherObjectsA[i].Records[j].XLine + 
+				  " I: " + (GopherObjectsA[i].Records[j].Indent-GopherObjectsA[i].StartIndent ) + 
+				  " Source: "+ GopherObjectsA[i].Records[j].xSource +
+				  " Op: "+ GopherObjectsA[i].Records[j].Operator +
+				  " Children: " + GopherObjectsA[i].Records[j].HasChildren +
+				  " Type:" + GopherObjectsA[i].Records[j].ThisType 
+			  );
 			}
+			
+			
+			var TheCowsAreAway = true;
+			var k = 0;
+			var TempC = 0;
+			while (TheCowsAreAway)
+			{
+				TheCowsAreAway = false;
+				//find nodes without children where NewQ.Processed = false
+				for (var j=2; j < GopherObjectsA[i].Records.length; j++)
+				{
+					//if variable is a fuction ignore all children
+					if (GopherObjectsA[i].Records[j].ThisType=="CallExpression") 
+					{
+						GopherObjectsA[i].Records[j].HasChildren = false;
+						var j2 = j+1;
+						
+						while ( ( GopherObjectsA[i].Records[j2].Indent>GopherObjectsA[i].Records[j].Indent ) && (j2 < GopherObjectsA[i].Records.length-1))
+						{
+							GopherObjectsA[i].Records[j2].Processed = true;
+							j2++;
+						}
+					}
+					
+					//find node without children
+					if ( (!GopherObjectsA[i].Records[j].HasChildren) && (!GopherObjectsA[i].Records[j].Processed) )
+					{
+						//if (parent is the previous node then)
+						if (GopherObjectsA[i].Records[j-1].xID==GopherObjectsA[i].Records[j].ParentID)
+						{
+//							console.log("P:"+GopherObjectsA[i].Records[j-1].xID+" "+GopherObjectsA[i].Records[j-1].Operator);
+
+							var LeftRightC = 0;
+							var LeftV = "null";
+							var RightV = "null";
+							var LeftC = "";
+							var RightC = "";
+							for (var j2=j; j2 < GopherObjectsA[i].Records.length; j2++)
+							{
+								if (GopherObjectsA[i].Records[j2].ParentID==GopherObjectsA[i].Records[j-1].xID)
+								{
+									LeftRightC++;
+									if (LeftRightC==1) { LeftV = GopherObjectsA[i].Records[j2].TempVarName; LeftC = GopherObjectsA[i].Records[j2].xSource; }
+									if (LeftRightC==2) { RightV = GopherObjectsA[i].Records[j2].TempVarName; RightC = GopherObjectsA[i].Records[j2].xSource; }
+									
+									TheCowsAreAway = true;
+//									console.log("   C:"+GopherObjectsA[i].Records[j2].xID+" "+GopherObjectsA[i].Records[j2].xSource);
+									GopherObjectsA[i].Records[j2].Processed = true;
+								}
+							}
+							
+							TempC++;
+							console.log(   "var Temp_" + TempC + " = GopherHelperF('" + GopherObjectsA[i].Records[j-1].Operator + "'," + LeftV + "," + RightV + ",'Temp_" + TempC+"','" + LeftC + "','" + RightC + "')"   );
+
+							GopherObjectsA[i].Records[j-1].TempVarName = "Temp_" + TempC;
+							GopherObjectsA[i].Records[j-1].HasChildren=false;
+						}
+					}
+				}
+
+				k++;
+				if (k>100) { TheCowsAreAway = false; }
+			}
+			console.log(  "var " + GopherObjectsA[i].Records[1].xSource + " = GopherSetF('" + GopherObjectsA[i].Records[1].xSource + "','" + GopherObjectsA[i].Records[0].xSource + "',Temp_" + TempC+ ")\n"   );
+			
+			
 		}
+		
+		
 	}
 /*
 NewQ.XLine = CalleLine;
