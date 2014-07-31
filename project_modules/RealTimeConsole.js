@@ -714,9 +714,33 @@ function GopherTellify(contents,inFile)
 
 	for (var i=0; i < GopherObjectsA.length; i++)
 	{
+		if ( (GopherObjectsA[i].NewRecordType=="UpdateExpression")  )
+		{
+			//first print to screen
+			console.log( "UPDATE: " + GopherObjectsA[i].NewRecordType + 
+			" Source: " + GopherObjectsA[i].Records[0].xSource + 
+			" Var Name: " + GopherObjectsA[i].Records[1].xSource + " " + GopherObjectsA[i].Records[0].Operator);
+		 
+			for (var j=0; j < GopherObjectsA[i].Records.length; j++)
+			{
+				var xstr = "";
+				for (var i2=0; i2<GopherObjectsA[i].Records[j].Indent; i2++) { xstr += " "; }
+
+				console.log( " ID/Parent: "+ GopherObjectsA[i].Records[j].xID + " / "+ GopherObjectsA[i].Records[j].ParentID + xstr+GopherObjectsA[i].Records[j].XLine + 
+				  " I: " + (GopherObjectsA[i].Records[j].Indent-GopherObjectsA[i].StartIndent ) + 
+				  " Source: "+ GopherObjectsA[i].Records[j].xSource +
+				  " Op: "+ GopherObjectsA[i].Records[j].Operator +
+				  " Children: " + GopherObjectsA[i].Records[j].HasChildren +
+				  " Type:" + GopherObjectsA[i].Records[j].ThisType 
+			  );
+			}
+			console.log("\n");
+			
+		}
+		
 		//If AssignmentExpression,VariableDeclarator and first operator is =
-		if ( ( (GopherObjectsA[i].NewRecordType=="AssignmentExpression") || (GopherObjectsA[i].NewRecordType=="VariableDeclarator") ) && 
-			  ( GopherObjectsA[i].Records[0].Operator == "=" ) )
+		if ( ( (GopherObjectsA[i].NewRecordType=="AssignmentExpression") || (GopherObjectsA[i].NewRecordType=="VariableDeclarator") || (GopherObjectsA[i].NewRecordType=="UpdateExpression") ) && 
+			   (1==1) ) //( GopherObjectsA[i].Records[0].Operator == "=" )
 		{
 			
 			//first print to screen
@@ -789,7 +813,7 @@ function GopherTellify(contents,inFile)
 							}
 							
 							TempC++;
-							console.log(   "var Temp_" + TempC + " = GopherHelperF('" + GopherObjectsA[i].Records[j-1].Operator + "'," + LeftV + "," + RightV + ",'Temp_" + TempC+"','" + LeftC + "','" + RightC + "')"   );
+							console.log(   "var Temp_" + TempC + " = GopherHelperF('" + GopherObjectsA[i].Records[j-1].Operator + "'," + LeftV + "," + RightV + ",'Temp_" + TempC+"','" + LeftC + "','" + RightC + "'),"   );
 
 							GopherObjectsA[i].Records[j-1].TempVarName = "Temp_" + TempC;
 							GopherObjectsA[i].Records[j-1].HasChildren=false;
@@ -800,8 +824,19 @@ function GopherTellify(contents,inFile)
 				k++;
 				if (k>100) { TheCowsAreAway = false; }
 			}
-			console.log(  "var " + GopherObjectsA[i].Records[1].xSource + " = GopherSetF('" + GopherObjectsA[i].Records[1].xSource + "','" + GopherObjectsA[i].Records[0].xSource + "',Temp_" + TempC+ ")\n"   );
+			var xPrefix = "";
+			if (GopherObjectsA[i].NewRecordType=="VariableDeclarator") { xPrefix = "var ";}
 			
+			if (TempC==0)
+			{
+				var xSource = "null";
+				if (GopherObjectsA[i].Records.length>2) { xSource = GopherObjectsA[i].Records[2].xSource; }
+				
+				console.log(  xPrefix + GopherObjectsA[i].Records[1].xSource + " = GopherSetF('" + GopherObjectsA[i].Records[1].xSource + "','" + GopherObjectsA[i].Records[0].xSource + "'," + xSource + ",'" + GopherObjectsA[i].Records[0].Operator + "')\n"   );
+			} else
+			{
+				console.log(  xPrefix + GopherObjectsA[i].Records[1].xSource + " = GopherSetF('" + GopherObjectsA[i].Records[1].xSource + "','" + GopherObjectsA[i].Records[0].xSource + "',Temp_" + TempC + ",'" + GopherObjectsA[i].Records[0].Operator + "')\n"   );
+			}
 			
 		}
 		
