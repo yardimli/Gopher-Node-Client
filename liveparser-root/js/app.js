@@ -16,6 +16,7 @@ for (var i2=0; i2 < 3; i2++,cool())
 ++numberA;
 BoolX = numberA>5;
 numberA++,cool();
+++numberA,cool();
 numberA--,cool();
 numberA--,cool(),numberB--,cool();
 numberA += 1;
