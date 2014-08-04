@@ -3,16 +3,46 @@ var SocketIOHandle;
 var FileManager = require('./FileManager.js');
 var ProjectCollection = require('./ProjectCollection.js');
 
+function getQuery(_requestUrl,_queryName){
+	if(typeof(_queryName)=='undefined'){
+		return undefined;
+	}else{
+		var urlObj = Globals.url.parse(_requestUrl,true);
+		var queries = Object.keys(urlObj.query);
+		var queryVals = [];
+		for(var i=0; i<queries.length; i++){
+			if(queries[i] == _queryName){
+				var val = urlObj.query[queries[i]];
+				if(typeof(val)=='string'){
+					queryVals.push(val);
+				}else if(val.length>1){
+					queryVals = queryVal.contact(val);
+				}
+			}
+		}
+		if(queryVals.length==1){
+			return queryVals[0];
+		}else if (queryVals.length>1){
+			return queryVals;
+		}else{
+			return undefined;
+		}
+	}
+}
 
 exports.getFile = function(request, response) {
   var fileMap = {
   	root:__dirname + '/../',
   	getCleanFileName: function(_requestUrl){
   		var urlObj = Globals.url.parse(_requestUrl);
-  		
   		if(urlObj.pathname !== ''){
-  			var pathArr = urlObj.pathname.split('/');
-  			return pathArr[pathArr.length-1];
+  			var fileName = '';
+		    var pathArr = urlObj.pathname.split('/');
+		    fileName = pathArr[pathArr.length-1];
+		    if(fileName.indexOf('.')==-1){
+		     fileName = fileName + '.html';
+		    }
+		    return fileName;
   		}else{
   			return 'index.html';
   		}
@@ -28,6 +58,8 @@ exports.getFile = function(request, response) {
   		var dotArr = (fileMap.getCleanFileName(_requestUrl)).split('.');
   		if(dotArr.length>1 && dotArr[0]!==''){
   			return '.'+ (dotArr[dotArr.length-1]).toLowerCase();
+  		}else if(dotArr.length==0 && datArr[0].indexOf('.')==-1){
+  			return '.html';
   		}else{
   			return '';
   		}
@@ -38,10 +70,10 @@ exports.getFile = function(request, response) {
   };
   console.log("===============================================================================");
   console.log("cleanFileName:" + fileMap.getCleanFileName(request.url));
-  console.log("filePath:"+fileMap.getFilePath(request.url));
-  console.log("fileExtension:"+fileMap.getFileExtension(request.url));
-  console.log("request url:" + request.url);
-  console.log("===============================================================================");
+  //console.log("filePath:"+fileMap.getFilePath(request.url));
+  //console.log("fileExtension:"+fileMap.getFileExtension(request.url));
+  //console.log("request url:" + request.url);
+  //console.log(getQuery(request.url,'projectid'));
   
   //do we support the requested file type?
   if (!Globals.extensions[fileMap.getFileExtension(request.url)]) {
@@ -52,7 +84,7 @@ exports.getFile = function(request, response) {
   //var filePath = localFolderAdmin + filePathName + fileName;
   var filePath = fileMap.getFilePath(request.url);
   //does the requested file exist?
-  console.log("ADMIN:" + filePath);
+  //console.log("ADMIN:" + filePath);
   Globals.fs.exists(filePath, function(exists) {
     //if it does...
     if (exists) {
@@ -84,8 +116,7 @@ exports.getFile = function(request, response) {
         } else {
           //for our own troubleshooting
           console.dir(err);
-        }
-        ;
+        };
       });
     }
     ;
@@ -104,7 +135,7 @@ function socketResponse(result) {
 	  }
   }else{
   	if(typeof(result) == 'undefined'){
-  		response.success = true;
+  		response.success = false;
 	  	response.data = '';
   	}else{
   		response.success = true;
@@ -163,9 +194,14 @@ exports.InitLocalSocket = function(socket) {
   });
   
   socket.on('_findAProject',function(data){
+  	console.log('findAProject'+data.id);
   	ProjectCollection.findAProject(data.id,function(result){
   		socket.emit('findAProject',socketResponse(result));
   	});
+  });
+  
+  socket.on('_getQuery',function(data){
+  	socket.emit('getQuery',socketResponse(getQuery(data.url,data.queryName)));
   });
 };
 

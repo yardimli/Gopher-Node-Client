@@ -54,9 +54,17 @@ var PROJECTJS = {
 		});
 		
 		PROJECTJS.iosocket.on('findAProject',function(response){
+			console.log(response);
 			if(response.success){
 				console.log('Found a project');
 				console.log(response.data);
+			}
+		});
+		
+		PROJECTJS.iosocket.on('getQuery',function(response){
+			if(response.success){
+				console.log('has projectid in querystring');
+				PROJECTJS.iosocket.emit('_findAProject',{id:response.data});
 			}
 		});
 	}
@@ -423,11 +431,15 @@ PROJECTJS.ignoredFilesFolders = {
 	}
 };
 
+var  testCallBack = function(){
+	console.log('a test call back');
+	return this;
+}
 
 $(document).ready(function() {
 	$('#debug_console').toggleClass('hideme');
 	PROJECTJS.initSocketIO();
-	//PROJECTJS.iosocket.emit('_findAProject',{id:'2014727134440'});
+	PROJECTJS.iosocket.emit('_getQuery',{url:document.location.href,queryName:'projectid'});
 
 
 	$('#dialog_select_dir').on('show.bs.modal', function() {
