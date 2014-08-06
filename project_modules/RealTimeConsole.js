@@ -740,7 +740,7 @@ function GopherTellify(contents,inFile)
 	options.locations = true; 
 	var parsed = Globals.acorn.parse(contents, options); 
 
-	var DebugLines = true;
+	var DebugLines = false;
 
 	MakeJSONTreeFromJS(parsed,inFile);
 
