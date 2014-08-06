@@ -1,3 +1,11 @@
+var test1 = ( (((1>2) && (2>3)) || (!((numberA<numberB) || !(boolD)))) );
+/*
+if ( (((1>2) && (2>3)) || (!((numberA<numberB) || !(boolD)))) )
+{
+	
+}
+*/
+
 var boolD = !(numberC || boolB);
 boolD = !((numberA<numberB) || !(boolD));
 var bool4 = DoubleNumber(numberA)>numberB;
@@ -61,7 +69,10 @@ function cool()
 	console.log('cool');
 	var text = "";
 	var x;
+	var j=0;
 	for (x in person) {
+		j++;
+		if (j>10) { exit; }
 		text += person[x];
 	}
 	
