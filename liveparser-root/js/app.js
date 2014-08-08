@@ -1,10 +1,21 @@
-var test1 = ( (((1>2) && (2>3)) || (!((numberA<numberB) || !(boolD)))) );
-/*
+var test1 = ( (((1>2) && (2>3)) || (!((numberA<numberB) || !(boolD)))) ), test2 = test1;
+var test2 = test1 == 1;
+
 if ( (((1>2) && (2>3)) || (!((numberA<numberB) || !(boolD)))) )
 {
-	
+	console.log("1");
+} else
+if (1==1)
+{
+	console.log("2");
+} else
+if (1==1)
+{
+	console.log("3");
+} else
+{
+	console.log("4");
 }
-*/
 
 var boolD = !(numberC || boolB);
 boolD = !((numberA<numberB) || !(boolD));

@@ -1,3 +1,14 @@
+
+var test1=(1==1);
+var test2=(1==1);
+if (test1)
+{ console.log("1"); }
+ else
+if (test2)
+{ console.log("2"); }
+ else
+{ console.log("3"); }
+
 var i=0;
 
 if (j=0, k=1, k>j) {

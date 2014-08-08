@@ -419,9 +419,9 @@ function recurseJSON(key, val, indent, GopherObjectsA,parentStr,SelfValue,Parent
 
 
 //----------------------------------------------------------------------------------------
-function LoopGopherS(DataListSource,SourceCode)
+function LoopGopherS(DataListSource,SourceCode,LoopGopherSDebug)
 {
-	var LoopGopherSDebug = false;
+	LoopGopherSDebug = (typeof LoopGopherSDebug === "undefined") ? false : LoopGopherSDebug;
 	var XStartIndent = 0;
 	var NewRecordType = "";
 	
@@ -432,7 +432,7 @@ function LoopGopherS(DataListSource,SourceCode)
 		console.log(DataListSource[i].XIndent+" "+ DataListSource[i].XID+" "+ DataListSource[i].XParentID + "." + DataListSource[i].XPath + " " + DataListSource[i].XParentNode+"   "+ DataListSource[i].XSelf+" = "+ DataListSource[i].XValue);
 	} */
 	
-	
+	var HelperParentType = "";
 	for (var C1=0; C1<DataListSource.length;C1++)
 	{
 		var FirstType = DataListSource[C1].XValue;
@@ -474,16 +474,26 @@ function LoopGopherS(DataListSource,SourceCode)
 			var CalleLine = "0";
 			var CalleCol  = "0";
 
+			var CalleStart = "0";
+			var CalleEnd   = "0";
+
 			var xstr = "";
 			for (var i2=0; i2<DataListSource[C1].XIndent; i2++) { xstr += " "; }
 			
 			for (var C2=C1; C2<DataListSource.length;C2++)
 			{
 				if ((DataListSource[C2].XPath == DataListSource[C1].XPath+".loc.start") && (DataListSource[C2].XSelf == "line"))
-				{	CalleLine = DataListSource[C2].XValue;	}
+				{	CalleLine = parseInt( DataListSource[C2].XValue,10);	}
+
 				if ((DataListSource[C2].XPath == DataListSource[C1].XPath+".loc.start") && (DataListSource[C2].XSelf == "column"))
-				{	CalleCol = DataListSource[C2].XValue;	}
+				{	CalleCol = parseInt( DataListSource[C2].XValue,10);	}
+
+				if ((DataListSource[C2].XPath == DataListSource[C1].XPath) && (DataListSource[C2].XSelf == "start"))
+				{	CalleStart = parseInt( DataListSource[C2].XValue,10);	}
 				
+				if ((DataListSource[C2].XPath == DataListSource[C1].XPath) && (DataListSource[C2].XSelf == "end"))
+				{	CalleEnd = parseInt( DataListSource[C2].XValue,10);	}
+
 				if ( (CalleLine!="0") && (CalleCol!="0")) { break; }
 			}
 
@@ -496,7 +506,10 @@ function LoopGopherS(DataListSource,SourceCode)
 					(FirstType == "IfStatement") ||
 					(FirstType == "ForInStatement") )
 			{
-				if (LoopGopherSDebug) console.log(CalleLine+": "+xstr+FirstType); 
+				if (LoopGopherSDebug) console.log(CalleLine+": "+xstr+FirstType);
+				HelperParentType = FirstType;
+				HelperParentStart = CalleStart;
+				HelperParentEnd = CalleEnd;
 			} else
 			{
 				
@@ -542,6 +555,9 @@ function LoopGopherS(DataListSource,SourceCode)
 						NewQParent.StartIndent = DataListSource[C1].XIndent; 
 						NewQParent.ArrayIndex = C1;
 						NewQParent.InsertStr = "";
+						NewQParent.HelperParentType = HelperParentType;
+						NewQParent.HelperParentStart = HelperParentStart;
+						NewQParent.HelperParentEnd = HelperParentEnd;
 						
 						var CopyStart = 0;
 						var CopyEnd = 0;
@@ -736,66 +752,100 @@ function LoopGopherS(DataListSource,SourceCode)
 //----------------------------------------------------------------------------------------
 function GopherTellify(contents,inFile)
 {
+	var DebugLines = false;
+	var TempVarStr = "";
+
 	var options = {};
 	options.locations = true; 
-	var parsed = Globals.acorn.parse(contents, options); 
-
-	var DebugLines = false;
-
-	MakeJSONTreeFromJS(parsed,inFile);
-
+	
+	//******** Reparse Source for the first time
 	var DataList = [];
+	var GopherObjectsA = [];
+	var parsed = Globals.acorn.parse(contents, options); 
+	MakeJSONTreeFromJS(parsed,inFile);
 	Object.keys(parsed).forEach(function(key) {  
 		DataList = recurseJSON(key, parsed[key],0,DataList, "p", "", 0);
 	});
-
-	var GopherObjectsA = [];
-	GopherObjectsA = LoopGopherS(DataList,contents);
-
-	for (var i=0; i < GopherObjectsA.length; i++)
+	GopherObjectsA = LoopGopherS(DataList,contents,true);
+	//********
+	
+	//Loop All IF statements and move the IF statement to a variable then use the variable in the IF
+	var TempVarCounter = 0;
+	for (var ObjectCounter=GopherObjectsA.length-1; ObjectCounter >= 0; ObjectCounter--)
 	{
-		
-		if ( (GopherObjectsA[i].NewRecordType=="UpdateExpression")  )
+		if ( ( (GopherObjectsA[ObjectCounter].NewRecordType=="LogicalExpression") || (GopherObjectsA[ObjectCounter].NewRecordType=="BinaryExpression"))  && (GopherObjectsA[ObjectCounter].HelperParentType=="IfStatement") )
+		{
+
+			TempVarCounter++;
+			contents = [contents.slice(0, GopherObjectsA[ObjectCounter].CopyStart), "TempIfVar_"+TempVarCounter, 	contents.slice(GopherObjectsA[ObjectCounter].CopyEnd)].join('');
+			
+			//contents = [contents.slice(0, GopherObjectsA[ObjectCounter].HelperParentStart), "TempIfVar_"+TempVarCounter+"="+GopherObjectsA[ObjectCounter].Records[0].xSource+";\n", contents.slice(GopherObjectsA[ObjectCounter].HelperParentStart)].join('');
+			
+			console.log("IF: "+GopherObjectsA[ObjectCounter].Records[0].xSource+" "+GopherObjectsA[ObjectCounter].HelperParentStart);
+		}
+/*
+		if ( (GopherObjectsA[ObjectCounter].InsertStr!="") && (GopherObjectsA[ObjectCounter].CopyStart>0) && (GopherObjectsA[ObjectCounter].CopyEnd>0) )
+		{
+			//console.log( GopherObjectsA[i].InsertStr + "\n"   );
+			contents = [contents.slice(0, GopherObjectsA[ObjectCounter].CopyStart), GopherObjectsA[ObjectCounter].InsertStr, 	contents.slice(GopherObjectsA[ObjectCounter].CopyEnd)].join('');
+		}*/
+	}
+	
+
+	//******** Reparse Source since it was changed
+	var DataList = [];
+	var GopherObjectsA = [];
+	var parsed = Globals.acorn.parse(contents, options); 
+	Object.keys(parsed).forEach(function(key) {  
+		DataList = recurseJSON(key, parsed[key],0,DataList, "p", "", 0);
+	});
+	GopherObjectsA = LoopGopherS(DataList,contents);
+	//********
+
+	//Loop all Variable Expressions and convert them to multiline statements
+	for (var ObjectCounter=0; ObjectCounter < GopherObjectsA.length; ObjectCounter++)
+	{
+		if ( (GopherObjectsA[ObjectCounter].NewRecordType=="UpdateExpression")  )
 		{
 			//first print to screen
 			if (DebugLines) {
-				console.log( "\nUPDATE: " + GopherObjectsA[i].NewRecordType + 
-				" Source: " + GopherObjectsA[i].Records[0].xSource + 
-				" Var Name: " + GopherObjectsA[i].Records[1].xSource + " Op:" + GopherObjectsA[i].Records[0].Operator + " Prefix: "+ GopherObjectsA[i].Records[0].Prefix );
+				console.log( "\nUPDATE: " + GopherObjectsA[ObjectCounter].NewRecordType + 
+				" Source: " + GopherObjectsA[ObjectCounter].Records[0].xSource + 
+				" Var Name: " + GopherObjectsA[ObjectCounter].Records[1].xSource + " Op:" + GopherObjectsA[ObjectCounter].Records[0].Operator + " Prefix: "+ GopherObjectsA[ObjectCounter].Records[0].Prefix );
 			}
 			
-			GopherObjectsA[i].InsertStr = "(tempVar = "+GopherObjectsA[i].Records[1].xSource+", " + 
-			               GopherObjectsA[i].Records[1].xSource + "= GopherSetF('" + escapeSingleQuuote(GopherObjectsA[i].Records[1].xSource) + "','" + escapeSingleQuuote(GopherObjectsA[i].Records[0].xSource) + "',"+GopherObjectsA[i].Records[1].xSource+",'" + GopherObjectsA[i].Records[0].Operator + "',false,'"+ GopherObjectsA[i].Records[0].Prefix +"'), tempVar)";
+			GopherObjectsA[ObjectCounter].InsertStr = "(tempVar = "+GopherObjectsA[ObjectCounter].Records[1].xSource+", " + 
+			               GopherObjectsA[ObjectCounter].Records[1].xSource + "= GopherSetF('" + escapeSingleQuuote(GopherObjectsA[ObjectCounter].Records[1].xSource) + "','" + escapeSingleQuuote(GopherObjectsA[ObjectCounter].Records[0].xSource) + "',"+GopherObjectsA[ObjectCounter].Records[1].xSource+",'" + GopherObjectsA[ObjectCounter].Records[0].Operator + "',false,'"+ GopherObjectsA[ObjectCounter].Records[0].Prefix +"'), tempVar)";
 						   
 			if (DebugLines) {
-				console.log( GopherObjectsA[i].InsertStr + "\n"   );
+				console.log( GopherObjectsA[ObjectCounter].InsertStr + "\n"   );
 			}
 		}
 		
 		//If AssignmentExpression,VariableDeclarator and first operator is =
-		if ( (GopherObjectsA[i].NewRecordType=="AssignmentExpression") || 
-		     (GopherObjectsA[i].NewRecordType=="VariableDeclarator") || 
-			  (GopherObjectsA[i].NewRecordType=="LogicalExpression") )
+		if ( (GopherObjectsA[ObjectCounter].NewRecordType=="AssignmentExpression") || 
+		     (GopherObjectsA[ObjectCounter].NewRecordType=="VariableDeclarator") || 
+			  (GopherObjectsA[ObjectCounter].NewRecordType=="LogicalExpression") )
 		{
 			//first print to screen
 			if (DebugLines) {
-				console.log( "\n" +GopherObjectsA[i].NewRecordType + 
-				" Source: " + GopherObjectsA[i].Records[0].xSource + 
-				" Var Name: " + GopherObjectsA[i].Records[1].xSource + " " + GopherObjectsA[i].Records[0].Operator);
+				console.log( "\n" +GopherObjectsA[ObjectCounter].NewRecordType + 
+				" Source: " + GopherObjectsA[ObjectCounter].Records[0].xSource + 
+				" Var Name: " + GopherObjectsA[ObjectCounter].Records[1].xSource + " " + GopherObjectsA[ObjectCounter].Records[0].Operator);
 			}
 			
-			for (var j=2; j < GopherObjectsA[i].Records.length; j++)
+			for (var j=2; j < GopherObjectsA[ObjectCounter].Records.length; j++)
 			{
 				var xstr = "";
-				for (var i2=0; i2<GopherObjectsA[i].Records[j].Indent; i2++) { xstr += " "; }
+				for (var i2=0; i2<GopherObjectsA[ObjectCounter].Records[j].Indent; i2++) { xstr += " "; }
 
 				if (DebugLines) {
-					console.log( " ID/Pa: "+ PadLeft(GopherObjectsA[i].Records[j].xID,4) + " / "+ PadLeft(GopherObjectsA[i].Records[j].ParentID,4) + " :" + GopherObjectsA[i].Records[j].XLine + xstr +
-					  " I: " + (GopherObjectsA[i].Records[j].Indent-GopherObjectsA[i].StartIndent ) + 
-					  " Source: "+ GopherObjectsA[i].Records[j].xSource +
-					  " Op: "+ GopherObjectsA[i].Records[j].Operator +
-					  " Children: " + GopherObjectsA[i].Records[j].HasChildren +
-					  " Type:" + GopherObjectsA[i].Records[j].ThisType 
+					console.log( " ID/Pa: "+ PadLeft(GopherObjectsA[ObjectCounter].Records[j].xID,4) + " / "+ PadLeft(GopherObjectsA[ObjectCounter].Records[j].ParentID,4) + " :" + GopherObjectsA[ObjectCounter].Records[j].XLine + xstr +
+					  " I: " + (GopherObjectsA[ObjectCounter].Records[j].Indent-GopherObjectsA[ObjectCounter].StartIndent ) + 
+					  " Source: "+ GopherObjectsA[ObjectCounter].Records[j].xSource +
+					  " Op: "+ GopherObjectsA[ObjectCounter].Records[j].Operator +
+					  " Children: " + GopherObjectsA[ObjectCounter].Records[j].HasChildren +
+					  " Type:" + GopherObjectsA[ObjectCounter].Records[j].ThisType 
 					);
 				}
 			}
@@ -811,28 +861,28 @@ function GopherTellify(contents,inFile)
 				NodeWithouChildID = 0;
 				NodeWithouChildIndent = 0;
 				//find nodes without children where NewQ.Processed = false
-				for (var j=2; j < GopherObjectsA[i].Records.length; j++)
+				for (var j=2; j < GopherObjectsA[ObjectCounter].Records.length; j++)
 				{
 					//if variable is a fuction ignore all children
-					if (GopherObjectsA[i].Records[j].ThisType=="CallExpression") 
+					if (GopherObjectsA[ObjectCounter].Records[j].ThisType=="CallExpression") 
 					{
-						GopherObjectsA[i].Records[j].HasChildren = false;
+						GopherObjectsA[ObjectCounter].Records[j].HasChildren = false;
 						var j2 = j+1;
 						
-						while ( ( GopherObjectsA[i].Records[j2].Indent>GopherObjectsA[i].Records[j].Indent ) && (j2 < GopherObjectsA[i].Records.length-1))
+						while ( ( GopherObjectsA[ObjectCounter].Records[j2].Indent>GopherObjectsA[ObjectCounter].Records[j].Indent ) && (j2 < GopherObjectsA[ObjectCounter].Records.length-1))
 						{
-							GopherObjectsA[i].Records[j2].Processed = true;
+							GopherObjectsA[ObjectCounter].Records[j2].Processed = true;
 							j2++;
 						}
 					}
 					
 					//find node without children, also make sure to find node with the highenst indent
-					if ( (!GopherObjectsA[i].Records[j].HasChildren) && (!GopherObjectsA[i].Records[j].Processed) )
+					if ( (!GopherObjectsA[ObjectCounter].Records[j].HasChildren) && (!GopherObjectsA[ObjectCounter].Records[j].Processed) )
 					{
-						if (GopherObjectsA[i].Records[j].Indent>NodeWithouChildIndent)
+						if (GopherObjectsA[ObjectCounter].Records[j].Indent>NodeWithouChildIndent)
 						{
 							NodeWithouChildFound = true;
-							NodeWithouChildIndent = GopherObjectsA[i].Records[j].Indent;
+							NodeWithouChildIndent = GopherObjectsA[ObjectCounter].Records[j].Indent;
 							NodeWithouChildID = j;
 						}
 						
@@ -842,39 +892,40 @@ function GopherTellify(contents,inFile)
 				if (NodeWithouChildFound)
 				{
 					//if (parent is the previous node then)
-					if (GopherObjectsA[i].Records[NodeWithouChildID-1].xID==GopherObjectsA[i].Records[NodeWithouChildID].ParentID)
+					if (GopherObjectsA[ObjectCounter].Records[NodeWithouChildID-1].xID==GopherObjectsA[ObjectCounter].Records[NodeWithouChildID].ParentID)
 					{
 						var LeftRightC = 0;
 						var LeftV = "null";
 						var RightV = "null";
 						var LeftC = "";
 						var RightC = "";
-						for (var j2=NodeWithouChildID; j2 < GopherObjectsA[i].Records.length; j2++)
+						for (var j2=NodeWithouChildID; j2 < GopherObjectsA[ObjectCounter].Records.length; j2++)
 						{
-							if ( (GopherObjectsA[i].Records[j2].ParentID==GopherObjectsA[i].Records[NodeWithouChildID-1].xID) && (LeftRightC<2))
+							if ( (GopherObjectsA[ObjectCounter].Records[j2].ParentID==GopherObjectsA[ObjectCounter].Records[NodeWithouChildID-1].xID) && (LeftRightC<2))
 							{
 								LeftRightC++;
-								if (LeftRightC==1) { LeftV = GopherObjectsA[i].Records[j2].TempVarName; LeftC = GopherObjectsA[i].Records[j2].xSource; }
-								if (LeftRightC==2) { RightV = GopherObjectsA[i].Records[j2].TempVarName; RightC = GopherObjectsA[i].Records[j2].xSource; }
+								if (LeftRightC==1) { LeftV = GopherObjectsA[ObjectCounter].Records[j2].TempVarName; LeftC = GopherObjectsA[ObjectCounter].Records[j2].xSource; }
+								if (LeftRightC==2) { RightV = GopherObjectsA[ObjectCounter].Records[j2].TempVarName; RightC = GopherObjectsA[ObjectCounter].Records[j2].xSource; }
 
 								TheCowsAreAway = true;
-								GopherObjectsA[i].Records[j2].Processed = true;
+								GopherObjectsA[ObjectCounter].Records[j2].Processed = true;
 							}
 						}
 
 						TempC++;
-						xPrefix = "var ";
-						if ( (GopherObjectsA[i].NewRecordType=="VariableDeclarator") && (TempC==1) ) { xPrefix = "";}
+						
+						if (TempVarStr!="") { TempVarStr += ", "; }
+						TempVarStr += "Temp_" + ObjectCounter + "_" + TempC;
 
-						GopherObjectsA[i].InsertStr = GopherObjectsA[i].InsertStr + xPrefix +"Temp_" + TempC + " = GopherHelperF('" + GopherObjectsA[i].Records[NodeWithouChildID-1].Operator + "'," + LeftV + "," + RightV + ",'Temp_" + TempC+"','" + escapeSingleQuuote(LeftC) + "','" + escapeSingleQuuote(RightC) + "');\n";
+						GopherObjectsA[ObjectCounter].InsertStr = GopherObjectsA[ObjectCounter].InsertStr + "Temp_" + ObjectCounter + "_" + TempC + " = GopherHelperF('" + GopherObjectsA[ObjectCounter].Records[NodeWithouChildID-1].Operator + "'," + LeftV + "," + RightV + ",'Temp_" + ObjectCounter + "_" + TempC+"','" + escapeSingleQuuote(LeftC) + "','" + escapeSingleQuuote(RightC) + "');\n";
 						
 						if (DebugLines) {
-							console.log(xPrefix +"Temp_" + TempC + " = GopherHelperF('" + GopherObjectsA[i].Records[NodeWithouChildID-1].Operator + "'," + LeftV + "," + RightV + ",'Temp_" + TempC+"','" + escapeSingleQuuote(LeftC) + "','" + escapeSingleQuuote(RightC) + "');");
+							console.log("Temp_" + TempC + " = GopherHelperF('" + GopherObjectsA[ObjectCounter].Records[NodeWithouChildID-1].Operator + "'," + LeftV + "," + RightV + ",'Temp_" + TempC+"','" + escapeSingleQuuote(LeftC) + "','" + escapeSingleQuuote(RightC) + "');");
 						}
 
 						//set parent to childless and update its tempvarname 
-						GopherObjectsA[i].Records[NodeWithouChildID-1].TempVarName = "Temp_" + TempC;
-						GopherObjectsA[i].Records[NodeWithouChildID-1].HasChildren=false;
+						GopherObjectsA[ObjectCounter].Records[NodeWithouChildID-1].TempVarName = "Temp_" + ObjectCounter + "_" + TempC;
+						GopherObjectsA[ObjectCounter].Records[NodeWithouChildID-1].HasChildren=false;
 					}
 				}
 
@@ -882,39 +933,39 @@ function GopherTellify(contents,inFile)
 				if (k>100) { TheCowsAreAway = false; }
 			}
 			var xPrefix = "";
-			if (GopherObjectsA[i].NewRecordType=="VariableDeclarator") { xPrefix = "var ";}
+			if (GopherObjectsA[ObjectCounter].NewRecordType=="VariableDeclarator") { xPrefix = "var ";}
 			
 			if (TempC==0)
 			{
 				var xSource = "null";
-				if (GopherObjectsA[i].Records.length>2) { xSource = GopherObjectsA[i].Records[2].xSource; }
+				if (GopherObjectsA[ObjectCounter].Records.length>2) { xSource = GopherObjectsA[ObjectCounter].Records[2].xSource; }
 
 				//GopherHelperF( Operator, LeftVal, RightVal, TempName, LeftValStr, RightVarStr)				
 				//var = GopherSetF( VarName, CommandLine, Value, Operator, UseTempVars, Prefix)
 				
-				if ( (GopherObjectsA[i].NewRecordType=="VariableDeclarator") ) { xPrefix = "";}
+				if ( (GopherObjectsA[ObjectCounter].NewRecordType=="VariableDeclarator") ) { xPrefix = "";}
 
-				GopherObjectsA[i].InsertStr = GopherObjectsA[i].InsertStr + 
-					xPrefix + GopherObjectsA[i].Records[1].xSource + " = GopherSetF('" + escapeSingleQuuote(GopherObjectsA[i].Records[1].xSource) + "','" + escapeSingleQuuote(GopherObjectsA[i].Records[0].xSource) + "'," + xSource + ",'" + GopherObjectsA[i].Records[0].Operator + "',false,'"+ GopherObjectsA[i].Records[0].Prefix +"')";
+				GopherObjectsA[ObjectCounter].InsertStr = GopherObjectsA[ObjectCounter].InsertStr + 
+					xPrefix + GopherObjectsA[ObjectCounter].Records[1].xSource + " = GopherSetF('" + escapeSingleQuuote(GopherObjectsA[ObjectCounter].Records[1].xSource) + "','" + escapeSingleQuuote(GopherObjectsA[ObjectCounter].Records[0].xSource) + "'," + xSource + ",'" + GopherObjectsA[ObjectCounter].Records[0].Operator + "',false,'"+ GopherObjectsA[ObjectCounter].Records[0].Prefix +"')";
 				 
 				 
-				//console.log( GopherObjectsA[i].InsertStr + "\n"   );
+				//console.log( GopherObjectsA[ObjectCounter].InsertStr + "\n"   );
 			} else
 			{
-				GopherObjectsA[i].InsertStr = GopherObjectsA[i].InsertStr + 
-					xPrefix + GopherObjectsA[i].Records[1].xSource + " = GopherSetF('" + escapeSingleQuuote(GopherObjectsA[i].Records[1].xSource) + "','" + escapeSingleQuuote(GopherObjectsA[i].Records[0].xSource) + "',Temp_" + TempC + ",'" + GopherObjectsA[i].Records[0].Operator + "',true,'"+ GopherObjectsA[i].Records[0].Prefix +"')";
+				GopherObjectsA[ObjectCounter].InsertStr = GopherObjectsA[ObjectCounter].InsertStr + 
+					xPrefix + GopherObjectsA[ObjectCounter].Records[1].xSource + " = GopherSetF('" + escapeSingleQuuote(GopherObjectsA[ObjectCounter].Records[1].xSource) + "','" + escapeSingleQuuote(GopherObjectsA[ObjectCounter].Records[0].xSource) + "',Temp_" + ObjectCounter + "_" + TempC + ",'" + GopherObjectsA[ObjectCounter].Records[0].Operator + "',true,'"+ GopherObjectsA[ObjectCounter].Records[0].Prefix +"')";
 				
-				//console.log( GopherObjectsA[i].InsertStr + "\n"   );
+				//console.log( GopherObjectsA[ObjectCounter].InsertStr + "\n"   );
 			}
 		}
 	}
 	
-	for (var i=GopherObjectsA.length-1; i >= 0; i--)
+	for (var ObjectCounter=GopherObjectsA.length-1; ObjectCounter >= 0; ObjectCounter--)
 	{
-		if ( (GopherObjectsA[i].InsertStr!="") && (GopherObjectsA[i].CopyStart>0) && (GopherObjectsA[i].CopyEnd>0) )
+		if ( (GopherObjectsA[ObjectCounter].InsertStr!="") && (GopherObjectsA[ObjectCounter].CopyStart>0) && (GopherObjectsA[ObjectCounter].CopyEnd>0) )
 		{
 			//console.log( GopherObjectsA[i].InsertStr + "\n"   );
-			contents = [contents.slice(0, GopherObjectsA[i].CopyStart), GopherObjectsA[i].InsertStr, 	contents.slice(GopherObjectsA[i].CopyEnd)].join('');
+			contents = [contents.slice(0, GopherObjectsA[ObjectCounter].CopyStart), GopherObjectsA[ObjectCounter].InsertStr, 	contents.slice(GopherObjectsA[ObjectCounter].CopyEnd)].join('');
 		}
 	}
 	//
@@ -995,6 +1046,7 @@ function GopherTellify(contents,inFile)
 	"function GopherHelperF( Operator, LeftVal, RightVal, TempName, LeftValStr, RightVarStr) {\n" +
 	"	var OutPut = '';\n" +
 	"  if (Operator=='+') {  OutPut = LeftVal + RightVal; }\n" +
+	"  if (Operator=='==') {  OutPut = LeftVal == RightVal; }\n" +
 	"	return OutPut;\n"+
 	"}\n\n"+
 
@@ -1007,7 +1059,12 @@ function GopherTellify(contents,inFile)
 
 
 	"//------------------------------------------------------------------------------\n"+
+	"\n"+
+	
+	"var "+TempVarStr+";\n\n"+
+	"//------------------------------------------------------------------------------\n"+
 	"\n\n"+
+ 
 	contents;
  
 	return contents;
