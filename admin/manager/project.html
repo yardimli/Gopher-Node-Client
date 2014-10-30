@@ -1,130 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="description" content="">
-		<meta name="author" content="">
-		<link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
 
-		<title>Gopher Manager - My Project</title>
+        <title>Gopher Manager - My Project</title>
 
-		<script src="js/jquery-1.10.2.js"></script>
-		<script src="js/jquery-ui-1.10.4.js"></script>
-		<script src="/socket.io/socket.io.js"></script>
+        <script src="js/jquery-1.10.2.js"></script>
+        <script src="js/jquery-ui-1.10.4.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
 
-		<!-- Bootstrap core CSS -->
-		<link href="css/bootstrap.min.css" rel="stylesheet">
-		<script src="js/bootstrap.min.js"></script>
-		<!-- TreeView plugin -->
-		<link href="Lib/jstree/themes/default/style.min.css" rel="stylesheet"/>
-		<script src="Lib/jstree/jstree.min.js" type="text/javascript"></script>
+        <!-- Bootstrap core CSS -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <script src="js/bootstrap.min.js"></script>
+        <!-- TreeView plugin -->
+        <link href="Lib/jstree/themes/default/style.min.css" rel="stylesheet"/>
+        <script src="Lib/jstree/jstree.min.js" type="text/javascript"></script>
 
-		<!-- Mine -->
-		<link href="css/style.css" rel="stylesheet">
-		<script src="js/centralizeDialo	g.js" type="text/javascript"></script>
-		<script src="js/project.js" type="text/javascript"></script>
-	</head>
-	<body>
-		<div id="debug_console" class="debug-console">
-			PARSER DEBUG CONSOLE:
-			<br>
-		</div>
-		<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-			<div class="container">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" href="#">Gopher Manager</a>
-				</div>
-				<div class="collapse navbar-collapse">
-					<ul class="nav navbar-nav">
-						<li>
-							<a href="/admin/rtconsole.html">Real Time Console</a>
-						</li>
-						<li class="active">
-							<a href="/admin/manager/manager.html">Manager</a>
-						</li>
-					</ul>
-				</div><!--/.nav-collapse -->
-			</div>
-		</div>
+        <!-- Mine -->
+        <link href="css/style.css" rel="stylesheet">
+        <script src="js/centralizeDialo	g.js" type="text/javascript"></script>
+        <script src="js/project.js" type="text/javascript"></script>
+    </head>
+    <body>
+        <div id="debug_console" class="debug-console">
+            PARSER DEBUG CONSOLE:
+            <br>
+        </div>
+        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Gopher Manager</a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="/admin/rtconsole.html">Real Time Console</a>
+                        </li>
+                        <li class="active">
+                            <a href="/admin/manager/manager.html">Manager</a>
+                        </li>
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div>
+        </div>
 
-		<div class="container myContent">
-			<div class="row">
-				<div class="col-md-12" style="padding-bottom: 20px;"><input type="text" class="form-control" placeholder="What is your project's name?" id="in_projectName" style="background-color:#253849;float:right;font-weight: bold;font-size:150%;height:46px;color:#EFEFEF;"></div>
-				<div class="col-md-9">
-					<input type="text" class="form-control" placeholder="Where is your project folder?" id="in_projectDir">
-				</div>
-				<div class="col-md-3">
-					<button type="button" class="btn btn-default btn-block" data-toggle="modal" data-target="#dialog_select_dir">
-							Browse
-					</button>
-				</div>
-				<div class="col-md-12">
-					<div class="col-md-7">
-						<div id="project_files_view" class="project-file-view"></div>
-							<input type="hidden" value="" id="input_setSelectedNodeId"/>
-							<a role="button" href="#" class="btn btn-default btn-xs" id="btn_ignoreFile" data-whenenable="" data-whendisable="">Ignore It<input data-uselabel="whenDisable" type="hidden" value=""/><input data-uselabel="whenEnable" type="hidden" value=""/></a>
-					</div>
-					<div class="col-md-5">
-						<div class="panel panel-default ignored-file-panel">
-							<div class="panel-heading">
-								<h3 class="panel-title">Ignored Files</h3>
-							</div>
-							<div class="panel-body">
-									<div id="project_ignorefiles_view" class="project-ignoreFiles-view"></div>	
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-12">
-					<div class="alert alert-warning alert-dismissible" role="alert">
-				  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-				  <strong>Warning!</strong> There are no files or folder selected for Gopher. Gopher View will not be working properly.
-					</div>
-					<button type="button" class="btn btn-primary" style="width:250px;" id="btn_doneSetup">Save</button>
-				</div>
-			</div>
-			
-		</div><!-- /.container -->
+        <div class="container myContent">
+            <div class="row">
+                <div class="col-md-12" style="padding-bottom: 20px;"><input type="text" class="form-control" placeholder="What is your project's name?" id="in_projectName" style="background-color:#253849;float:right;font-weight: bold;font-size:150%;height:46px;color:#EFEFEF;"></div>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" placeholder="Where is your project folder?" id="in_projectDir">
+                </div>
+                <div class="col-md-3">
+                    <button type="button" class="btn btn-default btn-block" data-toggle="modal" data-target="#dialog_select_dir">
+                        Browse
+                    </button>
+                </div>
+                <div class="col-md-12">
+                    <div class="col-md-7">
+                        <div id="project_files_view" class="project-file-view"></div>
+                        <input type="hidden" value="" id="input_setSelectedNodeId"/>
+                        <a role="button" href="#" class="btn btn-default btn-xs" id="btn_ignoreFile" data-whenenable="" data-whendisable="">Ignore It<input data-uselabel="whenDisable" type="hidden" value=""/><input data-uselabel="whenEnable" type="hidden" value=""/></a>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="panel panel-default ignored-file-panel">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Ignored Files</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div id="project_ignorefiles_view" class="project-ignoreFiles-view"></div>	
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="alert alert-warning alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <strong>Warning!</strong> There are no files or folder selected for Gopher. Gopher View will not be working properly.
+                    </div>
+                    <button type="button" class="btn btn-primary" style="width:250px;" id="btn_doneSetup">Save</button>
+                </div>
+            </div>
 
-		<div id="dialog_select_dir" class="modal fade " tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-dialogw="884" data-dialogh="465">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-							&times;
-						</button>
-						<h4 class="modal-title">Select Project Directory</h4>
-					</div>
-					<div class="modal-body" style="margin-bottom:0px; padding-bottom:0px;">
-						<div id="current_dir" class="current-dir"></div>
-						<div id="target_dir" class="target-dir">
+        </div><!-- /.container -->
 
-						</div>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-primary" id="btn_openProjectDir" data-dismiss="modal">
-							Open Directory
-						</button>
-					</div>
-				</div>
-			</div>
-		</div>
+        <div id="dialog_select_dir" class="modal fade " tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-dialogw="884" data-dialogh="465">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            &times;
+                        </button>
+                        <h4 class="modal-title">Select Project Directory</h4>
+                    </div>
+                    <div class="modal-body" style="margin-bottom:0px; padding-bottom:0px;">
+                        <div id="current_dir" class="current-dir"></div>
+                        <div id="target_dir" class="target-dir">
 
-		<div id="footer">
-			<div class="container">
-				<p class="text-muted">
-					Place sticky footer content here.
-				</p>
-			</div>
-		</div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="btn_openProjectDir" data-dismiss="modal">
+                            Select This
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-	</body>
+        <div id="footer">
+            <div class="container">
+                <p class="text-muted">
+                    Place sticky footer content here.
+                </p>
+            </div>
+        </div>
+
+    </body>
 </html>

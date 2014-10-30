@@ -1,0 +1,96 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install',
+1 verbose cli   'http-proxy.js' ]
+2 info using npm@1.4.9
+3 info using node@v0.10.28
+4 verbose node symlink C:\Program Files\nodejs\\node.exe
+5 verbose cache add [ 'http-proxy.js', null ]
+6 verbose cache add name=undefined spec="http-proxy.js" args=["http-proxy.js",null]
+7 verbose parsed url { protocol: null,
+7 verbose parsed url   slashes: null,
+7 verbose parsed url   auth: null,
+7 verbose parsed url   host: null,
+7 verbose parsed url   port: null,
+7 verbose parsed url   hostname: null,
+7 verbose parsed url   hash: null,
+7 verbose parsed url   search: null,
+7 verbose parsed url   query: null,
+7 verbose parsed url   pathname: 'http-proxy.js',
+7 verbose parsed url   path: 'http-proxy.js',
+7 verbose parsed url   href: 'http-proxy.js' }
+8 silly lockFile 8245d6dd-http-proxy-js http-proxy.js
+9 verbose lock http-proxy.js C:\Users\vaio\AppData\Roaming\npm-cache\8245d6dd-http-proxy-js.lock
+10 verbose chmod C:\Users\vaio\AppData\Local\Temp\npm-59264-ppfIHREm\1414103031443-0.2796339699998498\tmp.tgz 644
+11 verbose tar unpack C:\Users\vaio\AppData\Local\Temp\npm-59264-ppfIHREm\1414103031443-0.2796339699998498\tmp.tgz
+12 silly lockFile 03443e15-314e1b8c4tmp-3fd9157e4d17package tar://C:\Users\vaio\AppData\Roaming\npm-cache\tmp_c6f314e1b8c4tmp_3fd9157e4d17package
+13 verbose lock tar://C:\Users\vaio\AppData\Roaming\npm-cache\tmp_c6f314e1b8c4tmp_3fd9157e4d17package C:\Users\vaio\AppData\Roaming\npm-cache\03443e15-314e1b8c4tmp-3fd9157e4d17package.lock
+14 silly lockFile 0d6dd98d-31443-0-2796339699998498-tmp-tgz tar://C:\Users\vaio\AppData\Local\Temp\npm-59264-ppfIHREm\1414103031443-0.2796339699998498\tmp.tgz
+15 verbose lock tar://C:\Users\vaio\AppData\Local\Temp\npm-59264-ppfIHREm\1414103031443-0.2796339699998498\tmp.tgz C:\Users\vaio\AppData\Roaming\npm-cache\0d6dd98d-31443-0-2796339699998498-tmp-tgz.lock
+16 silly gunzTarPerm modes [ '755', '644' ]
+17 error not a package C:\Users\vaio\AppData\Local\Temp\npm-59264-ppfIHREm\1414103031443-0.2796339699998498\tmp.tgz
+18 silly lockFile 03443e15-314e1b8c4tmp-3fd9157e4d17package tar://C:\Users\vaio\AppData\Roaming\npm-cache\tmp_c6f314e1b8c4tmp_3fd9157e4d17package
+19 silly lockFile 03443e15-314e1b8c4tmp-3fd9157e4d17package tar://C:\Users\vaio\AppData\Roaming\npm-cache\tmp_c6f314e1b8c4tmp_3fd9157e4d17package
+20 silly lockFile 0d6dd98d-31443-0-2796339699998498-tmp-tgz tar://C:\Users\vaio\AppData\Local\Temp\npm-59264-ppfIHREm\1414103031443-0.2796339699998498\tmp.tgz
+21 silly lockFile 0d6dd98d-31443-0-2796339699998498-tmp-tgz tar://C:\Users\vaio\AppData\Local\Temp\npm-59264-ppfIHREm\1414103031443-0.2796339699998498\tmp.tgz
+22 silly lockFile 8245d6dd-http-proxy-js http-proxy.js
+23 silly lockFile 8245d6dd-http-proxy-js http-proxy.js
+24 verbose addNamed [ 'http-proxy.js', '' ]
+25 verbose addNamed [ null, '*' ]
+26 silly lockFile 0ea7d7d3-http-proxy-js http-proxy.js@
+27 verbose lock http-proxy.js@ C:\Users\vaio\AppData\Roaming\npm-cache\0ea7d7d3-http-proxy-js.lock
+28 silly addNameRange { name: 'http-proxy.js', range: '*', hasData: false }
+29 verbose url raw http-proxy.js
+30 verbose url resolving [ 'https://registry.npmjs.org/', './http-proxy.js' ]
+31 verbose url resolved https://registry.npmjs.org/http-proxy.js
+32 info trying registry request attempt 1 at 06:23:51
+33 http GET https://registry.npmjs.org/http-proxy.js
+34 http 404 https://registry.npmjs.org/http-proxy.js
+35 verbose headers { date: 'Thu, 23 Oct 2014 22:23:54 GMT',
+35 verbose headers   server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+35 verbose headers   'content-type': 'application/json',
+35 verbose headers   'cache-control': 'max-age=0',
+35 verbose headers   'content-length': '52',
+35 verbose headers   'accept-ranges': 'bytes',
+35 verbose headers   via: '1.1 varnish',
+35 verbose headers   age: '0',
+35 verbose headers   'x-served-by': 'cache-ty67-TYO',
+35 verbose headers   'x-cache': 'MISS',
+35 verbose headers   'x-cache-hits': '0',
+35 verbose headers   'x-timer': 'S1414103034.786636,VS0,VE127',
+35 verbose headers   'keep-alive': 'timeout=10, max=50',
+35 verbose headers   connection: 'Keep-Alive' }
+36 silly registry.get cb [ 404,
+36 silly registry.get   { date: 'Thu, 23 Oct 2014 22:23:54 GMT',
+36 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+36 silly registry.get     'content-type': 'application/json',
+36 silly registry.get     'cache-control': 'max-age=0',
+36 silly registry.get     'content-length': '52',
+36 silly registry.get     'accept-ranges': 'bytes',
+36 silly registry.get     via: '1.1 varnish',
+36 silly registry.get     age: '0',
+36 silly registry.get     'x-served-by': 'cache-ty67-TYO',
+36 silly registry.get     'x-cache': 'MISS',
+36 silly registry.get     'x-cache-hits': '0',
+36 silly registry.get     'x-timer': 'S1414103034.786636,VS0,VE127',
+36 silly registry.get     'keep-alive': 'timeout=10, max=50',
+36 silly registry.get     connection: 'Keep-Alive' } ]
+37 silly lockFile 0ea7d7d3-http-proxy-js http-proxy.js@
+38 silly lockFile 0ea7d7d3-http-proxy-js http-proxy.js@
+39 error 404 404 Not Found: http-proxy.js
+39 error 404
+39 error 404 'http-proxy.js' is not in the npm registry.
+39 error 404 You should bug the author to publish it
+39 error 404
+39 error 404 Maybe try 'npm search http proxy'
+39 error 404
+39 error 404 Note that you can also install from a
+39 error 404 tarball, folder, or http url, or git url.
+40 error System Windows_NT 6.2.9200
+41 error command "C:\\Program Files\\nodejs\\\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "http-proxy.js"
+42 error cwd c:\Gopher\lib\node-http-proxy
+43 error node -v v0.10.28
+44 error npm -v 1.4.9
+45 error code E404
+46 verbose exit [ 1, true ]
