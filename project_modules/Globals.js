@@ -18,3 +18,12 @@ exports.extensions = {
 
 exports.socketServer;
 exports.httpServer;
+
+exports.PadLeft = function (nr, n, str) {
+	return Array(n-String(nr).length+1).join(str||' ')+nr;
+}
+
+//----------------------------------------------------------------------------------------
+exports.escapeSingleQuote = function (inStr) {
+    return String(inStr).replace(/\'/g, "\\'");
+}

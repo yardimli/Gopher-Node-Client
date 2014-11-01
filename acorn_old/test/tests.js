@@ -2,9 +2,9 @@
 // (http://esprima.org/test/)
 
 if (typeof exports != "undefined") {
-  var driver = require("./driver.js");
-  var test = driver.test, testFail = driver.testFail, testAssert = driver.testAssert, misMatch = driver.misMatch;
-  var acorn = require("..");
+  var test = require("./driver.js").test;
+  var testFail = require("./driver.js").testFail;
+  var testAssert = require("./driver.js").testAssert;
 }
 
 test("this\n", {
@@ -135,60 +135,6 @@ test("\n    42\n\n", {
   }
 });
 
-test("/foobar/", {
-  type: "Program",
-  body: [
-    {
-      type: "ExpressionStatement",
-      expression: {
-        type: "Literal",
-        value: /foobar/,
-        regex: {
-          pattern: "foobar",
-          flags: ""
-        },
-        loc: {
-          start: {
-            line: 1,
-            column: 0
-          },
-          end: {
-            line: 1,
-            column: 8
-          }
-        }
-      }
-    }
-  ]
-});
-
-test("/[a-z]/g", {
-  type: "Program",
-  body: [
-    {
-      type: "ExpressionStatement",
-      expression: {
-        type: "Literal",
-        value: /[a-z]/,
-        regex: {
-          pattern: "[a-z]",
-          flags: "g"
-        },
-        loc: {
-          start: {
-            line: 1,
-            column: 0
-          },
-          end: {
-            line: 1,
-            column: 8
-          }
-        }
-      }
-    }
-  ]
-});
-
 test("(1 + 2 ) * 3", {
   type: "Program",
   body: [
@@ -220,118 +166,6 @@ test("(1 + 2 ) * 3", {
               start: {
                 line: 1,
                 column: 5
-              },
-              end: {
-                line: 1,
-                column: 6
-              }
-            }
-          },
-          loc: {
-            start: {
-              line: 1,
-              column: 1
-            },
-            end: {
-              line: 1,
-              column: 6
-            }
-          }
-        },
-        operator: "*",
-        right: {
-          type: "Literal",
-          value: 3,
-          loc: {
-            start: {
-              line: 1,
-              column: 11
-            },
-            end: {
-              line: 1,
-              column: 12
-            }
-          }
-        },
-        loc: {
-          start: {
-            line: 1,
-            column: 0
-          },
-          end: {
-            line: 1,
-            column: 12
-          }
-        }
-      },
-      loc: {
-        start: {
-          line: 1,
-          column: 0
-        },
-        end: {
-          line: 1,
-          column: 12
-        }
-      }
-    }
-  ],
-  loc: {
-    start: {
-      line: 1,
-      column: 0
-    },
-    end: {
-      line: 1,
-      column: 12
-    }
-  }
-});
-
-test("(1 + 2 ) * 3", {
-  type: "Program",
-  body: [
-    {
-      type: "ExpressionStatement",
-      expression: {
-        type: "BinaryExpression",
-        left: {
-          type: "ParenthesizedExpression",
-          expression: {
-            type: "BinaryExpression",
-            left: {
-              type: "Literal",
-              value: 1,
-              loc: {
-                start: {
-                  line: 1,
-                  column: 1
-                },
-                end: {
-                  line: 1,
-                  column: 2
-                }
-              }
-            },
-            operator: "+",
-            right: {
-              type: "Literal",
-              value: 2,
-              loc: {
-                start: {
-                  line: 1,
-                  column: 5
-                },
-                end: {
-                  line: 1,
-                  column: 6
-                }
-              }
-            },
-            loc: {
-              start: {
-                line: 1,
-                column: 1
               },
               end: {
                 line: 1,
@@ -398,12 +232,7 @@ test("(1 + 2 ) * 3", {
       column: 12
     }
   }
-}, {
-  locations: true,
-  preserveParens: true
 });
-
-test("(x) = 23", {}, { preserveParens: true });
 
 test("x = []", {
   type: "Program",
@@ -1630,7 +1459,6 @@ test("x = { answer: 42 }", {
           type: "ObjectExpression",
           properties: [
             {
-              type: "Property",
               key: {
                 type: "Identifier",
                 name: "answer",
@@ -1734,7 +1562,6 @@ test("x = { if: 42 }", {
           type: "ObjectExpression",
           properties: [
             {
-              type: "Property",
               key: {
                 type: "Identifier",
                 name: "if",
@@ -1838,7 +1665,6 @@ test("x = { true: 42 }", {
           type: "ObjectExpression",
           properties: [
             {
-              type: "Property",
               key: {
                 type: "Identifier",
                 name: "true",
@@ -1942,7 +1768,6 @@ test("x = { false: 42 }", {
           type: "ObjectExpression",
           properties: [
             {
-              type: "Property",
               key: {
                 type: "Identifier",
                 name: "false",
@@ -2046,7 +1871,6 @@ test("x = { null: 42 }", {
           type: "ObjectExpression",
           properties: [
             {
-              type: "Property",
               key: {
                 type: "Identifier",
                 name: "null",
@@ -2150,7 +1974,6 @@ test("x = { \"answer\": 42 }", {
           type: "ObjectExpression",
           properties: [
             {
-              type: "Property",
               key: {
                 type: "Literal",
                 value: "answer",
@@ -2254,7 +2077,6 @@ test("x = { x: 1, x: 2 }", {
           type: "ObjectExpression",
           properties: [
             {
-              type: "Property",
               key: {
                 type: "Identifier",
                 name: "x",
@@ -2286,7 +2108,6 @@ test("x = { x: 1, x: 2 }", {
               kind: "init"
             },
             {
-              type: "Property",
               key: {
                 type: "Identifier",
                 name: "x",
@@ -2390,7 +2211,6 @@ test("x = { get width() { return m_width } }", {
           type: "ObjectExpression",
           properties: [
             {
-              type: "Property",
               key: {
                 type: "Identifier",
                 name: "width",
@@ -2537,7 +2357,6 @@ test("x = { get undef() {} }", {
           type: "ObjectExpression",
           properties: [
             {
-              type: "Property",
               key: {
                 type: "Identifier",
                 name: "undef",
@@ -2656,7 +2475,6 @@ test("x = { get if() {} }", {
           type: "ObjectExpression",
           properties: [
             {
-              type: "Property",
               key: {
                 type: "Identifier",
                 name: "if",
@@ -2775,7 +2593,6 @@ test("x = { get true() {} }", {
           type: "ObjectExpression",
           properties: [
             {
-              type: "Property",
               key: {
                 type: "Identifier",
                 name: "true",
@@ -2894,7 +2711,6 @@ test("x = { get false() {} }", {
           type: "ObjectExpression",
           properties: [
             {
-              type: "Property",
               key: {
                 type: "Identifier",
                 name: "false",
@@ -3013,7 +2829,6 @@ test("x = { get null() {} }", {
           type: "ObjectExpression",
           properties: [
             {
-              type: "Property",
               key: {
                 type: "Identifier",
                 name: "null",
@@ -3132,7 +2947,6 @@ test("x = { get \"undef\"() {} }", {
           type: "ObjectExpression",
           properties: [
             {
-              type: "Property",
               key: {
                 type: "Literal",
                 value: "undef",
@@ -3251,7 +3065,6 @@ test("x = { get 10() {} }", {
           type: "ObjectExpression",
           properties: [
             {
-              type: "Property",
               key: {
                 type: "Literal",
                 value: 10,
@@ -3370,7 +3183,6 @@ test("x = { set width(w) { m_width = w } }", {
           type: "ObjectExpression",
           properties: [
             {
-              type: "Property",
               key: {
                 type: "Identifier",
                 name: "width",
@@ -3560,7 +3372,6 @@ test("x = { set if(w) { m_if = w } }", {
           type: "ObjectExpression",
           properties: [
             {
-              type: "Property",
               key: {
                 type: "Identifier",
                 name: "if",
@@ -3750,7 +3561,6 @@ test("x = { set true(w) { m_true = w } }", {
           type: "ObjectExpression",
           properties: [
             {
-              type: "Property",
               key: {
                 type: "Identifier",
                 name: "true",
@@ -3940,7 +3750,6 @@ test("x = { set false(w) { m_false = w } }", {
           type: "ObjectExpression",
           properties: [
             {
-              type: "Property",
               key: {
                 type: "Identifier",
                 name: "false",
@@ -4130,7 +3939,6 @@ test("x = { set null(w) { m_null = w } }", {
           type: "ObjectExpression",
           properties: [
             {
-              type: "Property",
               key: {
                 type: "Identifier",
                 name: "null",
@@ -4320,7 +4128,6 @@ test("x = { set \"null\"(w) { m_null = w } }", {
           type: "ObjectExpression",
           properties: [
             {
-              type: "Property",
               key: {
                 type: "Literal",
                 value: "null",
@@ -4510,7 +4317,6 @@ test("x = { set 10(w) { m_null = w } }", {
           type: "ObjectExpression",
           properties: [
             {
-              type: "Property",
               key: {
                 type: "Literal",
                 value: 10,
@@ -4700,7 +4506,6 @@ test("x = { get: 42 }", {
           type: "ObjectExpression",
           properties: [
             {
-              type: "Property",
               key: {
                 type: "Identifier",
                 name: "get",
@@ -4804,7 +4609,6 @@ test("x = { set: 43 }", {
           type: "ObjectExpression",
           properties: [
             {
-              type: "Property",
               key: {
                 type: "Identifier",
                 name: "set",
@@ -8372,11 +8176,11 @@ test("( new foo).bar()", {
             loc: {
               start: {
                 line: 1,
-                column: 2
+                column: 0
               },
               end: {
                 line: 1,
-                column: 9
+                column: 10
               }
             }
           },
@@ -8541,11 +8345,11 @@ test("(    foo  )()", {
           loc: {
             start: {
               line: 1,
-              column: 5
+              column: 0
             },
             end: {
               line: 1,
-              column: 8
+              column: 11
             }
           }
         },
@@ -17387,11 +17191,11 @@ test("if (morning) (function(){})", {
           loc: {
             start: {
               line: 1,
-              column: 14
+              column: 13
             },
             end: {
               line: 1,
-              column: 26
+              column: 27
             }
           }
         },
@@ -20678,11 +20482,11 @@ test("(function(){ return })", {
         loc: {
           start: {
             line: 1,
-            column: 1
+            column: 0
           },
           end: {
             line: 1,
-            column: 21
+            column: 22
           }
         }
       },
@@ -20751,11 +20555,11 @@ test("(function(){ return; })", {
         loc: {
           start: {
             line: 1,
-            column: 1
+            column: 0
           },
           end: {
             line: 1,
-            column: 22
+            column: 23
           }
         }
       },
@@ -20837,11 +20641,11 @@ test("(function(){ return x; })", {
         loc: {
           start: {
             line: 1,
-            column: 1
+            column: 0
           },
           end: {
             line: 1,
-            column: 24
+            column: 25
           }
         }
       },
@@ -20951,11 +20755,11 @@ test("(function(){ return x * y })", {
         loc: {
           start: {
             line: 1,
-            column: 1
+            column: 0
           },
           end: {
             line: 1,
-            column: 27
+            column: 28
           }
         }
       },
@@ -21930,7 +21734,6 @@ test("throw { message: \"Error\" }", {
         type: "ObjectExpression",
         properties: [
           {
-            type: "Property",
             key: {
               type: "Identifier",
               name: "message",
@@ -23364,11 +23167,11 @@ test("(function test(t, t) { })", {
         loc: {
           start: {
             line: 1,
-            column: 1
+            column: 0
           },
           end: {
             line: 1,
-            column: 24
+            column: 25
           }
         }
       },
@@ -24582,11 +24385,11 @@ test("(function(){})", {
         loc: {
           start: {
             line: 1,
-            column: 1
+            column: 0
           },
           end: {
             line: 1,
-            column: 13
+            column: 14
           }
         }
       },
@@ -25692,11 +25495,11 @@ test("(function(){ return\nx; })", {
         loc: {
           start: {
             line: 1,
-            column: 1
+            column: 0
           },
           end: {
             line: 2,
-            column: 4
+            column: 5
           }
         }
       },
@@ -25792,11 +25595,11 @@ test("(function(){ return // Comment\nx; })", {
         loc: {
           start: {
             line: 1,
-            column: 1
+            column: 0
           },
           end: {
             line: 2,
-            column: 4
+            column: 5
           }
         }
       },
@@ -25892,11 +25695,11 @@ test("(function(){ return/* Multiline\nComment */x; })", {
         loc: {
           start: {
             line: 1,
-            column: 1
+            column: 0
           },
           end: {
             line: 2,
-            column: 14
+            column: 15
           }
         }
       },
@@ -26196,6 +25999,8 @@ test("", {
 
 test("foo: if (true) break foo;", {
   type: "Program",
+  start: 0,
+  end: 25,
   loc: {
     start: {
       line: 1,
@@ -26209,6 +26014,8 @@ test("foo: if (true) break foo;", {
   body: [
     {
       type: "LabeledStatement",
+      start: 0,
+      end: 25,
       loc: {
         start: {
           line: 1,
@@ -26221,6 +26028,8 @@ test("foo: if (true) break foo;", {
       },
       body: {
         type: "IfStatement",
+        start: 5,
+        end: 25,
         loc: {
           start: {
             line: 1,
@@ -26233,6 +26042,8 @@ test("foo: if (true) break foo;", {
         },
         test: {
           type: "Literal",
+          start: 9,
+          end: 13,
           loc: {
             start: {
               line: 1,
@@ -26247,6 +26058,8 @@ test("foo: if (true) break foo;", {
         },
         consequent: {
           type: "BreakStatement",
+          start: 15,
+          end: 25,
           loc: {
             start: {
               line: 1,
@@ -26259,6 +26072,8 @@ test("foo: if (true) break foo;", {
           },
           label: {
             type: "Identifier",
+            start: 21,
+            end: 24,
             loc: {
               start: {
                 line: 1,
@@ -26276,6 +26091,8 @@ test("foo: if (true) break foo;", {
       },
       label: {
         type: "Identifier",
+        start: 0,
+        end: 3,
         loc: {
           start: {
             line: 1,
@@ -26294,6 +26111,8 @@ test("foo: if (true) break foo;", {
 
 test("(function () {\n 'use strict';\n '\0';\n}())", {
   type: "Program",
+  start: 0,
+  end: 40,
   loc: {
     start: {
       line: 1,
@@ -26307,6 +26126,8 @@ test("(function () {\n 'use strict';\n '\0';\n}())", {
   body: [
     {
       type: "ExpressionStatement",
+      start: 0,
+      end: 40,
       loc: {
         start: {
           line: 1,
@@ -26319,18 +26140,21 @@ test("(function () {\n 'use strict';\n '\0';\n}())", {
       },
       expression: {
         type: "CallExpression",
+        start: 0,
         loc: {
           start: {
             line: 1,
-            column: 1
+            column: 0
           },
           end: {
             line: 4,
-            column: 3
+            column: 4
           }
         },
         callee: {
           type: "FunctionExpression",
+          start: 1,
+          end: 37,
           loc: {
             start: {
               line: 1,
@@ -26345,6 +26169,8 @@ test("(function () {\n 'use strict';\n '\0';\n}())", {
           params: [],
           body: {
             type: "BlockStatement",
+            start: 13,
+            end: 37,
             loc: {
               start: {
                 line: 1,
@@ -26358,6 +26184,8 @@ test("(function () {\n 'use strict';\n '\0';\n}())", {
             body: [
               {
                 type: "ExpressionStatement",
+                start: 16,
+                end: 29,
                 loc: {
                   start: {
                     line: 2,
@@ -26370,6 +26198,8 @@ test("(function () {\n 'use strict';\n '\0';\n}())", {
                 },
                 expression: {
                   type: "Literal",
+                  start: 16,
+                  end: 28,
                   loc: {
                     start: {
                       line: 2,
@@ -26385,6 +26215,8 @@ test("(function () {\n 'use strict';\n '\0';\n}())", {
               },
               {
                 type: "ExpressionStatement",
+                start: 31,
+                end: 35,
                 loc: {
                   start: {
                     line: 3,
@@ -26397,6 +26229,8 @@ test("(function () {\n 'use strict';\n '\0';\n}())", {
                 },
                 expression: {
                   type: "Literal",
+                  start: 31,
+                  end: 34,
                   loc: {
                     start: {
                       line: 3,
@@ -26414,6 +26248,7 @@ test("(function () {\n 'use strict';\n '\0';\n}())", {
           }
         },
         arguments: [],
+        end: 40
       }
     }
   ]
@@ -26421,29 +26256,43 @@ test("(function () {\n 'use strict';\n '\0';\n}())", {
 
 test("123..toString(10)", {
   type: "Program",
+  start: 0,
+  end: 17,
   body: [
     {
       type: "ExpressionStatement",
+      start: 0,
+      end: 17,
       expression: {
         type: "CallExpression",
+        start: 0,
         callee: {
           type: "MemberExpression",
+          start: 0,
           object: {
             type: "Literal",
+            start: 0,
+            end: 4,
             value: 123
           },
           property: {
             type: "Identifier",
+            start: 5,
+            end: 13,
             name: "toString"
           },
           computed: false,
+          end: 13
         },
         arguments: [
           {
             type: "Literal",
+            start: 14,
+            end: 16,
             value: 10
           }
         ],
+        end: 17
       }
     }
   ]
@@ -26451,20 +26300,30 @@ test("123..toString(10)", {
 
 test("123.+2", {
   type: "Program",
+  start: 0,
+  end: 6,
   body: [
     {
       type: "ExpressionStatement",
+      start: 0,
+      end: 6,
       expression: {
         type: "BinaryExpression",
+        start: 0,
         left: {
           type: "Literal",
+          start: 0,
+          end: 4,
           value: 123
         },
         operator: "+",
         right: {
           type: "Literal",
+          start: 5,
+          end: 6,
           value: 2
         },
+        end: 6
       }
     }
   ]
@@ -26472,18 +26331,28 @@ test("123.+2", {
 
 test("a\u2028b", {
   type: "Program",
+  start: 0,
+  end: 3,
   body: [
     {
       type: "ExpressionStatement",
+      start: 0,
+      end: 1,
       expression: {
         type: "Identifier",
+        start: 0,
+        end: 1,
         name: "a"
       }
     },
     {
       type: "ExpressionStatement",
+      start: 2,
+      end: 3,
       expression: {
         type: "Identifier",
+        start: 2,
+        end: 3,
         name: "b"
       }
     }
@@ -26541,18 +26410,28 @@ test("foo: 10; foo: 20;", {
 
 test("if(1)/  foo/", {
   type: "Program",
+  start: 0,
+  end: 12,
   body: [
     {
       type: "IfStatement",
+      start: 0,
+      end: 12,
       test: {
         type: "Literal",
+        start: 3,
+        end: 4,
         value: 1,
         raw: "1"
       },
       consequent: {
         type: "ExpressionStatement",
+        start: 5,
+        end: 12,
         expression: {
           type: "Literal",
+          start: 5,
+          end: 12,
           raw: "/  foo/"
         }
       },
@@ -26569,6 +26448,8 @@ test("price_9̶9̶_89", {
       expression: {
         type: "Identifier",
         name: "price_9̶9̶_89",
+        start: 0,
+        end: 13
       }
     }
   ]
@@ -26578,6 +26459,8 @@ test("price_9̶9̶_89", {
 
 test("var a = 1;", {
   type: "Program",
+  start: 0,
+  end: 10,
   loc: {
     start: {
       line: 1,
@@ -26592,6 +26475,8 @@ test("var a = 1;", {
   body: [
     {
       type: "VariableDeclaration",
+      start: 0,
+      end: 10,
       loc: {
         start: {
           line: 1,
@@ -26606,6 +26491,8 @@ test("var a = 1;", {
       declarations: [
         {
           type: "VariableDeclarator",
+          start: 4,
+          end: 9,
           loc: {
             start: {
               line: 1,
@@ -26619,6 +26506,8 @@ test("var a = 1;", {
           },
           id: {
             type: "Identifier",
+            start: 4,
+            end: 5,
             loc: {
               start: {
                 line: 1,
@@ -26634,6 +26523,8 @@ test("var a = 1;", {
           },
           init: {
             type: "Literal",
+            start: 8,
+            end: 9,
             loc: {
               start: {
                 line: 1,
@@ -26706,18 +26597,28 @@ test("{}/=/", {
 
 test("foo <!--bar\n+baz", {
   type: "Program",
+  start: 0,
+  end: 16,
   body: [
     {
       type: "ExpressionStatement",
+      start: 0,
+      end: 16,
       expression: {
         type: "BinaryExpression",
+        start: 0,
+        end: 16,
         left: {
           type: "Identifier",
+          start: 0,
+          end: 3,
           name: "foo"
         },
         operator: "+",
         right: {
           type: "Identifier",
+          start: 13,
+          end: 16,
           name: "baz"
         }
       }
@@ -26822,7 +26723,7 @@ testFail("3x0",
          "Identifier directly after number (1:1)");
 
 testFail("0x",
-         "Expected number in radix 16 (1:2)");
+         "Expected hexadecimal number (1:2)");
 
 testFail("09",
          "Invalid number (1:0)");
@@ -26867,7 +26768,7 @@ testFail("func() = 4",
          "Assigning to rvalue (1:0)");
 
 testFail("(1 + 1) = 10",
-         "Assigning to rvalue (1:1)");
+         "Assigning to rvalue (1:0)");
 
 testFail("1++",
          "Assigning to rvalue (1:0)");
@@ -26882,7 +26783,7 @@ testFail("--1",
          "Assigning to rvalue (1:2)");
 
 testFail("for((1 + 1) in list) process(x);",
-         "Assigning to rvalue (1:5)");
+         "Assigning to rvalue (1:4)");
 
 testFail("[",
          "Unexpected token (1:1)");
@@ -27357,1313 +27258,9 @@ testFail("(function a(eval) { \"use strict\"; })",
 testFail("(function a(package) { \"use strict\"; })",
          "Defining 'package' in strict mode (1:12)");
 
-testFail("\"use strict\";function foo(){\"use strict\";}function bar(){var v = 015}",
-         "Invalid number (1:65)");
-
 testFail("var this = 10;", "Unexpected token (1:4)");
 
 testFail("throw\n10;", "Illegal newline after throw (1:5)");
-
-
-// ECMA < 6 mode should work as before
-
-testFail("const a;", "Unexpected token (1:6)");
-
-testFail("let x;", "Unexpected token (1:4)");
-
-testFail("const a = 1;", "Unexpected token (1:6)");
-
-testFail("let a = 1;", "Unexpected token (1:4)");
-
-testFail("for(const x = 0;;);", "Unexpected token (1:10)");
-
-testFail("for(let x = 0;;);", "Unexpected token (1:8)");
-
-test("let++", {
-  type: "Program",
-  loc: {
-    start: {
-      line: 1,
-      column: 0
-    },
-    end: {
-      line: 1,
-      column: 5
-    }
-  },
-  body: [
-    {
-      type: "ExpressionStatement",
-      loc: {
-        start: {
-          line: 1,
-          column: 0
-        },
-        end: {
-          line: 1,
-          column: 5
-        }
-      },
-      expression: {
-        type: "UpdateExpression",
-        loc: {
-          start: {
-            line: 1,
-            column: 0
-          },
-          end: {
-            line: 1,
-            column: 5
-          }
-        },
-        operator: "++",
-        prefix: false,
-        argument: {
-          type: "Identifier",
-          loc: {
-            start: {
-              line: 1,
-              column: 0
-            },
-            end: {
-              line: 1,
-              column: 3
-            }
-          },
-          name: "let"
-        }
-      }
-    }
-  ]
-});
-
-// ECMA 6 support
-
-test("let x", {
-  type: "Program",
-  body: [
-    {
-      type: "VariableDeclaration",
-      declarations: [
-        {
-          type: "VariableDeclarator",
-          id: {
-            type: "Identifier",
-            name: "x",
-            loc: {
-              start: {
-                line: 1,
-                column: 4
-              },
-              end: {
-                line: 1,
-                column: 5
-              }
-            }
-          },
-          init: null,
-          loc: {
-            start: {
-              line: 1,
-              column: 4
-            },
-            end: {
-              line: 1,
-              column: 5
-            }
-          }
-        }
-      ],
-      kind: "let",
-      loc: {
-        start: {
-          line: 1,
-          column: 0
-        },
-        end: {
-          line: 1,
-          column: 5
-        }
-      }
-    }
-  ],
-  loc: {
-    start: {
-      line: 1,
-      column: 0
-    },
-    end: {
-      line: 1,
-      column: 5
-    }
-  }
-}, {ecmaVersion: 6, locations: true});
-
-test("let x, y;", {
-  type: "Program",
-  body: [
-    {
-      type: "VariableDeclaration",
-      declarations: [
-        {
-          type: "VariableDeclarator",
-          id: {
-            type: "Identifier",
-            name: "x",
-            loc: {
-              start: {
-                line: 1,
-                column: 4
-              },
-              end: {
-                line: 1,
-                column: 5
-              }
-            }
-          },
-          init: null,
-          loc: {
-            start: {
-              line: 1,
-              column: 4
-            },
-            end: {
-              line: 1,
-              column: 5
-            }
-          }
-        },
-        {
-          type: "VariableDeclarator",
-          id: {
-            type: "Identifier",
-            name: "y",
-            loc: {
-              start: {
-                line: 1,
-                column: 7
-              },
-              end: {
-                line: 1,
-                column: 8
-              }
-            }
-          },
-          init: null,
-          loc: {
-            start: {
-              line: 1,
-              column: 7
-            },
-            end: {
-              line: 1,
-              column: 8
-            }
-          }
-        }
-      ],
-      kind: "let",
-      loc: {
-        start: {
-          line: 1,
-          column: 0
-        },
-        end: {
-          line: 1,
-          column: 9
-        }
-      }
-    }
-  ],
-  loc: {
-    start: {
-      line: 1,
-      column: 0
-    },
-    end: {
-      line: 1,
-      column: 9
-    }
-  }
-}, {ecmaVersion: 6, locations: true});
-
-test("let x = 42", {
-  type: "Program",
-  body: [
-    {
-      type: "VariableDeclaration",
-      declarations: [
-        {
-          type: "VariableDeclarator",
-          id: {
-            type: "Identifier",
-            name: "x",
-            loc: {
-              start: {
-                line: 1,
-                column: 4
-              },
-              end: {
-                line: 1,
-                column: 5
-              }
-            }
-          },
-          init: {
-            type: "Literal",
-            value: 42,
-            loc: {
-              start: {
-                line: 1,
-                column: 8
-              },
-              end: {
-                line: 1,
-                column: 10
-              }
-            }
-          },
-          loc: {
-            start: {
-              line: 1,
-              column: 4
-            },
-            end: {
-              line: 1,
-              column: 10
-            }
-          }
-        }
-      ],
-      kind: "let",
-      loc: {
-        start: {
-          line: 1,
-          column: 0
-        },
-        end: {
-          line: 1,
-          column: 10
-        }
-      }
-    }
-  ],
-  loc: {
-    start: {
-      line: 1,
-      column: 0
-    },
-    end: {
-      line: 1,
-      column: 10
-    }
-  }
-}, {ecmaVersion: 6, locations: true});
-
-test("let eval = 42, arguments = 42", {
-  type: "Program",
-  body: [
-    {
-      type: "VariableDeclaration",
-      declarations: [
-        {
-          type: "VariableDeclarator",
-          id: {
-            type: "Identifier",
-            name: "eval",
-            loc: {
-              start: {
-                line: 1,
-                column: 4
-              },
-              end: {
-                line: 1,
-                column: 8
-              }
-            }
-          },
-          init: {
-            type: "Literal",
-            value: 42,
-            loc: {
-              start: {
-                line: 1,
-                column: 11
-              },
-              end: {
-                line: 1,
-                column: 13
-              }
-            }
-          },
-          loc: {
-            start: {
-              line: 1,
-              column: 4
-            },
-            end: {
-              line: 1,
-              column: 13
-            }
-          }
-        },
-        {
-          type: "VariableDeclarator",
-          id: {
-            type: "Identifier",
-            name: "arguments",
-            loc: {
-              start: {
-                line: 1,
-                column: 15
-              },
-              end: {
-                line: 1,
-                column: 24
-              }
-            }
-          },
-          init: {
-            type: "Literal",
-            value: 42,
-            loc: {
-              start: {
-                line: 1,
-                column: 27
-              },
-              end: {
-                line: 1,
-                column: 29
-              }
-            }
-          },
-          loc: {
-            start: {
-              line: 1,
-              column: 15
-            },
-            end: {
-              line: 1,
-              column: 29
-            }
-          }
-        }
-      ],
-      kind: "let",
-      loc: {
-        start: {
-          line: 1,
-          column: 0
-        },
-        end: {
-          line: 1,
-          column: 29
-        }
-      }
-    }
-  ],
-  loc: {
-    start: {
-      line: 1,
-      column: 0
-    },
-    end: {
-      line: 1,
-      column: 29
-    }
-  }
-}, {ecmaVersion: 6, locations: true});
-
-test("let x = 14, y = 3, z = 1977", {
-  type: "Program",
-  body: [
-    {
-      type: "VariableDeclaration",
-      declarations: [
-        {
-          type: "VariableDeclarator",
-          id: {
-            type: "Identifier",
-            name: "x",
-            loc: {
-              start: {
-                line: 1,
-                column: 4
-              },
-              end: {
-                line: 1,
-                column: 5
-              }
-            }
-          },
-          init: {
-            type: "Literal",
-            value: 14,
-            loc: {
-              start: {
-                line: 1,
-                column: 8
-              },
-              end: {
-                line: 1,
-                column: 10
-              }
-            }
-          },
-          loc: {
-            start: {
-              line: 1,
-              column: 4
-            },
-            end: {
-              line: 1,
-              column: 10
-            }
-          }
-        },
-        {
-          type: "VariableDeclarator",
-          id: {
-            type: "Identifier",
-            name: "y",
-            loc: {
-              start: {
-                line: 1,
-                column: 12
-              },
-              end: {
-                line: 1,
-                column: 13
-              }
-            }
-          },
-          init: {
-            type: "Literal",
-            value: 3,
-            loc: {
-              start: {
-                line: 1,
-                column: 16
-              },
-              end: {
-                line: 1,
-                column: 17
-              }
-            }
-          },
-          loc: {
-            start: {
-              line: 1,
-              column: 12
-            },
-            end: {
-              line: 1,
-              column: 17
-            }
-          }
-        },
-        {
-          type: "VariableDeclarator",
-          id: {
-            type: "Identifier",
-            name: "z",
-            loc: {
-              start: {
-                line: 1,
-                column: 19
-              },
-              end: {
-                line: 1,
-                column: 20
-              }
-            }
-          },
-          init: {
-            type: "Literal",
-            value: 1977,
-            loc: {
-              start: {
-                line: 1,
-                column: 23
-              },
-              end: {
-                line: 1,
-                column: 27
-              }
-            }
-          },
-          loc: {
-            start: {
-              line: 1,
-              column: 19
-            },
-            end: {
-              line: 1,
-              column: 27
-            }
-          }
-        }
-      ],
-      kind: "let",
-      loc: {
-        start: {
-          line: 1,
-          column: 0
-        },
-        end: {
-          line: 1,
-          column: 27
-        }
-      }
-    }
-  ],
-  loc: {
-    start: {
-      line: 1,
-      column: 0
-    },
-    end: {
-      line: 1,
-      column: 27
-    }
-  }
-}, {ecmaVersion: 6, locations: true});
-
-test("for(let x = 0;;);", {
-  type: "Program",
-  body: [
-    {
-      type: "ForStatement",
-      init: {
-        type: "VariableDeclaration",
-        declarations: [
-          {
-            type: "VariableDeclarator",
-            id: {
-              type: "Identifier",
-              name: "x",
-              loc: {
-                start: {
-                  line: 1,
-                  column: 8
-                },
-                end: {
-                  line: 1,
-                  column: 9
-                }
-              }
-            },
-            init: {
-              type: "Literal",
-              value: 0,
-              loc: {
-                start: {
-                  line: 1,
-                  column: 12
-                },
-                end: {
-                  line: 1,
-                  column: 13
-                }
-              }
-            },
-            loc: {
-              start: {
-                line: 1,
-                column: 8
-              },
-              end: {
-                line: 1,
-                column: 13
-              }
-            }
-          }
-        ],
-        kind: "let",
-        loc: {
-          start: {
-            line: 1,
-            column: 4
-          },
-          end: {
-            line: 1,
-            column: 13
-          }
-        }
-      },
-      test: null,
-      update: null,
-      body: {
-        type: "EmptyStatement",
-        loc: {
-          start: {
-            line: 1,
-            column: 16
-          },
-          end: {
-            line: 1,
-            column: 17
-          }
-        }
-      },
-      loc: {
-        start: {
-          line: 1,
-          column: 0
-        },
-        end: {
-          line: 1,
-          column: 17
-        }
-      }
-    }
-  ],
-  loc: {
-    start: {
-      line: 1,
-      column: 0
-    },
-    end: {
-      line: 1,
-      column: 17
-    }
-  }
-}, {ecmaVersion: 6, locations: true});
-
-test("for(let x = 0, y = 1;;);", {
-  type: "Program",
-  body: [
-    {
-      type: "ForStatement",
-      init: {
-        type: "VariableDeclaration",
-        declarations: [
-          {
-            type: "VariableDeclarator",
-            id: {
-              type: "Identifier",
-              name: "x",
-              loc: {
-                start: {
-                  line: 1,
-                  column: 8
-                },
-                end: {
-                  line: 1,
-                  column: 9
-                }
-              }
-            },
-            init: {
-              type: "Literal",
-              value: 0,
-              loc: {
-                start: {
-                  line: 1,
-                  column: 12
-                },
-                end: {
-                  line: 1,
-                  column: 13
-                }
-              }
-            },
-            loc: {
-              start: {
-                line: 1,
-                column: 8
-              },
-              end: {
-                line: 1,
-                column: 13
-              }
-            }
-          },
-          {
-            type: "VariableDeclarator",
-            id: {
-              type: "Identifier",
-              name: "y",
-              loc: {
-                start: {
-                  line: 1,
-                  column: 15
-                },
-                end: {
-                  line: 1,
-                  column: 16
-                }
-              }
-            },
-            init: {
-              type: "Literal",
-              value: 1,
-              loc: {
-                start: {
-                  line: 1,
-                  column: 19
-                },
-                end: {
-                  line: 1,
-                  column: 20
-                }
-              }
-            },
-            loc: {
-              start: {
-                line: 1,
-                column: 15
-              },
-              end: {
-                line: 1,
-                column: 20
-              }
-            }
-          }
-        ],
-        kind: "let",
-        loc: {
-          start: {
-            line: 1,
-            column: 4
-          },
-          end: {
-            line: 1,
-            column: 20
-          }
-        }
-      },
-      test: null,
-      update: null,
-      body: {
-        type: "EmptyStatement",
-        loc: {
-          start: {
-            line: 1,
-            column: 23
-          },
-          end: {
-            line: 1,
-            column: 24
-          }
-        }
-      },
-      loc: {
-        start: {
-          line: 1,
-          column: 0
-        },
-        end: {
-          line: 1,
-          column: 24
-        }
-      }
-    }
-  ],
-  loc: {
-    start: {
-      line: 1,
-      column: 0
-    },
-    end: {
-      line: 1,
-      column: 24
-    }
-  }
-}, {ecmaVersion: 6, locations: true});
-
-test("for (let x in list) process(x);", {
-  type: "Program",
-  body: [
-    {
-      type: "ForInStatement",
-      left: {
-        type: "VariableDeclaration",
-        declarations: [
-          {
-            type: "VariableDeclarator",
-            id: {
-              type: "Identifier",
-              name: "x",
-              loc: {
-                start: {
-                  line: 1,
-                  column: 9
-                },
-                end: {
-                  line: 1,
-                  column: 10
-                }
-              }
-            },
-            init: null,
-            loc: {
-              start: {
-                line: 1,
-                column: 9
-              },
-              end: {
-                line: 1,
-                column: 10
-              }
-            }
-          }
-        ],
-        kind: "let",
-        loc: {
-          start: {
-            line: 1,
-            column: 5
-          },
-          end: {
-            line: 1,
-            column: 10
-          }
-        }
-      },
-      right: {
-        type: "Identifier",
-        name: "list",
-        loc: {
-          start: {
-            line: 1,
-            column: 14
-          },
-          end: {
-            line: 1,
-            column: 18
-          }
-        }
-      },
-      body: {
-        type: "ExpressionStatement",
-        expression: {
-          type: "CallExpression",
-          callee: {
-            type: "Identifier",
-            name: "process",
-            loc: {
-              start: {
-                line: 1,
-                column: 20
-              },
-              end: {
-                line: 1,
-                column: 27
-              }
-            }
-          },
-          arguments: [
-            {
-              type: "Identifier",
-              name: "x",
-              loc: {
-                start: {
-                  line: 1,
-                  column: 28
-                },
-                end: {
-                  line: 1,
-                  column: 29
-                }
-              }
-            }
-          ],
-          loc: {
-            start: {
-              line: 1,
-              column: 20
-            },
-            end: {
-              line: 1,
-              column: 30
-            }
-          }
-        },
-        loc: {
-          start: {
-            line: 1,
-            column: 20
-          },
-          end: {
-            line: 1,
-            column: 31
-          }
-        }
-      },
-      loc: {
-        start: {
-          line: 1,
-          column: 0
-        },
-        end: {
-          line: 1,
-          column: 31
-        }
-      }
-    }
-  ],
-  loc: {
-    start: {
-      line: 1,
-      column: 0
-    },
-    end: {
-      line: 1,
-      column: 31
-    }
-  }
-}, {ecmaVersion: 6, locations: true});
-
-test("const x = 42", {
-  type: "Program",
-  body: [
-    {
-      type: "VariableDeclaration",
-      declarations: [
-        {
-          type: "VariableDeclarator",
-          id: {
-            type: "Identifier",
-            name: "x",
-            loc: {
-              start: {
-                line: 1,
-                column: 6
-              },
-              end: {
-                line: 1,
-                column: 7
-              }
-            }
-          },
-          init: {
-            type: "Literal",
-            value: 42,
-            loc: {
-              start: {
-                line: 1,
-                column: 10
-              },
-              end: {
-                line: 1,
-                column: 12
-              }
-            }
-          },
-          loc: {
-            start: {
-              line: 1,
-              column: 6
-            },
-            end: {
-              line: 1,
-              column: 12
-            }
-          }
-        }
-      ],
-      kind: "const",
-      loc: {
-        start: {
-          line: 1,
-          column: 0
-        },
-        end: {
-          line: 1,
-          column: 12
-        }
-      }
-    }
-  ],
-  loc: {
-    start: {
-      line: 1,
-      column: 0
-    },
-    end: {
-      line: 1,
-      column: 12
-    }
-  }
-}, {ecmaVersion: 6, locations: true});
-
-test("const eval = 42, arguments = 42", {
-  type: "Program",
-  body: [
-    {
-      type: "VariableDeclaration",
-      declarations: [
-        {
-          type: "VariableDeclarator",
-          id: {
-            type: "Identifier",
-            name: "eval",
-            loc: {
-              start: {
-                line: 1,
-                column: 6
-              },
-              end: {
-                line: 1,
-                column: 10
-              }
-            }
-          },
-          init: {
-            type: "Literal",
-            value: 42,
-            loc: {
-              start: {
-                line: 1,
-                column: 13
-              },
-              end: {
-                line: 1,
-                column: 15
-              }
-            }
-          },
-          loc: {
-            start: {
-              line: 1,
-              column: 6
-            },
-            end: {
-              line: 1,
-              column: 15
-            }
-          }
-        },
-        {
-          type: "VariableDeclarator",
-          id: {
-            type: "Identifier",
-            name: "arguments",
-            loc: {
-              start: {
-                line: 1,
-                column: 17
-              },
-              end: {
-                line: 1,
-                column: 26
-              }
-            }
-          },
-          init: {
-            type: "Literal",
-            value: 42,
-            loc: {
-              start: {
-                line: 1,
-                column: 29
-              },
-              end: {
-                line: 1,
-                column: 31
-              }
-            }
-          },
-          loc: {
-            start: {
-              line: 1,
-              column: 17
-            },
-            end: {
-              line: 1,
-              column: 31
-            }
-          }
-        }
-      ],
-      kind: "const",
-      loc: {
-        start: {
-          line: 1,
-          column: 0
-        },
-        end: {
-          line: 1,
-          column: 31
-        }
-      }
-    }
-  ],
-  loc: {
-    start: {
-      line: 1,
-      column: 0
-    },
-    end: {
-      line: 1,
-      column: 31
-    }
-  }
-}, {ecmaVersion: 6, locations: true});
-
-test("const x = 14, y = 3, z = 1977", {
-  type: "Program",
-  body: [
-    {
-      type: "VariableDeclaration",
-      declarations: [
-        {
-          type: "VariableDeclarator",
-          id: {
-            type: "Identifier",
-            name: "x",
-            loc: {
-              start: {
-                line: 1,
-                column: 6
-              },
-              end: {
-                line: 1,
-                column: 7
-              }
-            }
-          },
-          init: {
-            type: "Literal",
-            value: 14,
-            loc: {
-              start: {
-                line: 1,
-                column: 10
-              },
-              end: {
-                line: 1,
-                column: 12
-              }
-            }
-          },
-          loc: {
-            start: {
-              line: 1,
-              column: 6
-            },
-            end: {
-              line: 1,
-              column: 12
-            }
-          }
-        },
-        {
-          type: "VariableDeclarator",
-          id: {
-            type: "Identifier",
-            name: "y",
-            loc: {
-              start: {
-                line: 1,
-                column: 14
-              },
-              end: {
-                line: 1,
-                column: 15
-              }
-            }
-          },
-          init: {
-            type: "Literal",
-            value: 3,
-            loc: {
-              start: {
-                line: 1,
-                column: 18
-              },
-              end: {
-                line: 1,
-                column: 19
-              }
-            }
-          },
-          loc: {
-            start: {
-              line: 1,
-              column: 14
-            },
-            end: {
-              line: 1,
-              column: 19
-            }
-          }
-        },
-        {
-          type: "VariableDeclarator",
-          id: {
-            type: "Identifier",
-            name: "z",
-            loc: {
-              start: {
-                line: 1,
-                column: 21
-              },
-              end: {
-                line: 1,
-                column: 22
-              }
-            }
-          },
-          init: {
-            type: "Literal",
-            value: 1977,
-            loc: {
-              start: {
-                line: 1,
-                column: 25
-              },
-              end: {
-                line: 1,
-                column: 29
-              }
-            }
-          },
-          loc: {
-            start: {
-              line: 1,
-              column: 21
-            },
-            end: {
-              line: 1,
-              column: 29
-            }
-          }
-        }
-      ],
-      kind: "const",
-      loc: {
-        start: {
-          line: 1,
-          column: 0
-        },
-        end: {
-          line: 1,
-          column: 29
-        }
-      }
-    }
-  ],
-  loc: {
-    start: {
-      line: 1,
-      column: 0
-    },
-    end: {
-      line: 1,
-      column: 29
-    }
-  }
-}, {ecmaVersion: 6, locations: true});
-
-testFail("const a;", "Unexpected token (1:7)", {ecmaVersion: 6});
-
-testFail("for(const x = 0;;);", "Unexpected token (1:4)", {ecmaVersion: 6});
-
-testFail("for(x of a);", "Unexpected token (1:6)");
-
-testFail("for(var x of a);", "Unexpected token (1:10)");
 
 // Assertion Tests
 (function() {
@@ -28697,7 +27294,7 @@ testFail("for(var x of a);", "Unexpected token (1:10)");
       Cat.prototype.roar = function(message) {
         return 'MEOOWW: ' + /*stuff*/ message;
       };
-    }.toString().replace(/\r\n/g, '\n'),
+    }.toString(),
     function assert(ast) {
       if (actualComments.length !== expectedComments.length) {
         return JSON.stringify(actualComments) + " !== " + JSON.stringify(expectedComments);
@@ -28716,141 +27313,9 @@ testFail("for(var x of a);", "Unexpected token (1:10)");
   );
 })();
 
-test("<!--\n;", {
-  type: "Program",
-  body: [
-    {
-      type: "EmptyStatement"
-    }
-  ]
-}
-);
-
 (function() {
-  test("\nfunction plop() {\n'use strict';\n/* Comment */\n}", {}, {locations: true},
-  [{
-    block: true,
-    text: " Comment ",
-    startLoc: { line: 4, column: 0 },
-    endLoc: { line: 4, column: 13 }
-  }]);
-
-  test("// line comment", {}, {locations: true},
-  [{
-    block: false,
-    text: " line comment",
-    startLoc: { line: 1, column: 0 },
-    endLoc: { line: 1, column: 15 }
-  }]);
-
-  test("<!-- HTML comment", {}, {locations: true},
-  [{
-    block: false,
-    text: " HTML comment",
-    startLoc: { line: 1, column: 0 },
-    endLoc: { line: 1, column: 17 }
-  }]);
-
-  test(";\n--> HTML comment", {}, {locations: true},
-  [{
-    block: false,
-    text: " HTML comment",
-    startLoc: { line: 2, column: 0 },
-    endLoc: { line: 2, column: 16 }
-  }]);
+  var comments = 0;
+  testAssert("\nfunction plop() {\n'use strict';\n/* Comment */\n}", function() {
+    if (comments != 1) return "Comment after strict counted twice.";
+  }, {onComment: function() {++comments;}});
 })();
-
-(function() {
-  var tokTypes = acorn.tokTypes;
-
-  var actualTokens = [],
-      expectedTokens = [
-        {
-          type: tokTypes._var,
-          value: "var",
-          loc: {
-            start: {line: 1, column: 0},
-            end: {line: 1, column: 3}
-          }
-        },
-        {
-          type: tokTypes.name,
-          value: "x",
-          loc: {
-            start: {line: 1, column: 4},
-            end: {line: 1, column: 5}
-          }
-        },
-        {
-          type: tokTypes.eq,
-          value: "=",
-          loc: {
-            start: {line: 1, column: 6},
-            end: {line: 1, column: 7}
-          }
-        },
-        {
-          type: tokTypes.parenL,
-          value: undefined,
-          loc: {
-            start: {line: 1, column: 8},
-            end: {line: 1, column: 9}
-          }
-        },
-        {
-          type: tokTypes.num,
-          value: 1,
-          loc: {
-            start: {line: 1, column: 9},
-            end: {line: 1, column: 10}
-          }
-        },
-        {
-          type: {binop: 9, prefix: true, beforeExpr: true},
-          value: "+",
-          loc: {
-            start: {line: 1, column: 11},
-            end: {line: 1, column: 12}
-          }
-        },
-        {
-          type: tokTypes.num,
-          value: 2,
-          loc: {
-            start: {line: 1, column: 13},
-            end: {line: 1, column: 14}
-          }
-        },
-        {
-          type: tokTypes.parenR,
-          value: undefined,
-          loc: {
-            start: {line: 1, column: 14},
-            end: {line: 1, column: 15}
-          }
-        },
-        {
-          type: tokTypes.eof,
-          value: undefined,
-          loc: {
-            start: {line: 1, column: 15},
-            end: {line: 1, column: 15}
-          }
-        }
-      ];
-  testAssert('var x = (1 + 2)', function assert(ast) {
-    if (actualTokens.length !== expectedTokens.length) {
-      return "Bad token stream length: expected " + expectedTokens.length + ", got " + actualTokens.length;
-    } else {
-      for (var i=0, n=actualTokens.length; i < n; i++) {
-        var mis = misMatch(expectedTokens[i], actualTokens[i]);
-        if (mis) return mis;
-      }
-    }
-  }, {
-    locations: true,
-    onToken: actualTokens
-  });
-})();
-
-test("function f(f) { 'use strict'; }", {});
