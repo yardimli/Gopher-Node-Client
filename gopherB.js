@@ -10,42 +10,80 @@ function startServer(debug)
     // on request event
     function onRequest(request, response)
     {
-        if (request.url.search("/admin/manager/") != -1)
-        {
-            ProjectManegerServer.getFile(request, response);
-        } else
-        if (request.url.search("/admin/") != -1)
-        {
-            RealTimeConsole.getFile(request, response);
-        } else
-        {
-            ClientServer.getFile(request, response);
-        }
-        
-        /*if (request.url.search('phishproof') !== -1) {
-            console.log('fond project');
-            var options = {
-                hostname: 'localhost',
-                port: 1337,
+        if ((request.url.search("/admin/manager/") == 0) || (request.url.search("/admin/") == 0)) {
+            if (request.url.search("/admin/manager/") != -1)
+            {
+                ProjectManegerServer.getFile(request, response);
+            } else
+            if (request.url.search("/admin/") != -1)
+            {
+                RealTimeConsole.getFile(request, response);
+            } else
+            {
+                ClientServer.getFile(request, response);
+            }
+        } else {
+            //get pages through gopher proxy 
+            var projectOnPort = 8003;
+            var projectHost = 'localhost';
+            var gopherHost = 'localhost';
+            var gopherPort = 1337;
+            var StringDecoder = require('string_decoder').StringDecoder;
+            var decoder = new StringDecoder('utf8');
+
+            var BrowserData = [];
+            request.on('data', function (chunk) {
+                BrowserData.push(chunk);
+            });
+
+            var ApacheChunk = [];
+            var ProxyOptions = {
+                host: projectHost,
+                port: projectOnPort,
                 path: request.url,
                 method: request.method,
                 headers: request.headers
             };
+            request.on('end', function () {
+                var NodeProxyRequest = Globals.http.request(ProxyOptions, function (ApacheResponse) {
+                    ApacheResponse.on('data', function (chunk) {
+                        if ((request.url.indexOf('.png') == -1) && (request.url.indexOf('.jpg') == -1) && (request.url.indexOf('.gif') == -1)) {
+                            var chunkStr = decoder.write(chunk);
+                            var regx1 = new RegExp('http://' + projectHost, 'g');
+                            chunkStr = chunkStr.replace(regx1, 'http://' + gopherHost);
+                            var regx2 = new RegExp('http://' + projectHost + ':' + projectOnPort, 'g');
+                            chunkStr = chunkStr.replace(regx2, 'http://' + gopherHost + ':' + gopherPort);
+                            chunk = new Buffer(chunkStr, 'utf8');
+                        }
+                        ApacheChunk.push(chunk);
 
-            var proxy = Globals.http.request(options, function (res) {
-                res.on('data', function (chunk) {
+                    });
 
+                    ApacheResponse.on('end', function () {
+                        var ApacheBytes = Buffer.concat(ApacheChunk);
+                        ApacheResponse.headers['content-length'] = ApacheBytes.length;
+                        response.writeHead(ApacheResponse.statusCode, ApacheResponse.headers);
+                        response.write(ApacheBytes, 'binary');
+                        response.end();
+                    });
+
+                    ApacheResponse.on('error', function (e) {
+                        console.log('problem with proxy response: ' + e.message);
+                    });
                 });
-                res.pipe(response, {
-                    end: true
-                });
+
+                var BrowserBytes = Buffer.concat(BrowserData);
+                NodeProxyRequest.write(BrowserBytes, 'binary');
+                NodeProxyRequest.end();
+
             });
 
-            request.pipe(proxy, {
-                end: true
+            request.on('error', function (e) {
+                console.log('problem with request: ' + e.message);
             });
-        }*/
-        
+        }
+
+
     }
 
     Globals.httpServer = Globals.http.createServer(onRequest).listen(1337, function () {

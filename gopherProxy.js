@@ -32,7 +32,7 @@ function onRequest(BrowserRequest, BrowserResponse) {
     //var tempStr = BrowserRequest.url+"";
     //var isPhp = tempStr.match(/.php/i);
     
-    var BrowserData = '';
+    var BrowserData = [];
 /*
     processRequest(BrowserRequest, function(data) {
          console.log("BrowserRequest Data: "+data);
@@ -42,7 +42,7 @@ function onRequest(BrowserRequest, BrowserResponse) {
     
     BrowserRequest.on('data', function (chunk) {
         //console.log("BrowserRequest data:"+decoder.write(chunk));  
-        BrowserData += chunk;
+        BrowserData.push(chunk);
     }); 
     var ApacheChunk=[];
     BrowserRequest.on('end', function () {        
@@ -62,7 +62,8 @@ function onRequest(BrowserRequest, BrowserResponse) {
                     var regx2 = new RegExp('http://'+projectHost+':'+projectOnPort,'g');
                     chunkStr = chunkStr.replace(regx2,'http://'+gopherHost+':'+gopherPort);
                     //console.log(chunkStr);
-                    chunk = new Buffer(chunkStr,'binary');
+                    
+                    chunk = new Buffer(chunkStr,'utf8');
                 }
                 ApacheChunk.push(chunk);
                
@@ -72,8 +73,8 @@ function onRequest(BrowserRequest, BrowserResponse) {
             //    console.log("ApacheResponse END");
                 //console.log(decoder.write(ApacheChunk));
                 var ApacheBytes = Buffer.concat(ApacheChunk);
-                //console.log('ApacheChunk.length '+ ApacheBytes.length);
-                //console.log('ApacheResponse.headers '+ApacheResponse.headers['content-length']);
+                console.log('ApachBytese.length '+ ApacheBytes.length);
+                console.log('ApacheResponse.headers content-length '+ApacheResponse.headers['content-length']);
                 ApacheResponse.headers['content-length'] = ApacheBytes.length;
                 BrowserResponse.writeHead(ApacheResponse.statusCode,ApacheResponse.headers);
                 BrowserResponse.write(ApacheBytes,'binary');
@@ -86,7 +87,8 @@ function onRequest(BrowserRequest, BrowserResponse) {
         });
 
         //console.log("WRITE APACHE:"+decoder.write(BrowserData));
-        NodeProxyRequest.write(BrowserData, 'binary');
+        var BrowserBytes = Buffer.concat(BrowserData);
+        NodeProxyRequest.write(BrowserBytes, 'binary');
         NodeProxyRequest.end();
         
     });
