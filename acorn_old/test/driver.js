@@ -2,8 +2,8 @@
   var tests = [];
   var acorn = typeof require == "undefined" ? window.acorn : require("../acorn.js");
 
-  exports.test = function(code, ast, options, comments) {
-    tests.push({code: code, ast: ast, options: options, comments: comments});
+  exports.test = function(code, ast, options) {
+    tests.push({code: code, ast: ast, options: options});
   };
   exports.testFail = function(code, message, options) {
     tests.push({code: code, error: message, options: options});
@@ -13,26 +13,10 @@
   };
 
   exports.runTests = function(callback) {
-    var comments;
-
-    function onComment(block, text, start, end, startLoc, endLoc) {
-        comments.push({
-          block: block,
-          text: text,
-          start: start,
-          end: end,
-          startLoc: { line: startLoc.line, column: startLoc.column },
-          endLoc: { line: endLoc.line, column: endLoc.column }
-        });
-    }
-
-    var opts = {locations: true, onComment: onComment};
-
+    var opts = {locations: true};
     for (var i = 0; i < tests.length; ++i) {
       var test = tests[i];
       try {
-        comments = [];
-        if (test.options && !test.options.onComment) test.options.onComment = onComment;
         var ast = acorn.parse(test.code, test.options || opts);
         if (test.error) callback("fail", test.code,
                                  "Expected error message: " + test.error + "\nBut parsing succeeded.");
@@ -43,9 +27,8 @@
           else callback("ok", test.code);
         } else {
           var mis = misMatch(test.ast, ast);
-          if (!mis && test.comments) mis = misMatch(test.comments, comments);
-          if (mis) callback("fail", test.code, mis);
-          else callback("ok", test.code);
+          if (!mis) callback("ok", test.code);
+          else callback("fail", test.code, mis);
         }
       } catch(e) {
         if (test.error && e instanceof SyntaxError) {
@@ -66,7 +49,7 @@
     return str + " (" + pt + ")";
   }
 
-  var misMatch = exports.misMatch = function(exp, act) {
+  function misMatch(exp, act) {
     if (!exp || !act || (typeof exp != "object") || (typeof act != "object")) {
       if (exp !== act) return ppJSON(exp) + " !== " + ppJSON(act);
     } else if (exp.splice) {
@@ -82,7 +65,7 @@
         if (mis) return addPath(mis, prop);
       }
     }
-  };
+  }
 
   function mangle(ast) {
     if (typeof ast != "object" || !ast) return;
