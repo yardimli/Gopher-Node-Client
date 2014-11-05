@@ -1,4 +1,3 @@
-
 var PROJECTJS = {
     iosocket: null,
     viewedFolders: [],
@@ -439,10 +438,7 @@ var testCallBack = function () {
 }
 
 $(document).ready(function () {
-    $('#debug_console').toggleClass('hideme');
-    PROJECTJS.initSocketIO();
-    PROJECTJS.iosocket.emit('_getQuery', {url: document.location.href, queryName: 'projectid'});
-
+    
 
     $('#dialog_select_dir').on('show.bs.modal', function () {
         PROJECTJS.myEvents.dialog_select_dir_show();
