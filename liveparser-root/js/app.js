@@ -1,18 +1,33 @@
 var j=5;
-var i=6;
+var i=1;
+
+if (j>i)
+{
+console.log("------------1-------------");
+}
 
 if ((i>2) && (j>3))
 {
 	j=15;
-	console.log("1");
-	if (j>3) console.log("11");
+	console.log("------------2-------------");
+	if (j>3) console.log("------------3-------------");
+
+	if (i>6) console.log("------------4-------------")
+	else console.log("------------5-------------");
+	
+	if (i>6) console.log("------------6-------------");	else console.log("------------7-------------");
+
+	if (i>8) console.log("------------8-------------")
+	else 
+	if (i>9) console.log("------------9-------------");
+	
 } else
 if (2==2) {
-	console.log("2");
+	console.log("------------10-------------");
 } else
 if (3==3)
-	console.log("3")
+	console.log("------------11-------------")
  else
 {
-	console.log("4");
+	console.log("------------12-------------");
 }

@@ -462,6 +462,15 @@ function LoopGopherS(DataListSource,SourceCode,  IncludeBlocks,  LoopGopherSDebu
 }
 
 
+function IFArrayCompare(a,b) {
+  if (a.AddPosition < b.AddPosition)
+     return -1;
+  if (a.AddPosition > b.AddPosition)
+    return 1;
+  return 0;
+}
+
+
 
 //----------------------------------------------------------------------------------------
 function GopherTellify(contents,inFile)
@@ -483,15 +492,15 @@ function GopherTellify(contents,inFile)
 	GopherObjectsA = LoopGopherS(DataList,contents,false,true);
 	//********
 
-	//Loop All IF consequent statements check if it has no curly brackets (ExpressionStatement) instead of curly brackets (BlockStatment) 
+	//Loop All IF consequent/alternate statements check if it has no curly brackets (ExpressionStatement) instead of curly brackets (BlockStatment) 
 	//if it is ExpressionStatement add curly brackets and semicolumn to last character if not already semicolumn
-	//first find all consequent and save pos and source in list
+	//first find all consequent/alternate and save pos and source in list
 	//then loop the result last to first and change it
 	
 	var ExpressionStatementList = [];
 	for (var C1=0; C1<DataList.length;C1++)
 	{
-		if (DataList[C1].XSelf=="consequent")
+		if ((DataList[C1].XSelf=="consequent") || (DataList[C1].XSelf=="alternate"))
 		{
 			C1++;
 			if ((DataList[C1].XValue=="ExpressionStatement") && (DataList[C1].XSelf=="type"))
@@ -521,7 +530,7 @@ function GopherTellify(contents,inFile)
 	}
 	for (var ObjectCounter=ExpressionStatementList.length-1; ObjectCounter >= 0; ObjectCounter--)
 	{
-			console.log( ObjectCounter+": "+ExpressionStatementList[ObjectCounter].XSource );
+//			console.log( ObjectCounter+": "+ExpressionStatementList[ObjectCounter].XSource );
 			if (ExpressionStatementList[ObjectCounter].XSource.slice(-1)!=";") { ExpressionStatementList[ObjectCounter].XSource += ";" }
 			contents = [contents.slice(0, ExpressionStatementList[ObjectCounter].CopyStart), "{\n" + ExpressionStatementList[ObjectCounter].XSource + "\n}", 	contents.slice(ExpressionStatementList[ObjectCounter].CopyEnd)].join('');
 	}
@@ -539,39 +548,71 @@ function GopherTellify(contents,inFile)
 	
 	
 	//Loop All IF statements and move the IF statement to a variable then use the variable in the IF
-	
+	var ContentToAdd = [];
 	var TempVarCounter = 0;
-	var StartOfIfGroup = 0;
 	var IfGroupVariableBlock = "";
 	for (var ObjectCounter=GopherObjectsA.length-1; ObjectCounter >= 0; ObjectCounter--)
 	{
 		if ( ( (GopherObjectsA[ObjectCounter].NewRecordType=="LogicalExpression") || (GopherObjectsA[ObjectCounter].NewRecordType=="BinaryExpression"))  
 			  && (GopherObjectsA[ObjectCounter].HelperParentType=="IfStatement") )
 		{
-			console.log("IF Parent:"+GopherObjectsA[ObjectCounter].HelperParentType+" "+GopherObjectsA[ObjectCounter].HelperParentName);
-			console.log("IF: "+GopherObjectsA[ObjectCounter].Records[0].xSource+" "+GopherObjectsA[ObjectCounter].HelperParentStart);
+			console.log("IF Parent:"+GopherObjectsA[ObjectCounter].HelperParentType+"  --  "+GopherObjectsA[ObjectCounter].HelperParentName);
+			console.log("IF: "+GopherObjectsA[ObjectCounter].Records[0].xSource+"  -- "+GopherObjectsA[ObjectCounter].HelperParentStart+" -- "+GopherObjectsA[ObjectCounter].Records[0].Indent);
 
 			TempVarCounter++;
 
-			IfGroupVariableBlock = IfGroupVariableBlock + "TempIfVar_"+TempVarCounter +" = "  + GopherObjectsA[ObjectCounter].Records[0].xSource +";\n";
+			IfGroupVariableBlock = "TempIfVar_"+TempVarCounter +" = "  + GopherObjectsA[ObjectCounter].Records[0].xSource +";\n";
 			
-			contents = [contents.slice(0, GopherObjectsA[ObjectCounter].CopyStart), "TempIfVar_"+TempVarCounter, 	contents.slice(GopherObjectsA[ObjectCounter].CopyEnd)].join('');
+			var NewQ = new Object();
+			NewQ.AddPosition = GopherObjectsA[ObjectCounter].CopyStart;
+			NewQ.AddEnd = GopherObjectsA[ObjectCounter].CopyEnd;
+			NewQ.AddString = "TempIfVar_"+TempVarCounter;
+			ContentToAdd.push( NewQ );
 			
 			if (GopherObjectsA[ObjectCounter].HelperParentName!="alternate")
 			{
-				StartOfIfGroup=GopherObjectsA[ObjectCounter].HelperParentStart;
-				console.log("START OF IF GROUP: "+StartOfIfGroup);
-				console.log(IfGroupVariableBlock);
-				
-				contents = [contents.slice(0, StartOfIfGroup), IfGroupVariableBlock, 	contents.slice(StartOfIfGroup)].join('');
-				
-				IfGroupVariableBlock = "";
+				var NewQ = new Object();
+				NewQ.AddPosition = GopherObjectsA[ObjectCounter].HelperParentStart;
+				NewQ.AddEnd = 0;
+				NewQ.AddString = IfGroupVariableBlock;
+				ContentToAdd.push( NewQ );
 			} else
 			{
-				
+				//find parent if, that is the if that is not an alternate and startindent is bellow the current alternate (else) if statment
+				for (var ObjectCounter2=ObjectCounter; ObjectCounter2 >= 0; ObjectCounter2--)
+				{
+					if ( GopherObjectsA[ ObjectCounter2 ].StartIndent < GopherObjectsA[ ObjectCounter ].StartIndent )
+					{
+						if ( ( (GopherObjectsA[ObjectCounter2].NewRecordType=="LogicalExpression") || (GopherObjectsA[ObjectCounter2].NewRecordType=="BinaryExpression"))  
+							  && (GopherObjectsA[ObjectCounter2].HelperParentType=="IfStatement") && (GopherObjectsA[ObjectCounter2].HelperParentName!="alternate") )
+						{
+							var NewQ = new Object();
+							NewQ.AddPosition = GopherObjectsA[ObjectCounter2].HelperParentStart;
+							NewQ.AddEnd = 0;
+							NewQ.AddString = IfGroupVariableBlock;
+							ContentToAdd.push( NewQ );
+							ObjectCounter2 = 0;
+						}
+					}
+				}
 			}
 		}
 	}
+	
+	//sort the content to add IF statements array, then reverse order add the strings
+	ContentToAdd = ContentToAdd.sort(IFArrayCompare);
+	for (var ObjectCounter=ContentToAdd.length-1; ObjectCounter >= 0; ObjectCounter--)
+	{
+		if (ContentToAdd[ObjectCounter].AddEnd==0)
+		{
+			contents = [contents.slice(0, ContentToAdd[ObjectCounter].AddPosition), ContentToAdd[ObjectCounter].AddString, 	contents.slice(ContentToAdd[ObjectCounter].AddPosition)].join('');
+			
+		} else
+		{
+			contents = [contents.slice(0, ContentToAdd[ObjectCounter].AddPosition), ContentToAdd[ObjectCounter].AddString, 	contents.slice(ContentToAdd[ObjectCounter].AddEnd)].join('');
+		}
+	}
+//	console.log(contents);
 	
 
 	//******** Reparse Source since it was changed
@@ -840,7 +881,7 @@ function GopherTellFile(inFile)
 	Globals.fs.readFile(inFile,function(err,contents){
 		if(!err){
 			contents = GopherTellify(contents,inFile);
-			Globals.fs.writeFile(inFile.replace(".js","-gopher.js"),contents);
+			Globals.fs.writeFile(inFile.replace(".js","-gopher.js"),Globals.beautify(contents, { indent_size: 4 }));
 		}
 	});
 }
@@ -865,7 +906,7 @@ this.getFile = function(request, response){
 	}
 	
 	
-	var	ext = Globals.path.extname(fileName);
+	var ext = Globals.path.extname(fileName);
 	var mimeType = Globals.extensions[ext];
 
 	//do we support the requested file type?

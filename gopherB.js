@@ -23,7 +23,9 @@ function startServer(debug)
                 ClientServer.getFile(request, response);
             }
         } else {
+				ClientServer.getFile( request, response );
             //get pages through gopher proxy 
+				/*
             var projectOnPort = 8003;
             var projectHost = 'localhost';
             var gopherHost = 'localhost';
@@ -81,6 +83,7 @@ function startServer(debug)
             request.on('error', function (e) {
                 console.log('problem with request: ' + e.message);
             });
+				*/
         }
 
 

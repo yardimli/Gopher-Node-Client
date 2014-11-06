@@ -4,6 +4,8 @@ exports.socketio = require('socket.io');
 exports.url = require("url");
 exports.path = require('path');
 exports.acorn = require("../acorn/acorn.js"); 
+exports.acorn = require("../acorn/acorn.js"); 
+exports.beautify = require('js-beautify').js_beautify;
 
 
 //these are the only file types we will support for now
