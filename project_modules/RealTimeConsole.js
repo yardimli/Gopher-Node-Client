@@ -271,6 +271,8 @@ function LoopGopherS(DataListSource,SourceCode,  IncludeBlocks,  LoopGopherSDebu
 						NewQParent.HelperParentEnd = HelperParentEnd;
 						
 						NewQParent.HelperParentName = HelperParentName;
+						NewQParent.HelperXPath = DataListSource[C1].XPath;
+						if (LoopGopherSDebug) console.log(" path:"+DataListSource[C1].XPath); 
 						
 						
 						var CopyStart = 0;
@@ -644,11 +646,17 @@ function GopherTellify(contents,inFile)
 				console.log( GopherObjectsA[ObjectCounter].InsertStr + "\n"   );
 			}
 		}
-		
+
+		if (GopherObjectsA[ObjectCounter].NewRecordType=="BinaryExpression")
+		{
+			
+		}
+
 		//If AssignmentExpression,VariableDeclarator and first operator is =
 		if ( (GopherObjectsA[ObjectCounter].NewRecordType=="AssignmentExpression") || 
 		     (GopherObjectsA[ObjectCounter].NewRecordType=="VariableDeclarator") || 
-			  (GopherObjectsA[ObjectCounter].NewRecordType=="LogicalExpression") )
+			  (GopherObjectsA[ObjectCounter].NewRecordType=="LogicalExpression") ||
+			  (GopherObjectsA[ObjectCounter].NewRecordType=="BinaryExpression") )
 		{
 			//first print to screen
 			if (DebugLines) {
@@ -740,7 +748,15 @@ function GopherTellify(contents,inFile)
 						if (TempVarStr!="") { TempVarStr += ", "; }
 						TempVarStr += "Temp_" + ObjectCounter + "_" + TempC;
 
-						GopherObjectsA[ObjectCounter].InsertStr = GopherObjectsA[ObjectCounter].InsertStr + "Temp_" + ObjectCounter + "_" + TempC + " = GopherHelperF('" + GopherObjectsA[ObjectCounter].Records[NodeWithouChildID-1].Operator + "'," + LeftV + "," + RightV + ",'Temp_" + ObjectCounter + "_" + TempC+"','" + Globals.escapeSingleQuote(LeftC) + "','" + Globals.escapeSingleQuote(RightC) + "');\n";
+						//if parent is BinaryExpression then this block will return a TRUE/FALSE and the statments should be separated with comma(,) instead
+						var CloseFunctionStr = ";\n";
+						if ((GopherObjectsA[ObjectCounter].NewRecordType=="BinaryExpression"))
+						{ 
+							CloseFunctionStr = ", ";
+						}
+					
+
+						GopherObjectsA[ObjectCounter].InsertStr = GopherObjectsA[ObjectCounter].InsertStr + "Temp_" + ObjectCounter + "_" + TempC + " = GopherHelperF('" + GopherObjectsA[ObjectCounter].Records[NodeWithouChildID-1].Operator + "'," + LeftV + "," + RightV + ",'Temp_" + ObjectCounter + "_" + TempC+"','" + Globals.escapeSingleQuote(LeftC) + "','" + Globals.escapeSingleQuote(RightC) + "')"+CloseFunctionStr;
 						
 						if (DebugLines) {
 							console.log("Temp_" + TempC + " = GopherHelperF('" + GopherObjectsA[ObjectCounter].Records[NodeWithouChildID-1].Operator + "'," + LeftV + "," + RightV + ",'Temp_" + TempC+"','" + Globals.escapeSingleQuote(LeftC) + "','" + Globals.escapeSingleQuote(RightC) + "');");
@@ -767,17 +783,32 @@ function GopherTellify(contents,inFile)
 				//var = GopherSetF( VarName, CommandLine, Value, Operator, UseTempVars, Prefix)
 				
 				if ( (GopherObjectsA[ObjectCounter].NewRecordType=="VariableDeclarator") ) { xPrefix = "";}
+				
+				//if the parent is BinaryExpression then this means nothing is set so use GopherHelperF to return TRUE/FALSE instead of setting a variable with GopherSetF
+				if ((GopherObjectsA[ObjectCounter].NewRecordType=="BinaryExpression"))
+				{
+					GopherObjectsA[ObjectCounter].InsertStr = GopherObjectsA[ObjectCounter].InsertStr + " GopherHelperF('" + GopherObjectsA[ObjectCounter].Records[0].Operator + "'," + LeftV + "," + RightV + ",'Temp_" + ObjectCounter + "_" + TempC+"','" + Globals.escapeSingleQuote(LeftC) + "','" + Globals.escapeSingleQuote(RightC) + "');";
+				} else
+				{
+					GopherObjectsA[ObjectCounter].InsertStr = GopherObjectsA[ObjectCounter].InsertStr + 
+						xPrefix + GopherObjectsA[ObjectCounter].Records[1].xSource + " = GopherSetF('" + Globals.escapeSingleQuote(GopherObjectsA[ObjectCounter].Records[1].xSource) + "','" + Globals.escapeSingleQuote(GopherObjectsA[ObjectCounter].Records[0].xSource) + "'," + xSource + ",'" + GopherObjectsA[ObjectCounter].Records[0].Operator + "',false,'"+ GopherObjectsA[ObjectCounter].Records[0].Prefix +"')";
+				}
 
-				GopherObjectsA[ObjectCounter].InsertStr = GopherObjectsA[ObjectCounter].InsertStr + 
-					xPrefix + GopherObjectsA[ObjectCounter].Records[1].xSource + " = GopherSetF('" + Globals.escapeSingleQuote(GopherObjectsA[ObjectCounter].Records[1].xSource) + "','" + Globals.escapeSingleQuote(GopherObjectsA[ObjectCounter].Records[0].xSource) + "'," + xSource + ",'" + GopherObjectsA[ObjectCounter].Records[0].Operator + "',false,'"+ GopherObjectsA[ObjectCounter].Records[0].Prefix +"')";
-				 
 				 
 				//console.log( GopherObjectsA[ObjectCounter].InsertStr + "\n"   );
 			} else
 			{
-				GopherObjectsA[ObjectCounter].InsertStr = GopherObjectsA[ObjectCounter].InsertStr + 
-					xPrefix + GopherObjectsA[ObjectCounter].Records[1].xSource + " = GopherSetF('" + Globals.escapeSingleQuote(GopherObjectsA[ObjectCounter].Records[1].xSource) + "','" + Globals.escapeSingleQuote(GopherObjectsA[ObjectCounter].Records[0].xSource) + "',Temp_" + ObjectCounter + "_" + TempC + ",'" + GopherObjectsA[ObjectCounter].Records[0].Operator + "',true,'"+ GopherObjectsA[ObjectCounter].Records[0].Prefix +"')";
-				
+				//if the parent is BinaryExpression then this means nothing is set so use GopherHelperF to return TRUE/FALSE instead of setting a variable with GopherSetF
+				if ((GopherObjectsA[ObjectCounter].NewRecordType=="BinaryExpression"))
+				{
+					//function GopherHelperF( Operator, LeftVal, RightVal, TempName, LeftValStr, RightVarStr)
+					
+					GopherObjectsA[ObjectCounter].InsertStr = "( "+GopherObjectsA[ObjectCounter].InsertStr + " GopherHelperF('" + GopherObjectsA[ObjectCounter].Records[0].Operator + "'," + GopherObjectsA[ObjectCounter].Records[1].xSource + ", Temp_" + ObjectCounter + "_" + TempC + ",'','" + Globals.escapeSingleQuote(GopherObjectsA[ObjectCounter].Records[1].xSource) + "','" + Globals.escapeSingleQuote(GopherObjectsA[ObjectCounter].Records[2].xSource) + "') )";
+				} else
+				{
+					GopherObjectsA[ObjectCounter].InsertStr = GopherObjectsA[ObjectCounter].InsertStr + 
+						xPrefix + GopherObjectsA[ObjectCounter].Records[1].xSource + " = GopherSetF('" + Globals.escapeSingleQuote(GopherObjectsA[ObjectCounter].Records[1].xSource) + "','" + Globals.escapeSingleQuote(GopherObjectsA[ObjectCounter].Records[0].xSource) + "',Temp_" + ObjectCounter + "_" + TempC + ",'" + GopherObjectsA[ObjectCounter].Records[0].Operator + "',true,'"+ GopherObjectsA[ObjectCounter].Records[0].Prefix +"')";
+				}
 				//console.log( GopherObjectsA[ObjectCounter].InsertStr + "\n"   );
 			}
 		}
@@ -791,11 +822,14 @@ function GopherTellify(contents,inFile)
 			contents = [contents.slice(0, GopherObjectsA[ObjectCounter].CopyStart), GopherObjectsA[ObjectCounter].InsertStr, 	contents.slice(GopherObjectsA[ObjectCounter].CopyEnd)].join('');
 		}
 	}
+	
+	
+	
 	// **** IN RealTimeConsole_Temps.JS REF #001
   
 	//========================================
 	//Insert the gohper callback fuctions and socket.io setup
-	contents =	"//GopherB node Socket setup \n"+
+	var insert_contents =	"//GopherB node Socket setup \n"+
 	"var iosocket;\n"+
 	"iosocket = io.connect();\n"+
 	"iosocket.emit('HiGopherB','');\n"+
@@ -819,12 +853,6 @@ function GopherTellify(contents,inFile)
 	"//------------------------------------------------------------------------------\n"+
 	"function GopherUpdateExpr(xCodeLine, xVarName, xVarValue, xVarOperator, xParentID, xGopherCallerID ) {\n" +
 	" iosocket.emit( 'Gopher.GopherUpdateExp', {CodeLine:xCodeLine, VarName:xVarName, VarValue:xVarValue, VarOperator:xVarOperator,  ParentID:xParentID, GopherCallerID:xGopherCallerID } );\n"+
-	"}\n\n"+
-
-	"//------------------------------------------------------------------------------\n"+
-	"function GopherVarDecl(xCodeLine, xVarDeclTrackID, xVarName, xVarValue, xVarStr, xParentID, xGopherCallerID ) {\n" +
-	" iosocket.emit( 'Gopher.VarDecl', {CodeLine:xCodeLine, VarDeclTrackID:xVarDeclTrackID, VarName:xVarName, VarValue:xVarValue, VarStr:xVarStr, ParentID:xParentID, GopherCallerID:xGopherCallerID } );\n"+
-	"return xVarValue;\n"+
 	"}\n\n"+
 
 	"//------------------------------------------------------------------------------\n"+
@@ -864,15 +892,17 @@ function GopherTellify(contents,inFile)
 
 
 	"//------------------------------------------------------------------------------\n"+
-	"\n"+
-	
-	"var "+TempVarStr+";\n\n"+
-	"//------------------------------------------------------------------------------\n"+
-	"\n\n"+
+	"\n";
  
-	contents;
+	if (TempVarStr!="")
+	{
+		insert_contents += "var "+TempVarStr+";\n\n"+
+		"//------------------------------------------------------------------------------\n"+
+		"\n\n";
+	}
  
-	return contents;
+ 
+	return insert_contents+contents;
 }
 
 
