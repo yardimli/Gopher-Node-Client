@@ -1,8 +1,8 @@
 var Global = require('../manager/global.js');
 
-var ServerB = Global.http.createServer(onRequest).listen(1337, function () {
-   
-});
+var StringDecoder = require('string_decoder').StringDecoder;
+var decoder = new StringDecoder('utf8');
+var ServerB = Global.http.createServer(onRequest).listen(1337);
 
 var FileMap = {
     root: __dirname + '/../',
@@ -55,13 +55,13 @@ function onRequest(request, response) {
 
     if (RequestUrl.indexOf('/' + Global.gopherManagerRoot) === 0) {
         if (!Global.extensions[FileMap.getFileExtension(RequestUrl)]) {
+            //console.log(RequestUrl);
             response.writeHead(404, {'Content-Type': 'text/html'});
             response.end("<html><head></head><body>The requested file type is not supported</body></html>");
 
         } else {
-            var FilePath = FileMap.getFilePath(RequestUrl);
-
             if (request.headers['x-requested-with'] !== 'XMLHttpRequest') {
+                var FilePath = FileMap.getFilePath(RequestUrl);
                 Global.fs.exists(FilePath, function (exists) {
                     if (exists) {
                         Global.fs.readFile(FilePath, function (err, contents) {
@@ -88,23 +88,90 @@ function onRequest(request, response) {
                     }
                     ;
                 });
+
             } else {
-                var AjaxTo = require(FilePath);
-                switch(request.method){
-                    case 'POST':
-                        request.on('data',function(chunk){
-                            AjaxTo.call(chunk,function(result){
-                               response.end(result); 
-                            });
-                        });
-                        break;
-                    case 'GET':
-                        var UrlObj = Global.url.parse(request.url);
-                        AjaxTo.call(UrlObj.query,function(result){
-                            response.end(result);
-                        });
-                        break;
+                console.log('Is a xmlhttprequest ' + FileMap.getCleanFileName(request.url));
+                var FileExt = FileMap.getFileExtension(request.url);
+                var Command = (FileMap.getCleanFileName(request.url)).replace(FileExt, '');
+                if (FileExt === '.do') {
+                    request.on('data', function (chunk) {
+                        var RecievedData = Global.QueryString.parse(decoder.write(chunk));
+                        
+                        switch (Command) {
+                            case 'getProjects':
+                                Global.fs.exists(Global.dbPath, function (exists) {
+                                    if (exists) {
+                                        var db = new Global.sqlite3.Database(Global.dbPath);
+                                        var AjaxToProject = require('./js/ajaxToProjects');
+                                        AjaxToProject.getProjects(Number(RecievedData['projectID']),db,function(result){
+                                           response.end(JSON.stringify(result));
+                                           db.close();
+                                        });
+                                    } else {
+                                        response.end('Database does not exist.');
+                                    }
+                                });
+                                
+                                /*var result = [];
+                                Global.db.serialize(function () {
+                                    var qSelectProject = '';
+                                    if(Number(RecievedData['projectID']) === 0){
+                                        qSelectProject = 'select ID, name FROM projects ORDER BY name ASC';
+                                    }else{
+                                        qSelectProject = 'select ID, name FROM projects WHERE ID=' + RecievedData['projectID'];
+                                    }
+                                    Global.db.each(qSelectProject,function (err, row) {
+                                        result.push(row);
+                                    },function complete(){
+                                        response.end(result[0].name+RecievedData['testCaller']);
+                                    });
+                                });*/
+                                //Global.db.close();
+                                /*Global.connectDB(function (db) {
+                                    db.serialize(function () {
+                                        var result=[];
+                                        var qSelectProject = '';
+                                        if (RecievedData['projectID'] == 0) {
+                                            qSelectProject = 'select ID, name FROM projects ORDER BY name ASC';
+                                        } else {
+                                            qSelectProject = 'select ID, name FROM projects WHERE ID=' + RecievedData['projectID'];
+                                        }
+                                        db.each(qSelectProject, function (err, row) {
+                                            result.push(row);
+                                        }, function complete() {
+                                            response.end(result.toString());
+                                        });
+                                    });
+                                    db.close();
+                                });*/
+                                break;
+                            default:
+                                response.end('Command is not recognized.');
+                                break;
+                        }
+                    });
+                } else {
+                    response.end('File extension is not recognized.');
                 }
+                /*if (request.url=="/manager/ajaxToProject.do")
+                 {
+                 var AjaxTo = require("./js/ajaxToProject.js");
+                 switch(request.method){
+                 case 'POST':
+                 request.on('data',function(chunk){
+                 AjaxTo.call(chunk,function(result){
+                 response.end(result); 
+                 });
+                 });
+                 break;
+                 case 'GET':
+                 var UrlObj = Global.url.parse(request.url);
+                 AjaxTo.call(UrlObj.query,function(result){
+                 response.end(result);
+                 });
+                 break;
+                 }
+                 }*/
             }
         }
     } else {
@@ -114,8 +181,6 @@ function onRequest(request, response) {
         var projectHost = 'localhost';
         var gopherHost = 'localhost';
         var gopherPort = 1337;
-        var StringDecoder = require('string_decoder').StringDecoder;
-        var decoder = new StringDecoder('utf8');
 
         var BrowserData = [];
         request.on('data', function (chunk) {
