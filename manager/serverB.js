@@ -2,7 +2,29 @@ var Global = require('../manager/global.js');
 
 var StringDecoder = require('string_decoder').StringDecoder;
 var decoder = new StringDecoder('utf8');
-var ServerB = Global.http.createServer(onRequest).listen(1337);
+var xxxx = '';
+var ServerB = Global.http.createServer(onRequest).listen(1337, function () {
+    /*var spawn = require('child_process').spawn,
+     list  = spawn('cmd');
+     
+     list.stdout.on('data', function (data) {
+     //console.log('stdout: ' + data);
+     var buff = new Buffer(data);
+     console.log("stdout: " + buff.toString('utf8'));
+     xxxx = buff.toString('utf8');
+     });
+     
+     list.stderr.on('data', function (data) {
+     console.log('stderr: ' + data);
+     });
+     
+     list.on('exit', function (code) {
+     console.log('child process exited with code ' + code);
+     });
+     
+     list.stdin.write('wmic logicaldisk get name\n');
+     list.stdin.end();*/
+});
 
 var FileMap = {
     root: __dirname + '/../',
@@ -94,84 +116,75 @@ function onRequest(request, response) {
                 var FileExt = FileMap.getFileExtension(request.url);
                 var Command = (FileMap.getCleanFileName(request.url)).replace(FileExt, '');
                 if (FileExt === '.do') {
-                    request.on('data', function (chunk) {
-                        var RecievedData = Global.QueryString.parse(decoder.write(chunk));
-                        
-                        switch (Command) {
-                            case 'getProjects':
+                    switch (Command) {
+                        case 'getProjects':
+                            request.on('data', function (chunk) {
+                                console.log(chunk);
+                                var RecievedData = Global.QueryString.parse(decoder.write(chunk));
                                 Global.fs.exists(Global.dbPath, function (exists) {
                                     if (exists) {
                                         var db = new Global.sqlite3.Database(Global.dbPath);
                                         var AjaxToProject = require('./js/ajaxToProjects');
-                                        AjaxToProject.getProjects(Number(RecievedData['projectID']),db,function(result){
-                                           response.end(JSON.stringify(result));
-                                           db.close();
+                                        AjaxToProject.getProjects(Number(RecievedData['projectID']), db, function (result) {
+                                            response.end(JSON.stringify(result));
+                                            db.close();
                                         });
                                     } else {
                                         response.end('Database does not exist.');
                                     }
                                 });
-                                
+
                                 /*var result = [];
-                                Global.db.serialize(function () {
-                                    var qSelectProject = '';
-                                    if(Number(RecievedData['projectID']) === 0){
-                                        qSelectProject = 'select ID, name FROM projects ORDER BY name ASC';
-                                    }else{
-                                        qSelectProject = 'select ID, name FROM projects WHERE ID=' + RecievedData['projectID'];
-                                    }
-                                    Global.db.each(qSelectProject,function (err, row) {
-                                        result.push(row);
-                                    },function complete(){
-                                        response.end(result[0].name+RecievedData['testCaller']);
-                                    });
-                                });*/
+                                 Global.db.serialize(function () {
+                                 var qSelectProject = '';
+                                 if(Number(RecievedData['projectID']) === 0){
+                                 qSelectProject = 'select ID, name FROM projects ORDER BY name ASC';
+                                 }else{
+                                 qSelectProject = 'select ID, name FROM projects WHERE ID=' + RecievedData['projectID'];
+                                 }
+                                 Global.db.each(qSelectProject,function (err, row) {
+                                 result.push(row);
+                                 },function complete(){
+                                 response.end(result[0].name+RecievedData['testCaller']);
+                                 });
+                                 });*/
                                 //Global.db.close();
-                                /*Global.connectDB(function (db) {
-                                    db.serialize(function () {
-                                        var result=[];
-                                        var qSelectProject = '';
-                                        if (RecievedData['projectID'] == 0) {
-                                            qSelectProject = 'select ID, name FROM projects ORDER BY name ASC';
-                                        } else {
-                                            qSelectProject = 'select ID, name FROM projects WHERE ID=' + RecievedData['projectID'];
-                                        }
-                                        db.each(qSelectProject, function (err, row) {
-                                            result.push(row);
-                                        }, function complete() {
-                                            response.end(result.toString());
-                                        });
-                                    });
-                                    db.close();
-                                });*/
-                                break;
-                            default:
-                                response.end('Command is not recognized.');
-                                break;
-                        }
-                    });
+                            });
+                            break;
+                            
+                        case 'getDriveList':
+                            var FileManager = require('./js/fileManager.js');
+                            FileManager.getDriveList(function(result,error){
+                                if(error !== null){
+                                    response.end(error.toString());
+                                } 
+                                response.end(JSON.stringify(result));
+                            });
+                            break;
+                            
+                        case 'getFileList':
+                            var FileManager = require('./js/fileManager.js');
+                            request.on('data', function (chunk) {
+                                var RecievedData = Global.QueryString.parse(decoder.write(chunk));
+                                FileManager.getFileList(RecievedData['path'],RecievedData['onlyFolders'],function(error,result){
+                                   if(error !== null){
+                                       response.end(error.toString());
+                                   }
+                                   response.end(JSON.stringify(result));
+                                });
+                            });
+                            
+                            
+                            break;
+                            
+                        default:
+                            response.end('Command is not recognized.');
+                            break;
+                    }
+
                 } else {
                     response.end('File extension is not recognized.');
                 }
-                /*if (request.url=="/manager/ajaxToProject.do")
-                 {
-                 var AjaxTo = require("./js/ajaxToProject.js");
-                 switch(request.method){
-                 case 'POST':
-                 request.on('data',function(chunk){
-                 AjaxTo.call(chunk,function(result){
-                 response.end(result); 
-                 });
-                 });
-                 break;
-                 case 'GET':
-                 var UrlObj = Global.url.parse(request.url);
-                 AjaxTo.call(UrlObj.query,function(result){
-                 response.end(result);
-                 });
-                 break;
-                 }
-                 }*/
             }
         }
     } else {
@@ -236,7 +249,7 @@ function onRequest(request, response) {
     }
 
     request.on('end', function () {
-        console.log('*******************');
+        //console.log('*******************');
     });
 }
 

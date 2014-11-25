@@ -37,10 +37,15 @@ body {
     margin-top: 43px;
 }
 
-.current-dir{
+.show-current-dir{
+    float:left;
     font-weight: bolder;
-    margin-bottom: 8px;
-    border-bottom: 1px solid #efefef;
+    line-height: 39px;
+    font-size:15px;
+    border-bottom: 1px solid #6F7982;
+    padding-left: 15px;
+    height: 41px;
+    width:70%;
 }
 .target-dir{
     overflow: auto;
@@ -86,6 +91,7 @@ body {
 }
 .target-dir ul li.selected{
     background-color: #3a4653;
+    color: #0CECFC;
 }
 .target-dir .two li{
     width:48%;
@@ -153,6 +159,88 @@ body {
     background-color: #283949;
     cursor:pointer;
 }
+
+.dialog-file-list-header{
+    overflow: auto;   
+}
+
+.combo-edit-box{
+    overflow: auto; 
+    width:72px; 
+    float: left;
+    border: 1px solid #6F7982;
+}
+.combo-edit-box div.holder{
+    float:left;
+}
+.combo-edit-box div.holder.edit-input{
+    width:45px;
+}
+.combo-edit-box input{
+    background-color: transparent; 
+    border: none !important;
+    color: #EFEFEF; 
+    padding: 8px 12px;
+}
+.combo-edit-box div.holder.select-arrow{
+    cursor: default; 
+    width:25px; 
+    height:39px; 
+    background-color:  transparent;  
+    border-left: 1px solid #6F7982; 
+    color:#696969;
+}
+.combo-edit-box div.holder.select-arrow .icon{
+    margin-top:5px;
+    width:24px; height:24px;
+    background: url('../images/arrow486.png') no-repeat;
+    
+}
+.combo-edit-box-options{
+    margin-left: -1px;
+    top:61px;
+    position: absolute; 
+    display: inline-block; 
+    width:72px; 
+    background-color: #4E5D6C;
+    border-right:1px solid #6F7982; 
+    border-bottom:1px solid #6F7982; 
+    border-left:1px solid #6F7982; 
+    z-index: 100; 
+    display:none;
+}
+.combo-edit-box-options ul{
+    list-style-type: none; 
+    list-style-position: inside; 
+    margin: 0px; 
+    padding:0px;
+}
+.combo-edit-box-options ul li{
+    padding: 8px 12px; 
+    cursor: default;
+    font-size: 15px;
+}
+.combo-edit-box-options ul li:hover{
+    background-color: #485563;
+}
+
+
+.backward-arrow{
+    width: 24px; height: 24px;
+    background: url('../images/left207-white.png') no-repeat;
+}
+.backward-arrow.disabled{
+    background: url('../images/left207-disabled.png') no-repeat;
+}
+.forward-arrow{
+    width:24px; height: 24px;
+    background: url('../images/right218-white.png') no-repeat;
+}
+.forward-arrow.disabled{
+    background: url('../images/right218-disabled.png') no-repeat;
+}
+
+
 
 /***** End - MANAGER RELATED PART********/
 

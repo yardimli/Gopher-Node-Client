@@ -18,15 +18,6 @@ exports.extensions = {
 };
 
 var dbPath = exports.dbPath = '/Gopher/ManagerDB.db';
-/*exports.connectDB = function(callBack){
-    fs.exists(dbPath, function (exists) {
-        if (exists) {
-            return callBack(new sqlite3.Database(dbPath));
-        } else {
-            console.log('database does not exist.');
-        }
-    });
-};*/
 /*fs.exists(dbPath, function (exists) {
     if (exists) {
         exports.db = new sqlite3.Database(dbPath);
