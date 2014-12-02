@@ -84,12 +84,15 @@ body {
 .target-dir ul li.item{
     background:url('../images/folder-white.png') no-repeat left top;
 }
+.target-dir ul li.item.file{
+    background:url('../images/file-white.png') no-repeat;
+}
 .target-dir ul li.up{
     background:url('../images/up-white.png') no-repeat left top;
     width:98%;
     clear:both;
 }
-.target-dir ul li.selected{
+.target-dir ul li.item.selected{
     background-color: #3a4653;
     color: #0CECFC;
 }
@@ -99,27 +102,29 @@ body {
 .target-dir .four li{
     width:24%;
 }
-
 .target-dir ul li{
     cursor: pointer;
 }
+.target-dir ul li div[data-role="checkbox"]{
+    float:left;
+    display: inline-block;
+    width:21px; 
+    height:21px;
+}
+.target-dir ul li div.not-checked[data-role="checkbox"]{
+    background: url('../images/checkbox-sprite.png') no-repeat 0px 0px;
+}
+.target-dir ul li div.checked[data-role="checkbox"]{
+    background: url('../images/checkbox-sprite.png') no-repeat -22px 0px;
+}
+
 
 #in_projectDir{
     background-color: #F5F5F5;
 }
 
-.project-file-view{
-    width:100%;
-    background-color: #F5F5F5;
-    color:#000;
-    padding: 15px 8px 15px 8px;
-    height:500px;
-    overflow: auto;
-}
-
 .ignored-file-panel{
     height:490px;
-    margin:10px 0px 0px 10px;
 }
 
 .project-ignoreFiles-view{
@@ -162,6 +167,9 @@ body {
 
 .dialog-file-list-header{
     overflow: auto;   
+}
+.dialog-file-list-header div[data-role="fileList_arrow_navigate"]{
+    float:left;
 }
 
 .combo-edit-box{
@@ -241,6 +249,23 @@ body {
 }
 
 
+.new-project-files .btn{
+    background-color: transparent;
+}
+.new-project-files .btn:hover{
+    background-color: #253849;
+}
+.new-project-files .show-current-dir{
+    border:none;
+    line-height: 42px;
+    width:88%;
+}
+
+.new-project-files .target-dir{
+    border: 1px solid #4E5D6C;
+    min-height: 300px;
+    max-height: 500px;
+}
 
 /***** End - MANAGER RELATED PART********/
 

@@ -60,7 +60,6 @@ $(document).ready(function () {
                 }
                 
                 if(hasNodeError === 0){
-                    console.log('ajaxGetFileList items:' + Data.length);
                     _callBack(null, Data);
                 }else{
                     _callBack(errorMessage, null);
@@ -74,45 +73,72 @@ $(document).ready(function () {
         });
     }
     
-    function displayFileList(data) {
-        $('#target_dir').empty();
+    function displayFileList(data, listContainer, showCheckbox) {
+        $(listContainer).empty();
         var liClass = 'two';
         if (data.length > 20) {
             liClass = 'four';
         }
         if (data.length > 0) {
-            $('#target_dir').append($('<ul class="' + liClass + '"></ul>'));
+            $(listContainer).append($('<ul class="' + liClass + '"></ul>'));
+            var assignClass;
             for (var i = 0; i < data.length; i++) {
-                $('#target_dir').find('ul').append('<li class="item" data-path="' + data[i].path + '"><span>' + data[i].name + '</span><input type="hidden" value="0"/></li>');
+                if(data[i].isDirectory == true){
+                    assignClass = 'item';
+                }else{
+                    assignClass = 'item file';
+                }
+                var li = $('<li></li>');
+                $(li).attr('class',assignClass);
+                $(li).attr('data-path',data[i].path);
+                $(li).attr('data-is_directory', data[i].isDirectory);
+                
+                var isExtValid = function(fileName){
+                    fileName = fileName.toLowerCase();
+                    var dots = fileName.split('.');
+                    if( dots[dots.length-1].search('js') == -1){
+                        return false;
+                    }else{
+                        return true;
+                    }
+                };
+                
+                if(typeof(showCheckbox)!=='undefined' && showCheckbox === true){
+                    if(data[i].isDirectory == true || isExtValid(data[i].name)){
+                        $(li).append('<div data-role="checkbox" class="not-checked"></div>');
+                    }
+                }
+                $(li).append('<span>' + data[i].name + '</span>');
+                $(li).append('<input type="hidden" value="0"/>');
+                $(listContainer).find('ul').append(li.prop('outerHTML'));
             }
         } else {
-            $('#target_dir').append('<div class="alert alert-info" role="alert">There has no folders here.</div>');
+            $(listContainer).append('<div class="alert alert-info" role="alert">There has no folders here.</div>');
         }
 
     }
     
-    function updateArrowState(listViewHistoryObj){
-        console.log('current view index '+listViewHistoryObj.currentAtIndex);
-        console.log('trace  '+listViewHistoryObj.trace.length);
+    function updateArrowState(listViewHistoryObj, arrowsContainer){
+        //console.log('current view index '+listViewHistoryObj.currentAtIndex);
+        //console.log('trace  '+listViewHistoryObj.trace.length);
         if(listViewHistoryObj.trace.length <= 1 ){
-            $('#fileList_arrow_navigate').find('a[data-role="backward"] div').addClass('disabled');
-            $('#fileList_arrow_navigate').find('a[data-role="forward"] div').addClass('disabled');
+            $(arrowsContainer).find('a[data-role="backward"] div').addClass('disabled');
+            $(arrowsContainer).find('a[data-role="forward"] div').addClass('disabled');
         }else{
             if(listViewHistoryObj.currentAtIndex === listViewHistoryObj.trace.length-1){
-                $('#fileList_arrow_navigate').find('a[data-role="backward"] div').removeClass('disabled');
-                $('#fileList_arrow_navigate').find('a[data-role="forward"] div').addClass('disabled');
+                $(arrowsContainer).find('a[data-role="backward"] div').removeClass('disabled');
+                $(arrowsContainer).find('a[data-role="forward"] div').addClass('disabled');
             }else if(listViewHistoryObj.currentAtIndex === 0){
-                $('#fileList_arrow_navigate').find('a[data-role="backward"] div').addClass('disabled');
-                $('#fileList_arrow_navigate').find('a[data-role="forward"] div').removeClass('disabled');
+                $(arrowsContainer).find('a[data-role="backward"] div').addClass('disabled');
+                $(arrowsContainer).find('a[data-role="forward"] div').removeClass('disabled');
             }
             else{
-                $('#fileList_arrow_navigate').find('a[data-role="backward"] div').removeClass('disabled');
-                $('#fileList_arrow_navigate').find('a[data-role="forward"] div').removeClass('disabled');
+                $(arrowsContainer).find('a[data-role="backward"] div').removeClass('disabled');
+                $(arrowsContainer).find('a[data-role="forward"] div').removeClass('disabled');
             }
         }
-        
-        
     }
+
     
     
     /*jQuery events* **************************************************************************************/
@@ -122,6 +148,7 @@ $(document).ready(function () {
             'height': ($('#dialog_select_dir').find('.modal-body').height() - 14) + 'px',
             'width': $('#dialog_select_dir').find('.modal-body').width() + 'px'
         });
+        $('#btn_openProjectDir').addClass('disabled');
         
         ajaxGetDriveList(function(error){
             if(error !== null){
@@ -134,13 +161,12 @@ $(document).ready(function () {
                     dialogFileListView.trace.push($('#current_drive_val').val());
                     dialogFileListView.currentAtIndex = dialogFileListView.currentAtIndex+1;
 
-                    displayFileList(data);
+                    displayFileList(data,$('#dialog_select_dir').find('div[data-role="display files"]'));
 
-                    $('#show_current_dir').val('');
-                    $('#remember_backHome').val('0');
-                    updateArrowState(dialogFileListView);
+                    $('#dialog_select_dir').find('div[data-role="current directory"]').text(''); 
+                    updateArrowState(dialogFileListView, $('#dialog_select_dir').find('div[data-role="fileList_arrow_navigate"]'));
                 }else{
-                    $('#target_dir').append('<div class="alert alert-warning" role="alert">'+error+'</div>');
+                    $('#dialog_select_dir').find('div[data-role="display files"]').append('<div class="alert alert-warning" role="alert">'+error+'</div>');
                 }
             });
         });
@@ -151,24 +177,33 @@ $(document).ready(function () {
     });
     
     $('#select_drive_option').on('click', 'li', function () {
+        var fileListContainer = $('#dialog_select_dir').find('div[data-role="display files"]');
+        var currentDirectory = $('#dialog_select_dir').find('div[data-role="current directory"]');
+        var arrowsContainer = $('#dialog_select_dir').find('div[data-role="fileList_arrow_navigate"]');
+        
         $('#current_drive').val($(this).text());
         $('#current_drive_val').val($(this).data('path'));
         $('#select_drive_option').hide();
 
+        $('#btn_openProjectDir').addClass('disabled');
         ajaxGetFileList($(this).data('path'), true, function (error, data) {
+            $(currentDirectory).text('');
+            //$('#'+$(fileListContainer).data('forid')).find('input[data-role="remember home"]').val('0');
+            $(fileListContainer).empty();
+            
+            dialogFileListView = new listViewHistory();
             if (error === null) {
-                dialogFileListView = new listViewHistory();
                 dialogFileListView.trace.push($('#current_drive_val').val());
                 dialogFileListView.currentAtIndex = dialogFileListView.currentAtIndex + 1;
 
-                displayFileList(data);
-
-                $('#show_current_dir').val('');
-                updateArrowState(dialogFileListView);
-            } else {
-                $('#target_dir').empty();
-                $('#target_dir').append('<div class="alert alert-warning" role="alert">' + error + '</div>');
+                displayFileList(data, $(fileListContainer));
+                
+            } else {                
+                $(fileListContainer).append('<div class="alert alert-warning" role="alert">' + error + '</div>');
+                
             }
+            
+            updateArrowState(dialogFileListView, arrowsContainer);
         });
     });
     
@@ -176,46 +211,61 @@ $(document).ready(function () {
         if($(e.target).is(':not(#arrow_select_drive)') && $('#arrow_select_drive').has(e.target).length ===0){
             $('#select_drive_option').hide();
         }
+        //console.log(e.target);
+        var forID = $(e.target).closest('div[data-role="display files"]').data('forid'); 
+        console.log(forID);
+        if($(e.target).is(':not(#'+forID+' div[data-role="display files"])') && $('#'+forID+' div[data-role="display files"]').has(e.target).length===0){
+            $(e.target).closest('div[data-role="display files"]').find('li').removeClass('selected');
+        }
     });
     
-    $('#target_dir').on('click', 'li', function () {
+    $('div[data-role="display files"]').on('click', 'li', function () {
         var _senderJ = this;
+        var listContainer = $(this).closest('div[data-role="display files"]');
+        var arrowsContainer = $('#'+$(listContainer).data('forid')).find('div[data-role="fileList_arrow_navigate"]');
+        var getOnlyFolders = $(listContainer).data('only_folders');
         
-        $('#target_dir').find('li').removeClass('selected');
+        //always mark select one
+        $(listContainer).find('li').removeClass('selected');
         $(_senderJ).addClass('selected');
+        $('#btn_openProjectDir').removeClass('disabled');
         var clickCount = $(_senderJ).find('input[type=hidden]').val();
 
+        //implement double clicking
         if (Number(clickCount) === 0) {
             var doubleClick = setTimeout(function () {
                 var watchCount = $(_senderJ).find('input[type=hidden]').val();
                 $(_senderJ).find('input[type=hidden]').val(0);
+                
+                //detect double click happens
                 if (Number(watchCount) >= 2) {
                     $(_senderJ).removeClass('selected');
-                    ajaxGetFileList($(_senderJ).data('path'), true, function(error,data){
-                        if(error === null){
-                            displayFileList(data);
-                        }else{
-                            $('#target_dir').empty();
-                            $('#target_dir').append('<div class="alert alert-warning" role="alert">'+error+'</div>');
-                        }
-                        
-                        var showPath = $(_senderJ).data('path');
-                        showPath = showPath.replace($('#current_drive').val()+'\\','');
-                        $('#show_current_dir').text(showPath);
-                        
-                        dialogFileListView.trace.push( $(_senderJ).data('path'));
-                        dialogFileListView.currentAtIndex = dialogFileListView.currentAtIndex+1;
-                        
-                        //console.log('last second '+ dialogFileListView.trace[dialogFileListView.trace.length-2]);
-                        if($('#remember_backHome').val()=='1' && dialogFileListView.currentAtIndex === 1){
-                            dialogFileListView.trace = [];
-                            dialogFileListView.trace[0] = $('#current_drive_val').val();
-                            dialogFileListView.trace[1] =  $(_senderJ).data('path');
-                            console.log(dialogFileListView.trace);
-                        }
-                        updateArrowState(dialogFileListView);
-                        
-                    });
+                    $('#btn_openProjectDir').addClass('disabled');
+                    
+                    if($(_senderJ).data('is_directory') == true){
+                        ajaxGetFileList($(_senderJ).data('path'), getOnlyFolders, function(error,data){
+                            if(error === null){
+                                displayFileList(data,$(listContainer));
+                            }else{
+                                $(listContainer).empty();
+                                $(listContainer).append('<div class="alert alert-warning" role="alert">'+error+'</div>');
+                            }
+
+                            var showPath = $(_senderJ).data('path');
+                            showPath = showPath.replace($('#current_drive').val()+'\\','');
+                            $('#'+$(listContainer).data('forid')).find('div[data-role="current directory"]').text(showPath);
+
+                            dialogFileListView.trace.push( $(_senderJ).data('path'));  
+                            dialogFileListView.currentAtIndex = dialogFileListView.currentAtIndex+1;
+
+                            if(dialogFileListView.trace.length - dialogFileListView.currentAtIndex > 1){
+                                dialogFileListView.trace.splice(dialogFileListView.currentAtIndex, dialogFileListView.trace.length - dialogFileListView.currentAtIndex-1);
+                            }
+
+                            updateArrowState(dialogFileListView,arrowsContainer);
+
+                        });
+                    }
                 }
             }, 300);
         }
@@ -224,41 +274,63 @@ $(document).ready(function () {
 
     });
     
-    $('#fileList_arrow_navigate').on('click','a',function(){
+    $('div[data-role="fileList_arrow_navigate"]').on('click','a',function(){
+        var forID = $(this).closest('div[data-role="fileList_arrow_navigate"]').data('forid');
+        var displayFilesObj = $('#'+forID).find('div[data-role="display files"]');
+        var currentDirectoryObj = $('#'+forID).find('div[data-role="current directory"]');
+        var arrowsContainerObj = $(this).closest('div[data-role="fileList_arrow_navigate"]');
+        var getOnlyFolders = $(displayFilesObj).data('only_folders'); 
+        
         if($(this).find('div').hasClass('disabled') === false){
             switch($(this).data('role')){
                 case 'backward':
                     dialogFileListView.currentAtIndex = dialogFileListView.currentAtIndex-1;
-                    if(dialogFileListView.currentAtIndex === 0){
-                        $('#remember_backHome').val('1');
-                    }
                     break;
 
                 case 'forward':
                     dialogFileListView.currentAtIndex = dialogFileListView.currentAtIndex+1;                    
                     break;
             } 
-            ajaxGetFileList(dialogFileListView.trace[dialogFileListView.currentAtIndex], true, function(error, data){
+
+            $('#btn_openProjectDir').addClass('disabled');
+            
+            ajaxGetFileList(dialogFileListView.trace[dialogFileListView.currentAtIndex], getOnlyFolders, function(error, data){
                 if(error === null){
-                    displayFileList(data);
+                    displayFileList(data,displayFilesObj);
                 }else{
-                    $('#target_dir').empty();
-                    $('#target_dir').append('<div class="alert alert-warning" role="alert">'+error+'</div>');
+                    $(displayFilesObj).empty();
+                    $(displayFilesObj).append('<div class="alert alert-warning" role="alert">'+error+'</div>');
                 }
 
                 var showPath = dialogFileListView.trace[dialogFileListView.currentAtIndex];
                 showPath = showPath.replace($('#current_drive').val()+'\\','');
-                $('#show_current_dir').text(showPath);
+                $(currentDirectoryObj).text(showPath);
 
-
-                updateArrowState(dialogFileListView);
+                updateArrowState(dialogFileListView, arrowsContainerObj);
             });
         }
     });
     
     $('#btn_openProjectDir').click(function () {
-        ajaxGetFileList($('#target_dir').find('li[class="item selected"]').data('path'), false, function(error, data){
-            
+        var selectedPath = $('#dialog_select_dir').find('div[data-role="display files"] li[class="item selected"]').data('path');
+        var fileListContainer = $('#new_project_files').find('div[data-role="display files"]');
+        var currentDirectory = $('#new_project_files').find('div[data-role="current directory"]');
+        var arrowNavigator = $('new_project_files').find('div[data-role="fileList_arrow_navigate"]');
+        
+        ajaxGetFileList(selectedPath, false, function(error, data){
+            //console.log(data);            
+            if(error === null){
+                dialogFileListView = new listViewHistory();
+                dialogFileListView.trace.push(selectedPath);
+                dialogFileListView.currentAtIndex = dialogFileListView.currentAtIndex+1;
+
+                displayFileList(data, $(fileListContainer));
+
+                $(currentDirectory).text(selectedPath); 
+                updateArrowState(dialogFileListView, $(arrowNavigator));
+            }else{
+                $(fileListContainer).append('<div class="alert alert-warning" role="alert">'+error+'</div>');
+            }
         });
     });
     

@@ -59,56 +59,43 @@
                         Select Folder
                     </button>
                 </div>
-                <div id="project_folder_view" class="col-md-12">
+                <div id="new_project_files" class="col-md-12 new-project-files">
                     <div class="dialog-file-list-header">
-                        <div data-role="fileList_arrow_navigate" class="btn-group" role="group" aria-label="..." style="float:left;">
-                            <a data-role="backward" type="button" class="btn btn-default"><div class="backward-arrow disabled">&nbsp;</div></a>
-                            <a data-role="forward" type="button" class="btn btn-default"><div class="forward-arrow disabled">&nbsp;</div></a>
+                        <div data-role="fileList_arrow_navigate" data-forid="new_project_files" class="btn-group" role="group" aria-label="...">
+                            <a data-role="backward" class="btn btn-default"><div class="backward-arrow disabled">&nbsp;</div></a>
+                            <a data-role="forward" class="btn btn-default"><div class="forward-arrow disabled">&nbsp;</div></a>
                         </div>
-                        <div data-role="show_current_dir" class="show-current-dir"></div>
+                        <div data-role="current directory" class="show-current-dir"></div>
                     </div>
-                    <div data-role="target_dir" class="target-dir"></div>
+                    <div data-role="display files" class="target-dir" data-forid="new_project_files" data-only_folders="false"></div>
                 </div>
-                
-                
-                
-                
-                <div class="col-md-9">
-                    <input type="text" class="form-control" placeholder="Where is your project folder?" id="in_projectDir">
-                </div>
-                <div class="col-md-3">
-                    <button type="button" class="btn btn-default btn-block" data-toggle="modal" data-target="#dialog_select_dir">
-                        Browse
-                    </button>
-                </div>
-                <div class="col-md-12">
-                    <div class="col-md-7">
-                        <div id="project_files_view" class="project-file-view"></div>
-                        <input type="hidden" value="" id="input_setSelectedNodeId"/>
-                        <a role="button" href="#" class="btn btn-default btn-xs" id="btn_ignoreFile" data-whenenable="" data-whendisable="">Ignore It<input data-uselabel="whenDisable" type="hidden" value=""/><input data-uselabel="whenEnable" type="hidden" value=""/></a>
-                    </div>
-                    <div class="col-md-5">
-                        <div class="panel panel-default ignored-file-panel">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Ignored Files</h3>
-                            </div>
-                            <div class="panel-body">
-                                <div id="project_ignorefiles_view" class="project-ignoreFiles-view"></div>	
-                            </div>
+                <!--<div class="col-md-12">
+                    <br/>
+                    <div class="panel panel-default ignored-file-panel">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Ignored Files</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div id="project_ignorefiles_view" class="project-ignoreFiles-view"></div>	
                         </div>
                     </div>
-                </div>
-                <div class="col-md-12">
+                </div>-->
+                
+                <div class="col-md-12" style="padding-top: 10px;">
                     <div class="alert alert-warning alert-dismissible" role="alert">
                         <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                         <strong>Warning!</strong> There are no files or folder selected for Gopher. Gopher View will not be working properly.
                     </div>
+                    
                     <button type="button" class="btn btn-primary" style="width:250px;" id="btn_doneSetup">Save</button>
+                    
                 </div>
             </div>
-
+            <br/><br/>
         </div><!-- /.container -->
-
+        
+        
+        <!-- Dialog: Select Project Folder -->
         <div id="dialog_select_dir" class="modal fade " tabindex="-1" role="dialog" aria-hidden="true" data-dialogw="884" data-dialogh="465">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -120,9 +107,9 @@
                     </div>
                     <div class="modal-body" style="margin-bottom:0px; padding-bottom:0px;">
                         <div class="dialog-file-list-header">
-                            <div id="fileList_arrow_navigate" class="btn-group" role="group" aria-label="..." style="float:left;">
-                                <a data-role="backward" type="button" class="btn btn-default"><div class="backward-arrow disabled">&nbsp;</div></a>
-                                <a data-role="forward" type="button" class="btn btn-default"><div class="forward-arrow disabled">&nbsp;</div></a>
+                            <div data-role="fileList_arrow_navigate" data-forid="dialog_select_dir" class="btn-group" role="group" aria-label="...">
+                                <a data-role="backward" class="btn btn-default"><div class="backward-arrow disabled">&nbsp;</div></a>
+                                <a data-role="forward" class="btn btn-default"><div class="forward-arrow disabled">&nbsp;</div></a>
                             </div>
                             <div class="combo-edit-box">
                                 <div class="holder edit-input">
@@ -135,16 +122,14 @@
                                 </div>
                                 <div class="holder select-arrow" id="arrow_select_drive" ><div class="icon">&nbsp;</div></div>
                             </div>
-                            <div id="show_current_dir" class="show-current-dir"></div>
+                            <div data-role="current directory" class="show-current-dir"></div>
                         </div>
                         
-
-                        <div id="target_dir" class="target-dir"></div>
-                        <input type="hidden" id="remember_backHome" value="0">
+                        <div data-role="display files" class="target-dir" data-forid="dialog_select_dir" data-only_folders="true"></div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" id="btn_openProjectDir" data-dismiss="modal">
-                            Select This
+                            Open
                         </button>
                     </div>
                 </div>
