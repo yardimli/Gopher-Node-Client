@@ -119,7 +119,6 @@ function onRequest(request, response) {
                     switch (Command) {
                         case 'getProjects':
                             request.on('data', function (chunk) {
-                                console.log(chunk);
                                 var RecievedData = Global.QueryString.parse(decoder.write(chunk));
                                 Global.fs.exists(Global.dbPath, function (exists) {
                                     if (exists) {
@@ -166,10 +165,21 @@ function onRequest(request, response) {
                             var FileManager = require('./js/fileManager.js');
                             request.on('data', function (chunk) {
                                 var RecievedData = Global.QueryString.parse(decoder.write(chunk));
-                                FileManager.getFileList(RecievedData['path'],RecievedData['onlyFolders'],function(error,result){
+                                
+                                var path = RecievedData['path'];
+                                var onlyFolders;
+                                if(RecievedData['onlyFolders'] === 'true'){
+                                    onlyFolders = true;
+                                }else{
+                                    onlyFolders = false;
+                                }
+                                //console.log("..........................................................."+RecievedData['onlyFolders'])
+                                FileManager.getFileList(path, RecievedData['onlyFolders'], function(error,result){
                                    if(error !== null){
                                        response.end(error.toString());
                                    }
+                                   //console.log('====== filemanager.getfilelist calllback ========');
+                                   //console.log(result);
                                    response.end(JSON.stringify(result));
                                 });
                             });

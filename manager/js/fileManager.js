@@ -1,9 +1,10 @@
 var Global = require("../global.js");
 
-var fileNode = exports.fileNode = function(_name,_path){
+var fileNode = exports.fileNode = function(_name,_path,_isDirectory){
     return {
         name:_name,
-        path:_path
+        path:_path,
+        isDirectory: _isDirectory
     };
 };
 
@@ -35,6 +36,13 @@ var getDriveList = exports.getDriveList = function (_callBack) {
 
 var getFileList = exports.getFileList = function(_targetFilePath, _onlyFolders, _callBack){
     var result = [];
+    if(typeof(_onlyFolders) === 'string'){
+        if(_onlyFolders.toLowerCase() === 'true'){
+            _onlyFolders = true;
+        }else{
+            _onlyFolders = false;
+        }
+    }
     
     Global.fs.readdir(_targetFilePath,function(err,fileList){
         if(err !== null){
@@ -53,16 +61,40 @@ var getFileList = exports.getFileList = function(_targetFilePath, _onlyFolders, 
                 if(_onlyFolders){
                     if(stats.isDirectory()){
                         //console.log(file);
-                        result.push(new fileNode(file, _targetFilePath + file + '\\'));
-                        console.log(pending);
+                        result.push(new fileNode(file, _targetFilePath + file + '\\', true));
+                        //console.log(pending);
                     }
                 }else{
-                    //console.log(file);
-                    result.push(new fileNode(file, _targetFilePath + file + '\\'));  
+                    var markIsDirectory = false;
+                    if(stats.isDirectory()){
+                        markIsDirectory = true;
+                    }
+                    result.push(new fileNode(file, _targetFilePath + file + '\\', markIsDirectory));  
                 }
                 
-                if (pending === 0) {
-                    return _callBack(null,result);
+                if (pending === 0) {                    
+                    result.sort(function(a,b){
+                       return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
+                    });
+                    
+                    var directoryList = [];
+                    var fileList = [];
+                    for(var i=0; i<result.length; i++){
+                        if(result[i].isDirectory){
+                            directoryList.push(result[i]);
+                        }else{
+                            fileList.push(result[i]);
+                        }
+                    }
+                    
+                    result = [];
+                    for(var j=0; j<directoryList.length; j++){
+                        result.push(directoryList[j]);
+                    }
+                    for(var j=0; j<fileList.length; j++){
+                        result.push(fileList[j]);
+                    }
+                    return _callBack(null, result);
                 }
             });
         });
@@ -70,16 +102,20 @@ var getFileList = exports.getFileList = function(_targetFilePath, _onlyFolders, 
     });
 };
 
-(function test2(){
-    getFileList('D:\\',true,function(error, result){
+/*(function test2(){
+    getFileList('c:\\', true,function(error, result){
        if(error !== null){
            console.log(error);
        }
        console.log('++++++++++++++++++++++++++');
        console.log('result, test2');
-       console.log(result);
+       for(var i=0; i<result.length; i++){
+           console.log(result[i].name);
+       }
+       console.log('++++++++++++++++++++++++++');
     });
-})();
+})();*/
+
 
 /*console.log('test function is called');
 (function test() {
