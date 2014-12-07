@@ -153,12 +153,14 @@ function LoopGopherS(DataListSource,SourceCode,  IncludeBlocks,  LoopGopherSDebu
 		var FirstType = DataListSource[C1].XValue;
 		var FirstKey = DataListSource[C1].XSelf;
 
-		if ((XStartIndent!=0) && (DataListSource[C1].XIndent<=XStartIndent-1))
+		if ((XStartIndent!=0) && ( (DataListSource[C1].XIndent<=XStartIndent-1) || 
+								   ((FirstKey=="type") && (FirstType == "BlockStatement")) )  )
 		{
 			if (LoopGopherSDebug) console.log("--------------- END --------------- "); 
 			XStartIndent = 0;
 			ResetNestedType = true;
 		}
+		
 
 		if ( (FirstKey=="type")
 		&& ( (FirstType == "VariableDeclarator") || 
@@ -329,6 +331,8 @@ function LoopGopherS(DataListSource,SourceCode,  IncludeBlocks,  LoopGopherSDebu
 						NewQParent.CopyStart = CopyStart;
 						NewQParent.CopyEnd = CopyEnd;
 						
+//						console.log("Helper Parent Source:"+SourceCode.slice( HelperParentStart  , HelperParentEnd ));
+						
 						GopherObjectsA.push( NewQParent );
 						XStartIndent = DataListSource[C1].XIndent; 
 					}
@@ -447,7 +451,7 @@ function LoopGopherS(DataListSource,SourceCode,  IncludeBlocks,  LoopGopherSDebu
 					
 					NewQParent.Records.push( NewQ );
 
-					if (LoopGopherSDebug) console.log(CalleLine+": "+xstr+XLeft+DataListSource[C1].XIndent+" "+FirstType+" "+ParentType+" ("+xOperator+") ["+SourceX+"]  Parent:"+DataListSource[C1].XParentID+", Self:"+DataListSource[C1].XID); 
+					if (LoopGopherSDebug) console.log(CalleLine+": "+xstr+XLeft+DataListSource[C1].XIndent+" "+FirstType+" "+ParentType+" ("+xOperator+") ["+SourceX.toString().substr(0,100)+"]  Parent:"+DataListSource[C1].XParentID+", Self:"+DataListSource[C1].XID); 
 					
 				} else
 				{
@@ -489,7 +493,7 @@ function LoopGopherS(DataListSource,SourceCode,  IncludeBlocks,  LoopGopherSDebu
 						NewQParent.Records.push( NewQ );
 					}
 
-					if (LoopGopherSDebug) console.log(CalleLine+": "+xstr+FirstType+" "+ParentType+" ("+xOperator+") ["+SourceX+"]  Parent:"+DataListSource[C1].XParentID+", Self:"+DataListSource[C1].XID); 
+					if (LoopGopherSDebug) console.log(CalleLine+": "+xstr+FirstType+" "+ParentType+" ("+xOperator+") ["+SourceX.toString().substr(0,100)+"]  Parent:"+DataListSource[C1].XParentID+", Self:"+DataListSource[C1].XID); 
 				}
 			}
 		}
@@ -652,19 +656,20 @@ function AddVariableTracking(contents)
 	
 	for (var ObjectCounter=0; ObjectCounter < GopherObjectsA.length; ObjectCounter++)
 	{
+		console.log("======: "+ObjectCounter+"/"+GopherObjectsA.length+" "+GopherObjectsA[ObjectCounter].NewRecordType);
 		//----------------------------------------------------------------------------------------------------------------
 		if ( (GopherObjectsA[ObjectCounter].NewRecordType=="UpdateExpression")  ) //++, --
 		{
 			//first print to screen
-			//function _$set(xCodeLine, NestedParent, ParentType, LeftSideStr, LeftSideValue, RightSideStr, RightSideValue, Operator, InnerFunctionCount)
+			//function (xCodeLine, NestedParent, ParentType, LeftSideStr, LeftSideValue, RightSideStr, RightSideValue, Operator, VarDeclerator, _$gXLocal, InnerFunctionCount)
 			GopherObjectsA[ObjectCounter].InsertStr = "(tempVar = "+GopherObjectsA[ObjectCounter].Records[1].xSource+", " + 
 			               GopherObjectsA[ObjectCounter].Records[1].xSource + "= " +
 								"_$set("+GopherObjectsA[ObjectCounter].Records[0].XLine + "," +
 											  "'" + GopherObjectsA[ObjectCounter].NestedParentType + "'," +
 											  "'" + GopherObjectsA[ObjectCounter].Records[0].ParentType + "'," +
 											  "'" + escapeSingleQuote(GopherObjectsA[ObjectCounter].Records[1].xSource) + "'," +
-											  escapeSingleQuote(GopherObjectsA[ObjectCounter].Records[1].xSource) + "," +
-											  "'',0,'" + GopherObjectsA[ObjectCounter].Records[0].Operator + "',_$gXLocal,0), tempVar)";
+											  (GopherObjectsA[ObjectCounter].Records[1].xSource) + "," +
+											  "'',0,'" + GopherObjectsA[ObjectCounter].Records[0].Operator + "',0,_$gXLocal,0), tempVar)";
 						   
 //			if (DebugLines) 
 			{
@@ -677,7 +682,7 @@ function AddVariableTracking(contents)
 				" Parent Type: " + GopherObjectsA[ObjectCounter].Records[0].ParentType + 
 				" Indent: " + GopherObjectsA[ObjectCounter].Records[0].Indent + 
 				" Length : " + GopherObjectsA[ObjectCounter].Records.length + 
-				" Source: " + GopherObjectsA[ObjectCounter].Records[0].xSource + 
+				" Source: " + GopherObjectsA[ObjectCounter].Records[0].xSource.substr(0,55) + 
 				" Operator: " + GopherObjectsA[ObjectCounter].Records[0].Operator);
 			}
 		} else
@@ -696,7 +701,7 @@ function AddVariableTracking(contents)
 				  " Parent Type: " + GopherObjectsA[ObjectCounter].Records[0].ParentType + 
 				" Indent: " + GopherObjectsA[ObjectCounter].Records[0].Indent + 
 				" Length : " + GopherObjectsA[ObjectCounter].Records.length + 
-				" Source: " + GopherObjectsA[ObjectCounter].Records[0].xSource + 
+				" Source: " + GopherObjectsA[ObjectCounter].Records[0].xSource.substr(0,55) + 
 				" Operator: " + GopherObjectsA[ObjectCounter].Records[0].Operator);
 			}
 			
@@ -719,7 +724,7 @@ function AddVariableTracking(contents)
 						FunctionCalls.push(NewQ);
 
 						//if (DebugLines) {							
-							console.log("        EXT. VAR: "+ObjRef.xSource+ " " + ObjRef.ThisType + " " + ObjRef.ParentType + " " + ObjRef.Indent);
+							console.log("        A) EXT. VAR: "+ObjRef.xSource+ " " + ObjRef.ThisType + " " + ObjRef.ParentType + " " + ObjRef.Indent);
 						//}
 					}
 				}
@@ -738,7 +743,7 @@ function AddVariableTracking(contents)
 						FunctionCalls.push(NewQ);
 
 						//if (DebugLines) {							
-							console.log("        EXT. VAR: "+ObjRef.xSource+ " " + ObjRef.ThisType + " " + ObjRef.ParentType + " " + ObjRef.Indent);
+							console.log("        B) EXT. VAR: "+ObjRef.xSource.toString().substr(0,55)+ " ThisType:" + ObjRef.ThisType + " ParentType:" + ObjRef.ParentType + " Indent:" + ObjRef.Indent);
 						//}
 					}
 				}
@@ -784,7 +789,7 @@ function AddVariableTracking(contents)
 			                   "'" + GopherObjectsA[ObjectCounter].NestedParentType + "'," +
 									 "'" + GopherObjectsA[ObjectCounter].Records[0].ParentType + "'," +
 									 "'" + escapeSingleQuote(GopherObjectsA[ObjectCounter].Records[0].xSource) + "', " +
-									 "" + escapeSingleQuote(Tcontents) + ",_$gXLocal, " +
+									 "" + (Tcontents) + ",_$gXLocal, " +
 									 (FunctionCalls.length) + ExtraParams + ")";
 			
 		} else
@@ -806,7 +811,7 @@ function AddVariableTracking(contents)
 				  " Parent Type: " + GopherObjectsA[ObjectCounter].Records[0].ParentType + 
 				" Indent: " + GopherObjectsA[ObjectCounter].Records[0].Indent + 
 				" Length : " + GopherObjectsA[ObjectCounter].Records.length + 
-				" Source: " + GopherObjectsA[ObjectCounter].Records[0].xSource + 
+				" Source: " + GopherObjectsA[ObjectCounter].Records[0].xSource.substr(0,55) + 
 				" Operator: " + GopherObjectsA[ObjectCounter].Records[0].Operator);
 			 
 				console.log(" Left Var Name: " + GopherObjectsA[ObjectCounter].Records[1].xSource );
@@ -844,7 +849,7 @@ function AddVariableTracking(contents)
 					
 					if ( (ObjRef.ThisType=="CallExpression") )
 					{
-						if ( (ObjRef.ParentType=="left") ||(ObjRef.ParentType=="right") ||(ObjRef.ParentType=="property") ||(ObjRef.ParentType=="0") )
+						if ( (ObjRef.ParentType=="left") ||(ObjRef.ParentType=="right") ||(ObjRef.ParentType=="property") ||(ObjRef.ParentType=="0")||(ObjRef.ParentType=="init") )
 						{
 							var NewQ = new Object();
 							NewQ.xSource = ObjRef.xSource;
@@ -853,12 +858,12 @@ function AddVariableTracking(contents)
 							FunctionCalls.push(NewQ); 
 
 							//if (DebugLines) {							
-								console.log("        EXT. VAR: "+ObjRef.xSource+ " " + ObjRef.ThisType + " " + ObjRef.ParentType + " " + ObjRef.Indent);
+								console.log("        C) EXT. VAR: "+ObjRef.xSource+ " " + ObjRef.ThisType + " " + ObjRef.ParentType + " " + ObjRef.Indent);
 							//}
 						}
 					}
 					
-					
+					/*
 					if (ObjRef.ThisType=="MemberExpression")
 					{
 						if ( ( ObjRef.xSource.indexOf("window.") == 0) ||
@@ -872,10 +877,11 @@ function AddVariableTracking(contents)
 							FunctionCalls.push(NewQ); 
 
 							//if (DebugLines) {							
-								console.log("        EXT. VAR: "+ObjRef.xSource+ " " + ObjRef.ThisType + " " + ObjRef.ParentType + " " + ObjRef.Indent);
+								console.log("        D) EXT. VAR: "+ObjRef.xSource+ " " + ObjRef.ThisType + " " + ObjRef.ParentType + " " + ObjRef.Indent);
 							//}
 						}
 					}
+					*/
 				}
 				
 				//1) insert the _$v[]= in function calls so gopher can know the return of the functions.
@@ -919,7 +925,12 @@ function AddVariableTracking(contents)
 				for (var zCounter = 0; zCounter<FunctionCalls.length; zCounter++)	{
 					ExtraParams = ",'" + escapeSingleQuote(FunctionCalls[zCounter].xSource) + "'" + ExtraParams;
 				}
-				
+			
+				var VarDeclerator = "0";
+				if (GopherObjectsA[ObjectCounter].NewRecordType=="VariableDeclarator") //var a = 5;
+				{
+					VarDeclerator = "1";
+				}
 				
 				
 				if (GopherObjectsA[ObjectCounter].HelperParentType=="IfStatement")
@@ -930,23 +941,24 @@ function AddVariableTracking(contents)
 											  "'" + GopherObjectsA[ObjectCounter].NestedParentType + "'," +
 											  "'" + GopherObjectsA[ObjectCounter].Records[0].ParentType + "'," +
 											  "'" + escapeSingleQuote(GopherObjectsA[ObjectCounter].Records[0].xSource) + "', " +
-											  "" + escapeSingleQuote(Tcontents) + ",_$gXLocal, " +
+											  "" + (Tcontents) + ",_$gXLocal, " +
 											  (FunctionCalls.length) + ExtraParams + ")";
 				} else
 				{
-					//function _$set(xCodeLine, NestedParent, ParentType, LeftSideStr, LeftSideValue, RightSideStr, RightSideValue, Operator, InnerFunctionCount)
+					//function _$set(xCodeLine, NestedParent, ParentType, LeftSideStr, LeftSideValue, RightSideStr, RightSideValue, Operator, VarDeclerator, _$gXLocal, InnerFunctionCount)
 					GopherObjectsA[ObjectCounter].InsertStr = 
 					  GopherObjectsA[ObjectCounter].Records[1].xSource + " = " + 
 					  "_$set("+GopherObjectsA[ObjectCounter].Records[0].XLine + "," +
 										"'" + GopherObjectsA[ObjectCounter].NestedParentType + "'," +
 										"'" + GopherObjectsA[ObjectCounter].Records[0].ParentType + "'," +
 										"'" + escapeSingleQuote(GopherObjectsA[ObjectCounter].Records[1].xSource) + "'," +
-										escapeSingleQuote(GopherObjectsA[ObjectCounter].Records[1].xSource) + "," +
+										(GopherObjectsA[ObjectCounter].Records[1].xSource) + "," +
 										"'" + escapeSingleQuote(GopherObjectsA[ObjectCounter].Records[RightSideFound].xSource) + "'," + 
-										"" + escapeSingleQuote(Tcontents) + "," + 
-										"'" + GopherObjectsA[ObjectCounter].Records[0].Operator + "',_$gXLocal," + 
+										"" + (Tcontents) + "," + 
+										"'" + GopherObjectsA[ObjectCounter].Records[0].Operator + "','" + VarDeclerator + "',_$gXLocal," + 
 										(FunctionCalls.length) + ExtraParams + ")";
 				}
+//				console.log("---------------------"+GopherObjectsA[ObjectCounter].InsertStr);
 			}
 		}
 	}
@@ -958,6 +970,15 @@ function AddVariableTracking(contents)
 		{
 			//console.log( GopherObjectsA[i].InsertStr + "\n"   );
 			contents = [contents.slice(0, GopherObjectsA[ObjectCounter].CopyStart), GopherObjectsA[ObjectCounter].InsertStr, 	contents.slice(GopherObjectsA[ObjectCounter].CopyEnd)].join('');
+
+			if ((GopherObjectsA[ObjectCounter].NewRecordType=="VariableDeclarator") &&  //var a = 5;
+  			    (GopherObjectsA[ObjectCounter].NestedParentType!="ForStatement > VariableDeclaration"))
+			{
+				contents = [contents.slice(0, GopherObjectsA[ObjectCounter].HelperParentStart), 
+					"_$sb("+ GopherObjectsA[ObjectCounter].Records[0].XLine + ",'"+escapeSingleQuote(GopherObjectsA[ObjectCounter].Records[1].xSource)+"',_$gXLocal);"
+					, 	contents.slice(GopherObjectsA[ObjectCounter].HelperParentStart)].join('');
+			}
+
 		}
 	}
 	
@@ -982,17 +1003,27 @@ function AddFunctionTracking(contents)
 	//1) Loop All Function Declerations 
 	//2) add tracking to begining 
 	//3) add tracking to ending
+	
+	var FunctionScopes = [];
 
 
 	var FunctionsList = [];
 	for (var C1=0; C1<DataList.length;C1++)
 	{
+		if (FunctionScopes.length>0)
+		{
+			if (DataList[C1].XIndent<FunctionScopes[FunctionScopes.length-1].FunctionIndent)
+			{
+				console.log("*********** POP "+FunctionScopes[FunctionScopes.length-1].FunctionID);
+				FunctionScopes.pop();
+			}
+		}
+		
 		if ((DataList[C1].XSelf=="type") && ( (DataList[C1].XValue=="FunctionDeclaration") || (DataList[C1].XValue=="FunctionExpression")) )
 		{
-			
-			
 			//find ID
 			var FunctionID = "";
+			var FunctionType = "";
 			
 			if (DataList[C1].XValue=="FunctionExpression") {
 				//go backwards find first name
@@ -1001,7 +1032,8 @@ function AddFunctionTracking(contents)
 					C2--;
 				}
 				if (C2>0) {
-					FunctionID = "FunctionExpression:"+DataList[C2].XValue;
+					FunctionType = "FunctionExpression";
+					FunctionID = DataList[C2].XValue;
 				}
 			} else
 			{
@@ -1012,12 +1044,13 @@ function AddFunctionTracking(contents)
 					C1++;
 				}
 				if (C1<DataList.length) {
-					FunctionID = "FunctionDeclaration:"+DataList[C1].XValue;
+					FunctionType = "FunctionDeclaration";
+					FunctionID = DataList[C1].XValue;
 				}
 			}
 			
 			//find params
-			var FunctionParams = "";
+			var FunctionParams = [];
 			//if FunctionDeclaration
 			while ( (C1<DataList.length) &&
 					!(DataList[C1].XSelf=="body") )
@@ -1025,8 +1058,7 @@ function AddFunctionTracking(contents)
 				C1++;
 				
 				if (DataList[C1].XSelf=="name") { 
-					if (FunctionParams != "") { FunctionParams += ",";}
-					FunctionParams += DataList[C1].XValue; 
+					FunctionParams.push(DataList[C1].XValue);
 				}
 			}
 			
@@ -1038,6 +1070,8 @@ function AddFunctionTracking(contents)
 			{
 				C1++;
 			}
+			
+			var BlockIndent = DataList[C1].XIndent;
 
 			while ( ( (CopyStart==0) || (CopyEnd==0) ) && (C1<DataList.length) )
 			{
@@ -1049,21 +1083,36 @@ function AddFunctionTracking(contents)
 			if ( (CopyStart>0) && (CopyEnd>CopyStart) )
 			{
 				var NewQ = new Object();
+				NewQ.FunctionID = FunctionID;
+				NewQ.FunctionIndent = BlockIndent;
+				FunctionScopes.push(NewQ);
+				
+				var NewQ = new Object();
 				NewQ.CopyEnd = CopyEnd;
 				NewQ.CopyStart = CopyStart;
 				NewQ.FunctionID = FunctionID;
+				NewQ.FunctionType = FunctionType;
 				NewQ.FunctionParams = FunctionParams;
 				
 //				NewQ.XSource = contents.slice( CopyStart  , CopyEnd ).toString();
 				FunctionsList.push( NewQ );
-				console.log( contents.slice( CopyStart  , CopyEnd ).toString() );
-				console.log("-----------");
+//				console.log( contents.slice( CopyStart  , CopyEnd ).toString() );
+//				console.log("-----------");
 			}
 		}
 	}
 	for (var ObjectCounter=FunctionsList.length-1; ObjectCounter >= 0; ObjectCounter--)
 	{
-		var StartStr = "_$gX++; var _$gXLocal = _$gX; _$fs(0,'"+ FunctionsList[ObjectCounter].FunctionID + "','"+FunctionsList[ObjectCounter].FunctionParams+"',_$gXLocal); ";
+		var StartStr = "_$gX++; var _$gXLocal = _$gX; _$fs(0,'"+ FunctionsList[ObjectCounter].FunctionID + "','"+ FunctionsList[ObjectCounter].FunctionType + "','"+FunctionsList[ObjectCounter].FunctionParams+"',_$gXLocal); ";
+		
+		for (var ParamCounter=0; ParamCounter<=FunctionsList[ObjectCounter].FunctionParams.length-1; ParamCounter++)
+		{
+			var ParamName = FunctionsList[ObjectCounter].FunctionParams[ParamCounter];
+			//_$set = function (xCodeLine, NestedParent, ParentType, LeftSideStr, LeftSideValue, RightSideStr, RightSideValue, Operator, VarDeclerator, _$gXLocal, InnerFunctionCount)
+			StartStr += "_$set(0, 'VariableDeclaration', 'Function ["+FunctionsList[ObjectCounter].FunctionID+"]', '"+ParamName+"', 0, '', "+ParamName+", '=', '1', _$gXLocal, 0); "
+		}
+		
+		
 		var EndStr = "_$fe(0,'"+ FunctionsList[ObjectCounter].FunctionID + "',_$gXLocal); ";
 		
 		contents = [contents.slice(0, FunctionsList[ObjectCounter].CopyStart+1), StartStr, 	contents.slice(FunctionsList[ObjectCounter].CopyStart+1)].join('');
@@ -1086,12 +1135,6 @@ function AddFunctionTracking(contents)
 			if (FunctionsList[ObjectCounter2].CopyEnd>FunctionsList[ObjectCounter].CopyEnd){ 
 				FunctionsList[ObjectCounter2].CopyEnd = FunctionsList[ObjectCounter2].CopyEnd + EndStr.length;
 			}
-			
-			
-			
-//			if (FunctionsList[ObjectCounter2].CopyEnd>FunctionsList[ObjectCounter].CopyStart){ 
-//				FunctionsList[ObjectCounter].CopyStart = FunctionsList[ObjectCounter].CopyStart + StartStr.length;
-//			}
 		}
 	}
 
@@ -1118,11 +1161,16 @@ function GopherTellify(contents,inFile)
 	});
 	//********
 
+	var ParseData="";
 	var jj = DataList.length;
-	if (jj>3000) { jj=3000;}
 	for (var i=0; i<jj; i++) {
-		console.log(DataList[i].XIndent+" "+ DataList[i].XID+" "+ DataList[i].XParentID + "." + DataList[i].XPath + " " + DataList[i].XParentNode+"   "+ DataList[i].XSelf+" = "+ DataList[i].XValue);
+		if ( (DataList[i].XPath.indexOf("start") == -1) && (DataList[i].XPath.indexOf("end") == -1)  && (DataList[i].XPath.indexOf("loc") == -1) && 
+			(DataList[i].XSelf.indexOf("loc") == -1) && (DataList[i].XSelf.indexOf("start") == -1) && (DataList[i].XSelf.indexOf("end") == -1))
+		{
+			ParseData +=DataList[i].XIndent+" "+ DataList[i].XID+" "+ DataList[i].XParentID + "  -- " + DataList[i].XPath + " -- " + DataList[i].XParentNode+" -- "+ DataList[i].XSelf+" = "+ DataList[i].XValue+"\n";
+		}
 	}
+	fs.writeFile(inFile.replace(".js","-gopher.dat"),ParseData);
 
 	contents = AddCurly2IFs(contents);
 	contents = AddCurly2LOOPs(contents);
