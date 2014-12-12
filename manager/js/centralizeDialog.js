@@ -11,10 +11,10 @@ $('.modal[id^="dialog_"]').on('show.bs.modal', function (e) {
     });
     $(this).find('.modal-dialog').css({
       'margin-top': function() {
-        return (($(document).height()-setHeight-131) / 2);
+        return (($(window).height()-setHeight-131) / 2);
       },
       'margin-left': function() {
-        return (($(document).width()-setWidth) / 2);
+        return (($(window).width()-setWidth) / 2);
       }
     });
   });

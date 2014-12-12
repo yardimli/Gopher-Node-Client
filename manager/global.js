@@ -14,10 +14,26 @@ exports.extensions = {
     ".png": "image/png",
     ".gif": "image/gif",
     ".jpg": "image/jpeg",
-    ".do": "----"
+    ".do": "application/javascript",
+    ".woff":"application/x-font-woff",
+    ".ttf":"application/x-font-woff"
 };
 
-var dbPath = exports.dbPath = '/Gopher/ManagerDB.db';
+exports.ignoredByDefault = ['jquery.','jquery-','jquery-ui','bootstrap.min.js','bootstrap.js'];
+
+var dbPath = '/Gopher/ManagerDB.db';
+
+var dbConn = exports.dbConn = function (callBack) {
+    fs.exists(dbPath, function (exists) {
+        if (exists) {
+            return callBack(null,new sqlite3.Database(dbPath));
+        } else {
+            return callBack('Database does not exist.',null);
+        }
+    });
+};
+
+var Servers = exports.Servers = [];
 /*fs.exists(dbPath, function (exists) {
     if (exists) {
         exports.db = new sqlite3.Database(dbPath);
