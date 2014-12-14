@@ -8,19 +8,6 @@
 		<link href="css/style.css" rel="stylesheet">
 		<script src="js/app-gopher.js"></script> 
 	</head>
-     <style>
-         table.fixed {table-layout:fixed; width:980px;}/*Setting the table width is important!*/
-         table.fixed td {overflow:hidden;}/*Hide text outside the cell.*/
-         table.fixed td:nth-of-type(1) {width:50px;}/*Setting the width of column 3.*/
-         table.fixed td:nth-of-type(2) {width:50px;}/*Setting the width of column 3.*/
-         table.fixed td:nth-of-type(4) {width:250px;}/*Setting the width of column 3.*/
-         table.fixed td:nth-of-type(6) {width:250px;}/*Setting the width of column 3.*/
-         table.fixed td:nth-of-type(7) {width:50px;}/*Setting the width of column 3.*/
-		 
-table { border: none; border-collapse: collapse; }
-table td { border-left: 1px solid #000; padding:2px;}
-table td:first-child { border-left: none; }
-      </style>
 	
 	<body style="overflow:hidden; margin:0px; padding:0px;">
 	
@@ -52,9 +39,9 @@ table td:first-child { border-left: none; }
 	</div>
 </div>
 
-
+<!--canvas id="canvas" width="150" height="150" style="position:absolute; left:370px; top:20px;"></canvas -->
 	
-		<div id="debug-div" style="z-index:2; position:absolute; right:10px; top:10px; width:1000px; height:400px; border:1px solid white; background-color: #ddd; color:black; padding:5px; overflow:auto ">
+		<div id="debug-div" style="z-index:2; position:absolute; right:10px; top:10px; width:1000px; height:600px; border:1px solid white; background-color: #ddd; color:black; padding:5px; overflow:auto ">
 		<table class="fixed">
 			<thead>
 				<tr  style='background-color:#aaa'>

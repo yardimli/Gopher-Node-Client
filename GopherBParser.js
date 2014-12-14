@@ -14,7 +14,10 @@ var PadLeft = function (nr, n, str) {
 
 //------------------------------------------------------------------------------------------------------------------------------
 var escapeSingleQuote = function (inStr) {
-    return String(inStr).replace(/\'/g, "\\'");
+    var outStr = String(inStr).replace(/\'/g, "\\'");
+	outStr = outStr.replace(/(?:\r\n|\r|\n)/g, '\\n');
+	
+	return outStr;
 }
 
 
@@ -952,7 +955,7 @@ function AddVariableTracking(contents)
 										"'" + GopherObjectsA[ObjectCounter].NestedParentType + "'," +
 										"'" + GopherObjectsA[ObjectCounter].Records[0].ParentType + "'," +
 										"'" + escapeSingleQuote(GopherObjectsA[ObjectCounter].Records[1].xSource) + "'," +
-										(GopherObjectsA[ObjectCounter].Records[1].xSource) + "," +
+										"" + escapeSingleQuote(GopherObjectsA[ObjectCounter].Records[1].xSource) + "," +
 										"'" + escapeSingleQuote(GopherObjectsA[ObjectCounter].Records[RightSideFound].xSource) + "'," + 
 										"" + (Tcontents) + "," + 
 										"'" + GopherObjectsA[ObjectCounter].Records[0].Operator + "','" + VarDeclerator + "',_$gXLocal," + 
@@ -972,7 +975,7 @@ function AddVariableTracking(contents)
 			contents = [contents.slice(0, GopherObjectsA[ObjectCounter].CopyStart), GopherObjectsA[ObjectCounter].InsertStr, 	contents.slice(GopherObjectsA[ObjectCounter].CopyEnd)].join('');
 
 			if ((GopherObjectsA[ObjectCounter].NewRecordType=="VariableDeclarator") &&  //var a = 5;
-  			    (GopherObjectsA[ObjectCounter].NestedParentType!="ForStatement > VariableDeclaration"))
+  			    (GopherObjectsA[ObjectCounter].NestedParentType.indexOf("ForStatement")===-1))
 			{
 				contents = [contents.slice(0, GopherObjectsA[ObjectCounter].HelperParentStart), 
 					"_$sb("+ GopherObjectsA[ObjectCounter].Records[0].XLine + ",'"+escapeSingleQuote(GopherObjectsA[ObjectCounter].Records[1].xSource)+"',_$gXLocal);"
@@ -1109,7 +1112,7 @@ function AddFunctionTracking(contents)
 		{
 			var ParamName = FunctionsList[ObjectCounter].FunctionParams[ParamCounter];
 			//_$set = function (xCodeLine, NestedParent, ParentType, LeftSideStr, LeftSideValue, RightSideStr, RightSideValue, Operator, VarDeclerator, _$gXLocal, InnerFunctionCount)
-			StartStr += "_$set(0, 'VariableDeclaration', 'Function ["+FunctionsList[ObjectCounter].FunctionID+"]', '"+ParamName+"', 0, '', "+ParamName+", '=', '1', _$gXLocal, 0); "
+			StartStr += "_$set(0, 'VariableDeclaration', 'Function ["+FunctionsList[ObjectCounter].FunctionID+"]', '"+ParamName+"', null, '', "+ParamName+", '=', '1', _$gXLocal, 0); "
 		}
 		
 		
