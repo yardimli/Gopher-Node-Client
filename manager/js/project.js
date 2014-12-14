@@ -1,41 +1,102 @@
-function listViewHistory(){
+function listViewHistory() {
     this.currentAtIndex = -1;
     this.trace = [];
-};
+}
+;
 
-$(document).ready(function () {  
+
+
+$(document).ready(function () {
     var dialogFileListView;
+    var IgnoredFiles = [];
+    var template = {
+        bottomAlert: ''
+    };
     
-    function ajaxGetDriveList(_callBack){
+    
+
+    function getQureyString(_name) {
+        var url = document.URL;
+        console.log(url);
+        var queryString = url.substring(url.indexOf('?') + 1);
+        var arrQuery = queryString.split('&');
+        var result = [];
+        for (var i = 0; i < arrQuery.length; i++) {
+            var arrNames = arrQuery[i].split('=');
+            //console.log(arrNames[0]);
+            if (arrNames[0] === _name) {
+                result.push(arrNames[1]);
+            }
+        }
+        if (result.length > 0) {
+            return result;
+        } else {
+            return result[0];
+        }
+    }
+
+    function ajaxGetProjectDetail(_projectID, _beforeSend, _callBack) {
+        var sendData = {
+            projectID: _projectID
+        };
+
+        $.ajax({
+            type: 'POST',
+            url: 'getProjectDetail.do',
+            traditional: true,
+            data: sendData,
+            beforeSend: function () {
+                if (_beforeSend !== null) {
+                    _beforeSend();
+                }
+            },
+            success: function (data) {
+                var Data = $.parseJSON(data);
+                if (Data.detail.ID > 0) {
+                    _callBack(null, Data);
+                } else {
+                    _callBack('Can not get project details.', null);
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                _callBack('textStatus:' + textStatus + ' errorThrown:' + errorThrown);
+            },
+            complete: function (jqXHR, textStatus) {
+
+            }
+        });
+    }
+
+    function ajaxGetDriveList(_callBack) {
         $.ajax({
             type: 'POST',
             url: 'getDriveList.do',
             traditional: true,
             success: function (data) {
                 var dataObj = $.parseJSON(data);
-                
-                if(dataObj.length>0){
+
+                if (dataObj.length > 0) {
                     $('#select_drive_option ul').empty();
-                    
+
                     $('#current_drive').val(dataObj[0].name);
                     $('#current_drive_val').val(dataObj[0].path);
-                    for(var i=0; i<dataObj.length; i++){
-                        $('#select_drive_option ul').append('<li data-path="'+dataObj[i].path+'">'+dataObj[i].name+'</li>');
+                    for (var i = 0; i < dataObj.length; i++) {
+                        $('#select_drive_option ul').append('<li data-path="' + dataObj[i].path + '">' + dataObj[i].name + '</li>');
                     }
                 }
                 _callBack(null);
                 //console.log(dataObj[0]);
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                _callBack('textStatus:'+textStatus+' errorThrown:'+errorThrown);
+                _callBack('textStatus:' + textStatus + ' errorThrown:' + errorThrown);
             },
             complete: function (jqXHR, textStatus) {
-                
+
             }
         });
     }
-    
-    function ajaxGetFileList(_path,_onlyFolders,_callBack){
+
+    function ajaxGetFileList(_path, _onlyFolders, _callBack) {
         var sendData = {
             path: _path,
             onlyFolders: _onlyFolders
@@ -45,318 +106,533 @@ $(document).ready(function () {
             url: 'getFileList.do',
             traditional: true,
             data: sendData,
-            success: function(data){
+            success: function (data) {
                 var Data, hasNodeError, errorMessage = '';
-                try{
+                try {
                     Data = $.parseJSON(data);
                     hasNodeError = 0;
-                }catch(e){
+                } catch (e) {
                     hasNodeError = 1;
-                    if(data.search('UNKNOWN, readdir')>-1){
-                        errorMessage = 'Can not find directory '+ sendData.path;
-                    }else{
+                    if (data.search('UNKNOWN, readdir') > -1) {
+                        errorMessage = 'Can not find directory ' + sendData.path;
+                    } else {
                         errorMessage = e;
                     }
                 }
-                
-                if(hasNodeError === 0){
+
+                if (hasNodeError === 0) {
                     _callBack(null, Data);
-                }else{
+                } else {
                     _callBack(errorMessage, null);
                 }
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                _callBack(textStatus+' '+errorThrown, null);
+                _callBack(textStatus + ' ' + errorThrown, null);
             },
             complete: function (jqXHR, textStatus) {
             }
         });
     }
-    
-    function displayFileList(data, listContainer, showCheckbox) {
-        $(listContainer).empty();
-        var liClass = 'two';
-        if (data.length > 20) {
-            liClass = 'four';
-        }
+
+    function ajaxGetDefaultIgnoredFile(_path, _callBack) {
+        var sendData = {
+            path: _path
+        };
+        $.ajax({
+            type: 'POST',
+            url: 'getDefaultIgnoredFiles.do',
+            traditional: true,
+            data: sendData,
+            success: function (data) {
+                var Data, hasNodeError, errorMessage = '';
+                try {
+                    Data = $.parseJSON(data);
+                    hasNodeError = 0;
+                } catch (e) {
+                    hasNodeError = 1;
+                    errorMessage = 'Can not find default ignored files.';
+                }
+
+                if (hasNodeError === 0) {
+                    _callBack(null, Data);
+                } else {
+                    _callBack(errorMessage, null);
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                _callBack('Can not find default ignored files. Request status: ' + textStatus + ' Error: ' + errorThrown, null);
+            },
+            complete: function (jqXHR, textStatus) {
+            }
+        });
+    }
+
+    function ajaxSaveProject(_postData, _beforeSend, _callBack) {
+        $.ajax({
+            type: 'POST',
+            url: 'saveProject.do',
+            traditional: true,
+            data: _postData,
+            beforeSend: function () {
+                if (typeof (_beforeSend) !== 'undefined') {
+                    _beforeSend();
+                }
+            },
+            success: function (data) {
+                var Data, hasNodeError, errorMessage = '';
+                try {
+                    Data = $.parseJSON(data);
+                    if (Data.ID > 0) {
+                        hasNodeError = 0;
+                    } else {
+                        hasNodeError = 1;
+                        errorMessage = 'Unable to save the project. Error: ' + Data.code;
+                    }
+                } catch (e) {
+                    hasNodeError = 1;
+                    errorMessage += data.toString();
+                }
+
+                if (hasNodeError === 0) {
+                    _callBack(null, Data);
+                } else {
+                    _callBack(errorMessage, null);
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                _callBack('Can not save the project. Request status: ' + textStatus + ' Error: ' + errorThrown, null);
+            },
+            complete: function (jqXHR, textStatus) {
+            }
+        });
+    }
+
+    function displayFileList(data, listContainer, errorMessage) {
+        $(listContainer).find('ul').remove();
+        var liClass = 'four';
         if (data.length > 0) {
             $(listContainer).append($('<ul class="' + liClass + '"></ul>'));
             var assignClass;
             for (var i = 0; i < data.length; i++) {
-                if(data[i].isDirectory == true){
+                if (data[i].isDirectory == true) {
                     assignClass = 'item';
-                }else{
+                } else {
                     assignClass = 'item file';
                 }
                 var li = $('<li></li>');
-                $(li).attr('class',assignClass);
-                $(li).attr('data-path',data[i].path);
+                $(li).attr('class', assignClass);
+                $(li).attr('data-path', data[i].path);
                 $(li).attr('data-is_directory', data[i].isDirectory);
-                
-                var isExtValid = function(fileName){
-                    fileName = fileName.toLowerCase();
-                    var dots = fileName.split('.');
-                    if( dots[dots.length-1].search('js') == -1){
-                        return false;
-                    }else{
-                        return true;
-                    }
-                };
-                
-                if(typeof(showCheckbox)!=='undefined' && showCheckbox === true){
-                    if(data[i].isDirectory == true || isExtValid(data[i].name)){
-                        $(li).append('<div data-role="checkbox" class="not-checked"></div>');
-                    }
-                }
+
                 $(li).append('<span>' + data[i].name + '</span>');
-                $(li).append('<input type="hidden" value="0"/>');
                 $(listContainer).find('ul').append(li.prop('outerHTML'));
             }
         } else {
-            $(listContainer).append('<div class="alert alert-info" role="alert">There has no folders here.</div>');
+            console.log('show msg no folders');
+            $(listContainer).append('<div class="alert alert-info" role="alert">' + errorMessage + '</div>');
         }
 
     }
-    
-    function updateArrowState(listViewHistoryObj, arrowsContainer){
+
+    function updateArrowState(listViewHistoryObj, arrowsContainer) {
         //console.log('current view index '+listViewHistoryObj.currentAtIndex);
         //console.log('trace  '+listViewHistoryObj.trace.length);
-        if(listViewHistoryObj.trace.length <= 1 ){
+        if (listViewHistoryObj.trace.length <= 1) {
             $(arrowsContainer).find('a[data-role="backward"] div').addClass('disabled');
             $(arrowsContainer).find('a[data-role="forward"] div').addClass('disabled');
-        }else{
-            if(listViewHistoryObj.currentAtIndex === listViewHistoryObj.trace.length-1){
+        } else {
+            if (listViewHistoryObj.currentAtIndex === listViewHistoryObj.trace.length - 1) {
                 $(arrowsContainer).find('a[data-role="backward"] div').removeClass('disabled');
                 $(arrowsContainer).find('a[data-role="forward"] div').addClass('disabled');
-            }else if(listViewHistoryObj.currentAtIndex === 0){
+            } else if (listViewHistoryObj.currentAtIndex === 0) {
                 $(arrowsContainer).find('a[data-role="backward"] div').addClass('disabled');
                 $(arrowsContainer).find('a[data-role="forward"] div').removeClass('disabled');
             }
-            else{
+            else {
                 $(arrowsContainer).find('a[data-role="backward"] div').removeClass('disabled');
                 $(arrowsContainer).find('a[data-role="forward"] div').removeClass('disabled');
             }
         }
     }
 
-    
-    
+    function markIgnoredFiles() {
+        $('#new_project_files').find('div[data-role="display files"] li.file').each(function () {
+            for (var i = 0; i < IgnoredFiles.length; i++) {
+                if ($(this).data('path').toLowerCase() === (IgnoredFiles[i]).toLowerCase()) {
+                    $(this).addClass('selected');
+                }
+            }
+        });
+    }
+
+    function updateFileIgnoredView(markNow) {
+        $('#file_ignored_list').empty();
+        $('#file_ignored_list').append('<ul class="ignored-file"></ul>');
+        var fileName = function (path) {
+            var splashes = path.split('\\');
+            return splashes[splashes.length - 1];
+        };
+
+        for (var i = 0; i < IgnoredFiles.length; i++) {
+            var name = fileName(IgnoredFiles[i]);
+            var theRestText = (IgnoredFiles[i]).substring(0, IgnoredFiles[i].length - name.length);
+            $('#file_ignored_list ul').append('<li>' + theRestText + '<span class="file-name">' + name + '</span>' + '</li>');
+        }
+        $('#btn_view_ignored').find('span.badge').text(IgnoredFiles.length);
+    }
+
+
+
     /*jQuery events* **************************************************************************************/
-    
+
     $('#dialog_select_dir').on('show.bs.modal', function () {
-        $('#target_dir').css({
+        var targetDirElm = $('#dialog_select_dir').find('div[data-role="display files"]');
+        $(targetDirElm).css({
             'height': ($('#dialog_select_dir').find('.modal-body').height() - 14) + 'px',
             'width': $('#dialog_select_dir').find('.modal-body').width() + 'px'
         });
-        $('#btn_openProjectDir').addClass('disabled');
-        
-        ajaxGetDriveList(function(error){
-            if(error !== null){
+
+        ajaxGetDriveList(function (error) {
+            if (error !== null) {
                 return false;
             }
             //$('#current_drive_val').val()
-            ajaxGetFileList($('#current_drive_val').val(), true, function(error,data){
-                if(error === null){
+            ajaxGetFileList($('#current_drive_val').val(), true, function (error, data) {
+                if (error === null) {
                     dialogFileListView = new listViewHistory();
                     dialogFileListView.trace.push($('#current_drive_val').val());
-                    dialogFileListView.currentAtIndex = dialogFileListView.currentAtIndex+1;
+                    dialogFileListView.currentAtIndex = dialogFileListView.currentAtIndex + 1;
 
-                    displayFileList(data,$('#dialog_select_dir').find('div[data-role="display files"]'));
+                    displayFileList(data, $('#dialog_select_dir').find('div[data-role="display files"]'), 'There has no folders here.');
 
-                    $('#dialog_select_dir').find('div[data-role="current directory"]').text(''); 
+                    $('#dialog_select_dir').find('div[data-role="current directory"]').text('');
                     updateArrowState(dialogFileListView, $('#dialog_select_dir').find('div[data-role="fileList_arrow_navigate"]'));
-                }else{
-                    $('#dialog_select_dir').find('div[data-role="display files"]').append('<div class="alert alert-warning" role="alert">'+error+'</div>');
+                } else {
+                    $('#dialog_select_dir').find('div[data-role="display files"]').append('<div class="alert alert-warning" role="alert">' + error + '</div>');
                 }
             });
         });
     });
-    
-    $('#arrow_select_drive').click(function(){
-       $('#select_drive_option').slideDown('fast');
+
+    $('#arrow_select_drive').click(function () {
+        $('#select_drive_option').slideDown('fast');
     });
-    
+
     $('#select_drive_option').on('click', 'li', function () {
         var fileListContainer = $('#dialog_select_dir').find('div[data-role="display files"]');
         var currentDirectory = $('#dialog_select_dir').find('div[data-role="current directory"]');
         var arrowsContainer = $('#dialog_select_dir').find('div[data-role="fileList_arrow_navigate"]');
-        
+
         $('#current_drive').val($(this).text());
         $('#current_drive_val').val($(this).data('path'));
         $('#select_drive_option').hide();
 
-        $('#btn_openProjectDir').addClass('disabled');
+        $(fileListContainer).find('div[role="alert"]').remove();
         ajaxGetFileList($(this).data('path'), true, function (error, data) {
             $(currentDirectory).text('');
             //$('#'+$(fileListContainer).data('forid')).find('input[data-role="remember home"]').val('0');
-            $(fileListContainer).empty();
-            
+            $(fileListContainer).find('ul').remove();
+
             dialogFileListView = new listViewHistory();
             if (error === null) {
                 dialogFileListView.trace.push($('#current_drive_val').val());
                 dialogFileListView.currentAtIndex = dialogFileListView.currentAtIndex + 1;
 
-                displayFileList(data, $(fileListContainer));
-                
-            } else {                
+                displayFileList(data, $(fileListContainer), 'There has no folders here.');
+
+            } else {
                 $(fileListContainer).append('<div class="alert alert-warning" role="alert">' + error + '</div>');
-                
+
             }
-            
+
             updateArrowState(dialogFileListView, arrowsContainer);
         });
     });
-    
-    $(document).click(function(e){
-        if($(e.target).is(':not(#arrow_select_drive)') && $('#arrow_select_drive').has(e.target).length ===0){
+
+    $(document).click(function (e) {
+        if ($(e.target).is(':not(#arrow_select_drive)') && $('#arrow_select_drive').has(e.target).length === 0) {
             $('#select_drive_option').hide();
         }
-        //console.log(e.target);
-        var forID = $(e.target).closest('div[data-role="display files"]').data('forid'); 
-        console.log(forID);
-        if($(e.target).is(':not(#'+forID+' div[data-role="display files"])') && $('#'+forID+' div[data-role="display files"]').has(e.target).length===0){
-            $(e.target).closest('div[data-role="display files"]').find('li').removeClass('selected');
-        }
+
+        /*if( $(e.target).closest('li').data('path') === 'undefined' || $(e.target).closest('li').data('path') === null){
+         
+         console.log($('#new_project_files').find('div[data-role="display files"] li.item.selected').length);
+         if($('#new_project_files').find('div[data-role="display files"] li.item.selected').length === 0){
+         $('#btn_ignoreFile').hide();
+         }
+         
+         $('div[data-role="display files"]').find('li').removeClass('selected');
+         }*/
     });
-    
+
     $('div[data-role="display files"]').on('click', 'li', function () {
         var _senderJ = this;
-        var listContainer = $(this).closest('div[data-role="display files"]');
-        var arrowsContainer = $('#'+$(listContainer).data('forid')).find('div[data-role="fileList_arrow_navigate"]');
+        var listContainer = $(_senderJ).closest('div[data-role="display files"]');
+        var arrowsContainer = $('#' + $(listContainer).data('forid')).find('div[data-role="fileList_arrow_navigate"]');
         var getOnlyFolders = $(listContainer).data('only_folders');
-        
-        //always mark select one
-        $(listContainer).find('li').removeClass('selected');
-        $(_senderJ).addClass('selected');
-        $('#btn_openProjectDir').removeClass('disabled');
-        var clickCount = $(_senderJ).find('input[type=hidden]').val();
 
-        //implement double clicking
-        if (Number(clickCount) === 0) {
-            var doubleClick = setTimeout(function () {
-                var watchCount = $(_senderJ).find('input[type=hidden]').val();
-                $(_senderJ).find('input[type=hidden]').val(0);
-                
-                //detect double click happens
-                if (Number(watchCount) >= 2) {
-                    $(_senderJ).removeClass('selected');
-                    $('#btn_openProjectDir').addClass('disabled');
-                    
-                    if($(_senderJ).data('is_directory') == true){
-                        ajaxGetFileList($(_senderJ).data('path'), getOnlyFolders, function(error,data){
-                            if(error === null){
-                                displayFileList(data,$(listContainer));
-                            }else{
-                                $(listContainer).empty();
-                                $(listContainer).append('<div class="alert alert-warning" role="alert">'+error+'</div>');
-                            }
 
-                            var showPath = $(_senderJ).data('path');
-                            showPath = showPath.replace($('#current_drive').val()+'\\','');
-                            $('#'+$(listContainer).data('forid')).find('div[data-role="current directory"]').text(showPath);
-
-                            dialogFileListView.trace.push( $(_senderJ).data('path'));  
-                            dialogFileListView.currentAtIndex = dialogFileListView.currentAtIndex+1;
-
-                            if(dialogFileListView.trace.length - dialogFileListView.currentAtIndex > 1){
-                                dialogFileListView.trace.splice(dialogFileListView.currentAtIndex, dialogFileListView.trace.length - dialogFileListView.currentAtIndex-1);
-                            }
-
-                            updateArrowState(dialogFileListView,arrowsContainer);
-
-                        });
-                    }
-                }
-            }, 300);
+        if ($(listContainer).data('multi_select') === false) {
+            $(listContainer).find('li').removeClass('selected');
+            $(_senderJ).addClass('selected');
+        } else {
+            console.log($(_senderJ).hasClass('selected'));
+            if ($(_senderJ).hasClass('selected')) {
+                $(_senderJ).removeClass('selected');
+            } else {
+                $(_senderJ).addClass('selected');
+            }
         }
-        clickCount++;
-        $(_senderJ).find('input[type=hidden]').val(clickCount);
 
+        if ($(_senderJ).data('is_directory') === true) {
+            ajaxGetFileList($(_senderJ).data('path'), getOnlyFolders, function (error, data) {
+                if (error === null) {
+                    var msg = '';
+                    if ($(listContainer).data('forid') === 'new_project_files') {
+                        msg = 'There are no javascript files here.';
+                    } else {
+                        msg = 'There are no folders here.';
+                    }
+                    displayFileList(data, $(listContainer), msg);
+                } else {
+                    $(listContainer).find('ul').remove();
+                    $(listContainer).append('<div class="alert alert-warning" role="alert">' + error + '</div>');
+                }
+
+                var showPath = $(_senderJ).data('path');
+                showPath = showPath.replace($('#current_drive').val() + '\\', '');
+                $('#' + $(listContainer).data('forid')).find('div[data-role="current directory"]').text(showPath);
+
+                dialogFileListView.trace.push($(_senderJ).data('path'));
+                dialogFileListView.currentAtIndex = dialogFileListView.currentAtIndex + 1;
+
+                if (dialogFileListView.trace.length - dialogFileListView.currentAtIndex > 1) {
+                    dialogFileListView.trace.splice(dialogFileListView.currentAtIndex, dialogFileListView.trace.length - dialogFileListView.currentAtIndex - 1);
+                }
+
+                updateArrowState(dialogFileListView, arrowsContainer);
+
+                if ($(listContainer).data('forid') === 'new_project_files') {
+                    markIgnoredFiles();
+                }
+            });
+        }
     });
-    
-    $('div[data-role="fileList_arrow_navigate"]').on('click','a',function(){
+
+    $('div[data-role="fileList_arrow_navigate"]').on('click', 'a', function () {
         var forID = $(this).closest('div[data-role="fileList_arrow_navigate"]').data('forid');
-        var displayFilesObj = $('#'+forID).find('div[data-role="display files"]');
-        var currentDirectoryObj = $('#'+forID).find('div[data-role="current directory"]');
+        var displayFilesObj = $('#' + forID).find('div[data-role="display files"]');
+        var currentDirectoryObj = $('#' + forID).find('div[data-role="current directory"]');
         var arrowsContainerObj = $(this).closest('div[data-role="fileList_arrow_navigate"]');
-        var getOnlyFolders = $(displayFilesObj).data('only_folders'); 
-        
-        if($(this).find('div').hasClass('disabled') === false){
-            switch($(this).data('role')){
+        var getOnlyFolders = $(displayFilesObj).data('only_folders');
+
+        if ($(this).find('div').hasClass('disabled') === false) {
+            switch ($(this).data('role')) {
                 case 'backward':
-                    dialogFileListView.currentAtIndex = dialogFileListView.currentAtIndex-1;
+                    dialogFileListView.currentAtIndex = dialogFileListView.currentAtIndex - 1;
                     break;
 
                 case 'forward':
-                    dialogFileListView.currentAtIndex = dialogFileListView.currentAtIndex+1;                    
+                    dialogFileListView.currentAtIndex = dialogFileListView.currentAtIndex + 1;
                     break;
-            } 
+            }
 
-            $('#btn_openProjectDir').addClass('disabled');
-            
-            ajaxGetFileList(dialogFileListView.trace[dialogFileListView.currentAtIndex], getOnlyFolders, function(error, data){
-                if(error === null){
-                    displayFileList(data,displayFilesObj);
-                }else{
-                    $(displayFilesObj).empty();
-                    $(displayFilesObj).append('<div class="alert alert-warning" role="alert">'+error+'</div>');
+            $(displayFilesObj).find('div[role="alert"]').remove();
+
+            ajaxGetFileList(dialogFileListView.trace[dialogFileListView.currentAtIndex], getOnlyFolders, function (error, data) {
+                if (error === null) {
+                    displayFileList(data, displayFilesObj, 'There has no folders here.');
+                    markIgnoredFiles();
+                } else {
+                    $(displayFilesObj).find('ul').remove();
+                    $(displayFilesObj).append('<div class="alert alert-warning" role="alert">' + error + '</div>');
                 }
 
                 var showPath = dialogFileListView.trace[dialogFileListView.currentAtIndex];
-                showPath = showPath.replace($('#current_drive').val()+'\\','');
+                showPath = showPath.replace($('#current_drive').val() + '\\', '');
                 $(currentDirectoryObj).text(showPath);
 
                 updateArrowState(dialogFileListView, arrowsContainerObj);
             });
         }
     });
-    
+
     $('#btn_openProjectDir').click(function () {
-        var selectedPath = $('#dialog_select_dir').find('div[data-role="display files"] li[class="item selected"]').data('path');
+        var selectedPath = $('#current_drive_val').val() + $('#dialog_select_dir').find('div[data-role="current directory"]').text();
         var fileListContainer = $('#new_project_files').find('div[data-role="display files"]');
         var currentDirectory = $('#new_project_files').find('div[data-role="current directory"]');
         var arrowNavigator = $('new_project_files').find('div[data-role="fileList_arrow_navigate"]');
-        
-        ajaxGetFileList(selectedPath, false, function(error, data){
-            //console.log(data);            
-            if(error === null){
+
+        $('#btn_save_project').removeClass('disabled');
+        $('#selected_project_folder').val(selectedPath);
+        var fileName = function (path) {
+            var splashes = path.split('\\');
+            return splashes[splashes.length - 2];
+        };
+        $('#in_projectName').val(fileName(selectedPath));
+        $(fileListContainer).find('div[role="alert"]').remove();
+
+        ajaxGetFileList(selectedPath, false, function (error, data) {
+            if (error === null) {
                 dialogFileListView = new listViewHistory();
                 dialogFileListView.trace.push(selectedPath);
-                dialogFileListView.currentAtIndex = dialogFileListView.currentAtIndex+1;
+                dialogFileListView.currentAtIndex = dialogFileListView.currentAtIndex + 1;
 
-                displayFileList(data, $(fileListContainer));
+                displayFileList(data, $(fileListContainer), 'There are no javascript files here.');
 
-                $(currentDirectory).text(selectedPath); 
+                $(currentDirectory).text(selectedPath);
                 updateArrowState(dialogFileListView, $(arrowNavigator));
-            }else{
-                $(fileListContainer).append('<div class="alert alert-warning" role="alert">'+error+'</div>');
+
+                ajaxGetDefaultIgnoredFile(selectedPath, function (error, data) {
+                    if (error === null) {
+                        IgnoredFiles = [];
+                        for (var i = 0; i < data.length; i++) {
+                            IgnoredFiles.push(data[i].toLowerCase());
+                        }
+
+                        updateFileIgnoredView();
+                        markIgnoredFiles();
+                    } else {
+                        $('#file_ignored_list').append('<div class="alert alert-warning" role="alert">' + error + '</div>');
+                    }
+                });
+            } else {
+                $(fileListContainer).append('<div class="alert alert-warning" role="alert">' + error + '</div>');
+            }
+        });
+
+
+    });
+
+    $('#new_project_files').on('click', 'div[data-role="display files"] li.file', function () {
+        if ($(this).hasClass('selected')) {
+            IgnoredFiles.push($(this).data('path'));
+        } else {
+            for (var i = 0; i < IgnoredFiles.length; i++) {
+                if (($(this).data('path')).toLowerCase() === (IgnoredFiles[i]).toLowerCase()) {
+                    IgnoredFiles.splice(i, 1);
+                }
+            }
+        }
+        $('#btn_view_ignored').find('span.badge').text(IgnoredFiles.length);
+    });
+
+    $('#btn_view_ignored').click(function () {
+        $('#new_project_files').find('div[data-role="display files"]').hide();
+        $('#new_project_files').find('div[data-role="fileList_arrow_navigate"]').hide();
+        $('#new_project_files').find('div[data-role="current directory"]').hide();
+        $('#file_ignored_list').fadeIn('fast');
+        $('#btn_open_dir_dialog').hide();
+        $('#btn_close_fileIgnored').fadeIn('fast');
+
+        updateFileIgnoredView();
+    });
+
+    $('#btn_close_fileIgnored').click(function () {
+        $('#new_project_files').find('div[data-role="display files"]').fadeIn('fast');
+        $('#new_project_files').find('div[data-role="fileList_arrow_navigate"]').fadeIn('fast');
+        $('#new_project_files').find('div[data-role="current directory"]').fadeIn('fast');
+        $('#file_ignored_list').hide();
+        $('#btn_close_fileIgnored').hide();
+        $('#btn_open_dir_dialog').fadeIn('fast');
+    });
+
+    $('#btn_save_project').click(function () {
+        var postData = {
+            projectID: Number($('#project_id').val()),
+            projectName: $('#in_projectName').val(),
+            projectFolder: $('#selected_project_folder').val(),
+            ignoredFiles: IgnoredFiles
+        };
+        console.log('(potsDataa.ignoredFiles)'+postData.ignoredFiles);        
+
+        var alert = $(template.bottomAlert);
+        var ramid = Number(new Date());
+        $(alert).attr('id', ramid);
+
+
+        ajaxSaveProject(postData, function () {
+            $(alert).find('div[data-role="message"]').text('Saving project...');
+            $(alert).addClass('loading');
+            $('body').append($(alert).prop('outerHTML'));
+            $('#' + ramid).fadeIn('fast');
+        }, function (error, data) {
+            if (error !== null) {
+                $('#' + ramid).find('div[data-role="message"]').text(error);
+                 setTimeout(function () {
+                    $('#' + ramid).hide();
+                    $('#' + ramid).remove();
+                }, 3500);
+            } else {
+                $('#' + ramid).removeClass('loading');
+                $('#' + ramid).addClass('ok');
+                $('#' + ramid).find('div[data-role="message"]').text('Project is Saved!');
+
+                setTimeout(function () {
+                    $('#' + ramid).hide();
+                    $('#' + ramid).remove();
+                    location.replace('index.html');
+                }, 2500);
             }
         });
     });
     
     
-    
-    
-    
-    
-    $('#project_files_view').mouseout(function () {
-       // PROJECTJS.myEvents.project_files_view_mouseout($(this));
-    });
-    $('#project_files_view').mouseover(function () {
-        //PROJECTJS.myEvents.project_files_view_mouseover($(this));
-    });
-    $(document).mouseover(function (e) {
-        //PROJECTJS.myEvents.document_mouseover(e);
-    });
-    $('#debug_console').click(function () {
-        //$(this).toggleClass('hideme');
-    });
-    $('#btn_ignoreFile').click(function () {
-        //PROJECTJS.myEvents.btn_ignoreFile_click($(this));
-    });
-    $('#btn_doneSetup').click(function () {
-        //PROJECTJS.myEvents.btn_doneSetup_click($(this));
-    });
+    /**** Page Starts *****/
+    template.bottomAlert = (function () {
+        var elmTxt = $('div[data-role="template-bottom-alert"]').prop('outerHTML');
+        var newElm = $(elmTxt).attr('data-role', 'bottom-alert');
+        $('div[data-role="template-bottom-alert"]').remove();
+        return $(newElm).prop('outerHTML');
+    }());
 
+    var projectID = getQureyString('projectID');
+    if (Number(projectID) > 0) {
+        //console.log('get project detail, (id)'+Number(projectID));
+        $('#btn_openProjectDir').removeAttr('data-edit_mode');
+        $('#btn_openProjectDir').attr('data-edit_mode',true);
+        
+        ajaxGetProjectDetail(Number(projectID), null, function (error, data) {
+            if (error !== null) {
 
+            } else {
+                $('#project_id').val(data.detail.ID);
+                $('#in_projectName').val(data.detail.Name);
+                $('#selected_project_folder').val(data.detail.FolderPath);
+                IgnoredFiles = [];
+                for (var i = 0; i < data.ignored.length; i++) {
+                    IgnoredFiles.push(data.ignored[i].FilePath);
+                }
+                
+                var selectedPath = $('#current_drive_val').val() + $('#selected_project_folder').val();
+                var fileListContainer = $('#new_project_files').find('div[data-role="display files"]');
+                var currentDirectory = $('#new_project_files').find('div[data-role="current directory"]');
+                var arrowNavigator = $('new_project_files').find('div[data-role="fileList_arrow_navigate"]');
+
+                $('#btn_save_project').removeClass('disabled');
+                $('#selected_project_folder').val(selectedPath);
+                
+                $(fileListContainer).find('div[role="alert"]').remove();
+
+                ajaxGetFileList(selectedPath, false, function (error, data) {
+                    if (error === null) {
+                        dialogFileListView = new listViewHistory();
+                        dialogFileListView.trace.push(selectedPath);
+                        dialogFileListView.currentAtIndex = dialogFileListView.currentAtIndex + 1;
+
+                        displayFileList(data, $(fileListContainer), 'There are no javascript files here.');
+
+                        $(currentDirectory).text(selectedPath);
+                        updateArrowState(dialogFileListView, $(arrowNavigator));
+
+                        
+                        updateFileIgnoredView();
+                        markIgnoredFiles();
+                    } else {
+                        $(fileListContainer).append('<div class="alert alert-warning" role="alert">' + error + '</div>');
+                    }
+                });
+            }
+        });
+    }
 });

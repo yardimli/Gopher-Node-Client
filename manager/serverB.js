@@ -1,9 +1,13 @@
 var Global = require('../manager/global.js');
+var FileManager = require('./js/fileManager.js');
 
 var StringDecoder = require('string_decoder').StringDecoder;
 var decoder = new StringDecoder('utf8');
 var xxxx = '';
-var ServerB = Global.http.createServer(onRequest).listen(1337, function () {
+
+
+var ServerB = Global.http.createServer(onRequest).listen(1337, function (err) {
+    Global.Servers.push(ServerB);
     /*var spawn = require('child_process').spawn,
      list  = spawn('cmd');
      
@@ -73,188 +77,11 @@ function onRequest(request, response) {
     } else if (RequestUrl.search('/' + Global.gopherManagerRoot) === -1) {
         RequestUrl = '/' + Global.gopherManagerRoot + '/' + RequestUrl;
     }
-    //console.log('RequestUrl '+RequestUrl);
 
     if (RequestUrl.indexOf('/' + Global.gopherManagerRoot) === 0) {
-        if (!Global.extensions[FileMap.getFileExtension(RequestUrl)]) {
-            //console.log(RequestUrl);
-            response.writeHead(404, {'Content-Type': 'text/html'});
-            response.end("<html><head></head><body>The requested file type is not supported</body></html>");
-
-        } else {
-            if (request.headers['x-requested-with'] !== 'XMLHttpRequest') {
-                var FilePath = FileMap.getFilePath(RequestUrl);
-                Global.fs.exists(FilePath, function (exists) {
-                    if (exists) {
-                        Global.fs.readFile(FilePath, function (err, contents) {
-                            if (!err) {
-                                response.writeHead(200, {
-                                    "Content-type": FileMap.getMimeType(RequestUrl),
-                                    "Content-Length": contents.length
-                                });
-                                response.end(contents);
-                            } else {
-                                console.dir(err);
-                            }
-                        });
-                    } else {
-                        Global.fs.readFile('404.html', function (err, contents) {
-                            if (!err) {
-                                response.writeHead(404, {'Content-Type': 'text/html'});
-                                response.end(contents);
-                            } else {
-                                console.dir(err);
-                            }
-                            ;
-                        });
-                    }
-                    ;
-                });
-
-            } else {
-                console.log('Is a xmlhttprequest ' + FileMap.getCleanFileName(request.url));
-                var FileExt = FileMap.getFileExtension(request.url);
-                var Command = (FileMap.getCleanFileName(request.url)).replace(FileExt, '');
-                if (FileExt === '.do') {
-                    switch (Command) {
-                        case 'getProjects':
-                            request.on('data', function (chunk) {
-                                var RecievedData = Global.QueryString.parse(decoder.write(chunk));
-                                Global.fs.exists(Global.dbPath, function (exists) {
-                                    if (exists) {
-                                        var db = new Global.sqlite3.Database(Global.dbPath);
-                                        var AjaxToProject = require('./js/ajaxToProjects');
-                                        AjaxToProject.getProjects(Number(RecievedData['projectID']), db, function (result) {
-                                            response.end(JSON.stringify(result));
-                                            db.close();
-                                        });
-                                    } else {
-                                        response.end('Database does not exist.');
-                                    }
-                                });
-
-                                /*var result = [];
-                                 Global.db.serialize(function () {
-                                 var qSelectProject = '';
-                                 if(Number(RecievedData['projectID']) === 0){
-                                 qSelectProject = 'select ID, name FROM projects ORDER BY name ASC';
-                                 }else{
-                                 qSelectProject = 'select ID, name FROM projects WHERE ID=' + RecievedData['projectID'];
-                                 }
-                                 Global.db.each(qSelectProject,function (err, row) {
-                                 result.push(row);
-                                 },function complete(){
-                                 response.end(result[0].name+RecievedData['testCaller']);
-                                 });
-                                 });*/
-                                //Global.db.close();
-                            });
-                            break;
-                            
-                        case 'getDriveList':
-                            var FileManager = require('./js/fileManager.js');
-                            FileManager.getDriveList(function(result,error){
-                                if(error !== null){
-                                    response.end(error.toString());
-                                } 
-                                response.end(JSON.stringify(result));
-                            });
-                            break;
-                            
-                        case 'getFileList':
-                            var FileManager = require('./js/fileManager.js');
-                            request.on('data', function (chunk) {
-                                var RecievedData = Global.QueryString.parse(decoder.write(chunk));
-                                
-                                var path = RecievedData['path'];
-                                var onlyFolders;
-                                if(RecievedData['onlyFolders'] === 'true'){
-                                    onlyFolders = true;
-                                }else{
-                                    onlyFolders = false;
-                                }
-                                //console.log("..........................................................."+RecievedData['onlyFolders'])
-                                FileManager.getFileList(path, RecievedData['onlyFolders'], function(error,result){
-                                   if(error !== null){
-                                       response.end(error.toString());
-                                   }
-                                   //console.log('====== filemanager.getfilelist calllback ========');
-                                   //console.log(result);
-                                   response.end(JSON.stringify(result));
-                                });
-                            });
-                            
-                            
-                            break;
-                            
-                        default:
-                            response.end('Command is not recognized.');
-                            break;
-                    }
-
-                } else {
-                    response.end('File extension is not recognized.');
-                }
-            }
-        }
+        //console.log('>>not using proxy<<');
+        mangerOnHttpRequest(request, response, RequestUrl);
     } else {
-        response.end('use proxy');
-        //forward request through proxy 
-        var projectOnPort = 8003;
-        var projectHost = 'localhost';
-        var gopherHost = 'localhost';
-        var gopherPort = 1337;
-
-        var BrowserData = [];
-        request.on('data', function (chunk) {
-            BrowserData.push(chunk);
-        });
-
-        var ApacheChunk = [];
-        var ProxyOptions = {
-            host: projectHost,
-            port: projectOnPort,
-            path: request.url,
-            method: request.method,
-            headers: request.headers
-        };
-        request.on('end', function () {
-            var NodeProxyRequest = Globals.http.request(ProxyOptions, function (ApacheResponse) {
-                ApacheResponse.on('data', function (chunk) {
-                    if ((request.url.indexOf('.png') == -1) && (request.url.indexOf('.jpg') == -1) && (request.url.indexOf('.gif') == -1)) {
-                        var chunkStr = decoder.write(chunk);
-                        var regx1 = new RegExp('http://' + projectHost, 'g');
-                        chunkStr = chunkStr.replace(regx1, 'http://' + gopherHost);
-                        var regx2 = new RegExp('http://' + projectHost + ':' + projectOnPort, 'g');
-                        chunkStr = chunkStr.replace(regx2, 'http://' + gopherHost + ':' + gopherPort);
-                        chunk = new Buffer(chunkStr, 'utf8');
-                    }
-                    ApacheChunk.push(chunk);
-
-                });
-
-                ApacheResponse.on('end', function () {
-                    var ApacheBytes = Buffer.concat(ApacheChunk);
-                    ApacheResponse.headers['content-length'] = ApacheBytes.length;
-                    response.writeHead(ApacheResponse.statusCode, ApacheResponse.headers);
-                    response.write(ApacheBytes, 'binary');
-                    response.end();
-                });
-
-                ApacheResponse.on('error', function (e) {
-                    console.log('problem with proxy response: ' + e.message);
-                });
-            });
-
-            var BrowserBytes = Buffer.concat(BrowserData);
-            NodeProxyRequest.write(BrowserBytes, 'binary');
-            NodeProxyRequest.end();
-
-        });
-
-        request.on('error', function (e) {
-            console.log('problem with request: ' + e.message);
-        });
 
     }
 
@@ -262,6 +89,284 @@ function onRequest(request, response) {
         //console.log('*******************');
     });
 }
+
+function mangerOnHttpRequest(request, response, ModifieidUrl) {
+    if (!Global.extensions[FileMap.getFileExtension(ModifieidUrl)]) {
+        //console.log(ModifieidUrl);
+        response.writeHead(404, {'Content-Type': 'text/html'});
+        response.end("<html><head></head><body>The requested file type is not supported</body></html>");
+
+    } else {
+        if (request.headers['x-requested-with'] !== 'XMLHttpRequest') {
+            var FilePath = FileMap.getFilePath(ModifieidUrl);
+            Global.fs.exists(FilePath, function (exists) {
+                if (exists) {
+                    Global.fs.readFile(FilePath, function (err, contents) {
+                        if (!err) {
+                            response.writeHead(200, {
+                                "Content-type": FileMap.getMimeType(ModifieidUrl),
+                                "Content-Length": contents.length
+                            });
+                            response.end(contents);
+                        } else {
+                            console.dir(err);
+                        }
+                    });
+                } else {
+                    Global.fs.readFile('404.html', function (err, contents) {
+                        if (!err) {
+                            response.writeHead(404, {'Content-Type': 'text/html'});
+                            response.end(contents);
+                        } else {
+                            console.dir(err);
+                        }
+                        ;
+                    });
+                }
+                ;
+            });
+
+        } else {
+            //console.log('Is a xmlhttprequest ' + FileMap.getCleanFileName(request.url));
+            var FileExt = FileMap.getFileExtension(request.url);
+            var Command = (FileMap.getCleanFileName(request.url)).replace(FileExt, '');
+            var RecievedChunk = [];
+            var RecievedData = null;
+            request.on('data', function (chunk) {
+                RecievedChunk.push(chunk);
+            });
+
+            request.on('end', function () {
+                RecievedData = Global.QueryString.parse(decoder.write(RecievedChunk));
+
+                if (FileExt === '.do') {
+                    switch (Command) {
+                        case 'getProjects':
+                            console.log('===== getProjects =======');
+                            console.log(Global.Servers);
+                            Global.dbConn(function (error, database) {
+                                if (error === null) {
+                                    var AjaxToProject = require('./js/ajaxToProjects.js');
+                                    AjaxToProject.getProjects(Number(RecievedData['projectID']), database, function (result) {
+                                        response.end(JSON.stringify(result));
+                                        database.close();
+                                    });
+                                } else {
+                                    resposne.end(error);
+                                }
+                            });
+                            break;
+
+                        case 'saveProject':
+                            Global.dbConn(function (error, database) {
+                                if (error === null) {
+                                    var project = require('./js/ajaxToProjects.js');
+                                    project.saveProject(RecievedData, database, function (result) {
+                                        response.end(JSON.stringify(result));
+                                        database.close();
+                                    });
+                                } else {
+                                    response.end(error);
+                                }
+                            })
+                            break;
+
+                        case 'getProjectDetail':
+                            Global.dbConn(function (error, database) {
+                                if (error === null) {
+                                    var project = require('./js/ajaxToProjects.js');
+                                    project.getProjectDetail(Number(RecievedData['projectID']), database, function (result) {
+                                        response.end(JSON.stringify(result));
+                                        database.close();
+                                        response.end();
+                                    });
+                                } else {
+                                    response.end(error);
+                                }
+                            });
+                            break;
+
+                        case 'getDriveList':
+                            FileManager.getDriveList(function (result, error) {
+                                if (error !== null) {
+                                    response.end(error.toString());
+                                }
+                                response.end(JSON.stringify(result));
+                            });
+                            break;
+
+                        case 'getFileList':
+                            var path = RecievedData['path'];
+                            FileManager.getFileList(RecievedData['path'], RecievedData['onlyFolders'], function (error, result) {
+                                if (error !== null) {
+                                    response.end(error.toString());
+                                }
+                                response.end(JSON.stringify(result));
+                            });
+
+                            break;
+                        case 'getDefaultIgnoredFiles':
+                            var options = {
+                                targetFolder: RecievedData['path'],
+                                targetFiles: Global.ignoredByDefault
+                            };
+                            FileManager.findFiles(options, function (error, result) {
+                                if (error !== null) {
+                                    response.end(error.toString());
+                                }
+
+                                var newRst = [];
+                                for (var i = 0; i < result.length; i++) {
+                                    var ext = FileManager.pathHelper.getFileExtention(result[i]);
+                                    if (ext.toLowerCase() === 'js') {
+                                        newRst.push(result[i]);
+                                    }
+                                }
+                                response.end(JSON.stringify(newRst));
+                            });
+
+                            break;
+                        case 'lunchProject':
+                            var matchPortInUse = 0;
+                            for (var i = 0; i < Global.Servers.length; i++) {
+                                var connectionKey = Global.Servers[i]._connectionKey;
+                                var keySplit = connectionKey.split(':');
+                                if (Number(RecievedData['proxyHostPort']) === Number(keySplit[keySplit.length - 1])) {
+                                    matchPortInUse++;
+                                }
+                            }
+                            
+                            if(matchPortInUse === 0){
+                                var ProxyServer = Global.http.createServer(function (request, response) {
+                                    proxyOnHttpRequest(request, response, RecievedData['forwardHostName'], Number(RecievedData['forwardHostPort']));
+                                }).listen(Number(RecievedData['proxyHostPort']), function (err) {
+                                    if (err) {
+                                        response.end('error');
+                                    }
+                                    //check if this proxy port has been added!!
+                                    ProxyServer.projectID = Number(RecievedData['projectID']);
+                                    Global.Servers.push(ProxyServer);
+                                    response.end('ready');
+                                    //console.log('start listening to proxy port ' + RecievedData['proxyHostPort']);
+                                    console.log('================lucn project, Global.Servers===============================');
+                                    console.log(Global.Servers);
+                                });
+                            }else{
+                                response.end('running');
+                                console.log('port '+RecievedData['proxyHostPort']+' is already open.');
+                            }
+
+                            
+                            break;
+
+                        case 'closeServer':
+                            console.log('================before closeServer starts, Global.Servers===============================');
+                            console.log(Global.Servers);
+                            for(var i=0; i<Global.Servers.length; i++){
+                                if(Number(RecievedData['projectID']) === Global.Servers[i].projectID){
+                                    Global.Servers[i].close(function(){                                        
+                                        for(var i=0; i<Global.Servers.length; i++){
+                                            if(Number(RecievedData['projectID']) === Global.Servers[i].projectID){
+                                                Global.Servers.splice(i,1);
+                                            }
+                                        }
+                                        response.end('success');
+                                    });
+                                }
+                            }
+                            
+                            break;
+                            
+                        default:
+                            response.end('Command is not recognized.');
+                            break;
+                    }
+                }
+            });
+        }
+    }
+}
+function proxyOnHttpRequest(request, response, forwardHostName, forwardHostPort) {
+    console.log('>>using proxy<<');
+    console.log(Global.Servers);
+    console.log('-------------------------------');
+    //console.log(request.headers);
+    //console.log(request.headers['referer']);
+    var hostSplit = (request.headers['host']).split(':');
+    var proxyHostPort, proxyHostName;
+    if (hostSplit.length > 1) {
+        proxyHostPort = hostSplit[1];
+        proxyHostName = hostSplit[0];
+    } else {
+        proxyHostPort = 80;
+        proxyHostName = hostSplit[0];
+    }
+    //console.log(proxyHostPort);
+    //console.log(proxyHostName);
+    //console.log('-------------------------------');
+    //forward request through proxy 
+    var projectOnPort = forwardHostPort; //8003;
+    var projectHost = forwardHostName; //'localhost';
+    var gopherHost =  proxyHostName; //'localhost';
+    var gopherPort = proxyHostPort; //1338;
+
+    var BrowserData = [];
+    request.on('data', function (chunk) {
+        BrowserData.push(chunk);
+    });
+
+    var ApacheChunk = [];
+    var ProxyOptions = {
+        host: projectHost,
+        port: projectOnPort,
+        path: request.url,
+        method: request.method,
+        headers: request.headers
+    };
+    request.on('end', function () {
+        var NodeProxyRequest = Global.http.request(ProxyOptions, function (ApacheResponse) {
+            ApacheResponse.on('data', function (chunk) {
+                if ((request.url.indexOf('.png') == -1) && (request.url.indexOf('.jpg') == -1) && (request.url.indexOf('.gif') == -1)) {
+                    var chunkStr = decoder.write(chunk);
+                    var regx1 = new RegExp('http://' + projectHost, 'g');
+                    chunkStr = chunkStr.replace(regx1, 'http://' + gopherHost);
+                    var regx2 = new RegExp('http://' + projectHost + ':' + projectOnPort, 'g');
+                    chunkStr = chunkStr.replace(regx2, 'http://' + gopherHost + ':' + gopherPort);
+                    chunk = new Buffer(chunkStr, 'utf8');
+                }
+                ApacheChunk.push(chunk);
+
+            });
+
+            ApacheResponse.on('end', function () {
+                var ApacheBytes = Buffer.concat(ApacheChunk);
+                ApacheResponse.headers['content-length'] = ApacheBytes.length;
+                response.writeHead(ApacheResponse.statusCode, ApacheResponse.headers);
+                response.write(ApacheBytes, 'binary');
+                response.end();
+            });
+
+            ApacheResponse.on('error', function (e) {
+                console.log('problem with proxy response: ' + e.message);
+            });
+        });
+
+        var BrowserBytes = Buffer.concat(BrowserData);
+        NodeProxyRequest.write(BrowserBytes, 'binary');
+        NodeProxyRequest.end();
+
+    });
+
+    request.on('error', function (e) {
+        console.log('problem with request: ' + e.message);
+    });
+}
+
+/*var ProxyServer = Global.http.createServer(function (request, response) {
+    proxyOnHttpRequest(request,response);
+}).listen(1338, function () {
+    Servers.push(ProxyServer);
+});*/
 
 
 

@@ -26,6 +26,9 @@
         <script src="js/centralizeDialog.js" type="text/javascript"></script>
     </head>
     <body>
+        <div data-role="template-bottom-alert" class="bottom-alert" ><div data-role="icon"></div><div data-role="message"></div></div>
+
+        
         <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container">
                 <div class="navbar-header">
@@ -50,10 +53,17 @@
             </div>
         </div>
 
-        <div class="container myContent all-projects-view">
-            <div class="row" id="projects">
-                <div class="col-md-4" style="display:none;">
-                    <div class="view-project" data-projectid="##ID##"><b>##ProjectName##</b></div>
+        <div class="container myContent">
+            <div class="row projects" id="projects">
+                <div data-role="template-project" data-projectid="##ID##" class="col-md-12" data-project_link="##ProjectLink##" data-forward_host_name="##ForwardHostName##" data-forward_host_port="##ForwardHostPort##" data-proxy_host_port="##ProxyHostPort##">
+                    <div class="item-block">
+                        <div class="action-pane">
+                            <div data-role="edit" class="glyphicon glyphicon-pencil button"></div>
+                            <div data-role="lunch" class="glyphicon glyphicon-new-window button"></div>
+                            <div data-role="power" class="glyphicon glyphicon-off button ##powerStyle##"></div>
+                        </div>
+                        <span class="name">##ProjectName##</span>
+                    </div>
                 </div>
             </div>
             

@@ -26,13 +26,6 @@ body {
 
 
 /***** MANAGER RELATED PART********/
-.debug-console{
-    z-index:1000; position:absolute; right:10px; top:50px; width:450px; height:400px; border:1px solid white; background-color: rgba(0,0,0,0.5); border-radius:5px; color:white; padding:5px; overflow:auto ;
-}
-.debug-console.hideme{
-    z-index:1000; position:absolute; right:10px; top:50px; width:50px; height:50px; border:1px solid white; background-color: rgba(0,0,0,0.5); border-radius:5px; color:white; padding:5px; overflow:hidden ;
-}
-
 .manager-content, .myContent{
     margin-top: 43px;
 }
@@ -105,6 +98,7 @@ body {
 .target-dir ul li{
     cursor: pointer;
 }
+/* right now, I don't use the checkbox concept
 .target-dir ul li div[data-role="checkbox"]{
     float:left;
     display: inline-block;
@@ -116,53 +110,94 @@ body {
 }
 .target-dir ul li div.checked[data-role="checkbox"]{
     background: url('../images/checkbox-sprite.png') no-repeat -22px 0px;
-}
+}*/
 
 
 #in_projectDir{
     background-color: #F5F5F5;
 }
 
-.ignored-file-panel{
-    height:490px;
-}
-
-.project-ignoreFiles-view{
-    min-height:280px;
-    max-height: 440px; overflow: auto;padding-bottom: 15px;
-}
-
-#btn_ignoreFile{
-    display:none;
-    position:absolute;
-    z-index: 100;
-    top: 100px;
-    left: 100px;
-    height:24px;
-    border-radius: 2px;
-}
 
 .myContent{
     padding: 20px;
 }
-.myContent.all-projects-view{
-    
-}
 
-.myContent div[role="alert"]{
+div[data-role^="template"]{
     display:none;
 }
 
-.myContent div[class^="col-md-"]{
+.projects div[class^="col-md-"]{
     padding:0px;
 }
-.myContent .view-project{
-    color:#FFFFFF;
-    min-height: 50px;
+.projects .item-block{
+    color: #B6D1EA;
+    min-height: 32px;
     margin:5px 5px 0px 0px;
-    padding:8px 4px 8px 4px;
+    padding:15px;
     background-color: #283949;
+    cursor: default;
+}
+.projects .item-block .name{
+
+    margin: 10px;
+    font-size: 140%;
+}
+.projects .item-block .action-pane{
+    position: relative; z-index: 100; display:none;
+}
+.action-pane div.button{
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    float: right;
+    line-height: 24px;
+    text-align: center;
+    margin-left:15px;
+    font-size:16px;
+}
+.action-pane div.button:hover{
     cursor:pointer;
+    background-color: transparent;
+    color:#FFFFFF;
+}
+.action-pane div[data-role="power"].button{
+    color:#66cc00;
+    cursor: pointer;
+}
+.action-pane div[data-role="power"].button.poweroff{
+    color: #54687A;
+    cursor:default;
+}
+.action-pane div[data-role="power"].button.poweroff:hover{
+    background-color:transparent;
+}
+    
+
+.new-edit-project div[class^="col-md-"]{
+    padding:0px;
+}
+
+.bottom-alert{
+    position: fixed; bottom: 30px; display: inline-block; 
+    background-color: #253849; padding: 7px 20px 7px 20px;
+    color:#FFFFFF; 
+    margin: 2px;
+}
+.bottom-alert div{
+    display:inline-block; float:left;
+    height:32px;
+}
+.bottom-alert div[data-role="icon"]{
+    width:32px; margin-right: 7px;
+}
+.bottom-alert.loading div[data-role="icon"]{
+    display:none;
+}
+.bottom-alert.ok div[data-role="icon"]{
+    background:url('../images/ok.png');
+}
+.bottom-alert div[data-role="message"]{
+    line-height: 30px; font-weight: bold;
 }
 
 .dialog-file-list-header{
@@ -249,7 +284,7 @@ body {
 }
 
 
-.new-project-files .btn{
+.new-project-files a[data-role="backward"], .new-project-files a[data-role="forward"]{
     background-color: transparent;
 }
 .new-project-files .btn:hover{
@@ -258,7 +293,7 @@ body {
 .new-project-files .show-current-dir{
     border:none;
     line-height: 42px;
-    width:88%;
+    width:73%;
 }
 
 .new-project-files .target-dir{
@@ -266,6 +301,21 @@ body {
     min-height: 300px;
     max-height: 500px;
 }
+button.view-ignored-file{
+    
+}
+
+ul.ignored-file li{
+    width: 99.2%;
+}ul.ignored-file span.file-name{
+    font-weight: bold;
+    color: #0cecfc;
+}
+
+.set-project-link .text{
+    line-height:42px;
+}
+
 
 /***** End - MANAGER RELATED PART********/
 
