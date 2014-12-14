@@ -1,6 +1,6 @@
 1 0 0  -- p -- false --  = Program
 1 1 0  -- p -- false --  = 0
-1 2 0  -- p -- false --  = 8892
+1 2 0  -- p -- false --  = 8532
 1 10 0  -- p -- true -- body = 
 2 11 10  -- p -- true -- 0 = 
 3 12 11  -- p.0 -- false -- type = ExpressionStatement

@@ -1,2 +1,2 @@
-cls
+clear
 node GopherBParser
