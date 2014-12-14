@@ -255,14 +255,16 @@ $(document).ready(function() {
         _$fe(0, 'b5', _$gXLocal);
     }
 
-    var cc = function() {
+    _$sb(15, 'cc', _$gXLocal);
+    var cc = _$set(15, 'VariableDeclaration', '0', 'cc', cc, 'function() { return 1; }', function() {
         _$gX++;
         var _$gXLocal = _$gX;
         _$fs(0, 'cc', 'FunctionExpression', '', _$gXLocal);
         return 1;
         _$fe(0, 'cc', _$gXLocal);
-    };
-    var bb = function(a, b, c) {
+    }, '=', '1', _$gXLocal, 0);
+    _$sb(16, 'bb', _$gXLocal);
+    var bb = _$set(16, 'VariableDeclaration', '0', 'bb', bb, 'function(a,b,c) { return a-b+c; }', function(a, b, c) {
         _$gX++;
         var _$gXLocal = _$gX;
         _$fs(0, 'bb', 'FunctionExpression', 'a,b,c', _$gXLocal);
@@ -271,7 +273,7 @@ $(document).ready(function() {
         _$set(0, 'VariableDeclaration', 'Function [bb]', 'c', null, '', c, '=', '1', _$gXLocal, 0);
         return a - b + c;
         _$fe(0, 'bb', _$gXLocal);
-    };
+    }, '=', '1', _$gXLocal, 0);
 
     function dd() {
         _$gX++;
