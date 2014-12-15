@@ -1,0 +1,1064 @@
+1:    ExpressionStatement
+1:     I:4 CallExpression expression () [$(document).ready( function() {
+
+	function b5(b)
+	{
+		function b55(b)
+		{
+			return b+2;
+		}
+		
+		va]  Parent:22, Self:23
+1:      I:5 MemberExpression callee () [$(document).ready]  Parent:33, Self:34
+1:       I:6 CallExpression object () [$(document)]  Parent:44, Self:45
+1:        I:7 Identifier callee () [$]  Parent:55, Self:56
+1:         I:8 Identifier 0 () [document]  Parent:68, Self:69
+1:       I:6 Identifier property () [ready]  Parent:80, Self:81
+1:       I:6 FunctionExpression 0 () [function() {
+
+	function b5(b)
+	{
+		function b55(b)
+		{
+			return b+2;
+		}
+		
+		var bb=b55(b)*4;
+		
+	]  Parent:94, Self:95
+1:        BlockStatement
+3:          FunctionDeclaration
+3:           I:10 Identifier id () [b5]  Parent:130, Self:131
+3:            I:11 Identifier 0 () [b]  Parent:143, Self:144
+4:           BlockStatement
+5:             FunctionDeclaration
+5:              I:13 Identifier id () [b55]  Parent:178, Self:179
+5:               I:14 Identifier 0 () [b]  Parent:191, Self:192
+6:              BlockStatement
+--------------- START RETURN  --------------- 
+ path:p.0.expression.arguments.0.body.body.0.body.body.0.body.body.0
+7:                I:15 ReturnStatement 0 () [return b+2;]  Parent:215, Self:216
+7:                 L:I:16 BinaryExpression argument (+) [b+2]  Parent:226, Self:227
+7:                  L:I:17 Identifier left () [b]  Parent:237, Self:238
+7:                  R:I:17 Literal right () [2]  Parent:250, Self:251
+--------------- END --------------- 
+10:             VariableDeclaration
+--------------- START VAR --------------- 
+ path:p.0.expression.arguments.0.body.body.0.body.body.1.declarations.0
+10:               I:14 VariableDeclarator 0 (=) [bb=b55(b)*4]  Parent:276, Self:277
+10:                L:I:15 Identifier id () [bb]  Parent:287, Self:288
+10:                R:I:15 BinaryExpression init (*) [b55(b)*4]  Parent:299, Self:300
+10:                 L:I:16 CallExpression left () [b55(b)]  Parent:310, Self:311
+10:                  L:I:17 Identifier callee () [b55]  Parent:321, Self:322
+10:                   L:I:18 Identifier 0 () [b]  Parent:334, Self:335
+10:                 R:I:16 Literal right () [4]  Parent:347, Self:348
+--------------- END --------------- 
+--------------- START RETURN  --------------- 
+ path:p.0.expression.arguments.0.body.body.0.body.body.2
+12:             I:12 ReturnStatement 2 () [return b;]  Parent:361, Self:362
+12:              L:I:13 Identifier argument () [b]  Parent:372, Self:373
+--------------- END --------------- 
+15:          VariableDeclaration
+--------------- START VAR --------------- 
+ path:p.0.expression.arguments.0.body.body.1.declarations.0
+15:            I:11 VariableDeclarator 0 (=) [cc = function() { return 1; }]  Parent:397, Self:398
+15:             L:I:12 Identifier id () [cc]  Parent:408, Self:409
+15:             R:I:12 FunctionExpression init () [function() { return 1; }]  Parent:420, Self:421
+--------------- END --------------- 
+15:              BlockStatement
+--------------- START RETURN  --------------- 
+ path:p.0.expression.arguments.0.body.body.1.declarations.0.init.body.body.0
+15:                I:15 ReturnStatement 0 () [return 1;]  Parent:445, Self:446
+15:                 L:I:16 Literal argument () [1]  Parent:456, Self:457
+--------------- END --------------- 
+16:          VariableDeclaration
+--------------- START VAR --------------- 
+ path:p.0.expression.arguments.0.body.body.2.declarations.0
+16:            I:11 VariableDeclarator 0 (=) [bb = function(a,b,c) { return a-b+c; }]  Parent:483, Self:484
+16:             L:I:12 Identifier id () [bb]  Parent:494, Self:495
+16:             R:I:12 FunctionExpression init () [function(a,b,c) { return a-b+c; }]  Parent:506, Self:507
+16:               L:I:14 Identifier 0 () [a]  Parent:519, Self:520
+16:               R:I:14 Identifier 1 () [b]  Parent:531, Self:532
+16:               L:I:14 Identifier 2 () [c]  Parent:543, Self:544
+--------------- END --------------- 
+16:              BlockStatement
+--------------- START RETURN  --------------- 
+ path:p.0.expression.arguments.0.body.body.2.declarations.0.init.body.body.0
+16:                I:15 ReturnStatement 0 () [return a-b+c;]  Parent:567, Self:568
+16:                 L:I:16 BinaryExpression argument (+) [a-b+c]  Parent:578, Self:579
+16:                  L:I:17 BinaryExpression left (-) [a-b]  Parent:589, Self:590
+16:                   L:I:18 Identifier left () [a]  Parent:600, Self:601
+16:                   R:I:18 Identifier right () [b]  Parent:613, Self:614
+16:                  R:I:17 Identifier right () [c]  Parent:626, Self:627
+--------------- END --------------- 
+18:          FunctionDeclaration
+18:           I:10 Identifier id () [dd]  Parent:651, Self:652
+19:           BlockStatement
+--------------- START RETURN  --------------- 
+ path:p.0.expression.arguments.0.body.body.3.body.body.0
+20:             I:12 ReturnStatement 0 () [return 2;]  Parent:676, Self:677
+20:              L:I:13 Literal argument () [2]  Parent:687, Self:688
+--------------- END --------------- 
+24:          FunctionDeclaration
+24:           I:10 Identifier id () [a5]  Parent:712, Self:713
+24:            I:11 Identifier 0 () [a]  Parent:725, Self:726
+25:           BlockStatement
+26:             FunctionDeclaration
+26:              I:13 Identifier id () [a55]  Parent:760, Self:761
+26:               I:14 Identifier 0 () [a]  Parent:773, Self:774
+27:              BlockStatement
+--------------- START RETURN  --------------- 
+ path:p.0.expression.arguments.0.body.body.4.body.body.0.body.body.0
+28:                I:15 ReturnStatement 0 () [return a+1;]  Parent:797, Self:798
+28:                 L:I:16 BinaryExpression argument (+) [a+1]  Parent:808, Self:809
+28:                  L:I:17 Identifier left () [a]  Parent:819, Self:820
+28:                  R:I:17 Literal right () [1]  Parent:832, Self:833
+--------------- END --------------- 
+31:             VariableDeclaration
+--------------- START VAR --------------- 
+ path:p.0.expression.arguments.0.body.body.4.body.body.1.declarations.0
+31:               I:14 VariableDeclarator 0 (=) [aa=a55(a)*2]  Parent:858, Self:859
+31:                L:I:15 Identifier id () [aa]  Parent:869, Self:870
+31:                R:I:15 BinaryExpression init (*) [a55(a)*2]  Parent:881, Self:882
+31:                 L:I:16 CallExpression left () [a55(a)]  Parent:892, Self:893
+31:                  L:I:17 Identifier callee () [a55]  Parent:903, Self:904
+31:                   L:I:18 Identifier 0 () [a]  Parent:916, Self:917
+31:                 R:I:16 Literal right () [2]  Parent:929, Self:930
+--------------- END --------------- 
+33:             IfStatement
+--------------- START BINARY --------------- 
+ path:p.0.expression.arguments.0.body.body.4.body.body.2.test
+33:              I:13 BinaryExpression test (<) [a<10]  Parent:954, Self:955
+33:               L:I:14 Identifier left () [a]  Parent:965, Self:966
+33:               R:I:14 Literal right () [10]  Parent:978, Self:979
+--------------- END --------------- 
+33:              BlockStatement
+--------------- START RETURN  --------------- 
+ path:p.0.expression.arguments.0.body.body.4.body.body.2.consequent.body.0
+33:                I:15 ReturnStatement 0 () [return aa+10;]  Parent:1003, Self:1004
+33:                 L:I:16 BinaryExpression argument (+) [aa+10]  Parent:1014, Self:1015
+33:                  L:I:17 Identifier left () [aa]  Parent:1025, Self:1026
+33:                  R:I:17 Literal right () [10]  Parent:1038, Self:1039
+--------------- END --------------- 
+34:              IfStatement
+--------------- START BINARY --------------- 
+ path:p.0.expression.arguments.0.body.body.4.body.body.2.alternate.test
+34:               I:14 BinaryExpression test (>) [a>100]  Parent:1062, Self:1063
+34:                L:I:15 Identifier left () [a]  Parent:1073, Self:1074
+34:                R:I:15 Literal right () [100]  Parent:1086, Self:1087
+--------------- END --------------- 
+34:               BlockStatement
+--------------- START RETURN  --------------- 
+ path:p.0.expression.arguments.0.body.body.4.body.body.2.alternate.consequent.body.0
+34:                 I:16 ReturnStatement 0 () [return a-100;]  Parent:1111, Self:1112
+34:                  L:I:17 BinaryExpression argument (-) [a-100]  Parent:1122, Self:1123
+34:                   L:I:18 Identifier left () [a]  Parent:1133, Self:1134
+34:                   R:I:18 Literal right () [100]  Parent:1146, Self:1147
+--------------- END --------------- 
+--------------- START RETURN  --------------- 
+ path:p.0.expression.arguments.0.body.body.4.body.body.3
+36:             I:12 ReturnStatement 3 () [return aa;]  Parent:1160, Self:1161
+36:              L:I:13 Identifier argument () [aa]  Parent:1171, Self:1172
+--------------- END --------------- 
+39:          FunctionDeclaration
+39:           I:10 Identifier id () [a1]  Parent:1195, Self:1196
+39:            I:11 Identifier 0 () [a]  Parent:1208, Self:1209
+40:           BlockStatement
+41:             VariableDeclaration
+--------------- START VAR --------------- 
+ path:p.0.expression.arguments.0.body.body.5.body.body.0.declarations.0
+41:               I:14 VariableDeclarator 0 (=) [aaa=a]  Parent:1244, Self:1245
+41:                L:I:15 Identifier id () [aaa]  Parent:1255, Self:1256
+41:                R:I:15 Identifier init () [a]  Parent:1267, Self:1268
+--------------- END --------------- 
+--------------- START RETURN  --------------- 
+ path:p.0.expression.arguments.0.body.body.5.body.body.1
+42:             I:12 ReturnStatement 1 () [return aaa;]  Parent:1280, Self:1281
+42:              L:I:13 Identifier argument () [aaa]  Parent:1291, Self:1292
+--------------- END --------------- 
+45:          VariableDeclaration
+--------------- START VAR --------------- 
+ path:p.0.expression.arguments.0.body.body.6.declarations.0
+45:            I:11 VariableDeclarator 0 (=) [blockC = []]  Parent:1316, Self:1317
+45:             L:I:12 Identifier id () [blockC]  Parent:1327, Self:1328
+45:             R:I:12 ArrayExpression init () [[]]  Parent:1339, Self:1340
+--------------- END --------------- 
+46:          ExpressionStatement
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.7.expression
+46:           I:10 AssignmentExpression expression (=) [blockC[1] = {}]  Parent:1363, Self:1364
+46:            L:I:11 MemberExpression left () [blockC[1]]  Parent:1375, Self:1376
+46:             L:I:12 Identifier object () [blockC]  Parent:1386, Self:1387
+46:             R:I:12 Literal property () [1]  Parent:1398, Self:1399
+46:            R:I:11 ObjectExpression right () [{}]  Parent:1412, Self:1413
+--------------- END --------------- 
+47:          ExpressionStatement
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.8.expression
+47:           I:10 AssignmentExpression expression (=) [blockC[1].X= 5]  Parent:1435, Self:1436
+47:            L:I:11 MemberExpression left () [blockC[1].X]  Parent:1447, Self:1448
+47:             L:I:12 MemberExpression object () [blockC[1]]  Parent:1458, Self:1459
+47:              L:I:13 Identifier object () [blockC]  Parent:1469, Self:1470
+47:              R:I:13 Literal property () [1]  Parent:1481, Self:1482
+47:             R:I:12 Identifier property () [X]  Parent:1495, Self:1496
+47:            R:I:11 Literal right () [5]  Parent:1508, Self:1509
+--------------- END --------------- 
+48:          ExpressionStatement
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.9.expression
+48:           I:10 AssignmentExpression expression (=) [blockC[2] = 5]  Parent:1532, Self:1533
+48:            L:I:11 MemberExpression left () [blockC[2]]  Parent:1544, Self:1545
+48:             L:I:12 Identifier object () [blockC]  Parent:1555, Self:1556
+48:             R:I:12 Literal property () [2]  Parent:1567, Self:1568
+48:            R:I:11 Literal right () [5]  Parent:1581, Self:1582
+--------------- END --------------- 
+50:          VariableDeclaration
+--------------- START VAR --------------- 
+ path:p.0.expression.arguments.0.body.body.10.declarations.0
+50:            I:11 VariableDeclarator 0 (=) [j = 1]  Parent:1606, Self:1607
+50:             L:I:12 Identifier id () [j]  Parent:1617, Self:1618
+50:             R:I:12 Literal init () [1]  Parent:1629, Self:1630
+--------------- END --------------- 
+52:          VariableDeclaration
+--------------- START VAR --------------- 
+ path:p.0.expression.arguments.0.body.body.11.declarations.0
+52:            I:11 VariableDeclarator 0 (=) [i = $(window).width()+window.innerHeight+5+a5(5)+a5($(window).width())+a5(window.innerWidth)+blockC[]  Parent:1655, Self:1656
+52:             L:I:12 Identifier id () [i]  Parent:1666, Self:1667
+52:             R:I:12 BinaryExpression init (+) [$(window).width()+window.innerHeight+5+a5(5)+a5($(window).width())+a5(window.innerWidth)+blockC[2]+b]  Parent:1678, Self:1679
+52:              L:I:13 BinaryExpression left (+) [$(window).width()+window.innerHeight+5+a5(5)+a5($(window).width())+a5(window.innerWidth)+blockC[2]+b]  Parent:1689, Self:1690
+52:               L:I:14 BinaryExpression left (+) [$(window).width()+window.innerHeight+5+a5(5)+a5($(window).width())+a5(window.innerWidth)+blockC[2]]  Parent:1700, Self:1701
+52:                L:I:15 BinaryExpression left (+) [$(window).width()+window.innerHeight+5+a5(5)+a5($(window).width())+a5(window.innerWidth)]  Parent:1711, Self:1712
+52:                 L:I:16 BinaryExpression left (+) [$(window).width()+window.innerHeight+5+a5(5)+a5($(window).width())]  Parent:1722, Self:1723
+52:                  L:I:17 BinaryExpression left (+) [$(window).width()+window.innerHeight+5+a5(5)]  Parent:1733, Self:1734
+52:                   L:I:18 BinaryExpression left (+) [$(window).width()+window.innerHeight+5]  Parent:1744, Self:1745
+52:                    L:I:19 BinaryExpression left (+) [$(window).width()+window.innerHeight]  Parent:1755, Self:1756
+52:                     L:I:20 CallExpression left () [$(window).width()]  Parent:1766, Self:1767
+52:                      L:I:21 MemberExpression callee () [$(window).width]  Parent:1777, Self:1778
+52:                       L:I:22 CallExpression object () [$(window)]  Parent:1788, Self:1789
+52:                        L:I:23 Identifier callee () [$]  Parent:1799, Self:1800
+52:                         L:I:24 Identifier 0 () [window]  Parent:1812, Self:1813
+52:                       R:I:22 Identifier property () [width]  Parent:1824, Self:1825
+52:                     R:I:20 MemberExpression right () [window.innerHeight]  Parent:1839, Self:1840
+52:                      R:I:21 Identifier object () [window]  Parent:1850, Self:1851
+52:                      L:I:21 Identifier property () [innerHeight]  Parent:1862, Self:1863
+52:                    R:I:19 Literal right () [5]  Parent:1876, Self:1877
+52:                   R:I:18 CallExpression right () [a5(5)]  Parent:1890, Self:1891
+52:                    L:I:19 Identifier callee () [a5]  Parent:1901, Self:1902
+52:                     L:I:20 Literal 0 () [5]  Parent:1914, Self:1915
+52:                  R:I:17 CallExpression right () [a5($(window).width())]  Parent:1928, Self:1929
+52:                   L:I:18 Identifier callee () [a5]  Parent:1939, Self:1940
+52:                    R:I:19 CallExpression 0 () [$(window).width()]  Parent:1952, Self:1953
+52:                     R:I:20 MemberExpression callee () [$(window).width]  Parent:1963, Self:1964
+52:                      R:I:21 CallExpression object () [$(window)]  Parent:1974, Self:1975
+52:                       L:I:22 Identifier callee () [$]  Parent:1985, Self:1986
+52:                        R:I:23 Identifier 0 () [window]  Parent:1998, Self:1999
+52:                      L:I:21 Identifier property () [width]  Parent:2010, Self:2011
+52:                 R:I:16 CallExpression right () [a5(window.innerWidth)]  Parent:2025, Self:2026
+52:                  L:I:17 Identifier callee () [a5]  Parent:2036, Self:2037
+52:                   R:I:18 MemberExpression 0 () [window.innerWidth]  Parent:2049, Self:2050
+52:                    L:I:19 Identifier object () [window]  Parent:2060, Self:2061
+52:                    R:I:19 Identifier property () [innerWidth]  Parent:2072, Self:2073
+52:                R:I:15 MemberExpression right () [blockC[2]]  Parent:2086, Self:2087
+52:                 L:I:16 Identifier object () [blockC]  Parent:2097, Self:2098
+52:                 R:I:16 Literal property () [2]  Parent:2109, Self:2110
+52:               R:I:14 MemberExpression right () [blockC[1].X]  Parent:2124, Self:2125
+52:                L:I:15 MemberExpression object () [blockC[1]]  Parent:2135, Self:2136
+52:                 L:I:16 Identifier object () [blockC]  Parent:2146, Self:2147
+52:                 R:I:16 Literal property () [1]  Parent:2158, Self:2159
+52:                R:I:15 Identifier property () [X]  Parent:2172, Self:2173
+52:              R:I:13 MemberExpression right () [blockC[a1(2)]]  Parent:2186, Self:2187
+52:               L:I:14 Identifier object () [blockC]  Parent:2197, Self:2198
+52:               R:I:14 CallExpression property () [a1(2)]  Parent:2209, Self:2210
+52:                L:I:15 Identifier callee () [a1]  Parent:2220, Self:2221
+52:                 L:I:16 Literal 0 () [2]  Parent:2233, Self:2234
+--------------- END --------------- 
+53:          IfStatement
+--------------- START LOGICAL --------------- 
+ path:p.0.expression.arguments.0.body.body.12.test
+53:           I:10 LogicalExpression test (&&) [(a1(i)>j) && (i>4) && a5(5)>20]  Parent:2259, Self:2260
+53:            L:I:11 LogicalExpression left (&&) [(a1(i)>j) && (i>4)]  Parent:2270, Self:2271
+53:             L:I:12 BinaryExpression left (>) [a1(i)>j]  Parent:2281, Self:2282
+53:              L:I:13 CallExpression left () [a1(i)]  Parent:2292, Self:2293
+53:               L:I:14 Identifier callee () [a1]  Parent:2303, Self:2304
+53:                L:I:15 Identifier 0 () [i]  Parent:2316, Self:2317
+53:              R:I:13 Identifier right () [j]  Parent:2329, Self:2330
+53:             R:I:12 BinaryExpression right (>) [i>4]  Parent:2342, Self:2343
+53:              L:I:13 Identifier left () [i]  Parent:2353, Self:2354
+53:              R:I:13 Literal right () [4]  Parent:2366, Self:2367
+53:            R:I:11 BinaryExpression right (>) [a5(5)>20]  Parent:2380, Self:2381
+53:             L:I:12 CallExpression left () [a5(5)]  Parent:2391, Self:2392
+53:              L:I:13 Identifier callee () [a5]  Parent:2402, Self:2403
+53:               R:I:14 Literal 0 () [5]  Parent:2415, Self:2416
+53:             R:I:12 Literal right () [20]  Parent:2429, Self:2430
+--------------- END --------------- 
+53:           BlockStatement
+53:             ExpressionStatement
+53:              I:13 CallExpression expression () [console.log(5>6)]  Parent:2465, Self:2466
+53:               I:14 MemberExpression callee () [console.log]  Parent:2476, Self:2477
+53:                I:15 Identifier object () [console]  Parent:2487, Self:2488
+53:                I:15 Identifier property () [log]  Parent:2499, Self:2500
+--------------- START BINARY --------------- 
+ path:p.0.expression.arguments.0.body.body.12.consequent.body.0.expression.arguments.0
+53:                I:15 BinaryExpression 0 (>) [5>6]  Parent:2513, Self:2514
+53:                 L:I:16 Literal left () [5]  Parent:2524, Self:2525
+53:                 R:I:16 Literal right () [6]  Parent:2538, Self:2539
+--------------- END --------------- 
+55:          ForStatement
+55:           VariableDeclaration
+--------------- START VAR --------------- 
+ path:p.0.expression.arguments.0.body.body.13.init.declarations.0
+55:             I:12 VariableDeclarator 0 (=) [k=0]  Parent:2575, Self:2576
+55:              L:I:13 Identifier id () [k]  Parent:2586, Self:2587
+55:              R:I:13 Literal init () [0]  Parent:2598, Self:2599
+--------------- END --------------- 
+--------------- START BINARY --------------- 
+ path:p.0.expression.arguments.0.body.body.13.test
+55:           I:10 BinaryExpression test (<) [k<5]  Parent:2612, Self:2613
+55:            L:I:11 Identifier left () [k]  Parent:2623, Self:2624
+55:            R:I:11 Literal right () [5]  Parent:2636, Self:2637
+--------------- END --------------- 
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.13.update
+55:           I:10 AssignmentExpression update (=) [k=k+1]  Parent:2649, Self:2650
+55:            L:I:11 Identifier left () [k]  Parent:2661, Self:2662
+55:            R:I:11 BinaryExpression right (+) [k+1]  Parent:2673, Self:2674
+55:             L:I:12 Identifier left () [k]  Parent:2684, Self:2685
+55:             R:I:12 Literal right () [1]  Parent:2697, Self:2698
+--------------- END --------------- 
+56:           BlockStatement
+57:             ExpressionStatement
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.13.body.body.0.expression
+57:              I:13 AssignmentExpression expression (=) [i=k+5]  Parent:2733, Self:2734
+57:               L:I:14 Identifier left () [i]  Parent:2745, Self:2746
+57:               R:I:14 BinaryExpression right (+) [k+5]  Parent:2757, Self:2758
+57:                L:I:15 Identifier left () [k]  Parent:2768, Self:2769
+57:                R:I:15 Literal right () [5]  Parent:2781, Self:2782
+--------------- END --------------- 
+58:             ExpressionStatement
+58:              I:13 CallExpression expression () [console.log(k+' ==== '+a5(k)+i)]  Parent:2805, Self:2806
+58:               I:14 MemberExpression callee () [console.log]  Parent:2816, Self:2817
+58:                I:15 Identifier object () [console]  Parent:2827, Self:2828
+58:                I:15 Identifier property () [log]  Parent:2839, Self:2840
+--------------- START BINARY --------------- 
+ path:p.0.expression.arguments.0.body.body.13.body.body.1.expression.arguments.0
+58:                I:15 BinaryExpression 0 (+) [k+' ==== '+a5(k)+i]  Parent:2853, Self:2854
+58:                 L:I:16 BinaryExpression left (+) [k+' ==== '+a5(k)]  Parent:2864, Self:2865
+58:                  L:I:17 BinaryExpression left (+) [k+' ==== ']  Parent:2875, Self:2876
+58:                   L:I:18 Identifier left () [k]  Parent:2886, Self:2887
+58:                   R:I:18 Literal right () [' ==== ']  Parent:2899, Self:2900
+58:                  R:I:17 CallExpression right () [a5(k)]  Parent:2913, Self:2914
+58:                   L:I:18 Identifier callee () [a5]  Parent:2924, Self:2925
+58:                    L:I:19 Identifier 0 () [k]  Parent:2937, Self:2938
+58:                 R:I:16 Identifier right () [i]  Parent:2950, Self:2951
+--------------- END --------------- 
+61:          ForStatement
+61:           VariableDeclaration
+--------------- START VAR --------------- 
+ path:p.0.expression.arguments.0.body.body.14.init.declarations.0
+61:             I:12 VariableDeclarator 0 (=) [k=0]  Parent:2985, Self:2986
+61:              L:I:13 Identifier id () [k]  Parent:2996, Self:2997
+61:              R:I:13 Literal init () [0]  Parent:3008, Self:3009
+--------------- END --------------- 
+--------------- START BINARY --------------- 
+ path:p.0.expression.arguments.0.body.body.14.test
+61:           I:10 BinaryExpression test (<) [k<10]  Parent:3022, Self:3023
+61:            L:I:11 Identifier left () [k]  Parent:3033, Self:3034
+61:            R:I:11 Literal right () [10]  Parent:3046, Self:3047
+--------------- END --------------- 
+--------------- START UPDATE --------------- 
+ path:p.0.expression.arguments.0.body.body.14.update
+61:           I:10 UpdateExpression update (++) [k++]  Parent:3059, Self:3060
+61:            L:I:11 Identifier argument () [k]  Parent:3072, Self:3073
+--------------- END --------------- 
+62:           BlockStatement
+63:             ExpressionStatement
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.14.body.body.0.expression
+63:              I:13 AssignmentExpression expression (=) [i=k+5]  Parent:3107, Self:3108
+63:               L:I:14 Identifier left () [i]  Parent:3119, Self:3120
+63:               R:I:14 BinaryExpression right (+) [k+5]  Parent:3131, Self:3132
+63:                L:I:15 Identifier left () [k]  Parent:3142, Self:3143
+63:                R:I:15 Literal right () [5]  Parent:3155, Self:3156
+--------------- END --------------- 
+64:             ExpressionStatement
+64:              I:13 CallExpression expression () [console.log(k+' ==== '+a5(k)-i)]  Parent:3179, Self:3180
+64:               I:14 MemberExpression callee () [console.log]  Parent:3190, Self:3191
+64:                I:15 Identifier object () [console]  Parent:3201, Self:3202
+64:                I:15 Identifier property () [log]  Parent:3213, Self:3214
+--------------- START BINARY --------------- 
+ path:p.0.expression.arguments.0.body.body.14.body.body.1.expression.arguments.0
+64:                I:15 BinaryExpression 0 (-) [k+' ==== '+a5(k)-i]  Parent:3227, Self:3228
+64:                 L:I:16 BinaryExpression left (+) [k+' ==== '+a5(k)]  Parent:3238, Self:3239
+64:                  L:I:17 BinaryExpression left (+) [k+' ==== ']  Parent:3249, Self:3250
+64:                   L:I:18 Identifier left () [k]  Parent:3260, Self:3261
+64:                   R:I:18 Literal right () [' ==== ']  Parent:3273, Self:3274
+64:                  R:I:17 CallExpression right () [a5(k)]  Parent:3287, Self:3288
+64:                   L:I:18 Identifier callee () [a5]  Parent:3298, Self:3299
+64:                    L:I:19 Identifier 0 () [k]  Parent:3311, Self:3312
+64:                 R:I:16 Identifier right () [i]  Parent:3324, Self:3325
+--------------- END --------------- 
+67:          VariableDeclaration
+--------------- START VAR --------------- 
+ path:p.0.expression.arguments.0.body.body.15.declarations.0
+67:            I:11 VariableDeclarator 0 (=) [info = {}]  Parent:3348, Self:3349
+67:             L:I:12 Identifier id () [info]  Parent:3359, Self:3360
+67:             R:I:12 ObjectExpression init () [{}]  Parent:3371, Self:3372
+--------------- END --------------- 
+68:          ExpressionStatement
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.16.expression
+68:           I:10 AssignmentExpression expression (=) [info.name ='hi']  Parent:3395, Self:3396
+68:            L:I:11 MemberExpression left () [info.name]  Parent:3407, Self:3408
+68:             L:I:12 Identifier object () [info]  Parent:3418, Self:3419
+68:             R:I:12 Identifier property () [name]  Parent:3430, Self:3431
+68:            R:I:11 Literal right () ['hi']  Parent:3443, Self:3444
+--------------- END --------------- 
+71:          VariableDeclaration
+--------------- START VAR --------------- 
+ path:p.0.expression.arguments.0.body.body.17.declarations.0
+71:            I:11 VariableDeclarator 0 (=) [blockA = {firstName:'John', lastName:'Doe', age:50, eyeColor:'blue'}]  Parent:3468, Self:3469
+71:             L:I:12 Identifier id () [blockA]  Parent:3479, Self:3480
+71:             R:I:12 ObjectExpression init () [{firstName:'John', lastName:'Doe', age:50, eyeColor:'blue'}]  Parent:3491, Self:3492
+71:                L:I:15 Identifier key () [firstName]  Parent:3514, Self:3515
+71:                R:I:15 Literal value () ['John']  Parent:3526, Self:3527
+71:                L:I:15 Identifier key () [lastName]  Parent:3551, Self:3552
+71:                R:I:15 Literal value () ['Doe']  Parent:3563, Self:3564
+71:                L:I:15 Identifier key () [age]  Parent:3588, Self:3589
+71:                R:I:15 Literal value () [50]  Parent:3600, Self:3601
+71:                L:I:15 Identifier key () [eyeColor]  Parent:3625, Self:3626
+71:                R:I:15 Literal value () ['blue']  Parent:3637, Self:3638
+--------------- END --------------- 
+72:          VariableDeclaration
+--------------- START VAR --------------- 
+ path:p.0.expression.arguments.0.body.body.18.declarations.0
+72:            I:11 VariableDeclarator 0 (=) [blockB = ['hi 2','hello 2']]  Parent:3664, Self:3665
+72:             L:I:12 Identifier id () [blockB]  Parent:3675, Self:3676
+72:             R:I:12 ArrayExpression init () [['hi 2','hello 2']]  Parent:3687, Self:3688
+72:               L:I:14 Literal 0 () ['hi 2']  Parent:3699, Self:3700
+72:               R:I:14 Literal 1 () ['hello 2']  Parent:3712, Self:3713
+--------------- END --------------- 
+75:          ExpressionStatement
+75:           I:10 CallExpression expression () [console.log(i)]  Parent:3737, Self:3738
+75:            I:11 MemberExpression callee () [console.log]  Parent:3748, Self:3749
+75:             I:12 Identifier object () [console]  Parent:3759, Self:3760
+75:             I:12 Identifier property () [log]  Parent:3771, Self:3772
+75:             I:12 Identifier 0 () [i]  Parent:3785, Self:3786
+76:          ExpressionStatement
+--------------- START UPDATE --------------- 
+ path:p.0.expression.arguments.0.body.body.20.expression
+76:           I:10 UpdateExpression expression (++) [i++]  Parent:3808, Self:3809
+76:            L:I:11 Identifier argument () [i]  Parent:3821, Self:3822
+--------------- END --------------- 
+77:          ExpressionStatement
+77:           I:10 CallExpression expression () [console.log(i)]  Parent:3844, Self:3845
+77:            I:11 MemberExpression callee () [console.log]  Parent:3855, Self:3856
+77:             I:12 Identifier object () [console]  Parent:3866, Self:3867
+77:             I:12 Identifier property () [log]  Parent:3878, Self:3879
+77:             I:12 Identifier 0 () [i]  Parent:3892, Self:3893
+78:          ExpressionStatement
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.22.expression
+78:           I:10 AssignmentExpression expression (+=) [i += 1]  Parent:3915, Self:3916
+78:            L:I:11 Identifier left () [i]  Parent:3927, Self:3928
+78:            R:I:11 Literal right () [1]  Parent:3939, Self:3940
+--------------- END --------------- 
+79:          ExpressionStatement
+79:           I:10 CallExpression expression () [console.log(i)]  Parent:3963, Self:3964
+79:            I:11 MemberExpression callee () [console.log]  Parent:3974, Self:3975
+79:             I:12 Identifier object () [console]  Parent:3985, Self:3986
+79:             I:12 Identifier property () [log]  Parent:3997, Self:3998
+79:             I:12 Identifier 0 () [i]  Parent:4011, Self:4012
+80:          ExpressionStatement
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.24.expression
+80:           I:10 AssignmentExpression expression (-=) [i -= 1]  Parent:4034, Self:4035
+80:            L:I:11 Identifier left () [i]  Parent:4046, Self:4047
+80:            R:I:11 Literal right () [1]  Parent:4058, Self:4059
+--------------- END --------------- 
+81:          ExpressionStatement
+81:           I:10 CallExpression expression () [console.log(i)]  Parent:4082, Self:4083
+81:            I:11 MemberExpression callee () [console.log]  Parent:4093, Self:4094
+81:             I:12 Identifier object () [console]  Parent:4104, Self:4105
+81:             I:12 Identifier property () [log]  Parent:4116, Self:4117
+81:             I:12 Identifier 0 () [i]  Parent:4130, Self:4131
+83:          VariableDeclaration
+--------------- START VAR --------------- 
+ path:p.0.expression.arguments.0.body.body.26.declarations.0
+83:            I:11 VariableDeclarator 0 (=) [block1 = {}]  Parent:4154, Self:4155
+83:             L:I:12 Identifier id () [block1]  Parent:4165, Self:4166
+83:             R:I:12 ObjectExpression init () [{}]  Parent:4177, Self:4178
+--------------- END --------------- 
+84:          ExpressionStatement
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.27.expression
+84:           I:10 AssignmentExpression expression (=) [block1.name = 'ONE']  Parent:4201, Self:4202
+84:            L:I:11 MemberExpression left () [block1.name]  Parent:4213, Self:4214
+84:             L:I:12 Identifier object () [block1]  Parent:4224, Self:4225
+84:             R:I:12 Identifier property () [name]  Parent:4236, Self:4237
+84:            R:I:11 Literal right () ['ONE']  Parent:4249, Self:4250
+--------------- END --------------- 
+85:          ExpressionStatement
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.28.expression
+85:           I:10 AssignmentExpression expression (=) [block1.lname= 'TWO']  Parent:4273, Self:4274
+85:            L:I:11 MemberExpression left () [block1.lname]  Parent:4285, Self:4286
+85:             L:I:12 Identifier object () [block1]  Parent:4296, Self:4297
+85:             R:I:12 Identifier property () [lname]  Parent:4308, Self:4309
+85:            R:I:11 Literal right () ['TWO']  Parent:4321, Self:4322
+--------------- END --------------- 
+87:          VariableDeclaration
+--------------- START VAR --------------- 
+ path:p.0.expression.arguments.0.body.body.29.declarations.0
+87:            I:11 VariableDeclarator 0 (=) [block2 = []]  Parent:4346, Self:4347
+87:             L:I:12 Identifier id () [block2]  Parent:4357, Self:4358
+87:             R:I:12 ArrayExpression init () [[]]  Parent:4369, Self:4370
+--------------- END --------------- 
+88:          ExpressionStatement
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.30.expression
+88:           I:10 AssignmentExpression expression (=) [block2[1] = 'THREE']  Parent:4393, Self:4394
+88:            L:I:11 MemberExpression left () [block2[1]]  Parent:4405, Self:4406
+88:             L:I:12 Identifier object () [block2]  Parent:4416, Self:4417
+88:             R:I:12 Literal property () [1]  Parent:4428, Self:4429
+88:            R:I:11 Literal right () ['THREE']  Parent:4442, Self:4443
+--------------- END --------------- 
+89:          ExpressionStatement
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.31.expression
+89:           I:10 AssignmentExpression expression (=) [block2[2] = 'FOUR']  Parent:4466, Self:4467
+89:            L:I:11 MemberExpression left () [block2[2]]  Parent:4478, Self:4479
+89:             L:I:12 Identifier object () [block2]  Parent:4489, Self:4490
+89:             R:I:12 Literal property () [2]  Parent:4501, Self:4502
+89:            R:I:11 Literal right () ['FOUR']  Parent:4515, Self:4516
+--------------- END --------------- 
+90:          ExpressionStatement
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.32.expression
+90:           I:10 AssignmentExpression expression (=) [block2[3] = 'FOUR-2']  Parent:4539, Self:4540
+90:            L:I:11 MemberExpression left () [block2[3]]  Parent:4551, Self:4552
+90:             L:I:12 Identifier object () [block2]  Parent:4562, Self:4563
+90:             R:I:12 Literal property () [3]  Parent:4574, Self:4575
+90:            R:I:11 Literal right () ['FOUR-2']  Parent:4588, Self:4589
+--------------- END --------------- 
+92:          VariableDeclaration
+--------------- START VAR --------------- 
+ path:p.0.expression.arguments.0.body.body.33.declarations.0
+92:            I:11 VariableDeclarator 0 (=) [block3 = []]  Parent:4613, Self:4614
+92:             L:I:12 Identifier id () [block3]  Parent:4624, Self:4625
+92:             R:I:12 ArrayExpression init () [[]]  Parent:4636, Self:4637
+--------------- END --------------- 
+93:          ExpressionStatement
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.34.expression
+93:           I:10 AssignmentExpression expression (=) [block3[1] = {}]  Parent:4660, Self:4661
+93:            L:I:11 MemberExpression left () [block3[1]]  Parent:4672, Self:4673
+93:             L:I:12 Identifier object () [block3]  Parent:4683, Self:4684
+93:             R:I:12 Literal property () [1]  Parent:4695, Self:4696
+93:            R:I:11 ObjectExpression right () [{}]  Parent:4709, Self:4710
+--------------- END --------------- 
+94:          ExpressionStatement
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.35.expression
+94:           I:10 AssignmentExpression expression (=) [block3[1].name = 'FIVE']  Parent:4732, Self:4733
+94:            L:I:11 MemberExpression left () [block3[1].name]  Parent:4744, Self:4745
+94:             L:I:12 MemberExpression object () [block3[1]]  Parent:4755, Self:4756
+94:              L:I:13 Identifier object () [block3]  Parent:4766, Self:4767
+94:              R:I:13 Literal property () [1]  Parent:4778, Self:4779
+94:             R:I:12 Identifier property () [name]  Parent:4792, Self:4793
+94:            R:I:11 Literal right () ['FIVE']  Parent:4805, Self:4806
+--------------- END --------------- 
+95:          ExpressionStatement
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.36.expression
+95:           I:10 AssignmentExpression expression (=) [block3[1].lname = 'SIX']  Parent:4829, Self:4830
+95:            L:I:11 MemberExpression left () [block3[1].lname]  Parent:4841, Self:4842
+95:             L:I:12 MemberExpression object () [block3[1]]  Parent:4852, Self:4853
+95:              L:I:13 Identifier object () [block3]  Parent:4863, Self:4864
+95:              R:I:13 Literal property () [1]  Parent:4875, Self:4876
+95:             R:I:12 Identifier property () [lname]  Parent:4889, Self:4890
+95:            R:I:11 Literal right () ['SIX']  Parent:4902, Self:4903
+--------------- END --------------- 
+97:          VariableDeclaration
+--------------- START VAR --------------- 
+ path:p.0.expression.arguments.0.body.body.37.declarations.0
+97:            I:11 VariableDeclarator 0 (=) [f= (i>j) && (i>4)]  Parent:4927, Self:4928
+97:             L:I:12 Identifier id () [f]  Parent:4938, Self:4939
+97:             R:I:12 LogicalExpression init (&&) [(i>j) && (i>4)]  Parent:4950, Self:4951
+97:              L:I:13 BinaryExpression left (>) [i>j]  Parent:4961, Self:4962
+97:               L:I:14 Identifier left () [i]  Parent:4972, Self:4973
+97:               R:I:14 Identifier right () [j]  Parent:4985, Self:4986
+97:              R:I:13 BinaryExpression right (>) [i>4]  Parent:4998, Self:4999
+97:               L:I:14 Identifier left () [i]  Parent:5009, Self:5010
+97:               R:I:14 Literal right () [4]  Parent:5022, Self:5023
+--------------- END --------------- 
+99:          ForStatement
+--------------- START BINARY --------------- 
+ path:p.0.expression.arguments.0.body.body.38.test
+99:           I:10 BinaryExpression test (<) [k<20]  Parent:5048, Self:5049
+99:            L:I:11 Identifier left () [k]  Parent:5059, Self:5060
+99:            R:I:11 Literal right () [20]  Parent:5072, Self:5073
+--------------- END --------------- 
+--------------- START UPDATE --------------- 
+ path:p.0.expression.arguments.0.body.body.38.update
+99:           I:10 UpdateExpression update (++) [k++]  Parent:5085, Self:5086
+99:            L:I:11 Identifier argument () [k]  Parent:5098, Self:5099
+--------------- END --------------- 
+100:           BlockStatement
+101:             ExpressionStatement
+101:              I:13 CallExpression expression () [console.log(k)]  Parent:5133, Self:5134
+101:               I:14 MemberExpression callee () [console.log]  Parent:5144, Self:5145
+101:                I:15 Identifier object () [console]  Parent:5155, Self:5156
+101:                I:15 Identifier property () [log]  Parent:5167, Self:5168
+101:                I:15 Identifier 0 () [k]  Parent:5181, Self:5182
+104:          ForStatement
+--------------- START BINARY --------------- 
+ path:p.0.expression.arguments.0.body.body.39.test
+104:           I:10 BinaryExpression test (<) [k<25]  Parent:5205, Self:5206
+104:            L:I:11 Identifier left () [k]  Parent:5216, Self:5217
+104:            R:I:11 Literal right () [25]  Parent:5229, Self:5230
+--------------- END --------------- 
+105:           BlockStatement
+106:             ExpressionStatement
+--------------- START UPDATE --------------- 
+ path:p.0.expression.arguments.0.body.body.39.body.body.0.expression
+106:              I:13 UpdateExpression expression (++) [k++]  Parent:5266, Self:5267
+106:               L:I:14 Identifier argument () [k]  Parent:5279, Self:5280
+--------------- END --------------- 
+107:             ExpressionStatement
+107:              I:13 CallExpression expression () [console.log(k)]  Parent:5302, Self:5303
+107:               I:14 MemberExpression callee () [console.log]  Parent:5313, Self:5314
+107:                I:15 Identifier object () [console]  Parent:5324, Self:5325
+107:                I:15 Identifier property () [log]  Parent:5336, Self:5337
+107:                I:15 Identifier 0 () [k]  Parent:5350, Self:5351
+110:          ExpressionStatement
+110:           I:10 CallExpression expression () [console.log(block1.name+' '+block1.lname)]  Parent:5373, Self:5374
+110:            I:11 MemberExpression callee () [console.log]  Parent:5384, Self:5385
+110:             I:12 Identifier object () [console]  Parent:5395, Self:5396
+110:             I:12 Identifier property () [log]  Parent:5407, Self:5408
+--------------- START BINARY --------------- 
+ path:p.0.expression.arguments.0.body.body.40.expression.arguments.0
+110:             I:12 BinaryExpression 0 (+) [block1.name+' '+block1.lname]  Parent:5421, Self:5422
+110:              L:I:13 BinaryExpression left (+) [block1.name+' ']  Parent:5432, Self:5433
+110:               L:I:14 MemberExpression left () [block1.name]  Parent:5443, Self:5444
+110:                L:I:15 Identifier object () [block1]  Parent:5454, Self:5455
+110:                R:I:15 Identifier property () [name]  Parent:5466, Self:5467
+110:               R:I:14 Literal right () [' ']  Parent:5480, Self:5481
+110:              R:I:13 MemberExpression right () [block1.lname]  Parent:5494, Self:5495
+110:               L:I:14 Identifier object () [block1]  Parent:5505, Self:5506
+110:               R:I:14 Identifier property () [lname]  Parent:5517, Self:5518
+--------------- END --------------- 
+111:          ExpressionStatement
+111:           I:10 CallExpression expression () [console.log(block2[1]+' '+block2[2]+' '+block2[3])]  Parent:5541, Self:5542
+111:            I:11 MemberExpression callee () [console.log]  Parent:5552, Self:5553
+111:             I:12 Identifier object () [console]  Parent:5563, Self:5564
+111:             I:12 Identifier property () [log]  Parent:5575, Self:5576
+--------------- START BINARY --------------- 
+ path:p.0.expression.arguments.0.body.body.41.expression.arguments.0
+111:             I:12 BinaryExpression 0 (+) [block2[1]+' '+block2[2]+' '+block2[3]]  Parent:5589, Self:5590
+111:              L:I:13 BinaryExpression left (+) [block2[1]+' '+block2[2]+' ']  Parent:5600, Self:5601
+111:               L:I:14 BinaryExpression left (+) [block2[1]+' '+block2[2]]  Parent:5611, Self:5612
+111:                L:I:15 BinaryExpression left (+) [block2[1]+' ']  Parent:5622, Self:5623
+111:                 L:I:16 MemberExpression left () [block2[1]]  Parent:5633, Self:5634
+111:                  L:I:17 Identifier object () [block2]  Parent:5644, Self:5645
+111:                  R:I:17 Literal property () [1]  Parent:5656, Self:5657
+111:                 R:I:16 Literal right () [' ']  Parent:5671, Self:5672
+111:                R:I:15 MemberExpression right () [block2[2]]  Parent:5685, Self:5686
+111:                 L:I:16 Identifier object () [block2]  Parent:5696, Self:5697
+111:                 R:I:16 Literal property () [2]  Parent:5708, Self:5709
+111:               R:I:14 Literal right () [' ']  Parent:5723, Self:5724
+111:              R:I:13 MemberExpression right () [block2[3]]  Parent:5737, Self:5738
+111:               L:I:14 Identifier object () [block2]  Parent:5748, Self:5749
+111:               R:I:14 Literal property () [3]  Parent:5760, Self:5761
+--------------- END --------------- 
+112:          ExpressionStatement
+112:           I:10 CallExpression expression () [console.log(block3[1].name+' '+block3[1].lname)]  Parent:5785, Self:5786
+112:            I:11 MemberExpression callee () [console.log]  Parent:5796, Self:5797
+112:             I:12 Identifier object () [console]  Parent:5807, Self:5808
+112:             I:12 Identifier property () [log]  Parent:5819, Self:5820
+--------------- START BINARY --------------- 
+ path:p.0.expression.arguments.0.body.body.42.expression.arguments.0
+112:             I:12 BinaryExpression 0 (+) [block3[1].name+' '+block3[1].lname]  Parent:5833, Self:5834
+112:              L:I:13 BinaryExpression left (+) [block3[1].name+' ']  Parent:5844, Self:5845
+112:               L:I:14 MemberExpression left () [block3[1].name]  Parent:5855, Self:5856
+112:                L:I:15 MemberExpression object () [block3[1]]  Parent:5866, Self:5867
+112:                 L:I:16 Identifier object () [block3]  Parent:5877, Self:5878
+112:                 R:I:16 Literal property () [1]  Parent:5889, Self:5890
+112:                R:I:15 Identifier property () [name]  Parent:5903, Self:5904
+112:               R:I:14 Literal right () [' ']  Parent:5917, Self:5918
+112:              R:I:13 MemberExpression right () [block3[1].lname]  Parent:5931, Self:5932
+112:               L:I:14 MemberExpression object () [block3[1]]  Parent:5942, Self:5943
+112:                L:I:15 Identifier object () [block3]  Parent:5953, Self:5954
+112:                R:I:15 Literal property () [1]  Parent:5965, Self:5966
+112:               R:I:14 Identifier property () [lname]  Parent:5979, Self:5980
+--------------- END --------------- 
+115:          VariableDeclaration
+--------------- START VAR --------------- 
+ path:p.0.expression.arguments.0.body.body.43.declarations.0
+115:            I:11 VariableDeclarator 0 (=) [keys = $('#calculator span')]  Parent:6004, Self:6005
+115:             L:I:12 Identifier id () [keys]  Parent:6015, Self:6016
+115:             R:I:12 CallExpression init () [$('#calculator span')]  Parent:6027, Self:6028
+115:              L:I:13 Identifier callee () [$]  Parent:6038, Self:6039
+115:               L:I:14 Literal 0 () ['#calculator span']  Parent:6051, Self:6052
+--------------- END --------------- 
+116:          VariableDeclaration
+--------------- START VAR --------------- 
+ path:p.0.expression.arguments.0.body.body.44.declarations.0
+116:            I:11 VariableDeclarator 0 (=) [operators = ['+', '-', 'x', '/']]  Parent:6077, Self:6078
+116:             L:I:12 Identifier id () [operators]  Parent:6088, Self:6089
+116:             R:I:12 ArrayExpression init () [['+', '-', 'x', '/']]  Parent:6100, Self:6101
+116:               L:I:14 Literal 0 () ['+']  Parent:6112, Self:6113
+116:               R:I:14 Literal 1 () ['-']  Parent:6125, Self:6126
+116:               L:I:14 Literal 2 () ['x']  Parent:6138, Self:6139
+116:               R:I:14 Literal 3 () ['/']  Parent:6151, Self:6152
+--------------- END --------------- 
+117:          VariableDeclaration
+--------------- START VAR --------------- 
+ path:p.0.expression.arguments.0.body.body.45.declarations.0
+117:            I:11 VariableDeclarator 0 (=) [decimalAdded = false]  Parent:6177, Self:6178
+117:             L:I:12 Identifier id () [decimalAdded]  Parent:6188, Self:6189
+117:             R:I:12 Literal init () [false]  Parent:6200, Self:6201
+--------------- END --------------- 
+118:          VariableDeclaration
+--------------- START VAR --------------- 
+ path:p.0.expression.arguments.0.body.body.46.declarations.0
+118:            I:11 VariableDeclarator 0 (=) [InputStr = ""]  Parent:6226, Self:6227
+118:             L:I:12 Identifier id () [InputStr]  Parent:6237, Self:6238
+118:             R:I:12 Literal init () [""]  Parent:6249, Self:6250
+--------------- END --------------- 
+121:          ExpressionStatement
+121:           I:10 CallExpression expression () [$("#calculator span").click( function(e) {
+		// Get the input and button values
+		var input = $('.sc]  Parent:6274, Self:6275
+121:            I:11 MemberExpression callee () [$("#calculator span").click]  Parent:6285, Self:6286
+121:             I:12 CallExpression object () [$("#calculator span")]  Parent:6296, Self:6297
+121:              I:13 Identifier callee () [$]  Parent:6307, Self:6308
+121:               I:14 Literal 0 () ["#calculator span"]  Parent:6320, Self:6321
+121:             I:12 Identifier property () [click]  Parent:6333, Self:6334
+121:             I:12 FunctionExpression 0 () [function(e) {
+		// Get the input and button values
+		var input = $('.screen');
+		var inputVal = inpu]  Parent:6347, Self:6348
+121:               I:14 Identifier 0 () [e]  Parent:6360, Self:6361
+121:              BlockStatement
+123:                VariableDeclaration
+--------------- START VAR --------------- 
+ path:p.0.expression.arguments.0.body.body.47.expression.arguments.0.body.body.0.declarations.0
+123:                  I:17 VariableDeclarator 0 (=) [input = $('.screen')]  Parent:6396, Self:6397
+123:                   L:I:18 Identifier id () [input]  Parent:6407, Self:6408
+123:                   R:I:18 CallExpression init () [$('.screen')]  Parent:6419, Self:6420
+123:                    L:I:19 Identifier callee () [$]  Parent:6430, Self:6431
+123:                     L:I:20 Literal 0 () ['.screen']  Parent:6443, Self:6444
+--------------- END --------------- 
+124:                VariableDeclaration
+--------------- START VAR --------------- 
+ path:p.0.expression.arguments.0.body.body.47.expression.arguments.0.body.body.1.declarations.0
+124:                  I:17 VariableDeclarator 0 (=) [inputVal = input.html()]  Parent:6469, Self:6470
+124:                   L:I:18 Identifier id () [inputVal]  Parent:6480, Self:6481
+124:                   R:I:18 CallExpression init () [input.html()]  Parent:6492, Self:6493
+124:                    L:I:19 MemberExpression callee () [input.html]  Parent:6503, Self:6504
+124:                     L:I:20 Identifier object () [input]  Parent:6514, Self:6515
+124:                     R:I:20 Identifier property () [html]  Parent:6526, Self:6527
+--------------- END --------------- 
+125:                VariableDeclaration
+--------------- START VAR --------------- 
+ path:p.0.expression.arguments.0.body.body.47.expression.arguments.0.body.body.2.declarations.0
+125:                  I:17 VariableDeclarator 0 (=) [btnVal = $(this).html()]  Parent:6553, Self:6554
+125:                   L:I:18 Identifier id () [btnVal]  Parent:6564, Self:6565
+125:                   R:I:18 CallExpression init () [$(this).html()]  Parent:6576, Self:6577
+125:                    L:I:19 MemberExpression callee () [$(this).html]  Parent:6587, Self:6588
+125:                     L:I:20 CallExpression object () [$(this)]  Parent:6598, Self:6599
+125:                      L:I:21 Identifier callee () [$]  Parent:6609, Self:6610
+125:                     R:I:20 Identifier property () [html]  Parent:6633, Self:6634
+--------------- END --------------- 
+129:                IfStatement
+--------------- START BINARY --------------- 
+ path:p.0.expression.arguments.0.body.body.47.expression.arguments.0.body.body.3.test
+129:                 I:16 BinaryExpression test (==) [btnVal == 'C']  Parent:6659, Self:6660
+129:                  L:I:17 Identifier left () [btnVal]  Parent:6670, Self:6671
+129:                  R:I:17 Literal right () ['C']  Parent:6683, Self:6684
+--------------- END --------------- 
+129:                 BlockStatement
+130:                   ExpressionStatement
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.47.expression.arguments.0.body.body.3.consequent.body.0.expression
+130:                    I:19 AssignmentExpression expression (=) [InputStr=""]  Parent:6719, Self:6720
+130:                     L:I:20 Identifier left () [InputStr]  Parent:6731, Self:6732
+130:                     R:I:20 Literal right () [""]  Parent:6743, Self:6744
+--------------- END --------------- 
+131:                   ExpressionStatement
+131:                    I:19 CallExpression expression () [input.html(InputStr)]  Parent:6767, Self:6768
+131:                     I:20 MemberExpression callee () [input.html]  Parent:6778, Self:6779
+131:                      I:21 Identifier object () [input]  Parent:6789, Self:6790
+131:                      I:21 Identifier property () [html]  Parent:6801, Self:6802
+131:                      I:21 Identifier 0 () [InputStr]  Parent:6815, Self:6816
+132:                   ExpressionStatement
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.47.expression.arguments.0.body.body.3.consequent.body.2.expression
+132:                    I:19 AssignmentExpression expression (=) [decimalAdded = false]  Parent:6838, Self:6839
+132:                     L:I:20 Identifier left () [decimalAdded]  Parent:6850, Self:6851
+132:                     R:I:20 Literal right () [false]  Parent:6862, Self:6863
+--------------- END --------------- 
+136:                 IfStatement
+--------------- START BINARY --------------- 
+ path:p.0.expression.arguments.0.body.body.47.expression.arguments.0.body.body.3.alternate.test
+136:                  I:17 BinaryExpression test (==) [btnVal == '=']  Parent:6886, Self:6887
+136:                   L:I:18 Identifier left () [btnVal]  Parent:6897, Self:6898
+136:                   R:I:18 Literal right () ['=']  Parent:6910, Self:6911
+--------------- END --------------- 
+136:                  BlockStatement
+137:                    VariableDeclaration
+--------------- START VAR --------------- 
+ path:p.0.expression.arguments.0.body.body.47.expression.arguments.0.body.body.3.alternate.consequent.body.0.declarations.0
+137:                      I:21 VariableDeclarator 0 (=) [equation = inputVal]  Parent:6947, Self:6948
+137:                       L:I:22 Identifier id () [equation]  Parent:6958, Self:6959
+137:                       R:I:22 Identifier init () [inputVal]  Parent:6970, Self:6971
+--------------- END --------------- 
+138:                    VariableDeclaration
+--------------- START VAR --------------- 
+ path:p.0.expression.arguments.0.body.body.47.expression.arguments.0.body.body.3.alternate.consequent.body.1.declarations.0
+138:                      I:21 VariableDeclarator 0 (=) [lastChar = equation[equation.length - 1]]  Parent:6995, Self:6996
+138:                       L:I:22 Identifier id () [lastChar]  Parent:7006, Self:7007
+138:                       R:I:22 MemberExpression init () [equation[equation.length - 1]]  Parent:7018, Self:7019
+138:                        L:I:23 Identifier object () [equation]  Parent:7029, Self:7030
+138:                        R:I:23 BinaryExpression property (-) [equation.length - 1]  Parent:7041, Self:7042
+138:                         L:I:24 MemberExpression left () [equation.length]  Parent:7052, Self:7053
+138:                          L:I:25 Identifier object () [equation]  Parent:7063, Self:7064
+138:                          R:I:25 Identifier property () [length]  Parent:7075, Self:7076
+138:                         R:I:24 Literal right () [1]  Parent:7089, Self:7090
+--------------- END --------------- 
+141:                    ExpressionStatement
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.47.expression.arguments.0.body.body.3.alternate.consequent.body.2.expression
+141:                     I:20 AssignmentExpression expression (=) [equation = equation.replace(/x/g, '*')]  Parent:7115, Self:7116
+141:                      L:I:21 Identifier left () [equation]  Parent:7127, Self:7128
+141:                      R:I:21 CallExpression right () [equation.replace(/x/g, '*')]  Parent:7139, Self:7140
+141:                       L:I:22 MemberExpression callee () [equation.replace]  Parent:7150, Self:7151
+141:                        L:I:23 Identifier object () [equation]  Parent:7161, Self:7162
+141:                        R:I:23 Identifier property () [replace]  Parent:7173, Self:7174
+141:                        L:I:23 Literal 0 () [/x/g]  Parent:7187, Self:7188
+141:                        R:I:23 Literal 1 () ['*']  Parent:7203, Self:7204
+--------------- END --------------- 
+144:                    IfStatement
+--------------- START LOGICAL --------------- 
+ path:p.0.expression.arguments.0.body.body.47.expression.arguments.0.body.body.3.alternate.consequent.body.3.test
+144:                     I:20 LogicalExpression test (||) [operators.indexOf(lastChar) > -1 || lastChar == '.']  Parent:7227, Self:7228
+144:                      L:I:21 BinaryExpression left (>) [operators.indexOf(lastChar) > -1]  Parent:7238, Self:7239
+144:                       L:I:22 CallExpression left () [operators.indexOf(lastChar)]  Parent:7249, Self:7250
+144:                        L:I:23 MemberExpression callee () [operators.indexOf]  Parent:7260, Self:7261
+144:                         L:I:24 Identifier object () [operators]  Parent:7271, Self:7272
+144:                         R:I:24 Identifier property () [indexOf]  Parent:7283, Self:7284
+144:                         L:I:24 Identifier 0 () [lastChar]  Parent:7297, Self:7298
+144:                       R:I:22 UnaryExpression right (-) [-1]  Parent:7310, Self:7311
+144:                        R:I:23 Literal argument () [1]  Parent:7323, Self:7324
+144:                      R:I:21 BinaryExpression right (==) [lastChar == '.']  Parent:7337, Self:7338
+144:                       L:I:22 Identifier left () [lastChar]  Parent:7348, Self:7349
+144:                       R:I:22 Literal right () ['.']  Parent:7361, Self:7362
+--------------- END --------------- 
+145:                     BlockStatement
+145:                       ExpressionStatement
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.47.expression.arguments.0.body.body.3.alternate.consequent.body.3.consequent.body.0.expression
+145:                        I:23 AssignmentExpression expression (=) [equation = equation.replace(/.$/, '')]  Parent:7397, Self:7398
+145:                         L:I:24 Identifier left () [equation]  Parent:7409, Self:7410
+145:                         R:I:24 CallExpression right () [equation.replace(/.$/, '')]  Parent:7421, Self:7422
+145:                          L:I:25 MemberExpression callee () [equation.replace]  Parent:7432, Self:7433
+145:                           L:I:26 Identifier object () [equation]  Parent:7443, Self:7444
+145:                           R:I:26 Identifier property () [replace]  Parent:7455, Self:7456
+145:                           L:I:26 Literal 0 () [/.$/]  Parent:7469, Self:7470
+145:                           R:I:26 Literal 1 () ['']  Parent:7485, Self:7486
+--------------- END --------------- 
+147:                    IfStatement
+147:                     I:20 Identifier test () [equation]  Parent:7510, Self:7511
+148:                     BlockStatement
+148:                       ExpressionStatement
+148:                        I:23 CallExpression expression () [input.html(eval(equation))]  Parent:7545, Self:7546
+148:                         I:24 MemberExpression callee () [input.html]  Parent:7556, Self:7557
+148:                          I:25 Identifier object () [input]  Parent:7567, Self:7568
+148:                          I:25 Identifier property () [html]  Parent:7579, Self:7580
+148:                          I:25 CallExpression 0 () [eval(equation)]  Parent:7593, Self:7594
+148:                           I:26 Identifier callee () [eval]  Parent:7604, Self:7605
+148:                            I:27 Identifier 0 () [equation]  Parent:7617, Self:7618
+150:                    ExpressionStatement
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.47.expression.arguments.0.body.body.3.alternate.consequent.body.5.expression
+150:                     I:20 AssignmentExpression expression (=) [decimalAdded = false]  Parent:7641, Self:7642
+150:                      L:I:21 Identifier left () [decimalAdded]  Parent:7653, Self:7654
+150:                      R:I:21 Literal right () [false]  Parent:7665, Self:7666
+--------------- END --------------- 
+153:                  IfStatement
+--------------- START BINARY --------------- 
+ path:p.0.expression.arguments.0.body.body.47.expression.arguments.0.body.body.3.alternate.alternate.test
+153:                   I:18 BinaryExpression test (>) [operators.indexOf(btnVal) > -1]  Parent:7689, Self:7690
+153:                    L:I:19 CallExpression left () [operators.indexOf(btnVal)]  Parent:7700, Self:7701
+153:                     L:I:20 MemberExpression callee () [operators.indexOf]  Parent:7711, Self:7712
+153:                      L:I:21 Identifier object () [operators]  Parent:7722, Self:7723
+153:                      R:I:21 Identifier property () [indexOf]  Parent:7734, Self:7735
+153:                      L:I:21 Identifier 0 () [btnVal]  Parent:7748, Self:7749
+153:                    R:I:19 UnaryExpression right (-) [-1]  Parent:7761, Self:7762
+153:                     R:I:20 Literal argument () [1]  Parent:7774, Self:7775
+--------------- END --------------- 
+153:                   BlockStatement
+156:                     VariableDeclaration
+--------------- START VAR --------------- 
+ path:p.0.expression.arguments.0.body.body.47.expression.arguments.0.body.body.3.alternate.alternate.consequent.body.0.declarations.0
+156:                       I:22 VariableDeclarator 0 (=) [lastChar = inputVal[inputVal.length - 1]]  Parent:7811, Self:7812
+156:                        L:I:23 Identifier id () [lastChar]  Parent:7822, Self:7823
+156:                        R:I:23 MemberExpression init () [inputVal[inputVal.length - 1]]  Parent:7834, Self:7835
+156:                         L:I:24 Identifier object () [inputVal]  Parent:7845, Self:7846
+156:                         R:I:24 BinaryExpression property (-) [inputVal.length - 1]  Parent:7857, Self:7858
+156:                          L:I:25 MemberExpression left () [inputVal.length]  Parent:7868, Self:7869
+156:                           L:I:26 Identifier object () [inputVal]  Parent:7879, Self:7880
+156:                           R:I:26 Identifier property () [length]  Parent:7891, Self:7892
+156:                          R:I:25 Literal right () [1]  Parent:7905, Self:7906
+--------------- END --------------- 
+159:                     IfStatement
+--------------- START LOGICAL --------------- 
+ path:p.0.expression.arguments.0.body.body.47.expression.arguments.0.body.body.3.alternate.alternate.consequent.body.1.test
+159:                      I:21 LogicalExpression test (&&) [inputVal != '' && operators.indexOf(lastChar) == -1]  Parent:7931, Self:7932
+159:                       L:I:22 BinaryExpression left (!=) [inputVal != '']  Parent:7942, Self:7943
+159:                        L:I:23 Identifier left () [inputVal]  Parent:7953, Self:7954
+159:                        R:I:23 Literal right () ['']  Parent:7966, Self:7967
+159:                       R:I:22 BinaryExpression right (==) [operators.indexOf(lastChar) == -1]  Parent:7980, Self:7981
+159:                        L:I:23 CallExpression left () [operators.indexOf(lastChar)]  Parent:7991, Self:7992
+159:                         L:I:24 MemberExpression callee () [operators.indexOf]  Parent:8002, Self:8003
+159:                          L:I:25 Identifier object () [operators]  Parent:8013, Self:8014
+159:                          R:I:25 Identifier property () [indexOf]  Parent:8025, Self:8026
+159:                          L:I:25 Identifier 0 () [lastChar]  Parent:8039, Self:8040
+159:                        R:I:23 UnaryExpression right (-) [-1]  Parent:8052, Self:8053
+159:                         R:I:24 Literal argument () [1]  Parent:8065, Self:8066
+--------------- END --------------- 
+160:                      BlockStatement
+161:                        ExpressionStatement
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.47.expression.arguments.0.body.body.3.alternate.alternate.consequent.body.1.consequent.body.0.expression
+161:                         I:24 AssignmentExpression expression (+=) [InputStr += btnVal]  Parent:8101, Self:8102
+161:                          L:I:25 Identifier left () [InputStr]  Parent:8113, Self:8114
+161:                          R:I:25 Identifier right () [btnVal]  Parent:8125, Self:8126
+--------------- END --------------- 
+162:                        ExpressionStatement
+162:                         I:24 CallExpression expression () [input.html(InputStr)]  Parent:8148, Self:8149
+162:                          I:25 MemberExpression callee () [input.html]  Parent:8159, Self:8160
+162:                           I:26 Identifier object () [input]  Parent:8170, Self:8171
+162:                           I:26 Identifier property () [html]  Parent:8182, Self:8183
+162:                           I:26 Identifier 0 () [InputStr]  Parent:8196, Self:8197
+166:                      IfStatement
+--------------- START LOGICAL --------------- 
+ path:p.0.expression.arguments.0.body.body.47.expression.arguments.0.body.body.3.alternate.alternate.consequent.body.1.alternate.test
+166:                       I:22 LogicalExpression test (&&) [inputVal == '' && btnVal == '-']  Parent:8219, Self:8220
+166:                        L:I:23 BinaryExpression left (==) [inputVal == '']  Parent:8230, Self:8231
+166:                         L:I:24 Identifier left () [inputVal]  Parent:8241, Self:8242
+166:                         R:I:24 Literal right () ['']  Parent:8254, Self:8255
+166:                        R:I:23 BinaryExpression right (==) [btnVal == '-']  Parent:8268, Self:8269
+166:                         L:I:24 Identifier left () [btnVal]  Parent:8279, Self:8280
+166:                         R:I:24 Literal right () ['-']  Parent:8292, Self:8293
+--------------- END --------------- 
+167:                       BlockStatement
+168:                         ExpressionStatement
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.47.expression.arguments.0.body.body.3.alternate.alternate.consequent.body.1.alternate.consequent.body.0.expression
+168:                          I:25 AssignmentExpression expression (+=) [InputStr += btnVal]  Parent:8328, Self:8329
+168:                           L:I:26 Identifier left () [InputStr]  Parent:8340, Self:8341
+168:                           R:I:26 Identifier right () [btnVal]  Parent:8352, Self:8353
+--------------- END --------------- 
+169:                         ExpressionStatement
+169:                          I:25 CallExpression expression () [input.html(InputStr)]  Parent:8375, Self:8376
+169:                           I:26 MemberExpression callee () [input.html]  Parent:8386, Self:8387
+169:                            I:27 Identifier object () [input]  Parent:8397, Self:8398
+169:                            I:27 Identifier property () [html]  Parent:8409, Self:8410
+169:                            I:27 Identifier 0 () [InputStr]  Parent:8423, Self:8424
+173:                     IfStatement
+--------------- START LOGICAL --------------- 
+ path:p.0.expression.arguments.0.body.body.47.expression.arguments.0.body.body.3.alternate.alternate.consequent.body.2.test
+173:                      I:21 LogicalExpression test (&&) [operators.indexOf(lastChar) > -1 && inputVal.length > 1]  Parent:8447, Self:8448
+173:                       L:I:22 BinaryExpression left (>) [operators.indexOf(lastChar) > -1]  Parent:8458, Self:8459
+173:                        L:I:23 CallExpression left () [operators.indexOf(lastChar)]  Parent:8469, Self:8470
+173:                         L:I:24 MemberExpression callee () [operators.indexOf]  Parent:8480, Self:8481
+173:                          L:I:25 Identifier object () [operators]  Parent:8491, Self:8492
+173:                          R:I:25 Identifier property () [indexOf]  Parent:8503, Self:8504
+173:                          L:I:25 Identifier 0 () [lastChar]  Parent:8517, Self:8518
+173:                        R:I:23 UnaryExpression right (-) [-1]  Parent:8530, Self:8531
+173:                         R:I:24 Literal argument () [1]  Parent:8543, Self:8544
+173:                       R:I:22 BinaryExpression right (>) [inputVal.length > 1]  Parent:8557, Self:8558
+173:                        L:I:23 MemberExpression left () [inputVal.length]  Parent:8568, Self:8569
+173:                         L:I:24 Identifier object () [inputVal]  Parent:8579, Self:8580
+173:                         R:I:24 Identifier property () [length]  Parent:8591, Self:8592
+173:                        R:I:23 Literal right () [1]  Parent:8605, Self:8606
+--------------- END --------------- 
+173:                      BlockStatement
+175:                        ExpressionStatement
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.47.expression.arguments.0.body.body.3.alternate.alternate.consequent.body.2.consequent.body.0.expression
+175:                         I:24 AssignmentExpression expression (=) [InputStr = inputVal.replace(/.$/, btnVal)]  Parent:8641, Self:8642
+175:                          L:I:25 Identifier left () [InputStr]  Parent:8653, Self:8654
+175:                          R:I:25 CallExpression right () [inputVal.replace(/.$/, btnVal)]  Parent:8665, Self:8666
+175:                           L:I:26 MemberExpression callee () [inputVal.replace]  Parent:8676, Self:8677
+175:                            L:I:27 Identifier object () [inputVal]  Parent:8687, Self:8688
+175:                            R:I:27 Identifier property () [replace]  Parent:8699, Self:8700
+175:                            L:I:27 Literal 0 () [/.$/]  Parent:8713, Self:8714
+175:                            R:I:27 Identifier 1 () [btnVal]  Parent:8729, Self:8730
+--------------- END --------------- 
+176:                        ExpressionStatement
+176:                         I:24 CallExpression expression () [input.html(InputStr)]  Parent:8752, Self:8753
+176:                          I:25 MemberExpression callee () [input.html]  Parent:8763, Self:8764
+176:                           I:26 Identifier object () [input]  Parent:8774, Self:8775
+176:                           I:26 Identifier property () [html]  Parent:8786, Self:8787
+176:                           I:26 Identifier 0 () [InputStr]  Parent:8800, Self:8801
+179:                     ExpressionStatement
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.47.expression.arguments.0.body.body.3.alternate.alternate.consequent.body.3.expression
+179:                      I:21 AssignmentExpression expression (=) [decimalAdded =false]  Parent:8824, Self:8825
+179:                       L:I:22 Identifier left () [decimalAdded]  Parent:8836, Self:8837
+179:                       R:I:22 Literal right () [false]  Parent:8848, Self:8849
+--------------- END --------------- 
+183:                   IfStatement
+--------------- START BINARY --------------- 
+ path:p.0.expression.arguments.0.body.body.47.expression.arguments.0.body.body.3.alternate.alternate.alternate.test
+183:                    I:19 BinaryExpression test (==) [btnVal == '.']  Parent:8872, Self:8873
+183:                     L:I:20 Identifier left () [btnVal]  Parent:8883, Self:8884
+183:                     R:I:20 Literal right () ['.']  Parent:8896, Self:8897
+--------------- END --------------- 
+183:                    BlockStatement
+184:                      IfStatement
+184:                       I:22 UnaryExpression test (!) [!decimalAdded]  Parent:8932, Self:8933
+184:                        I:23 Identifier argument () [decimalAdded]  Parent:8945, Self:8946
+184:                       BlockStatement
+185:                         ExpressionStatement
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.47.expression.arguments.0.body.body.3.alternate.alternate.alternate.consequent.body.0.consequent.body.0.expression
+185:                          I:25 AssignmentExpression expression (+=) [InputStr += btnVal]  Parent:8980, Self:8981
+185:                           L:I:26 Identifier left () [InputStr]  Parent:8992, Self:8993
+185:                           R:I:26 Identifier right () [btnVal]  Parent:9004, Self:9005
+--------------- END --------------- 
+186:                         ExpressionStatement
+186:                          I:25 CallExpression expression () [input.html(InputStr)]  Parent:9027, Self:9028
+186:                           I:26 MemberExpression callee () [input.html]  Parent:9038, Self:9039
+186:                            I:27 Identifier object () [input]  Parent:9049, Self:9050
+186:                            I:27 Identifier property () [html]  Parent:9061, Self:9062
+186:                            I:27 Identifier 0 () [InputStr]  Parent:9075, Self:9076
+187:                         ExpressionStatement
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.47.expression.arguments.0.body.body.3.alternate.alternate.alternate.consequent.body.0.consequent.body.2.expression
+187:                          I:25 AssignmentExpression expression (=) [decimalAdded = true]  Parent:9098, Self:9099
+187:                           L:I:26 Identifier left () [decimalAdded]  Parent:9110, Self:9111
+187:                           R:I:26 Literal right () [true]  Parent:9122, Self:9123
+--------------- END --------------- 
+192:                    BlockStatement
+193:                      ExpressionStatement
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.47.expression.arguments.0.body.body.3.alternate.alternate.alternate.alternate.body.0.expression
+193:                       I:22 AssignmentExpression expression (+=) [InputStr += btnVal]  Parent:9159, Self:9160
+193:                        L:I:23 Identifier left () [InputStr]  Parent:9171, Self:9172
+193:                        R:I:23 Identifier right () [btnVal]  Parent:9183, Self:9184
+--------------- END --------------- 
+194:                      ExpressionStatement
+194:                       I:22 CallExpression expression () [input.html(InputStr)]  Parent:9206, Self:9207
+194:                        I:23 MemberExpression callee () [input.html]  Parent:9217, Self:9218
+194:                         I:24 Identifier object () [input]  Parent:9228, Self:9229
+194:                         I:24 Identifier property () [html]  Parent:9240, Self:9241
+194:                         I:24 Identifier 0 () [InputStr]  Parent:9254, Self:9255
+198:                ExpressionStatement
+198:                 I:16 CallExpression expression () [e.preventDefault()]  Parent:9277, Self:9278
+198:                  I:17 MemberExpression callee () [e.preventDefault]  Parent:9288, Self:9289
+198:                   I:18 Identifier object () [e]  Parent:9299, Self:9300
+198:                   I:18 Identifier property () [preventDefault]  Parent:9311, Self:9312

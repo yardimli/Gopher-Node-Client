@@ -1,0 +1,31 @@
+ <html>
+ 
+ <script>
+ 
+ window.onerror = function (errorMsg, url, lineNumber, column, errorObj) {
+	console.log("GOPHER EROOR:");
+    console.log('Error Msg: ' + errorMsg);
+    console.log('Script: ' + url );
+    console.log('Line: ' + lineNumber);
+    console.log('Column: ' + column);
+    console.log('StackTrace: ' +  errorObj);
+	console.log("----------");
+	//return true;
+}
+
+
+
+
+
+
+
+var x = {};
+for (var i=0; i<10; i++){
+  console.log(i);
+  if (i==5) break
+  x.push(i);
+}
+ </script>
+ 
+ <body>
+ TEST
