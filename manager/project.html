@@ -76,28 +76,66 @@
                     <div data-role="display files" class="col-md-12 target-dir" data-forid="new_project_files" data-only_folders="false" data-multi_select="true"></div>
                     <div id="file_ignored_list" class="col-md-12 target-dir" style="display: none;"></div>
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-12" style="text-align: right;">
                     <button id="btn_view_ignored" class="btn btn-default view-ignored-file" type="button">Files ignored <span class="badge">0</span></button>
                 </div>
-                <div class="col-md-12 set-project-link">
-                    <div class="col-md-2">
-                        <span class="text">Gopher link: http://</span>
+                <div id="original_project_link" class="col-md-12 set-project-link">
+                    <div class="col-md-1">
+                        <span class="text" style="font-weight: bold;">Original link:</span>
                     </div>
-                    <div class="col-md-2">
-                        <div class="col-md-11" style="width:92%;"><input type="text" class="form-control" placeholder="Host" style="background-color:#253849;height:43px;color:#EFEFEF;"></div>
-                        <div class="col-md-1" style="width:8%;text-align: center;"><span class="text">:</span></div>
+                    <div class="col-md-3">
+                        <div class="col-md-1" style="width:15%;">
+                            <span class="text" style="font-weight: bold;">http://</span>
+                        </div>
+                        <div class="col-md-12" style="width:79%;"><input type="text" class="form-control standard" placeholder="Host"></div>
+                        <div class="col-md-1" style="width:6%;text-align: center;"><span class="text">:</span></div>
                     </div>
                     <div class="col-md-1">
-                        <input type="text" class="form-control" placeholder="Port" style="background-color:#253849;height:43px;color:#EFEFEF;">
+                        <input type="text" class="form-control standard" placeholder="Port" value="80">
                     </div>
                     <div class="col-md-7">
                         <div class="col-md-1" style="width:2%;text-align: center;"><span class="text">/</span></div>
-                        <div class="col-md-11" style="width:98%;"><input type="text" class="form-control" placeholder="" style="background-color:#253849;height:43px;color:#EFEFEF;"></div>              
+                        <div class="col-md-11" style="width:98%;"><input id="original_link" type="text" class="form-control standard" placeholder=""></div>              
                     </div>
-                    
-                    
                 </div>
-                <div class="col-md-12" style="padding-top:10px;">
+                <div id="set_gopher_link" class="col-md-12 set-project-link">
+                    <div class="col-md-1">
+                        <span class="text" style="font-weight: bold;">Gopher link:</span>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="col-md-1" style="width:15%;">
+                            <span class="text">http://</span>
+                        </div>
+                        <div class="col-md-12" style="width:79%;"><input type="text" class="form-control standard" value="localhost" readonly></div>
+                        <div class="col-md-1" style="width:6%;text-align: center;"><span class="text">:</span></div>
+                    </div>
+                    <div class="col-md-1">
+                        <!--<input type="text" class="form-control" placeholder="Port" style="background-color:#253849;height:43px;color:#EFEFEF;">-->
+                        <div class="combo-edit-box gopher-port">
+                                <div class="holder edit-input">
+                                    <input id="gopher_port" class="form-control" value="" style=""/>
+                                </div>
+                                <div id="gopher_port_option" class="combo-edit-box-options">
+                                    <ul>
+                                        <li>1338</li>
+                                    </ul>
+                                </div>
+                                <div class="holder select-arrow" data-role="select arrow"><div class="icon">&nbsp;</div></div>
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="col-md-1" style="width:2%;text-align: center;"><span class="text">/</span></div>
+                        <div class="col-md-11" style="width:98%;"><input id="gopher_link" type="text" class="form-control standard" readonly></div>              
+                    </div>
+                </div>
+                <div class="col-md-12" style='padding-top: 15px;'>
+                    <div class="checkbox">
+                        <label>
+                          <input type="checkbox" id="is_gopher_html5"> It's an Html5 app, and I want to host the project with Gopher.
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-12" style="padding-top:15px;">
                     <button type="button" class="btn btn-primary disabled" style="width:250px;" id="btn_save_project">Save</button>
                 </div>
             </div>

@@ -212,7 +212,7 @@ div[data-role^="template"]{
     width:72px; 
     float: left;
     border: 1px solid #6F7982;
-}
+} 
 .combo-edit-box div.holder{
     float:left;
 }
@@ -267,6 +267,18 @@ div[data-role^="template"]{
     background-color: #485563;
 }
 
+.combo-edit-box.gopher-port{
+    width:94px;
+}
+.combo-edit-box.gopher-port div.holder.edit-input{
+    width:67px;
+}
+.combo-edit-box.gopher-port .combo-edit-box-options{
+    width: 94px;
+    top:41px;
+    background-color: #2B3E50;
+}
+
 
 .backward-arrow{
     width: 24px; height: 24px;
@@ -312,8 +324,14 @@ ul.ignored-file li{
     color: #0cecfc;
 }
 
+div[class^="col-md"].set-project-link{
+    padding-top:15px;
+}
+.set-project-link input.standard{
+    background-color:#253849;height:42px;color:#EFEFEF;
+}
 .set-project-link .text{
-    line-height:42px;
+    line-height:39px;
 }
 
 

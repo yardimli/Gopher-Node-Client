@@ -254,9 +254,7 @@ function mangerOnHttpRequest(request, response, ModifieidUrl) {
                             }else{
                                 response.end('running');
                                 console.log('port '+RecievedData['proxyHostPort']+' is already open.');
-                            }
-
-                            
+                            }                            
                             break;
 
                         case 'closeServer':
@@ -274,6 +272,10 @@ function mangerOnHttpRequest(request, response, ModifieidUrl) {
                                     });
                                 }
                             }
+                            
+                            break;
+                            
+                        case 'getAGopherPort':
                             
                             break;
                             
