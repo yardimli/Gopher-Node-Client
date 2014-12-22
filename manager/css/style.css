@@ -333,6 +333,39 @@ div[class^="col-md"].set-project-link{
 .set-project-link .text{
     line-height:39px;
 }
+.set-project-link div.mycol{
+    float:left;
+}
+.set-project-link .initial{
+    width:10%;
+}
+.set-project-link .host{
+    width:90%;
+}
+.host .hostname{
+    width:50%;
+}
+.host .port-seperator{
+    width:2%;text-align: center;
+}
+.host .port{
+    width:48%;
+}
+.set-project-link .path-seperator{
+    width:2%;text-align: center;
+}
+.set-project-link .path{
+    width:98%;
+}
+.port .input-group-addon{
+    background-color: #253849;padding:3px;
+}
+.port-auto{
+    background-color:#4e5d6c;padding:9px 10px 9px 10px;border:none;
+}
+.port-auto:hover{
+    background-color: #485563;
+}
 
 
 /***** End - MANAGER RELATED PART********/

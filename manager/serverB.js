@@ -8,26 +8,6 @@ var xxxx = '';
 
 var ServerB = Global.http.createServer(onRequest).listen(1337, function (err) {
     Global.Servers.push(ServerB);
-    /*var spawn = require('child_process').spawn,
-     list  = spawn('cmd');
-     
-     list.stdout.on('data', function (data) {
-     //console.log('stdout: ' + data);
-     var buff = new Buffer(data);
-     console.log("stdout: " + buff.toString('utf8'));
-     xxxx = buff.toString('utf8');
-     });
-     
-     list.stderr.on('data', function (data) {
-     console.log('stderr: ' + data);
-     });
-     
-     list.on('exit', function (code) {
-     console.log('child process exited with code ' + code);
-     });
-     
-     list.stdin.write('wmic logicaldisk get name\n');
-     list.stdin.end();*/
 });
 
 var FileMap = {
@@ -158,17 +138,70 @@ function mangerOnHttpRequest(request, response, ModifieidUrl) {
                             break;
 
                         case 'saveProject':
+                            if(RecievedData['forwardHostPort'] === ''){
+                               RecievedData['forwardHostPort'] = 0; 
+                            }
+                            if(RecievedData['proxyHostPort'] === ''){
+                               RecievedData['proxyHostPort'] = 0; 
+                            }
+                            
+                            //check ports already claimed by another project
                             Global.dbConn(function (error, database) {
                                 if (error === null) {
-                                    var project = require('./js/ajaxToProjects.js');
-                                    project.saveProject(RecievedData, database, function (result) {
-                                        response.end(JSON.stringify(result));
+                                    var AjaxToProject = require('./js/ajaxToProjects.js');
+                                    AjaxToProject.getProjects(0, database, function (result) {
+                                        var countOccupied = 0;
+                                        
+                                        for(var i=0; i<result.length; i++){
+                                            if( Number(result[i].ProxyHostPort) === Number(RecievedData['proxyHostPort'])){
+                                                if(Number(result[i].ID) !== Number(RecievedData['projectID'])){
+                                                    countOccupied ++;
+                                                }
+                                            }
+                                        }
                                         database.close();
+                                        
+                                        if(countOccupied > 0 ){
+                                            var _result = {
+                                                error: 'Choosen port is already used in another project.',
+                                                result: null
+                                            };
+                                            response.end(JSON.stringify(_result));
+                                        }else{
+                                            var server = new Global.net.createServer();
+                                            server.listen(Number(RecievedData['proxyHostPort']));
+
+                                            server.once('error',function(error){ 
+                                                if(error.code === 'EADDRINUSE'){
+                                                    var _result = {
+                                                        error: 'The choosen port is buy or occupied.',
+                                                        result: null
+                                                    };
+                                                    response.end(JSON.stringify(_result));
+                                                }
+                                            });
+
+                                            server.once('listening', function () {
+                                                server.close();
+                                                Global.dbConn(function (err, database) {
+                                                    if (err === null) {
+                                                        var project = require('./js/ajaxToProjects.js');
+                                                        project.saveProject(RecievedData, database, function (result) {
+                                                            response.end(JSON.stringify(result));
+                                                            database.close();
+                                                        });
+                                                    } else {
+                                                        response.end({error:err,result:null});
+                                                    }
+                                                });
+                                            });
+                                        }
+                                        
                                     });
                                 } else {
-                                    response.end(error);
+                                    resposne.end(error);
                                 }
-                            })
+                            });
                             break;
 
                         case 'getProjectDetail':
@@ -275,7 +308,80 @@ function mangerOnHttpRequest(request, response, ModifieidUrl) {
                             
                             break;
                             
-                        case 'getAGopherPort':
+                        case 'getAnAvailablePort':
+                            var start=1338, end=2338;
+                            var stopSearching = false;
+                            var occupied = [];
+                            
+                            Global.dbConn(function (error, database) {
+                                if (error === null) {
+                                    var AjaxToProject = require('./js/ajaxToProjects.js');
+                                    AjaxToProject.getProjects(0, database, function (result) {
+                                        for(var i=0; i<result.length; i++){
+                                            occupied.push(Number(result[i].ProxyHostPort));                                            
+                                        }
+                                        database.close();
+                                        console.log('========= start looking for open port,'+ start +' =================');
+                                        checkPort(start);
+                                        
+                                    });
+                                } else {
+                                    var _response = {
+                                        error: error,
+                                        result: null
+                                    };
+                                    resposne.end(_response);
+                                }
+                            });
+                            
+                            function checkPort(_port){
+                                var server = new Global.net.createServer();
+                                server.listen(_port);
+                                
+                                server.once('error',function(error){ 
+                                    console.log(error);
+                                    start ++;
+                                    if(error.code === 'EADDRINUSE'){
+                                        if(start<=end && stopSearching === false){
+                                            checkPort(start);
+                                        }else{
+                                            var result = {
+                                                error: 'Can not find an open port',
+                                                port:null
+                                            };
+                                            response.end(JSON.stringify(result));
+                                        }
+                                    }
+                                });
+                                
+                                server.once('listening', function () {
+                                    server.close();
+                                    var countOccupied = 0;
+                                    for (var i = 0; i < occupied.length; i++) {
+                                        if (occupied[i] === _port) {
+                                            countOccupied++;
+                                        }
+                                    }
+
+                                    if(stopSearching === false){
+                                        if(countOccupied > 0){
+                                            start++;
+                                            if(start<=end){
+                                                checkPort(start);
+                                            }
+                                        }else{
+                                            stopSearching = true;
+                                            var result = {
+                                                error: null,
+                                                port: _port
+                                            };
+                                            response.end(JSON.stringify(result));
+                                        }
+                                    }
+                                });
+                            }
+                            
+                            
                             
                             break;
                             

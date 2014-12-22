@@ -39,14 +39,14 @@ exports.saveProject = function (postData, db, callBack) {
     db.serialize(function () {
         var queryP = '';
         if (Number(postData.projectID) === 0) {
-            queryP = "INSERT INTO projects (Name,FolderPath) VALUES('" + postData.projectName + "','" + postData.projectFolder + "')";
+            queryP = "INSERT INTO projects (Name,FolderPath,ForwardHostPort,ProxyHostPort,ForwardHostName, ProxyHostName, ProjectLink) VALUES('" + postData.projectName + "','" + postData.projectFolder + "',"+postData.forwardHostPort+","+postData.proxyHostPort+",'"+postData.forwardHostName+"','"+postData.proxyHostName+"','"+postData.projectLink+"')";
         } else {
-            queryP = "UPDATE projects SET Name='" + postData.projectName + "',FolderPath='" + postData.projectFolder + "' WHERE ID=" + postData.projectID;
+            queryP = "UPDATE projects SET Name='" + postData.projectName + "',FolderPath='" + postData.projectFolder + "',ForwardHostPort="+ postData.forwardHostPort +",ProxyHostPort="+ postData.proxyHostPort +",ForwardHostName='"+ postData.forwardHostName +"',ProxyHostName='"+ postData.proxyHostName +"',ProjectLink='"+ postData.projectLink +"' WHERE ID=" + postData.projectID;
         }
         console.log(queryP);
         db.run(queryP, function (error) {
             if (error !== null) {
-                return callBack(error);
+                return callBack(error,null);
             } else {
                 var projectID = 0;
                 console.log('ajaxToProject.js (detail,changes)' + this.changes);
@@ -75,41 +75,41 @@ exports.saveProject = function (postData, db, callBack) {
                             });
                         }
                     }
-
+                    
                     if (Number(postData.projectID) > 0) {
                         db.run('DELETE FROM ignoredFiles WHERE ProjectID=' + projectID, function (err) {
                             insertIgnored(projectID, postData.ignoredFiles, function (result) {
                                 console.log('update, insertIgnored callback, ignored.length ' + result.affected);
-                                if (result.affected == postData.ignoredFiles.length) {
-                                    var result = {
+                                if (result.affected === postData.ignoredFiles.length) {
+                                    var _result = {
                                         ID: projectID,
                                         name: postData.projectName,
                                         folderPath: postData.projectFolder,
                                         ignored: postData.ignoredFiles
                                     };
-                                    return callBack(result);
+                                    return callBack({error:null, result:_result});
                                 } else {
-                                    return callBack('Project is not saved. Not all ignroed files are added.');
+                                    return callBack({error:'Project is not saved. Not all ignroed files are added.',result:null});
                                 }
                             });
                         });
                     } else {
                         insertIgnored(projectID, postData.ignoredFiles, function (result) {
-                            if (result.affected == postData.ignoredFiles.length) {
-                                var result = {
+                            if (result.affected === postData.ignoredFiles.length) {
+                                var _result = {
                                     ID: projectID,
                                     name: postData.projectName,
                                     folderPath: postData.projectFolder,
                                     ignored: postData.ignoredFiles
                                 };
-                                return callBack(result);
+                                return callBack({error:null, result:_result});
                             } else {
-                                return callBack('Project is not saved. Not all ignroed files are added.');
+                                return callBack({error:'Project is not saved. Not all ignroed files are added.',result:null});
                             }
                         });
                     }
                 } else {
-                    return callBack('Project is not saved. Project detail is not updated.');
+                    return callBack({error:'Project is not saved. Project detail is not updated.',result:null});
                 }
 
 

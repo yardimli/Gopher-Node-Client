@@ -353,9 +353,9 @@ $(document).ready(function () {
             $('#select_drive_option').hide();
         }
         
-        if($(e.target).is(':not(#set_gopher_link div[data-role="select arrow"])') && $('#set_gopher_link div[data-role="select arrow"]').has(e.target).length===0){
+        /*if($(e.target).is(':not(#set_gopher_link div[data-role="select arrow"])') && $('#set_gopher_link div[data-role="select arrow"]').has(e.target).length===0){
             $('#gopher_port_option').hide();
-        }
+        }*/
 
         /*if( $(e.target).closest('li').data('path') === 'undefined' || $(e.target).closest('li').data('path') === null){
          
@@ -545,6 +545,11 @@ $(document).ready(function () {
             projectID: Number($('#project_id').val()),
             projectName: $('#in_projectName').val(),
             projectFolder: $('#selected_project_folder').val(),
+            forwardHostName: $('#original_project_link').find('input[data-role="host name"]').val(),
+            forwardHostPort: $('#original_project_link').find('input[data-role="port"]').val(),
+            proxyHostName: $('#set_gopher_link').find('input[data-role="host name"]').val(),
+            proxyHostPort: $('#set_gopher_link').find('input[data-role="port"]').val(),
+            projectLink: 'http://'+ $('#set_gopher_link').find('input[data-role="host name"]').val() + ':' + $('#set_gopher_link').find('input[data-role="port"]').val() + '/' + $('#set_gopher_link').find('input[data-role="path"]').val(),
             ignoredFiles: IgnoredFiles
         };
         console.log('(potsDataa.ignoredFiles)'+postData.ignoredFiles);        
@@ -553,49 +558,77 @@ $(document).ready(function () {
         var ramid = Number(new Date());
         $(alert).attr('id', ramid);
 
-
-        ajaxSaveProject(postData, function () {
-            $(alert).find('div[data-role="message"]').text('Saving project...');
-            $(alert).addClass('loading');
-            $('body').append($(alert).prop('outerHTML'));
-            $('#' + ramid).fadeIn('fast');
-        }, function (error, data) {
-            if (error !== null) {
-                $('#' + ramid).find('div[data-role="message"]').text(error);
-                 setTimeout(function () {
-                    $('#' + ramid).hide();
-                    $('#' + ramid).remove();
-                }, 3500);
-            } else {
-                $('#' + ramid).removeClass('loading');
-                $('#' + ramid).addClass('ok');
-                $('#' + ramid).find('div[data-role="message"]').text('Project is Saved!');
-
+        $.ajax({
+            type: 'POST',
+            url: 'saveProject.do',
+            traditional: true,
+            data: postData,
+            dataType: 'JSON',
+            beforeSend: function () {
+                $(alert).find('div[data-role="message"]').text('Saving project...');
+                $(alert).addClass('loading');
+                $('body').append($(alert).prop('outerHTML'));
+                $('#' + ramid).fadeIn('fast');
+            },
+            success: function (response) {
+                if(response.error === null){
+                    $('#' + ramid).removeClass('loading');
+                    $('#' + ramid).addClass('ok');
+                    $('#' + ramid).find('div[data-role="message"]').text('Project is Saved!');
+                    
+                    setTimeout(function () {
+                        $('#' + ramid).hide();
+                        $('#' + ramid).remove();
+                        location.replace('index.html');
+                    }, 2500);
+                }else{
+                    $('#' + ramid).find('div[data-role="message"]').text(response.error);
+                    setTimeout(function () {
+                        $('#' + ramid).hide();
+                        $('#' + ramid).remove();
+                    }, 3500);
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                $('#' + ramid).find('div[data-role="message"]').text('Can not save the project. Request status: ' + textStatus + ' Error: ' + errorThrown);
                 setTimeout(function () {
                     $('#' + ramid).hide();
                     $('#' + ramid).remove();
-                    location.replace('index.html');
-                }, 2500);
+                }, 3500);
+            },
+            complete: function (jqXHR, textStatus) {
             }
         });
+        
+        
+        
     });
     
-    $('#original_link').keyup(function(){
-        $('#gopher_link').val($(this).val());
+    $('#original_project_link input[data-role="path"]').keyup(function(){
+        $('#set_gopher_link input[data-role="path"]').val($(this).val());
     });
     
-    $('#set_gopher_link').on('click','div[data-role="select arrow"]',function(){
+    /*$('#set_gopher_link').on('click','div[data-role="select arrow"]',function(){
        $('#gopher_port_option').slideDown('fast'); 
-    });
+    });*/
     
-    $('#gopher_port_option').on('click','li',function(){
+    /*$('#gopher_port_option').on('click','li',function(){
        $('#gopher_port').val($(this).text()); 
-    });
+    });*/
     
     $('#is_gopher_html5').click(function(){
        if($(this).is(':checked')){
+           $('#original_project_link').find('input[data-role="host name"]').val('');
+           $('#original_project_link').find('input[data-role="port"]').val('');
+           $('#original_project_link').find('input[data-role="path"]').val('');
+           $('#set_gopher_link').find('input[data-role="path"]').val('');
+           $('#set_gopher_link').find('input[data-role="path"]').prop('readonly',false);
+           
            $('#original_project_link').slideUp('fast');
        }else{
+           $('#set_gopher_link').find('input[data-role="path"]').val('');
+           $('#set_gopher_link').find('input[data-role="path"]').prop('readonly',true);
+           
            $('#original_project_link').slideDown('fast');
        } 
     });
@@ -626,6 +659,13 @@ $(document).ready(function () {
                 for (var i = 0; i < data.ignored.length; i++) {
                     IgnoredFiles.push(data.ignored[i].FilePath);
                 }
+                
+                $('#original_project_link').find('input[data-role="host name"]').val(data.detail.ForwardHostName);  
+                $('#original_project_link').find('input[data-role="port"]').val(data.detail.ForwardHostPort);
+                $('#original_project_link').find('input[data-role="path"]').val(data.detail.ProjectLink.replace('http://'+data.detail.ProxyHostName+':'+data.detail.ProxyHostPort+'/',''));
+                $('#set_gopher_link').find('input[data-role="host name"]').val(data.detail.ProxyHostName);
+                $('#set_gopher_link').find('input[data-role="port"]').val(data.detail.ProxyHostPort);
+                $('#set_gopher_link').find('input[data-role="path"]').val(data.detail.ProjectLink.replace('http://'+data.detail.ProxyHostName+':'+data.detail.ProxyHostPort+'/',''));
                 
                 var selectedPath = $('#current_drive_val').val() + $('#selected_project_folder').val();
                 var fileListContainer = $('#new_project_files').find('div[data-role="display files"]');
@@ -659,5 +699,47 @@ $(document).ready(function () {
         });
     }
     
-    //Assign a gopher port
+    $('#btn_port_auto').click(function () {
+        var alert = $(template.bottomAlert);
+        var ramid = Number(new Date());
+        $(alert).attr('id', ramid);
+        
+        $.ajax({
+            type: 'POST',
+            url: 'getAnAvailablePort.do',
+            traditional: true,
+            dataType: 'JSON',
+            beforeSend: function(){
+                $(alert).find('div[data-role="message"]').text('Assigning...');
+                $(alert).addClass('loading');
+                $('body').append($(alert).prop('outerHTML'));
+                $('#' + ramid).fadeIn('fast');
+            },
+            success: function (data) {
+                if(data.error === null){
+                    $('#set_gopher_link').find('input[data-role="port"]').val(data.port);
+                    
+                    $('#' + ramid).removeClass('loading');
+                    $('#' + ramid).addClass('ok');
+                    $('#' + ramid).find('div[data-role="message"]').text('An available gopher port is found!');
+
+                    setTimeout(function () {
+                        $('#' + ramid).hide();
+                        $('#' + ramid).remove();
+                    }, 2500);
+                }else{
+                    $('#' + ramid).find('div[data-role="message"]').text(data.error);
+                    setTimeout(function () {
+                       $('#' + ramid).hide();
+                       $('#' + ramid).remove();
+                   }, 3500);
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+
+            },
+            complete: function (jqXHR, textStatus) {
+            }
+        });
+    });
 });

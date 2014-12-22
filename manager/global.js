@@ -2,6 +2,7 @@ exports.QueryString = require('querystring');
 
 var sqlite3 = exports.sqlite3 = require('sqlite3');
 var fs = exports.fs = require('fs');
+var net = exports.net = require('net');
 
 exports.http = require('http');
 exports.url = require('url');
