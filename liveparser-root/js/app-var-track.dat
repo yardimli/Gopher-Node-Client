@@ -1,0 +1,348 @@
+VariableDeclarator
+ HelperParentType: VariableDeclaration HelperParentName: 1 NestedParentType: VariableDeclaration Parent Type: 0 Indent: 14 Length : 7 Source: bb=b55(b)*4 Operator: =
+ Left Var Name: bb
+ Right(2) Var Name: b55(b)*4
+        C) EXT. VAR: b55(b) CallExpression left 16
+VariableDeclarator
+ HelperParentType: VariableDeclaration HelperParentName: 1 NestedParentType: VariableDeclaration Parent Type: 0 Indent: 11 Length : 3 Source: cc = function() { return 1; } Operator: =
+ Left Var Name: cc
+ Right(2) Var Name: function() { return 1; }
+VariableDeclarator
+ HelperParentType: VariableDeclaration HelperParentName: 2 NestedParentType: VariableDeclaration Parent Type: 0 Indent: 11 Length : 6 Source: bb = function(a,b,c) { var d=0; d=b+c; return a-d; } Operator: =
+ Left Var Name: bb
+ Right(2) Var Name: function(a,b,c) { var d=0; d=b+c; return a-d; }
+VariableDeclarator
+ HelperParentType: VariableDeclaration HelperParentName: 0 NestedParentType: BlockStatement > VariableDeclaration Parent Type: 0 Indent: 17 Length : 3 Source: d=0 Operator: =
+ Left Var Name: d
+ Right(2) Var Name: 0
+AssignmentExpression
+ HelperParentType: ExpressionStatement HelperParentName: 1 NestedParentType: ExpressionStatement Parent Type: expression Indent: 16 Length : 5 Source: d=b+c Operator: =
+ Left Var Name: d
+ Right(2) Var Name: b+c
+VariableDeclarator
+ HelperParentType: VariableDeclaration HelperParentName: 1 NestedParentType: VariableDeclaration Parent Type: 0 Indent: 14 Length : 7 Source: aa=a55(a)*2 Operator: =
+ Left Var Name: aa
+ Right(2) Var Name: a55(a)*2
+        C) EXT. VAR: a55(a) CallExpression left 16
+
+BinaryExpression
+ HelperParentType: IfStatement HelperParentName: 2 NestedParentType: IfStatement Parent Type: test Indent: 13 Length : 3 Source: a<10 Operator: <
+
+BinaryExpression
+ HelperParentType: IfStatement HelperParentName: alternate NestedParentType: IfStatement Parent Type: test Indent: 14 Length : 3 Source: a>100 Operator: >
+VariableDeclarator
+ HelperParentType: VariableDeclaration HelperParentName: 0 NestedParentType: FunctionDeclaration > BlockStatement > VariableDeclaration Parent Type: 0 Indent: 14 Length : 3 Source: aaa=a Operator: =
+ Left Var Name: aaa
+ Right(2) Var Name: a
+VariableDeclarator
+ HelperParentType: VariableDeclaration HelperParentName: 6 NestedParentType: VariableDeclaration Parent Type: 0 Indent: 11 Length : 3 Source: blockC = [] Operator: =
+ Left Var Name: blockC
+ Right(2) Var Name: []
+AssignmentExpression
+ HelperParentType: ExpressionStatement HelperParentName: 7 NestedParentType: ExpressionStatement Parent Type: expression Indent: 10 Length : 5 Source: blockC[1] = {} Operator: =
+ Left Var Name: blockC[1]
+ Right(4) Var Name: {}
+AssignmentExpression
+ HelperParentType: ExpressionStatement HelperParentName: 8 NestedParentType: ExpressionStatement Parent Type: expression Indent: 10 Length : 7 Source: blockC[1].X= 5 Operator: =
+ Left Var Name: blockC[1].X
+ Right(6) Var Name: 5
+AssignmentExpression
+ HelperParentType: ExpressionStatement HelperParentName: 9 NestedParentType: ExpressionStatement Parent Type: expression Indent: 10 Length : 5 Source: blockC[2] = 5 Operator: =
+ Left Var Name: blockC[2]
+ Right(4) Var Name: 5
+VariableDeclarator
+ HelperParentType: VariableDeclaration HelperParentName: 10 NestedParentType: VariableDeclaration Parent Type: 0 Indent: 11 Length : 3 Source: j = 1 Operator: =
+ Left Var Name: j
+ Right(2) Var Name: 1
+VariableDeclarator
+ HelperParentType: VariableDeclaration HelperParentName: 11 NestedParentType: VariableDeclaration Parent Type: 0 Indent: 11 Length : 49 Source: i = $(window).width()+window.innerHeight+5+a5(5)+a5($(w Operator: =
+ Left Var Name: i
+ Right(2) Var Name: $(window).width()+window.innerHeight+5+a5(5)+a5($(window).width())+a5(window.innerWidth)+blockC[2]+blockC[1].X+blockC[a1(2)]
+        C) EXT. VAR: $(window).width() CallExpression left 20
+        C) EXT. VAR: a5(5) CallExpression right 18
+        C) EXT. VAR: a5($(window).width()) CallExpression right 17
+        C) EXT. VAR: $(window).width() CallExpression 0 19
+        C) EXT. VAR: a5(window.innerWidth) CallExpression right 16
+        C) EXT. VAR: a1(2) CallExpression property 14
+LogicalExpression
+ HelperParentType: IfStatement HelperParentName: 12 NestedParentType: IfStatement Parent Type: test Indent: 10 Length : 15 Source: (a1(i)>j) && (i>4) && a5(5)>20 Operator: &&
+ Left Var Name: (a1(i)>j) && (i>4)
+ Right(10) Var Name: a5(5)>20
+        C) EXT. VAR: a1(i) CallExpression left 13
+        C) EXT. VAR: a5(5) CallExpression left 12
+
+BinaryExpression
+ HelperParentType: ExpressionStatement HelperParentName: 0 NestedParentType: BlockStatement > ExpressionStatement Parent Type: 0 Indent: 15 Length : 3 Source: 5>6 Operator: >
+VariableDeclarator
+ HelperParentType: VariableDeclaration HelperParentName: init NestedParentType: ForStatement > VariableDeclaration Parent Type: 0 Indent: 12 Length : 3 Source: k=0 Operator: =
+ Left Var Name: k
+ Right(2) Var Name: 0
+
+BinaryExpression
+ HelperParentType: VariableDeclaration HelperParentName: init NestedParentType: ForStatement > VariableDeclaration Parent Type: test Indent: 10 Length : 3 Source: k<5 Operator: <
+AssignmentExpression
+ HelperParentType: VariableDeclaration HelperParentName: init NestedParentType: ForStatement > VariableDeclaration Parent Type: update Indent: 10 Length : 5 Source: k=k+1 Operator: =
+ Left Var Name: k
+ Right(2) Var Name: k+1
+AssignmentExpression
+ HelperParentType: ExpressionStatement HelperParentName: 0 NestedParentType: BlockStatement > ExpressionStatement Parent Type: expression Indent: 13 Length : 5 Source: i=k+5 Operator: =
+ Left Var Name: i
+ Right(2) Var Name: k+5
+
+BinaryExpression
+ HelperParentType: ExpressionStatement HelperParentName: 1 NestedParentType: ExpressionStatement Parent Type: 0 Indent: 15 Length : 9 Source: k+' ==== '+a5(k)+i Operator: +
+        A) EXT. VAR: a5(k) CallExpression right 17
+VariableDeclarator
+ HelperParentType: VariableDeclaration HelperParentName: init NestedParentType: ForStatement > VariableDeclaration Parent Type: 0 Indent: 12 Length : 3 Source: k=0 Operator: =
+ Left Var Name: k
+ Right(2) Var Name: 0
+
+BinaryExpression
+ HelperParentType: VariableDeclaration HelperParentName: init NestedParentType: ForStatement > VariableDeclaration Parent Type: test Indent: 10 Length : 3 Source: k<10 Operator: <
+
+UpdateExpression
+ HelperParentType: VariableDeclaration HelperParentName: init NestedParentType: ForStatement > VariableDeclaration Parent Type: update Indent: 10 Length : 2 Source: k++ Operator: ++
+AssignmentExpression
+ HelperParentType: ExpressionStatement HelperParentName: 0 NestedParentType: BlockStatement > ExpressionStatement Parent Type: expression Indent: 13 Length : 5 Source: i=k+5 Operator: =
+ Left Var Name: i
+ Right(2) Var Name: k+5
+
+BinaryExpression
+ HelperParentType: ExpressionStatement HelperParentName: 1 NestedParentType: ExpressionStatement Parent Type: 0 Indent: 15 Length : 9 Source: k+' ==== '+a5(k)-i Operator: -
+        A) EXT. VAR: a5(k) CallExpression right 17
+VariableDeclarator
+ HelperParentType: VariableDeclaration HelperParentName: 15 NestedParentType: VariableDeclaration Parent Type: 0 Indent: 11 Length : 3 Source: info = {} Operator: =
+ Left Var Name: info
+ Right(2) Var Name: {}
+AssignmentExpression
+ HelperParentType: ExpressionStatement HelperParentName: 16 NestedParentType: ExpressionStatement Parent Type: expression Indent: 10 Length : 5 Source: info.name ='hi' Operator: =
+ Left Var Name: info.name
+ Right(4) Var Name: 'hi'
+VariableDeclarator
+ HelperParentType: VariableDeclaration HelperParentName: 17 NestedParentType: VariableDeclaration Parent Type: 0 Indent: 11 Length : 11 Source: blockA = {firstName:'John', lastName:'Doe', age:50, eye Operator: =
+ Left Var Name: blockA
+ Right(2) Var Name: {firstName:'John', lastName:'Doe', age:50, eyeColor:'blue'}
+VariableDeclarator
+ HelperParentType: VariableDeclaration HelperParentName: 18 NestedParentType: VariableDeclaration Parent Type: 0 Indent: 11 Length : 5 Source: blockB = ['hi 2','hello 2'] Operator: =
+ Left Var Name: blockB
+ Right(2) Var Name: ['hi 2','hello 2']
+
+UpdateExpression
+ HelperParentType: ExpressionStatement HelperParentName: 20 NestedParentType: ExpressionStatement > ExpressionStatement Parent Type: expression Indent: 10 Length : 2 Source: i++ Operator: ++
+AssignmentExpression
+ HelperParentType: ExpressionStatement HelperParentName: 22 NestedParentType: ExpressionStatement > ExpressionStatement Parent Type: expression Indent: 10 Length : 3 Source: i += 1 Operator: +=
+ Left Var Name: i
+ Right(2) Var Name: 1
+AssignmentExpression
+ HelperParentType: ExpressionStatement HelperParentName: 24 NestedParentType: ExpressionStatement > ExpressionStatement Parent Type: expression Indent: 10 Length : 3 Source: i -= 1 Operator: -=
+ Left Var Name: i
+ Right(2) Var Name: 1
+VariableDeclarator
+ HelperParentType: VariableDeclaration HelperParentName: 26 NestedParentType: ExpressionStatement > VariableDeclaration Parent Type: 0 Indent: 11 Length : 3 Source: block1 = {} Operator: =
+ Left Var Name: block1
+ Right(2) Var Name: {}
+AssignmentExpression
+ HelperParentType: ExpressionStatement HelperParentName: 27 NestedParentType: ExpressionStatement Parent Type: expression Indent: 10 Length : 5 Source: block1.name = 'ONE' Operator: =
+ Left Var Name: block1.name
+ Right(4) Var Name: 'ONE'
+AssignmentExpression
+ HelperParentType: ExpressionStatement HelperParentName: 28 NestedParentType: ExpressionStatement Parent Type: expression Indent: 10 Length : 5 Source: block1.lname= 'TWO' Operator: =
+ Left Var Name: block1.lname
+ Right(4) Var Name: 'TWO'
+VariableDeclarator
+ HelperParentType: VariableDeclaration HelperParentName: 29 NestedParentType: VariableDeclaration Parent Type: 0 Indent: 11 Length : 3 Source: block2 = [] Operator: =
+ Left Var Name: block2
+ Right(2) Var Name: []
+AssignmentExpression
+ HelperParentType: ExpressionStatement HelperParentName: 30 NestedParentType: ExpressionStatement Parent Type: expression Indent: 10 Length : 5 Source: block2[1] = 'THREE' Operator: =
+ Left Var Name: block2[1]
+ Right(4) Var Name: 'THREE'
+AssignmentExpression
+ HelperParentType: ExpressionStatement HelperParentName: 31 NestedParentType: ExpressionStatement Parent Type: expression Indent: 10 Length : 5 Source: block2[2] = 'FOUR' Operator: =
+ Left Var Name: block2[2]
+ Right(4) Var Name: 'FOUR'
+AssignmentExpression
+ HelperParentType: ExpressionStatement HelperParentName: 32 NestedParentType: ExpressionStatement Parent Type: expression Indent: 10 Length : 5 Source: block2[3] = 'FOUR-2' Operator: =
+ Left Var Name: block2[3]
+ Right(4) Var Name: 'FOUR-2'
+VariableDeclarator
+ HelperParentType: VariableDeclaration HelperParentName: 33 NestedParentType: VariableDeclaration Parent Type: 0 Indent: 11 Length : 3 Source: block3 = [] Operator: =
+ Left Var Name: block3
+ Right(2) Var Name: []
+AssignmentExpression
+ HelperParentType: ExpressionStatement HelperParentName: 34 NestedParentType: ExpressionStatement Parent Type: expression Indent: 10 Length : 5 Source: block3[1] = {} Operator: =
+ Left Var Name: block3[1]
+ Right(4) Var Name: {}
+AssignmentExpression
+ HelperParentType: ExpressionStatement HelperParentName: 35 NestedParentType: ExpressionStatement Parent Type: expression Indent: 10 Length : 7 Source: block3[1].name = 'FIVE' Operator: =
+ Left Var Name: block3[1].name
+ Right(6) Var Name: 'FIVE'
+AssignmentExpression
+ HelperParentType: ExpressionStatement HelperParentName: 36 NestedParentType: ExpressionStatement Parent Type: expression Indent: 10 Length : 7 Source: block3[1].lname = 'SIX' Operator: =
+ Left Var Name: block3[1].lname
+ Right(6) Var Name: 'SIX'
+VariableDeclarator
+ HelperParentType: VariableDeclaration HelperParentName: 37 NestedParentType: VariableDeclaration Parent Type: 0 Indent: 11 Length : 9 Source: f= (i>j) && (i>4) Operator: =
+ Left Var Name: f
+ Right(2) Var Name: (i>j) && (i>4)
+
+BinaryExpression
+ HelperParentType: ForStatement HelperParentName: 38 NestedParentType: ForStatement Parent Type: test Indent: 10 Length : 3 Source: k<20 Operator: <
+
+UpdateExpression
+ HelperParentType: ForStatement HelperParentName: 38 NestedParentType: ForStatement Parent Type: update Indent: 10 Length : 2 Source: k++ Operator: ++
+
+BinaryExpression
+ HelperParentType: ForStatement HelperParentName: 39 NestedParentType: BlockStatement > ExpressionStatement > ForStatement Parent Type: test Indent: 10 Length : 3 Source: k<25 Operator: <
+
+UpdateExpression
+ HelperParentType: ExpressionStatement HelperParentName: 0 NestedParentType: BlockStatement > ExpressionStatement Parent Type: expression Indent: 13 Length : 2 Source: k++ Operator: ++
+
+BinaryExpression
+ HelperParentType: ExpressionStatement HelperParentName: 40 NestedParentType: ExpressionStatement > ExpressionStatement Parent Type: 0 Indent: 12 Length : 9 Source: block1.name+' '+block1.lname Operator: +
+
+BinaryExpression
+ HelperParentType: ExpressionStatement HelperParentName: 41 NestedParentType: ExpressionStatement Parent Type: 0 Indent: 12 Length : 15 Source: block2[1]+' '+block2[2]+' '+block2[3] Operator: +
+
+BinaryExpression
+ HelperParentType: ExpressionStatement HelperParentName: 42 NestedParentType: ExpressionStatement Parent Type: 0 Indent: 12 Length : 13 Source: block3[1].name+' '+block3[1].lname Operator: +
+
+BinaryExpression
+ HelperParentType: ExpressionStatement HelperParentName: 43 NestedParentType: ExpressionStatement Parent Type: 0 Indent: 12 Length : 9 Source: "cc:"+cc()+" dd:"+dd() Operator: +
+        A) EXT. VAR: cc() CallExpression right 15
+        A) EXT. VAR: dd() CallExpression right 13
+VariableDeclarator
+ HelperParentType: VariableDeclaration HelperParentName: 44 NestedParentType: VariableDeclaration Parent Type: 0 Indent: 11 Length : 3 Source: bb2 = bb Operator: =
+ Left Var Name: bb2
+ Right(2) Var Name: bb
+
+BinaryExpression
+ HelperParentType: ExpressionStatement HelperParentName: 45 NestedParentType: ExpressionStatement Parent Type: 0 Indent: 12 Length : 7 Source: "bb:"+bb2(1,2,3) Operator: +
+        A) EXT. VAR: bb2(1,2,3) CallExpression right 13
+VariableDeclarator
+ HelperParentType: VariableDeclaration HelperParentName: 46 NestedParentType: VariableDeclaration Parent Type: 0 Indent: 11 Length : 5 Source: keys = $('#calculator span') Operator: =
+ Left Var Name: keys
+ Right(2) Var Name: $('#calculator span')
+        C) EXT. VAR: $('#calculator span') CallExpression init 12
+VariableDeclarator
+ HelperParentType: VariableDeclaration HelperParentName: 47 NestedParentType: VariableDeclaration Parent Type: 0 Indent: 11 Length : 7 Source: operators = ['+', '-', 'x', '/'] Operator: =
+ Left Var Name: operators
+ Right(2) Var Name: ['+', '-', 'x', '/']
+VariableDeclarator
+ HelperParentType: VariableDeclaration HelperParentName: 48 NestedParentType: VariableDeclaration Parent Type: 0 Indent: 11 Length : 3 Source: decimalAdded = false Operator: =
+ Left Var Name: decimalAdded
+ Right(2) Var Name: false
+VariableDeclarator
+ HelperParentType: VariableDeclaration HelperParentName: 49 NestedParentType: VariableDeclaration Parent Type: 0 Indent: 11 Length : 3 Source: InputStr = "" Operator: =
+ Left Var Name: InputStr
+ Right(2) Var Name: ""
+VariableDeclarator
+ HelperParentType: VariableDeclaration HelperParentName: 0 NestedParentType: ExpressionStatement > BlockStatement > VariableDeclaration Parent Type: 0 Indent: 17 Length : 5 Source: input = $('.screen') Operator: =
+ Left Var Name: input
+ Right(2) Var Name: $('.screen')
+        C) EXT. VAR: $('.screen') CallExpression init 18
+VariableDeclarator
+ HelperParentType: VariableDeclaration HelperParentName: 1 NestedParentType: VariableDeclaration Parent Type: 0 Indent: 17 Length : 6 Source: inputVal = input.html() Operator: =
+ Left Var Name: inputVal
+ Right(2) Var Name: input.html()
+        C) EXT. VAR: input.html() CallExpression init 18
+VariableDeclarator
+ HelperParentType: VariableDeclaration HelperParentName: 2 NestedParentType: VariableDeclaration Parent Type: 0 Indent: 17 Length : 7 Source: btnVal = $(this).html() Operator: =
+ Left Var Name: btnVal
+ Right(2) Var Name: $(this).html()
+        C) EXT. VAR: $(this).html() CallExpression init 18
+
+BinaryExpression
+ HelperParentType: IfStatement HelperParentName: 3 NestedParentType: IfStatement Parent Type: test Indent: 16 Length : 3 Source: btnVal == 'C' Operator: ==
+AssignmentExpression
+ HelperParentType: ExpressionStatement HelperParentName: 0 NestedParentType: BlockStatement > ExpressionStatement Parent Type: expression Indent: 19 Length : 3 Source: InputStr="" Operator: =
+ Left Var Name: InputStr
+ Right(2) Var Name: ""
+AssignmentExpression
+ HelperParentType: ExpressionStatement HelperParentName: 2 NestedParentType: ExpressionStatement > ExpressionStatement Parent Type: expression Indent: 19 Length : 3 Source: decimalAdded = false Operator: =
+ Left Var Name: decimalAdded
+ Right(2) Var Name: false
+
+BinaryExpression
+ HelperParentType: IfStatement HelperParentName: alternate NestedParentType: IfStatement Parent Type: test Indent: 17 Length : 3 Source: btnVal == '=' Operator: ==
+VariableDeclarator
+ HelperParentType: VariableDeclaration HelperParentName: 0 NestedParentType: BlockStatement > VariableDeclaration Parent Type: 0 Indent: 21 Length : 3 Source: equation = inputVal Operator: =
+ Left Var Name: equation
+ Right(2) Var Name: inputVal
+VariableDeclarator
+ HelperParentType: VariableDeclaration HelperParentName: 1 NestedParentType: VariableDeclaration Parent Type: 0 Indent: 21 Length : 9 Source: lastChar = equation[equation.length - 1] Operator: =
+ Left Var Name: lastChar
+ Right(2) Var Name: equation[equation.length - 1]
+AssignmentExpression
+ HelperParentType: ExpressionStatement HelperParentName: 2 NestedParentType: ExpressionStatement Parent Type: expression Indent: 20 Length : 8 Source: equation = equation.replace(/x/g, '*') Operator: =
+ Left Var Name: equation
+ Right(2) Var Name: equation.replace(/x/g, '*')
+        C) EXT. VAR: equation.replace(/x/g, '*') CallExpression right 21
+LogicalExpression
+ HelperParentType: IfStatement HelperParentName: 3 NestedParentType: IfStatement Parent Type: test Indent: 20 Length : 12 Source: operators.indexOf(lastChar) > -1 || lastChar == '.' Operator: ||
+ Left Var Name: operators.indexOf(lastChar) > -1
+ Right(9) Var Name: lastChar == '.'
+        C) EXT. VAR: operators.indexOf(lastChar) CallExpression left 22
+AssignmentExpression
+ HelperParentType: ExpressionStatement HelperParentName: 0 NestedParentType: BlockStatement > ExpressionStatement Parent Type: expression Indent: 23 Length : 8 Source: equation = equation.replace(/.$/, '') Operator: =
+ Left Var Name: equation
+ Right(2) Var Name: equation.replace(/.$/, '')
+        C) EXT. VAR: equation.replace(/.$/, '') CallExpression right 24
+AssignmentExpression
+ HelperParentType: ExpressionStatement HelperParentName: 5 NestedParentType: IfStatement > BlockStatement > ExpressionStatement > ExpressionStatement Parent Type: expression Indent: 20 Length : 3 Source: decimalAdded = false Operator: =
+ Left Var Name: decimalAdded
+ Right(2) Var Name: false
+
+BinaryExpression
+ HelperParentType: IfStatement HelperParentName: alternate NestedParentType: IfStatement Parent Type: test Indent: 18 Length : 8 Source: operators.indexOf(btnVal) > -1 Operator: >
+        A) EXT. VAR: operators.indexOf(btnVal) CallExpression left 19
+VariableDeclarator
+ HelperParentType: VariableDeclaration HelperParentName: 0 NestedParentType: BlockStatement > VariableDeclaration Parent Type: 0 Indent: 22 Length : 9 Source: lastChar = inputVal[inputVal.length - 1] Operator: =
+ Left Var Name: lastChar
+ Right(2) Var Name: inputVal[inputVal.length - 1]
+LogicalExpression
+ HelperParentType: IfStatement HelperParentName: 1 NestedParentType: IfStatement Parent Type: test Indent: 21 Length : 12 Source: inputVal != '' && operators.indexOf(lastChar) == -1 Operator: &&
+ Left Var Name: inputVal != ''
+ Right(4) Var Name: operators.indexOf(lastChar) == -1
+        C) EXT. VAR: operators.indexOf(lastChar) CallExpression left 23
+AssignmentExpression
+ HelperParentType: ExpressionStatement HelperParentName: 0 NestedParentType: BlockStatement > ExpressionStatement Parent Type: expression Indent: 24 Length : 3 Source: InputStr += btnVal Operator: +=
+ Left Var Name: InputStr
+ Right(2) Var Name: btnVal
+LogicalExpression
+ HelperParentType: IfStatement HelperParentName: alternate NestedParentType: ExpressionStatement > IfStatement Parent Type: test Indent: 22 Length : 7 Source: inputVal == '' && btnVal == '-' Operator: &&
+ Left Var Name: inputVal == ''
+ Right(4) Var Name: btnVal == '-'
+AssignmentExpression
+ HelperParentType: ExpressionStatement HelperParentName: 0 NestedParentType: BlockStatement > ExpressionStatement Parent Type: expression Indent: 25 Length : 3 Source: InputStr += btnVal Operator: +=
+ Left Var Name: InputStr
+ Right(2) Var Name: btnVal
+LogicalExpression
+ HelperParentType: IfStatement HelperParentName: 2 NestedParentType: ExpressionStatement > IfStatement Parent Type: test Indent: 21 Length : 14 Source: operators.indexOf(lastChar) > -1 && inputVal.length > 1 Operator: &&
+ Left Var Name: operators.indexOf(lastChar) > -1
+ Right(9) Var Name: inputVal.length > 1
+        C) EXT. VAR: operators.indexOf(lastChar) CallExpression left 23
+AssignmentExpression
+ HelperParentType: ExpressionStatement HelperParentName: 0 NestedParentType: BlockStatement > ExpressionStatement Parent Type: expression Indent: 24 Length : 8 Source: InputStr = inputVal.replace(/.$/, btnVal) Operator: =
+ Left Var Name: InputStr
+ Right(2) Var Name: inputVal.replace(/.$/, btnVal)
+        C) EXT. VAR: inputVal.replace(/.$/, btnVal) CallExpression right 25
+AssignmentExpression
+ HelperParentType: ExpressionStatement HelperParentName: 3 NestedParentType: ExpressionStatement > ExpressionStatement Parent Type: expression Indent: 21 Length : 3 Source: decimalAdded =false Operator: =
+ Left Var Name: decimalAdded
+ Right(2) Var Name: false
+
+BinaryExpression
+ HelperParentType: IfStatement HelperParentName: alternate NestedParentType: IfStatement Parent Type: test Indent: 19 Length : 3 Source: btnVal == '.' Operator: ==
+AssignmentExpression
+ HelperParentType: ExpressionStatement HelperParentName: 0 NestedParentType: BlockStatement > IfStatement > BlockStatement > ExpressionStatement Parent Type: expression Indent: 25 Length : 3 Source: InputStr += btnVal Operator: +=
+ Left Var Name: InputStr
+ Right(2) Var Name: btnVal
+AssignmentExpression
+ HelperParentType: ExpressionStatement HelperParentName: 2 NestedParentType: ExpressionStatement > ExpressionStatement Parent Type: expression Indent: 25 Length : 3 Source: decimalAdded = true Operator: =
+ Left Var Name: decimalAdded
+ Right(2) Var Name: true
+AssignmentExpression
+ HelperParentType: ExpressionStatement HelperParentName: 0 NestedParentType: BlockStatement > ExpressionStatement Parent Type: expression Indent: 22 Length : 3 Source: InputStr += btnVal Operator: +=
+ Left Var Name: InputStr
+ Right(2) Var Name: btnVal

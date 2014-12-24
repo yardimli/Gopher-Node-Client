@@ -1,0 +1,2376 @@
+1:    ExpressionStatement
+1:     I:4 CallExpression expression () [$(document).ready( function() {
+
+	function b5(b)
+	{
+		function b55(b)
+		{
+			return b+2;
+		}
+		
+		_$]  Parent:22, Self:23
+1:      I:5 MemberExpression callee () [$(document).ready]  Parent:33, Self:34
+1:       I:6 CallExpression object () [$(document)]  Parent:44, Self:45
+1:        I:7 Identifier callee () [$]  Parent:55, Self:56
+1:         I:8 Identifier 0 () [document]  Parent:68, Self:69
+1:       I:6 Identifier property () [ready]  Parent:80, Self:81
+1:       I:6 FunctionExpression 0 () [function() {
+
+	function b5(b)
+	{
+		function b55(b)
+		{
+			return b+2;
+		}
+		
+		_$sb(10,'bb',_$gXLoca]  Parent:94, Self:95
+1:        BlockStatement
+3:          FunctionDeclaration
+3:           I:10 Identifier id () [b5]  Parent:130, Self:131
+3:            I:11 Identifier 0 () [b]  Parent:143, Self:144
+4:           BlockStatement
+5:             FunctionDeclaration
+5:              I:13 Identifier id () [b55]  Parent:178, Self:179
+5:               I:14 Identifier 0 () [b]  Parent:191, Self:192
+6:              BlockStatement
+--------------- START RETURN  --------------- 
+ path:p.0.expression.arguments.0.body.body.0.body.body.0.body.body.0
+7:                I:15 ReturnStatement 0 () [return b+2;]  Parent:215, Self:216
+7:                 L:I:16 BinaryExpression argument (+) [b+2]  Parent:226, Self:227
+7:                  L:I:17 Identifier left () [b]  Parent:237, Self:238
+7:                  R:I:17 Literal right () [2]  Parent:250, Self:251
+--------------- END --------------- 
+10:             ExpressionStatement
+10:              I:13 CallExpression expression () [_$sb(10,'bb',_$gXLocal)]  Parent:275, Self:276
+10:               I:14 Identifier callee () [_$sb]  Parent:286, Self:287
+10:                I:15 Literal 0 () [10]  Parent:299, Self:300
+10:                I:15 Literal 1 () ['bb']  Parent:312, Self:313
+10:                I:15 Identifier 2 () [_$gXLocal]  Parent:325, Self:326
+10:             VariableDeclaration
+--------------- START VAR --------------- 
+ path:p.0.expression.arguments.0.body.body.0.body.body.2.declarations.0
+10:               I:14 VariableDeclarator 0 (=) [bb = _$set(10,'VariableDeclaration','0','bb',bb,'b55(b)*4',(_$v[1]=b55(b))*4,'=','1',_$gXLocal,1,'1=]  Parent:349, Self:350
+10:                L:I:15 Identifier id () [bb]  Parent:360, Self:361
+10:                R:I:15 CallExpression init () [_$set(10,'VariableDeclaration','0','bb',bb,'b55(b)*4',(_$v[1]=b55(b))*4,'=','1',_$gXLocal,1,'1=b55(b]  Parent:372, Self:373
+10:                 L:I:16 Identifier callee () [_$set]  Parent:383, Self:384
+10:                  L:I:17 Literal 0 () [10]  Parent:396, Self:397
+10:                  R:I:17 Literal 1 () ['VariableDeclaration']  Parent:409, Self:410
+10:                  L:I:17 Literal 2 () ['0']  Parent:422, Self:423
+10:                  R:I:17 Literal 3 () ['bb']  Parent:435, Self:436
+10:                  L:I:17 Identifier 4 () [bb]  Parent:448, Self:449
+10:                  R:I:17 Literal 5 () ['b55(b)*4']  Parent:460, Self:461
+10:                  L:I:17 BinaryExpression 6 (*) [(_$v[1]=b55(b))*4]  Parent:473, Self:474
+10:                   L:I:18 AssignmentExpression left (=) [_$v[1]=b55(b)]  Parent:484, Self:485
+10:                    L:I:19 MemberExpression left () [_$v[1]]  Parent:496, Self:497
+10:                     L:I:20 Identifier object () [_$v]  Parent:507, Self:508
+10:                     R:I:20 Literal property () [1]  Parent:519, Self:520
+10:                    R:I:19 CallExpression right () [b55(b)]  Parent:533, Self:534
+10:                     L:I:20 Identifier callee () [b55]  Parent:544, Self:545
+10:                      L:I:21 Identifier 0 () [b]  Parent:557, Self:558
+10:                   R:I:18 Literal right () [4]  Parent:570, Self:571
+10:                  R:I:17 Literal 7 () ['=']  Parent:583, Self:584
+10:                  L:I:17 Literal 8 () ['1']  Parent:596, Self:597
+10:                  R:I:17 Identifier 9 () [_$gXLocal]  Parent:609, Self:610
+10:                  L:I:17 Literal 10 () [1]  Parent:621, Self:622
+10:                  R:I:17 Literal 11 () ['1=b55(b)']  Parent:634, Self:635
+--------------- END --------------- 
+--------------- START RETURN  --------------- 
+ path:p.0.expression.arguments.0.body.body.0.body.body.3
+12:             I:12 ReturnStatement 3 () [return b;]  Parent:648, Self:649
+12:              L:I:13 Identifier argument () [b]  Parent:659, Self:660
+--------------- END --------------- 
+15:          VariableDeclaration
+--------------- START VAR --------------- 
+ path:p.0.expression.arguments.0.body.body.1.declarations.0
+15:            I:11 VariableDeclarator 0 (=) [cc = function() { return 1; }]  Parent:684, Self:685
+15:             L:I:12 Identifier id () [cc]  Parent:695, Self:696
+15:             R:I:12 FunctionExpression init () [function() { return 1; }]  Parent:707, Self:708
+--------------- END --------------- 
+15:              BlockStatement
+--------------- START RETURN  --------------- 
+ path:p.0.expression.arguments.0.body.body.1.declarations.0.init.body.body.0
+15:                I:15 ReturnStatement 0 () [return 1;]  Parent:732, Self:733
+15:                 L:I:16 Literal argument () [1]  Parent:743, Self:744
+--------------- END --------------- 
+16:          VariableDeclaration
+--------------- START VAR --------------- 
+ path:p.0.expression.arguments.0.body.body.2.declarations.0
+16:            I:11 VariableDeclarator 0 (=) [bb = function(a,b,c) { _$sb(16,'d',_$gXLocal);var d = _$set(16,'BlockStatement > VariableDeclaration]  Parent:770, Self:771
+16:             L:I:12 Identifier id () [bb]  Parent:781, Self:782
+16:             R:I:12 FunctionExpression init () [function(a,b,c) { _$sb(16,'d',_$gXLocal);var d = _$set(16,'BlockStatement > VariableDeclaration','0']  Parent:793, Self:794
+16:               L:I:14 Identifier 0 () [a]  Parent:806, Self:807
+16:               R:I:14 Identifier 1 () [b]  Parent:818, Self:819
+16:               L:I:14 Identifier 2 () [c]  Parent:830, Self:831
+--------------- END --------------- 
+16:              BlockStatement
+16:                ExpressionStatement
+16:                 I:16 CallExpression expression () [_$sb(16,'d',_$gXLocal)]  Parent:865, Self:866
+16:                  I:17 Identifier callee () [_$sb]  Parent:876, Self:877
+16:                   I:18 Literal 0 () [16]  Parent:889, Self:890
+16:                   I:18 Literal 1 () ['d']  Parent:902, Self:903
+16:                   I:18 Identifier 2 () [_$gXLocal]  Parent:915, Self:916
+16:                VariableDeclaration
+--------------- START VAR --------------- 
+ path:p.0.expression.arguments.0.body.body.2.declarations.0.init.body.body.1.declarations.0
+16:                  I:17 VariableDeclarator 0 (=) [d = _$set(16,'BlockStatement > VariableDeclaration','0','d',d,'0',0,'=','1',_$gXLocal,0)]  Parent:939, Self:940
+16:                   L:I:18 Identifier id () [d]  Parent:950, Self:951
+16:                   R:I:18 CallExpression init () [_$set(16,'BlockStatement > VariableDeclaration','0','d',d,'0',0,'=','1',_$gXLocal,0)]  Parent:962, Self:963
+16:                    L:I:19 Identifier callee () [_$set]  Parent:973, Self:974
+16:                     L:I:20 Literal 0 () [16]  Parent:986, Self:987
+16:                     R:I:20 Literal 1 () ['BlockStatement > VariableDeclaration']  Parent:999, Self:1000
+16:                     L:I:20 Literal 2 () ['0']  Parent:1012, Self:1013
+16:                     R:I:20 Literal 3 () ['d']  Parent:1025, Self:1026
+16:                     L:I:20 Identifier 4 () [d]  Parent:1038, Self:1039
+16:                     R:I:20 Literal 5 () ['0']  Parent:1050, Self:1051
+16:                     L:I:20 Literal 6 () [0]  Parent:1063, Self:1064
+16:                     R:I:20 Literal 7 () ['=']  Parent:1076, Self:1077
+16:                     L:I:20 Literal 8 () ['1']  Parent:1089, Self:1090
+16:                     R:I:20 Identifier 9 () [_$gXLocal]  Parent:1102, Self:1103
+16:                     L:I:20 Literal 10 () [0]  Parent:1114, Self:1115
+--------------- END --------------- 
+16:                ExpressionStatement
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.2.declarations.0.init.body.body.2.expression
+16:                 I:16 AssignmentExpression expression (=) [d = _$set(16,'ExpressionStatement','expression','d',d,'b+c',b+c,'=','0',_$gXLocal,0)]  Parent:1139, Self:1140
+16:                  L:I:17 Identifier left () [d]  Parent:1151, Self:1152
+16:                  R:I:17 CallExpression right () [_$set(16,'ExpressionStatement','expression','d',d,'b+c',b+c,'=','0',_$gXLocal,0)]  Parent:1163, Self:1164
+16:                   L:I:18 Identifier callee () [_$set]  Parent:1174, Self:1175
+16:                    L:I:19 Literal 0 () [16]  Parent:1187, Self:1188
+16:                    R:I:19 Literal 1 () ['ExpressionStatement']  Parent:1200, Self:1201
+16:                    L:I:19 Literal 2 () ['expression']  Parent:1213, Self:1214
+16:                    R:I:19 Literal 3 () ['d']  Parent:1226, Self:1227
+16:                    L:I:19 Identifier 4 () [d]  Parent:1239, Self:1240
+16:                    R:I:19 Literal 5 () ['b+c']  Parent:1251, Self:1252
+16:                    L:I:19 BinaryExpression 6 (+) [b+c]  Parent:1264, Self:1265
+16:                     L:I:20 Identifier left () [b]  Parent:1275, Self:1276
+16:                     R:I:20 Identifier right () [c]  Parent:1288, Self:1289
+16:                    R:I:19 Literal 7 () ['=']  Parent:1300, Self:1301
+16:                    L:I:19 Literal 8 () ['0']  Parent:1313, Self:1314
+16:                    R:I:19 Identifier 9 () [_$gXLocal]  Parent:1326, Self:1327
+16:                    L:I:19 Literal 10 () [0]  Parent:1338, Self:1339
+--------------- END --------------- 
+--------------- START RETURN  --------------- 
+ path:p.0.expression.arguments.0.body.body.2.declarations.0.init.body.body.3
+16:                I:15 ReturnStatement 3 () [return a-d;]  Parent:1351, Self:1352
+16:                 L:I:16 BinaryExpression argument (-) [a-d]  Parent:1362, Self:1363
+16:                  L:I:17 Identifier left () [a]  Parent:1373, Self:1374
+16:                  R:I:17 Identifier right () [d]  Parent:1386, Self:1387
+--------------- END --------------- 
+18:          FunctionDeclaration
+18:           I:10 Identifier id () [dd]  Parent:1411, Self:1412
+19:           BlockStatement
+--------------- START RETURN  --------------- 
+ path:p.0.expression.arguments.0.body.body.3.body.body.0
+20:             I:12 ReturnStatement 0 () [return 2;]  Parent:1436, Self:1437
+20:              L:I:13 Literal argument () [2]  Parent:1447, Self:1448
+--------------- END --------------- 
+24:          FunctionDeclaration
+24:           I:10 Identifier id () [a5]  Parent:1472, Self:1473
+24:            I:11 Identifier 0 () [a]  Parent:1485, Self:1486
+25:           BlockStatement
+26:             FunctionDeclaration
+26:              I:13 Identifier id () [a55]  Parent:1520, Self:1521
+26:               I:14 Identifier 0 () [a]  Parent:1533, Self:1534
+27:              BlockStatement
+--------------- START RETURN  --------------- 
+ path:p.0.expression.arguments.0.body.body.4.body.body.0.body.body.0
+28:                I:15 ReturnStatement 0 () [return a+1;]  Parent:1557, Self:1558
+28:                 L:I:16 BinaryExpression argument (+) [a+1]  Parent:1568, Self:1569
+28:                  L:I:17 Identifier left () [a]  Parent:1579, Self:1580
+28:                  R:I:17 Literal right () [1]  Parent:1592, Self:1593
+--------------- END --------------- 
+31:             ExpressionStatement
+31:              I:13 CallExpression expression () [_$sb(31,'aa',_$gXLocal)]  Parent:1617, Self:1618
+31:               I:14 Identifier callee () [_$sb]  Parent:1628, Self:1629
+31:                I:15 Literal 0 () [31]  Parent:1641, Self:1642
+31:                I:15 Literal 1 () ['aa']  Parent:1654, Self:1655
+31:                I:15 Identifier 2 () [_$gXLocal]  Parent:1667, Self:1668
+31:             VariableDeclaration
+--------------- START VAR --------------- 
+ path:p.0.expression.arguments.0.body.body.4.body.body.2.declarations.0
+31:               I:14 VariableDeclarator 0 (=) [aa = _$set(31,'VariableDeclaration','0','aa',aa,'a55(a)*2',(_$v[2]=a55(a))*2,'=','1',_$gXLocal,1,'2=]  Parent:1691, Self:1692
+31:                L:I:15 Identifier id () [aa]  Parent:1702, Self:1703
+31:                R:I:15 CallExpression init () [_$set(31,'VariableDeclaration','0','aa',aa,'a55(a)*2',(_$v[2]=a55(a))*2,'=','1',_$gXLocal,1,'2=a55(a]  Parent:1714, Self:1715
+31:                 L:I:16 Identifier callee () [_$set]  Parent:1725, Self:1726
+31:                  L:I:17 Literal 0 () [31]  Parent:1738, Self:1739
+31:                  R:I:17 Literal 1 () ['VariableDeclaration']  Parent:1751, Self:1752
+31:                  L:I:17 Literal 2 () ['0']  Parent:1764, Self:1765
+31:                  R:I:17 Literal 3 () ['aa']  Parent:1777, Self:1778
+31:                  L:I:17 Identifier 4 () [aa]  Parent:1790, Self:1791
+31:                  R:I:17 Literal 5 () ['a55(a)*2']  Parent:1802, Self:1803
+31:                  L:I:17 BinaryExpression 6 (*) [(_$v[2]=a55(a))*2]  Parent:1815, Self:1816
+31:                   L:I:18 AssignmentExpression left (=) [_$v[2]=a55(a)]  Parent:1826, Self:1827
+31:                    L:I:19 MemberExpression left () [_$v[2]]  Parent:1838, Self:1839
+31:                     L:I:20 Identifier object () [_$v]  Parent:1849, Self:1850
+31:                     R:I:20 Literal property () [2]  Parent:1861, Self:1862
+31:                    R:I:19 CallExpression right () [a55(a)]  Parent:1875, Self:1876
+31:                     L:I:20 Identifier callee () [a55]  Parent:1886, Self:1887
+31:                      L:I:21 Identifier 0 () [a]  Parent:1899, Self:1900
+31:                   R:I:18 Literal right () [2]  Parent:1912, Self:1913
+31:                  R:I:17 Literal 7 () ['=']  Parent:1925, Self:1926
+31:                  L:I:17 Literal 8 () ['1']  Parent:1938, Self:1939
+31:                  R:I:17 Identifier 9 () [_$gXLocal]  Parent:1951, Self:1952
+31:                  L:I:17 Literal 10 () [1]  Parent:1963, Self:1964
+31:                  R:I:17 Literal 11 () ['2=a55(a)']  Parent:1976, Self:1977
+--------------- END --------------- 
+33:             IfStatement
+33:              I:13 CallExpression test () [_$evl(33,'IfStatement','test','a<10', a<10,_$gXLocal, 0)]  Parent:2001, Self:2002
+33:               I:14 Identifier callee () [_$evl]  Parent:2012, Self:2013
+33:                I:15 Literal 0 () [33]  Parent:2025, Self:2026
+33:                I:15 Literal 1 () ['IfStatement']  Parent:2038, Self:2039
+33:                I:15 Literal 2 () ['test']  Parent:2051, Self:2052
+33:                I:15 Literal 3 () ['a<10']  Parent:2064, Self:2065
+--------------- START BINARY --------------- 
+ path:p.0.expression.arguments.0.body.body.4.body.body.3.test.arguments.4
+33:                I:15 BinaryExpression 4 (<) [a<10]  Parent:2077, Self:2078
+33:                 L:I:16 Identifier left () [a]  Parent:2088, Self:2089
+33:                 R:I:16 Literal right () [10]  Parent:2101, Self:2102
+--------------- END --------------- 
+33:                I:15 Identifier 5 () [_$gXLocal]  Parent:2114, Self:2115
+33:                I:15 Literal 6 () [0]  Parent:2126, Self:2127
+33:              BlockStatement
+--------------- START RETURN  --------------- 
+ path:p.0.expression.arguments.0.body.body.4.body.body.3.consequent.body.0
+33:                I:15 ReturnStatement 0 () [return aa+10;]  Parent:2151, Self:2152
+33:                 L:I:16 BinaryExpression argument (+) [aa+10]  Parent:2162, Self:2163
+33:                  L:I:17 Identifier left () [aa]  Parent:2173, Self:2174
+33:                  R:I:17 Literal right () [10]  Parent:2186, Self:2187
+--------------- END --------------- 
+34:              IfStatement
+34:               I:14 CallExpression test () [_$evl(34,'IfStatement','test','a>100', a>100,_$gXLocal, 0)]  Parent:2210, Self:2211
+34:                I:15 Identifier callee () [_$evl]  Parent:2221, Self:2222
+34:                 I:16 Literal 0 () [34]  Parent:2234, Self:2235
+34:                 I:16 Literal 1 () ['IfStatement']  Parent:2247, Self:2248
+34:                 I:16 Literal 2 () ['test']  Parent:2260, Self:2261
+34:                 I:16 Literal 3 () ['a>100']  Parent:2273, Self:2274
+--------------- START BINARY --------------- 
+ path:p.0.expression.arguments.0.body.body.4.body.body.3.alternate.test.arguments.4
+34:                 I:16 BinaryExpression 4 (>) [a>100]  Parent:2286, Self:2287
+34:                  L:I:17 Identifier left () [a]  Parent:2297, Self:2298
+34:                  R:I:17 Literal right () [100]  Parent:2310, Self:2311
+--------------- END --------------- 
+34:                 I:16 Identifier 5 () [_$gXLocal]  Parent:2323, Self:2324
+34:                 I:16 Literal 6 () [0]  Parent:2335, Self:2336
+34:               BlockStatement
+--------------- START RETURN  --------------- 
+ path:p.0.expression.arguments.0.body.body.4.body.body.3.alternate.consequent.body.0
+34:                 I:16 ReturnStatement 0 () [return a-100;]  Parent:2360, Self:2361
+34:                  L:I:17 BinaryExpression argument (-) [a-100]  Parent:2371, Self:2372
+34:                   L:I:18 Identifier left () [a]  Parent:2382, Self:2383
+34:                   R:I:18 Literal right () [100]  Parent:2395, Self:2396
+--------------- END --------------- 
+--------------- START RETURN  --------------- 
+ path:p.0.expression.arguments.0.body.body.4.body.body.4
+36:             I:12 ReturnStatement 4 () [return aa;]  Parent:2409, Self:2410
+36:              L:I:13 Identifier argument () [aa]  Parent:2420, Self:2421
+--------------- END --------------- 
+39:          FunctionDeclaration
+39:           I:10 Identifier id () [a1]  Parent:2444, Self:2445
+39:            I:11 Identifier 0 () [a]  Parent:2457, Self:2458
+40:           BlockStatement
+41:             ExpressionStatement
+41:              I:13 CallExpression expression () [_$sb(41,'aaa',_$gXLocal)]  Parent:2492, Self:2493
+41:               I:14 Identifier callee () [_$sb]  Parent:2503, Self:2504
+41:                I:15 Literal 0 () [41]  Parent:2516, Self:2517
+41:                I:15 Literal 1 () ['aaa']  Parent:2529, Self:2530
+41:                I:15 Identifier 2 () [_$gXLocal]  Parent:2542, Self:2543
+41:             VariableDeclaration
+--------------- START VAR --------------- 
+ path:p.0.expression.arguments.0.body.body.5.body.body.1.declarations.0
+41:               I:14 VariableDeclarator 0 (=) [aaa = _$set(41,'FunctionDeclaration > BlockStatement > VariableDeclaration','0','aaa',aaa,'a',a,'=',]  Parent:2566, Self:2567
+41:                L:I:15 Identifier id () [aaa]  Parent:2577, Self:2578
+41:                R:I:15 CallExpression init () [_$set(41,'FunctionDeclaration > BlockStatement > VariableDeclaration','0','aaa',aaa,'a',a,'=','1',_$]  Parent:2589, Self:2590
+41:                 L:I:16 Identifier callee () [_$set]  Parent:2600, Self:2601
+41:                  L:I:17 Literal 0 () [41]  Parent:2613, Self:2614
+41:                  R:I:17 Literal 1 () ['FunctionDeclaration > BlockStatement > VariableDeclaration']  Parent:2626, Self:2627
+41:                  L:I:17 Literal 2 () ['0']  Parent:2639, Self:2640
+41:                  R:I:17 Literal 3 () ['aaa']  Parent:2652, Self:2653
+41:                  L:I:17 Identifier 4 () [aaa]  Parent:2665, Self:2666
+41:                  R:I:17 Literal 5 () ['a']  Parent:2677, Self:2678
+41:                  L:I:17 Identifier 6 () [a]  Parent:2690, Self:2691
+41:                  R:I:17 Literal 7 () ['=']  Parent:2702, Self:2703
+41:                  L:I:17 Literal 8 () ['1']  Parent:2715, Self:2716
+41:                  R:I:17 Identifier 9 () [_$gXLocal]  Parent:2728, Self:2729
+41:                  L:I:17 Literal 10 () [0]  Parent:2740, Self:2741
+--------------- END --------------- 
+--------------- START RETURN  --------------- 
+ path:p.0.expression.arguments.0.body.body.5.body.body.2
+42:             I:12 ReturnStatement 2 () [return aaa;]  Parent:2754, Self:2755
+42:              L:I:13 Identifier argument () [aaa]  Parent:2765, Self:2766
+--------------- END --------------- 
+45:          ExpressionStatement
+45:           I:10 CallExpression expression () [_$sb(45,'blockC',_$gXLocal)]  Parent:2789, Self:2790
+45:            I:11 Identifier callee () [_$sb]  Parent:2800, Self:2801
+45:             I:12 Literal 0 () [45]  Parent:2813, Self:2814
+45:             I:12 Literal 1 () ['blockC']  Parent:2826, Self:2827
+45:             I:12 Identifier 2 () [_$gXLocal]  Parent:2839, Self:2840
+45:          VariableDeclaration
+--------------- START VAR --------------- 
+ path:p.0.expression.arguments.0.body.body.7.declarations.0
+45:            I:11 VariableDeclarator 0 (=) [blockC = _$set(45,'VariableDeclaration','0','blockC',blockC,'[]',[],'=','1',_$gXLocal,0)]  Parent:2863, Self:2864
+45:             L:I:12 Identifier id () [blockC]  Parent:2874, Self:2875
+45:             R:I:12 CallExpression init () [_$set(45,'VariableDeclaration','0','blockC',blockC,'[]',[],'=','1',_$gXLocal,0)]  Parent:2886, Self:2887
+45:              L:I:13 Identifier callee () [_$set]  Parent:2897, Self:2898
+45:               L:I:14 Literal 0 () [45]  Parent:2910, Self:2911
+45:               R:I:14 Literal 1 () ['VariableDeclaration']  Parent:2923, Self:2924
+45:               L:I:14 Literal 2 () ['0']  Parent:2936, Self:2937
+45:               R:I:14 Literal 3 () ['blockC']  Parent:2949, Self:2950
+45:               L:I:14 Identifier 4 () [blockC]  Parent:2962, Self:2963
+45:               R:I:14 Literal 5 () ['[]']  Parent:2974, Self:2975
+45:               L:I:14 ArrayExpression 6 () [[]]  Parent:2987, Self:2988
+45:               R:I:14 Literal 7 () ['=']  Parent:2999, Self:3000
+45:               L:I:14 Literal 8 () ['1']  Parent:3012, Self:3013
+45:               R:I:14 Identifier 9 () [_$gXLocal]  Parent:3025, Self:3026
+45:               L:I:14 Literal 10 () [0]  Parent:3037, Self:3038
+--------------- END --------------- 
+46:          ExpressionStatement
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.8.expression
+46:           I:10 AssignmentExpression expression (=) [blockC[1] = _$set(46,'ExpressionStatement','expression','blockC[1]',blockC[1],'{}',{},'=','0',_$gXLo]  Parent:3062, Self:3063
+46:            L:I:11 MemberExpression left () [blockC[1]]  Parent:3074, Self:3075
+46:             L:I:12 Identifier object () [blockC]  Parent:3085, Self:3086
+46:             R:I:12 Literal property () [1]  Parent:3097, Self:3098
+46:            R:I:11 CallExpression right () [_$set(46,'ExpressionStatement','expression','blockC[1]',blockC[1],'{}',{},'=','0',_$gXLocal,0)]  Parent:3111, Self:3112
+46:             L:I:12 Identifier callee () [_$set]  Parent:3122, Self:3123
+46:              L:I:13 Literal 0 () [46]  Parent:3135, Self:3136
+46:              R:I:13 Literal 1 () ['ExpressionStatement']  Parent:3148, Self:3149
+46:              L:I:13 Literal 2 () ['expression']  Parent:3161, Self:3162
+46:              R:I:13 Literal 3 () ['blockC[1]']  Parent:3174, Self:3175
+46:              L:I:13 MemberExpression 4 () [blockC[1]]  Parent:3187, Self:3188
+46:               L:I:14 Identifier object () [blockC]  Parent:3198, Self:3199
+46:               R:I:14 Literal property () [1]  Parent:3210, Self:3211
+46:              R:I:13 Literal 5 () ['{}']  Parent:3224, Self:3225
+46:              L:I:13 ObjectExpression 6 () [{}]  Parent:3237, Self:3238
+46:              R:I:13 Literal 7 () ['=']  Parent:3249, Self:3250
+46:              L:I:13 Literal 8 () ['0']  Parent:3262, Self:3263
+46:              R:I:13 Identifier 9 () [_$gXLocal]  Parent:3275, Self:3276
+46:              L:I:13 Literal 10 () [0]  Parent:3287, Self:3288
+--------------- END --------------- 
+47:          ExpressionStatement
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.9.expression
+47:           I:10 AssignmentExpression expression (=) [blockC[1].X = _$set(47,'ExpressionStatement','expression','blockC[1].X',blockC[1].X,'5',5,'=','0',_$]  Parent:3311, Self:3312
+47:            L:I:11 MemberExpression left () [blockC[1].X]  Parent:3323, Self:3324
+47:             L:I:12 MemberExpression object () [blockC[1]]  Parent:3334, Self:3335
+47:              L:I:13 Identifier object () [blockC]  Parent:3345, Self:3346
+47:              R:I:13 Literal property () [1]  Parent:3357, Self:3358
+47:             R:I:12 Identifier property () [X]  Parent:3371, Self:3372
+47:            R:I:11 CallExpression right () [_$set(47,'ExpressionStatement','expression','blockC[1].X',blockC[1].X,'5',5,'=','0',_$gXLocal,0)]  Parent:3384, Self:3385
+47:             L:I:12 Identifier callee () [_$set]  Parent:3395, Self:3396
+47:              L:I:13 Literal 0 () [47]  Parent:3408, Self:3409
+47:              R:I:13 Literal 1 () ['ExpressionStatement']  Parent:3421, Self:3422
+47:              L:I:13 Literal 2 () ['expression']  Parent:3434, Self:3435
+47:              R:I:13 Literal 3 () ['blockC[1].X']  Parent:3447, Self:3448
+47:              L:I:13 MemberExpression 4 () [blockC[1].X]  Parent:3460, Self:3461
+47:               L:I:14 MemberExpression object () [blockC[1]]  Parent:3471, Self:3472
+47:                L:I:15 Identifier object () [blockC]  Parent:3482, Self:3483
+47:                R:I:15 Literal property () [1]  Parent:3494, Self:3495
+47:               R:I:14 Identifier property () [X]  Parent:3508, Self:3509
+47:              R:I:13 Literal 5 () ['5']  Parent:3521, Self:3522
+47:              L:I:13 Literal 6 () [5]  Parent:3534, Self:3535
+47:              R:I:13 Literal 7 () ['=']  Parent:3547, Self:3548
+47:              L:I:13 Literal 8 () ['0']  Parent:3560, Self:3561
+47:              R:I:13 Identifier 9 () [_$gXLocal]  Parent:3573, Self:3574
+47:              L:I:13 Literal 10 () [0]  Parent:3585, Self:3586
+--------------- END --------------- 
+48:          ExpressionStatement
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.10.expression
+48:           I:10 AssignmentExpression expression (=) [blockC[2] = _$set(48,'ExpressionStatement','expression','blockC[2]',blockC[2],'5',5,'=','0',_$gXLoca]  Parent:3609, Self:3610
+48:            L:I:11 MemberExpression left () [blockC[2]]  Parent:3621, Self:3622
+48:             L:I:12 Identifier object () [blockC]  Parent:3632, Self:3633
+48:             R:I:12 Literal property () [2]  Parent:3644, Self:3645
+48:            R:I:11 CallExpression right () [_$set(48,'ExpressionStatement','expression','blockC[2]',blockC[2],'5',5,'=','0',_$gXLocal,0)]  Parent:3658, Self:3659
+48:             L:I:12 Identifier callee () [_$set]  Parent:3669, Self:3670
+48:              L:I:13 Literal 0 () [48]  Parent:3682, Self:3683
+48:              R:I:13 Literal 1 () ['ExpressionStatement']  Parent:3695, Self:3696
+48:              L:I:13 Literal 2 () ['expression']  Parent:3708, Self:3709
+48:              R:I:13 Literal 3 () ['blockC[2]']  Parent:3721, Self:3722
+48:              L:I:13 MemberExpression 4 () [blockC[2]]  Parent:3734, Self:3735
+48:               L:I:14 Identifier object () [blockC]  Parent:3745, Self:3746
+48:               R:I:14 Literal property () [2]  Parent:3757, Self:3758
+48:              R:I:13 Literal 5 () ['5']  Parent:3771, Self:3772
+48:              L:I:13 Literal 6 () [5]  Parent:3784, Self:3785
+48:              R:I:13 Literal 7 () ['=']  Parent:3797, Self:3798
+48:              L:I:13 Literal 8 () ['0']  Parent:3810, Self:3811
+48:              R:I:13 Identifier 9 () [_$gXLocal]  Parent:3823, Self:3824
+48:              L:I:13 Literal 10 () [0]  Parent:3835, Self:3836
+--------------- END --------------- 
+50:          ExpressionStatement
+50:           I:10 CallExpression expression () [_$sb(50,'j',_$gXLocal)]  Parent:3859, Self:3860
+50:            I:11 Identifier callee () [_$sb]  Parent:3870, Self:3871
+50:             I:12 Literal 0 () [50]  Parent:3883, Self:3884
+50:             I:12 Literal 1 () ['j']  Parent:3896, Self:3897
+50:             I:12 Identifier 2 () [_$gXLocal]  Parent:3909, Self:3910
+50:          VariableDeclaration
+--------------- START VAR --------------- 
+ path:p.0.expression.arguments.0.body.body.12.declarations.0
+50:            I:11 VariableDeclarator 0 (=) [j = _$set(50,'VariableDeclaration','0','j',j,'1',1,'=','1',_$gXLocal,0)]  Parent:3933, Self:3934
+50:             L:I:12 Identifier id () [j]  Parent:3944, Self:3945
+50:             R:I:12 CallExpression init () [_$set(50,'VariableDeclaration','0','j',j,'1',1,'=','1',_$gXLocal,0)]  Parent:3956, Self:3957
+50:              L:I:13 Identifier callee () [_$set]  Parent:3967, Self:3968
+50:               L:I:14 Literal 0 () [50]  Parent:3980, Self:3981
+50:               R:I:14 Literal 1 () ['VariableDeclaration']  Parent:3993, Self:3994
+50:               L:I:14 Literal 2 () ['0']  Parent:4006, Self:4007
+50:               R:I:14 Literal 3 () ['j']  Parent:4019, Self:4020
+50:               L:I:14 Identifier 4 () [j]  Parent:4032, Self:4033
+50:               R:I:14 Literal 5 () ['1']  Parent:4044, Self:4045
+50:               L:I:14 Literal 6 () [1]  Parent:4057, Self:4058
+50:               R:I:14 Literal 7 () ['=']  Parent:4070, Self:4071
+50:               L:I:14 Literal 8 () ['1']  Parent:4083, Self:4084
+50:               R:I:14 Identifier 9 () [_$gXLocal]  Parent:4096, Self:4097
+50:               L:I:14 Literal 10 () [0]  Parent:4108, Self:4109
+--------------- END --------------- 
+52:          ExpressionStatement
+52:           I:10 CallExpression expression () [_$sb(52,'i',_$gXLocal)]  Parent:4133, Self:4134
+52:            I:11 Identifier callee () [_$sb]  Parent:4144, Self:4145
+52:             I:12 Literal 0 () [52]  Parent:4157, Self:4158
+52:             I:12 Literal 1 () ['i']  Parent:4170, Self:4171
+52:             I:12 Identifier 2 () [_$gXLocal]  Parent:4183, Self:4184
+52:          VariableDeclaration
+--------------- START VAR --------------- 
+ path:p.0.expression.arguments.0.body.body.14.declarations.0
+52:            I:11 VariableDeclarator 0 (=) [i = _$set(52,'VariableDeclaration','0','i',i,'$(window).width()+window.innerHeight+5+a5(5)+a5($(wind]  Parent:4207, Self:4208
+52:             L:I:12 Identifier id () [i]  Parent:4218, Self:4219
+52:             R:I:12 CallExpression init () [_$set(52,'VariableDeclaration','0','i',i,'$(window).width()+window.innerHeight+5+a5(5)+a5($(window).]  Parent:4230, Self:4231
+52:              L:I:13 Identifier callee () [_$set]  Parent:4241, Self:4242
+52:               L:I:14 Literal 0 () [52]  Parent:4254, Self:4255
+52:               R:I:14 Literal 1 () ['VariableDeclaration']  Parent:4267, Self:4268
+52:               L:I:14 Literal 2 () ['0']  Parent:4280, Self:4281
+52:               R:I:14 Literal 3 () ['i']  Parent:4293, Self:4294
+52:               L:I:14 Identifier 4 () [i]  Parent:4306, Self:4307
+52:               R:I:14 Literal 5 () ['$(window).width()+window.innerHeight+5+a5(5)+a5($(window).width())+a5(window.innerWidth)+blockC[2]+]  Parent:4318, Self:4319
+52:               L:I:14 BinaryExpression 6 (+) [(_$v[8]=$(window).width())+window.innerHeight+5+(_$v[7]=a5(5))+(_$v[6]=a5((_$v[5]=$(window).width())]  Parent:4331, Self:4332
+52:                L:I:15 BinaryExpression left (+) [(_$v[8]=$(window).width())+window.innerHeight+5+(_$v[7]=a5(5))+(_$v[6]=a5((_$v[5]=$(window).width())]  Parent:4342, Self:4343
+52:                 L:I:16 BinaryExpression left (+) [(_$v[8]=$(window).width())+window.innerHeight+5+(_$v[7]=a5(5))+(_$v[6]=a5((_$v[5]=$(window).width())]  Parent:4353, Self:4354
+52:                  L:I:17 BinaryExpression left (+) [(_$v[8]=$(window).width())+window.innerHeight+5+(_$v[7]=a5(5))+(_$v[6]=a5((_$v[5]=$(window).width())]  Parent:4364, Self:4365
+52:                   L:I:18 BinaryExpression left (+) [(_$v[8]=$(window).width())+window.innerHeight+5+(_$v[7]=a5(5))+(_$v[6]=a5((_$v[5]=$(window).width())]  Parent:4375, Self:4376
+52:                    L:I:19 BinaryExpression left (+) [(_$v[8]=$(window).width())+window.innerHeight+5+(_$v[7]=a5(5))]  Parent:4386, Self:4387
+52:                     L:I:20 BinaryExpression left (+) [(_$v[8]=$(window).width())+window.innerHeight+5]  Parent:4397, Self:4398
+52:                      L:I:21 BinaryExpression left (+) [(_$v[8]=$(window).width())+window.innerHeight]  Parent:4408, Self:4409
+52:                       L:I:22 AssignmentExpression left (=) [_$v[8]=$(window).width()]  Parent:4419, Self:4420
+52:                        L:I:23 MemberExpression left () [_$v[8]]  Parent:4431, Self:4432
+52:                         L:I:24 Identifier object () [_$v]  Parent:4442, Self:4443
+52:                         R:I:24 Literal property () [8]  Parent:4454, Self:4455
+52:                        R:I:23 CallExpression right () [$(window).width()]  Parent:4468, Self:4469
+52:                         L:I:24 MemberExpression callee () [$(window).width]  Parent:4479, Self:4480
+52:                          L:I:25 CallExpression object () [$(window)]  Parent:4490, Self:4491
+52:                           L:I:26 Identifier callee () [$]  Parent:4501, Self:4502
+52:                            L:I:27 Identifier 0 () [window]  Parent:4514, Self:4515
+52:                          R:I:25 Identifier property () [width]  Parent:4526, Self:4527
+52:                       R:I:22 MemberExpression right () [window.innerHeight]  Parent:4541, Self:4542
+52:                        L:I:23 Identifier object () [window]  Parent:4552, Self:4553
+52:                        R:I:23 Identifier property () [innerHeight]  Parent:4564, Self:4565
+52:                      R:I:21 Literal right () [5]  Parent:4578, Self:4579
+52:                     R:I:20 AssignmentExpression right (=) [_$v[7]=a5(5)]  Parent:4592, Self:4593
+52:                      L:I:21 MemberExpression left () [_$v[7]]  Parent:4604, Self:4605
+52:                       L:I:22 Identifier object () [_$v]  Parent:4615, Self:4616
+52:                       R:I:22 Literal property () [7]  Parent:4627, Self:4628
+52:                      R:I:21 CallExpression right () [a5(5)]  Parent:4641, Self:4642
+52:                       L:I:22 Identifier callee () [a5]  Parent:4652, Self:4653
+52:                        L:I:23 Literal 0 () [5]  Parent:4665, Self:4666
+52:                    R:I:19 AssignmentExpression right (=) [_$v[6]=a5((_$v[5]=$(window).width()))]  Parent:4679, Self:4680
+52:                     L:I:20 MemberExpression left () [_$v[6]]  Parent:4691, Self:4692
+52:                      L:I:21 Identifier object () [_$v]  Parent:4702, Self:4703
+52:                      R:I:21 Literal property () [6]  Parent:4714, Self:4715
+52:                     R:I:20 CallExpression right () [a5((_$v[5]=$(window).width()))]  Parent:4728, Self:4729
+52:                      L:I:21 Identifier callee () [a5]  Parent:4739, Self:4740
+52:                       R:I:22 AssignmentExpression 0 (=) [_$v[5]=$(window).width()]  Parent:4752, Self:4753
+52:                        R:I:23 MemberExpression left () [_$v[5]]  Parent:4764, Self:4765
+52:                         R:I:24 Identifier object () [_$v]  Parent:4775, Self:4776
+52:                         L:I:24 Literal property () [5]  Parent:4787, Self:4788
+52:                        L:I:23 CallExpression right () [$(window).width()]  Parent:4801, Self:4802
+52:                         R:I:24 MemberExpression callee () [$(window).width]  Parent:4812, Self:4813
+52:                          L:I:25 CallExpression object () [$(window)]  Parent:4823, Self:4824
+52:                           R:I:26 Identifier callee () [$]  Parent:4834, Self:4835
+52:                            R:I:27 Identifier 0 () [window]  Parent:4847, Self:4848
+52:                          R:I:25 Identifier property () [width]  Parent:4859, Self:4860
+52:                   R:I:18 AssignmentExpression right (=) [_$v[4]=a5(window.innerWidth)]  Parent:4874, Self:4875
+52:                    L:I:19 MemberExpression left () [_$v[4]]  Parent:4886, Self:4887
+52:                     L:I:20 Identifier object () [_$v]  Parent:4897, Self:4898
+52:                     R:I:20 Literal property () [4]  Parent:4909, Self:4910
+52:                    R:I:19 CallExpression right () [a5(window.innerWidth)]  Parent:4923, Self:4924
+52:                     L:I:20 Identifier callee () [a5]  Parent:4934, Self:4935
+52:                      R:I:21 MemberExpression 0 () [window.innerWidth]  Parent:4947, Self:4948
+52:                       L:I:22 Identifier object () [window]  Parent:4958, Self:4959
+52:                       R:I:22 Identifier property () [innerWidth]  Parent:4970, Self:4971
+52:                  R:I:17 MemberExpression right () [blockC[2]]  Parent:4984, Self:4985
+52:                   L:I:18 Identifier object () [blockC]  Parent:4995, Self:4996
+52:                   R:I:18 Literal property () [2]  Parent:5007, Self:5008
+52:                 R:I:16 MemberExpression right () [blockC[1].X]  Parent:5022, Self:5023
+52:                  L:I:17 MemberExpression object () [blockC[1]]  Parent:5033, Self:5034
+52:                   L:I:18 Identifier object () [blockC]  Parent:5044, Self:5045
+52:                   R:I:18 Literal property () [1]  Parent:5056, Self:5057
+52:                  R:I:17 Identifier property () [X]  Parent:5070, Self:5071
+52:                R:I:15 MemberExpression right () [blockC[(_$v[3]=a1(2))]]  Parent:5084, Self:5085
+52:                 L:I:16 Identifier object () [blockC]  Parent:5095, Self:5096
+52:                 R:I:16 AssignmentExpression property (=) [_$v[3]=a1(2)]  Parent:5107, Self:5108
+52:                  L:I:17 MemberExpression left () [_$v[3]]  Parent:5119, Self:5120
+52:                   L:I:18 Identifier object () [_$v]  Parent:5130, Self:5131
+52:                   R:I:18 Literal property () [3]  Parent:5142, Self:5143
+52:                  R:I:17 CallExpression right () [a1(2)]  Parent:5156, Self:5157
+52:                   L:I:18 Identifier callee () [a1]  Parent:5167, Self:5168
+52:                    L:I:19 Literal 0 () [2]  Parent:5180, Self:5181
+52:               R:I:14 Literal 7 () ['=']  Parent:5194, Self:5195
+52:               L:I:14 Literal 8 () ['1']  Parent:5207, Self:5208
+52:               R:I:14 Identifier 9 () [_$gXLocal]  Parent:5220, Self:5221
+52:               L:I:14 Literal 10 () [6]  Parent:5232, Self:5233
+52:               R:I:14 Literal 11 () ['3=a1(2)']  Parent:5245, Self:5246
+52:               L:I:14 Literal 12 () ['4=a5(window.innerWidth)']  Parent:5258, Self:5259
+52:               R:I:14 Literal 13 () ['5=$(window).width()']  Parent:5271, Self:5272
+52:               L:I:14 Literal 14 () ['6=a5($(window).width())']  Parent:5284, Self:5285
+52:               R:I:14 Literal 15 () ['7=a5(5)']  Parent:5297, Self:5298
+52:               L:I:14 Literal 16 () ['8=$(window).width()']  Parent:5310, Self:5311
+--------------- END --------------- 
+53:          IfStatement
+53:           I:10 CallExpression test () [_$evl(53,'IfStatement','test','(a1(i)>j) && (i>4) && a5(5)>20', ((_$v[10]=a1(i))>j) && (i>4) && (_$v]  Parent:5335, Self:5336
+53:            I:11 Identifier callee () [_$evl]  Parent:5346, Self:5347
+53:             I:12 Literal 0 () [53]  Parent:5359, Self:5360
+53:             I:12 Literal 1 () ['IfStatement']  Parent:5372, Self:5373
+53:             I:12 Literal 2 () ['test']  Parent:5385, Self:5386
+53:             I:12 Literal 3 () ['(a1(i)>j) && (i>4) && a5(5)>20']  Parent:5398, Self:5399
+--------------- START LOGICAL --------------- 
+ path:p.0.expression.arguments.0.body.body.15.test.arguments.4
+53:             I:12 LogicalExpression 4 (&&) [((_$v[10]=a1(i))>j) && (i>4) && (_$v[9]=a5(5))>20]  Parent:5411, Self:5412
+53:              L:I:13 LogicalExpression left (&&) [((_$v[10]=a1(i))>j) && (i>4)]  Parent:5422, Self:5423
+53:               L:I:14 BinaryExpression left (>) [(_$v[10]=a1(i))>j]  Parent:5433, Self:5434
+53:                L:I:15 AssignmentExpression left (=) [_$v[10]=a1(i)]  Parent:5444, Self:5445
+53:                 L:I:16 MemberExpression left () [_$v[10]]  Parent:5456, Self:5457
+53:                  L:I:17 Identifier object () [_$v]  Parent:5467, Self:5468
+53:                  R:I:17 Literal property () [10]  Parent:5479, Self:5480
+53:                 R:I:16 CallExpression right () [a1(i)]  Parent:5493, Self:5494
+53:                  L:I:17 Identifier callee () [a1]  Parent:5504, Self:5505
+53:                   L:I:18 Identifier 0 () [i]  Parent:5517, Self:5518
+53:                R:I:15 Identifier right () [j]  Parent:5530, Self:5531
+53:               R:I:14 BinaryExpression right (>) [i>4]  Parent:5543, Self:5544
+53:                L:I:15 Identifier left () [i]  Parent:5554, Self:5555
+53:                R:I:15 Literal right () [4]  Parent:5567, Self:5568
+53:              R:I:13 BinaryExpression right (>) [(_$v[9]=a5(5))>20]  Parent:5581, Self:5582
+53:               L:I:14 AssignmentExpression left (=) [_$v[9]=a5(5)]  Parent:5592, Self:5593
+53:                L:I:15 MemberExpression left () [_$v[9]]  Parent:5604, Self:5605
+53:                 L:I:16 Identifier object () [_$v]  Parent:5615, Self:5616
+53:                 R:I:16 Literal property () [9]  Parent:5627, Self:5628
+53:                R:I:15 CallExpression right () [a5(5)]  Parent:5641, Self:5642
+53:                 L:I:16 Identifier callee () [a5]  Parent:5652, Self:5653
+53:                  R:I:17 Literal 0 () [5]  Parent:5665, Self:5666
+53:               R:I:14 Literal right () [20]  Parent:5679, Self:5680
+--------------- END --------------- 
+53:             I:12 Identifier 5 () [_$gXLocal]  Parent:5692, Self:5693
+53:             I:12 Literal 6 () [2]  Parent:5704, Self:5705
+53:             I:12 Literal 7 () ['9=a5(5)']  Parent:5717, Self:5718
+53:             I:12 Literal 8 () ['10=a1(i)']  Parent:5730, Self:5731
+53:           BlockStatement
+53:             ExpressionStatement
+53:              I:13 CallExpression expression () [console.log(_$evl(53,'BlockStatement > ExpressionStatement','0','5>6', 5>6,_$gXLocal, 0))]  Parent:5766, Self:5767
+53:               I:14 MemberExpression callee () [console.log]  Parent:5777, Self:5778
+53:                I:15 Identifier object () [console]  Parent:5788, Self:5789
+53:                I:15 Identifier property () [log]  Parent:5800, Self:5801
+53:                I:15 CallExpression 0 () [_$evl(53,'BlockStatement > ExpressionStatement','0','5>6', 5>6,_$gXLocal, 0)]  Parent:5814, Self:5815
+53:                 I:16 Identifier callee () [_$evl]  Parent:5825, Self:5826
+53:                  I:17 Literal 0 () [53]  Parent:5838, Self:5839
+53:                  I:17 Literal 1 () ['BlockStatement > ExpressionStatement']  Parent:5851, Self:5852
+53:                  I:17 Literal 2 () ['0']  Parent:5864, Self:5865
+53:                  I:17 Literal 3 () ['5>6']  Parent:5877, Self:5878
+--------------- START BINARY --------------- 
+ path:p.0.expression.arguments.0.body.body.15.consequent.body.0.expression.arguments.0.arguments.4
+53:                  I:17 BinaryExpression 4 (>) [5>6]  Parent:5890, Self:5891
+53:                   L:I:18 Literal left () [5]  Parent:5901, Self:5902
+53:                   R:I:18 Literal right () [6]  Parent:5915, Self:5916
+--------------- END --------------- 
+53:                  I:17 Identifier 5 () [_$gXLocal]  Parent:5928, Self:5929
+53:                  I:17 Literal 6 () [0]  Parent:5940, Self:5941
+55:          ForStatement
+55:           VariableDeclaration
+--------------- START VAR --------------- 
+ path:p.0.expression.arguments.0.body.body.16.init.declarations.0
+55:             I:12 VariableDeclarator 0 (=) [k = _$set(55,'ForStatement > VariableDeclaration','0','k',k,'0',0,'=','1',_$gXLocal,0)]  Parent:5977, Self:5978
+55:              L:I:13 Identifier id () [k]  Parent:5988, Self:5989
+55:              R:I:13 CallExpression init () [_$set(55,'ForStatement > VariableDeclaration','0','k',k,'0',0,'=','1',_$gXLocal,0)]  Parent:6000, Self:6001
+55:               L:I:14 Identifier callee () [_$set]  Parent:6011, Self:6012
+55:                L:I:15 Literal 0 () [55]  Parent:6024, Self:6025
+55:                R:I:15 Literal 1 () ['ForStatement > VariableDeclaration']  Parent:6037, Self:6038
+55:                L:I:15 Literal 2 () ['0']  Parent:6050, Self:6051
+55:                R:I:15 Literal 3 () ['k']  Parent:6063, Self:6064
+55:                L:I:15 Identifier 4 () [k]  Parent:6076, Self:6077
+55:                R:I:15 Literal 5 () ['0']  Parent:6088, Self:6089
+55:                L:I:15 Literal 6 () [0]  Parent:6101, Self:6102
+55:                R:I:15 Literal 7 () ['=']  Parent:6114, Self:6115
+55:                L:I:15 Literal 8 () ['1']  Parent:6127, Self:6128
+55:                R:I:15 Identifier 9 () [_$gXLocal]  Parent:6140, Self:6141
+55:                L:I:15 Literal 10 () [0]  Parent:6152, Self:6153
+--------------- END --------------- 
+55:           I:10 CallExpression test () [_$evl(55,'ForStatement > VariableDeclaration','test','k<5', k<5,_$gXLocal, 0)]  Parent:6166, Self:6167
+55:            I:11 Identifier callee () [_$evl]  Parent:6177, Self:6178
+55:             I:12 Literal 0 () [55]  Parent:6190, Self:6191
+55:             I:12 Literal 1 () ['ForStatement > VariableDeclaration']  Parent:6203, Self:6204
+55:             I:12 Literal 2 () ['test']  Parent:6216, Self:6217
+55:             I:12 Literal 3 () ['k<5']  Parent:6229, Self:6230
+--------------- START BINARY --------------- 
+ path:p.0.expression.arguments.0.body.body.16.test.arguments.4
+55:             I:12 BinaryExpression 4 (<) [k<5]  Parent:6242, Self:6243
+55:              L:I:13 Identifier left () [k]  Parent:6253, Self:6254
+55:              R:I:13 Literal right () [5]  Parent:6266, Self:6267
+--------------- END --------------- 
+55:             I:12 Identifier 5 () [_$gXLocal]  Parent:6279, Self:6280
+55:             I:12 Literal 6 () [0]  Parent:6291, Self:6292
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.16.update
+55:           I:10 AssignmentExpression update (=) [k = _$set(55,'ForStatement > VariableDeclaration','update','k',k,'k+1',k+1,'=','0',_$gXLocal,0)]  Parent:6304, Self:6305
+55:            L:I:11 Identifier left () [k]  Parent:6316, Self:6317
+55:            R:I:11 CallExpression right () [_$set(55,'ForStatement > VariableDeclaration','update','k',k,'k+1',k+1,'=','0',_$gXLocal,0)]  Parent:6328, Self:6329
+55:             L:I:12 Identifier callee () [_$set]  Parent:6339, Self:6340
+55:              L:I:13 Literal 0 () [55]  Parent:6352, Self:6353
+55:              R:I:13 Literal 1 () ['ForStatement > VariableDeclaration']  Parent:6365, Self:6366
+55:              L:I:13 Literal 2 () ['update']  Parent:6378, Self:6379
+55:              R:I:13 Literal 3 () ['k']  Parent:6391, Self:6392
+55:              L:I:13 Identifier 4 () [k]  Parent:6404, Self:6405
+55:              R:I:13 Literal 5 () ['k+1']  Parent:6416, Self:6417
+55:              L:I:13 BinaryExpression 6 (+) [k+1]  Parent:6429, Self:6430
+55:               L:I:14 Identifier left () [k]  Parent:6440, Self:6441
+55:               R:I:14 Literal right () [1]  Parent:6453, Self:6454
+55:              R:I:13 Literal 7 () ['=']  Parent:6466, Self:6467
+55:              L:I:13 Literal 8 () ['0']  Parent:6479, Self:6480
+55:              R:I:13 Identifier 9 () [_$gXLocal]  Parent:6492, Self:6493
+55:              L:I:13 Literal 10 () [0]  Parent:6504, Self:6505
+--------------- END --------------- 
+56:           BlockStatement
+57:             ExpressionStatement
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.16.body.body.0.expression
+57:              I:13 AssignmentExpression expression (=) [i = _$set(57,'BlockStatement > ExpressionStatement','expression','i',i,'k+5',k+5,'=','0',_$gXLocal,0]  Parent:6540, Self:6541
+57:               L:I:14 Identifier left () [i]  Parent:6552, Self:6553
+57:               R:I:14 CallExpression right () [_$set(57,'BlockStatement > ExpressionStatement','expression','i',i,'k+5',k+5,'=','0',_$gXLocal,0)]  Parent:6564, Self:6565
+57:                L:I:15 Identifier callee () [_$set]  Parent:6575, Self:6576
+57:                 L:I:16 Literal 0 () [57]  Parent:6588, Self:6589
+57:                 R:I:16 Literal 1 () ['BlockStatement > ExpressionStatement']  Parent:6601, Self:6602
+57:                 L:I:16 Literal 2 () ['expression']  Parent:6614, Self:6615
+57:                 R:I:16 Literal 3 () ['i']  Parent:6627, Self:6628
+57:                 L:I:16 Identifier 4 () [i]  Parent:6640, Self:6641
+57:                 R:I:16 Literal 5 () ['k+5']  Parent:6652, Self:6653
+57:                 L:I:16 BinaryExpression 6 (+) [k+5]  Parent:6665, Self:6666
+57:                  L:I:17 Identifier left () [k]  Parent:6676, Self:6677
+57:                  R:I:17 Literal right () [5]  Parent:6689, Self:6690
+57:                 R:I:16 Literal 7 () ['=']  Parent:6702, Self:6703
+57:                 L:I:16 Literal 8 () ['0']  Parent:6715, Self:6716
+57:                 R:I:16 Identifier 9 () [_$gXLocal]  Parent:6728, Self:6729
+57:                 L:I:16 Literal 10 () [0]  Parent:6740, Self:6741
+--------------- END --------------- 
+58:             ExpressionStatement
+58:              I:13 CallExpression expression () [console.log(_$evl(58,'ExpressionStatement','0','k+\' ==== \'+a5(k)+i', k+' ==== '+(_$v[11]=a5(k))+i,]  Parent:6764, Self:6765
+58:               I:14 MemberExpression callee () [console.log]  Parent:6775, Self:6776
+58:                I:15 Identifier object () [console]  Parent:6786, Self:6787
+58:                I:15 Identifier property () [log]  Parent:6798, Self:6799
+58:                I:15 CallExpression 0 () [_$evl(58,'ExpressionStatement','0','k+\' ==== \'+a5(k)+i', k+' ==== '+(_$v[11]=a5(k))+i,_$gXLocal, 1]  Parent:6812, Self:6813
+58:                 I:16 Identifier callee () [_$evl]  Parent:6823, Self:6824
+58:                  I:17 Literal 0 () [58]  Parent:6836, Self:6837
+58:                  I:17 Literal 1 () ['ExpressionStatement']  Parent:6849, Self:6850
+58:                  I:17 Literal 2 () ['0']  Parent:6862, Self:6863
+58:                  I:17 Literal 3 () ['k+\' ==== \'+a5(k)+i']  Parent:6875, Self:6876
+--------------- START BINARY --------------- 
+ path:p.0.expression.arguments.0.body.body.16.body.body.1.expression.arguments.0.arguments.4
+58:                  I:17 BinaryExpression 4 (+) [k+' ==== '+(_$v[11]=a5(k))+i]  Parent:6888, Self:6889
+58:                   L:I:18 BinaryExpression left (+) [k+' ==== '+(_$v[11]=a5(k))]  Parent:6899, Self:6900
+58:                    L:I:19 BinaryExpression left (+) [k+' ==== ']  Parent:6910, Self:6911
+58:                     L:I:20 Identifier left () [k]  Parent:6921, Self:6922
+58:                     R:I:20 Literal right () [' ==== ']  Parent:6934, Self:6935
+58:                    R:I:19 AssignmentExpression right (=) [_$v[11]=a5(k)]  Parent:6948, Self:6949
+58:                     L:I:20 MemberExpression left () [_$v[11]]  Parent:6960, Self:6961
+58:                      L:I:21 Identifier object () [_$v]  Parent:6971, Self:6972
+58:                      R:I:21 Literal property () [11]  Parent:6983, Self:6984
+58:                     R:I:20 CallExpression right () [a5(k)]  Parent:6997, Self:6998
+58:                      L:I:21 Identifier callee () [a5]  Parent:7008, Self:7009
+58:                       L:I:22 Identifier 0 () [k]  Parent:7021, Self:7022
+58:                   R:I:18 Identifier right () [i]  Parent:7034, Self:7035
+--------------- END --------------- 
+58:                  I:17 Identifier 5 () [_$gXLocal]  Parent:7046, Self:7047
+58:                  I:17 Literal 6 () [1]  Parent:7058, Self:7059
+58:                  I:17 Literal 7 () ['11=a5(k)']  Parent:7071, Self:7072
+61:          ForStatement
+61:           VariableDeclaration
+--------------- START VAR --------------- 
+ path:p.0.expression.arguments.0.body.body.17.init.declarations.0
+61:             I:12 VariableDeclarator 0 (=) [k = _$set(61,'ForStatement > VariableDeclaration','0','k',k,'0',0,'=','1',_$gXLocal,0)]  Parent:7107, Self:7108
+61:              L:I:13 Identifier id () [k]  Parent:7118, Self:7119
+61:              R:I:13 CallExpression init () [_$set(61,'ForStatement > VariableDeclaration','0','k',k,'0',0,'=','1',_$gXLocal,0)]  Parent:7130, Self:7131
+61:               L:I:14 Identifier callee () [_$set]  Parent:7141, Self:7142
+61:                L:I:15 Literal 0 () [61]  Parent:7154, Self:7155
+61:                R:I:15 Literal 1 () ['ForStatement > VariableDeclaration']  Parent:7167, Self:7168
+61:                L:I:15 Literal 2 () ['0']  Parent:7180, Self:7181
+61:                R:I:15 Literal 3 () ['k']  Parent:7193, Self:7194
+61:                L:I:15 Identifier 4 () [k]  Parent:7206, Self:7207
+61:                R:I:15 Literal 5 () ['0']  Parent:7218, Self:7219
+61:                L:I:15 Literal 6 () [0]  Parent:7231, Self:7232
+61:                R:I:15 Literal 7 () ['=']  Parent:7244, Self:7245
+61:                L:I:15 Literal 8 () ['1']  Parent:7257, Self:7258
+61:                R:I:15 Identifier 9 () [_$gXLocal]  Parent:7270, Self:7271
+61:                L:I:15 Literal 10 () [0]  Parent:7282, Self:7283
+--------------- END --------------- 
+61:           I:10 CallExpression test () [_$evl(61,'ForStatement > VariableDeclaration','test','k<10', k<10,_$gXLocal, 0)]  Parent:7296, Self:7297
+61:            I:11 Identifier callee () [_$evl]  Parent:7307, Self:7308
+61:             I:12 Literal 0 () [61]  Parent:7320, Self:7321
+61:             I:12 Literal 1 () ['ForStatement > VariableDeclaration']  Parent:7333, Self:7334
+61:             I:12 Literal 2 () ['test']  Parent:7346, Self:7347
+61:             I:12 Literal 3 () ['k<10']  Parent:7359, Self:7360
+--------------- START BINARY --------------- 
+ path:p.0.expression.arguments.0.body.body.17.test.arguments.4
+61:             I:12 BinaryExpression 4 (<) [k<10]  Parent:7372, Self:7373
+61:              L:I:13 Identifier left () [k]  Parent:7383, Self:7384
+61:              R:I:13 Literal right () [10]  Parent:7396, Self:7397
+--------------- END --------------- 
+61:             I:12 Identifier 5 () [_$gXLocal]  Parent:7409, Self:7410
+61:             I:12 Literal 6 () [0]  Parent:7421, Self:7422
+61:           SequenceExpression
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.17.update.expressions.0
+61:             I:12 AssignmentExpression 0 (=) [tempVar = k]  Parent:7446, Self:7447
+61:              L:I:13 Identifier left () [tempVar]  Parent:7458, Self:7459
+61:              R:I:13 Identifier right () [k]  Parent:7470, Self:7471
+--------------- END --------------- 
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.17.update.expressions.1
+61:             I:12 AssignmentExpression 1 (=) [k= _$set(61,'ForStatement > VariableDeclaration','update','k',k,'',0,'++',0,_$gXLocal,0)]  Parent:7482, Self:7483
+61:              L:I:13 Identifier left () [k]  Parent:7494, Self:7495
+61:              R:I:13 CallExpression right () [_$set(61,'ForStatement > VariableDeclaration','update','k',k,'',0,'++',0,_$gXLocal,0)]  Parent:7506, Self:7507
+61:               L:I:14 Identifier callee () [_$set]  Parent:7517, Self:7518
+61:                L:I:15 Literal 0 () [61]  Parent:7530, Self:7531
+61:                R:I:15 Literal 1 () ['ForStatement > VariableDeclaration']  Parent:7543, Self:7544
+61:                L:I:15 Literal 2 () ['update']  Parent:7556, Self:7557
+61:                R:I:15 Literal 3 () ['k']  Parent:7569, Self:7570
+61:                L:I:15 Identifier 4 () [k]  Parent:7582, Self:7583
+61:                R:I:15 Literal 5 () ['']  Parent:7594, Self:7595
+61:                L:I:15 Literal 6 () [0]  Parent:7607, Self:7608
+61:                R:I:15 Literal 7 () ['++']  Parent:7620, Self:7621
+61:                L:I:15 Literal 8 () [0]  Parent:7633, Self:7634
+61:                R:I:15 Identifier 9 () [_$gXLocal]  Parent:7646, Self:7647
+61:                L:I:15 Literal 10 () [0]  Parent:7658, Self:7659
+--------------- END --------------- 
+61:             I:12 Identifier 2 () [tempVar]  Parent:7671, Self:7672
+62:           BlockStatement
+63:             ExpressionStatement
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.17.body.body.0.expression
+63:              I:13 AssignmentExpression expression (=) [i = _$set(63,'BlockStatement > ExpressionStatement','expression','i',i,'k+5',k+5,'=','0',_$gXLocal,0]  Parent:7706, Self:7707
+63:               L:I:14 Identifier left () [i]  Parent:7718, Self:7719
+63:               R:I:14 CallExpression right () [_$set(63,'BlockStatement > ExpressionStatement','expression','i',i,'k+5',k+5,'=','0',_$gXLocal,0)]  Parent:7730, Self:7731
+63:                L:I:15 Identifier callee () [_$set]  Parent:7741, Self:7742
+63:                 L:I:16 Literal 0 () [63]  Parent:7754, Self:7755
+63:                 R:I:16 Literal 1 () ['BlockStatement > ExpressionStatement']  Parent:7767, Self:7768
+63:                 L:I:16 Literal 2 () ['expression']  Parent:7780, Self:7781
+63:                 R:I:16 Literal 3 () ['i']  Parent:7793, Self:7794
+63:                 L:I:16 Identifier 4 () [i]  Parent:7806, Self:7807
+63:                 R:I:16 Literal 5 () ['k+5']  Parent:7818, Self:7819
+63:                 L:I:16 BinaryExpression 6 (+) [k+5]  Parent:7831, Self:7832
+63:                  L:I:17 Identifier left () [k]  Parent:7842, Self:7843
+63:                  R:I:17 Literal right () [5]  Parent:7855, Self:7856
+63:                 R:I:16 Literal 7 () ['=']  Parent:7868, Self:7869
+63:                 L:I:16 Literal 8 () ['0']  Parent:7881, Self:7882
+63:                 R:I:16 Identifier 9 () [_$gXLocal]  Parent:7894, Self:7895
+63:                 L:I:16 Literal 10 () [0]  Parent:7906, Self:7907
+--------------- END --------------- 
+64:             ExpressionStatement
+64:              I:13 CallExpression expression () [console.log(_$evl(64,'ExpressionStatement','0','k+\' ==== \'+a5(k)-i', k+' ==== '+(_$v[12]=a5(k))-i,]  Parent:7930, Self:7931
+64:               I:14 MemberExpression callee () [console.log]  Parent:7941, Self:7942
+64:                I:15 Identifier object () [console]  Parent:7952, Self:7953
+64:                I:15 Identifier property () [log]  Parent:7964, Self:7965
+64:                I:15 CallExpression 0 () [_$evl(64,'ExpressionStatement','0','k+\' ==== \'+a5(k)-i', k+' ==== '+(_$v[12]=a5(k))-i,_$gXLocal, 1]  Parent:7978, Self:7979
+64:                 I:16 Identifier callee () [_$evl]  Parent:7989, Self:7990
+64:                  I:17 Literal 0 () [64]  Parent:8002, Self:8003
+64:                  I:17 Literal 1 () ['ExpressionStatement']  Parent:8015, Self:8016
+64:                  I:17 Literal 2 () ['0']  Parent:8028, Self:8029
+64:                  I:17 Literal 3 () ['k+\' ==== \'+a5(k)-i']  Parent:8041, Self:8042
+--------------- START BINARY --------------- 
+ path:p.0.expression.arguments.0.body.body.17.body.body.1.expression.arguments.0.arguments.4
+64:                  I:17 BinaryExpression 4 (-) [k+' ==== '+(_$v[12]=a5(k))-i]  Parent:8054, Self:8055
+64:                   L:I:18 BinaryExpression left (+) [k+' ==== '+(_$v[12]=a5(k))]  Parent:8065, Self:8066
+64:                    L:I:19 BinaryExpression left (+) [k+' ==== ']  Parent:8076, Self:8077
+64:                     L:I:20 Identifier left () [k]  Parent:8087, Self:8088
+64:                     R:I:20 Literal right () [' ==== ']  Parent:8100, Self:8101
+64:                    R:I:19 AssignmentExpression right (=) [_$v[12]=a5(k)]  Parent:8114, Self:8115
+64:                     L:I:20 MemberExpression left () [_$v[12]]  Parent:8126, Self:8127
+64:                      L:I:21 Identifier object () [_$v]  Parent:8137, Self:8138
+64:                      R:I:21 Literal property () [12]  Parent:8149, Self:8150
+64:                     R:I:20 CallExpression right () [a5(k)]  Parent:8163, Self:8164
+64:                      L:I:21 Identifier callee () [a5]  Parent:8174, Self:8175
+64:                       L:I:22 Identifier 0 () [k]  Parent:8187, Self:8188
+64:                   R:I:18 Identifier right () [i]  Parent:8200, Self:8201
+--------------- END --------------- 
+64:                  I:17 Identifier 5 () [_$gXLocal]  Parent:8212, Self:8213
+64:                  I:17 Literal 6 () [1]  Parent:8224, Self:8225
+64:                  I:17 Literal 7 () ['12=a5(k)']  Parent:8237, Self:8238
+67:          ExpressionStatement
+67:           I:10 CallExpression expression () [_$sb(67,'info',_$gXLocal)]  Parent:8261, Self:8262
+67:            I:11 Identifier callee () [_$sb]  Parent:8272, Self:8273
+67:             I:12 Literal 0 () [67]  Parent:8285, Self:8286
+67:             I:12 Literal 1 () ['info']  Parent:8298, Self:8299
+67:             I:12 Identifier 2 () [_$gXLocal]  Parent:8311, Self:8312
+67:          VariableDeclaration
+--------------- START VAR --------------- 
+ path:p.0.expression.arguments.0.body.body.19.declarations.0
+67:            I:11 VariableDeclarator 0 (=) [info = _$set(67,'VariableDeclaration','0','info',info,'{}',{},'=','1',_$gXLocal,0)]  Parent:8335, Self:8336
+67:             L:I:12 Identifier id () [info]  Parent:8346, Self:8347
+67:             R:I:12 CallExpression init () [_$set(67,'VariableDeclaration','0','info',info,'{}',{},'=','1',_$gXLocal,0)]  Parent:8358, Self:8359
+67:              L:I:13 Identifier callee () [_$set]  Parent:8369, Self:8370
+67:               L:I:14 Literal 0 () [67]  Parent:8382, Self:8383
+67:               R:I:14 Literal 1 () ['VariableDeclaration']  Parent:8395, Self:8396
+67:               L:I:14 Literal 2 () ['0']  Parent:8408, Self:8409
+67:               R:I:14 Literal 3 () ['info']  Parent:8421, Self:8422
+67:               L:I:14 Identifier 4 () [info]  Parent:8434, Self:8435
+67:               R:I:14 Literal 5 () ['{}']  Parent:8446, Self:8447
+67:               L:I:14 ObjectExpression 6 () [{}]  Parent:8459, Self:8460
+67:               R:I:14 Literal 7 () ['=']  Parent:8471, Self:8472
+67:               L:I:14 Literal 8 () ['1']  Parent:8484, Self:8485
+67:               R:I:14 Identifier 9 () [_$gXLocal]  Parent:8497, Self:8498
+67:               L:I:14 Literal 10 () [0]  Parent:8509, Self:8510
+--------------- END --------------- 
+68:          ExpressionStatement
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.20.expression
+68:           I:10 AssignmentExpression expression (=) [info.name = _$set(68,'ExpressionStatement','expression','info.name',info.name,'\'hi\'','hi','=','0',]  Parent:8534, Self:8535
+68:            L:I:11 MemberExpression left () [info.name]  Parent:8546, Self:8547
+68:             L:I:12 Identifier object () [info]  Parent:8557, Self:8558
+68:             R:I:12 Identifier property () [name]  Parent:8569, Self:8570
+68:            R:I:11 CallExpression right () [_$set(68,'ExpressionStatement','expression','info.name',info.name,'\'hi\'','hi','=','0',_$gXLocal,0)]  Parent:8582, Self:8583
+68:             L:I:12 Identifier callee () [_$set]  Parent:8593, Self:8594
+68:              L:I:13 Literal 0 () [68]  Parent:8606, Self:8607
+68:              R:I:13 Literal 1 () ['ExpressionStatement']  Parent:8619, Self:8620
+68:              L:I:13 Literal 2 () ['expression']  Parent:8632, Self:8633
+68:              R:I:13 Literal 3 () ['info.name']  Parent:8645, Self:8646
+68:              L:I:13 MemberExpression 4 () [info.name]  Parent:8658, Self:8659
+68:               L:I:14 Identifier object () [info]  Parent:8669, Self:8670
+68:               R:I:14 Identifier property () [name]  Parent:8681, Self:8682
+68:              R:I:13 Literal 5 () ['\'hi\'']  Parent:8694, Self:8695
+68:              L:I:13 Literal 6 () ['hi']  Parent:8707, Self:8708
+68:              R:I:13 Literal 7 () ['=']  Parent:8720, Self:8721
+68:              L:I:13 Literal 8 () ['0']  Parent:8733, Self:8734
+68:              R:I:13 Identifier 9 () [_$gXLocal]  Parent:8746, Self:8747
+68:              L:I:13 Literal 10 () [0]  Parent:8758, Self:8759
+--------------- END --------------- 
+71:          ExpressionStatement
+71:           I:10 CallExpression expression () [_$sb(71,'blockA',_$gXLocal)]  Parent:8782, Self:8783
+71:            I:11 Identifier callee () [_$sb]  Parent:8793, Self:8794
+71:             I:12 Literal 0 () [71]  Parent:8806, Self:8807
+71:             I:12 Literal 1 () ['blockA']  Parent:8819, Self:8820
+71:             I:12 Identifier 2 () [_$gXLocal]  Parent:8832, Self:8833
+71:          VariableDeclaration
+--------------- START VAR --------------- 
+ path:p.0.expression.arguments.0.body.body.22.declarations.0
+71:            I:11 VariableDeclarator 0 (=) [blockA = _$set(71,'VariableDeclaration','0','blockA',blockA,'{firstName:\'John\', lastName:\'Doe\', ]  Parent:8856, Self:8857
+71:             L:I:12 Identifier id () [blockA]  Parent:8867, Self:8868
+71:             R:I:12 CallExpression init () [_$set(71,'VariableDeclaration','0','blockA',blockA,'{firstName:\'John\', lastName:\'Doe\', age:50, e]  Parent:8879, Self:8880
+71:              L:I:13 Identifier callee () [_$set]  Parent:8890, Self:8891
+71:               L:I:14 Literal 0 () [71]  Parent:8903, Self:8904
+71:               R:I:14 Literal 1 () ['VariableDeclaration']  Parent:8916, Self:8917
+71:               L:I:14 Literal 2 () ['0']  Parent:8929, Self:8930
+71:               R:I:14 Literal 3 () ['blockA']  Parent:8942, Self:8943
+71:               L:I:14 Identifier 4 () [blockA]  Parent:8955, Self:8956
+71:               R:I:14 Literal 5 () ['{firstName:\'John\', lastName:\'Doe\', age:50, eyeColor:\'blue\'}']  Parent:8967, Self:8968
+71:               L:I:14 ObjectExpression 6 () [{firstName:'John', lastName:'Doe', age:50, eyeColor:'blue'}]  Parent:8980, Self:8981
+71:                  L:I:17 Identifier key () [firstName]  Parent:9003, Self:9004
+71:                  R:I:17 Literal value () ['John']  Parent:9015, Self:9016
+71:                  L:I:17 Identifier key () [lastName]  Parent:9040, Self:9041
+71:                  R:I:17 Literal value () ['Doe']  Parent:9052, Self:9053
+71:                  L:I:17 Identifier key () [age]  Parent:9077, Self:9078
+71:                  R:I:17 Literal value () [50]  Parent:9089, Self:9090
+71:                  L:I:17 Identifier key () [eyeColor]  Parent:9114, Self:9115
+71:                  R:I:17 Literal value () ['blue']  Parent:9126, Self:9127
+71:               R:I:14 Literal 7 () ['=']  Parent:9140, Self:9141
+71:               L:I:14 Literal 8 () ['1']  Parent:9153, Self:9154
+71:               R:I:14 Identifier 9 () [_$gXLocal]  Parent:9166, Self:9167
+71:               L:I:14 Literal 10 () [0]  Parent:9178, Self:9179
+--------------- END --------------- 
+72:          ExpressionStatement
+72:           I:10 CallExpression expression () [_$sb(72,'blockB',_$gXLocal)]  Parent:9203, Self:9204
+72:            I:11 Identifier callee () [_$sb]  Parent:9214, Self:9215
+72:             I:12 Literal 0 () [72]  Parent:9227, Self:9228
+72:             I:12 Literal 1 () ['blockB']  Parent:9240, Self:9241
+72:             I:12 Identifier 2 () [_$gXLocal]  Parent:9253, Self:9254
+72:          VariableDeclaration
+--------------- START VAR --------------- 
+ path:p.0.expression.arguments.0.body.body.24.declarations.0
+72:            I:11 VariableDeclarator 0 (=) [blockB = _$set(72,'VariableDeclaration','0','blockB',blockB,'[\'hi 2\',\'hello 2\']',['hi 2','hello ]  Parent:9277, Self:9278
+72:             L:I:12 Identifier id () [blockB]  Parent:9288, Self:9289
+72:             R:I:12 CallExpression init () [_$set(72,'VariableDeclaration','0','blockB',blockB,'[\'hi 2\',\'hello 2\']',['hi 2','hello 2'],'=',']  Parent:9300, Self:9301
+72:              L:I:13 Identifier callee () [_$set]  Parent:9311, Self:9312
+72:               L:I:14 Literal 0 () [72]  Parent:9324, Self:9325
+72:               R:I:14 Literal 1 () ['VariableDeclaration']  Parent:9337, Self:9338
+72:               L:I:14 Literal 2 () ['0']  Parent:9350, Self:9351
+72:               R:I:14 Literal 3 () ['blockB']  Parent:9363, Self:9364
+72:               L:I:14 Identifier 4 () [blockB]  Parent:9376, Self:9377
+72:               R:I:14 Literal 5 () ['[\'hi 2\',\'hello 2\']']  Parent:9388, Self:9389
+72:               L:I:14 ArrayExpression 6 () [['hi 2','hello 2']]  Parent:9401, Self:9402
+72:                 L:I:16 Literal 0 () ['hi 2']  Parent:9413, Self:9414
+72:                 R:I:16 Literal 1 () ['hello 2']  Parent:9426, Self:9427
+72:               R:I:14 Literal 7 () ['=']  Parent:9439, Self:9440
+72:               L:I:14 Literal 8 () ['1']  Parent:9452, Self:9453
+72:               R:I:14 Identifier 9 () [_$gXLocal]  Parent:9465, Self:9466
+72:               L:I:14 Literal 10 () [0]  Parent:9477, Self:9478
+--------------- END --------------- 
+75:          ExpressionStatement
+75:           I:10 CallExpression expression () [console.log(i)]  Parent:9502, Self:9503
+75:            I:11 MemberExpression callee () [console.log]  Parent:9513, Self:9514
+75:             I:12 Identifier object () [console]  Parent:9524, Self:9525
+75:             I:12 Identifier property () [log]  Parent:9536, Self:9537
+75:             I:12 Identifier 0 () [i]  Parent:9550, Self:9551
+76:          ExpressionStatement
+76:           SequenceExpression
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.26.expression.expressions.0
+76:             I:12 AssignmentExpression 0 (=) [tempVar = i]  Parent:9585, Self:9586
+76:              L:I:13 Identifier left () [tempVar]  Parent:9597, Self:9598
+76:              R:I:13 Identifier right () [i]  Parent:9609, Self:9610
+--------------- END --------------- 
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.26.expression.expressions.1
+76:             I:12 AssignmentExpression 1 (=) [i= _$set(76,'ExpressionStatement > ExpressionStatement','expression','i',i,'',0,'++',0,_$gXLocal,0)]  Parent:9621, Self:9622
+76:              L:I:13 Identifier left () [i]  Parent:9633, Self:9634
+76:              R:I:13 CallExpression right () [_$set(76,'ExpressionStatement > ExpressionStatement','expression','i',i,'',0,'++',0,_$gXLocal,0)]  Parent:9645, Self:9646
+76:               L:I:14 Identifier callee () [_$set]  Parent:9656, Self:9657
+76:                L:I:15 Literal 0 () [76]  Parent:9669, Self:9670
+76:                R:I:15 Literal 1 () ['ExpressionStatement > ExpressionStatement']  Parent:9682, Self:9683
+76:                L:I:15 Literal 2 () ['expression']  Parent:9695, Self:9696
+76:                R:I:15 Literal 3 () ['i']  Parent:9708, Self:9709
+76:                L:I:15 Identifier 4 () [i]  Parent:9721, Self:9722
+76:                R:I:15 Literal 5 () ['']  Parent:9733, Self:9734
+76:                L:I:15 Literal 6 () [0]  Parent:9746, Self:9747
+76:                R:I:15 Literal 7 () ['++']  Parent:9759, Self:9760
+76:                L:I:15 Literal 8 () [0]  Parent:9772, Self:9773
+76:                R:I:15 Identifier 9 () [_$gXLocal]  Parent:9785, Self:9786
+76:                L:I:15 Literal 10 () [0]  Parent:9797, Self:9798
+--------------- END --------------- 
+76:             I:12 Identifier 2 () [tempVar]  Parent:9810, Self:9811
+77:          ExpressionStatement
+77:           I:10 CallExpression expression () [console.log(i)]  Parent:9833, Self:9834
+77:            I:11 MemberExpression callee () [console.log]  Parent:9844, Self:9845
+77:             I:12 Identifier object () [console]  Parent:9855, Self:9856
+77:             I:12 Identifier property () [log]  Parent:9867, Self:9868
+77:             I:12 Identifier 0 () [i]  Parent:9881, Self:9882
+78:          ExpressionStatement
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.28.expression
+78:           I:10 AssignmentExpression expression (=) [i = _$set(78,'ExpressionStatement > ExpressionStatement','expression','i',i,'1',1,'+=','0',_$gXLocal]  Parent:9904, Self:9905
+78:            L:I:11 Identifier left () [i]  Parent:9916, Self:9917
+78:            R:I:11 CallExpression right () [_$set(78,'ExpressionStatement > ExpressionStatement','expression','i',i,'1',1,'+=','0',_$gXLocal,0)]  Parent:9928, Self:9929
+78:             L:I:12 Identifier callee () [_$set]  Parent:9939, Self:9940
+78:              L:I:13 Literal 0 () [78]  Parent:9952, Self:9953
+78:              R:I:13 Literal 1 () ['ExpressionStatement > ExpressionStatement']  Parent:9965, Self:9966
+78:              L:I:13 Literal 2 () ['expression']  Parent:9978, Self:9979
+78:              R:I:13 Literal 3 () ['i']  Parent:9991, Self:9992
+78:              L:I:13 Identifier 4 () [i]  Parent:10004, Self:10005
+78:              R:I:13 Literal 5 () ['1']  Parent:10016, Self:10017
+78:              L:I:13 Literal 6 () [1]  Parent:10029, Self:10030
+78:              R:I:13 Literal 7 () ['+=']  Parent:10042, Self:10043
+78:              L:I:13 Literal 8 () ['0']  Parent:10055, Self:10056
+78:              R:I:13 Identifier 9 () [_$gXLocal]  Parent:10068, Self:10069
+78:              L:I:13 Literal 10 () [0]  Parent:10080, Self:10081
+--------------- END --------------- 
+79:          ExpressionStatement
+79:           I:10 CallExpression expression () [console.log(i)]  Parent:10104, Self:10105
+79:            I:11 MemberExpression callee () [console.log]  Parent:10115, Self:10116
+79:             I:12 Identifier object () [console]  Parent:10126, Self:10127
+79:             I:12 Identifier property () [log]  Parent:10138, Self:10139
+79:             I:12 Identifier 0 () [i]  Parent:10152, Self:10153
+80:          ExpressionStatement
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.30.expression
+80:           I:10 AssignmentExpression expression (=) [i = _$set(80,'ExpressionStatement > ExpressionStatement','expression','i',i,'1',1,'-=','0',_$gXLocal]  Parent:10175, Self:10176
+80:            L:I:11 Identifier left () [i]  Parent:10187, Self:10188
+80:            R:I:11 CallExpression right () [_$set(80,'ExpressionStatement > ExpressionStatement','expression','i',i,'1',1,'-=','0',_$gXLocal,0)]  Parent:10199, Self:10200
+80:             L:I:12 Identifier callee () [_$set]  Parent:10210, Self:10211
+80:              L:I:13 Literal 0 () [80]  Parent:10223, Self:10224
+80:              R:I:13 Literal 1 () ['ExpressionStatement > ExpressionStatement']  Parent:10236, Self:10237
+80:              L:I:13 Literal 2 () ['expression']  Parent:10249, Self:10250
+80:              R:I:13 Literal 3 () ['i']  Parent:10262, Self:10263
+80:              L:I:13 Identifier 4 () [i]  Parent:10275, Self:10276
+80:              R:I:13 Literal 5 () ['1']  Parent:10287, Self:10288
+80:              L:I:13 Literal 6 () [1]  Parent:10300, Self:10301
+80:              R:I:13 Literal 7 () ['-=']  Parent:10313, Self:10314
+80:              L:I:13 Literal 8 () ['0']  Parent:10326, Self:10327
+80:              R:I:13 Identifier 9 () [_$gXLocal]  Parent:10339, Self:10340
+80:              L:I:13 Literal 10 () [0]  Parent:10351, Self:10352
+--------------- END --------------- 
+81:          ExpressionStatement
+81:           I:10 CallExpression expression () [console.log(i)]  Parent:10375, Self:10376
+81:            I:11 MemberExpression callee () [console.log]  Parent:10386, Self:10387
+81:             I:12 Identifier object () [console]  Parent:10397, Self:10398
+81:             I:12 Identifier property () [log]  Parent:10409, Self:10410
+81:             I:12 Identifier 0 () [i]  Parent:10423, Self:10424
+83:          ExpressionStatement
+83:           I:10 CallExpression expression () [_$sb(83,'block1',_$gXLocal)]  Parent:10446, Self:10447
+83:            I:11 Identifier callee () [_$sb]  Parent:10457, Self:10458
+83:             I:12 Literal 0 () [83]  Parent:10470, Self:10471
+83:             I:12 Literal 1 () ['block1']  Parent:10483, Self:10484
+83:             I:12 Identifier 2 () [_$gXLocal]  Parent:10496, Self:10497
+83:          VariableDeclaration
+--------------- START VAR --------------- 
+ path:p.0.expression.arguments.0.body.body.33.declarations.0
+83:            I:11 VariableDeclarator 0 (=) [block1 = _$set(83,'ExpressionStatement > VariableDeclaration','0','block1',block1,'{}',{},'=','1',_$]  Parent:10520, Self:10521
+83:             L:I:12 Identifier id () [block1]  Parent:10531, Self:10532
+83:             R:I:12 CallExpression init () [_$set(83,'ExpressionStatement > VariableDeclaration','0','block1',block1,'{}',{},'=','1',_$gXLocal,0]  Parent:10543, Self:10544
+83:              L:I:13 Identifier callee () [_$set]  Parent:10554, Self:10555
+83:               L:I:14 Literal 0 () [83]  Parent:10567, Self:10568
+83:               R:I:14 Literal 1 () ['ExpressionStatement > VariableDeclaration']  Parent:10580, Self:10581
+83:               L:I:14 Literal 2 () ['0']  Parent:10593, Self:10594
+83:               R:I:14 Literal 3 () ['block1']  Parent:10606, Self:10607
+83:               L:I:14 Identifier 4 () [block1]  Parent:10619, Self:10620
+83:               R:I:14 Literal 5 () ['{}']  Parent:10631, Self:10632
+83:               L:I:14 ObjectExpression 6 () [{}]  Parent:10644, Self:10645
+83:               R:I:14 Literal 7 () ['=']  Parent:10656, Self:10657
+83:               L:I:14 Literal 8 () ['1']  Parent:10669, Self:10670
+83:               R:I:14 Identifier 9 () [_$gXLocal]  Parent:10682, Self:10683
+83:               L:I:14 Literal 10 () [0]  Parent:10694, Self:10695
+--------------- END --------------- 
+84:          ExpressionStatement
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.34.expression
+84:           I:10 AssignmentExpression expression (=) [block1.name = _$set(84,'ExpressionStatement','expression','block1.name',block1.name,'\'ONE\'','ONE',]  Parent:10719, Self:10720
+84:            L:I:11 MemberExpression left () [block1.name]  Parent:10731, Self:10732
+84:             L:I:12 Identifier object () [block1]  Parent:10742, Self:10743
+84:             R:I:12 Identifier property () [name]  Parent:10754, Self:10755
+84:            R:I:11 CallExpression right () [_$set(84,'ExpressionStatement','expression','block1.name',block1.name,'\'ONE\'','ONE','=','0',_$gXLo]  Parent:10767, Self:10768
+84:             L:I:12 Identifier callee () [_$set]  Parent:10778, Self:10779
+84:              L:I:13 Literal 0 () [84]  Parent:10791, Self:10792
+84:              R:I:13 Literal 1 () ['ExpressionStatement']  Parent:10804, Self:10805
+84:              L:I:13 Literal 2 () ['expression']  Parent:10817, Self:10818
+84:              R:I:13 Literal 3 () ['block1.name']  Parent:10830, Self:10831
+84:              L:I:13 MemberExpression 4 () [block1.name]  Parent:10843, Self:10844
+84:               L:I:14 Identifier object () [block1]  Parent:10854, Self:10855
+84:               R:I:14 Identifier property () [name]  Parent:10866, Self:10867
+84:              R:I:13 Literal 5 () ['\'ONE\'']  Parent:10879, Self:10880
+84:              L:I:13 Literal 6 () ['ONE']  Parent:10892, Self:10893
+84:              R:I:13 Literal 7 () ['=']  Parent:10905, Self:10906
+84:              L:I:13 Literal 8 () ['0']  Parent:10918, Self:10919
+84:              R:I:13 Identifier 9 () [_$gXLocal]  Parent:10931, Self:10932
+84:              L:I:13 Literal 10 () [0]  Parent:10943, Self:10944
+--------------- END --------------- 
+85:          ExpressionStatement
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.35.expression
+85:           I:10 AssignmentExpression expression (=) [block1.lname = _$set(85,'ExpressionStatement','expression','block1.lname',block1.lname,'\'TWO\'','TW]  Parent:10967, Self:10968
+85:            L:I:11 MemberExpression left () [block1.lname]  Parent:10979, Self:10980
+85:             L:I:12 Identifier object () [block1]  Parent:10990, Self:10991
+85:             R:I:12 Identifier property () [lname]  Parent:11002, Self:11003
+85:            R:I:11 CallExpression right () [_$set(85,'ExpressionStatement','expression','block1.lname',block1.lname,'\'TWO\'','TWO','=','0',_$gX]  Parent:11015, Self:11016
+85:             L:I:12 Identifier callee () [_$set]  Parent:11026, Self:11027
+85:              L:I:13 Literal 0 () [85]  Parent:11039, Self:11040
+85:              R:I:13 Literal 1 () ['ExpressionStatement']  Parent:11052, Self:11053
+85:              L:I:13 Literal 2 () ['expression']  Parent:11065, Self:11066
+85:              R:I:13 Literal 3 () ['block1.lname']  Parent:11078, Self:11079
+85:              L:I:13 MemberExpression 4 () [block1.lname]  Parent:11091, Self:11092
+85:               L:I:14 Identifier object () [block1]  Parent:11102, Self:11103
+85:               R:I:14 Identifier property () [lname]  Parent:11114, Self:11115
+85:              R:I:13 Literal 5 () ['\'TWO\'']  Parent:11127, Self:11128
+85:              L:I:13 Literal 6 () ['TWO']  Parent:11140, Self:11141
+85:              R:I:13 Literal 7 () ['=']  Parent:11153, Self:11154
+85:              L:I:13 Literal 8 () ['0']  Parent:11166, Self:11167
+85:              R:I:13 Identifier 9 () [_$gXLocal]  Parent:11179, Self:11180
+85:              L:I:13 Literal 10 () [0]  Parent:11191, Self:11192
+--------------- END --------------- 
+87:          ExpressionStatement
+87:           I:10 CallExpression expression () [_$sb(87,'block2',_$gXLocal)]  Parent:11215, Self:11216
+87:            I:11 Identifier callee () [_$sb]  Parent:11226, Self:11227
+87:             I:12 Literal 0 () [87]  Parent:11239, Self:11240
+87:             I:12 Literal 1 () ['block2']  Parent:11252, Self:11253
+87:             I:12 Identifier 2 () [_$gXLocal]  Parent:11265, Self:11266
+87:          VariableDeclaration
+--------------- START VAR --------------- 
+ path:p.0.expression.arguments.0.body.body.37.declarations.0
+87:            I:11 VariableDeclarator 0 (=) [block2 = _$set(87,'VariableDeclaration','0','block2',block2,'[]',[],'=','1',_$gXLocal,0)]  Parent:11289, Self:11290
+87:             L:I:12 Identifier id () [block2]  Parent:11300, Self:11301
+87:             R:I:12 CallExpression init () [_$set(87,'VariableDeclaration','0','block2',block2,'[]',[],'=','1',_$gXLocal,0)]  Parent:11312, Self:11313
+87:              L:I:13 Identifier callee () [_$set]  Parent:11323, Self:11324
+87:               L:I:14 Literal 0 () [87]  Parent:11336, Self:11337
+87:               R:I:14 Literal 1 () ['VariableDeclaration']  Parent:11349, Self:11350
+87:               L:I:14 Literal 2 () ['0']  Parent:11362, Self:11363
+87:               R:I:14 Literal 3 () ['block2']  Parent:11375, Self:11376
+87:               L:I:14 Identifier 4 () [block2]  Parent:11388, Self:11389
+87:               R:I:14 Literal 5 () ['[]']  Parent:11400, Self:11401
+87:               L:I:14 ArrayExpression 6 () [[]]  Parent:11413, Self:11414
+87:               R:I:14 Literal 7 () ['=']  Parent:11425, Self:11426
+87:               L:I:14 Literal 8 () ['1']  Parent:11438, Self:11439
+87:               R:I:14 Identifier 9 () [_$gXLocal]  Parent:11451, Self:11452
+87:               L:I:14 Literal 10 () [0]  Parent:11463, Self:11464
+--------------- END --------------- 
+88:          ExpressionStatement
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.38.expression
+88:           I:10 AssignmentExpression expression (=) [block2[1] = _$set(88,'ExpressionStatement','expression','block2[1]',block2[1],'\'THREE\'','THREE','=]  Parent:11488, Self:11489
+88:            L:I:11 MemberExpression left () [block2[1]]  Parent:11500, Self:11501
+88:             L:I:12 Identifier object () [block2]  Parent:11511, Self:11512
+88:             R:I:12 Literal property () [1]  Parent:11523, Self:11524
+88:            R:I:11 CallExpression right () [_$set(88,'ExpressionStatement','expression','block2[1]',block2[1],'\'THREE\'','THREE','=','0',_$gXLo]  Parent:11537, Self:11538
+88:             L:I:12 Identifier callee () [_$set]  Parent:11548, Self:11549
+88:              L:I:13 Literal 0 () [88]  Parent:11561, Self:11562
+88:              R:I:13 Literal 1 () ['ExpressionStatement']  Parent:11574, Self:11575
+88:              L:I:13 Literal 2 () ['expression']  Parent:11587, Self:11588
+88:              R:I:13 Literal 3 () ['block2[1]']  Parent:11600, Self:11601
+88:              L:I:13 MemberExpression 4 () [block2[1]]  Parent:11613, Self:11614
+88:               L:I:14 Identifier object () [block2]  Parent:11624, Self:11625
+88:               R:I:14 Literal property () [1]  Parent:11636, Self:11637
+88:              R:I:13 Literal 5 () ['\'THREE\'']  Parent:11650, Self:11651
+88:              L:I:13 Literal 6 () ['THREE']  Parent:11663, Self:11664
+88:              R:I:13 Literal 7 () ['=']  Parent:11676, Self:11677
+88:              L:I:13 Literal 8 () ['0']  Parent:11689, Self:11690
+88:              R:I:13 Identifier 9 () [_$gXLocal]  Parent:11702, Self:11703
+88:              L:I:13 Literal 10 () [0]  Parent:11714, Self:11715
+--------------- END --------------- 
+89:          ExpressionStatement
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.39.expression
+89:           I:10 AssignmentExpression expression (=) [block2[2] = _$set(89,'ExpressionStatement','expression','block2[2]',block2[2],'\'FOUR\'','FOUR','=',]  Parent:11738, Self:11739
+89:            L:I:11 MemberExpression left () [block2[2]]  Parent:11750, Self:11751
+89:             L:I:12 Identifier object () [block2]  Parent:11761, Self:11762
+89:             R:I:12 Literal property () [2]  Parent:11773, Self:11774
+89:            R:I:11 CallExpression right () [_$set(89,'ExpressionStatement','expression','block2[2]',block2[2],'\'FOUR\'','FOUR','=','0',_$gXLoca]  Parent:11787, Self:11788
+89:             L:I:12 Identifier callee () [_$set]  Parent:11798, Self:11799
+89:              L:I:13 Literal 0 () [89]  Parent:11811, Self:11812
+89:              R:I:13 Literal 1 () ['ExpressionStatement']  Parent:11824, Self:11825
+89:              L:I:13 Literal 2 () ['expression']  Parent:11837, Self:11838
+89:              R:I:13 Literal 3 () ['block2[2]']  Parent:11850, Self:11851
+89:              L:I:13 MemberExpression 4 () [block2[2]]  Parent:11863, Self:11864
+89:               L:I:14 Identifier object () [block2]  Parent:11874, Self:11875
+89:               R:I:14 Literal property () [2]  Parent:11886, Self:11887
+89:              R:I:13 Literal 5 () ['\'FOUR\'']  Parent:11900, Self:11901
+89:              L:I:13 Literal 6 () ['FOUR']  Parent:11913, Self:11914
+89:              R:I:13 Literal 7 () ['=']  Parent:11926, Self:11927
+89:              L:I:13 Literal 8 () ['0']  Parent:11939, Self:11940
+89:              R:I:13 Identifier 9 () [_$gXLocal]  Parent:11952, Self:11953
+89:              L:I:13 Literal 10 () [0]  Parent:11964, Self:11965
+--------------- END --------------- 
+90:          ExpressionStatement
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.40.expression
+90:           I:10 AssignmentExpression expression (=) [block2[3] = _$set(90,'ExpressionStatement','expression','block2[3]',block2[3],'\'FOUR-2\'','FOUR-2',]  Parent:11988, Self:11989
+90:            L:I:11 MemberExpression left () [block2[3]]  Parent:12000, Self:12001
+90:             L:I:12 Identifier object () [block2]  Parent:12011, Self:12012
+90:             R:I:12 Literal property () [3]  Parent:12023, Self:12024
+90:            R:I:11 CallExpression right () [_$set(90,'ExpressionStatement','expression','block2[3]',block2[3],'\'FOUR-2\'','FOUR-2','=','0',_$gX]  Parent:12037, Self:12038
+90:             L:I:12 Identifier callee () [_$set]  Parent:12048, Self:12049
+90:              L:I:13 Literal 0 () [90]  Parent:12061, Self:12062
+90:              R:I:13 Literal 1 () ['ExpressionStatement']  Parent:12074, Self:12075
+90:              L:I:13 Literal 2 () ['expression']  Parent:12087, Self:12088
+90:              R:I:13 Literal 3 () ['block2[3]']  Parent:12100, Self:12101
+90:              L:I:13 MemberExpression 4 () [block2[3]]  Parent:12113, Self:12114
+90:               L:I:14 Identifier object () [block2]  Parent:12124, Self:12125
+90:               R:I:14 Literal property () [3]  Parent:12136, Self:12137
+90:              R:I:13 Literal 5 () ['\'FOUR-2\'']  Parent:12150, Self:12151
+90:              L:I:13 Literal 6 () ['FOUR-2']  Parent:12163, Self:12164
+90:              R:I:13 Literal 7 () ['=']  Parent:12176, Self:12177
+90:              L:I:13 Literal 8 () ['0']  Parent:12189, Self:12190
+90:              R:I:13 Identifier 9 () [_$gXLocal]  Parent:12202, Self:12203
+90:              L:I:13 Literal 10 () [0]  Parent:12214, Self:12215
+--------------- END --------------- 
+92:          ExpressionStatement
+92:           I:10 CallExpression expression () [_$sb(92,'block3',_$gXLocal)]  Parent:12238, Self:12239
+92:            I:11 Identifier callee () [_$sb]  Parent:12249, Self:12250
+92:             I:12 Literal 0 () [92]  Parent:12262, Self:12263
+92:             I:12 Literal 1 () ['block3']  Parent:12275, Self:12276
+92:             I:12 Identifier 2 () [_$gXLocal]  Parent:12288, Self:12289
+92:          VariableDeclaration
+--------------- START VAR --------------- 
+ path:p.0.expression.arguments.0.body.body.42.declarations.0
+92:            I:11 VariableDeclarator 0 (=) [block3 = _$set(92,'VariableDeclaration','0','block3',block3,'[]',[],'=','1',_$gXLocal,0)]  Parent:12312, Self:12313
+92:             L:I:12 Identifier id () [block3]  Parent:12323, Self:12324
+92:             R:I:12 CallExpression init () [_$set(92,'VariableDeclaration','0','block3',block3,'[]',[],'=','1',_$gXLocal,0)]  Parent:12335, Self:12336
+92:              L:I:13 Identifier callee () [_$set]  Parent:12346, Self:12347
+92:               L:I:14 Literal 0 () [92]  Parent:12359, Self:12360
+92:               R:I:14 Literal 1 () ['VariableDeclaration']  Parent:12372, Self:12373
+92:               L:I:14 Literal 2 () ['0']  Parent:12385, Self:12386
+92:               R:I:14 Literal 3 () ['block3']  Parent:12398, Self:12399
+92:               L:I:14 Identifier 4 () [block3]  Parent:12411, Self:12412
+92:               R:I:14 Literal 5 () ['[]']  Parent:12423, Self:12424
+92:               L:I:14 ArrayExpression 6 () [[]]  Parent:12436, Self:12437
+92:               R:I:14 Literal 7 () ['=']  Parent:12448, Self:12449
+92:               L:I:14 Literal 8 () ['1']  Parent:12461, Self:12462
+92:               R:I:14 Identifier 9 () [_$gXLocal]  Parent:12474, Self:12475
+92:               L:I:14 Literal 10 () [0]  Parent:12486, Self:12487
+--------------- END --------------- 
+93:          ExpressionStatement
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.43.expression
+93:           I:10 AssignmentExpression expression (=) [block3[1] = _$set(93,'ExpressionStatement','expression','block3[1]',block3[1],'{}',{},'=','0',_$gXLo]  Parent:12511, Self:12512
+93:            L:I:11 MemberExpression left () [block3[1]]  Parent:12523, Self:12524
+93:             L:I:12 Identifier object () [block3]  Parent:12534, Self:12535
+93:             R:I:12 Literal property () [1]  Parent:12546, Self:12547
+93:            R:I:11 CallExpression right () [_$set(93,'ExpressionStatement','expression','block3[1]',block3[1],'{}',{},'=','0',_$gXLocal,0)]  Parent:12560, Self:12561
+93:             L:I:12 Identifier callee () [_$set]  Parent:12571, Self:12572
+93:              L:I:13 Literal 0 () [93]  Parent:12584, Self:12585
+93:              R:I:13 Literal 1 () ['ExpressionStatement']  Parent:12597, Self:12598
+93:              L:I:13 Literal 2 () ['expression']  Parent:12610, Self:12611
+93:              R:I:13 Literal 3 () ['block3[1]']  Parent:12623, Self:12624
+93:              L:I:13 MemberExpression 4 () [block3[1]]  Parent:12636, Self:12637
+93:               L:I:14 Identifier object () [block3]  Parent:12647, Self:12648
+93:               R:I:14 Literal property () [1]  Parent:12659, Self:12660
+93:              R:I:13 Literal 5 () ['{}']  Parent:12673, Self:12674
+93:              L:I:13 ObjectExpression 6 () [{}]  Parent:12686, Self:12687
+93:              R:I:13 Literal 7 () ['=']  Parent:12698, Self:12699
+93:              L:I:13 Literal 8 () ['0']  Parent:12711, Self:12712
+93:              R:I:13 Identifier 9 () [_$gXLocal]  Parent:12724, Self:12725
+93:              L:I:13 Literal 10 () [0]  Parent:12736, Self:12737
+--------------- END --------------- 
+94:          ExpressionStatement
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.44.expression
+94:           I:10 AssignmentExpression expression (=) [block3[1].name = _$set(94,'ExpressionStatement','expression','block3[1].name',block3[1].name,'\'FIVE]  Parent:12760, Self:12761
+94:            L:I:11 MemberExpression left () [block3[1].name]  Parent:12772, Self:12773
+94:             L:I:12 MemberExpression object () [block3[1]]  Parent:12783, Self:12784
+94:              L:I:13 Identifier object () [block3]  Parent:12794, Self:12795
+94:              R:I:13 Literal property () [1]  Parent:12806, Self:12807
+94:             R:I:12 Identifier property () [name]  Parent:12820, Self:12821
+94:            R:I:11 CallExpression right () [_$set(94,'ExpressionStatement','expression','block3[1].name',block3[1].name,'\'FIVE\'','FIVE','=','0]  Parent:12833, Self:12834
+94:             L:I:12 Identifier callee () [_$set]  Parent:12844, Self:12845
+94:              L:I:13 Literal 0 () [94]  Parent:12857, Self:12858
+94:              R:I:13 Literal 1 () ['ExpressionStatement']  Parent:12870, Self:12871
+94:              L:I:13 Literal 2 () ['expression']  Parent:12883, Self:12884
+94:              R:I:13 Literal 3 () ['block3[1].name']  Parent:12896, Self:12897
+94:              L:I:13 MemberExpression 4 () [block3[1].name]  Parent:12909, Self:12910
+94:               L:I:14 MemberExpression object () [block3[1]]  Parent:12920, Self:12921
+94:                L:I:15 Identifier object () [block3]  Parent:12931, Self:12932
+94:                R:I:15 Literal property () [1]  Parent:12943, Self:12944
+94:               R:I:14 Identifier property () [name]  Parent:12957, Self:12958
+94:              R:I:13 Literal 5 () ['\'FIVE\'']  Parent:12970, Self:12971
+94:              L:I:13 Literal 6 () ['FIVE']  Parent:12983, Self:12984
+94:              R:I:13 Literal 7 () ['=']  Parent:12996, Self:12997
+94:              L:I:13 Literal 8 () ['0']  Parent:13009, Self:13010
+94:              R:I:13 Identifier 9 () [_$gXLocal]  Parent:13022, Self:13023
+94:              L:I:13 Literal 10 () [0]  Parent:13034, Self:13035
+--------------- END --------------- 
+95:          ExpressionStatement
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.45.expression
+95:           I:10 AssignmentExpression expression (=) [block3[1].lname = _$set(95,'ExpressionStatement','expression','block3[1].lname',block3[1].lname,'\'S]  Parent:13058, Self:13059
+95:            L:I:11 MemberExpression left () [block3[1].lname]  Parent:13070, Self:13071
+95:             L:I:12 MemberExpression object () [block3[1]]  Parent:13081, Self:13082
+95:              L:I:13 Identifier object () [block3]  Parent:13092, Self:13093
+95:              R:I:13 Literal property () [1]  Parent:13104, Self:13105
+95:             R:I:12 Identifier property () [lname]  Parent:13118, Self:13119
+95:            R:I:11 CallExpression right () [_$set(95,'ExpressionStatement','expression','block3[1].lname',block3[1].lname,'\'SIX\'','SIX','=','0]  Parent:13131, Self:13132
+95:             L:I:12 Identifier callee () [_$set]  Parent:13142, Self:13143
+95:              L:I:13 Literal 0 () [95]  Parent:13155, Self:13156
+95:              R:I:13 Literal 1 () ['ExpressionStatement']  Parent:13168, Self:13169
+95:              L:I:13 Literal 2 () ['expression']  Parent:13181, Self:13182
+95:              R:I:13 Literal 3 () ['block3[1].lname']  Parent:13194, Self:13195
+95:              L:I:13 MemberExpression 4 () [block3[1].lname]  Parent:13207, Self:13208
+95:               L:I:14 MemberExpression object () [block3[1]]  Parent:13218, Self:13219
+95:                L:I:15 Identifier object () [block3]  Parent:13229, Self:13230
+95:                R:I:15 Literal property () [1]  Parent:13241, Self:13242
+95:               R:I:14 Identifier property () [lname]  Parent:13255, Self:13256
+95:              R:I:13 Literal 5 () ['\'SIX\'']  Parent:13268, Self:13269
+95:              L:I:13 Literal 6 () ['SIX']  Parent:13281, Self:13282
+95:              R:I:13 Literal 7 () ['=']  Parent:13294, Self:13295
+95:              L:I:13 Literal 8 () ['0']  Parent:13307, Self:13308
+95:              R:I:13 Identifier 9 () [_$gXLocal]  Parent:13320, Self:13321
+95:              L:I:13 Literal 10 () [0]  Parent:13332, Self:13333
+--------------- END --------------- 
+97:          ExpressionStatement
+97:           I:10 CallExpression expression () [_$sb(97,'f',_$gXLocal)]  Parent:13356, Self:13357
+97:            I:11 Identifier callee () [_$sb]  Parent:13367, Self:13368
+97:             I:12 Literal 0 () [97]  Parent:13380, Self:13381
+97:             I:12 Literal 1 () ['f']  Parent:13393, Self:13394
+97:             I:12 Identifier 2 () [_$gXLocal]  Parent:13406, Self:13407
+97:          VariableDeclaration
+--------------- START VAR --------------- 
+ path:p.0.expression.arguments.0.body.body.47.declarations.0
+97:            I:11 VariableDeclarator 0 (=) [f = _$set(97,'VariableDeclaration','0','f',f,'(i>j) && (i>4)',(i>j) && (i>4),'=','1',_$gXLocal,0)]  Parent:13430, Self:13431
+97:             L:I:12 Identifier id () [f]  Parent:13441, Self:13442
+97:             R:I:12 CallExpression init () [_$set(97,'VariableDeclaration','0','f',f,'(i>j) && (i>4)',(i>j) && (i>4),'=','1',_$gXLocal,0)]  Parent:13453, Self:13454
+97:              L:I:13 Identifier callee () [_$set]  Parent:13464, Self:13465
+97:               L:I:14 Literal 0 () [97]  Parent:13477, Self:13478
+97:               R:I:14 Literal 1 () ['VariableDeclaration']  Parent:13490, Self:13491
+97:               L:I:14 Literal 2 () ['0']  Parent:13503, Self:13504
+97:               R:I:14 Literal 3 () ['f']  Parent:13516, Self:13517
+97:               L:I:14 Identifier 4 () [f]  Parent:13529, Self:13530
+97:               R:I:14 Literal 5 () ['(i>j) && (i>4)']  Parent:13541, Self:13542
+97:               L:I:14 LogicalExpression 6 (&&) [(i>j) && (i>4)]  Parent:13554, Self:13555
+97:                L:I:15 BinaryExpression left (>) [i>j]  Parent:13565, Self:13566
+97:                 L:I:16 Identifier left () [i]  Parent:13576, Self:13577
+97:                 R:I:16 Identifier right () [j]  Parent:13589, Self:13590
+97:                R:I:15 BinaryExpression right (>) [i>4]  Parent:13602, Self:13603
+97:                 L:I:16 Identifier left () [i]  Parent:13613, Self:13614
+97:                 R:I:16 Literal right () [4]  Parent:13626, Self:13627
+97:               R:I:14 Literal 7 () ['=']  Parent:13639, Self:13640
+97:               L:I:14 Literal 8 () ['1']  Parent:13652, Self:13653
+97:               R:I:14 Identifier 9 () [_$gXLocal]  Parent:13665, Self:13666
+97:               L:I:14 Literal 10 () [0]  Parent:13677, Self:13678
+--------------- END --------------- 
+99:          ForStatement
+99:           I:10 CallExpression test () [_$evl(99,'ForStatement','test','k<20', k<20,_$gXLocal, 0)]  Parent:13703, Self:13704
+99:            I:11 Identifier callee () [_$evl]  Parent:13714, Self:13715
+99:             I:12 Literal 0 () [99]  Parent:13727, Self:13728
+99:             I:12 Literal 1 () ['ForStatement']  Parent:13740, Self:13741
+99:             I:12 Literal 2 () ['test']  Parent:13753, Self:13754
+99:             I:12 Literal 3 () ['k<20']  Parent:13766, Self:13767
+--------------- START BINARY --------------- 
+ path:p.0.expression.arguments.0.body.body.48.test.arguments.4
+99:             I:12 BinaryExpression 4 (<) [k<20]  Parent:13779, Self:13780
+99:              L:I:13 Identifier left () [k]  Parent:13790, Self:13791
+99:              R:I:13 Literal right () [20]  Parent:13803, Self:13804
+--------------- END --------------- 
+99:             I:12 Identifier 5 () [_$gXLocal]  Parent:13816, Self:13817
+99:             I:12 Literal 6 () [0]  Parent:13828, Self:13829
+99:           SequenceExpression
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.48.update.expressions.0
+99:             I:12 AssignmentExpression 0 (=) [tempVar = k]  Parent:13853, Self:13854
+99:              L:I:13 Identifier left () [tempVar]  Parent:13865, Self:13866
+99:              R:I:13 Identifier right () [k]  Parent:13877, Self:13878
+--------------- END --------------- 
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.48.update.expressions.1
+99:             I:12 AssignmentExpression 1 (=) [k= _$set(99,'ForStatement','update','k',k,'',0,'++',0,_$gXLocal,0)]  Parent:13889, Self:13890
+99:              L:I:13 Identifier left () [k]  Parent:13901, Self:13902
+99:              R:I:13 CallExpression right () [_$set(99,'ForStatement','update','k',k,'',0,'++',0,_$gXLocal,0)]  Parent:13913, Self:13914
+99:               L:I:14 Identifier callee () [_$set]  Parent:13924, Self:13925
+99:                L:I:15 Literal 0 () [99]  Parent:13937, Self:13938
+99:                R:I:15 Literal 1 () ['ForStatement']  Parent:13950, Self:13951
+99:                L:I:15 Literal 2 () ['update']  Parent:13963, Self:13964
+99:                R:I:15 Literal 3 () ['k']  Parent:13976, Self:13977
+99:                L:I:15 Identifier 4 () [k]  Parent:13989, Self:13990
+99:                R:I:15 Literal 5 () ['']  Parent:14001, Self:14002
+99:                L:I:15 Literal 6 () [0]  Parent:14014, Self:14015
+99:                R:I:15 Literal 7 () ['++']  Parent:14027, Self:14028
+99:                L:I:15 Literal 8 () [0]  Parent:14040, Self:14041
+99:                R:I:15 Identifier 9 () [_$gXLocal]  Parent:14053, Self:14054
+99:                L:I:15 Literal 10 () [0]  Parent:14065, Self:14066
+--------------- END --------------- 
+99:             I:12 Identifier 2 () [tempVar]  Parent:14078, Self:14079
+100:           BlockStatement
+101:             ExpressionStatement
+101:              I:13 CallExpression expression () [console.log(k)]  Parent:14113, Self:14114
+101:               I:14 MemberExpression callee () [console.log]  Parent:14124, Self:14125
+101:                I:15 Identifier object () [console]  Parent:14135, Self:14136
+101:                I:15 Identifier property () [log]  Parent:14147, Self:14148
+101:                I:15 Identifier 0 () [k]  Parent:14161, Self:14162
+104:          ForStatement
+104:           I:10 CallExpression test () [_$evl(104,'BlockStatement > ExpressionStatement > ForStatement','test','k<25', k<25,_$gXLocal, 0)]  Parent:14185, Self:14186
+104:            I:11 Identifier callee () [_$evl]  Parent:14196, Self:14197
+104:             I:12 Literal 0 () [104]  Parent:14209, Self:14210
+104:             I:12 Literal 1 () ['BlockStatement > ExpressionStatement > ForStatement']  Parent:14222, Self:14223
+104:             I:12 Literal 2 () ['test']  Parent:14235, Self:14236
+104:             I:12 Literal 3 () ['k<25']  Parent:14248, Self:14249
+--------------- START BINARY --------------- 
+ path:p.0.expression.arguments.0.body.body.49.test.arguments.4
+104:             I:12 BinaryExpression 4 (<) [k<25]  Parent:14261, Self:14262
+104:              L:I:13 Identifier left () [k]  Parent:14272, Self:14273
+104:              R:I:13 Literal right () [25]  Parent:14285, Self:14286
+--------------- END --------------- 
+104:             I:12 Identifier 5 () [_$gXLocal]  Parent:14298, Self:14299
+104:             I:12 Literal 6 () [0]  Parent:14310, Self:14311
+105:           BlockStatement
+106:             ExpressionStatement
+106:              SequenceExpression
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.49.body.body.0.expression.expressions.0
+106:                I:15 AssignmentExpression 0 (=) [tempVar = k]  Parent:14359, Self:14360
+106:                 L:I:16 Identifier left () [tempVar]  Parent:14371, Self:14372
+106:                 R:I:16 Identifier right () [k]  Parent:14383, Self:14384
+--------------- END --------------- 
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.49.body.body.0.expression.expressions.1
+106:                I:15 AssignmentExpression 1 (=) [k= _$set(106,'BlockStatement > ExpressionStatement','expression','k',k,'',0,'++',0,_$gXLocal,0)]  Parent:14395, Self:14396
+106:                 L:I:16 Identifier left () [k]  Parent:14407, Self:14408
+106:                 R:I:16 CallExpression right () [_$set(106,'BlockStatement > ExpressionStatement','expression','k',k,'',0,'++',0,_$gXLocal,0)]  Parent:14419, Self:14420
+106:                  L:I:17 Identifier callee () [_$set]  Parent:14430, Self:14431
+106:                   L:I:18 Literal 0 () [106]  Parent:14443, Self:14444
+106:                   R:I:18 Literal 1 () ['BlockStatement > ExpressionStatement']  Parent:14456, Self:14457
+106:                   L:I:18 Literal 2 () ['expression']  Parent:14469, Self:14470
+106:                   R:I:18 Literal 3 () ['k']  Parent:14482, Self:14483
+106:                   L:I:18 Identifier 4 () [k]  Parent:14495, Self:14496
+106:                   R:I:18 Literal 5 () ['']  Parent:14507, Self:14508
+106:                   L:I:18 Literal 6 () [0]  Parent:14520, Self:14521
+106:                   R:I:18 Literal 7 () ['++']  Parent:14533, Self:14534
+106:                   L:I:18 Literal 8 () [0]  Parent:14546, Self:14547
+106:                   R:I:18 Identifier 9 () [_$gXLocal]  Parent:14559, Self:14560
+106:                   L:I:18 Literal 10 () [0]  Parent:14571, Self:14572
+--------------- END --------------- 
+106:                I:15 Identifier 2 () [tempVar]  Parent:14584, Self:14585
+107:             ExpressionStatement
+107:              I:13 CallExpression expression () [console.log(k)]  Parent:14607, Self:14608
+107:               I:14 MemberExpression callee () [console.log]  Parent:14618, Self:14619
+107:                I:15 Identifier object () [console]  Parent:14629, Self:14630
+107:                I:15 Identifier property () [log]  Parent:14641, Self:14642
+107:                I:15 Identifier 0 () [k]  Parent:14655, Self:14656
+110:          ExpressionStatement
+110:           I:10 CallExpression expression () [console.log(_$evl(110,'ExpressionStatement > ExpressionStatement','0','block1.name+\' \'+block1.lnam]  Parent:14678, Self:14679
+110:            I:11 MemberExpression callee () [console.log]  Parent:14689, Self:14690
+110:             I:12 Identifier object () [console]  Parent:14700, Self:14701
+110:             I:12 Identifier property () [log]  Parent:14712, Self:14713
+110:             I:12 CallExpression 0 () [_$evl(110,'ExpressionStatement > ExpressionStatement','0','block1.name+\' \'+block1.lname', block1.n]  Parent:14726, Self:14727
+110:              I:13 Identifier callee () [_$evl]  Parent:14737, Self:14738
+110:               I:14 Literal 0 () [110]  Parent:14750, Self:14751
+110:               I:14 Literal 1 () ['ExpressionStatement > ExpressionStatement']  Parent:14763, Self:14764
+110:               I:14 Literal 2 () ['0']  Parent:14776, Self:14777
+110:               I:14 Literal 3 () ['block1.name+\' \'+block1.lname']  Parent:14789, Self:14790
+--------------- START BINARY --------------- 
+ path:p.0.expression.arguments.0.body.body.50.expression.arguments.0.arguments.4
+110:               I:14 BinaryExpression 4 (+) [block1.name+' '+block1.lname]  Parent:14802, Self:14803
+110:                L:I:15 BinaryExpression left (+) [block1.name+' ']  Parent:14813, Self:14814
+110:                 L:I:16 MemberExpression left () [block1.name]  Parent:14824, Self:14825
+110:                  L:I:17 Identifier object () [block1]  Parent:14835, Self:14836
+110:                  R:I:17 Identifier property () [name]  Parent:14847, Self:14848
+110:                 R:I:16 Literal right () [' ']  Parent:14861, Self:14862
+110:                R:I:15 MemberExpression right () [block1.lname]  Parent:14875, Self:14876
+110:                 L:I:16 Identifier object () [block1]  Parent:14886, Self:14887
+110:                 R:I:16 Identifier property () [lname]  Parent:14898, Self:14899
+--------------- END --------------- 
+110:               I:14 Identifier 5 () [_$gXLocal]  Parent:14911, Self:14912
+110:               I:14 Literal 6 () [0]  Parent:14923, Self:14924
+111:          ExpressionStatement
+111:           I:10 CallExpression expression () [console.log(_$evl(111,'ExpressionStatement','0','block2[1]+\' \'+block2[2]+\' \'+block2[3]', block2[]  Parent:14947, Self:14948
+111:            I:11 MemberExpression callee () [console.log]  Parent:14958, Self:14959
+111:             I:12 Identifier object () [console]  Parent:14969, Self:14970
+111:             I:12 Identifier property () [log]  Parent:14981, Self:14982
+111:             I:12 CallExpression 0 () [_$evl(111,'ExpressionStatement','0','block2[1]+\' \'+block2[2]+\' \'+block2[3]', block2[1]+' '+block]  Parent:14995, Self:14996
+111:              I:13 Identifier callee () [_$evl]  Parent:15006, Self:15007
+111:               I:14 Literal 0 () [111]  Parent:15019, Self:15020
+111:               I:14 Literal 1 () ['ExpressionStatement']  Parent:15032, Self:15033
+111:               I:14 Literal 2 () ['0']  Parent:15045, Self:15046
+111:               I:14 Literal 3 () ['block2[1]+\' \'+block2[2]+\' \'+block2[3]']  Parent:15058, Self:15059
+--------------- START BINARY --------------- 
+ path:p.0.expression.arguments.0.body.body.51.expression.arguments.0.arguments.4
+111:               I:14 BinaryExpression 4 (+) [block2[1]+' '+block2[2]+' '+block2[3]]  Parent:15071, Self:15072
+111:                L:I:15 BinaryExpression left (+) [block2[1]+' '+block2[2]+' ']  Parent:15082, Self:15083
+111:                 L:I:16 BinaryExpression left (+) [block2[1]+' '+block2[2]]  Parent:15093, Self:15094
+111:                  L:I:17 BinaryExpression left (+) [block2[1]+' ']  Parent:15104, Self:15105
+111:                   L:I:18 MemberExpression left () [block2[1]]  Parent:15115, Self:15116
+111:                    L:I:19 Identifier object () [block2]  Parent:15126, Self:15127
+111:                    R:I:19 Literal property () [1]  Parent:15138, Self:15139
+111:                   R:I:18 Literal right () [' ']  Parent:15153, Self:15154
+111:                  R:I:17 MemberExpression right () [block2[2]]  Parent:15167, Self:15168
+111:                   L:I:18 Identifier object () [block2]  Parent:15178, Self:15179
+111:                   R:I:18 Literal property () [2]  Parent:15190, Self:15191
+111:                 R:I:16 Literal right () [' ']  Parent:15205, Self:15206
+111:                R:I:15 MemberExpression right () [block2[3]]  Parent:15219, Self:15220
+111:                 L:I:16 Identifier object () [block2]  Parent:15230, Self:15231
+111:                 R:I:16 Literal property () [3]  Parent:15242, Self:15243
+--------------- END --------------- 
+111:               I:14 Identifier 5 () [_$gXLocal]  Parent:15256, Self:15257
+111:               I:14 Literal 6 () [0]  Parent:15268, Self:15269
+112:          ExpressionStatement
+112:           I:10 CallExpression expression () [console.log(_$evl(112,'ExpressionStatement','0','block3[1].name+\' \'+block3[1].lname', block3[1].na]  Parent:15292, Self:15293
+112:            I:11 MemberExpression callee () [console.log]  Parent:15303, Self:15304
+112:             I:12 Identifier object () [console]  Parent:15314, Self:15315
+112:             I:12 Identifier property () [log]  Parent:15326, Self:15327
+112:             I:12 CallExpression 0 () [_$evl(112,'ExpressionStatement','0','block3[1].name+\' \'+block3[1].lname', block3[1].name+' '+block]  Parent:15340, Self:15341
+112:              I:13 Identifier callee () [_$evl]  Parent:15351, Self:15352
+112:               I:14 Literal 0 () [112]  Parent:15364, Self:15365
+112:               I:14 Literal 1 () ['ExpressionStatement']  Parent:15377, Self:15378
+112:               I:14 Literal 2 () ['0']  Parent:15390, Self:15391
+112:               I:14 Literal 3 () ['block3[1].name+\' \'+block3[1].lname']  Parent:15403, Self:15404
+--------------- START BINARY --------------- 
+ path:p.0.expression.arguments.0.body.body.52.expression.arguments.0.arguments.4
+112:               I:14 BinaryExpression 4 (+) [block3[1].name+' '+block3[1].lname]  Parent:15416, Self:15417
+112:                L:I:15 BinaryExpression left (+) [block3[1].name+' ']  Parent:15427, Self:15428
+112:                 L:I:16 MemberExpression left () [block3[1].name]  Parent:15438, Self:15439
+112:                  L:I:17 MemberExpression object () [block3[1]]  Parent:15449, Self:15450
+112:                   L:I:18 Identifier object () [block3]  Parent:15460, Self:15461
+112:                   R:I:18 Literal property () [1]  Parent:15472, Self:15473
+112:                  R:I:17 Identifier property () [name]  Parent:15486, Self:15487
+112:                 R:I:16 Literal right () [' ']  Parent:15500, Self:15501
+112:                R:I:15 MemberExpression right () [block3[1].lname]  Parent:15514, Self:15515
+112:                 L:I:16 MemberExpression object () [block3[1]]  Parent:15525, Self:15526
+112:                  L:I:17 Identifier object () [block3]  Parent:15536, Self:15537
+112:                  R:I:17 Literal property () [1]  Parent:15548, Self:15549
+112:                 R:I:16 Identifier property () [lname]  Parent:15562, Self:15563
+--------------- END --------------- 
+112:               I:14 Identifier 5 () [_$gXLocal]  Parent:15575, Self:15576
+112:               I:14 Literal 6 () [0]  Parent:15587, Self:15588
+114:          ExpressionStatement
+114:           I:10 CallExpression expression () [console.log(_$evl(114,'ExpressionStatement','0','"cc:"+cc()+" dd:"+dd()', "cc:"+(_$v[14]=cc())+" dd:]  Parent:15611, Self:15612
+114:            I:11 MemberExpression callee () [console.log]  Parent:15622, Self:15623
+114:             I:12 Identifier object () [console]  Parent:15633, Self:15634
+114:             I:12 Identifier property () [log]  Parent:15645, Self:15646
+114:             I:12 CallExpression 0 () [_$evl(114,'ExpressionStatement','0','"cc:"+cc()+" dd:"+dd()', "cc:"+(_$v[14]=cc())+" dd:"+(_$v[13]=d]  Parent:15659, Self:15660
+114:              I:13 Identifier callee () [_$evl]  Parent:15670, Self:15671
+114:               I:14 Literal 0 () [114]  Parent:15683, Self:15684
+114:               I:14 Literal 1 () ['ExpressionStatement']  Parent:15696, Self:15697
+114:               I:14 Literal 2 () ['0']  Parent:15709, Self:15710
+114:               I:14 Literal 3 () ['"cc:"+cc()+" dd:"+dd()']  Parent:15722, Self:15723
+--------------- START BINARY --------------- 
+ path:p.0.expression.arguments.0.body.body.53.expression.arguments.0.arguments.4
+114:               I:14 BinaryExpression 4 (+) ["cc:"+(_$v[14]=cc())+" dd:"+(_$v[13]=dd())]  Parent:15735, Self:15736
+114:                L:I:15 BinaryExpression left (+) ["cc:"+(_$v[14]=cc())+" dd:"]  Parent:15746, Self:15747
+114:                 L:I:16 BinaryExpression left (+) ["cc:"+(_$v[14]=cc())]  Parent:15757, Self:15758
+114:                  L:I:17 Literal left () ["cc:"]  Parent:15768, Self:15769
+114:                  R:I:17 AssignmentExpression right (=) [_$v[14]=cc()]  Parent:15782, Self:15783
+114:                   L:I:18 MemberExpression left () [_$v[14]]  Parent:15794, Self:15795
+114:                    L:I:19 Identifier object () [_$v]  Parent:15805, Self:15806
+114:                    R:I:19 Literal property () [14]  Parent:15817, Self:15818
+114:                   R:I:18 CallExpression right () [cc()]  Parent:15831, Self:15832
+114:                    L:I:19 Identifier callee () [cc]  Parent:15842, Self:15843
+114:                 R:I:16 Literal right () [" dd:"]  Parent:15856, Self:15857
+114:                R:I:15 AssignmentExpression right (=) [_$v[13]=dd()]  Parent:15870, Self:15871
+114:                 L:I:16 MemberExpression left () [_$v[13]]  Parent:15882, Self:15883
+114:                  L:I:17 Identifier object () [_$v]  Parent:15893, Self:15894
+114:                  R:I:17 Literal property () [13]  Parent:15905, Self:15906
+114:                 R:I:16 CallExpression right () [dd()]  Parent:15919, Self:15920
+114:                  L:I:17 Identifier callee () [dd]  Parent:15930, Self:15931
+--------------- END --------------- 
+114:               I:14 Identifier 5 () [_$gXLocal]  Parent:15943, Self:15944
+114:               I:14 Literal 6 () [2]  Parent:15955, Self:15956
+114:               I:14 Literal 7 () ['13=dd()']  Parent:15968, Self:15969
+114:               I:14 Literal 8 () ['14=cc()']  Parent:15981, Self:15982
+115:          ExpressionStatement
+115:           I:10 CallExpression expression () [_$sb(115,'bb2',_$gXLocal)]  Parent:16005, Self:16006
+115:            I:11 Identifier callee () [_$sb]  Parent:16016, Self:16017
+115:             I:12 Literal 0 () [115]  Parent:16029, Self:16030
+115:             I:12 Literal 1 () ['bb2']  Parent:16042, Self:16043
+115:             I:12 Identifier 2 () [_$gXLocal]  Parent:16055, Self:16056
+115:          VariableDeclaration
+--------------- START VAR --------------- 
+ path:p.0.expression.arguments.0.body.body.55.declarations.0
+115:            I:11 VariableDeclarator 0 (=) [bb2 = _$set(115,'VariableDeclaration','0','bb2',bb2,'bb',bb,'=','1',_$gXLocal,0)]  Parent:16079, Self:16080
+115:             L:I:12 Identifier id () [bb2]  Parent:16090, Self:16091
+115:             R:I:12 CallExpression init () [_$set(115,'VariableDeclaration','0','bb2',bb2,'bb',bb,'=','1',_$gXLocal,0)]  Parent:16102, Self:16103
+115:              L:I:13 Identifier callee () [_$set]  Parent:16113, Self:16114
+115:               L:I:14 Literal 0 () [115]  Parent:16126, Self:16127
+115:               R:I:14 Literal 1 () ['VariableDeclaration']  Parent:16139, Self:16140
+115:               L:I:14 Literal 2 () ['0']  Parent:16152, Self:16153
+115:               R:I:14 Literal 3 () ['bb2']  Parent:16165, Self:16166
+115:               L:I:14 Identifier 4 () [bb2]  Parent:16178, Self:16179
+115:               R:I:14 Literal 5 () ['bb']  Parent:16190, Self:16191
+115:               L:I:14 Identifier 6 () [bb]  Parent:16203, Self:16204
+115:               R:I:14 Literal 7 () ['=']  Parent:16215, Self:16216
+115:               L:I:14 Literal 8 () ['1']  Parent:16228, Self:16229
+115:               R:I:14 Identifier 9 () [_$gXLocal]  Parent:16241, Self:16242
+115:               L:I:14 Literal 10 () [0]  Parent:16253, Self:16254
+--------------- END --------------- 
+116:          ExpressionStatement
+116:           I:10 CallExpression expression () [console.log(_$evl(116,'ExpressionStatement','0','"bb:"+bb2(1,2,3)', "bb:"+(_$v[15]=bb2(1,2,3)),_$gXL]  Parent:16278, Self:16279
+116:            I:11 MemberExpression callee () [console.log]  Parent:16289, Self:16290
+116:             I:12 Identifier object () [console]  Parent:16300, Self:16301
+116:             I:12 Identifier property () [log]  Parent:16312, Self:16313
+116:             I:12 CallExpression 0 () [_$evl(116,'ExpressionStatement','0','"bb:"+bb2(1,2,3)', "bb:"+(_$v[15]=bb2(1,2,3)),_$gXLocal, 1,'15=]  Parent:16326, Self:16327
+116:              I:13 Identifier callee () [_$evl]  Parent:16337, Self:16338
+116:               I:14 Literal 0 () [116]  Parent:16350, Self:16351
+116:               I:14 Literal 1 () ['ExpressionStatement']  Parent:16363, Self:16364
+116:               I:14 Literal 2 () ['0']  Parent:16376, Self:16377
+116:               I:14 Literal 3 () ['"bb:"+bb2(1,2,3)']  Parent:16389, Self:16390
+--------------- START BINARY --------------- 
+ path:p.0.expression.arguments.0.body.body.56.expression.arguments.0.arguments.4
+116:               I:14 BinaryExpression 4 (+) ["bb:"+(_$v[15]=bb2(1,2,3))]  Parent:16402, Self:16403
+116:                L:I:15 Literal left () ["bb:"]  Parent:16413, Self:16414
+116:                R:I:15 AssignmentExpression right (=) [_$v[15]=bb2(1,2,3)]  Parent:16427, Self:16428
+116:                 L:I:16 MemberExpression left () [_$v[15]]  Parent:16439, Self:16440
+116:                  L:I:17 Identifier object () [_$v]  Parent:16450, Self:16451
+116:                  R:I:17 Literal property () [15]  Parent:16462, Self:16463
+116:                 R:I:16 CallExpression right () [bb2(1,2,3)]  Parent:16476, Self:16477
+116:                  L:I:17 Identifier callee () [bb2]  Parent:16487, Self:16488
+116:                   L:I:18 Literal 0 () [1]  Parent:16500, Self:16501
+116:                   R:I:18 Literal 1 () [2]  Parent:16513, Self:16514
+116:                   L:I:18 Literal 2 () [3]  Parent:16526, Self:16527
+--------------- END --------------- 
+116:               I:14 Identifier 5 () [_$gXLocal]  Parent:16539, Self:16540
+116:               I:14 Literal 6 () [1]  Parent:16551, Self:16552
+116:               I:14 Literal 7 () ['15=bb2(1,2,3)']  Parent:16564, Self:16565
+120:          ExpressionStatement
+120:           I:10 CallExpression expression () [_$sb(120,'keys',_$gXLocal)]  Parent:16588, Self:16589
+120:            I:11 Identifier callee () [_$sb]  Parent:16599, Self:16600
+120:             I:12 Literal 0 () [120]  Parent:16612, Self:16613
+120:             I:12 Literal 1 () ['keys']  Parent:16625, Self:16626
+120:             I:12 Identifier 2 () [_$gXLocal]  Parent:16638, Self:16639
+120:          VariableDeclaration
+--------------- START VAR --------------- 
+ path:p.0.expression.arguments.0.body.body.58.declarations.0
+120:            I:11 VariableDeclarator 0 (=) [keys = _$set(120,'VariableDeclaration','0','keys',keys,'$(\'#calculator span\')',(_$v[16]=$('#calcul]  Parent:16662, Self:16663
+120:             L:I:12 Identifier id () [keys]  Parent:16673, Self:16674
+120:             R:I:12 CallExpression init () [_$set(120,'VariableDeclaration','0','keys',keys,'$(\'#calculator span\')',(_$v[16]=$('#calculator sp]  Parent:16685, Self:16686
+120:              L:I:13 Identifier callee () [_$set]  Parent:16696, Self:16697
+120:               L:I:14 Literal 0 () [120]  Parent:16709, Self:16710
+120:               R:I:14 Literal 1 () ['VariableDeclaration']  Parent:16722, Self:16723
+120:               L:I:14 Literal 2 () ['0']  Parent:16735, Self:16736
+120:               R:I:14 Literal 3 () ['keys']  Parent:16748, Self:16749
+120:               L:I:14 Identifier 4 () [keys]  Parent:16761, Self:16762
+120:               R:I:14 Literal 5 () ['$(\'#calculator span\')']  Parent:16773, Self:16774
+120:               L:I:14 AssignmentExpression 6 (=) [_$v[16]=$('#calculator span')]  Parent:16786, Self:16787
+120:                L:I:15 MemberExpression left () [_$v[16]]  Parent:16798, Self:16799
+120:                 L:I:16 Identifier object () [_$v]  Parent:16809, Self:16810
+120:                 R:I:16 Literal property () [16]  Parent:16821, Self:16822
+120:                R:I:15 CallExpression right () [$('#calculator span')]  Parent:16835, Self:16836
+120:                 L:I:16 Identifier callee () [$]  Parent:16846, Self:16847
+120:                  L:I:17 Literal 0 () ['#calculator span']  Parent:16859, Self:16860
+120:               R:I:14 Literal 7 () ['=']  Parent:16872, Self:16873
+120:               L:I:14 Literal 8 () ['1']  Parent:16885, Self:16886
+120:               R:I:14 Identifier 9 () [_$gXLocal]  Parent:16898, Self:16899
+120:               L:I:14 Literal 10 () [1]  Parent:16910, Self:16911
+120:               R:I:14 Literal 11 () ['16=$(\'#calculator span\')']  Parent:16923, Self:16924
+--------------- END --------------- 
+121:          ExpressionStatement
+121:           I:10 CallExpression expression () [_$sb(121,'operators',_$gXLocal)]  Parent:16948, Self:16949
+121:            I:11 Identifier callee () [_$sb]  Parent:16959, Self:16960
+121:             I:12 Literal 0 () [121]  Parent:16972, Self:16973
+121:             I:12 Literal 1 () ['operators']  Parent:16985, Self:16986
+121:             I:12 Identifier 2 () [_$gXLocal]  Parent:16998, Self:16999
+121:          VariableDeclaration
+--------------- START VAR --------------- 
+ path:p.0.expression.arguments.0.body.body.60.declarations.0
+121:            I:11 VariableDeclarator 0 (=) [operators = _$set(121,'VariableDeclaration','0','operators',operators,'[\'+\', \'-\', \'x\', \'/\']']  Parent:17022, Self:17023
+121:             L:I:12 Identifier id () [operators]  Parent:17033, Self:17034
+121:             R:I:12 CallExpression init () [_$set(121,'VariableDeclaration','0','operators',operators,'[\'+\', \'-\', \'x\', \'/\']',['+', '-', ]  Parent:17045, Self:17046
+121:              L:I:13 Identifier callee () [_$set]  Parent:17056, Self:17057
+121:               L:I:14 Literal 0 () [121]  Parent:17069, Self:17070
+121:               R:I:14 Literal 1 () ['VariableDeclaration']  Parent:17082, Self:17083
+121:               L:I:14 Literal 2 () ['0']  Parent:17095, Self:17096
+121:               R:I:14 Literal 3 () ['operators']  Parent:17108, Self:17109
+121:               L:I:14 Identifier 4 () [operators]  Parent:17121, Self:17122
+121:               R:I:14 Literal 5 () ['[\'+\', \'-\', \'x\', \'/\']']  Parent:17133, Self:17134
+121:               L:I:14 ArrayExpression 6 () [['+', '-', 'x', '/']]  Parent:17146, Self:17147
+121:                 L:I:16 Literal 0 () ['+']  Parent:17158, Self:17159
+121:                 R:I:16 Literal 1 () ['-']  Parent:17171, Self:17172
+121:                 L:I:16 Literal 2 () ['x']  Parent:17184, Self:17185
+121:                 R:I:16 Literal 3 () ['/']  Parent:17197, Self:17198
+121:               R:I:14 Literal 7 () ['=']  Parent:17210, Self:17211
+121:               L:I:14 Literal 8 () ['1']  Parent:17223, Self:17224
+121:               R:I:14 Identifier 9 () [_$gXLocal]  Parent:17236, Self:17237
+121:               L:I:14 Literal 10 () [0]  Parent:17248, Self:17249
+--------------- END --------------- 
+122:          ExpressionStatement
+122:           I:10 CallExpression expression () [_$sb(122,'decimalAdded',_$gXLocal)]  Parent:17273, Self:17274
+122:            I:11 Identifier callee () [_$sb]  Parent:17284, Self:17285
+122:             I:12 Literal 0 () [122]  Parent:17297, Self:17298
+122:             I:12 Literal 1 () ['decimalAdded']  Parent:17310, Self:17311
+122:             I:12 Identifier 2 () [_$gXLocal]  Parent:17323, Self:17324
+122:          VariableDeclaration
+--------------- START VAR --------------- 
+ path:p.0.expression.arguments.0.body.body.62.declarations.0
+122:            I:11 VariableDeclarator 0 (=) [decimalAdded = _$set(122,'VariableDeclaration','0','decimalAdded',decimalAdded,'false',false,'=','1']  Parent:17347, Self:17348
+122:             L:I:12 Identifier id () [decimalAdded]  Parent:17358, Self:17359
+122:             R:I:12 CallExpression init () [_$set(122,'VariableDeclaration','0','decimalAdded',decimalAdded,'false',false,'=','1',_$gXLocal,0)]  Parent:17370, Self:17371
+122:              L:I:13 Identifier callee () [_$set]  Parent:17381, Self:17382
+122:               L:I:14 Literal 0 () [122]  Parent:17394, Self:17395
+122:               R:I:14 Literal 1 () ['VariableDeclaration']  Parent:17407, Self:17408
+122:               L:I:14 Literal 2 () ['0']  Parent:17420, Self:17421
+122:               R:I:14 Literal 3 () ['decimalAdded']  Parent:17433, Self:17434
+122:               L:I:14 Identifier 4 () [decimalAdded]  Parent:17446, Self:17447
+122:               R:I:14 Literal 5 () ['false']  Parent:17458, Self:17459
+122:               L:I:14 Literal 6 () [false]  Parent:17471, Self:17472
+122:               R:I:14 Literal 7 () ['=']  Parent:17484, Self:17485
+122:               L:I:14 Literal 8 () ['1']  Parent:17497, Self:17498
+122:               R:I:14 Identifier 9 () [_$gXLocal]  Parent:17510, Self:17511
+122:               L:I:14 Literal 10 () [0]  Parent:17522, Self:17523
+--------------- END --------------- 
+123:          ExpressionStatement
+123:           I:10 CallExpression expression () [_$sb(123,'InputStr',_$gXLocal)]  Parent:17547, Self:17548
+123:            I:11 Identifier callee () [_$sb]  Parent:17558, Self:17559
+123:             I:12 Literal 0 () [123]  Parent:17571, Self:17572
+123:             I:12 Literal 1 () ['InputStr']  Parent:17584, Self:17585
+123:             I:12 Identifier 2 () [_$gXLocal]  Parent:17597, Self:17598
+123:          VariableDeclaration
+--------------- START VAR --------------- 
+ path:p.0.expression.arguments.0.body.body.64.declarations.0
+123:            I:11 VariableDeclarator 0 (=) [InputStr = _$set(123,'VariableDeclaration','0','InputStr',InputStr,'""',"",'=','1',_$gXLocal,0)]  Parent:17621, Self:17622
+123:             L:I:12 Identifier id () [InputStr]  Parent:17632, Self:17633
+123:             R:I:12 CallExpression init () [_$set(123,'VariableDeclaration','0','InputStr',InputStr,'""',"",'=','1',_$gXLocal,0)]  Parent:17644, Self:17645
+123:              L:I:13 Identifier callee () [_$set]  Parent:17655, Self:17656
+123:               L:I:14 Literal 0 () [123]  Parent:17668, Self:17669
+123:               R:I:14 Literal 1 () ['VariableDeclaration']  Parent:17681, Self:17682
+123:               L:I:14 Literal 2 () ['0']  Parent:17694, Self:17695
+123:               R:I:14 Literal 3 () ['InputStr']  Parent:17707, Self:17708
+123:               L:I:14 Identifier 4 () [InputStr]  Parent:17720, Self:17721
+123:               R:I:14 Literal 5 () ['""']  Parent:17732, Self:17733
+123:               L:I:14 Literal 6 () [""]  Parent:17745, Self:17746
+123:               R:I:14 Literal 7 () ['=']  Parent:17758, Self:17759
+123:               L:I:14 Literal 8 () ['1']  Parent:17771, Self:17772
+123:               R:I:14 Identifier 9 () [_$gXLocal]  Parent:17784, Self:17785
+123:               L:I:14 Literal 10 () [0]  Parent:17796, Self:17797
+--------------- END --------------- 
+126:          ExpressionStatement
+126:           I:10 CallExpression expression () [$("#calculator span").click( function(e) {
+		// Get the input and button values
+		_$sb(128,'input',_]  Parent:17821, Self:17822
+126:            I:11 MemberExpression callee () [$("#calculator span").click]  Parent:17832, Self:17833
+126:             I:12 CallExpression object () [$("#calculator span")]  Parent:17843, Self:17844
+126:              I:13 Identifier callee () [$]  Parent:17854, Self:17855
+126:               I:14 Literal 0 () ["#calculator span"]  Parent:17867, Self:17868
+126:             I:12 Identifier property () [click]  Parent:17880, Self:17881
+126:             I:12 FunctionExpression 0 () [function(e) {
+		// Get the input and button values
+		_$sb(128,'input',_$gXLocal);var input = _$set(1]  Parent:17894, Self:17895
+126:               I:14 Identifier 0 () [e]  Parent:17907, Self:17908
+126:              BlockStatement
+128:                ExpressionStatement
+128:                 I:16 CallExpression expression () [_$sb(128,'input',_$gXLocal)]  Parent:17942, Self:17943
+128:                  I:17 Identifier callee () [_$sb]  Parent:17953, Self:17954
+128:                   I:18 Literal 0 () [128]  Parent:17966, Self:17967
+128:                   I:18 Literal 1 () ['input']  Parent:17979, Self:17980
+128:                   I:18 Identifier 2 () [_$gXLocal]  Parent:17992, Self:17993
+128:                VariableDeclaration
+--------------- START VAR --------------- 
+ path:p.0.expression.arguments.0.body.body.65.expression.arguments.0.body.body.1.declarations.0
+128:                  I:17 VariableDeclarator 0 (=) [input = _$set(128,'ExpressionStatement > BlockStatement > VariableDeclaration','0','input',input,'$(]  Parent:18016, Self:18017
+128:                   L:I:18 Identifier id () [input]  Parent:18027, Self:18028
+128:                   R:I:18 CallExpression init () [_$set(128,'ExpressionStatement > BlockStatement > VariableDeclaration','0','input',input,'$(\'.scree]  Parent:18039, Self:18040
+128:                    L:I:19 Identifier callee () [_$set]  Parent:18050, Self:18051
+128:                     L:I:20 Literal 0 () [128]  Parent:18063, Self:18064
+128:                     R:I:20 Literal 1 () ['ExpressionStatement > BlockStatement > VariableDeclaration']  Parent:18076, Self:18077
+128:                     L:I:20 Literal 2 () ['0']  Parent:18089, Self:18090
+128:                     R:I:20 Literal 3 () ['input']  Parent:18102, Self:18103
+128:                     L:I:20 Identifier 4 () [input]  Parent:18115, Self:18116
+128:                     R:I:20 Literal 5 () ['$(\'.screen\')']  Parent:18127, Self:18128
+128:                     L:I:20 AssignmentExpression 6 (=) [_$v[17]=$('.screen')]  Parent:18140, Self:18141
+128:                      L:I:21 MemberExpression left () [_$v[17]]  Parent:18152, Self:18153
+128:                       L:I:22 Identifier object () [_$v]  Parent:18163, Self:18164
+128:                       R:I:22 Literal property () [17]  Parent:18175, Self:18176
+128:                      R:I:21 CallExpression right () [$('.screen')]  Parent:18189, Self:18190
+128:                       L:I:22 Identifier callee () [$]  Parent:18200, Self:18201
+128:                        L:I:23 Literal 0 () ['.screen']  Parent:18213, Self:18214
+128:                     R:I:20 Literal 7 () ['=']  Parent:18226, Self:18227
+128:                     L:I:20 Literal 8 () ['1']  Parent:18239, Self:18240
+128:                     R:I:20 Identifier 9 () [_$gXLocal]  Parent:18252, Self:18253
+128:                     L:I:20 Literal 10 () [1]  Parent:18264, Self:18265
+128:                     R:I:20 Literal 11 () ['17=$(\'.screen\')']  Parent:18277, Self:18278
+--------------- END --------------- 
+129:                ExpressionStatement
+129:                 I:16 CallExpression expression () [_$sb(129,'inputVal',_$gXLocal)]  Parent:18302, Self:18303
+129:                  I:17 Identifier callee () [_$sb]  Parent:18313, Self:18314
+129:                   I:18 Literal 0 () [129]  Parent:18326, Self:18327
+129:                   I:18 Literal 1 () ['inputVal']  Parent:18339, Self:18340
+129:                   I:18 Identifier 2 () [_$gXLocal]  Parent:18352, Self:18353
+129:                VariableDeclaration
+--------------- START VAR --------------- 
+ path:p.0.expression.arguments.0.body.body.65.expression.arguments.0.body.body.3.declarations.0
+129:                  I:17 VariableDeclarator 0 (=) [inputVal = _$set(129,'VariableDeclaration','0','inputVal',inputVal,'input.html()',(_$v[18]=input.htm]  Parent:18376, Self:18377
+129:                   L:I:18 Identifier id () [inputVal]  Parent:18387, Self:18388
+129:                   R:I:18 CallExpression init () [_$set(129,'VariableDeclaration','0','inputVal',inputVal,'input.html()',(_$v[18]=input.html()),'=','1]  Parent:18399, Self:18400
+129:                    L:I:19 Identifier callee () [_$set]  Parent:18410, Self:18411
+129:                     L:I:20 Literal 0 () [129]  Parent:18423, Self:18424
+129:                     R:I:20 Literal 1 () ['VariableDeclaration']  Parent:18436, Self:18437
+129:                     L:I:20 Literal 2 () ['0']  Parent:18449, Self:18450
+129:                     R:I:20 Literal 3 () ['inputVal']  Parent:18462, Self:18463
+129:                     L:I:20 Identifier 4 () [inputVal]  Parent:18475, Self:18476
+129:                     R:I:20 Literal 5 () ['input.html()']  Parent:18487, Self:18488
+129:                     L:I:20 AssignmentExpression 6 (=) [_$v[18]=input.html()]  Parent:18500, Self:18501
+129:                      L:I:21 MemberExpression left () [_$v[18]]  Parent:18512, Self:18513
+129:                       L:I:22 Identifier object () [_$v]  Parent:18523, Self:18524
+129:                       R:I:22 Literal property () [18]  Parent:18535, Self:18536
+129:                      R:I:21 CallExpression right () [input.html()]  Parent:18549, Self:18550
+129:                       L:I:22 MemberExpression callee () [input.html]  Parent:18560, Self:18561
+129:                        L:I:23 Identifier object () [input]  Parent:18571, Self:18572
+129:                        R:I:23 Identifier property () [html]  Parent:18583, Self:18584
+129:                     R:I:20 Literal 7 () ['=']  Parent:18597, Self:18598
+129:                     L:I:20 Literal 8 () ['1']  Parent:18610, Self:18611
+129:                     R:I:20 Identifier 9 () [_$gXLocal]  Parent:18623, Self:18624
+129:                     L:I:20 Literal 10 () [1]  Parent:18635, Self:18636
+129:                     R:I:20 Literal 11 () ['18=input.html()']  Parent:18648, Self:18649
+--------------- END --------------- 
+130:                ExpressionStatement
+130:                 I:16 CallExpression expression () [_$sb(130,'btnVal',_$gXLocal)]  Parent:18673, Self:18674
+130:                  I:17 Identifier callee () [_$sb]  Parent:18684, Self:18685
+130:                   I:18 Literal 0 () [130]  Parent:18697, Self:18698
+130:                   I:18 Literal 1 () ['btnVal']  Parent:18710, Self:18711
+130:                   I:18 Identifier 2 () [_$gXLocal]  Parent:18723, Self:18724
+130:                VariableDeclaration
+--------------- START VAR --------------- 
+ path:p.0.expression.arguments.0.body.body.65.expression.arguments.0.body.body.5.declarations.0
+130:                  I:17 VariableDeclarator 0 (=) [btnVal = _$set(130,'VariableDeclaration','0','btnVal',btnVal,'$(this).html()',(_$v[19]=$(this).html(]  Parent:18747, Self:18748
+130:                   L:I:18 Identifier id () [btnVal]  Parent:18758, Self:18759
+130:                   R:I:18 CallExpression init () [_$set(130,'VariableDeclaration','0','btnVal',btnVal,'$(this).html()',(_$v[19]=$(this).html()),'=','1]  Parent:18770, Self:18771
+130:                    L:I:19 Identifier callee () [_$set]  Parent:18781, Self:18782
+130:                     L:I:20 Literal 0 () [130]  Parent:18794, Self:18795
+130:                     R:I:20 Literal 1 () ['VariableDeclaration']  Parent:18807, Self:18808
+130:                     L:I:20 Literal 2 () ['0']  Parent:18820, Self:18821
+130:                     R:I:20 Literal 3 () ['btnVal']  Parent:18833, Self:18834
+130:                     L:I:20 Identifier 4 () [btnVal]  Parent:18846, Self:18847
+130:                     R:I:20 Literal 5 () ['$(this).html()']  Parent:18858, Self:18859
+130:                     L:I:20 AssignmentExpression 6 (=) [_$v[19]=$(this).html()]  Parent:18871, Self:18872
+130:                      L:I:21 MemberExpression left () [_$v[19]]  Parent:18883, Self:18884
+130:                       L:I:22 Identifier object () [_$v]  Parent:18894, Self:18895
+130:                       R:I:22 Literal property () [19]  Parent:18906, Self:18907
+130:                      R:I:21 CallExpression right () [$(this).html()]  Parent:18920, Self:18921
+130:                       L:I:22 MemberExpression callee () [$(this).html]  Parent:18931, Self:18932
+130:                        L:I:23 CallExpression object () [$(this)]  Parent:18942, Self:18943
+130:                         L:I:24 Identifier callee () [$]  Parent:18953, Self:18954
+130:                        R:I:23 Identifier property () [html]  Parent:18977, Self:18978
+130:                     R:I:20 Literal 7 () ['=']  Parent:18991, Self:18992
+130:                     L:I:20 Literal 8 () ['1']  Parent:19004, Self:19005
+130:                     R:I:20 Identifier 9 () [_$gXLocal]  Parent:19017, Self:19018
+130:                     L:I:20 Literal 10 () [1]  Parent:19029, Self:19030
+130:                     R:I:20 Literal 11 () ['19=$(this).html()']  Parent:19042, Self:19043
+--------------- END --------------- 
+134:                IfStatement
+134:                 I:16 CallExpression test () [_$evl(134,'IfStatement','test','btnVal == \'C\'', btnVal == 'C',_$gXLocal, 0)]  Parent:19067, Self:19068
+134:                  I:17 Identifier callee () [_$evl]  Parent:19078, Self:19079
+134:                   I:18 Literal 0 () [134]  Parent:19091, Self:19092
+134:                   I:18 Literal 1 () ['IfStatement']  Parent:19104, Self:19105
+134:                   I:18 Literal 2 () ['test']  Parent:19117, Self:19118
+134:                   I:18 Literal 3 () ['btnVal == \'C\'']  Parent:19130, Self:19131
+--------------- START BINARY --------------- 
+ path:p.0.expression.arguments.0.body.body.65.expression.arguments.0.body.body.6.test.arguments.4
+134:                   I:18 BinaryExpression 4 (==) [btnVal == 'C']  Parent:19143, Self:19144
+134:                    L:I:19 Identifier left () [btnVal]  Parent:19154, Self:19155
+134:                    R:I:19 Literal right () ['C']  Parent:19167, Self:19168
+--------------- END --------------- 
+134:                   I:18 Identifier 5 () [_$gXLocal]  Parent:19180, Self:19181
+134:                   I:18 Literal 6 () [0]  Parent:19192, Self:19193
+134:                 BlockStatement
+135:                   ExpressionStatement
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.65.expression.arguments.0.body.body.6.consequent.body.0.expression
+135:                    I:19 AssignmentExpression expression (=) [InputStr = _$set(135,'BlockStatement > ExpressionStatement','expression','InputStr',InputStr,'""',""]  Parent:19228, Self:19229
+135:                     L:I:20 Identifier left () [InputStr]  Parent:19240, Self:19241
+135:                     R:I:20 CallExpression right () [_$set(135,'BlockStatement > ExpressionStatement','expression','InputStr',InputStr,'""',"",'=','0',_$]  Parent:19252, Self:19253
+135:                      L:I:21 Identifier callee () [_$set]  Parent:19263, Self:19264
+135:                       L:I:22 Literal 0 () [135]  Parent:19276, Self:19277
+135:                       R:I:22 Literal 1 () ['BlockStatement > ExpressionStatement']  Parent:19289, Self:19290
+135:                       L:I:22 Literal 2 () ['expression']  Parent:19302, Self:19303
+135:                       R:I:22 Literal 3 () ['InputStr']  Parent:19315, Self:19316
+135:                       L:I:22 Identifier 4 () [InputStr]  Parent:19328, Self:19329
+135:                       R:I:22 Literal 5 () ['""']  Parent:19340, Self:19341
+135:                       L:I:22 Literal 6 () [""]  Parent:19353, Self:19354
+135:                       R:I:22 Literal 7 () ['=']  Parent:19366, Self:19367
+135:                       L:I:22 Literal 8 () ['0']  Parent:19379, Self:19380
+135:                       R:I:22 Identifier 9 () [_$gXLocal]  Parent:19392, Self:19393
+135:                       L:I:22 Literal 10 () [0]  Parent:19404, Self:19405
+--------------- END --------------- 
+136:                   ExpressionStatement
+136:                    I:19 CallExpression expression () [input.html(InputStr)]  Parent:19428, Self:19429
+136:                     I:20 MemberExpression callee () [input.html]  Parent:19439, Self:19440
+136:                      I:21 Identifier object () [input]  Parent:19450, Self:19451
+136:                      I:21 Identifier property () [html]  Parent:19462, Self:19463
+136:                      I:21 Identifier 0 () [InputStr]  Parent:19476, Self:19477
+137:                   ExpressionStatement
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.65.expression.arguments.0.body.body.6.consequent.body.2.expression
+137:                    I:19 AssignmentExpression expression (=) [decimalAdded = _$set(137,'ExpressionStatement > ExpressionStatement','expression','decimalAdded',dec]  Parent:19499, Self:19500
+137:                     L:I:20 Identifier left () [decimalAdded]  Parent:19511, Self:19512
+137:                     R:I:20 CallExpression right () [_$set(137,'ExpressionStatement > ExpressionStatement','expression','decimalAdded',decimalAdded,'fals]  Parent:19523, Self:19524
+137:                      L:I:21 Identifier callee () [_$set]  Parent:19534, Self:19535
+137:                       L:I:22 Literal 0 () [137]  Parent:19547, Self:19548
+137:                       R:I:22 Literal 1 () ['ExpressionStatement > ExpressionStatement']  Parent:19560, Self:19561
+137:                       L:I:22 Literal 2 () ['expression']  Parent:19573, Self:19574
+137:                       R:I:22 Literal 3 () ['decimalAdded']  Parent:19586, Self:19587
+137:                       L:I:22 Identifier 4 () [decimalAdded]  Parent:19599, Self:19600
+137:                       R:I:22 Literal 5 () ['false']  Parent:19611, Self:19612
+137:                       L:I:22 Literal 6 () [false]  Parent:19624, Self:19625
+137:                       R:I:22 Literal 7 () ['=']  Parent:19637, Self:19638
+137:                       L:I:22 Literal 8 () ['0']  Parent:19650, Self:19651
+137:                       R:I:22 Identifier 9 () [_$gXLocal]  Parent:19663, Self:19664
+137:                       L:I:22 Literal 10 () [0]  Parent:19675, Self:19676
+--------------- END --------------- 
+141:                 IfStatement
+141:                  I:17 CallExpression test () [_$evl(141,'IfStatement','test','btnVal == \'=\'', btnVal == '=',_$gXLocal, 0)]  Parent:19699, Self:19700
+141:                   I:18 Identifier callee () [_$evl]  Parent:19710, Self:19711
+141:                    I:19 Literal 0 () [141]  Parent:19723, Self:19724
+141:                    I:19 Literal 1 () ['IfStatement']  Parent:19736, Self:19737
+141:                    I:19 Literal 2 () ['test']  Parent:19749, Self:19750
+141:                    I:19 Literal 3 () ['btnVal == \'=\'']  Parent:19762, Self:19763
+--------------- START BINARY --------------- 
+ path:p.0.expression.arguments.0.body.body.65.expression.arguments.0.body.body.6.alternate.test.arguments.4
+141:                    I:19 BinaryExpression 4 (==) [btnVal == '=']  Parent:19775, Self:19776
+141:                     L:I:20 Identifier left () [btnVal]  Parent:19786, Self:19787
+141:                     R:I:20 Literal right () ['=']  Parent:19799, Self:19800
+--------------- END --------------- 
+141:                    I:19 Identifier 5 () [_$gXLocal]  Parent:19812, Self:19813
+141:                    I:19 Literal 6 () [0]  Parent:19824, Self:19825
+141:                  BlockStatement
+142:                    ExpressionStatement
+142:                     I:20 CallExpression expression () [_$sb(142,'equation',_$gXLocal)]  Parent:19860, Self:19861
+142:                      I:21 Identifier callee () [_$sb]  Parent:19871, Self:19872
+142:                       I:22 Literal 0 () [142]  Parent:19884, Self:19885
+142:                       I:22 Literal 1 () ['equation']  Parent:19897, Self:19898
+142:                       I:22 Identifier 2 () [_$gXLocal]  Parent:19910, Self:19911
+142:                    VariableDeclaration
+--------------- START VAR --------------- 
+ path:p.0.expression.arguments.0.body.body.65.expression.arguments.0.body.body.6.alternate.consequent.body.1.declarations.0
+142:                      I:21 VariableDeclarator 0 (=) [equation = _$set(142,'BlockStatement > VariableDeclaration','0','equation',equation,'inputVal',input]  Parent:19934, Self:19935
+142:                       L:I:22 Identifier id () [equation]  Parent:19945, Self:19946
+142:                       R:I:22 CallExpression init () [_$set(142,'BlockStatement > VariableDeclaration','0','equation',equation,'inputVal',inputVal,'=','1']  Parent:19957, Self:19958
+142:                        L:I:23 Identifier callee () [_$set]  Parent:19968, Self:19969
+142:                         L:I:24 Literal 0 () [142]  Parent:19981, Self:19982
+142:                         R:I:24 Literal 1 () ['BlockStatement > VariableDeclaration']  Parent:19994, Self:19995
+142:                         L:I:24 Literal 2 () ['0']  Parent:20007, Self:20008
+142:                         R:I:24 Literal 3 () ['equation']  Parent:20020, Self:20021
+142:                         L:I:24 Identifier 4 () [equation]  Parent:20033, Self:20034
+142:                         R:I:24 Literal 5 () ['inputVal']  Parent:20045, Self:20046
+142:                         L:I:24 Identifier 6 () [inputVal]  Parent:20058, Self:20059
+142:                         R:I:24 Literal 7 () ['=']  Parent:20070, Self:20071
+142:                         L:I:24 Literal 8 () ['1']  Parent:20083, Self:20084
+142:                         R:I:24 Identifier 9 () [_$gXLocal]  Parent:20096, Self:20097
+142:                         L:I:24 Literal 10 () [0]  Parent:20108, Self:20109
+--------------- END --------------- 
+143:                    ExpressionStatement
+143:                     I:20 CallExpression expression () [_$sb(143,'lastChar',_$gXLocal)]  Parent:20133, Self:20134
+143:                      I:21 Identifier callee () [_$sb]  Parent:20144, Self:20145
+143:                       I:22 Literal 0 () [143]  Parent:20157, Self:20158
+143:                       I:22 Literal 1 () ['lastChar']  Parent:20170, Self:20171
+143:                       I:22 Identifier 2 () [_$gXLocal]  Parent:20183, Self:20184
+143:                    VariableDeclaration
+--------------- START VAR --------------- 
+ path:p.0.expression.arguments.0.body.body.65.expression.arguments.0.body.body.6.alternate.consequent.body.3.declarations.0
+143:                      I:21 VariableDeclarator 0 (=) [lastChar = _$set(143,'VariableDeclaration','0','lastChar',lastChar,'equation[equation.length - 1]',e]  Parent:20207, Self:20208
+143:                       L:I:22 Identifier id () [lastChar]  Parent:20218, Self:20219
+143:                       R:I:22 CallExpression init () [_$set(143,'VariableDeclaration','0','lastChar',lastChar,'equation[equation.length - 1]',equation[equ]  Parent:20230, Self:20231
+143:                        L:I:23 Identifier callee () [_$set]  Parent:20241, Self:20242
+143:                         L:I:24 Literal 0 () [143]  Parent:20254, Self:20255
+143:                         R:I:24 Literal 1 () ['VariableDeclaration']  Parent:20267, Self:20268
+143:                         L:I:24 Literal 2 () ['0']  Parent:20280, Self:20281
+143:                         R:I:24 Literal 3 () ['lastChar']  Parent:20293, Self:20294
+143:                         L:I:24 Identifier 4 () [lastChar]  Parent:20306, Self:20307
+143:                         R:I:24 Literal 5 () ['equation[equation.length - 1]']  Parent:20318, Self:20319
+143:                         L:I:24 MemberExpression 6 () [equation[equation.length - 1]]  Parent:20331, Self:20332
+143:                          L:I:25 Identifier object () [equation]  Parent:20342, Self:20343
+143:                          R:I:25 BinaryExpression property (-) [equation.length - 1]  Parent:20354, Self:20355
+143:                           L:I:26 MemberExpression left () [equation.length]  Parent:20365, Self:20366
+143:                            L:I:27 Identifier object () [equation]  Parent:20376, Self:20377
+143:                            R:I:27 Identifier property () [length]  Parent:20388, Self:20389
+143:                           R:I:26 Literal right () [1]  Parent:20402, Self:20403
+143:                         R:I:24 Literal 7 () ['=']  Parent:20416, Self:20417
+143:                         L:I:24 Literal 8 () ['1']  Parent:20429, Self:20430
+143:                         R:I:24 Identifier 9 () [_$gXLocal]  Parent:20442, Self:20443
+143:                         L:I:24 Literal 10 () [0]  Parent:20454, Self:20455
+--------------- END --------------- 
+146:                    ExpressionStatement
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.65.expression.arguments.0.body.body.6.alternate.consequent.body.4.expression
+146:                     I:20 AssignmentExpression expression (=) [equation = _$set(146,'ExpressionStatement','expression','equation',equation,'equation.replace(/x/g, ]  Parent:20479, Self:20480
+146:                      L:I:21 Identifier left () [equation]  Parent:20491, Self:20492
+146:                      R:I:21 CallExpression right () [_$set(146,'ExpressionStatement','expression','equation',equation,'equation.replace(/x/g, \'*\')',(_$]  Parent:20503, Self:20504
+146:                       L:I:22 Identifier callee () [_$set]  Parent:20514, Self:20515
+146:                        L:I:23 Literal 0 () [146]  Parent:20527, Self:20528
+146:                        R:I:23 Literal 1 () ['ExpressionStatement']  Parent:20540, Self:20541
+146:                        L:I:23 Literal 2 () ['expression']  Parent:20553, Self:20554
+146:                        R:I:23 Literal 3 () ['equation']  Parent:20566, Self:20567
+146:                        L:I:23 Identifier 4 () [equation]  Parent:20579, Self:20580
+146:                        R:I:23 Literal 5 () ['equation.replace(/x/g, \'*\')']  Parent:20591, Self:20592
+146:                        L:I:23 AssignmentExpression 6 (=) [_$v[20]=equation.replace(/x/g, '*')]  Parent:20604, Self:20605
+146:                         L:I:24 MemberExpression left () [_$v[20]]  Parent:20616, Self:20617
+146:                          L:I:25 Identifier object () [_$v]  Parent:20627, Self:20628
+146:                          R:I:25 Literal property () [20]  Parent:20639, Self:20640
+146:                         R:I:24 CallExpression right () [equation.replace(/x/g, '*')]  Parent:20653, Self:20654
+146:                          L:I:25 MemberExpression callee () [equation.replace]  Parent:20664, Self:20665
+146:                           L:I:26 Identifier object () [equation]  Parent:20675, Self:20676
+146:                           R:I:26 Identifier property () [replace]  Parent:20687, Self:20688
+146:                           L:I:26 Literal 0 () [/x/g]  Parent:20701, Self:20702
+146:                           R:I:26 Literal 1 () ['*']  Parent:20717, Self:20718
+146:                        R:I:23 Literal 7 () ['=']  Parent:20730, Self:20731
+146:                        L:I:23 Literal 8 () ['0']  Parent:20743, Self:20744
+146:                        R:I:23 Identifier 9 () [_$gXLocal]  Parent:20756, Self:20757
+146:                        L:I:23 Literal 10 () [1]  Parent:20768, Self:20769
+146:                        R:I:23 Literal 11 () ['20=equation.replace(/x/g, \'*\')']  Parent:20781, Self:20782
+--------------- END --------------- 
+149:                    IfStatement
+149:                     I:20 CallExpression test () [_$evl(149,'IfStatement','test','operators.indexOf(lastChar) > -1 || lastChar == \'.\'', (_$v[21]=ope]  Parent:20805, Self:20806
+149:                      I:21 Identifier callee () [_$evl]  Parent:20816, Self:20817
+149:                       I:22 Literal 0 () [149]  Parent:20829, Self:20830
+149:                       I:22 Literal 1 () ['IfStatement']  Parent:20842, Self:20843
+149:                       I:22 Literal 2 () ['test']  Parent:20855, Self:20856
+149:                       I:22 Literal 3 () ['operators.indexOf(lastChar) > -1 || lastChar == \'.\'']  Parent:20868, Self:20869
+--------------- START LOGICAL --------------- 
+ path:p.0.expression.arguments.0.body.body.65.expression.arguments.0.body.body.6.alternate.consequent.body.5.test.arguments.4
+149:                       I:22 LogicalExpression 4 (||) [(_$v[21]=operators.indexOf(lastChar)) > -1 || lastChar == '.']  Parent:20881, Self:20882
+149:                        L:I:23 BinaryExpression left (>) [(_$v[21]=operators.indexOf(lastChar)) > -1]  Parent:20892, Self:20893
+149:                         L:I:24 AssignmentExpression left (=) [_$v[21]=operators.indexOf(lastChar)]  Parent:20903, Self:20904
+149:                          L:I:25 MemberExpression left () [_$v[21]]  Parent:20915, Self:20916
+149:                           L:I:26 Identifier object () [_$v]  Parent:20926, Self:20927
+149:                           R:I:26 Literal property () [21]  Parent:20938, Self:20939
+149:                          R:I:25 CallExpression right () [operators.indexOf(lastChar)]  Parent:20952, Self:20953
+149:                           L:I:26 MemberExpression callee () [operators.indexOf]  Parent:20963, Self:20964
+149:                            L:I:27 Identifier object () [operators]  Parent:20974, Self:20975
+149:                            R:I:27 Identifier property () [indexOf]  Parent:20986, Self:20987
+149:                            L:I:27 Identifier 0 () [lastChar]  Parent:21000, Self:21001
+149:                         R:I:24 UnaryExpression right (-) [-1]  Parent:21013, Self:21014
+149:                          L:I:25 Literal argument () [1]  Parent:21026, Self:21027
+149:                        R:I:23 BinaryExpression right (==) [lastChar == '.']  Parent:21040, Self:21041
+149:                         L:I:24 Identifier left () [lastChar]  Parent:21051, Self:21052
+149:                         R:I:24 Literal right () ['.']  Parent:21064, Self:21065
+--------------- END --------------- 
+149:                       I:22 Identifier 5 () [_$gXLocal]  Parent:21077, Self:21078
+149:                       I:22 Literal 6 () [1]  Parent:21089, Self:21090
+149:                       I:22 Literal 7 () ['21=operators.indexOf(lastChar)']  Parent:21102, Self:21103
+150:                     BlockStatement
+150:                       ExpressionStatement
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.65.expression.arguments.0.body.body.6.alternate.consequent.body.5.consequent.body.0.expression
+150:                        I:23 AssignmentExpression expression (=) [equation = _$set(150,'BlockStatement > ExpressionStatement','expression','equation',equation,'equati]  Parent:21138, Self:21139
+150:                         L:I:24 Identifier left () [equation]  Parent:21150, Self:21151
+150:                         R:I:24 CallExpression right () [_$set(150,'BlockStatement > ExpressionStatement','expression','equation',equation,'equation.replace(]  Parent:21162, Self:21163
+150:                          L:I:25 Identifier callee () [_$set]  Parent:21173, Self:21174
+150:                           L:I:26 Literal 0 () [150]  Parent:21186, Self:21187
+150:                           R:I:26 Literal 1 () ['BlockStatement > ExpressionStatement']  Parent:21199, Self:21200
+150:                           L:I:26 Literal 2 () ['expression']  Parent:21212, Self:21213
+150:                           R:I:26 Literal 3 () ['equation']  Parent:21225, Self:21226
+150:                           L:I:26 Identifier 4 () [equation]  Parent:21238, Self:21239
+150:                           R:I:26 Literal 5 () ['equation.replace(/.$/, \'\')']  Parent:21250, Self:21251
+150:                           L:I:26 AssignmentExpression 6 (=) [_$v[22]=equation.replace(/.$/, '')]  Parent:21263, Self:21264
+150:                            L:I:27 MemberExpression left () [_$v[22]]  Parent:21275, Self:21276
+150:                             L:I:28 Identifier object () [_$v]  Parent:21286, Self:21287
+150:                             R:I:28 Literal property () [22]  Parent:21298, Self:21299
+150:                            R:I:27 CallExpression right () [equation.replace(/.$/, '')]  Parent:21312, Self:21313
+150:                             L:I:28 MemberExpression callee () [equation.replace]  Parent:21323, Self:21324
+150:                              L:I:29 Identifier object () [equation]  Parent:21334, Self:21335
+150:                              R:I:29 Identifier property () [replace]  Parent:21346, Self:21347
+150:                              L:I:29 Literal 0 () [/.$/]  Parent:21360, Self:21361
+150:                              R:I:29 Literal 1 () ['']  Parent:21376, Self:21377
+150:                           R:I:26 Literal 7 () ['=']  Parent:21389, Self:21390
+150:                           L:I:26 Literal 8 () ['0']  Parent:21402, Self:21403
+150:                           R:I:26 Identifier 9 () [_$gXLocal]  Parent:21415, Self:21416
+150:                           L:I:26 Literal 10 () [1]  Parent:21427, Self:21428
+150:                           R:I:26 Literal 11 () ['22=equation.replace(/.$/, \'\')']  Parent:21440, Self:21441
+--------------- END --------------- 
+152:                    IfStatement
+152:                     I:20 Identifier test () [equation]  Parent:21465, Self:21466
+153:                     BlockStatement
+153:                       ExpressionStatement
+153:                        I:23 CallExpression expression () [input.html(eval(equation))]  Parent:21500, Self:21501
+153:                         I:24 MemberExpression callee () [input.html]  Parent:21511, Self:21512
+153:                          I:25 Identifier object () [input]  Parent:21522, Self:21523
+153:                          I:25 Identifier property () [html]  Parent:21534, Self:21535
+153:                          I:25 CallExpression 0 () [eval(equation)]  Parent:21548, Self:21549
+153:                           I:26 Identifier callee () [eval]  Parent:21559, Self:21560
+153:                            I:27 Identifier 0 () [equation]  Parent:21572, Self:21573
+155:                    ExpressionStatement
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.65.expression.arguments.0.body.body.6.alternate.consequent.body.7.expression
+155:                     I:20 AssignmentExpression expression (=) [decimalAdded = _$set(155,'IfStatement > BlockStatement > ExpressionStatement > ExpressionStatement',]  Parent:21596, Self:21597
+155:                      L:I:21 Identifier left () [decimalAdded]  Parent:21608, Self:21609
+155:                      R:I:21 CallExpression right () [_$set(155,'IfStatement > BlockStatement > ExpressionStatement > ExpressionStatement','expression','d]  Parent:21620, Self:21621
+155:                       L:I:22 Identifier callee () [_$set]  Parent:21631, Self:21632
+155:                        L:I:23 Literal 0 () [155]  Parent:21644, Self:21645
+155:                        R:I:23 Literal 1 () ['IfStatement > BlockStatement > ExpressionStatement > ExpressionStatement']  Parent:21657, Self:21658
+155:                        L:I:23 Literal 2 () ['expression']  Parent:21670, Self:21671
+155:                        R:I:23 Literal 3 () ['decimalAdded']  Parent:21683, Self:21684
+155:                        L:I:23 Identifier 4 () [decimalAdded]  Parent:21696, Self:21697
+155:                        R:I:23 Literal 5 () ['false']  Parent:21708, Self:21709
+155:                        L:I:23 Literal 6 () [false]  Parent:21721, Self:21722
+155:                        R:I:23 Literal 7 () ['=']  Parent:21734, Self:21735
+155:                        L:I:23 Literal 8 () ['0']  Parent:21747, Self:21748
+155:                        R:I:23 Identifier 9 () [_$gXLocal]  Parent:21760, Self:21761
+155:                        L:I:23 Literal 10 () [0]  Parent:21772, Self:21773
+--------------- END --------------- 
+158:                  IfStatement
+158:                   I:18 CallExpression test () [_$evl(158,'IfStatement','test','operators.indexOf(btnVal) > -1', (_$v[23]=operators.indexOf(btnVal))]  Parent:21796, Self:21797
+158:                    I:19 Identifier callee () [_$evl]  Parent:21807, Self:21808
+158:                     I:20 Literal 0 () [158]  Parent:21820, Self:21821
+158:                     I:20 Literal 1 () ['IfStatement']  Parent:21833, Self:21834
+158:                     I:20 Literal 2 () ['test']  Parent:21846, Self:21847
+158:                     I:20 Literal 3 () ['operators.indexOf(btnVal) > -1']  Parent:21859, Self:21860
+--------------- START BINARY --------------- 
+ path:p.0.expression.arguments.0.body.body.65.expression.arguments.0.body.body.6.alternate.alternate.test.arguments.4
+158:                     I:20 BinaryExpression 4 (>) [(_$v[23]=operators.indexOf(btnVal)) > -1]  Parent:21872, Self:21873
+158:                      L:I:21 AssignmentExpression left (=) [_$v[23]=operators.indexOf(btnVal)]  Parent:21883, Self:21884
+158:                       L:I:22 MemberExpression left () [_$v[23]]  Parent:21895, Self:21896
+158:                        L:I:23 Identifier object () [_$v]  Parent:21906, Self:21907
+158:                        R:I:23 Literal property () [23]  Parent:21918, Self:21919
+158:                       R:I:22 CallExpression right () [operators.indexOf(btnVal)]  Parent:21932, Self:21933
+158:                        L:I:23 MemberExpression callee () [operators.indexOf]  Parent:21943, Self:21944
+158:                         L:I:24 Identifier object () [operators]  Parent:21954, Self:21955
+158:                         R:I:24 Identifier property () [indexOf]  Parent:21966, Self:21967
+158:                         L:I:24 Identifier 0 () [btnVal]  Parent:21980, Self:21981
+158:                      R:I:21 UnaryExpression right (-) [-1]  Parent:21993, Self:21994
+158:                       L:I:22 Literal argument () [1]  Parent:22006, Self:22007
+--------------- END --------------- 
+158:                     I:20 Identifier 5 () [_$gXLocal]  Parent:22019, Self:22020
+158:                     I:20 Literal 6 () [1]  Parent:22031, Self:22032
+158:                     I:20 Literal 7 () ['23=operators.indexOf(btnVal)']  Parent:22044, Self:22045
+158:                   BlockStatement
+161:                     ExpressionStatement
+161:                      I:21 CallExpression expression () [_$sb(161,'lastChar',_$gXLocal)]  Parent:22080, Self:22081
+161:                       I:22 Identifier callee () [_$sb]  Parent:22091, Self:22092
+161:                        I:23 Literal 0 () [161]  Parent:22104, Self:22105
+161:                        I:23 Literal 1 () ['lastChar']  Parent:22117, Self:22118
+161:                        I:23 Identifier 2 () [_$gXLocal]  Parent:22130, Self:22131
+161:                     VariableDeclaration
+--------------- START VAR --------------- 
+ path:p.0.expression.arguments.0.body.body.65.expression.arguments.0.body.body.6.alternate.alternate.consequent.body.1.declarations.0
+161:                       I:22 VariableDeclarator 0 (=) [lastChar = _$set(161,'BlockStatement > VariableDeclaration','0','lastChar',lastChar,'inputVal[inputV]  Parent:22154, Self:22155
+161:                        L:I:23 Identifier id () [lastChar]  Parent:22165, Self:22166
+161:                        R:I:23 CallExpression init () [_$set(161,'BlockStatement > VariableDeclaration','0','lastChar',lastChar,'inputVal[inputVal.length -]  Parent:22177, Self:22178
+161:                         L:I:24 Identifier callee () [_$set]  Parent:22188, Self:22189
+161:                          L:I:25 Literal 0 () [161]  Parent:22201, Self:22202
+161:                          R:I:25 Literal 1 () ['BlockStatement > VariableDeclaration']  Parent:22214, Self:22215
+161:                          L:I:25 Literal 2 () ['0']  Parent:22227, Self:22228
+161:                          R:I:25 Literal 3 () ['lastChar']  Parent:22240, Self:22241
+161:                          L:I:25 Identifier 4 () [lastChar]  Parent:22253, Self:22254
+161:                          R:I:25 Literal 5 () ['inputVal[inputVal.length - 1]']  Parent:22265, Self:22266
+161:                          L:I:25 MemberExpression 6 () [inputVal[inputVal.length - 1]]  Parent:22278, Self:22279
+161:                           L:I:26 Identifier object () [inputVal]  Parent:22289, Self:22290
+161:                           R:I:26 BinaryExpression property (-) [inputVal.length - 1]  Parent:22301, Self:22302
+161:                            L:I:27 MemberExpression left () [inputVal.length]  Parent:22312, Self:22313
+161:                             L:I:28 Identifier object () [inputVal]  Parent:22323, Self:22324
+161:                             R:I:28 Identifier property () [length]  Parent:22335, Self:22336
+161:                            R:I:27 Literal right () [1]  Parent:22349, Self:22350
+161:                          R:I:25 Literal 7 () ['=']  Parent:22363, Self:22364
+161:                          L:I:25 Literal 8 () ['1']  Parent:22376, Self:22377
+161:                          R:I:25 Identifier 9 () [_$gXLocal]  Parent:22389, Self:22390
+161:                          L:I:25 Literal 10 () [0]  Parent:22401, Self:22402
+--------------- END --------------- 
+164:                     IfStatement
+164:                      I:21 CallExpression test () [_$evl(164,'IfStatement','test','inputVal != \'\' && operators.indexOf(lastChar) == -1', inputVal != ]  Parent:22426, Self:22427
+164:                       I:22 Identifier callee () [_$evl]  Parent:22437, Self:22438
+164:                        I:23 Literal 0 () [164]  Parent:22450, Self:22451
+164:                        I:23 Literal 1 () ['IfStatement']  Parent:22463, Self:22464
+164:                        I:23 Literal 2 () ['test']  Parent:22476, Self:22477
+164:                        I:23 Literal 3 () ['inputVal != \'\' && operators.indexOf(lastChar) == -1']  Parent:22489, Self:22490
+--------------- START LOGICAL --------------- 
+ path:p.0.expression.arguments.0.body.body.65.expression.arguments.0.body.body.6.alternate.alternate.consequent.body.2.test.arguments.4
+164:                        I:23 LogicalExpression 4 (&&) [inputVal != '' && (_$v[24]=operators.indexOf(lastChar)) == -1]  Parent:22502, Self:22503
+164:                         L:I:24 BinaryExpression left (!=) [inputVal != '']  Parent:22513, Self:22514
+164:                          L:I:25 Identifier left () [inputVal]  Parent:22524, Self:22525
+164:                          R:I:25 Literal right () ['']  Parent:22537, Self:22538
+164:                         R:I:24 BinaryExpression right (==) [(_$v[24]=operators.indexOf(lastChar)) == -1]  Parent:22551, Self:22552
+164:                          L:I:25 AssignmentExpression left (=) [_$v[24]=operators.indexOf(lastChar)]  Parent:22562, Self:22563
+164:                           L:I:26 MemberExpression left () [_$v[24]]  Parent:22574, Self:22575
+164:                            L:I:27 Identifier object () [_$v]  Parent:22585, Self:22586
+164:                            R:I:27 Literal property () [24]  Parent:22597, Self:22598
+164:                           R:I:26 CallExpression right () [operators.indexOf(lastChar)]  Parent:22611, Self:22612
+164:                            L:I:27 MemberExpression callee () [operators.indexOf]  Parent:22622, Self:22623
+164:                             L:I:28 Identifier object () [operators]  Parent:22633, Self:22634
+164:                             R:I:28 Identifier property () [indexOf]  Parent:22645, Self:22646
+164:                             L:I:28 Identifier 0 () [lastChar]  Parent:22659, Self:22660
+164:                          R:I:25 UnaryExpression right (-) [-1]  Parent:22672, Self:22673
+164:                           L:I:26 Literal argument () [1]  Parent:22685, Self:22686
+--------------- END --------------- 
+164:                        I:23 Identifier 5 () [_$gXLocal]  Parent:22698, Self:22699
+164:                        I:23 Literal 6 () [1]  Parent:22710, Self:22711
+164:                        I:23 Literal 7 () ['24=operators.indexOf(lastChar)']  Parent:22723, Self:22724
+165:                      BlockStatement
+166:                        ExpressionStatement
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.65.expression.arguments.0.body.body.6.alternate.alternate.consequent.body.2.consequent.body.0.expression
+166:                         I:24 AssignmentExpression expression (=) [InputStr = _$set(166,'BlockStatement > ExpressionStatement','expression','InputStr',InputStr,'btnVal]  Parent:22759, Self:22760
+166:                          L:I:25 Identifier left () [InputStr]  Parent:22771, Self:22772
+166:                          R:I:25 CallExpression right () [_$set(166,'BlockStatement > ExpressionStatement','expression','InputStr',InputStr,'btnVal',btnVal,'+]  Parent:22783, Self:22784
+166:                           L:I:26 Identifier callee () [_$set]  Parent:22794, Self:22795
+166:                            L:I:27 Literal 0 () [166]  Parent:22807, Self:22808
+166:                            R:I:27 Literal 1 () ['BlockStatement > ExpressionStatement']  Parent:22820, Self:22821
+166:                            L:I:27 Literal 2 () ['expression']  Parent:22833, Self:22834
+166:                            R:I:27 Literal 3 () ['InputStr']  Parent:22846, Self:22847
+166:                            L:I:27 Identifier 4 () [InputStr]  Parent:22859, Self:22860
+166:                            R:I:27 Literal 5 () ['btnVal']  Parent:22871, Self:22872
+166:                            L:I:27 Identifier 6 () [btnVal]  Parent:22884, Self:22885
+166:                            R:I:27 Literal 7 () ['+=']  Parent:22896, Self:22897
+166:                            L:I:27 Literal 8 () ['0']  Parent:22909, Self:22910
+166:                            R:I:27 Identifier 9 () [_$gXLocal]  Parent:22922, Self:22923
+166:                            L:I:27 Literal 10 () [0]  Parent:22934, Self:22935
+--------------- END --------------- 
+167:                        ExpressionStatement
+167:                         I:24 CallExpression expression () [input.html(InputStr)]  Parent:22958, Self:22959
+167:                          I:25 MemberExpression callee () [input.html]  Parent:22969, Self:22970
+167:                           I:26 Identifier object () [input]  Parent:22980, Self:22981
+167:                           I:26 Identifier property () [html]  Parent:22992, Self:22993
+167:                           I:26 Identifier 0 () [InputStr]  Parent:23006, Self:23007
+171:                      IfStatement
+171:                       I:22 CallExpression test () [_$evl(171,'ExpressionStatement > IfStatement','test','inputVal == \'\' && btnVal == \'-\'', inputVal]  Parent:23029, Self:23030
+171:                        I:23 Identifier callee () [_$evl]  Parent:23040, Self:23041
+171:                         I:24 Literal 0 () [171]  Parent:23053, Self:23054
+171:                         I:24 Literal 1 () ['ExpressionStatement > IfStatement']  Parent:23066, Self:23067
+171:                         I:24 Literal 2 () ['test']  Parent:23079, Self:23080
+171:                         I:24 Literal 3 () ['inputVal == \'\' && btnVal == \'-\'']  Parent:23092, Self:23093
+--------------- START LOGICAL --------------- 
+ path:p.0.expression.arguments.0.body.body.65.expression.arguments.0.body.body.6.alternate.alternate.consequent.body.2.alternate.test.arguments.4
+171:                         I:24 LogicalExpression 4 (&&) [inputVal == '' && btnVal == '-']  Parent:23105, Self:23106
+171:                          L:I:25 BinaryExpression left (==) [inputVal == '']  Parent:23116, Self:23117
+171:                           L:I:26 Identifier left () [inputVal]  Parent:23127, Self:23128
+171:                           R:I:26 Literal right () ['']  Parent:23140, Self:23141
+171:                          R:I:25 BinaryExpression right (==) [btnVal == '-']  Parent:23154, Self:23155
+171:                           L:I:26 Identifier left () [btnVal]  Parent:23165, Self:23166
+171:                           R:I:26 Literal right () ['-']  Parent:23178, Self:23179
+--------------- END --------------- 
+171:                         I:24 Identifier 5 () [_$gXLocal]  Parent:23191, Self:23192
+171:                         I:24 Literal 6 () [0]  Parent:23203, Self:23204
+172:                       BlockStatement
+173:                         ExpressionStatement
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.65.expression.arguments.0.body.body.6.alternate.alternate.consequent.body.2.alternate.consequent.body.0.expression
+173:                          I:25 AssignmentExpression expression (=) [InputStr = _$set(173,'BlockStatement > ExpressionStatement','expression','InputStr',InputStr,'btnVal]  Parent:23239, Self:23240
+173:                           L:I:26 Identifier left () [InputStr]  Parent:23251, Self:23252
+173:                           R:I:26 CallExpression right () [_$set(173,'BlockStatement > ExpressionStatement','expression','InputStr',InputStr,'btnVal',btnVal,'+]  Parent:23263, Self:23264
+173:                            L:I:27 Identifier callee () [_$set]  Parent:23274, Self:23275
+173:                             L:I:28 Literal 0 () [173]  Parent:23287, Self:23288
+173:                             R:I:28 Literal 1 () ['BlockStatement > ExpressionStatement']  Parent:23300, Self:23301
+173:                             L:I:28 Literal 2 () ['expression']  Parent:23313, Self:23314
+173:                             R:I:28 Literal 3 () ['InputStr']  Parent:23326, Self:23327
+173:                             L:I:28 Identifier 4 () [InputStr]  Parent:23339, Self:23340
+173:                             R:I:28 Literal 5 () ['btnVal']  Parent:23351, Self:23352
+173:                             L:I:28 Identifier 6 () [btnVal]  Parent:23364, Self:23365
+173:                             R:I:28 Literal 7 () ['+=']  Parent:23376, Self:23377
+173:                             L:I:28 Literal 8 () ['0']  Parent:23389, Self:23390
+173:                             R:I:28 Identifier 9 () [_$gXLocal]  Parent:23402, Self:23403
+173:                             L:I:28 Literal 10 () [0]  Parent:23414, Self:23415
+--------------- END --------------- 
+174:                         ExpressionStatement
+174:                          I:25 CallExpression expression () [input.html(InputStr)]  Parent:23438, Self:23439
+174:                           I:26 MemberExpression callee () [input.html]  Parent:23449, Self:23450
+174:                            I:27 Identifier object () [input]  Parent:23460, Self:23461
+174:                            I:27 Identifier property () [html]  Parent:23472, Self:23473
+174:                            I:27 Identifier 0 () [InputStr]  Parent:23486, Self:23487
+178:                     IfStatement
+178:                      I:21 CallExpression test () [_$evl(178,'ExpressionStatement > IfStatement','test','operators.indexOf(lastChar) > -1 && inputVal.l]  Parent:23510, Self:23511
+178:                       I:22 Identifier callee () [_$evl]  Parent:23521, Self:23522
+178:                        I:23 Literal 0 () [178]  Parent:23534, Self:23535
+178:                        I:23 Literal 1 () ['ExpressionStatement > IfStatement']  Parent:23547, Self:23548
+178:                        I:23 Literal 2 () ['test']  Parent:23560, Self:23561
+178:                        I:23 Literal 3 () ['operators.indexOf(lastChar) > -1 && inputVal.length > 1']  Parent:23573, Self:23574
+--------------- START LOGICAL --------------- 
+ path:p.0.expression.arguments.0.body.body.65.expression.arguments.0.body.body.6.alternate.alternate.consequent.body.3.test.arguments.4
+178:                        I:23 LogicalExpression 4 (&&) [(_$v[25]=operators.indexOf(lastChar)) > -1 && inputVal.length > 1]  Parent:23586, Self:23587
+178:                         L:I:24 BinaryExpression left (>) [(_$v[25]=operators.indexOf(lastChar)) > -1]  Parent:23597, Self:23598
+178:                          L:I:25 AssignmentExpression left (=) [_$v[25]=operators.indexOf(lastChar)]  Parent:23608, Self:23609
+178:                           L:I:26 MemberExpression left () [_$v[25]]  Parent:23620, Self:23621
+178:                            L:I:27 Identifier object () [_$v]  Parent:23631, Self:23632
+178:                            R:I:27 Literal property () [25]  Parent:23643, Self:23644
+178:                           R:I:26 CallExpression right () [operators.indexOf(lastChar)]  Parent:23657, Self:23658
+178:                            L:I:27 MemberExpression callee () [operators.indexOf]  Parent:23668, Self:23669
+178:                             L:I:28 Identifier object () [operators]  Parent:23679, Self:23680
+178:                             R:I:28 Identifier property () [indexOf]  Parent:23691, Self:23692
+178:                             L:I:28 Identifier 0 () [lastChar]  Parent:23705, Self:23706
+178:                          R:I:25 UnaryExpression right (-) [-1]  Parent:23718, Self:23719
+178:                           L:I:26 Literal argument () [1]  Parent:23731, Self:23732
+178:                         R:I:24 BinaryExpression right (>) [inputVal.length > 1]  Parent:23745, Self:23746
+178:                          L:I:25 MemberExpression left () [inputVal.length]  Parent:23756, Self:23757
+178:                           R:I:26 Identifier object () [inputVal]  Parent:23767, Self:23768
+178:                           L:I:26 Identifier property () [length]  Parent:23779, Self:23780
+178:                          R:I:25 Literal right () [1]  Parent:23793, Self:23794
+--------------- END --------------- 
+178:                        I:23 Identifier 5 () [_$gXLocal]  Parent:23806, Self:23807
+178:                        I:23 Literal 6 () [1]  Parent:23818, Self:23819
+178:                        I:23 Literal 7 () ['25=operators.indexOf(lastChar)']  Parent:23831, Self:23832
+178:                      BlockStatement
+180:                        ExpressionStatement
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.65.expression.arguments.0.body.body.6.alternate.alternate.consequent.body.3.consequent.body.0.expression
+180:                         I:24 AssignmentExpression expression (=) [InputStr = _$set(180,'BlockStatement > ExpressionStatement','expression','InputStr',InputStr,'inputV]  Parent:23867, Self:23868
+180:                          L:I:25 Identifier left () [InputStr]  Parent:23879, Self:23880
+180:                          R:I:25 CallExpression right () [_$set(180,'BlockStatement > ExpressionStatement','expression','InputStr',InputStr,'inputVal.replace(]  Parent:23891, Self:23892
+180:                           L:I:26 Identifier callee () [_$set]  Parent:23902, Self:23903
+180:                            L:I:27 Literal 0 () [180]  Parent:23915, Self:23916
+180:                            R:I:27 Literal 1 () ['BlockStatement > ExpressionStatement']  Parent:23928, Self:23929
+180:                            L:I:27 Literal 2 () ['expression']  Parent:23941, Self:23942
+180:                            R:I:27 Literal 3 () ['InputStr']  Parent:23954, Self:23955
+180:                            L:I:27 Identifier 4 () [InputStr]  Parent:23967, Self:23968
+180:                            R:I:27 Literal 5 () ['inputVal.replace(/.$/, btnVal)']  Parent:23979, Self:23980
+180:                            L:I:27 AssignmentExpression 6 (=) [_$v[26]=inputVal.replace(/.$/, btnVal)]  Parent:23992, Self:23993
+180:                             L:I:28 MemberExpression left () [_$v[26]]  Parent:24004, Self:24005
+180:                              L:I:29 Identifier object () [_$v]  Parent:24015, Self:24016
+180:                              R:I:29 Literal property () [26]  Parent:24027, Self:24028
+180:                             R:I:28 CallExpression right () [inputVal.replace(/.$/, btnVal)]  Parent:24041, Self:24042
+180:                              L:I:29 MemberExpression callee () [inputVal.replace]  Parent:24052, Self:24053
+180:                               L:I:30 Identifier object () [inputVal]  Parent:24063, Self:24064
+180:                               R:I:30 Identifier property () [replace]  Parent:24075, Self:24076
+180:                               L:I:30 Literal 0 () [/.$/]  Parent:24089, Self:24090
+180:                               R:I:30 Identifier 1 () [btnVal]  Parent:24105, Self:24106
+180:                            R:I:27 Literal 7 () ['=']  Parent:24117, Self:24118
+180:                            L:I:27 Literal 8 () ['0']  Parent:24130, Self:24131
+180:                            R:I:27 Identifier 9 () [_$gXLocal]  Parent:24143, Self:24144
+180:                            L:I:27 Literal 10 () [1]  Parent:24155, Self:24156
+180:                            R:I:27 Literal 11 () ['26=inputVal.replace(/.$/, btnVal)']  Parent:24168, Self:24169
+--------------- END --------------- 
+181:                        ExpressionStatement
+181:                         I:24 CallExpression expression () [input.html(InputStr)]  Parent:24192, Self:24193
+181:                          I:25 MemberExpression callee () [input.html]  Parent:24203, Self:24204
+181:                           I:26 Identifier object () [input]  Parent:24214, Self:24215
+181:                           I:26 Identifier property () [html]  Parent:24226, Self:24227
+181:                           I:26 Identifier 0 () [InputStr]  Parent:24240, Self:24241
+184:                     ExpressionStatement
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.65.expression.arguments.0.body.body.6.alternate.alternate.consequent.body.4.expression
+184:                      I:21 AssignmentExpression expression (=) [decimalAdded = _$set(184,'ExpressionStatement > ExpressionStatement','expression','decimalAdded',dec]  Parent:24264, Self:24265
+184:                       L:I:22 Identifier left () [decimalAdded]  Parent:24276, Self:24277
+184:                       R:I:22 CallExpression right () [_$set(184,'ExpressionStatement > ExpressionStatement','expression','decimalAdded',decimalAdded,'fals]  Parent:24288, Self:24289
+184:                        L:I:23 Identifier callee () [_$set]  Parent:24299, Self:24300
+184:                         L:I:24 Literal 0 () [184]  Parent:24312, Self:24313
+184:                         R:I:24 Literal 1 () ['ExpressionStatement > ExpressionStatement']  Parent:24325, Self:24326
+184:                         L:I:24 Literal 2 () ['expression']  Parent:24338, Self:24339
+184:                         R:I:24 Literal 3 () ['decimalAdded']  Parent:24351, Self:24352
+184:                         L:I:24 Identifier 4 () [decimalAdded]  Parent:24364, Self:24365
+184:                         R:I:24 Literal 5 () ['false']  Parent:24376, Self:24377
+184:                         L:I:24 Literal 6 () [false]  Parent:24389, Self:24390
+184:                         R:I:24 Literal 7 () ['=']  Parent:24402, Self:24403
+184:                         L:I:24 Literal 8 () ['0']  Parent:24415, Self:24416
+184:                         R:I:24 Identifier 9 () [_$gXLocal]  Parent:24428, Self:24429
+184:                         L:I:24 Literal 10 () [0]  Parent:24440, Self:24441
+--------------- END --------------- 
+188:                   IfStatement
+188:                    I:19 CallExpression test () [_$evl(188,'IfStatement','test','btnVal == \'.\'', btnVal == '.',_$gXLocal, 0)]  Parent:24464, Self:24465
+188:                     I:20 Identifier callee () [_$evl]  Parent:24475, Self:24476
+188:                      I:21 Literal 0 () [188]  Parent:24488, Self:24489
+188:                      I:21 Literal 1 () ['IfStatement']  Parent:24501, Self:24502
+188:                      I:21 Literal 2 () ['test']  Parent:24514, Self:24515
+188:                      I:21 Literal 3 () ['btnVal == \'.\'']  Parent:24527, Self:24528
+--------------- START BINARY --------------- 
+ path:p.0.expression.arguments.0.body.body.65.expression.arguments.0.body.body.6.alternate.alternate.alternate.test.arguments.4
+188:                      I:21 BinaryExpression 4 (==) [btnVal == '.']  Parent:24540, Self:24541
+188:                       L:I:22 Identifier left () [btnVal]  Parent:24551, Self:24552
+188:                       R:I:22 Literal right () ['.']  Parent:24564, Self:24565
+--------------- END --------------- 
+188:                      I:21 Identifier 5 () [_$gXLocal]  Parent:24577, Self:24578
+188:                      I:21 Literal 6 () [0]  Parent:24589, Self:24590
+188:                    BlockStatement
+189:                      IfStatement
+189:                       I:22 UnaryExpression test (!) [!decimalAdded]  Parent:24625, Self:24626
+189:                        I:23 Identifier argument () [decimalAdded]  Parent:24638, Self:24639
+189:                       BlockStatement
+190:                         ExpressionStatement
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.65.expression.arguments.0.body.body.6.alternate.alternate.alternate.consequent.body.0.consequent.body.0.expression
+190:                          I:25 AssignmentExpression expression (=) [InputStr = _$set(190,'BlockStatement > IfStatement > BlockStatement > ExpressionStatement','expressi]  Parent:24673, Self:24674
+190:                           L:I:26 Identifier left () [InputStr]  Parent:24685, Self:24686
+190:                           R:I:26 CallExpression right () [_$set(190,'BlockStatement > IfStatement > BlockStatement > ExpressionStatement','expression','InputS]  Parent:24697, Self:24698
+190:                            L:I:27 Identifier callee () [_$set]  Parent:24708, Self:24709
+190:                             L:I:28 Literal 0 () [190]  Parent:24721, Self:24722
+190:                             R:I:28 Literal 1 () ['BlockStatement > IfStatement > BlockStatement > ExpressionStatement']  Parent:24734, Self:24735
+190:                             L:I:28 Literal 2 () ['expression']  Parent:24747, Self:24748
+190:                             R:I:28 Literal 3 () ['InputStr']  Parent:24760, Self:24761
+190:                             L:I:28 Identifier 4 () [InputStr]  Parent:24773, Self:24774
+190:                             R:I:28 Literal 5 () ['btnVal']  Parent:24785, Self:24786
+190:                             L:I:28 Identifier 6 () [btnVal]  Parent:24798, Self:24799
+190:                             R:I:28 Literal 7 () ['+=']  Parent:24810, Self:24811
+190:                             L:I:28 Literal 8 () ['0']  Parent:24823, Self:24824
+190:                             R:I:28 Identifier 9 () [_$gXLocal]  Parent:24836, Self:24837
+190:                             L:I:28 Literal 10 () [0]  Parent:24848, Self:24849
+--------------- END --------------- 
+191:                         ExpressionStatement
+191:                          I:25 CallExpression expression () [input.html(InputStr)]  Parent:24872, Self:24873
+191:                           I:26 MemberExpression callee () [input.html]  Parent:24883, Self:24884
+191:                            I:27 Identifier object () [input]  Parent:24894, Self:24895
+191:                            I:27 Identifier property () [html]  Parent:24906, Self:24907
+191:                            I:27 Identifier 0 () [InputStr]  Parent:24920, Self:24921
+192:                         ExpressionStatement
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.65.expression.arguments.0.body.body.6.alternate.alternate.alternate.consequent.body.0.consequent.body.2.expression
+192:                          I:25 AssignmentExpression expression (=) [decimalAdded = _$set(192,'ExpressionStatement > ExpressionStatement','expression','decimalAdded',dec]  Parent:24943, Self:24944
+192:                           L:I:26 Identifier left () [decimalAdded]  Parent:24955, Self:24956
+192:                           R:I:26 CallExpression right () [_$set(192,'ExpressionStatement > ExpressionStatement','expression','decimalAdded',decimalAdded,'true]  Parent:24967, Self:24968
+192:                            L:I:27 Identifier callee () [_$set]  Parent:24978, Self:24979
+192:                             L:I:28 Literal 0 () [192]  Parent:24991, Self:24992
+192:                             R:I:28 Literal 1 () ['ExpressionStatement > ExpressionStatement']  Parent:25004, Self:25005
+192:                             L:I:28 Literal 2 () ['expression']  Parent:25017, Self:25018
+192:                             R:I:28 Literal 3 () ['decimalAdded']  Parent:25030, Self:25031
+192:                             L:I:28 Identifier 4 () [decimalAdded]  Parent:25043, Self:25044
+192:                             R:I:28 Literal 5 () ['true']  Parent:25055, Self:25056
+192:                             L:I:28 Literal 6 () [true]  Parent:25068, Self:25069
+192:                             R:I:28 Literal 7 () ['=']  Parent:25081, Self:25082
+192:                             L:I:28 Literal 8 () ['0']  Parent:25094, Self:25095
+192:                             R:I:28 Identifier 9 () [_$gXLocal]  Parent:25107, Self:25108
+192:                             L:I:28 Literal 10 () [0]  Parent:25119, Self:25120
+--------------- END --------------- 
+197:                    BlockStatement
+198:                      ExpressionStatement
+--------------- START ASSIGN --------------- 
+ path:p.0.expression.arguments.0.body.body.65.expression.arguments.0.body.body.6.alternate.alternate.alternate.alternate.body.0.expression
+198:                       I:22 AssignmentExpression expression (=) [InputStr = _$set(198,'BlockStatement > ExpressionStatement','expression','InputStr',InputStr,'btnVal]  Parent:25156, Self:25157
+198:                        L:I:23 Identifier left () [InputStr]  Parent:25168, Self:25169
+198:                        R:I:23 CallExpression right () [_$set(198,'BlockStatement > ExpressionStatement','expression','InputStr',InputStr,'btnVal',btnVal,'+]  Parent:25180, Self:25181
+198:                         L:I:24 Identifier callee () [_$set]  Parent:25191, Self:25192
+198:                          L:I:25 Literal 0 () [198]  Parent:25204, Self:25205
+198:                          R:I:25 Literal 1 () ['BlockStatement > ExpressionStatement']  Parent:25217, Self:25218
+198:                          L:I:25 Literal 2 () ['expression']  Parent:25230, Self:25231
+198:                          R:I:25 Literal 3 () ['InputStr']  Parent:25243, Self:25244
+198:                          L:I:25 Identifier 4 () [InputStr]  Parent:25256, Self:25257
+198:                          R:I:25 Literal 5 () ['btnVal']  Parent:25268, Self:25269
+198:                          L:I:25 Identifier 6 () [btnVal]  Parent:25281, Self:25282
+198:                          R:I:25 Literal 7 () ['+=']  Parent:25293, Self:25294
+198:                          L:I:25 Literal 8 () ['0']  Parent:25306, Self:25307
+198:                          R:I:25 Identifier 9 () [_$gXLocal]  Parent:25319, Self:25320
+198:                          L:I:25 Literal 10 () [0]  Parent:25331, Self:25332
+--------------- END --------------- 
+199:                      ExpressionStatement
+199:                       I:22 CallExpression expression () [input.html(InputStr)]  Parent:25355, Self:25356
+199:                        I:23 MemberExpression callee () [input.html]  Parent:25366, Self:25367
+199:                         I:24 Identifier object () [input]  Parent:25377, Self:25378
+199:                         I:24 Identifier property () [html]  Parent:25389, Self:25390
+199:                         I:24 Identifier 0 () [InputStr]  Parent:25403, Self:25404
+203:                ExpressionStatement
+203:                 I:16 CallExpression expression () [e.preventDefault()]  Parent:25426, Self:25427
+203:                  I:17 MemberExpression callee () [e.preventDefault]  Parent:25437, Self:25438
+203:                   I:18 Identifier object () [e]  Parent:25448, Self:25449
+203:                   I:18 Identifier property () [preventDefault]  Parent:25460, Self:25461

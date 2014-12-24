@@ -13,7 +13,7 @@ $(document).ready( function() {
 	}
 
 	var cc = function() { return 1; };
-	var bb = function(a,b,c) { return a-b+c; };
+	var bb = function(a,b,c) { var d=0; d=b+c; return a-d; };
 
 	function dd()
 	{
@@ -110,6 +110,11 @@ $(document).ready( function() {
 	console.log(block1.name+' '+block1.lname);
 	console.log(block2[1]+' '+block2[2]+' '+block2[3]);
 	console.log(block3[1].name+' '+block3[1].lname);
+	
+	console.log("cc:"+cc()+" dd:"+dd());
+	var bb2 = bb;
+	console.log("bb:"+bb2(1,2,3) );
+	
 
 	// Get all the keys from document
 	var keys = $('#calculator span');
