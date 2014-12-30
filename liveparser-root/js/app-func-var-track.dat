@@ -1,0 +1,36 @@
+VariableDeclarator
+ HelperParentType: VariableDeclaration HelperParentName: 1 NestedParentType: VariableDeclaration Parent Type: 0 Indent: 8 Length : 7 Source: bb=b55(b)*4 Operator: =
+ Left Var Name: bb
+ Right(2) Var Name: b55(b)*4
+        C) EXT. VAR: b55(b) CallExpression left 10
+VariableDeclarator
+ HelperParentType: VariableDeclaration HelperParentName: 1 NestedParentType: VariableDeclaration Parent Type: 0 Indent: 5 Length : 3 Source: cc = function() { return 1; } Operator: =
+ Left Var Name: cc
+ Right(2) Var Name: function() { return 1; }
+VariableDeclarator
+ HelperParentType: VariableDeclaration HelperParentName: 2 NestedParentType: VariableDeclaration Parent Type: 0 Indent: 5 Length : 6 Source: bb = function(a,b,c) { var d=0; d=b+c; return a-d; } Operator: =
+ Left Var Name: bb
+ Right(2) Var Name: function(a,b,c) { var d=0; d=b+c; return a-d; }
+VariableDeclarator
+ HelperParentType: VariableDeclaration HelperParentName: 0 NestedParentType: BlockStatement > VariableDeclaration Parent Type: 0 Indent: 11 Length : 3 Source: d=0 Operator: =
+ Left Var Name: d
+ Right(2) Var Name: 0
+AssignmentExpression
+ HelperParentType: ExpressionStatement HelperParentName: 1 NestedParentType: ExpressionStatement Parent Type: expression Indent: 10 Length : 5 Source: d=b+c Operator: =
+ Left Var Name: d
+ Right(2) Var Name: b+c
+VariableDeclarator
+ HelperParentType: VariableDeclaration HelperParentName: 1 NestedParentType: VariableDeclaration Parent Type: 0 Indent: 8 Length : 7 Source: aa=a55(a)*2 Operator: =
+ Left Var Name: aa
+ Right(2) Var Name: a55(a)*2
+        C) EXT. VAR: a55(a) CallExpression left 10
+
+BinaryExpression
+ HelperParentType: IfStatement HelperParentName: 2 NestedParentType: IfStatement Parent Type: test Indent: 7 Length : 3 Source: a<10 Operator: <
+
+BinaryExpression
+ HelperParentType: IfStatement HelperParentName: alternate NestedParentType: IfStatement Parent Type: test Indent: 8 Length : 3 Source: a>100 Operator: >
+VariableDeclarator
+ HelperParentType: VariableDeclaration HelperParentName: 0 NestedParentType: FunctionDeclaration > BlockStatement > VariableDeclaration Parent Type: 0 Indent: 8 Length : 3 Source: aaa=a Operator: =
+ Left Var Name: aaa
+ Right(2) Var Name: a

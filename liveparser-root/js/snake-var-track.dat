@@ -1,0 +1,240 @@
+VariableDeclarator
+ HelperParentType: VariableDeclaration HelperParentName: 0 NestedParentType: ExpressionStatement > BlockStatement > VariableDeclaration Parent Type: 0 Indent: 11 Length : 7 Source: canvas = $("#canvas")[0] Operator: =
+ Left Var Name: canvas
+ Right(2) Var Name: $("#canvas")[0]
+VariableDeclarator
+ HelperParentType: VariableDeclaration HelperParentName: 1 NestedParentType: VariableDeclaration Parent Type: 0 Indent: 11 Length : 7 Source: ctx = canvas.getContext("2d") Operator: =
+ Left Var Name: ctx
+ Right(2) Var Name: canvas.getContext("2d")
+        C) EXT. VAR: canvas.getContext("2d") CallExpression init 12
+VariableDeclarator
+ HelperParentType: VariableDeclaration HelperParentName: 2 NestedParentType: VariableDeclaration Parent Type: 0 Indent: 11 Length : 8 Source: w = $("#canvas").width() Operator: =
+ Left Var Name: w
+ Right(2) Var Name: $("#canvas").width()
+        C) EXT. VAR: $("#canvas").width() CallExpression init 12
+VariableDeclarator
+ HelperParentType: VariableDeclaration HelperParentName: 3 NestedParentType: VariableDeclaration Parent Type: 0 Indent: 11 Length : 8 Source: h = $("#canvas").height() Operator: =
+ Left Var Name: h
+ Right(2) Var Name: $("#canvas").height()
+        C) EXT. VAR: $("#canvas").height() CallExpression init 12
+VariableDeclarator
+ HelperParentType: VariableDeclaration HelperParentName: 4 NestedParentType: VariableDeclaration Parent Type: 0 Indent: 11 Length : 3 Source: cw = 10 Operator: =
+ Left Var Name: cw
+ Right(2) Var Name: 10
+VariableDeclarator
+ HelperParentType: VariableDeclaration HelperParentName: 5 NestedParentType: VariableDeclaration Parent Type: 0 Indent: 11 Length : 2 Source: d Operator: =
+ Left Var Name: d
+VariableDeclarator
+ HelperParentType: VariableDeclaration HelperParentName: 6 NestedParentType: VariableDeclaration Parent Type: 0 Indent: 11 Length : 2 Source: food Operator: =
+ Left Var Name: food
+VariableDeclarator
+ HelperParentType: VariableDeclaration HelperParentName: 7 NestedParentType: VariableDeclaration Parent Type: 0 Indent: 11 Length : 2 Source: score Operator: =
+ Left Var Name: score
+VariableDeclarator
+ HelperParentType: VariableDeclaration HelperParentName: 8 NestedParentType: VariableDeclaration Parent Type: 0 Indent: 11 Length : 2 Source: snake_array Operator: =
+ Left Var Name: snake_array
+AssignmentExpression
+ HelperParentType: ExpressionStatement HelperParentName: 0 NestedParentType: FunctionDeclaration > BlockStatement > ExpressionStatement Parent Type: expression Indent: 13 Length : 3 Source: d = "right" Operator: =
+ Left Var Name: d
+ Right(2) Var Name: "right"
+AssignmentExpression
+ HelperParentType: ExpressionStatement HelperParentName: 3 NestedParentType: ExpressionStatement > ExpressionStatement > ExpressionStatement Parent Type: expression Indent: 13 Length : 3 Source: score = 0 Operator: =
+ Left Var Name: score
+ Right(2) Var Name: 0
+
+BinaryExpression
+ HelperParentType: IfStatement HelperParentName: 4 NestedParentType: IfStatement Parent Type: test Indent: 13 Length : 4 Source: typeof game_loop != "undefined" Operator: !=
+AssignmentExpression
+ HelperParentType: ExpressionStatement HelperParentName: 5 NestedParentType: BlockStatement > ExpressionStatement > ExpressionStatement Parent Type: expression Indent: 13 Length : 6 Source: game_loop = setInterval(paint, 500) Operator: =
+ Left Var Name: game_loop
+ Right(2) Var Name: setInterval(paint, 500)
+        C) EXT. VAR: setInterval(paint, 500) CallExpression right 14
+VariableDeclarator
+ HelperParentType: VariableDeclaration HelperParentName: 0 NestedParentType: ExpressionStatement > FunctionDeclaration > BlockStatement > VariableDeclaration Parent Type: 0 Indent: 14 Length : 3 Source: length = 5 Operator: =
+ Left Var Name: length
+ Right(2) Var Name: 5
+AssignmentExpression
+ HelperParentType: ExpressionStatement HelperParentName: 1 NestedParentType: ExpressionStatement Parent Type: expression Indent: 13 Length : 3 Source: snake_array = [] Operator: =
+ Left Var Name: snake_array
+ Right(2) Var Name: []
+VariableDeclarator
+ HelperParentType: VariableDeclaration HelperParentName: init NestedParentType: ForStatement > VariableDeclaration Parent Type: 0 Indent: 15 Length : 5 Source: i = length-1 Operator: =
+ Left Var Name: i
+ Right(2) Var Name: length-1
+
+BinaryExpression
+ HelperParentType: VariableDeclaration HelperParentName: init NestedParentType: ForStatement > VariableDeclaration Parent Type: test Indent: 13 Length : 3 Source: i>=0 Operator: >=
+
+UpdateExpression
+ HelperParentType: VariableDeclaration HelperParentName: init NestedParentType: ForStatement > VariableDeclaration Parent Type: update Indent: 13 Length : 2 Source: i-- Operator: --
+AssignmentExpression
+ HelperParentType: ExpressionStatement HelperParentName: 0 NestedParentType: BlockStatement > ExpressionStatement > FunctionDeclaration > BlockStatement > ExpressionStatement Parent Type: expression Indent: 13 Length : 33 Source: food = {
+			x: Math.round(Math.random()*(w-cw)/cw),
+			 Operator: =
+ Left Var Name: food
+ Right(2) Var Name: {
+			x: Math.round(Math.random()*(w-cw)/cw),
+			y: Math.round(Math.random()*(h-cw)/cw)
+		}
+        C) EXT. VAR: Math.random() CallExpression left 21
+        C) EXT. VAR: Math.random() CallExpression left 21
+AssignmentExpression
+ HelperParentType: ExpressionStatement HelperParentName: 0 NestedParentType: FunctionDeclaration > BlockStatement > ExpressionStatement Parent Type: expression Indent: 13 Length : 5 Source: ctx.fillStyle = "white" Operator: =
+ Left Var Name: ctx.fillStyle
+ Right(4) Var Name: "white"
+AssignmentExpression
+ HelperParentType: ExpressionStatement HelperParentName: 2 NestedParentType: ExpressionStatement > ExpressionStatement Parent Type: expression Indent: 13 Length : 5 Source: ctx.strokeStyle = "black" Operator: =
+ Left Var Name: ctx.strokeStyle
+ Right(4) Var Name: "black"
+VariableDeclarator
+ HelperParentType: VariableDeclaration HelperParentName: 4 NestedParentType: ExpressionStatement > VariableDeclaration Parent Type: 0 Indent: 14 Length : 7 Source: nx = snake_array[0].x Operator: =
+ Left Var Name: nx
+ Right(2) Var Name: snake_array[0].x
+VariableDeclarator
+ HelperParentType: VariableDeclaration HelperParentName: 5 NestedParentType: VariableDeclaration Parent Type: 0 Indent: 14 Length : 7 Source: ny = snake_array[0].y Operator: =
+ Left Var Name: ny
+ Right(2) Var Name: snake_array[0].y
+
+BinaryExpression
+ HelperParentType: IfStatement HelperParentName: 6 NestedParentType: IfStatement Parent Type: test Indent: 13 Length : 3 Source: d == "right" Operator: ==
+
+UpdateExpression
+ HelperParentType: ExpressionStatement HelperParentName: 0 NestedParentType: BlockStatement > ExpressionStatement Parent Type: expression Indent: 16 Length : 2 Source: nx++ Operator: ++
+
+BinaryExpression
+ HelperParentType: IfStatement HelperParentName: alternate NestedParentType: IfStatement Parent Type: test Indent: 14 Length : 3 Source: d == "left" Operator: ==
+
+UpdateExpression
+ HelperParentType: ExpressionStatement HelperParentName: 0 NestedParentType: BlockStatement > ExpressionStatement Parent Type: expression Indent: 17 Length : 2 Source: nx-- Operator: --
+
+BinaryExpression
+ HelperParentType: IfStatement HelperParentName: alternate NestedParentType: IfStatement Parent Type: test Indent: 15 Length : 3 Source: d == "up" Operator: ==
+
+UpdateExpression
+ HelperParentType: ExpressionStatement HelperParentName: 0 NestedParentType: BlockStatement > ExpressionStatement Parent Type: expression Indent: 18 Length : 2 Source: ny-- Operator: --
+
+BinaryExpression
+ HelperParentType: IfStatement HelperParentName: alternate NestedParentType: IfStatement Parent Type: test Indent: 16 Length : 3 Source: d == "down" Operator: ==
+
+UpdateExpression
+ HelperParentType: ExpressionStatement HelperParentName: 0 NestedParentType: BlockStatement > ExpressionStatement Parent Type: expression Indent: 19 Length : 2 Source: ny++ Operator: ++
+LogicalExpression
+ HelperParentType: IfStatement HelperParentName: 7 NestedParentType: IfStatement Parent Type: test Indent: 13 Length : 27 Source: nx == -1 || nx == w/cw || ny == -1 || ny == h/cw || che Operator: ||
+ Left Var Name: nx == -1 || nx == w/cw || ny == -1 || ny == h/cw
+ Right(22) Var Name: check_collision(nx, ny, snake_array)
+        C) EXT. VAR: check_collision(nx, ny, snake_array) CallExpression right 14
+LogicalExpression
+ HelperParentType: IfStatement HelperParentName: 8 NestedParentType: IfStatement Parent Type: test Indent: 13 Length : 11 Source: nx == food.x && ny == food.y Operator: &&
+ Left Var Name: nx == food.x
+ Right(6) Var Name: ny == food.y
+VariableDeclarator
+ HelperParentType: VariableDeclaration HelperParentName: 0 NestedParentType: BlockStatement > VariableDeclaration Parent Type: 0 Indent: 17 Length : 7 Source: tail = {x: nx, y: ny} Operator: =
+ Left Var Name: tail
+ Right(2) Var Name: {x: nx, y: ny}
+
+UpdateExpression
+ HelperParentType: ExpressionStatement HelperParentName: 1 NestedParentType: ExpressionStatement Parent Type: expression Indent: 16 Length : 2 Source: score++ Operator: ++
+VariableDeclarator
+ HelperParentType: VariableDeclaration HelperParentName: 0 NestedParentType: ExpressionStatement > BlockStatement > VariableDeclaration Parent Type: 0 Indent: 17 Length : 6 Source: tail = snake_array.pop() Operator: =
+ Left Var Name: tail
+ Right(2) Var Name: snake_array.pop()
+        C) EXT. VAR: snake_array.pop() CallExpression init 18
+AssignmentExpression
+ HelperParentType: ExpressionStatement HelperParentName: 1 NestedParentType: ExpressionStatement Parent Type: expression Indent: 16 Length : 5 Source: tail.x = nx Operator: =
+ Left Var Name: tail.x
+ Right(4) Var Name: nx
+AssignmentExpression
+ HelperParentType: ExpressionStatement HelperParentName: 2 NestedParentType: ExpressionStatement Parent Type: expression Indent: 16 Length : 5 Source: tail.y = ny Operator: =
+ Left Var Name: tail.y
+ Right(4) Var Name: ny
+VariableDeclarator
+ HelperParentType: VariableDeclaration HelperParentName: init NestedParentType: ExpressionStatement > ForStatement > VariableDeclaration Parent Type: 0 Indent: 15 Length : 3 Source: i = 0 Operator: =
+ Left Var Name: i
+ Right(2) Var Name: 0
+
+BinaryExpression
+ HelperParentType: VariableDeclaration HelperParentName: init NestedParentType: ExpressionStatement > ForStatement > VariableDeclaration Parent Type: test Indent: 13 Length : 5 Source: i < snake_array.length Operator: <
+
+UpdateExpression
+ HelperParentType: VariableDeclaration HelperParentName: init NestedParentType: ExpressionStatement > ForStatement > VariableDeclaration Parent Type: update Indent: 13 Length : 2 Source: i++ Operator: ++
+VariableDeclarator
+ HelperParentType: VariableDeclaration HelperParentName: 0 NestedParentType: BlockStatement > VariableDeclaration Parent Type: 0 Indent: 17 Length : 5 Source: c = snake_array[i] Operator: =
+ Left Var Name: c
+ Right(2) Var Name: snake_array[i]
+VariableDeclarator
+ HelperParentType: VariableDeclaration HelperParentName: 12 NestedParentType: ExpressionStatement > ExpressionStatement > VariableDeclaration Parent Type: 0 Indent: 14 Length : 5 Source: score_text = "Score: " + score Operator: =
+ Left Var Name: score_text
+ Right(2) Var Name: "Score: " + score
+
+BinaryExpression
+ HelperParentType: ExpressionStatement HelperParentName: 13 NestedParentType: ExpressionStatement Parent Type: 2 Indent: 15 Length : 3 Source: h-5 Operator: -
+AssignmentExpression
+ HelperParentType: ExpressionStatement HelperParentName: 0 NestedParentType: FunctionDeclaration > BlockStatement > ExpressionStatement Parent Type: expression Indent: 13 Length : 5 Source: ctx.fillStyle = "blue" Operator: =
+ Left Var Name: ctx.fillStyle
+ Right(4) Var Name: "blue"
+
+BinaryExpression
+ HelperParentType: ExpressionStatement HelperParentName: 1 NestedParentType: ExpressionStatement Parent Type: 0 Indent: 15 Length : 3 Source: x*cw Operator: *
+
+BinaryExpression
+ HelperParentType: ExpressionStatement HelperParentName: 1 NestedParentType: ExpressionStatement Parent Type: 1 Indent: 15 Length : 3 Source: y*cw Operator: *
+AssignmentExpression
+ HelperParentType: ExpressionStatement HelperParentName: 2 NestedParentType: ExpressionStatement Parent Type: expression Indent: 13 Length : 5 Source: ctx.strokeStyle = "white" Operator: =
+ Left Var Name: ctx.strokeStyle
+ Right(4) Var Name: "white"
+
+BinaryExpression
+ HelperParentType: ExpressionStatement HelperParentName: 3 NestedParentType: ExpressionStatement Parent Type: 0 Indent: 15 Length : 3 Source: x*cw Operator: *
+
+BinaryExpression
+ HelperParentType: ExpressionStatement HelperParentName: 3 NestedParentType: ExpressionStatement Parent Type: 1 Indent: 15 Length : 3 Source: y*cw Operator: *
+VariableDeclarator
+ HelperParentType: VariableDeclaration HelperParentName: init NestedParentType: FunctionDeclaration > BlockStatement > ForStatement > VariableDeclaration Parent Type: 0 Indent: 15 Length : 3 Source: i = 0 Operator: =
+ Left Var Name: i
+ Right(2) Var Name: 0
+
+BinaryExpression
+ HelperParentType: VariableDeclaration HelperParentName: init NestedParentType: FunctionDeclaration > BlockStatement > ForStatement > VariableDeclaration Parent Type: test Indent: 13 Length : 5 Source: i < array.length Operator: <
+
+UpdateExpression
+ HelperParentType: VariableDeclaration HelperParentName: init NestedParentType: FunctionDeclaration > BlockStatement > ForStatement > VariableDeclaration Parent Type: update Indent: 13 Length : 2 Source: i++ Operator: ++
+LogicalExpression
+ HelperParentType: IfStatement HelperParentName: 0 NestedParentType: BlockStatement > IfStatement Parent Type: test Indent: 16 Length : 15 Source: array[i].x == x && array[i].y == y Operator: &&
+ Left Var Name: array[i].x == x
+ Right(8) Var Name: array[i].y == y
+VariableDeclarator
+ HelperParentType: VariableDeclaration HelperParentName: 0 NestedParentType: ExpressionStatement > BlockStatement > VariableDeclaration Parent Type: 0 Indent: 17 Length : 5 Source: key = e.which Operator: =
+ Left Var Name: key
+ Right(2) Var Name: e.which
+LogicalExpression
+ HelperParentType: IfStatement HelperParentName: 1 NestedParentType: IfStatement Parent Type: test Indent: 16 Length : 7 Source: key == "37" && d != "right" Operator: &&
+ Left Var Name: key == "37"
+ Right(4) Var Name: d != "right"
+AssignmentExpression
+ HelperParentType: ExpressionStatement HelperParentName: 0 NestedParentType: BlockStatement > ExpressionStatement Parent Type: expression Indent: 19 Length : 3 Source: d = "left" Operator: =
+ Left Var Name: d
+ Right(2) Var Name: "left"
+LogicalExpression
+ HelperParentType: IfStatement HelperParentName: alternate NestedParentType: IfStatement Parent Type: test Indent: 17 Length : 7 Source: key == "38" && d != "down" Operator: &&
+ Left Var Name: key == "38"
+ Right(4) Var Name: d != "down"
+AssignmentExpression
+ HelperParentType: ExpressionStatement HelperParentName: 0 NestedParentType: BlockStatement > ExpressionStatement Parent Type: expression Indent: 20 Length : 3 Source: d = "up" Operator: =
+ Left Var Name: d
+ Right(2) Var Name: "up"
+LogicalExpression
+ HelperParentType: IfStatement HelperParentName: alternate NestedParentType: IfStatement Parent Type: test Indent: 18 Length : 7 Source: key == "39" && d != "left" Operator: &&
+ Left Var Name: key == "39"
+ Right(4) Var Name: d != "left"
+AssignmentExpression
+ HelperParentType: ExpressionStatement HelperParentName: 0 NestedParentType: BlockStatement > ExpressionStatement Parent Type: expression Indent: 21 Length : 3 Source: d = "right" Operator: =
+ Left Var Name: d
+ Right(2) Var Name: "right"
+LogicalExpression
+ HelperParentType: IfStatement HelperParentName: alternate NestedParentType: IfStatement Parent Type: test Indent: 19 Length : 7 Source: key == "40" && d != "up" Operator: &&
+ Left Var Name: key == "40"
+ Right(4) Var Name: d != "up"
+AssignmentExpression
+ HelperParentType: ExpressionStatement HelperParentName: 0 NestedParentType: BlockStatement > ExpressionStatement Parent Type: expression Indent: 22 Length : 3 Source: d = "down" Operator: =
+ Left Var Name: d
+ Right(2) Var Name: "down"

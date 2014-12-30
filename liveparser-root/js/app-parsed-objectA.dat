@@ -1,921 +1,485 @@
-NewRecordType:ReturnStatement - I:15 - Ix:216 - HelperParentType = BlockStatement - HelperParentName = body
-    HelperXPath: p.0.expression.arguments.0.body.body.0.body.body.0.body.body.0
-    NestedParentType:ExpressionStatement > BlockStatement > FunctionDeclaration > BlockStatement > FunctionDeclaration > BlockStatement+
-    RECORDS (4):
-        ThisType:ReturnStatement, ParentType:0, HasChildren:false, Source:return b+2;, I:15, ID/Parent:216/0, LeftRight:false-false, 
-        ThisType:BinaryExpression, ParentType:argument, HasChildren:true, Source:b+2, I:16, ID/Parent:227/0, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:left, HasChildren:false, Source:b, I:17, ID/Parent:238/227, LeftRight:true-true, 
-        ThisType:Literal, ParentType:right, HasChildren:false, Source:2, I:17, ID/Parent:251/227, LeftRight:true-false, 
-NewRecordType:VariableDeclarator - I:14 - Ix:277 - HelperParentType = VariableDeclaration - HelperParentName = 1
-    HelperXPath: p.0.expression.arguments.0.body.body.0.body.body.1.declarations.0
-    NestedParentType:VariableDeclaration+
-    RECORDS (7):
-        ThisType:VariableDeclarator, ParentType:0, HasChildren:false, Source:bb=b55(b)*4, I:14, ID/Parent:277/0, LeftRight:false-false, 
-        ThisType:Identifier, ParentType:id, HasChildren:false, Source:bb, I:15, ID/Parent:288/0, LeftRight:true-true, 
-        ThisType:BinaryExpression, ParentType:init, HasChildren:true, Source:b55(b)*4, I:15, ID/Parent:300/0, LeftRight:true-false, 
-        ThisType:CallExpression, ParentType:left, HasChildren:true, Source:b55(b), I:16, ID/Parent:311/300, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:callee, HasChildren:true, Source:b55, I:17, ID/Parent:322/311, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:0, HasChildren:false, Source:b, I:18, ID/Parent:335/322, LeftRight:true-true, 
-        ThisType:Literal, ParentType:right, HasChildren:false, Source:4, I:16, ID/Parent:348/300, LeftRight:true-false, 
-NewRecordType:ReturnStatement - I:12 - Ix:362 - HelperParentType = VariableDeclaration - HelperParentName = 1
-    HelperXPath: p.0.expression.arguments.0.body.body.0.body.body.2
-    NestedParentType:VariableDeclaration+
-    RECORDS (2):
-        ThisType:ReturnStatement, ParentType:2, HasChildren:false, Source:return b;, I:12, ID/Parent:362/0, LeftRight:false-false, 
-        ThisType:Identifier, ParentType:argument, HasChildren:false, Source:b, I:13, ID/Parent:373/0, LeftRight:true-true, 
-NewRecordType:VariableDeclarator - I:11 - Ix:398 - HelperParentType = VariableDeclaration - HelperParentName = 1
-    HelperXPath: p.0.expression.arguments.0.body.body.1.declarations.0
-    NestedParentType:VariableDeclaration+
+NewRecordType:VariableDeclarator - I:11 - Ix:132 - HelperParentType = VariableDeclaration - HelperParentName = 0
+    HelperXPath: p.0.expression.arguments.0.body.body.0.declarations.0
+    NestedParentType:ExpressionStatement > BlockStatement > VariableDeclaration+
     RECORDS (3):
-        ThisType:VariableDeclarator, ParentType:0, HasChildren:false, Source:cc = function() { return 1; }, I:11, ID/Parent:398/0, LeftRight:false-false, 
-        ThisType:Identifier, ParentType:id, HasChildren:false, Source:cc, I:12, ID/Parent:409/0, LeftRight:true-true, 
-        ThisType:FunctionExpression, ParentType:init, HasChildren:false, Source:function() { return 1; }, I:12, ID/Parent:421/0, LeftRight:true-false, 
-NewRecordType:ReturnStatement - I:15 - Ix:446 - HelperParentType = BlockStatement - HelperParentName = body
-    HelperXPath: p.0.expression.arguments.0.body.body.1.declarations.0.init.body.body.0
-    NestedParentType:BlockStatement+
-    RECORDS (2):
-        ThisType:ReturnStatement, ParentType:0, HasChildren:false, Source:return 1;, I:15, ID/Parent:446/0, LeftRight:false-false, 
-        ThisType:Literal, ParentType:argument, HasChildren:false, Source:1, I:16, ID/Parent:457/0, LeftRight:true-true, 
-NewRecordType:VariableDeclarator - I:11 - Ix:484 - HelperParentType = VariableDeclaration - HelperParentName = 2
-    HelperXPath: p.0.expression.arguments.0.body.body.2.declarations.0
-    NestedParentType:VariableDeclaration+
-    RECORDS (6):
-        ThisType:VariableDeclarator, ParentType:0, HasChildren:false, Source:bb = function(a,b,c) { var d=0; d=b+c; return a-d; }, I:11, ID/Parent:484/0, LeftRight:false-false, 
-        ThisType:Identifier, ParentType:id, HasChildren:false, Source:bb, I:12, ID/Parent:495/0, LeftRight:true-true, 
-        ThisType:FunctionExpression, ParentType:init, HasChildren:false, Source:function(a,b,c) { var d=0; d=b+c; return a-d; }, I:12, ID/Parent:507/0, LeftRight:true-false, 
-        ThisType:Identifier, ParentType:0, HasChildren:false, Source:a, I:14, ID/Parent:520/0, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:1, HasChildren:false, Source:b, I:14, ID/Parent:532/0, LeftRight:true-false, 
-        ThisType:Identifier, ParentType:2, HasChildren:false, Source:c, I:14, ID/Parent:544/0, LeftRight:true-true, 
-NewRecordType:VariableDeclarator - I:17 - Ix:580 - HelperParentType = VariableDeclaration - HelperParentName = 0
-    HelperXPath: p.0.expression.arguments.0.body.body.2.declarations.0.init.body.body.0.declarations.0
-    NestedParentType:BlockStatement > VariableDeclaration+
-    RECORDS (3):
-        ThisType:VariableDeclarator, ParentType:0, HasChildren:false, Source:d=0, I:17, ID/Parent:580/0, LeftRight:false-false, 
-        ThisType:Identifier, ParentType:id, HasChildren:false, Source:d, I:18, ID/Parent:591/0, LeftRight:true-true, 
-        ThisType:Literal, ParentType:init, HasChildren:false, Source:0, I:18, ID/Parent:603/0, LeftRight:true-false, 
-NewRecordType:AssignmentExpression - I:16 - Ix:628 - HelperParentType = ExpressionStatement - HelperParentName = 1
-    HelperXPath: p.0.expression.arguments.0.body.body.2.declarations.0.init.body.body.1.expression
+        ThisType:VariableDeclarator, ParentType:0, HasChildren:false, Source:blockC = [], I:11, ID/Parent:132/0, LeftRight:false-false, 
+        ThisType:Identifier, ParentType:id, HasChildren:false, Source:blockC, I:12, ID/Parent:143/0, LeftRight:true-true, 
+        ThisType:ArrayExpression, ParentType:init, HasChildren:false, Source:[], I:12, ID/Parent:155/0, LeftRight:true-false, 
+NewRecordType:AssignmentExpression - I:10 - Ix:179 - HelperParentType = ExpressionStatement - HelperParentName = 1
+    HelperXPath: p.0.expression.arguments.0.body.body.1.expression
     NestedParentType:ExpressionStatement+
     RECORDS (5):
-        ThisType:AssignmentExpression, ParentType:expression, HasChildren:false, Source:d=b+c, I:16, ID/Parent:628/0, LeftRight:false-false, 
-        ThisType:Identifier, ParentType:left, HasChildren:false, Source:d, I:17, ID/Parent:640/0, LeftRight:true-true, 
-        ThisType:BinaryExpression, ParentType:right, HasChildren:true, Source:b+c, I:17, ID/Parent:652/0, LeftRight:true-false, 
-        ThisType:Identifier, ParentType:left, HasChildren:false, Source:b, I:18, ID/Parent:663/652, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:right, HasChildren:false, Source:c, I:18, ID/Parent:676/652, LeftRight:true-false, 
-NewRecordType:ReturnStatement - I:15 - Ix:688 - HelperParentType = ExpressionStatement - HelperParentName = 1
-    HelperXPath: p.0.expression.arguments.0.body.body.2.declarations.0.init.body.body.2
-    NestedParentType:ExpressionStatement+
-    RECORDS (4):
-        ThisType:ReturnStatement, ParentType:2, HasChildren:false, Source:return a-d;, I:15, ID/Parent:688/0, LeftRight:false-false, 
-        ThisType:BinaryExpression, ParentType:argument, HasChildren:true, Source:a-d, I:16, ID/Parent:699/0, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:left, HasChildren:false, Source:a, I:17, ID/Parent:710/699, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:right, HasChildren:false, Source:d, I:17, ID/Parent:723/699, LeftRight:true-false, 
-NewRecordType:ReturnStatement - I:12 - Ix:773 - HelperParentType = BlockStatement - HelperParentName = body
-    HelperXPath: p.0.expression.arguments.0.body.body.3.body.body.0
-    NestedParentType:FunctionDeclaration > BlockStatement+
-    RECORDS (2):
-        ThisType:ReturnStatement, ParentType:0, HasChildren:false, Source:return 2;, I:12, ID/Parent:773/0, LeftRight:false-false, 
-        ThisType:Literal, ParentType:argument, HasChildren:false, Source:2, I:13, ID/Parent:784/0, LeftRight:true-true, 
-NewRecordType:ReturnStatement - I:15 - Ix:894 - HelperParentType = BlockStatement - HelperParentName = body
-    HelperXPath: p.0.expression.arguments.0.body.body.4.body.body.0.body.body.0
-    NestedParentType:FunctionDeclaration > BlockStatement > FunctionDeclaration > BlockStatement+
-    RECORDS (4):
-        ThisType:ReturnStatement, ParentType:0, HasChildren:false, Source:return a+1;, I:15, ID/Parent:894/0, LeftRight:false-false, 
-        ThisType:BinaryExpression, ParentType:argument, HasChildren:true, Source:a+1, I:16, ID/Parent:905/0, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:left, HasChildren:false, Source:a, I:17, ID/Parent:916/905, LeftRight:true-true, 
-        ThisType:Literal, ParentType:right, HasChildren:false, Source:1, I:17, ID/Parent:929/905, LeftRight:true-false, 
-NewRecordType:VariableDeclarator - I:14 - Ix:955 - HelperParentType = VariableDeclaration - HelperParentName = 1
-    HelperXPath: p.0.expression.arguments.0.body.body.4.body.body.1.declarations.0
-    NestedParentType:VariableDeclaration+
-    RECORDS (7):
-        ThisType:VariableDeclarator, ParentType:0, HasChildren:false, Source:aa=a55(a)*2, I:14, ID/Parent:955/0, LeftRight:false-false, 
-        ThisType:Identifier, ParentType:id, HasChildren:false, Source:aa, I:15, ID/Parent:966/0, LeftRight:true-true, 
-        ThisType:BinaryExpression, ParentType:init, HasChildren:true, Source:a55(a)*2, I:15, ID/Parent:978/0, LeftRight:true-false, 
-        ThisType:CallExpression, ParentType:left, HasChildren:true, Source:a55(a), I:16, ID/Parent:989/978, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:callee, HasChildren:true, Source:a55, I:17, ID/Parent:1000/989, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:0, HasChildren:false, Source:a, I:18, ID/Parent:1013/1000, LeftRight:true-true, 
-        ThisType:Literal, ParentType:right, HasChildren:false, Source:2, I:16, ID/Parent:1026/978, LeftRight:true-false, 
-NewRecordType:BinaryExpression - I:13 - Ix:1051 - HelperParentType = IfStatement - HelperParentName = 2
-    HelperXPath: p.0.expression.arguments.0.body.body.4.body.body.2.test
-    NestedParentType:IfStatement+
-    RECORDS (3):
-        ThisType:BinaryExpression, ParentType:test, HasChildren:false, Source:a<10, I:13, ID/Parent:1051/0, LeftRight:false-false, 
-        ThisType:Identifier, ParentType:left, HasChildren:false, Source:a, I:14, ID/Parent:1062/0, LeftRight:true-true, 
-        ThisType:Literal, ParentType:right, HasChildren:false, Source:10, I:14, ID/Parent:1075/0, LeftRight:true-false, 
-NewRecordType:ReturnStatement - I:15 - Ix:1100 - HelperParentType = BlockStatement - HelperParentName = consequent
-    HelperXPath: p.0.expression.arguments.0.body.body.4.body.body.2.consequent.body.0
-    NestedParentType:BlockStatement+
-    RECORDS (4):
-        ThisType:ReturnStatement, ParentType:0, HasChildren:false, Source:return aa+10;, I:15, ID/Parent:1100/0, LeftRight:false-false, 
-        ThisType:BinaryExpression, ParentType:argument, HasChildren:true, Source:aa+10, I:16, ID/Parent:1111/0, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:left, HasChildren:false, Source:aa, I:17, ID/Parent:1122/1111, LeftRight:true-true, 
-        ThisType:Literal, ParentType:right, HasChildren:false, Source:10, I:17, ID/Parent:1135/1111, LeftRight:true-false, 
-NewRecordType:BinaryExpression - I:14 - Ix:1159 - HelperParentType = IfStatement - HelperParentName = alternate
-    HelperXPath: p.0.expression.arguments.0.body.body.4.body.body.2.alternate.test
-    NestedParentType:IfStatement+
-    RECORDS (3):
-        ThisType:BinaryExpression, ParentType:test, HasChildren:false, Source:a>100, I:14, ID/Parent:1159/0, LeftRight:false-false, 
-        ThisType:Identifier, ParentType:left, HasChildren:false, Source:a, I:15, ID/Parent:1170/0, LeftRight:true-true, 
-        ThisType:Literal, ParentType:right, HasChildren:false, Source:100, I:15, ID/Parent:1183/0, LeftRight:true-false, 
-NewRecordType:ReturnStatement - I:16 - Ix:1208 - HelperParentType = BlockStatement - HelperParentName = consequent
-    HelperXPath: p.0.expression.arguments.0.body.body.4.body.body.2.alternate.consequent.body.0
-    NestedParentType:BlockStatement+
-    RECORDS (4):
-        ThisType:ReturnStatement, ParentType:0, HasChildren:false, Source:return a-100;, I:16, ID/Parent:1208/0, LeftRight:false-false, 
-        ThisType:BinaryExpression, ParentType:argument, HasChildren:true, Source:a-100, I:17, ID/Parent:1219/0, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:left, HasChildren:false, Source:a, I:18, ID/Parent:1230/1219, LeftRight:true-true, 
-        ThisType:Literal, ParentType:right, HasChildren:false, Source:100, I:18, ID/Parent:1243/1219, LeftRight:true-false, 
-NewRecordType:ReturnStatement - I:12 - Ix:1257 - HelperParentType = BlockStatement - HelperParentName = consequent
-    HelperXPath: p.0.expression.arguments.0.body.body.4.body.body.3
-    NestedParentType:BlockStatement+
-    RECORDS (2):
-        ThisType:ReturnStatement, ParentType:3, HasChildren:false, Source:return aa;, I:12, ID/Parent:1257/0, LeftRight:false-false, 
-        ThisType:Identifier, ParentType:argument, HasChildren:false, Source:aa, I:13, ID/Parent:1268/0, LeftRight:true-true, 
-NewRecordType:VariableDeclarator - I:14 - Ix:1341 - HelperParentType = VariableDeclaration - HelperParentName = 0
-    HelperXPath: p.0.expression.arguments.0.body.body.5.body.body.0.declarations.0
-    NestedParentType:FunctionDeclaration > BlockStatement > VariableDeclaration+
-    RECORDS (3):
-        ThisType:VariableDeclarator, ParentType:0, HasChildren:false, Source:aaa=a, I:14, ID/Parent:1341/0, LeftRight:false-false, 
-        ThisType:Identifier, ParentType:id, HasChildren:false, Source:aaa, I:15, ID/Parent:1352/0, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:init, HasChildren:false, Source:a, I:15, ID/Parent:1364/0, LeftRight:true-false, 
-NewRecordType:ReturnStatement - I:12 - Ix:1377 - HelperParentType = VariableDeclaration - HelperParentName = 0
-    HelperXPath: p.0.expression.arguments.0.body.body.5.body.body.1
-    NestedParentType:FunctionDeclaration > BlockStatement > VariableDeclaration+
-    RECORDS (2):
-        ThisType:ReturnStatement, ParentType:1, HasChildren:false, Source:return aaa;, I:12, ID/Parent:1377/0, LeftRight:false-false, 
-        ThisType:Identifier, ParentType:argument, HasChildren:false, Source:aaa, I:13, ID/Parent:1388/0, LeftRight:true-true, 
-NewRecordType:VariableDeclarator - I:11 - Ix:1413 - HelperParentType = VariableDeclaration - HelperParentName = 6
-    HelperXPath: p.0.expression.arguments.0.body.body.6.declarations.0
-    NestedParentType:VariableDeclaration+
-    RECORDS (3):
-        ThisType:VariableDeclarator, ParentType:0, HasChildren:false, Source:blockC = [], I:11, ID/Parent:1413/0, LeftRight:false-false, 
-        ThisType:Identifier, ParentType:id, HasChildren:false, Source:blockC, I:12, ID/Parent:1424/0, LeftRight:true-true, 
-        ThisType:ArrayExpression, ParentType:init, HasChildren:false, Source:[], I:12, ID/Parent:1436/0, LeftRight:true-false, 
-NewRecordType:AssignmentExpression - I:10 - Ix:1460 - HelperParentType = ExpressionStatement - HelperParentName = 7
-    HelperXPath: p.0.expression.arguments.0.body.body.7.expression
-    NestedParentType:ExpressionStatement+
-    RECORDS (5):
-        ThisType:AssignmentExpression, ParentType:expression, HasChildren:false, Source:blockC[1] = {}, I:10, ID/Parent:1460/0, LeftRight:false-false, 
-        ThisType:MemberExpression, ParentType:left, HasChildren:true, Source:blockC[1], I:11, ID/Parent:1472/0, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:object, HasChildren:false, Source:blockC, I:12, ID/Parent:1483/1472, LeftRight:true-true, 
-        ThisType:Literal, ParentType:property, HasChildren:false, Source:1, I:12, ID/Parent:1495/1472, LeftRight:true-false, 
-        ThisType:ObjectExpression, ParentType:right, HasChildren:false, Source:{}, I:11, ID/Parent:1509/0, LeftRight:true-false, 
-NewRecordType:AssignmentExpression - I:10 - Ix:1532 - HelperParentType = ExpressionStatement - HelperParentName = 8
-    HelperXPath: p.0.expression.arguments.0.body.body.8.expression
+        ThisType:AssignmentExpression, ParentType:expression, HasChildren:false, Source:blockC[1] = {}, I:10, ID/Parent:179/0, LeftRight:false-false, 
+        ThisType:MemberExpression, ParentType:left, HasChildren:true, Source:blockC[1], I:11, ID/Parent:191/0, LeftRight:true-true, 
+        ThisType:Identifier, ParentType:object, HasChildren:false, Source:blockC, I:12, ID/Parent:202/191, LeftRight:true-true, 
+        ThisType:Literal, ParentType:property, HasChildren:false, Source:1, I:12, ID/Parent:214/191, LeftRight:true-false, 
+        ThisType:ObjectExpression, ParentType:right, HasChildren:false, Source:{}, I:11, ID/Parent:228/0, LeftRight:true-false, 
+NewRecordType:AssignmentExpression - I:10 - Ix:251 - HelperParentType = ExpressionStatement - HelperParentName = 2
+    HelperXPath: p.0.expression.arguments.0.body.body.2.expression
     NestedParentType:ExpressionStatement+
     RECORDS (7):
-        ThisType:AssignmentExpression, ParentType:expression, HasChildren:false, Source:blockC[1].X= 5, I:10, ID/Parent:1532/0, LeftRight:false-false, 
-        ThisType:MemberExpression, ParentType:left, HasChildren:true, Source:blockC[1].X, I:11, ID/Parent:1544/0, LeftRight:true-true, 
-        ThisType:MemberExpression, ParentType:object, HasChildren:true, Source:blockC[1], I:12, ID/Parent:1555/1544, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:object, HasChildren:false, Source:blockC, I:13, ID/Parent:1566/1555, LeftRight:true-true, 
-        ThisType:Literal, ParentType:property, HasChildren:false, Source:1, I:13, ID/Parent:1578/1555, LeftRight:true-false, 
-        ThisType:Identifier, ParentType:property, HasChildren:false, Source:X, I:12, ID/Parent:1592/1544, LeftRight:true-false, 
-        ThisType:Literal, ParentType:right, HasChildren:false, Source:5, I:11, ID/Parent:1605/0, LeftRight:true-false, 
-NewRecordType:AssignmentExpression - I:10 - Ix:1629 - HelperParentType = ExpressionStatement - HelperParentName = 9
-    HelperXPath: p.0.expression.arguments.0.body.body.9.expression
+        ThisType:AssignmentExpression, ParentType:expression, HasChildren:false, Source:blockC[1].X= 5, I:10, ID/Parent:251/0, LeftRight:false-false, 
+        ThisType:MemberExpression, ParentType:left, HasChildren:true, Source:blockC[1].X, I:11, ID/Parent:263/0, LeftRight:true-true, 
+        ThisType:MemberExpression, ParentType:object, HasChildren:true, Source:blockC[1], I:12, ID/Parent:274/263, LeftRight:true-true, 
+        ThisType:Identifier, ParentType:object, HasChildren:false, Source:blockC, I:13, ID/Parent:285/274, LeftRight:true-true, 
+        ThisType:Literal, ParentType:property, HasChildren:false, Source:1, I:13, ID/Parent:297/274, LeftRight:true-false, 
+        ThisType:Identifier, ParentType:property, HasChildren:false, Source:X, I:12, ID/Parent:311/263, LeftRight:true-false, 
+        ThisType:Literal, ParentType:right, HasChildren:false, Source:5, I:11, ID/Parent:324/0, LeftRight:true-false, 
+NewRecordType:AssignmentExpression - I:10 - Ix:348 - HelperParentType = ExpressionStatement - HelperParentName = 3
+    HelperXPath: p.0.expression.arguments.0.body.body.3.expression
     NestedParentType:ExpressionStatement+
     RECORDS (5):
-        ThisType:AssignmentExpression, ParentType:expression, HasChildren:false, Source:blockC[2] = 5, I:10, ID/Parent:1629/0, LeftRight:false-false, 
-        ThisType:MemberExpression, ParentType:left, HasChildren:true, Source:blockC[2], I:11, ID/Parent:1641/0, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:object, HasChildren:false, Source:blockC, I:12, ID/Parent:1652/1641, LeftRight:true-true, 
-        ThisType:Literal, ParentType:property, HasChildren:false, Source:2, I:12, ID/Parent:1664/1641, LeftRight:true-false, 
-        ThisType:Literal, ParentType:right, HasChildren:false, Source:5, I:11, ID/Parent:1678/0, LeftRight:true-false, 
-NewRecordType:VariableDeclarator - I:11 - Ix:1703 - HelperParentType = VariableDeclaration - HelperParentName = 10
-    HelperXPath: p.0.expression.arguments.0.body.body.10.declarations.0
+        ThisType:AssignmentExpression, ParentType:expression, HasChildren:false, Source:blockC[2] = 5, I:10, ID/Parent:348/0, LeftRight:false-false, 
+        ThisType:MemberExpression, ParentType:left, HasChildren:true, Source:blockC[2], I:11, ID/Parent:360/0, LeftRight:true-true, 
+        ThisType:Identifier, ParentType:object, HasChildren:false, Source:blockC, I:12, ID/Parent:371/360, LeftRight:true-true, 
+        ThisType:Literal, ParentType:property, HasChildren:false, Source:2, I:12, ID/Parent:383/360, LeftRight:true-false, 
+        ThisType:Literal, ParentType:right, HasChildren:false, Source:5, I:11, ID/Parent:397/0, LeftRight:true-false, 
+NewRecordType:VariableDeclarator - I:11 - Ix:422 - HelperParentType = VariableDeclaration - HelperParentName = 4
+    HelperXPath: p.0.expression.arguments.0.body.body.4.declarations.0
     NestedParentType:VariableDeclaration+
     RECORDS (3):
-        ThisType:VariableDeclarator, ParentType:0, HasChildren:false, Source:j = 1, I:11, ID/Parent:1703/0, LeftRight:false-false, 
-        ThisType:Identifier, ParentType:id, HasChildren:false, Source:j, I:12, ID/Parent:1714/0, LeftRight:true-true, 
-        ThisType:Literal, ParentType:init, HasChildren:false, Source:1, I:12, ID/Parent:1726/0, LeftRight:true-false, 
-NewRecordType:VariableDeclarator - I:11 - Ix:1752 - HelperParentType = VariableDeclaration - HelperParentName = 11
-    HelperXPath: p.0.expression.arguments.0.body.body.11.declarations.0
+        ThisType:VariableDeclarator, ParentType:0, HasChildren:false, Source:j = 1, I:11, ID/Parent:422/0, LeftRight:false-false, 
+        ThisType:Identifier, ParentType:id, HasChildren:false, Source:j, I:12, ID/Parent:433/0, LeftRight:true-true, 
+        ThisType:Literal, ParentType:init, HasChildren:false, Source:1, I:12, ID/Parent:445/0, LeftRight:true-false, 
+NewRecordType:VariableDeclarator - I:11 - Ix:471 - HelperParentType = VariableDeclaration - HelperParentName = 5
+    HelperXPath: p.0.expression.arguments.0.body.body.5.declarations.0
     NestedParentType:VariableDeclaration+
     RECORDS (49):
-        ThisType:VariableDeclarator, ParentType:0, HasChildren:false, Source:i = $(window).width()+window.innerHeight+5+a5(5)+a5($(window).width())+a5(window.innerWidth)+blockC[2]+blockC[1].X+blockC[a1(2)], I:11, ID/Parent:1752/0, LeftRight:false-false, 
-        ThisType:Identifier, ParentType:id, HasChildren:false, Source:i, I:12, ID/Parent:1763/0, LeftRight:true-true, 
-        ThisType:BinaryExpression, ParentType:init, HasChildren:true, Source:$(window).width()+window.innerHeight+5+a5(5)+a5($(window).width())+a5(window.innerWidth)+blockC[2]+blockC[1].X+blockC[a1(2)], I:12, ID/Parent:1775/0, LeftRight:true-false, 
-        ThisType:BinaryExpression, ParentType:left, HasChildren:true, Source:$(window).width()+window.innerHeight+5+a5(5)+a5($(window).width())+a5(window.innerWidth)+blockC[2]+blockC[1].X, I:13, ID/Parent:1786/1775, LeftRight:true-true, 
-        ThisType:BinaryExpression, ParentType:left, HasChildren:true, Source:$(window).width()+window.innerHeight+5+a5(5)+a5($(window).width())+a5(window.innerWidth)+blockC[2], I:14, ID/Parent:1797/1786, LeftRight:true-true, 
-        ThisType:BinaryExpression, ParentType:left, HasChildren:true, Source:$(window).width()+window.innerHeight+5+a5(5)+a5($(window).width())+a5(window.innerWidth), I:15, ID/Parent:1808/1797, LeftRight:true-true, 
-        ThisType:BinaryExpression, ParentType:left, HasChildren:true, Source:$(window).width()+window.innerHeight+5+a5(5)+a5($(window).width()), I:16, ID/Parent:1819/1808, LeftRight:true-true, 
-        ThisType:BinaryExpression, ParentType:left, HasChildren:true, Source:$(window).width()+window.innerHeight+5+a5(5), I:17, ID/Parent:1830/1819, LeftRight:true-true, 
-        ThisType:BinaryExpression, ParentType:left, HasChildren:true, Source:$(window).width()+window.innerHeight+5, I:18, ID/Parent:1841/1830, LeftRight:true-true, 
-        ThisType:BinaryExpression, ParentType:left, HasChildren:true, Source:$(window).width()+window.innerHeight, I:19, ID/Parent:1852/1841, LeftRight:true-true, 
-        ThisType:CallExpression, ParentType:left, HasChildren:true, Source:$(window).width(), I:20, ID/Parent:1863/1852, LeftRight:true-true, 
-        ThisType:MemberExpression, ParentType:callee, HasChildren:true, Source:$(window).width, I:21, ID/Parent:1874/1863, LeftRight:true-true, 
-        ThisType:CallExpression, ParentType:object, HasChildren:true, Source:$(window), I:22, ID/Parent:1885/1874, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:callee, HasChildren:true, Source:$, I:23, ID/Parent:1896/1885, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:0, HasChildren:false, Source:window, I:24, ID/Parent:1909/1896, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:property, HasChildren:false, Source:width, I:22, ID/Parent:1921/1874, LeftRight:true-false, 
-        ThisType:MemberExpression, ParentType:right, HasChildren:true, Source:window.innerHeight, I:20, ID/Parent:1936/1852, LeftRight:true-false, 
-        ThisType:Identifier, ParentType:object, HasChildren:false, Source:window, I:21, ID/Parent:1947/1936, LeftRight:true-false, 
-        ThisType:Identifier, ParentType:property, HasChildren:false, Source:innerHeight, I:21, ID/Parent:1959/1936, LeftRight:true-true, 
-        ThisType:Literal, ParentType:right, HasChildren:false, Source:5, I:19, ID/Parent:1973/1841, LeftRight:true-false, 
-        ThisType:CallExpression, ParentType:right, HasChildren:true, Source:a5(5), I:18, ID/Parent:1987/1830, LeftRight:true-false, 
-        ThisType:Identifier, ParentType:callee, HasChildren:true, Source:a5, I:19, ID/Parent:1998/1987, LeftRight:true-true, 
-        ThisType:Literal, ParentType:0, HasChildren:false, Source:5, I:20, ID/Parent:2011/1998, LeftRight:true-true, 
-        ThisType:CallExpression, ParentType:right, HasChildren:true, Source:a5($(window).width()), I:17, ID/Parent:2025/1819, LeftRight:true-false, 
-        ThisType:Identifier, ParentType:callee, HasChildren:true, Source:a5, I:18, ID/Parent:2036/2025, LeftRight:true-true, 
-        ThisType:CallExpression, ParentType:0, HasChildren:true, Source:$(window).width(), I:19, ID/Parent:2049/2036, LeftRight:true-false, 
-        ThisType:MemberExpression, ParentType:callee, HasChildren:true, Source:$(window).width, I:20, ID/Parent:2060/2049, LeftRight:true-false, 
-        ThisType:CallExpression, ParentType:object, HasChildren:true, Source:$(window), I:21, ID/Parent:2071/2060, LeftRight:true-false, 
-        ThisType:Identifier, ParentType:callee, HasChildren:true, Source:$, I:22, ID/Parent:2082/2071, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:0, HasChildren:false, Source:window, I:23, ID/Parent:2095/2082, LeftRight:true-false, 
-        ThisType:Identifier, ParentType:property, HasChildren:false, Source:width, I:21, ID/Parent:2107/2060, LeftRight:true-true, 
-        ThisType:CallExpression, ParentType:right, HasChildren:true, Source:a5(window.innerWidth), I:16, ID/Parent:2122/1808, LeftRight:true-false, 
-        ThisType:Identifier, ParentType:callee, HasChildren:true, Source:a5, I:17, ID/Parent:2133/2122, LeftRight:true-true, 
-        ThisType:MemberExpression, ParentType:0, HasChildren:true, Source:window.innerWidth, I:18, ID/Parent:2146/2133, LeftRight:true-false, 
-        ThisType:Identifier, ParentType:object, HasChildren:false, Source:window, I:19, ID/Parent:2157/2146, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:property, HasChildren:false, Source:innerWidth, I:19, ID/Parent:2169/2146, LeftRight:true-false, 
-        ThisType:MemberExpression, ParentType:right, HasChildren:true, Source:blockC[2], I:15, ID/Parent:2183/1797, LeftRight:true-false, 
-        ThisType:Identifier, ParentType:object, HasChildren:false, Source:blockC, I:16, ID/Parent:2194/2183, LeftRight:true-true, 
-        ThisType:Literal, ParentType:property, HasChildren:false, Source:2, I:16, ID/Parent:2206/2183, LeftRight:true-false, 
-        ThisType:MemberExpression, ParentType:right, HasChildren:true, Source:blockC[1].X, I:14, ID/Parent:2221/1786, LeftRight:true-false, 
-        ThisType:MemberExpression, ParentType:object, HasChildren:true, Source:blockC[1], I:15, ID/Parent:2232/2221, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:object, HasChildren:false, Source:blockC, I:16, ID/Parent:2243/2232, LeftRight:true-true, 
-        ThisType:Literal, ParentType:property, HasChildren:false, Source:1, I:16, ID/Parent:2255/2232, LeftRight:true-false, 
-        ThisType:Identifier, ParentType:property, HasChildren:false, Source:X, I:15, ID/Parent:2269/2221, LeftRight:true-false, 
-        ThisType:MemberExpression, ParentType:right, HasChildren:true, Source:blockC[a1(2)], I:13, ID/Parent:2283/1775, LeftRight:true-false, 
-        ThisType:Identifier, ParentType:object, HasChildren:false, Source:blockC, I:14, ID/Parent:2294/2283, LeftRight:true-true, 
-        ThisType:CallExpression, ParentType:property, HasChildren:true, Source:a1(2), I:14, ID/Parent:2306/2283, LeftRight:true-false, 
-        ThisType:Identifier, ParentType:callee, HasChildren:true, Source:a1, I:15, ID/Parent:2317/2306, LeftRight:true-true, 
-        ThisType:Literal, ParentType:0, HasChildren:false, Source:2, I:16, ID/Parent:2330/2317, LeftRight:true-true, 
-NewRecordType:LogicalExpression - I:10 - Ix:2356 - HelperParentType = IfStatement - HelperParentName = 12
-    HelperXPath: p.0.expression.arguments.0.body.body.12.test
+        ThisType:VariableDeclarator, ParentType:0, HasChildren:false, Source:i = $(window).width()+window.innerHeight+5+a5(5)+a5($(window).width())+a5(window.innerWidth)+blockC[2]+blockC[1].X+blockC[a1(2)], I:11, ID/Parent:471/0, LeftRight:false-false, 
+        ThisType:Identifier, ParentType:id, HasChildren:false, Source:i, I:12, ID/Parent:482/0, LeftRight:true-true, 
+        ThisType:BinaryExpression, ParentType:init, HasChildren:true, Source:$(window).width()+window.innerHeight+5+a5(5)+a5($(window).width())+a5(window.innerWidth)+blockC[2]+blockC[1].X+blockC[a1(2)], I:12, ID/Parent:494/0, LeftRight:true-false, 
+        ThisType:BinaryExpression, ParentType:left, HasChildren:true, Source:$(window).width()+window.innerHeight+5+a5(5)+a5($(window).width())+a5(window.innerWidth)+blockC[2]+blockC[1].X, I:13, ID/Parent:505/494, LeftRight:true-true, 
+        ThisType:BinaryExpression, ParentType:left, HasChildren:true, Source:$(window).width()+window.innerHeight+5+a5(5)+a5($(window).width())+a5(window.innerWidth)+blockC[2], I:14, ID/Parent:516/505, LeftRight:true-true, 
+        ThisType:BinaryExpression, ParentType:left, HasChildren:true, Source:$(window).width()+window.innerHeight+5+a5(5)+a5($(window).width())+a5(window.innerWidth), I:15, ID/Parent:527/516, LeftRight:true-true, 
+        ThisType:BinaryExpression, ParentType:left, HasChildren:true, Source:$(window).width()+window.innerHeight+5+a5(5)+a5($(window).width()), I:16, ID/Parent:538/527, LeftRight:true-true, 
+        ThisType:BinaryExpression, ParentType:left, HasChildren:true, Source:$(window).width()+window.innerHeight+5+a5(5), I:17, ID/Parent:549/538, LeftRight:true-true, 
+        ThisType:BinaryExpression, ParentType:left, HasChildren:true, Source:$(window).width()+window.innerHeight+5, I:18, ID/Parent:560/549, LeftRight:true-true, 
+        ThisType:BinaryExpression, ParentType:left, HasChildren:true, Source:$(window).width()+window.innerHeight, I:19, ID/Parent:571/560, LeftRight:true-true, 
+        ThisType:CallExpression, ParentType:left, HasChildren:true, Source:$(window).width(), I:20, ID/Parent:582/571, LeftRight:true-true, 
+        ThisType:MemberExpression, ParentType:callee, HasChildren:true, Source:$(window).width, I:21, ID/Parent:593/582, LeftRight:true-true, 
+        ThisType:CallExpression, ParentType:object, HasChildren:true, Source:$(window), I:22, ID/Parent:604/593, LeftRight:true-true, 
+        ThisType:Identifier, ParentType:callee, HasChildren:true, Source:$, I:23, ID/Parent:615/604, LeftRight:true-true, 
+        ThisType:Identifier, ParentType:0, HasChildren:false, Source:window, I:24, ID/Parent:628/615, LeftRight:true-true, 
+        ThisType:Identifier, ParentType:property, HasChildren:false, Source:width, I:22, ID/Parent:640/593, LeftRight:true-false, 
+        ThisType:MemberExpression, ParentType:right, HasChildren:true, Source:window.innerHeight, I:20, ID/Parent:655/571, LeftRight:true-false, 
+        ThisType:Identifier, ParentType:object, HasChildren:false, Source:window, I:21, ID/Parent:666/655, LeftRight:true-false, 
+        ThisType:Identifier, ParentType:property, HasChildren:false, Source:innerHeight, I:21, ID/Parent:678/655, LeftRight:true-true, 
+        ThisType:Literal, ParentType:right, HasChildren:false, Source:5, I:19, ID/Parent:692/560, LeftRight:true-false, 
+        ThisType:CallExpression, ParentType:right, HasChildren:true, Source:a5(5), I:18, ID/Parent:706/549, LeftRight:true-false, 
+        ThisType:Identifier, ParentType:callee, HasChildren:true, Source:a5, I:19, ID/Parent:717/706, LeftRight:true-true, 
+        ThisType:Literal, ParentType:0, HasChildren:false, Source:5, I:20, ID/Parent:730/717, LeftRight:true-true, 
+        ThisType:CallExpression, ParentType:right, HasChildren:true, Source:a5($(window).width()), I:17, ID/Parent:744/538, LeftRight:true-false, 
+        ThisType:Identifier, ParentType:callee, HasChildren:true, Source:a5, I:18, ID/Parent:755/744, LeftRight:true-true, 
+        ThisType:CallExpression, ParentType:0, HasChildren:true, Source:$(window).width(), I:19, ID/Parent:768/755, LeftRight:true-false, 
+        ThisType:MemberExpression, ParentType:callee, HasChildren:true, Source:$(window).width, I:20, ID/Parent:779/768, LeftRight:true-false, 
+        ThisType:CallExpression, ParentType:object, HasChildren:true, Source:$(window), I:21, ID/Parent:790/779, LeftRight:true-false, 
+        ThisType:Identifier, ParentType:callee, HasChildren:true, Source:$, I:22, ID/Parent:801/790, LeftRight:true-true, 
+        ThisType:Identifier, ParentType:0, HasChildren:false, Source:window, I:23, ID/Parent:814/801, LeftRight:true-false, 
+        ThisType:Identifier, ParentType:property, HasChildren:false, Source:width, I:21, ID/Parent:826/779, LeftRight:true-true, 
+        ThisType:CallExpression, ParentType:right, HasChildren:true, Source:a5(window.innerWidth), I:16, ID/Parent:841/527, LeftRight:true-false, 
+        ThisType:Identifier, ParentType:callee, HasChildren:true, Source:a5, I:17, ID/Parent:852/841, LeftRight:true-true, 
+        ThisType:MemberExpression, ParentType:0, HasChildren:true, Source:window.innerWidth, I:18, ID/Parent:865/852, LeftRight:true-false, 
+        ThisType:Identifier, ParentType:object, HasChildren:false, Source:window, I:19, ID/Parent:876/865, LeftRight:true-true, 
+        ThisType:Identifier, ParentType:property, HasChildren:false, Source:innerWidth, I:19, ID/Parent:888/865, LeftRight:true-false, 
+        ThisType:MemberExpression, ParentType:right, HasChildren:true, Source:blockC[2], I:15, ID/Parent:902/516, LeftRight:true-false, 
+        ThisType:Identifier, ParentType:object, HasChildren:false, Source:blockC, I:16, ID/Parent:913/902, LeftRight:true-true, 
+        ThisType:Literal, ParentType:property, HasChildren:false, Source:2, I:16, ID/Parent:925/902, LeftRight:true-false, 
+        ThisType:MemberExpression, ParentType:right, HasChildren:true, Source:blockC[1].X, I:14, ID/Parent:940/505, LeftRight:true-false, 
+        ThisType:MemberExpression, ParentType:object, HasChildren:true, Source:blockC[1], I:15, ID/Parent:951/940, LeftRight:true-true, 
+        ThisType:Identifier, ParentType:object, HasChildren:false, Source:blockC, I:16, ID/Parent:962/951, LeftRight:true-true, 
+        ThisType:Literal, ParentType:property, HasChildren:false, Source:1, I:16, ID/Parent:974/951, LeftRight:true-false, 
+        ThisType:Identifier, ParentType:property, HasChildren:false, Source:X, I:15, ID/Parent:988/940, LeftRight:true-false, 
+        ThisType:MemberExpression, ParentType:right, HasChildren:true, Source:blockC[a1(2)], I:13, ID/Parent:1002/494, LeftRight:true-false, 
+        ThisType:Identifier, ParentType:object, HasChildren:false, Source:blockC, I:14, ID/Parent:1013/1002, LeftRight:true-true, 
+        ThisType:CallExpression, ParentType:property, HasChildren:true, Source:a1(2), I:14, ID/Parent:1025/1002, LeftRight:true-false, 
+        ThisType:Identifier, ParentType:callee, HasChildren:true, Source:a1, I:15, ID/Parent:1036/1025, LeftRight:true-true, 
+        ThisType:Literal, ParentType:0, HasChildren:false, Source:2, I:16, ID/Parent:1049/1036, LeftRight:true-true, 
+NewRecordType:LogicalExpression - I:10 - Ix:1075 - HelperParentType = IfStatement - HelperParentName = 6
+    HelperXPath: p.0.expression.arguments.0.body.body.6.test
     NestedParentType:IfStatement+
     RECORDS (15):
-        ThisType:LogicalExpression, ParentType:test, HasChildren:false, Source:(a1(i)>j) && (i>4) && a5(5)>20, I:10, ID/Parent:2356/0, LeftRight:false-false, 
-        ThisType:LogicalExpression, ParentType:left, HasChildren:true, Source:(a1(i)>j) && (i>4), I:11, ID/Parent:2367/0, LeftRight:true-true, 
-        ThisType:BinaryExpression, ParentType:left, HasChildren:true, Source:a1(i)>j, I:12, ID/Parent:2378/2367, LeftRight:true-true, 
-        ThisType:CallExpression, ParentType:left, HasChildren:true, Source:a1(i), I:13, ID/Parent:2389/2378, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:callee, HasChildren:true, Source:a1, I:14, ID/Parent:2400/2389, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:0, HasChildren:false, Source:i, I:15, ID/Parent:2413/2400, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:right, HasChildren:false, Source:j, I:13, ID/Parent:2426/2378, LeftRight:true-false, 
-        ThisType:BinaryExpression, ParentType:right, HasChildren:true, Source:i>4, I:12, ID/Parent:2439/2367, LeftRight:true-false, 
-        ThisType:Identifier, ParentType:left, HasChildren:false, Source:i, I:13, ID/Parent:2450/2439, LeftRight:true-true, 
-        ThisType:Literal, ParentType:right, HasChildren:false, Source:4, I:13, ID/Parent:2463/2439, LeftRight:true-false, 
-        ThisType:BinaryExpression, ParentType:right, HasChildren:true, Source:a5(5)>20, I:11, ID/Parent:2477/0, LeftRight:true-false, 
-        ThisType:CallExpression, ParentType:left, HasChildren:true, Source:a5(5), I:12, ID/Parent:2488/2477, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:callee, HasChildren:true, Source:a5, I:13, ID/Parent:2499/2488, LeftRight:true-true, 
-        ThisType:Literal, ParentType:0, HasChildren:false, Source:5, I:14, ID/Parent:2512/2499, LeftRight:true-false, 
-        ThisType:Literal, ParentType:right, HasChildren:false, Source:20, I:12, ID/Parent:2526/2477, LeftRight:true-false, 
-NewRecordType:BinaryExpression - I:15 - Ix:2610 - HelperParentType = ExpressionStatement - HelperParentName = 0
-    HelperXPath: p.0.expression.arguments.0.body.body.12.consequent.body.0.expression.arguments.0
+        ThisType:LogicalExpression, ParentType:test, HasChildren:false, Source:(a1(i)>j) && (i>4) && a5(5)>20, I:10, ID/Parent:1075/0, LeftRight:false-false, 
+        ThisType:LogicalExpression, ParentType:left, HasChildren:true, Source:(a1(i)>j) && (i>4), I:11, ID/Parent:1086/0, LeftRight:true-true, 
+        ThisType:BinaryExpression, ParentType:left, HasChildren:true, Source:a1(i)>j, I:12, ID/Parent:1097/1086, LeftRight:true-true, 
+        ThisType:CallExpression, ParentType:left, HasChildren:true, Source:a1(i), I:13, ID/Parent:1108/1097, LeftRight:true-true, 
+        ThisType:Identifier, ParentType:callee, HasChildren:true, Source:a1, I:14, ID/Parent:1119/1108, LeftRight:true-true, 
+        ThisType:Identifier, ParentType:0, HasChildren:false, Source:i, I:15, ID/Parent:1132/1119, LeftRight:true-true, 
+        ThisType:Identifier, ParentType:right, HasChildren:false, Source:j, I:13, ID/Parent:1145/1097, LeftRight:true-false, 
+        ThisType:BinaryExpression, ParentType:right, HasChildren:true, Source:i>4, I:12, ID/Parent:1158/1086, LeftRight:true-false, 
+        ThisType:Identifier, ParentType:left, HasChildren:false, Source:i, I:13, ID/Parent:1169/1158, LeftRight:true-true, 
+        ThisType:Literal, ParentType:right, HasChildren:false, Source:4, I:13, ID/Parent:1182/1158, LeftRight:true-false, 
+        ThisType:BinaryExpression, ParentType:right, HasChildren:true, Source:a5(5)>20, I:11, ID/Parent:1196/0, LeftRight:true-false, 
+        ThisType:CallExpression, ParentType:left, HasChildren:true, Source:a5(5), I:12, ID/Parent:1207/1196, LeftRight:true-true, 
+        ThisType:Identifier, ParentType:callee, HasChildren:true, Source:a5, I:13, ID/Parent:1218/1207, LeftRight:true-true, 
+        ThisType:Literal, ParentType:0, HasChildren:false, Source:5, I:14, ID/Parent:1231/1218, LeftRight:true-false, 
+        ThisType:Literal, ParentType:right, HasChildren:false, Source:20, I:12, ID/Parent:1245/1196, LeftRight:true-false, 
+NewRecordType:BinaryExpression - I:15 - Ix:1329 - HelperParentType = ExpressionStatement - HelperParentName = 0
+    HelperXPath: p.0.expression.arguments.0.body.body.6.consequent.body.0.expression.arguments.0
     NestedParentType:BlockStatement > ExpressionStatement+
     RECORDS (3):
-        ThisType:BinaryExpression, ParentType:0, HasChildren:false, Source:5>6, I:15, ID/Parent:2610/0, LeftRight:false-false, 
-        ThisType:Literal, ParentType:left, HasChildren:false, Source:5, I:16, ID/Parent:2621/0, LeftRight:true-true, 
-        ThisType:Literal, ParentType:right, HasChildren:false, Source:6, I:16, ID/Parent:2635/0, LeftRight:true-false, 
-NewRecordType:VariableDeclarator - I:12 - Ix:2672 - HelperParentType = VariableDeclaration - HelperParentName = init
-    HelperXPath: p.0.expression.arguments.0.body.body.13.init.declarations.0
+        ThisType:BinaryExpression, ParentType:0, HasChildren:false, Source:5>6, I:15, ID/Parent:1329/0, LeftRight:false-false, 
+        ThisType:Literal, ParentType:left, HasChildren:false, Source:5, I:16, ID/Parent:1340/0, LeftRight:true-true, 
+        ThisType:Literal, ParentType:right, HasChildren:false, Source:6, I:16, ID/Parent:1354/0, LeftRight:true-false, 
+NewRecordType:VariableDeclarator - I:12 - Ix:1391 - HelperParentType = VariableDeclaration - HelperParentName = init
+    HelperXPath: p.0.expression.arguments.0.body.body.7.init.declarations.0
     NestedParentType:ForStatement > VariableDeclaration+
     RECORDS (3):
-        ThisType:VariableDeclarator, ParentType:0, HasChildren:false, Source:k=0, I:12, ID/Parent:2672/0, LeftRight:false-false, 
-        ThisType:Identifier, ParentType:id, HasChildren:false, Source:k, I:13, ID/Parent:2683/0, LeftRight:true-true, 
-        ThisType:Literal, ParentType:init, HasChildren:false, Source:0, I:13, ID/Parent:2695/0, LeftRight:true-false, 
-NewRecordType:BinaryExpression - I:10 - Ix:2709 - HelperParentType = VariableDeclaration - HelperParentName = init
-    HelperXPath: p.0.expression.arguments.0.body.body.13.test
+        ThisType:VariableDeclarator, ParentType:0, HasChildren:false, Source:k=0, I:12, ID/Parent:1391/0, LeftRight:false-false, 
+        ThisType:Identifier, ParentType:id, HasChildren:false, Source:k, I:13, ID/Parent:1402/0, LeftRight:true-true, 
+        ThisType:Literal, ParentType:init, HasChildren:false, Source:0, I:13, ID/Parent:1414/0, LeftRight:true-false, 
+NewRecordType:BinaryExpression - I:10 - Ix:1428 - HelperParentType = VariableDeclaration - HelperParentName = init
+    HelperXPath: p.0.expression.arguments.0.body.body.7.test
     NestedParentType:ForStatement > VariableDeclaration+
     RECORDS (3):
-        ThisType:BinaryExpression, ParentType:test, HasChildren:false, Source:k<5, I:10, ID/Parent:2709/0, LeftRight:false-false, 
-        ThisType:Identifier, ParentType:left, HasChildren:false, Source:k, I:11, ID/Parent:2720/0, LeftRight:true-true, 
-        ThisType:Literal, ParentType:right, HasChildren:false, Source:5, I:11, ID/Parent:2733/0, LeftRight:true-false, 
-NewRecordType:AssignmentExpression - I:10 - Ix:2746 - HelperParentType = VariableDeclaration - HelperParentName = init
-    HelperXPath: p.0.expression.arguments.0.body.body.13.update
+        ThisType:BinaryExpression, ParentType:test, HasChildren:false, Source:k<5, I:10, ID/Parent:1428/0, LeftRight:false-false, 
+        ThisType:Identifier, ParentType:left, HasChildren:false, Source:k, I:11, ID/Parent:1439/0, LeftRight:true-true, 
+        ThisType:Literal, ParentType:right, HasChildren:false, Source:5, I:11, ID/Parent:1452/0, LeftRight:true-false, 
+NewRecordType:AssignmentExpression - I:10 - Ix:1465 - HelperParentType = VariableDeclaration - HelperParentName = init
+    HelperXPath: p.0.expression.arguments.0.body.body.7.update
     NestedParentType:ForStatement > VariableDeclaration+
     RECORDS (5):
-        ThisType:AssignmentExpression, ParentType:update, HasChildren:false, Source:k=k+1, I:10, ID/Parent:2746/0, LeftRight:false-false, 
-        ThisType:Identifier, ParentType:left, HasChildren:false, Source:k, I:11, ID/Parent:2758/0, LeftRight:true-true, 
-        ThisType:BinaryExpression, ParentType:right, HasChildren:true, Source:k+1, I:11, ID/Parent:2770/0, LeftRight:true-false, 
-        ThisType:Identifier, ParentType:left, HasChildren:false, Source:k, I:12, ID/Parent:2781/2770, LeftRight:true-true, 
-        ThisType:Literal, ParentType:right, HasChildren:false, Source:1, I:12, ID/Parent:2794/2770, LeftRight:true-false, 
-NewRecordType:AssignmentExpression - I:13 - Ix:2830 - HelperParentType = ExpressionStatement - HelperParentName = 0
-    HelperXPath: p.0.expression.arguments.0.body.body.13.body.body.0.expression
+        ThisType:AssignmentExpression, ParentType:update, HasChildren:false, Source:k=k+1, I:10, ID/Parent:1465/0, LeftRight:false-false, 
+        ThisType:Identifier, ParentType:left, HasChildren:false, Source:k, I:11, ID/Parent:1477/0, LeftRight:true-true, 
+        ThisType:BinaryExpression, ParentType:right, HasChildren:true, Source:k+1, I:11, ID/Parent:1489/0, LeftRight:true-false, 
+        ThisType:Identifier, ParentType:left, HasChildren:false, Source:k, I:12, ID/Parent:1500/1489, LeftRight:true-true, 
+        ThisType:Literal, ParentType:right, HasChildren:false, Source:1, I:12, ID/Parent:1513/1489, LeftRight:true-false, 
+NewRecordType:AssignmentExpression - I:13 - Ix:1549 - HelperParentType = ExpressionStatement - HelperParentName = 0
+    HelperXPath: p.0.expression.arguments.0.body.body.7.body.body.0.expression
     NestedParentType:BlockStatement > ExpressionStatement+
     RECORDS (5):
-        ThisType:AssignmentExpression, ParentType:expression, HasChildren:false, Source:i=k+5, I:13, ID/Parent:2830/0, LeftRight:false-false, 
-        ThisType:Identifier, ParentType:left, HasChildren:false, Source:i, I:14, ID/Parent:2842/0, LeftRight:true-true, 
-        ThisType:BinaryExpression, ParentType:right, HasChildren:true, Source:k+5, I:14, ID/Parent:2854/0, LeftRight:true-false, 
-        ThisType:Identifier, ParentType:left, HasChildren:false, Source:k, I:15, ID/Parent:2865/2854, LeftRight:true-true, 
-        ThisType:Literal, ParentType:right, HasChildren:false, Source:5, I:15, ID/Parent:2878/2854, LeftRight:true-false, 
-NewRecordType:BinaryExpression - I:15 - Ix:2950 - HelperParentType = ExpressionStatement - HelperParentName = 1
-    HelperXPath: p.0.expression.arguments.0.body.body.13.body.body.1.expression.arguments.0
+        ThisType:AssignmentExpression, ParentType:expression, HasChildren:false, Source:i=k+5, I:13, ID/Parent:1549/0, LeftRight:false-false, 
+        ThisType:Identifier, ParentType:left, HasChildren:false, Source:i, I:14, ID/Parent:1561/0, LeftRight:true-true, 
+        ThisType:BinaryExpression, ParentType:right, HasChildren:true, Source:k+5, I:14, ID/Parent:1573/0, LeftRight:true-false, 
+        ThisType:Identifier, ParentType:left, HasChildren:false, Source:k, I:15, ID/Parent:1584/1573, LeftRight:true-true, 
+        ThisType:Literal, ParentType:right, HasChildren:false, Source:5, I:15, ID/Parent:1597/1573, LeftRight:true-false, 
+NewRecordType:BinaryExpression - I:15 - Ix:1669 - HelperParentType = ExpressionStatement - HelperParentName = 1
+    HelperXPath: p.0.expression.arguments.0.body.body.7.body.body.1.expression.arguments.0
     NestedParentType:ExpressionStatement+
     RECORDS (9):
-        ThisType:BinaryExpression, ParentType:0, HasChildren:false, Source:k+' ==== '+a5(k)+i, I:15, ID/Parent:2950/0, LeftRight:false-false, 
-        ThisType:BinaryExpression, ParentType:left, HasChildren:true, Source:k+' ==== '+a5(k), I:16, ID/Parent:2961/0, LeftRight:true-true, 
-        ThisType:BinaryExpression, ParentType:left, HasChildren:true, Source:k+' ==== ', I:17, ID/Parent:2972/2961, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:left, HasChildren:false, Source:k, I:18, ID/Parent:2983/2972, LeftRight:true-true, 
-        ThisType:Literal, ParentType:right, HasChildren:false, Source:' ==== ', I:18, ID/Parent:2996/2972, LeftRight:true-false, 
-        ThisType:CallExpression, ParentType:right, HasChildren:true, Source:a5(k), I:17, ID/Parent:3010/2961, LeftRight:true-false, 
-        ThisType:Identifier, ParentType:callee, HasChildren:true, Source:a5, I:18, ID/Parent:3021/3010, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:0, HasChildren:false, Source:k, I:19, ID/Parent:3034/3021, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:right, HasChildren:false, Source:i, I:16, ID/Parent:3047/0, LeftRight:true-false, 
-NewRecordType:VariableDeclarator - I:12 - Ix:3082 - HelperParentType = VariableDeclaration - HelperParentName = init
-    HelperXPath: p.0.expression.arguments.0.body.body.14.init.declarations.0
+        ThisType:BinaryExpression, ParentType:0, HasChildren:false, Source:k+' ==== '+a5(k)+i, I:15, ID/Parent:1669/0, LeftRight:false-false, 
+        ThisType:BinaryExpression, ParentType:left, HasChildren:true, Source:k+' ==== '+a5(k), I:16, ID/Parent:1680/0, LeftRight:true-true, 
+        ThisType:BinaryExpression, ParentType:left, HasChildren:true, Source:k+' ==== ', I:17, ID/Parent:1691/1680, LeftRight:true-true, 
+        ThisType:Identifier, ParentType:left, HasChildren:false, Source:k, I:18, ID/Parent:1702/1691, LeftRight:true-true, 
+        ThisType:Literal, ParentType:right, HasChildren:false, Source:' ==== ', I:18, ID/Parent:1715/1691, LeftRight:true-false, 
+        ThisType:CallExpression, ParentType:right, HasChildren:true, Source:a5(k), I:17, ID/Parent:1729/1680, LeftRight:true-false, 
+        ThisType:Identifier, ParentType:callee, HasChildren:true, Source:a5, I:18, ID/Parent:1740/1729, LeftRight:true-true, 
+        ThisType:Identifier, ParentType:0, HasChildren:false, Source:k, I:19, ID/Parent:1753/1740, LeftRight:true-true, 
+        ThisType:Identifier, ParentType:right, HasChildren:false, Source:i, I:16, ID/Parent:1766/0, LeftRight:true-false, 
+NewRecordType:VariableDeclarator - I:12 - Ix:1801 - HelperParentType = VariableDeclaration - HelperParentName = init
+    HelperXPath: p.0.expression.arguments.0.body.body.8.init.declarations.0
     NestedParentType:ForStatement > VariableDeclaration+
     RECORDS (3):
-        ThisType:VariableDeclarator, ParentType:0, HasChildren:false, Source:k=0, I:12, ID/Parent:3082/0, LeftRight:false-false, 
-        ThisType:Identifier, ParentType:id, HasChildren:false, Source:k, I:13, ID/Parent:3093/0, LeftRight:true-true, 
-        ThisType:Literal, ParentType:init, HasChildren:false, Source:0, I:13, ID/Parent:3105/0, LeftRight:true-false, 
-NewRecordType:BinaryExpression - I:10 - Ix:3119 - HelperParentType = VariableDeclaration - HelperParentName = init
-    HelperXPath: p.0.expression.arguments.0.body.body.14.test
+        ThisType:VariableDeclarator, ParentType:0, HasChildren:false, Source:k=0, I:12, ID/Parent:1801/0, LeftRight:false-false, 
+        ThisType:Identifier, ParentType:id, HasChildren:false, Source:k, I:13, ID/Parent:1812/0, LeftRight:true-true, 
+        ThisType:Literal, ParentType:init, HasChildren:false, Source:0, I:13, ID/Parent:1824/0, LeftRight:true-false, 
+NewRecordType:BinaryExpression - I:10 - Ix:1838 - HelperParentType = VariableDeclaration - HelperParentName = init
+    HelperXPath: p.0.expression.arguments.0.body.body.8.test
     NestedParentType:ForStatement > VariableDeclaration+
     RECORDS (3):
-        ThisType:BinaryExpression, ParentType:test, HasChildren:false, Source:k<10, I:10, ID/Parent:3119/0, LeftRight:false-false, 
-        ThisType:Identifier, ParentType:left, HasChildren:false, Source:k, I:11, ID/Parent:3130/0, LeftRight:true-true, 
-        ThisType:Literal, ParentType:right, HasChildren:false, Source:10, I:11, ID/Parent:3143/0, LeftRight:true-false, 
-NewRecordType:UpdateExpression - I:10 - Ix:3156 - HelperParentType = VariableDeclaration - HelperParentName = init
-    HelperXPath: p.0.expression.arguments.0.body.body.14.update
+        ThisType:BinaryExpression, ParentType:test, HasChildren:false, Source:k<10, I:10, ID/Parent:1838/0, LeftRight:false-false, 
+        ThisType:Identifier, ParentType:left, HasChildren:false, Source:k, I:11, ID/Parent:1849/0, LeftRight:true-true, 
+        ThisType:Literal, ParentType:right, HasChildren:false, Source:10, I:11, ID/Parent:1862/0, LeftRight:true-false, 
+NewRecordType:UpdateExpression - I:10 - Ix:1875 - HelperParentType = VariableDeclaration - HelperParentName = init
+    HelperXPath: p.0.expression.arguments.0.body.body.8.update
     NestedParentType:ForStatement > VariableDeclaration+
     RECORDS (2):
-        ThisType:UpdateExpression, ParentType:update, HasChildren:false, Source:k++, I:10, ID/Parent:3156/0, LeftRight:false-false, 
-        ThisType:Identifier, ParentType:argument, HasChildren:false, Source:k, I:11, ID/Parent:3169/0, LeftRight:true-true, 
-NewRecordType:AssignmentExpression - I:13 - Ix:3204 - HelperParentType = ExpressionStatement - HelperParentName = 0
-    HelperXPath: p.0.expression.arguments.0.body.body.14.body.body.0.expression
+        ThisType:UpdateExpression, ParentType:update, HasChildren:false, Source:k++, I:10, ID/Parent:1875/0, LeftRight:false-false, 
+        ThisType:Identifier, ParentType:argument, HasChildren:false, Source:k, I:11, ID/Parent:1888/0, LeftRight:true-true, 
+NewRecordType:AssignmentExpression - I:13 - Ix:1923 - HelperParentType = ExpressionStatement - HelperParentName = 0
+    HelperXPath: p.0.expression.arguments.0.body.body.8.body.body.0.expression
     NestedParentType:BlockStatement > ExpressionStatement+
     RECORDS (5):
-        ThisType:AssignmentExpression, ParentType:expression, HasChildren:false, Source:i=k+5, I:13, ID/Parent:3204/0, LeftRight:false-false, 
-        ThisType:Identifier, ParentType:left, HasChildren:false, Source:i, I:14, ID/Parent:3216/0, LeftRight:true-true, 
-        ThisType:BinaryExpression, ParentType:right, HasChildren:true, Source:k+5, I:14, ID/Parent:3228/0, LeftRight:true-false, 
-        ThisType:Identifier, ParentType:left, HasChildren:false, Source:k, I:15, ID/Parent:3239/3228, LeftRight:true-true, 
-        ThisType:Literal, ParentType:right, HasChildren:false, Source:5, I:15, ID/Parent:3252/3228, LeftRight:true-false, 
-NewRecordType:BinaryExpression - I:15 - Ix:3324 - HelperParentType = ExpressionStatement - HelperParentName = 1
-    HelperXPath: p.0.expression.arguments.0.body.body.14.body.body.1.expression.arguments.0
+        ThisType:AssignmentExpression, ParentType:expression, HasChildren:false, Source:i=k+5, I:13, ID/Parent:1923/0, LeftRight:false-false, 
+        ThisType:Identifier, ParentType:left, HasChildren:false, Source:i, I:14, ID/Parent:1935/0, LeftRight:true-true, 
+        ThisType:BinaryExpression, ParentType:right, HasChildren:true, Source:k+5, I:14, ID/Parent:1947/0, LeftRight:true-false, 
+        ThisType:Identifier, ParentType:left, HasChildren:false, Source:k, I:15, ID/Parent:1958/1947, LeftRight:true-true, 
+        ThisType:Literal, ParentType:right, HasChildren:false, Source:5, I:15, ID/Parent:1971/1947, LeftRight:true-false, 
+NewRecordType:BinaryExpression - I:15 - Ix:2043 - HelperParentType = ExpressionStatement - HelperParentName = 1
+    HelperXPath: p.0.expression.arguments.0.body.body.8.body.body.1.expression.arguments.0
     NestedParentType:ExpressionStatement+
     RECORDS (9):
-        ThisType:BinaryExpression, ParentType:0, HasChildren:false, Source:k+' ==== '+a5(k)-i, I:15, ID/Parent:3324/0, LeftRight:false-false, 
-        ThisType:BinaryExpression, ParentType:left, HasChildren:true, Source:k+' ==== '+a5(k), I:16, ID/Parent:3335/0, LeftRight:true-true, 
-        ThisType:BinaryExpression, ParentType:left, HasChildren:true, Source:k+' ==== ', I:17, ID/Parent:3346/3335, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:left, HasChildren:false, Source:k, I:18, ID/Parent:3357/3346, LeftRight:true-true, 
-        ThisType:Literal, ParentType:right, HasChildren:false, Source:' ==== ', I:18, ID/Parent:3370/3346, LeftRight:true-false, 
-        ThisType:CallExpression, ParentType:right, HasChildren:true, Source:a5(k), I:17, ID/Parent:3384/3335, LeftRight:true-false, 
-        ThisType:Identifier, ParentType:callee, HasChildren:true, Source:a5, I:18, ID/Parent:3395/3384, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:0, HasChildren:false, Source:k, I:19, ID/Parent:3408/3395, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:right, HasChildren:false, Source:i, I:16, ID/Parent:3421/0, LeftRight:true-false, 
-NewRecordType:VariableDeclarator - I:11 - Ix:3445 - HelperParentType = VariableDeclaration - HelperParentName = 15
-    HelperXPath: p.0.expression.arguments.0.body.body.15.declarations.0
+        ThisType:BinaryExpression, ParentType:0, HasChildren:false, Source:k+' ==== '+a5(k)-i, I:15, ID/Parent:2043/0, LeftRight:false-false, 
+        ThisType:BinaryExpression, ParentType:left, HasChildren:true, Source:k+' ==== '+a5(k), I:16, ID/Parent:2054/0, LeftRight:true-true, 
+        ThisType:BinaryExpression, ParentType:left, HasChildren:true, Source:k+' ==== ', I:17, ID/Parent:2065/2054, LeftRight:true-true, 
+        ThisType:Identifier, ParentType:left, HasChildren:false, Source:k, I:18, ID/Parent:2076/2065, LeftRight:true-true, 
+        ThisType:Literal, ParentType:right, HasChildren:false, Source:' ==== ', I:18, ID/Parent:2089/2065, LeftRight:true-false, 
+        ThisType:CallExpression, ParentType:right, HasChildren:true, Source:a5(k), I:17, ID/Parent:2103/2054, LeftRight:true-false, 
+        ThisType:Identifier, ParentType:callee, HasChildren:true, Source:a5, I:18, ID/Parent:2114/2103, LeftRight:true-true, 
+        ThisType:Identifier, ParentType:0, HasChildren:false, Source:k, I:19, ID/Parent:2127/2114, LeftRight:true-true, 
+        ThisType:Identifier, ParentType:right, HasChildren:false, Source:i, I:16, ID/Parent:2140/0, LeftRight:true-false, 
+NewRecordType:VariableDeclarator - I:11 - Ix:2164 - HelperParentType = VariableDeclaration - HelperParentName = 9
+    HelperXPath: p.0.expression.arguments.0.body.body.9.declarations.0
     NestedParentType:VariableDeclaration+
     RECORDS (3):
-        ThisType:VariableDeclarator, ParentType:0, HasChildren:false, Source:info = {}, I:11, ID/Parent:3445/0, LeftRight:false-false, 
-        ThisType:Identifier, ParentType:id, HasChildren:false, Source:info, I:12, ID/Parent:3456/0, LeftRight:true-true, 
-        ThisType:ObjectExpression, ParentType:init, HasChildren:false, Source:{}, I:12, ID/Parent:3468/0, LeftRight:true-false, 
-NewRecordType:AssignmentExpression - I:10 - Ix:3492 - HelperParentType = ExpressionStatement - HelperParentName = 16
-    HelperXPath: p.0.expression.arguments.0.body.body.16.expression
+        ThisType:VariableDeclarator, ParentType:0, HasChildren:false, Source:info = {}, I:11, ID/Parent:2164/0, LeftRight:false-false, 
+        ThisType:Identifier, ParentType:id, HasChildren:false, Source:info, I:12, ID/Parent:2175/0, LeftRight:true-true, 
+        ThisType:ObjectExpression, ParentType:init, HasChildren:false, Source:{}, I:12, ID/Parent:2187/0, LeftRight:true-false, 
+NewRecordType:AssignmentExpression - I:10 - Ix:2211 - HelperParentType = ExpressionStatement - HelperParentName = 10
+    HelperXPath: p.0.expression.arguments.0.body.body.10.expression
     NestedParentType:ExpressionStatement+
     RECORDS (5):
-        ThisType:AssignmentExpression, ParentType:expression, HasChildren:false, Source:info.name ='hi', I:10, ID/Parent:3492/0, LeftRight:false-false, 
-        ThisType:MemberExpression, ParentType:left, HasChildren:true, Source:info.name, I:11, ID/Parent:3504/0, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:object, HasChildren:false, Source:info, I:12, ID/Parent:3515/3504, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:property, HasChildren:false, Source:name, I:12, ID/Parent:3527/3504, LeftRight:true-false, 
-        ThisType:Literal, ParentType:right, HasChildren:false, Source:'hi', I:11, ID/Parent:3540/0, LeftRight:true-false, 
-NewRecordType:VariableDeclarator - I:11 - Ix:3565 - HelperParentType = VariableDeclaration - HelperParentName = 17
-    HelperXPath: p.0.expression.arguments.0.body.body.17.declarations.0
+        ThisType:AssignmentExpression, ParentType:expression, HasChildren:false, Source:info.name ='hi', I:10, ID/Parent:2211/0, LeftRight:false-false, 
+        ThisType:MemberExpression, ParentType:left, HasChildren:true, Source:info.name, I:11, ID/Parent:2223/0, LeftRight:true-true, 
+        ThisType:Identifier, ParentType:object, HasChildren:false, Source:info, I:12, ID/Parent:2234/2223, LeftRight:true-true, 
+        ThisType:Identifier, ParentType:property, HasChildren:false, Source:name, I:12, ID/Parent:2246/2223, LeftRight:true-false, 
+        ThisType:Literal, ParentType:right, HasChildren:false, Source:'hi', I:11, ID/Parent:2259/0, LeftRight:true-false, 
+NewRecordType:VariableDeclarator - I:11 - Ix:2284 - HelperParentType = VariableDeclaration - HelperParentName = 11
+    HelperXPath: p.0.expression.arguments.0.body.body.11.declarations.0
     NestedParentType:VariableDeclaration+
     RECORDS (11):
-        ThisType:VariableDeclarator, ParentType:0, HasChildren:false, Source:blockA = {firstName:'John', lastName:'Doe', age:50, eyeColor:'blue'}, I:11, ID/Parent:3565/0, LeftRight:false-false, 
-        ThisType:Identifier, ParentType:id, HasChildren:false, Source:blockA, I:12, ID/Parent:3576/0, LeftRight:true-true, 
-        ThisType:ObjectExpression, ParentType:init, HasChildren:false, Source:{firstName:'John', lastName:'Doe', age:50, eyeColor:'blue'}, I:12, ID/Parent:3588/0, LeftRight:true-false, 
-        ThisType:Identifier, ParentType:key, HasChildren:false, Source:firstName, I:15, ID/Parent:3611/0, LeftRight:true-true, 
-        ThisType:Literal, ParentType:value, HasChildren:false, Source:'John', I:15, ID/Parent:3623/0, LeftRight:true-false, 
-        ThisType:Identifier, ParentType:key, HasChildren:false, Source:lastName, I:15, ID/Parent:3648/0, LeftRight:true-true, 
-        ThisType:Literal, ParentType:value, HasChildren:false, Source:'Doe', I:15, ID/Parent:3660/0, LeftRight:true-false, 
-        ThisType:Identifier, ParentType:key, HasChildren:false, Source:age, I:15, ID/Parent:3685/0, LeftRight:true-true, 
-        ThisType:Literal, ParentType:value, HasChildren:false, Source:50, I:15, ID/Parent:3697/0, LeftRight:true-false, 
-        ThisType:Identifier, ParentType:key, HasChildren:false, Source:eyeColor, I:15, ID/Parent:3722/0, LeftRight:true-true, 
-        ThisType:Literal, ParentType:value, HasChildren:false, Source:'blue', I:15, ID/Parent:3734/0, LeftRight:true-false, 
-NewRecordType:VariableDeclarator - I:11 - Ix:3761 - HelperParentType = VariableDeclaration - HelperParentName = 18
-    HelperXPath: p.0.expression.arguments.0.body.body.18.declarations.0
+        ThisType:VariableDeclarator, ParentType:0, HasChildren:false, Source:blockA = {firstName:'John', lastName:'Doe', age:50, eyeColor:'blue'}, I:11, ID/Parent:2284/0, LeftRight:false-false, 
+        ThisType:Identifier, ParentType:id, HasChildren:false, Source:blockA, I:12, ID/Parent:2295/0, LeftRight:true-true, 
+        ThisType:ObjectExpression, ParentType:init, HasChildren:false, Source:{firstName:'John', lastName:'Doe', age:50, eyeColor:'blue'}, I:12, ID/Parent:2307/0, LeftRight:true-false, 
+        ThisType:Identifier, ParentType:key, HasChildren:false, Source:firstName, I:15, ID/Parent:2330/0, LeftRight:true-true, 
+        ThisType:Literal, ParentType:value, HasChildren:false, Source:'John', I:15, ID/Parent:2342/0, LeftRight:true-false, 
+        ThisType:Identifier, ParentType:key, HasChildren:false, Source:lastName, I:15, ID/Parent:2367/0, LeftRight:true-true, 
+        ThisType:Literal, ParentType:value, HasChildren:false, Source:'Doe', I:15, ID/Parent:2379/0, LeftRight:true-false, 
+        ThisType:Identifier, ParentType:key, HasChildren:false, Source:age, I:15, ID/Parent:2404/0, LeftRight:true-true, 
+        ThisType:Literal, ParentType:value, HasChildren:false, Source:50, I:15, ID/Parent:2416/0, LeftRight:true-false, 
+        ThisType:Identifier, ParentType:key, HasChildren:false, Source:eyeColor, I:15, ID/Parent:2441/0, LeftRight:true-true, 
+        ThisType:Literal, ParentType:value, HasChildren:false, Source:'blue', I:15, ID/Parent:2453/0, LeftRight:true-false, 
+NewRecordType:VariableDeclarator - I:11 - Ix:2480 - HelperParentType = VariableDeclaration - HelperParentName = 12
+    HelperXPath: p.0.expression.arguments.0.body.body.12.declarations.0
     NestedParentType:VariableDeclaration+
     RECORDS (5):
-        ThisType:VariableDeclarator, ParentType:0, HasChildren:false, Source:blockB = ['hi 2','hello 2'], I:11, ID/Parent:3761/0, LeftRight:false-false, 
-        ThisType:Identifier, ParentType:id, HasChildren:false, Source:blockB, I:12, ID/Parent:3772/0, LeftRight:true-true, 
-        ThisType:ArrayExpression, ParentType:init, HasChildren:false, Source:['hi 2','hello 2'], I:12, ID/Parent:3784/0, LeftRight:true-false, 
-        ThisType:Literal, ParentType:0, HasChildren:false, Source:'hi 2', I:14, ID/Parent:3796/0, LeftRight:true-true, 
-        ThisType:Literal, ParentType:1, HasChildren:false, Source:'hello 2', I:14, ID/Parent:3809/0, LeftRight:true-false, 
-NewRecordType:UpdateExpression - I:10 - Ix:3905 - HelperParentType = ExpressionStatement - HelperParentName = 20
-    HelperXPath: p.0.expression.arguments.0.body.body.20.expression
+        ThisType:VariableDeclarator, ParentType:0, HasChildren:false, Source:blockB = ['hi 2','hello 2'], I:11, ID/Parent:2480/0, LeftRight:false-false, 
+        ThisType:Identifier, ParentType:id, HasChildren:false, Source:blockB, I:12, ID/Parent:2491/0, LeftRight:true-true, 
+        ThisType:ArrayExpression, ParentType:init, HasChildren:false, Source:['hi 2','hello 2'], I:12, ID/Parent:2503/0, LeftRight:true-false, 
+        ThisType:Literal, ParentType:0, HasChildren:false, Source:'hi 2', I:14, ID/Parent:2515/0, LeftRight:true-true, 
+        ThisType:Literal, ParentType:1, HasChildren:false, Source:'hello 2', I:14, ID/Parent:2528/0, LeftRight:true-false, 
+NewRecordType:UpdateExpression - I:10 - Ix:2624 - HelperParentType = ExpressionStatement - HelperParentName = 14
+    HelperXPath: p.0.expression.arguments.0.body.body.14.expression
     NestedParentType:ExpressionStatement > ExpressionStatement+
     RECORDS (2):
-        ThisType:UpdateExpression, ParentType:expression, HasChildren:false, Source:i++, I:10, ID/Parent:3905/0, LeftRight:false-false, 
-        ThisType:Identifier, ParentType:argument, HasChildren:false, Source:i, I:11, ID/Parent:3918/0, LeftRight:true-true, 
-NewRecordType:AssignmentExpression - I:10 - Ix:4012 - HelperParentType = ExpressionStatement - HelperParentName = 22
-    HelperXPath: p.0.expression.arguments.0.body.body.22.expression
+        ThisType:UpdateExpression, ParentType:expression, HasChildren:false, Source:i++, I:10, ID/Parent:2624/0, LeftRight:false-false, 
+        ThisType:Identifier, ParentType:argument, HasChildren:false, Source:i, I:11, ID/Parent:2637/0, LeftRight:true-true, 
+NewRecordType:AssignmentExpression - I:10 - Ix:2731 - HelperParentType = ExpressionStatement - HelperParentName = 16
+    HelperXPath: p.0.expression.arguments.0.body.body.16.expression
     NestedParentType:ExpressionStatement > ExpressionStatement+
     RECORDS (3):
-        ThisType:AssignmentExpression, ParentType:expression, HasChildren:false, Source:i += 1, I:10, ID/Parent:4012/0, LeftRight:false-false, 
-        ThisType:Identifier, ParentType:left, HasChildren:false, Source:i, I:11, ID/Parent:4024/0, LeftRight:true-true, 
-        ThisType:Literal, ParentType:right, HasChildren:false, Source:1, I:11, ID/Parent:4036/0, LeftRight:true-false, 
-NewRecordType:AssignmentExpression - I:10 - Ix:4131 - HelperParentType = ExpressionStatement - HelperParentName = 24
-    HelperXPath: p.0.expression.arguments.0.body.body.24.expression
+        ThisType:AssignmentExpression, ParentType:expression, HasChildren:false, Source:i += 1, I:10, ID/Parent:2731/0, LeftRight:false-false, 
+        ThisType:Identifier, ParentType:left, HasChildren:false, Source:i, I:11, ID/Parent:2743/0, LeftRight:true-true, 
+        ThisType:Literal, ParentType:right, HasChildren:false, Source:1, I:11, ID/Parent:2755/0, LeftRight:true-false, 
+NewRecordType:AssignmentExpression - I:10 - Ix:2850 - HelperParentType = ExpressionStatement - HelperParentName = 18
+    HelperXPath: p.0.expression.arguments.0.body.body.18.expression
     NestedParentType:ExpressionStatement > ExpressionStatement+
     RECORDS (3):
-        ThisType:AssignmentExpression, ParentType:expression, HasChildren:false, Source:i -= 1, I:10, ID/Parent:4131/0, LeftRight:false-false, 
-        ThisType:Identifier, ParentType:left, HasChildren:false, Source:i, I:11, ID/Parent:4143/0, LeftRight:true-true, 
-        ThisType:Literal, ParentType:right, HasChildren:false, Source:1, I:11, ID/Parent:4155/0, LeftRight:true-false, 
-NewRecordType:VariableDeclarator - I:11 - Ix:4251 - HelperParentType = VariableDeclaration - HelperParentName = 26
-    HelperXPath: p.0.expression.arguments.0.body.body.26.declarations.0
+        ThisType:AssignmentExpression, ParentType:expression, HasChildren:false, Source:i -= 1, I:10, ID/Parent:2850/0, LeftRight:false-false, 
+        ThisType:Identifier, ParentType:left, HasChildren:false, Source:i, I:11, ID/Parent:2862/0, LeftRight:true-true, 
+        ThisType:Literal, ParentType:right, HasChildren:false, Source:1, I:11, ID/Parent:2874/0, LeftRight:true-false, 
+NewRecordType:VariableDeclarator - I:11 - Ix:2970 - HelperParentType = VariableDeclaration - HelperParentName = 20
+    HelperXPath: p.0.expression.arguments.0.body.body.20.declarations.0
     NestedParentType:ExpressionStatement > VariableDeclaration+
     RECORDS (3):
-        ThisType:VariableDeclarator, ParentType:0, HasChildren:false, Source:block1 = {}, I:11, ID/Parent:4251/0, LeftRight:false-false, 
-        ThisType:Identifier, ParentType:id, HasChildren:false, Source:block1, I:12, ID/Parent:4262/0, LeftRight:true-true, 
-        ThisType:ObjectExpression, ParentType:init, HasChildren:false, Source:{}, I:12, ID/Parent:4274/0, LeftRight:true-false, 
-NewRecordType:AssignmentExpression - I:10 - Ix:4298 - HelperParentType = ExpressionStatement - HelperParentName = 27
-    HelperXPath: p.0.expression.arguments.0.body.body.27.expression
+        ThisType:VariableDeclarator, ParentType:0, HasChildren:false, Source:block1 = {}, I:11, ID/Parent:2970/0, LeftRight:false-false, 
+        ThisType:Identifier, ParentType:id, HasChildren:false, Source:block1, I:12, ID/Parent:2981/0, LeftRight:true-true, 
+        ThisType:ObjectExpression, ParentType:init, HasChildren:false, Source:{}, I:12, ID/Parent:2993/0, LeftRight:true-false, 
+NewRecordType:AssignmentExpression - I:10 - Ix:3017 - HelperParentType = ExpressionStatement - HelperParentName = 21
+    HelperXPath: p.0.expression.arguments.0.body.body.21.expression
     NestedParentType:ExpressionStatement+
     RECORDS (5):
-        ThisType:AssignmentExpression, ParentType:expression, HasChildren:false, Source:block1.name = 'ONE', I:10, ID/Parent:4298/0, LeftRight:false-false, 
-        ThisType:MemberExpression, ParentType:left, HasChildren:true, Source:block1.name, I:11, ID/Parent:4310/0, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:object, HasChildren:false, Source:block1, I:12, ID/Parent:4321/4310, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:property, HasChildren:false, Source:name, I:12, ID/Parent:4333/4310, LeftRight:true-false, 
-        ThisType:Literal, ParentType:right, HasChildren:false, Source:'ONE', I:11, ID/Parent:4346/0, LeftRight:true-false, 
-NewRecordType:AssignmentExpression - I:10 - Ix:4370 - HelperParentType = ExpressionStatement - HelperParentName = 28
+        ThisType:AssignmentExpression, ParentType:expression, HasChildren:false, Source:block1.name = 'ONE', I:10, ID/Parent:3017/0, LeftRight:false-false, 
+        ThisType:MemberExpression, ParentType:left, HasChildren:true, Source:block1.name, I:11, ID/Parent:3029/0, LeftRight:true-true, 
+        ThisType:Identifier, ParentType:object, HasChildren:false, Source:block1, I:12, ID/Parent:3040/3029, LeftRight:true-true, 
+        ThisType:Identifier, ParentType:property, HasChildren:false, Source:name, I:12, ID/Parent:3052/3029, LeftRight:true-false, 
+        ThisType:Literal, ParentType:right, HasChildren:false, Source:'ONE', I:11, ID/Parent:3065/0, LeftRight:true-false, 
+NewRecordType:AssignmentExpression - I:10 - Ix:3089 - HelperParentType = ExpressionStatement - HelperParentName = 22
+    HelperXPath: p.0.expression.arguments.0.body.body.22.expression
+    NestedParentType:ExpressionStatement+
+    RECORDS (5):
+        ThisType:AssignmentExpression, ParentType:expression, HasChildren:false, Source:block1.lname= 'TWO', I:10, ID/Parent:3089/0, LeftRight:false-false, 
+        ThisType:MemberExpression, ParentType:left, HasChildren:true, Source:block1.lname, I:11, ID/Parent:3101/0, LeftRight:true-true, 
+        ThisType:Identifier, ParentType:object, HasChildren:false, Source:block1, I:12, ID/Parent:3112/3101, LeftRight:true-true, 
+        ThisType:Identifier, ParentType:property, HasChildren:false, Source:lname, I:12, ID/Parent:3124/3101, LeftRight:true-false, 
+        ThisType:Literal, ParentType:right, HasChildren:false, Source:'TWO', I:11, ID/Parent:3137/0, LeftRight:true-false, 
+NewRecordType:VariableDeclarator - I:11 - Ix:3162 - HelperParentType = VariableDeclaration - HelperParentName = 23
+    HelperXPath: p.0.expression.arguments.0.body.body.23.declarations.0
+    NestedParentType:VariableDeclaration+
+    RECORDS (3):
+        ThisType:VariableDeclarator, ParentType:0, HasChildren:false, Source:block2 = [], I:11, ID/Parent:3162/0, LeftRight:false-false, 
+        ThisType:Identifier, ParentType:id, HasChildren:false, Source:block2, I:12, ID/Parent:3173/0, LeftRight:true-true, 
+        ThisType:ArrayExpression, ParentType:init, HasChildren:false, Source:[], I:12, ID/Parent:3185/0, LeftRight:true-false, 
+NewRecordType:AssignmentExpression - I:10 - Ix:3209 - HelperParentType = ExpressionStatement - HelperParentName = 24
+    HelperXPath: p.0.expression.arguments.0.body.body.24.expression
+    NestedParentType:ExpressionStatement+
+    RECORDS (5):
+        ThisType:AssignmentExpression, ParentType:expression, HasChildren:false, Source:block2[1] = 'THREE', I:10, ID/Parent:3209/0, LeftRight:false-false, 
+        ThisType:MemberExpression, ParentType:left, HasChildren:true, Source:block2[1], I:11, ID/Parent:3221/0, LeftRight:true-true, 
+        ThisType:Identifier, ParentType:object, HasChildren:false, Source:block2, I:12, ID/Parent:3232/3221, LeftRight:true-true, 
+        ThisType:Literal, ParentType:property, HasChildren:false, Source:1, I:12, ID/Parent:3244/3221, LeftRight:true-false, 
+        ThisType:Literal, ParentType:right, HasChildren:false, Source:'THREE', I:11, ID/Parent:3258/0, LeftRight:true-false, 
+NewRecordType:AssignmentExpression - I:10 - Ix:3282 - HelperParentType = ExpressionStatement - HelperParentName = 25
+    HelperXPath: p.0.expression.arguments.0.body.body.25.expression
+    NestedParentType:ExpressionStatement+
+    RECORDS (5):
+        ThisType:AssignmentExpression, ParentType:expression, HasChildren:false, Source:block2[2] = 'FOUR', I:10, ID/Parent:3282/0, LeftRight:false-false, 
+        ThisType:MemberExpression, ParentType:left, HasChildren:true, Source:block2[2], I:11, ID/Parent:3294/0, LeftRight:true-true, 
+        ThisType:Identifier, ParentType:object, HasChildren:false, Source:block2, I:12, ID/Parent:3305/3294, LeftRight:true-true, 
+        ThisType:Literal, ParentType:property, HasChildren:false, Source:2, I:12, ID/Parent:3317/3294, LeftRight:true-false, 
+        ThisType:Literal, ParentType:right, HasChildren:false, Source:'FOUR', I:11, ID/Parent:3331/0, LeftRight:true-false, 
+NewRecordType:AssignmentExpression - I:10 - Ix:3355 - HelperParentType = ExpressionStatement - HelperParentName = 26
+    HelperXPath: p.0.expression.arguments.0.body.body.26.expression
+    NestedParentType:ExpressionStatement+
+    RECORDS (5):
+        ThisType:AssignmentExpression, ParentType:expression, HasChildren:false, Source:block2[3] = 'FOUR-2', I:10, ID/Parent:3355/0, LeftRight:false-false, 
+        ThisType:MemberExpression, ParentType:left, HasChildren:true, Source:block2[3], I:11, ID/Parent:3367/0, LeftRight:true-true, 
+        ThisType:Identifier, ParentType:object, HasChildren:false, Source:block2, I:12, ID/Parent:3378/3367, LeftRight:true-true, 
+        ThisType:Literal, ParentType:property, HasChildren:false, Source:3, I:12, ID/Parent:3390/3367, LeftRight:true-false, 
+        ThisType:Literal, ParentType:right, HasChildren:false, Source:'FOUR-2', I:11, ID/Parent:3404/0, LeftRight:true-false, 
+NewRecordType:VariableDeclarator - I:11 - Ix:3429 - HelperParentType = VariableDeclaration - HelperParentName = 27
+    HelperXPath: p.0.expression.arguments.0.body.body.27.declarations.0
+    NestedParentType:VariableDeclaration+
+    RECORDS (3):
+        ThisType:VariableDeclarator, ParentType:0, HasChildren:false, Source:block3 = [], I:11, ID/Parent:3429/0, LeftRight:false-false, 
+        ThisType:Identifier, ParentType:id, HasChildren:false, Source:block3, I:12, ID/Parent:3440/0, LeftRight:true-true, 
+        ThisType:ArrayExpression, ParentType:init, HasChildren:false, Source:[], I:12, ID/Parent:3452/0, LeftRight:true-false, 
+NewRecordType:AssignmentExpression - I:10 - Ix:3476 - HelperParentType = ExpressionStatement - HelperParentName = 28
     HelperXPath: p.0.expression.arguments.0.body.body.28.expression
     NestedParentType:ExpressionStatement+
     RECORDS (5):
-        ThisType:AssignmentExpression, ParentType:expression, HasChildren:false, Source:block1.lname= 'TWO', I:10, ID/Parent:4370/0, LeftRight:false-false, 
-        ThisType:MemberExpression, ParentType:left, HasChildren:true, Source:block1.lname, I:11, ID/Parent:4382/0, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:object, HasChildren:false, Source:block1, I:12, ID/Parent:4393/4382, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:property, HasChildren:false, Source:lname, I:12, ID/Parent:4405/4382, LeftRight:true-false, 
-        ThisType:Literal, ParentType:right, HasChildren:false, Source:'TWO', I:11, ID/Parent:4418/0, LeftRight:true-false, 
-NewRecordType:VariableDeclarator - I:11 - Ix:4443 - HelperParentType = VariableDeclaration - HelperParentName = 29
-    HelperXPath: p.0.expression.arguments.0.body.body.29.declarations.0
-    NestedParentType:VariableDeclaration+
-    RECORDS (3):
-        ThisType:VariableDeclarator, ParentType:0, HasChildren:false, Source:block2 = [], I:11, ID/Parent:4443/0, LeftRight:false-false, 
-        ThisType:Identifier, ParentType:id, HasChildren:false, Source:block2, I:12, ID/Parent:4454/0, LeftRight:true-true, 
-        ThisType:ArrayExpression, ParentType:init, HasChildren:false, Source:[], I:12, ID/Parent:4466/0, LeftRight:true-false, 
-NewRecordType:AssignmentExpression - I:10 - Ix:4490 - HelperParentType = ExpressionStatement - HelperParentName = 30
+        ThisType:AssignmentExpression, ParentType:expression, HasChildren:false, Source:block3[1] = {}, I:10, ID/Parent:3476/0, LeftRight:false-false, 
+        ThisType:MemberExpression, ParentType:left, HasChildren:true, Source:block3[1], I:11, ID/Parent:3488/0, LeftRight:true-true, 
+        ThisType:Identifier, ParentType:object, HasChildren:false, Source:block3, I:12, ID/Parent:3499/3488, LeftRight:true-true, 
+        ThisType:Literal, ParentType:property, HasChildren:false, Source:1, I:12, ID/Parent:3511/3488, LeftRight:true-false, 
+        ThisType:ObjectExpression, ParentType:right, HasChildren:false, Source:{}, I:11, ID/Parent:3525/0, LeftRight:true-false, 
+NewRecordType:AssignmentExpression - I:10 - Ix:3548 - HelperParentType = ExpressionStatement - HelperParentName = 29
+    HelperXPath: p.0.expression.arguments.0.body.body.29.expression
+    NestedParentType:ExpressionStatement+
+    RECORDS (7):
+        ThisType:AssignmentExpression, ParentType:expression, HasChildren:false, Source:block3[1].name = 'FIVE', I:10, ID/Parent:3548/0, LeftRight:false-false, 
+        ThisType:MemberExpression, ParentType:left, HasChildren:true, Source:block3[1].name, I:11, ID/Parent:3560/0, LeftRight:true-true, 
+        ThisType:MemberExpression, ParentType:object, HasChildren:true, Source:block3[1], I:12, ID/Parent:3571/3560, LeftRight:true-true, 
+        ThisType:Identifier, ParentType:object, HasChildren:false, Source:block3, I:13, ID/Parent:3582/3571, LeftRight:true-true, 
+        ThisType:Literal, ParentType:property, HasChildren:false, Source:1, I:13, ID/Parent:3594/3571, LeftRight:true-false, 
+        ThisType:Identifier, ParentType:property, HasChildren:false, Source:name, I:12, ID/Parent:3608/3560, LeftRight:true-false, 
+        ThisType:Literal, ParentType:right, HasChildren:false, Source:'FIVE', I:11, ID/Parent:3621/0, LeftRight:true-false, 
+NewRecordType:AssignmentExpression - I:10 - Ix:3645 - HelperParentType = ExpressionStatement - HelperParentName = 30
     HelperXPath: p.0.expression.arguments.0.body.body.30.expression
     NestedParentType:ExpressionStatement+
-    RECORDS (5):
-        ThisType:AssignmentExpression, ParentType:expression, HasChildren:false, Source:block2[1] = 'THREE', I:10, ID/Parent:4490/0, LeftRight:false-false, 
-        ThisType:MemberExpression, ParentType:left, HasChildren:true, Source:block2[1], I:11, ID/Parent:4502/0, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:object, HasChildren:false, Source:block2, I:12, ID/Parent:4513/4502, LeftRight:true-true, 
-        ThisType:Literal, ParentType:property, HasChildren:false, Source:1, I:12, ID/Parent:4525/4502, LeftRight:true-false, 
-        ThisType:Literal, ParentType:right, HasChildren:false, Source:'THREE', I:11, ID/Parent:4539/0, LeftRight:true-false, 
-NewRecordType:AssignmentExpression - I:10 - Ix:4563 - HelperParentType = ExpressionStatement - HelperParentName = 31
-    HelperXPath: p.0.expression.arguments.0.body.body.31.expression
-    NestedParentType:ExpressionStatement+
-    RECORDS (5):
-        ThisType:AssignmentExpression, ParentType:expression, HasChildren:false, Source:block2[2] = 'FOUR', I:10, ID/Parent:4563/0, LeftRight:false-false, 
-        ThisType:MemberExpression, ParentType:left, HasChildren:true, Source:block2[2], I:11, ID/Parent:4575/0, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:object, HasChildren:false, Source:block2, I:12, ID/Parent:4586/4575, LeftRight:true-true, 
-        ThisType:Literal, ParentType:property, HasChildren:false, Source:2, I:12, ID/Parent:4598/4575, LeftRight:true-false, 
-        ThisType:Literal, ParentType:right, HasChildren:false, Source:'FOUR', I:11, ID/Parent:4612/0, LeftRight:true-false, 
-NewRecordType:AssignmentExpression - I:10 - Ix:4636 - HelperParentType = ExpressionStatement - HelperParentName = 32
-    HelperXPath: p.0.expression.arguments.0.body.body.32.expression
-    NestedParentType:ExpressionStatement+
-    RECORDS (5):
-        ThisType:AssignmentExpression, ParentType:expression, HasChildren:false, Source:block2[3] = 'FOUR-2', I:10, ID/Parent:4636/0, LeftRight:false-false, 
-        ThisType:MemberExpression, ParentType:left, HasChildren:true, Source:block2[3], I:11, ID/Parent:4648/0, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:object, HasChildren:false, Source:block2, I:12, ID/Parent:4659/4648, LeftRight:true-true, 
-        ThisType:Literal, ParentType:property, HasChildren:false, Source:3, I:12, ID/Parent:4671/4648, LeftRight:true-false, 
-        ThisType:Literal, ParentType:right, HasChildren:false, Source:'FOUR-2', I:11, ID/Parent:4685/0, LeftRight:true-false, 
-NewRecordType:VariableDeclarator - I:11 - Ix:4710 - HelperParentType = VariableDeclaration - HelperParentName = 33
-    HelperXPath: p.0.expression.arguments.0.body.body.33.declarations.0
-    NestedParentType:VariableDeclaration+
-    RECORDS (3):
-        ThisType:VariableDeclarator, ParentType:0, HasChildren:false, Source:block3 = [], I:11, ID/Parent:4710/0, LeftRight:false-false, 
-        ThisType:Identifier, ParentType:id, HasChildren:false, Source:block3, I:12, ID/Parent:4721/0, LeftRight:true-true, 
-        ThisType:ArrayExpression, ParentType:init, HasChildren:false, Source:[], I:12, ID/Parent:4733/0, LeftRight:true-false, 
-NewRecordType:AssignmentExpression - I:10 - Ix:4757 - HelperParentType = ExpressionStatement - HelperParentName = 34
-    HelperXPath: p.0.expression.arguments.0.body.body.34.expression
-    NestedParentType:ExpressionStatement+
-    RECORDS (5):
-        ThisType:AssignmentExpression, ParentType:expression, HasChildren:false, Source:block3[1] = {}, I:10, ID/Parent:4757/0, LeftRight:false-false, 
-        ThisType:MemberExpression, ParentType:left, HasChildren:true, Source:block3[1], I:11, ID/Parent:4769/0, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:object, HasChildren:false, Source:block3, I:12, ID/Parent:4780/4769, LeftRight:true-true, 
-        ThisType:Literal, ParentType:property, HasChildren:false, Source:1, I:12, ID/Parent:4792/4769, LeftRight:true-false, 
-        ThisType:ObjectExpression, ParentType:right, HasChildren:false, Source:{}, I:11, ID/Parent:4806/0, LeftRight:true-false, 
-NewRecordType:AssignmentExpression - I:10 - Ix:4829 - HelperParentType = ExpressionStatement - HelperParentName = 35
-    HelperXPath: p.0.expression.arguments.0.body.body.35.expression
-    NestedParentType:ExpressionStatement+
     RECORDS (7):
-        ThisType:AssignmentExpression, ParentType:expression, HasChildren:false, Source:block3[1].name = 'FIVE', I:10, ID/Parent:4829/0, LeftRight:false-false, 
-        ThisType:MemberExpression, ParentType:left, HasChildren:true, Source:block3[1].name, I:11, ID/Parent:4841/0, LeftRight:true-true, 
-        ThisType:MemberExpression, ParentType:object, HasChildren:true, Source:block3[1], I:12, ID/Parent:4852/4841, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:object, HasChildren:false, Source:block3, I:13, ID/Parent:4863/4852, LeftRight:true-true, 
-        ThisType:Literal, ParentType:property, HasChildren:false, Source:1, I:13, ID/Parent:4875/4852, LeftRight:true-false, 
-        ThisType:Identifier, ParentType:property, HasChildren:false, Source:name, I:12, ID/Parent:4889/4841, LeftRight:true-false, 
-        ThisType:Literal, ParentType:right, HasChildren:false, Source:'FIVE', I:11, ID/Parent:4902/0, LeftRight:true-false, 
-NewRecordType:AssignmentExpression - I:10 - Ix:4926 - HelperParentType = ExpressionStatement - HelperParentName = 36
-    HelperXPath: p.0.expression.arguments.0.body.body.36.expression
-    NestedParentType:ExpressionStatement+
-    RECORDS (7):
-        ThisType:AssignmentExpression, ParentType:expression, HasChildren:false, Source:block3[1].lname = 'SIX', I:10, ID/Parent:4926/0, LeftRight:false-false, 
-        ThisType:MemberExpression, ParentType:left, HasChildren:true, Source:block3[1].lname, I:11, ID/Parent:4938/0, LeftRight:true-true, 
-        ThisType:MemberExpression, ParentType:object, HasChildren:true, Source:block3[1], I:12, ID/Parent:4949/4938, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:object, HasChildren:false, Source:block3, I:13, ID/Parent:4960/4949, LeftRight:true-true, 
-        ThisType:Literal, ParentType:property, HasChildren:false, Source:1, I:13, ID/Parent:4972/4949, LeftRight:true-false, 
-        ThisType:Identifier, ParentType:property, HasChildren:false, Source:lname, I:12, ID/Parent:4986/4938, LeftRight:true-false, 
-        ThisType:Literal, ParentType:right, HasChildren:false, Source:'SIX', I:11, ID/Parent:4999/0, LeftRight:true-false, 
-NewRecordType:VariableDeclarator - I:11 - Ix:5024 - HelperParentType = VariableDeclaration - HelperParentName = 37
-    HelperXPath: p.0.expression.arguments.0.body.body.37.declarations.0
+        ThisType:AssignmentExpression, ParentType:expression, HasChildren:false, Source:block3[1].lname = 'SIX', I:10, ID/Parent:3645/0, LeftRight:false-false, 
+        ThisType:MemberExpression, ParentType:left, HasChildren:true, Source:block3[1].lname, I:11, ID/Parent:3657/0, LeftRight:true-true, 
+        ThisType:MemberExpression, ParentType:object, HasChildren:true, Source:block3[1], I:12, ID/Parent:3668/3657, LeftRight:true-true, 
+        ThisType:Identifier, ParentType:object, HasChildren:false, Source:block3, I:13, ID/Parent:3679/3668, LeftRight:true-true, 
+        ThisType:Literal, ParentType:property, HasChildren:false, Source:1, I:13, ID/Parent:3691/3668, LeftRight:true-false, 
+        ThisType:Identifier, ParentType:property, HasChildren:false, Source:lname, I:12, ID/Parent:3705/3657, LeftRight:true-false, 
+        ThisType:Literal, ParentType:right, HasChildren:false, Source:'SIX', I:11, ID/Parent:3718/0, LeftRight:true-false, 
+NewRecordType:VariableDeclarator - I:11 - Ix:3743 - HelperParentType = VariableDeclaration - HelperParentName = 31
+    HelperXPath: p.0.expression.arguments.0.body.body.31.declarations.0
     NestedParentType:VariableDeclaration+
     RECORDS (9):
-        ThisType:VariableDeclarator, ParentType:0, HasChildren:false, Source:f= (i>j) && (i>4), I:11, ID/Parent:5024/0, LeftRight:false-false, 
-        ThisType:Identifier, ParentType:id, HasChildren:false, Source:f, I:12, ID/Parent:5035/0, LeftRight:true-true, 
-        ThisType:LogicalExpression, ParentType:init, HasChildren:true, Source:(i>j) && (i>4), I:12, ID/Parent:5047/0, LeftRight:true-false, 
-        ThisType:BinaryExpression, ParentType:left, HasChildren:true, Source:i>j, I:13, ID/Parent:5058/5047, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:left, HasChildren:false, Source:i, I:14, ID/Parent:5069/5058, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:right, HasChildren:false, Source:j, I:14, ID/Parent:5082/5058, LeftRight:true-false, 
-        ThisType:BinaryExpression, ParentType:right, HasChildren:true, Source:i>4, I:13, ID/Parent:5095/5047, LeftRight:true-false, 
-        ThisType:Identifier, ParentType:left, HasChildren:false, Source:i, I:14, ID/Parent:5106/5095, LeftRight:true-true, 
-        ThisType:Literal, ParentType:right, HasChildren:false, Source:4, I:14, ID/Parent:5119/5095, LeftRight:true-false, 
-NewRecordType:BinaryExpression - I:10 - Ix:5145 - HelperParentType = ForStatement - HelperParentName = 38
-    HelperXPath: p.0.expression.arguments.0.body.body.38.test
+        ThisType:VariableDeclarator, ParentType:0, HasChildren:false, Source:f= (i>j) && (i>4), I:11, ID/Parent:3743/0, LeftRight:false-false, 
+        ThisType:Identifier, ParentType:id, HasChildren:false, Source:f, I:12, ID/Parent:3754/0, LeftRight:true-true, 
+        ThisType:LogicalExpression, ParentType:init, HasChildren:true, Source:(i>j) && (i>4), I:12, ID/Parent:3766/0, LeftRight:true-false, 
+        ThisType:BinaryExpression, ParentType:left, HasChildren:true, Source:i>j, I:13, ID/Parent:3777/3766, LeftRight:true-true, 
+        ThisType:Identifier, ParentType:left, HasChildren:false, Source:i, I:14, ID/Parent:3788/3777, LeftRight:true-true, 
+        ThisType:Identifier, ParentType:right, HasChildren:false, Source:j, I:14, ID/Parent:3801/3777, LeftRight:true-false, 
+        ThisType:BinaryExpression, ParentType:right, HasChildren:true, Source:i>4, I:13, ID/Parent:3814/3766, LeftRight:true-false, 
+        ThisType:Identifier, ParentType:left, HasChildren:false, Source:i, I:14, ID/Parent:3825/3814, LeftRight:true-true, 
+        ThisType:Literal, ParentType:right, HasChildren:false, Source:4, I:14, ID/Parent:3838/3814, LeftRight:true-false, 
+NewRecordType:BinaryExpression - I:10 - Ix:3864 - HelperParentType = ForStatement - HelperParentName = 32
+    HelperXPath: p.0.expression.arguments.0.body.body.32.test
     NestedParentType:ForStatement+
     RECORDS (3):
-        ThisType:BinaryExpression, ParentType:test, HasChildren:false, Source:k<20, I:10, ID/Parent:5145/0, LeftRight:false-false, 
-        ThisType:Identifier, ParentType:left, HasChildren:false, Source:k, I:11, ID/Parent:5156/0, LeftRight:true-true, 
-        ThisType:Literal, ParentType:right, HasChildren:false, Source:20, I:11, ID/Parent:5169/0, LeftRight:true-false, 
-NewRecordType:UpdateExpression - I:10 - Ix:5182 - HelperParentType = ForStatement - HelperParentName = 38
-    HelperXPath: p.0.expression.arguments.0.body.body.38.update
+        ThisType:BinaryExpression, ParentType:test, HasChildren:false, Source:k<20, I:10, ID/Parent:3864/0, LeftRight:false-false, 
+        ThisType:Identifier, ParentType:left, HasChildren:false, Source:k, I:11, ID/Parent:3875/0, LeftRight:true-true, 
+        ThisType:Literal, ParentType:right, HasChildren:false, Source:20, I:11, ID/Parent:3888/0, LeftRight:true-false, 
+NewRecordType:UpdateExpression - I:10 - Ix:3901 - HelperParentType = ForStatement - HelperParentName = 32
+    HelperXPath: p.0.expression.arguments.0.body.body.32.update
     NestedParentType:ForStatement+
     RECORDS (2):
-        ThisType:UpdateExpression, ParentType:update, HasChildren:false, Source:k++, I:10, ID/Parent:5182/0, LeftRight:false-false, 
-        ThisType:Identifier, ParentType:argument, HasChildren:false, Source:k, I:11, ID/Parent:5195/0, LeftRight:true-true, 
-NewRecordType:BinaryExpression - I:10 - Ix:5302 - HelperParentType = ForStatement - HelperParentName = 39
-    HelperXPath: p.0.expression.arguments.0.body.body.39.test
+        ThisType:UpdateExpression, ParentType:update, HasChildren:false, Source:k++, I:10, ID/Parent:3901/0, LeftRight:false-false, 
+        ThisType:Identifier, ParentType:argument, HasChildren:false, Source:k, I:11, ID/Parent:3914/0, LeftRight:true-true, 
+NewRecordType:BinaryExpression - I:10 - Ix:4021 - HelperParentType = ForStatement - HelperParentName = 33
+    HelperXPath: p.0.expression.arguments.0.body.body.33.test
     NestedParentType:BlockStatement > ExpressionStatement > ForStatement+
     RECORDS (3):
-        ThisType:BinaryExpression, ParentType:test, HasChildren:false, Source:k<25, I:10, ID/Parent:5302/0, LeftRight:false-false, 
-        ThisType:Identifier, ParentType:left, HasChildren:false, Source:k, I:11, ID/Parent:5313/0, LeftRight:true-true, 
-        ThisType:Literal, ParentType:right, HasChildren:false, Source:25, I:11, ID/Parent:5326/0, LeftRight:true-false, 
-NewRecordType:UpdateExpression - I:13 - Ix:5363 - HelperParentType = ExpressionStatement - HelperParentName = 0
-    HelperXPath: p.0.expression.arguments.0.body.body.39.body.body.0.expression
+        ThisType:BinaryExpression, ParentType:test, HasChildren:false, Source:k<25, I:10, ID/Parent:4021/0, LeftRight:false-false, 
+        ThisType:Identifier, ParentType:left, HasChildren:false, Source:k, I:11, ID/Parent:4032/0, LeftRight:true-true, 
+        ThisType:Literal, ParentType:right, HasChildren:false, Source:25, I:11, ID/Parent:4045/0, LeftRight:true-false, 
+NewRecordType:UpdateExpression - I:13 - Ix:4082 - HelperParentType = ExpressionStatement - HelperParentName = 0
+    HelperXPath: p.0.expression.arguments.0.body.body.33.body.body.0.expression
     NestedParentType:BlockStatement > ExpressionStatement+
     RECORDS (2):
-        ThisType:UpdateExpression, ParentType:expression, HasChildren:false, Source:k++, I:13, ID/Parent:5363/0, LeftRight:false-false, 
-        ThisType:Identifier, ParentType:argument, HasChildren:false, Source:k, I:14, ID/Parent:5376/0, LeftRight:true-true, 
-NewRecordType:BinaryExpression - I:12 - Ix:5518 - HelperParentType = ExpressionStatement - HelperParentName = 40
-    HelperXPath: p.0.expression.arguments.0.body.body.40.expression.arguments.0
+        ThisType:UpdateExpression, ParentType:expression, HasChildren:false, Source:k++, I:13, ID/Parent:4082/0, LeftRight:false-false, 
+        ThisType:Identifier, ParentType:argument, HasChildren:false, Source:k, I:14, ID/Parent:4095/0, LeftRight:true-true, 
+NewRecordType:BinaryExpression - I:12 - Ix:4237 - HelperParentType = ExpressionStatement - HelperParentName = 34
+    HelperXPath: p.0.expression.arguments.0.body.body.34.expression.arguments.0
     NestedParentType:ExpressionStatement > ExpressionStatement+
     RECORDS (9):
-        ThisType:BinaryExpression, ParentType:0, HasChildren:false, Source:block1.name+' '+block1.lname, I:12, ID/Parent:5518/0, LeftRight:false-false, 
-        ThisType:BinaryExpression, ParentType:left, HasChildren:true, Source:block1.name+' ', I:13, ID/Parent:5529/0, LeftRight:true-true, 
-        ThisType:MemberExpression, ParentType:left, HasChildren:true, Source:block1.name, I:14, ID/Parent:5540/5529, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:object, HasChildren:false, Source:block1, I:15, ID/Parent:5551/5540, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:property, HasChildren:false, Source:name, I:15, ID/Parent:5563/5540, LeftRight:true-false, 
-        ThisType:Literal, ParentType:right, HasChildren:false, Source:' ', I:14, ID/Parent:5577/5529, LeftRight:true-false, 
-        ThisType:MemberExpression, ParentType:right, HasChildren:true, Source:block1.lname, I:13, ID/Parent:5591/0, LeftRight:true-false, 
-        ThisType:Identifier, ParentType:object, HasChildren:false, Source:block1, I:14, ID/Parent:5602/5591, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:property, HasChildren:false, Source:lname, I:14, ID/Parent:5614/5591, LeftRight:true-false, 
-NewRecordType:BinaryExpression - I:12 - Ix:5686 - HelperParentType = ExpressionStatement - HelperParentName = 41
-    HelperXPath: p.0.expression.arguments.0.body.body.41.expression.arguments.0
+        ThisType:BinaryExpression, ParentType:0, HasChildren:false, Source:block1.name+' '+block1.lname, I:12, ID/Parent:4237/0, LeftRight:false-false, 
+        ThisType:BinaryExpression, ParentType:left, HasChildren:true, Source:block1.name+' ', I:13, ID/Parent:4248/0, LeftRight:true-true, 
+        ThisType:MemberExpression, ParentType:left, HasChildren:true, Source:block1.name, I:14, ID/Parent:4259/4248, LeftRight:true-true, 
+        ThisType:Identifier, ParentType:object, HasChildren:false, Source:block1, I:15, ID/Parent:4270/4259, LeftRight:true-true, 
+        ThisType:Identifier, ParentType:property, HasChildren:false, Source:name, I:15, ID/Parent:4282/4259, LeftRight:true-false, 
+        ThisType:Literal, ParentType:right, HasChildren:false, Source:' ', I:14, ID/Parent:4296/4248, LeftRight:true-false, 
+        ThisType:MemberExpression, ParentType:right, HasChildren:true, Source:block1.lname, I:13, ID/Parent:4310/0, LeftRight:true-false, 
+        ThisType:Identifier, ParentType:object, HasChildren:false, Source:block1, I:14, ID/Parent:4321/4310, LeftRight:true-true, 
+        ThisType:Identifier, ParentType:property, HasChildren:false, Source:lname, I:14, ID/Parent:4333/4310, LeftRight:true-false, 
+NewRecordType:BinaryExpression - I:12 - Ix:4405 - HelperParentType = ExpressionStatement - HelperParentName = 35
+    HelperXPath: p.0.expression.arguments.0.body.body.35.expression.arguments.0
     NestedParentType:ExpressionStatement+
     RECORDS (15):
-        ThisType:BinaryExpression, ParentType:0, HasChildren:false, Source:block2[1]+' '+block2[2]+' '+block2[3], I:12, ID/Parent:5686/0, LeftRight:false-false, 
-        ThisType:BinaryExpression, ParentType:left, HasChildren:true, Source:block2[1]+' '+block2[2]+' ', I:13, ID/Parent:5697/0, LeftRight:true-true, 
-        ThisType:BinaryExpression, ParentType:left, HasChildren:true, Source:block2[1]+' '+block2[2], I:14, ID/Parent:5708/5697, LeftRight:true-true, 
-        ThisType:BinaryExpression, ParentType:left, HasChildren:true, Source:block2[1]+' ', I:15, ID/Parent:5719/5708, LeftRight:true-true, 
-        ThisType:MemberExpression, ParentType:left, HasChildren:true, Source:block2[1], I:16, ID/Parent:5730/5719, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:object, HasChildren:false, Source:block2, I:17, ID/Parent:5741/5730, LeftRight:true-true, 
-        ThisType:Literal, ParentType:property, HasChildren:false, Source:1, I:17, ID/Parent:5753/5730, LeftRight:true-false, 
-        ThisType:Literal, ParentType:right, HasChildren:false, Source:' ', I:16, ID/Parent:5768/5719, LeftRight:true-false, 
-        ThisType:MemberExpression, ParentType:right, HasChildren:true, Source:block2[2], I:15, ID/Parent:5782/5708, LeftRight:true-false, 
-        ThisType:Identifier, ParentType:object, HasChildren:false, Source:block2, I:16, ID/Parent:5793/5782, LeftRight:true-true, 
-        ThisType:Literal, ParentType:property, HasChildren:false, Source:2, I:16, ID/Parent:5805/5782, LeftRight:true-false, 
-        ThisType:Literal, ParentType:right, HasChildren:false, Source:' ', I:14, ID/Parent:5820/5697, LeftRight:true-false, 
-        ThisType:MemberExpression, ParentType:right, HasChildren:true, Source:block2[3], I:13, ID/Parent:5834/0, LeftRight:true-false, 
-        ThisType:Identifier, ParentType:object, HasChildren:false, Source:block2, I:14, ID/Parent:5845/5834, LeftRight:true-true, 
-        ThisType:Literal, ParentType:property, HasChildren:false, Source:3, I:14, ID/Parent:5857/5834, LeftRight:true-false, 
-NewRecordType:BinaryExpression - I:12 - Ix:5930 - HelperParentType = ExpressionStatement - HelperParentName = 42
-    HelperXPath: p.0.expression.arguments.0.body.body.42.expression.arguments.0
+        ThisType:BinaryExpression, ParentType:0, HasChildren:false, Source:block2[1]+' '+block2[2]+' '+block2[3], I:12, ID/Parent:4405/0, LeftRight:false-false, 
+        ThisType:BinaryExpression, ParentType:left, HasChildren:true, Source:block2[1]+' '+block2[2]+' ', I:13, ID/Parent:4416/0, LeftRight:true-true, 
+        ThisType:BinaryExpression, ParentType:left, HasChildren:true, Source:block2[1]+' '+block2[2], I:14, ID/Parent:4427/4416, LeftRight:true-true, 
+        ThisType:BinaryExpression, ParentType:left, HasChildren:true, Source:block2[1]+' ', I:15, ID/Parent:4438/4427, LeftRight:true-true, 
+        ThisType:MemberExpression, ParentType:left, HasChildren:true, Source:block2[1], I:16, ID/Parent:4449/4438, LeftRight:true-true, 
+        ThisType:Identifier, ParentType:object, HasChildren:false, Source:block2, I:17, ID/Parent:4460/4449, LeftRight:true-true, 
+        ThisType:Literal, ParentType:property, HasChildren:false, Source:1, I:17, ID/Parent:4472/4449, LeftRight:true-false, 
+        ThisType:Literal, ParentType:right, HasChildren:false, Source:' ', I:16, ID/Parent:4487/4438, LeftRight:true-false, 
+        ThisType:MemberExpression, ParentType:right, HasChildren:true, Source:block2[2], I:15, ID/Parent:4501/4427, LeftRight:true-false, 
+        ThisType:Identifier, ParentType:object, HasChildren:false, Source:block2, I:16, ID/Parent:4512/4501, LeftRight:true-true, 
+        ThisType:Literal, ParentType:property, HasChildren:false, Source:2, I:16, ID/Parent:4524/4501, LeftRight:true-false, 
+        ThisType:Literal, ParentType:right, HasChildren:false, Source:' ', I:14, ID/Parent:4539/4416, LeftRight:true-false, 
+        ThisType:MemberExpression, ParentType:right, HasChildren:true, Source:block2[3], I:13, ID/Parent:4553/0, LeftRight:true-false, 
+        ThisType:Identifier, ParentType:object, HasChildren:false, Source:block2, I:14, ID/Parent:4564/4553, LeftRight:true-true, 
+        ThisType:Literal, ParentType:property, HasChildren:false, Source:3, I:14, ID/Parent:4576/4553, LeftRight:true-false, 
+NewRecordType:BinaryExpression - I:12 - Ix:4649 - HelperParentType = ExpressionStatement - HelperParentName = 36
+    HelperXPath: p.0.expression.arguments.0.body.body.36.expression.arguments.0
     NestedParentType:ExpressionStatement+
     RECORDS (13):
-        ThisType:BinaryExpression, ParentType:0, HasChildren:false, Source:block3[1].name+' '+block3[1].lname, I:12, ID/Parent:5930/0, LeftRight:false-false, 
-        ThisType:BinaryExpression, ParentType:left, HasChildren:true, Source:block3[1].name+' ', I:13, ID/Parent:5941/0, LeftRight:true-true, 
-        ThisType:MemberExpression, ParentType:left, HasChildren:true, Source:block3[1].name, I:14, ID/Parent:5952/5941, LeftRight:true-true, 
-        ThisType:MemberExpression, ParentType:object, HasChildren:true, Source:block3[1], I:15, ID/Parent:5963/5952, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:object, HasChildren:false, Source:block3, I:16, ID/Parent:5974/5963, LeftRight:true-true, 
-        ThisType:Literal, ParentType:property, HasChildren:false, Source:1, I:16, ID/Parent:5986/5963, LeftRight:true-false, 
-        ThisType:Identifier, ParentType:property, HasChildren:false, Source:name, I:15, ID/Parent:6000/5952, LeftRight:true-false, 
-        ThisType:Literal, ParentType:right, HasChildren:false, Source:' ', I:14, ID/Parent:6014/5941, LeftRight:true-false, 
-        ThisType:MemberExpression, ParentType:right, HasChildren:true, Source:block3[1].lname, I:13, ID/Parent:6028/0, LeftRight:true-false, 
-        ThisType:MemberExpression, ParentType:object, HasChildren:true, Source:block3[1], I:14, ID/Parent:6039/6028, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:object, HasChildren:false, Source:block3, I:15, ID/Parent:6050/6039, LeftRight:true-true, 
-        ThisType:Literal, ParentType:property, HasChildren:false, Source:1, I:15, ID/Parent:6062/6039, LeftRight:true-false, 
-        ThisType:Identifier, ParentType:property, HasChildren:false, Source:lname, I:14, ID/Parent:6076/6028, LeftRight:true-false, 
-NewRecordType:BinaryExpression - I:12 - Ix:6148 - HelperParentType = ExpressionStatement - HelperParentName = 43
-    HelperXPath: p.0.expression.arguments.0.body.body.43.expression.arguments.0
+        ThisType:BinaryExpression, ParentType:0, HasChildren:false, Source:block3[1].name+' '+block3[1].lname, I:12, ID/Parent:4649/0, LeftRight:false-false, 
+        ThisType:BinaryExpression, ParentType:left, HasChildren:true, Source:block3[1].name+' ', I:13, ID/Parent:4660/0, LeftRight:true-true, 
+        ThisType:MemberExpression, ParentType:left, HasChildren:true, Source:block3[1].name, I:14, ID/Parent:4671/4660, LeftRight:true-true, 
+        ThisType:MemberExpression, ParentType:object, HasChildren:true, Source:block3[1], I:15, ID/Parent:4682/4671, LeftRight:true-true, 
+        ThisType:Identifier, ParentType:object, HasChildren:false, Source:block3, I:16, ID/Parent:4693/4682, LeftRight:true-true, 
+        ThisType:Literal, ParentType:property, HasChildren:false, Source:1, I:16, ID/Parent:4705/4682, LeftRight:true-false, 
+        ThisType:Identifier, ParentType:property, HasChildren:false, Source:name, I:15, ID/Parent:4719/4671, LeftRight:true-false, 
+        ThisType:Literal, ParentType:right, HasChildren:false, Source:' ', I:14, ID/Parent:4733/4660, LeftRight:true-false, 
+        ThisType:MemberExpression, ParentType:right, HasChildren:true, Source:block3[1].lname, I:13, ID/Parent:4747/0, LeftRight:true-false, 
+        ThisType:MemberExpression, ParentType:object, HasChildren:true, Source:block3[1], I:14, ID/Parent:4758/4747, LeftRight:true-true, 
+        ThisType:Identifier, ParentType:object, HasChildren:false, Source:block3, I:15, ID/Parent:4769/4758, LeftRight:true-true, 
+        ThisType:Literal, ParentType:property, HasChildren:false, Source:1, I:15, ID/Parent:4781/4758, LeftRight:true-false, 
+        ThisType:Identifier, ParentType:property, HasChildren:false, Source:lname, I:14, ID/Parent:4795/4747, LeftRight:true-false, 
+NewRecordType:BinaryExpression - I:12 - Ix:4867 - HelperParentType = ExpressionStatement - HelperParentName = 37
+    HelperXPath: p.0.expression.arguments.0.body.body.37.expression.arguments.0
     NestedParentType:ExpressionStatement+
     RECORDS (9):
-        ThisType:BinaryExpression, ParentType:0, HasChildren:false, Source:"cc:"+cc()+" dd:"+dd(), I:12, ID/Parent:6148/0, LeftRight:false-false, 
-        ThisType:BinaryExpression, ParentType:left, HasChildren:true, Source:"cc:"+cc()+" dd:", I:13, ID/Parent:6159/0, LeftRight:true-true, 
-        ThisType:BinaryExpression, ParentType:left, HasChildren:true, Source:"cc:"+cc(), I:14, ID/Parent:6170/6159, LeftRight:true-true, 
-        ThisType:Literal, ParentType:left, HasChildren:false, Source:"cc:", I:15, ID/Parent:6181/6170, LeftRight:true-true, 
-        ThisType:CallExpression, ParentType:right, HasChildren:true, Source:cc(), I:15, ID/Parent:6195/6170, LeftRight:true-false, 
-        ThisType:Identifier, ParentType:callee, HasChildren:false, Source:cc, I:16, ID/Parent:6206/6195, LeftRight:true-true, 
-        ThisType:Literal, ParentType:right, HasChildren:false, Source:" dd:", I:14, ID/Parent:6220/6159, LeftRight:true-false, 
-        ThisType:CallExpression, ParentType:right, HasChildren:true, Source:dd(), I:13, ID/Parent:6234/0, LeftRight:true-false, 
-        ThisType:Identifier, ParentType:callee, HasChildren:false, Source:dd, I:14, ID/Parent:6245/6234, LeftRight:true-true, 
-NewRecordType:VariableDeclarator - I:11 - Ix:6270 - HelperParentType = VariableDeclaration - HelperParentName = 44
-    HelperXPath: p.0.expression.arguments.0.body.body.44.declarations.0
+        ThisType:BinaryExpression, ParentType:0, HasChildren:false, Source:"cc:"+cc()+" dd:"+dd(), I:12, ID/Parent:4867/0, LeftRight:false-false, 
+        ThisType:BinaryExpression, ParentType:left, HasChildren:true, Source:"cc:"+cc()+" dd:", I:13, ID/Parent:4878/0, LeftRight:true-true, 
+        ThisType:BinaryExpression, ParentType:left, HasChildren:true, Source:"cc:"+cc(), I:14, ID/Parent:4889/4878, LeftRight:true-true, 
+        ThisType:Literal, ParentType:left, HasChildren:false, Source:"cc:", I:15, ID/Parent:4900/4889, LeftRight:true-true, 
+        ThisType:CallExpression, ParentType:right, HasChildren:true, Source:cc(), I:15, ID/Parent:4914/4889, LeftRight:true-false, 
+        ThisType:Identifier, ParentType:callee, HasChildren:false, Source:cc, I:16, ID/Parent:4925/4914, LeftRight:true-true, 
+        ThisType:Literal, ParentType:right, HasChildren:false, Source:" dd:", I:14, ID/Parent:4939/4878, LeftRight:true-false, 
+        ThisType:CallExpression, ParentType:right, HasChildren:true, Source:dd(), I:13, ID/Parent:4953/0, LeftRight:true-false, 
+        ThisType:Identifier, ParentType:callee, HasChildren:false, Source:dd, I:14, ID/Parent:4964/4953, LeftRight:true-true, 
+NewRecordType:VariableDeclarator - I:11 - Ix:4989 - HelperParentType = VariableDeclaration - HelperParentName = 38
+    HelperXPath: p.0.expression.arguments.0.body.body.38.declarations.0
     NestedParentType:VariableDeclaration+
     RECORDS (3):
-        ThisType:VariableDeclarator, ParentType:0, HasChildren:false, Source:bb2 = bb, I:11, ID/Parent:6270/0, LeftRight:false-false, 
-        ThisType:Identifier, ParentType:id, HasChildren:false, Source:bb2, I:12, ID/Parent:6281/0, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:init, HasChildren:false, Source:bb, I:12, ID/Parent:6293/0, LeftRight:true-false, 
-NewRecordType:BinaryExpression - I:12 - Ix:6365 - HelperParentType = ExpressionStatement - HelperParentName = 45
-    HelperXPath: p.0.expression.arguments.0.body.body.45.expression.arguments.0
+        ThisType:VariableDeclarator, ParentType:0, HasChildren:false, Source:bb2 = bb, I:11, ID/Parent:4989/0, LeftRight:false-false, 
+        ThisType:Identifier, ParentType:id, HasChildren:false, Source:bb2, I:12, ID/Parent:5000/0, LeftRight:true-true, 
+        ThisType:Identifier, ParentType:init, HasChildren:false, Source:bb, I:12, ID/Parent:5012/0, LeftRight:true-false, 
+NewRecordType:BinaryExpression - I:12 - Ix:5084 - HelperParentType = ExpressionStatement - HelperParentName = 39
+    HelperXPath: p.0.expression.arguments.0.body.body.39.expression.arguments.0
     NestedParentType:ExpressionStatement+
     RECORDS (7):
-        ThisType:BinaryExpression, ParentType:0, HasChildren:false, Source:"bb:"+bb2(1,2,3), I:12, ID/Parent:6365/0, LeftRight:false-false, 
-        ThisType:Literal, ParentType:left, HasChildren:false, Source:"bb:", I:13, ID/Parent:6376/0, LeftRight:true-true, 
-        ThisType:CallExpression, ParentType:right, HasChildren:true, Source:bb2(1,2,3), I:13, ID/Parent:6390/0, LeftRight:true-false, 
-        ThisType:Identifier, ParentType:callee, HasChildren:true, Source:bb2, I:14, ID/Parent:6401/6390, LeftRight:true-true, 
-        ThisType:Literal, ParentType:0, HasChildren:false, Source:1, I:15, ID/Parent:6414/6401, LeftRight:true-true, 
-        ThisType:Literal, ParentType:1, HasChildren:false, Source:2, I:15, ID/Parent:6427/6401, LeftRight:true-false, 
-        ThisType:Literal, ParentType:2, HasChildren:false, Source:3, I:15, ID/Parent:6440/6401, LeftRight:true-true, 
-NewRecordType:VariableDeclarator - I:11 - Ix:6465 - HelperParentType = VariableDeclaration - HelperParentName = 46
-    HelperXPath: p.0.expression.arguments.0.body.body.46.declarations.0
-    NestedParentType:VariableDeclaration+
-    RECORDS (5):
-        ThisType:VariableDeclarator, ParentType:0, HasChildren:false, Source:keys = $('#calculator span'), I:11, ID/Parent:6465/0, LeftRight:false-false, 
-        ThisType:Identifier, ParentType:id, HasChildren:false, Source:keys, I:12, ID/Parent:6476/0, LeftRight:true-true, 
-        ThisType:CallExpression, ParentType:init, HasChildren:true, Source:$('#calculator span'), I:12, ID/Parent:6488/0, LeftRight:true-false, 
-        ThisType:Identifier, ParentType:callee, HasChildren:true, Source:$, I:13, ID/Parent:6499/6488, LeftRight:true-true, 
-        ThisType:Literal, ParentType:0, HasChildren:false, Source:'#calculator span', I:14, ID/Parent:6512/6499, LeftRight:true-true, 
-NewRecordType:VariableDeclarator - I:11 - Ix:6538 - HelperParentType = VariableDeclaration - HelperParentName = 47
-    HelperXPath: p.0.expression.arguments.0.body.body.47.declarations.0
-    NestedParentType:VariableDeclaration+
-    RECORDS (7):
-        ThisType:VariableDeclarator, ParentType:0, HasChildren:false, Source:operators = ['+', '-', 'x', '/'], I:11, ID/Parent:6538/0, LeftRight:false-false, 
-        ThisType:Identifier, ParentType:id, HasChildren:false, Source:operators, I:12, ID/Parent:6549/0, LeftRight:true-true, 
-        ThisType:ArrayExpression, ParentType:init, HasChildren:false, Source:['+', '-', 'x', '/'], I:12, ID/Parent:6561/0, LeftRight:true-false, 
-        ThisType:Literal, ParentType:0, HasChildren:false, Source:'+', I:14, ID/Parent:6573/0, LeftRight:true-true, 
-        ThisType:Literal, ParentType:1, HasChildren:false, Source:'-', I:14, ID/Parent:6586/0, LeftRight:true-false, 
-        ThisType:Literal, ParentType:2, HasChildren:false, Source:'x', I:14, ID/Parent:6599/0, LeftRight:true-true, 
-        ThisType:Literal, ParentType:3, HasChildren:false, Source:'/', I:14, ID/Parent:6612/0, LeftRight:true-false, 
-NewRecordType:VariableDeclarator - I:11 - Ix:6638 - HelperParentType = VariableDeclaration - HelperParentName = 48
-    HelperXPath: p.0.expression.arguments.0.body.body.48.declarations.0
-    NestedParentType:VariableDeclaration+
-    RECORDS (3):
-        ThisType:VariableDeclarator, ParentType:0, HasChildren:false, Source:decimalAdded = false, I:11, ID/Parent:6638/0, LeftRight:false-false, 
-        ThisType:Identifier, ParentType:id, HasChildren:false, Source:decimalAdded, I:12, ID/Parent:6649/0, LeftRight:true-true, 
-        ThisType:Literal, ParentType:init, HasChildren:false, Source:false, I:12, ID/Parent:6661/0, LeftRight:true-false, 
-NewRecordType:VariableDeclarator - I:11 - Ix:6687 - HelperParentType = VariableDeclaration - HelperParentName = 49
-    HelperXPath: p.0.expression.arguments.0.body.body.49.declarations.0
-    NestedParentType:VariableDeclaration+
-    RECORDS (3):
-        ThisType:VariableDeclarator, ParentType:0, HasChildren:false, Source:InputStr = "", I:11, ID/Parent:6687/0, LeftRight:false-false, 
-        ThisType:Identifier, ParentType:id, HasChildren:false, Source:InputStr, I:12, ID/Parent:6698/0, LeftRight:true-true, 
-        ThisType:Literal, ParentType:init, HasChildren:false, Source:"", I:12, ID/Parent:6710/0, LeftRight:true-false, 
-NewRecordType:VariableDeclarator - I:17 - Ix:6857 - HelperParentType = VariableDeclaration - HelperParentName = 0
-    HelperXPath: p.0.expression.arguments.0.body.body.50.expression.arguments.0.body.body.0.declarations.0
-    NestedParentType:ExpressionStatement > BlockStatement > VariableDeclaration+
-    RECORDS (5):
-        ThisType:VariableDeclarator, ParentType:0, HasChildren:false, Source:input = $('.screen'), I:17, ID/Parent:6857/0, LeftRight:false-false, 
-        ThisType:Identifier, ParentType:id, HasChildren:false, Source:input, I:18, ID/Parent:6868/0, LeftRight:true-true, 
-        ThisType:CallExpression, ParentType:init, HasChildren:true, Source:$('.screen'), I:18, ID/Parent:6880/0, LeftRight:true-false, 
-        ThisType:Identifier, ParentType:callee, HasChildren:true, Source:$, I:19, ID/Parent:6891/6880, LeftRight:true-true, 
-        ThisType:Literal, ParentType:0, HasChildren:false, Source:'.screen', I:20, ID/Parent:6904/6891, LeftRight:true-true, 
-NewRecordType:VariableDeclarator - I:17 - Ix:6930 - HelperParentType = VariableDeclaration - HelperParentName = 1
-    HelperXPath: p.0.expression.arguments.0.body.body.50.expression.arguments.0.body.body.1.declarations.0
-    NestedParentType:VariableDeclaration+
-    RECORDS (6):
-        ThisType:VariableDeclarator, ParentType:0, HasChildren:false, Source:inputVal = input.html(), I:17, ID/Parent:6930/0, LeftRight:false-false, 
-        ThisType:Identifier, ParentType:id, HasChildren:false, Source:inputVal, I:18, ID/Parent:6941/0, LeftRight:true-true, 
-        ThisType:CallExpression, ParentType:init, HasChildren:true, Source:input.html(), I:18, ID/Parent:6953/0, LeftRight:true-false, 
-        ThisType:MemberExpression, ParentType:callee, HasChildren:true, Source:input.html, I:19, ID/Parent:6964/6953, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:object, HasChildren:false, Source:input, I:20, ID/Parent:6975/6964, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:property, HasChildren:false, Source:html, I:20, ID/Parent:6987/6964, LeftRight:true-false, 
-NewRecordType:VariableDeclarator - I:17 - Ix:7014 - HelperParentType = VariableDeclaration - HelperParentName = 2
-    HelperXPath: p.0.expression.arguments.0.body.body.50.expression.arguments.0.body.body.2.declarations.0
-    NestedParentType:VariableDeclaration+
-    RECORDS (7):
-        ThisType:VariableDeclarator, ParentType:0, HasChildren:false, Source:btnVal = $(this).html(), I:17, ID/Parent:7014/0, LeftRight:false-false, 
-        ThisType:Identifier, ParentType:id, HasChildren:false, Source:btnVal, I:18, ID/Parent:7025/0, LeftRight:true-true, 
-        ThisType:CallExpression, ParentType:init, HasChildren:true, Source:$(this).html(), I:18, ID/Parent:7037/0, LeftRight:true-false, 
-        ThisType:MemberExpression, ParentType:callee, HasChildren:true, Source:$(this).html, I:19, ID/Parent:7048/7037, LeftRight:true-true, 
-        ThisType:CallExpression, ParentType:object, HasChildren:true, Source:$(this), I:20, ID/Parent:7059/7048, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:callee, HasChildren:false, Source:$, I:21, ID/Parent:7070/7059, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:property, HasChildren:false, Source:html, I:20, ID/Parent:7094/7048, LeftRight:true-false, 
-NewRecordType:BinaryExpression - I:16 - Ix:7120 - HelperParentType = IfStatement - HelperParentName = 3
-    HelperXPath: p.0.expression.arguments.0.body.body.50.expression.arguments.0.body.body.3.test
-    NestedParentType:IfStatement+
-    RECORDS (3):
-        ThisType:BinaryExpression, ParentType:test, HasChildren:false, Source:btnVal == 'C', I:16, ID/Parent:7120/0, LeftRight:false-false, 
-        ThisType:Identifier, ParentType:left, HasChildren:false, Source:btnVal, I:17, ID/Parent:7131/0, LeftRight:true-true, 
-        ThisType:Literal, ParentType:right, HasChildren:false, Source:'C', I:17, ID/Parent:7144/0, LeftRight:true-false, 
-NewRecordType:AssignmentExpression - I:19 - Ix:7180 - HelperParentType = ExpressionStatement - HelperParentName = 0
-    HelperXPath: p.0.expression.arguments.0.body.body.50.expression.arguments.0.body.body.3.consequent.body.0.expression
-    NestedParentType:BlockStatement > ExpressionStatement+
-    RECORDS (3):
-        ThisType:AssignmentExpression, ParentType:expression, HasChildren:false, Source:InputStr="", I:19, ID/Parent:7180/0, LeftRight:false-false, 
-        ThisType:Identifier, ParentType:left, HasChildren:false, Source:InputStr, I:20, ID/Parent:7192/0, LeftRight:true-true, 
-        ThisType:Literal, ParentType:right, HasChildren:false, Source:"", I:20, ID/Parent:7204/0, LeftRight:true-false, 
-NewRecordType:AssignmentExpression - I:19 - Ix:7299 - HelperParentType = ExpressionStatement - HelperParentName = 2
-    HelperXPath: p.0.expression.arguments.0.body.body.50.expression.arguments.0.body.body.3.consequent.body.2.expression
-    NestedParentType:ExpressionStatement > ExpressionStatement+
-    RECORDS (3):
-        ThisType:AssignmentExpression, ParentType:expression, HasChildren:false, Source:decimalAdded = false, I:19, ID/Parent:7299/0, LeftRight:false-false, 
-        ThisType:Identifier, ParentType:left, HasChildren:false, Source:decimalAdded, I:20, ID/Parent:7311/0, LeftRight:true-true, 
-        ThisType:Literal, ParentType:right, HasChildren:false, Source:false, I:20, ID/Parent:7323/0, LeftRight:true-false, 
-NewRecordType:BinaryExpression - I:17 - Ix:7347 - HelperParentType = IfStatement - HelperParentName = alternate
-    HelperXPath: p.0.expression.arguments.0.body.body.50.expression.arguments.0.body.body.3.alternate.test
-    NestedParentType:IfStatement+
-    RECORDS (3):
-        ThisType:BinaryExpression, ParentType:test, HasChildren:false, Source:btnVal == '=', I:17, ID/Parent:7347/0, LeftRight:false-false, 
-        ThisType:Identifier, ParentType:left, HasChildren:false, Source:btnVal, I:18, ID/Parent:7358/0, LeftRight:true-true, 
-        ThisType:Literal, ParentType:right, HasChildren:false, Source:'=', I:18, ID/Parent:7371/0, LeftRight:true-false, 
-NewRecordType:VariableDeclarator - I:21 - Ix:7408 - HelperParentType = VariableDeclaration - HelperParentName = 0
-    HelperXPath: p.0.expression.arguments.0.body.body.50.expression.arguments.0.body.body.3.alternate.consequent.body.0.declarations.0
-    NestedParentType:BlockStatement > VariableDeclaration+
-    RECORDS (3):
-        ThisType:VariableDeclarator, ParentType:0, HasChildren:false, Source:equation = inputVal, I:21, ID/Parent:7408/0, LeftRight:false-false, 
-        ThisType:Identifier, ParentType:id, HasChildren:false, Source:equation, I:22, ID/Parent:7419/0, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:init, HasChildren:false, Source:inputVal, I:22, ID/Parent:7431/0, LeftRight:true-false, 
-NewRecordType:VariableDeclarator - I:21 - Ix:7456 - HelperParentType = VariableDeclaration - HelperParentName = 1
-    HelperXPath: p.0.expression.arguments.0.body.body.50.expression.arguments.0.body.body.3.alternate.consequent.body.1.declarations.0
-    NestedParentType:VariableDeclaration+
-    RECORDS (9):
-        ThisType:VariableDeclarator, ParentType:0, HasChildren:false, Source:lastChar = equation[equation.length - 1], I:21, ID/Parent:7456/0, LeftRight:false-false, 
-        ThisType:Identifier, ParentType:id, HasChildren:false, Source:lastChar, I:22, ID/Parent:7467/0, LeftRight:true-true, 
-        ThisType:MemberExpression, ParentType:init, HasChildren:true, Source:equation[equation.length - 1], I:22, ID/Parent:7479/0, LeftRight:true-false, 
-        ThisType:Identifier, ParentType:object, HasChildren:false, Source:equation, I:23, ID/Parent:7490/7479, LeftRight:true-true, 
-        ThisType:BinaryExpression, ParentType:property, HasChildren:true, Source:equation.length - 1, I:23, ID/Parent:7502/7479, LeftRight:true-false, 
-        ThisType:MemberExpression, ParentType:left, HasChildren:true, Source:equation.length, I:24, ID/Parent:7513/7502, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:object, HasChildren:false, Source:equation, I:25, ID/Parent:7524/7513, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:property, HasChildren:false, Source:length, I:25, ID/Parent:7536/7513, LeftRight:true-false, 
-        ThisType:Literal, ParentType:right, HasChildren:false, Source:1, I:24, ID/Parent:7550/7502, LeftRight:true-false, 
-NewRecordType:AssignmentExpression - I:20 - Ix:7576 - HelperParentType = ExpressionStatement - HelperParentName = 2
-    HelperXPath: p.0.expression.arguments.0.body.body.50.expression.arguments.0.body.body.3.alternate.consequent.body.2.expression
-    NestedParentType:ExpressionStatement+
-    RECORDS (8):
-        ThisType:AssignmentExpression, ParentType:expression, HasChildren:false, Source:equation = equation.replace(/x/g, '*'), I:20, ID/Parent:7576/0, LeftRight:false-false, 
-        ThisType:Identifier, ParentType:left, HasChildren:false, Source:equation, I:21, ID/Parent:7588/0, LeftRight:true-true, 
-        ThisType:CallExpression, ParentType:right, HasChildren:true, Source:equation.replace(/x/g, '*'), I:21, ID/Parent:7600/0, LeftRight:true-false, 
-        ThisType:MemberExpression, ParentType:callee, HasChildren:true, Source:equation.replace, I:22, ID/Parent:7611/7600, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:object, HasChildren:false, Source:equation, I:23, ID/Parent:7622/7611, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:property, HasChildren:false, Source:replace, I:23, ID/Parent:7634/7611, LeftRight:true-false, 
-        ThisType:Literal, ParentType:0, HasChildren:false, Source:/x/g, I:23, ID/Parent:7648/7611, LeftRight:true-true, 
-        ThisType:Literal, ParentType:1, HasChildren:false, Source:'*', I:23, ID/Parent:7664/7611, LeftRight:true-false, 
-NewRecordType:LogicalExpression - I:20 - Ix:7688 - HelperParentType = IfStatement - HelperParentName = 3
-    HelperXPath: p.0.expression.arguments.0.body.body.50.expression.arguments.0.body.body.3.alternate.consequent.body.3.test
-    NestedParentType:IfStatement+
-    RECORDS (12):
-        ThisType:LogicalExpression, ParentType:test, HasChildren:false, Source:operators.indexOf(lastChar) > -1 || lastChar == '.', I:20, ID/Parent:7688/0, LeftRight:false-false, 
-        ThisType:BinaryExpression, ParentType:left, HasChildren:true, Source:operators.indexOf(lastChar) > -1, I:21, ID/Parent:7699/0, LeftRight:true-true, 
-        ThisType:CallExpression, ParentType:left, HasChildren:true, Source:operators.indexOf(lastChar), I:22, ID/Parent:7710/7699, LeftRight:true-true, 
-        ThisType:MemberExpression, ParentType:callee, HasChildren:true, Source:operators.indexOf, I:23, ID/Parent:7721/7710, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:object, HasChildren:false, Source:operators, I:24, ID/Parent:7732/7721, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:property, HasChildren:false, Source:indexOf, I:24, ID/Parent:7744/7721, LeftRight:true-false, 
-        ThisType:Identifier, ParentType:0, HasChildren:false, Source:lastChar, I:24, ID/Parent:7758/7721, LeftRight:true-true, 
-        ThisType:UnaryExpression, ParentType:right, HasChildren:true, Source:-1, I:22, ID/Parent:7771/7699, LeftRight:true-false, 
-        ThisType:Literal, ParentType:argument, HasChildren:false, Source:1, I:23, ID/Parent:7784/7771, LeftRight:true-false, 
-        ThisType:BinaryExpression, ParentType:right, HasChildren:true, Source:lastChar == '.', I:21, ID/Parent:7798/0, LeftRight:true-false, 
-        ThisType:Identifier, ParentType:left, HasChildren:false, Source:lastChar, I:22, ID/Parent:7809/7798, LeftRight:true-true, 
-        ThisType:Literal, ParentType:right, HasChildren:false, Source:'.', I:22, ID/Parent:7822/7798, LeftRight:true-false, 
-NewRecordType:AssignmentExpression - I:23 - Ix:7858 - HelperParentType = ExpressionStatement - HelperParentName = 0
-    HelperXPath: p.0.expression.arguments.0.body.body.50.expression.arguments.0.body.body.3.alternate.consequent.body.3.consequent.body.0.expression
-    NestedParentType:BlockStatement > ExpressionStatement+
-    RECORDS (8):
-        ThisType:AssignmentExpression, ParentType:expression, HasChildren:false, Source:equation = equation.replace(/.$/, ''), I:23, ID/Parent:7858/0, LeftRight:false-false, 
-        ThisType:Identifier, ParentType:left, HasChildren:false, Source:equation, I:24, ID/Parent:7870/0, LeftRight:true-true, 
-        ThisType:CallExpression, ParentType:right, HasChildren:true, Source:equation.replace(/.$/, ''), I:24, ID/Parent:7882/0, LeftRight:true-false, 
-        ThisType:MemberExpression, ParentType:callee, HasChildren:true, Source:equation.replace, I:25, ID/Parent:7893/7882, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:object, HasChildren:false, Source:equation, I:26, ID/Parent:7904/7893, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:property, HasChildren:false, Source:replace, I:26, ID/Parent:7916/7893, LeftRight:true-false, 
-        ThisType:Literal, ParentType:0, HasChildren:false, Source:/.$/, I:26, ID/Parent:7930/7893, LeftRight:true-true, 
-        ThisType:Literal, ParentType:1, HasChildren:false, Source:'', I:26, ID/Parent:7946/7893, LeftRight:true-false, 
-NewRecordType:AssignmentExpression - I:20 - Ix:8102 - HelperParentType = ExpressionStatement - HelperParentName = 5
-    HelperXPath: p.0.expression.arguments.0.body.body.50.expression.arguments.0.body.body.3.alternate.consequent.body.5.expression
-    NestedParentType:IfStatement > BlockStatement > ExpressionStatement > ExpressionStatement+
-    RECORDS (3):
-        ThisType:AssignmentExpression, ParentType:expression, HasChildren:false, Source:decimalAdded = false, I:20, ID/Parent:8102/0, LeftRight:false-false, 
-        ThisType:Identifier, ParentType:left, HasChildren:false, Source:decimalAdded, I:21, ID/Parent:8114/0, LeftRight:true-true, 
-        ThisType:Literal, ParentType:right, HasChildren:false, Source:false, I:21, ID/Parent:8126/0, LeftRight:true-false, 
-NewRecordType:BinaryExpression - I:18 - Ix:8150 - HelperParentType = IfStatement - HelperParentName = alternate
-    HelperXPath: p.0.expression.arguments.0.body.body.50.expression.arguments.0.body.body.3.alternate.alternate.test
-    NestedParentType:IfStatement+
-    RECORDS (8):
-        ThisType:BinaryExpression, ParentType:test, HasChildren:false, Source:operators.indexOf(btnVal) > -1, I:18, ID/Parent:8150/0, LeftRight:false-false, 
-        ThisType:CallExpression, ParentType:left, HasChildren:true, Source:operators.indexOf(btnVal), I:19, ID/Parent:8161/0, LeftRight:true-true, 
-        ThisType:MemberExpression, ParentType:callee, HasChildren:true, Source:operators.indexOf, I:20, ID/Parent:8172/8161, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:object, HasChildren:false, Source:operators, I:21, ID/Parent:8183/8172, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:property, HasChildren:false, Source:indexOf, I:21, ID/Parent:8195/8172, LeftRight:true-false, 
-        ThisType:Identifier, ParentType:0, HasChildren:false, Source:btnVal, I:21, ID/Parent:8209/8172, LeftRight:true-true, 
-        ThisType:UnaryExpression, ParentType:right, HasChildren:true, Source:-1, I:19, ID/Parent:8222/0, LeftRight:true-false, 
-        ThisType:Literal, ParentType:argument, HasChildren:false, Source:1, I:20, ID/Parent:8235/8222, LeftRight:true-false, 
-NewRecordType:VariableDeclarator - I:22 - Ix:8272 - HelperParentType = VariableDeclaration - HelperParentName = 0
-    HelperXPath: p.0.expression.arguments.0.body.body.50.expression.arguments.0.body.body.3.alternate.alternate.consequent.body.0.declarations.0
-    NestedParentType:BlockStatement > VariableDeclaration+
-    RECORDS (9):
-        ThisType:VariableDeclarator, ParentType:0, HasChildren:false, Source:lastChar = inputVal[inputVal.length - 1], I:22, ID/Parent:8272/0, LeftRight:false-false, 
-        ThisType:Identifier, ParentType:id, HasChildren:false, Source:lastChar, I:23, ID/Parent:8283/0, LeftRight:true-true, 
-        ThisType:MemberExpression, ParentType:init, HasChildren:true, Source:inputVal[inputVal.length - 1], I:23, ID/Parent:8295/0, LeftRight:true-false, 
-        ThisType:Identifier, ParentType:object, HasChildren:false, Source:inputVal, I:24, ID/Parent:8306/8295, LeftRight:true-true, 
-        ThisType:BinaryExpression, ParentType:property, HasChildren:true, Source:inputVal.length - 1, I:24, ID/Parent:8318/8295, LeftRight:true-false, 
-        ThisType:MemberExpression, ParentType:left, HasChildren:true, Source:inputVal.length, I:25, ID/Parent:8329/8318, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:object, HasChildren:false, Source:inputVal, I:26, ID/Parent:8340/8329, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:property, HasChildren:false, Source:length, I:26, ID/Parent:8352/8329, LeftRight:true-false, 
-        ThisType:Literal, ParentType:right, HasChildren:false, Source:1, I:25, ID/Parent:8366/8318, LeftRight:true-false, 
-NewRecordType:LogicalExpression - I:21 - Ix:8392 - HelperParentType = IfStatement - HelperParentName = 1
-    HelperXPath: p.0.expression.arguments.0.body.body.50.expression.arguments.0.body.body.3.alternate.alternate.consequent.body.1.test
-    NestedParentType:IfStatement+
-    RECORDS (12):
-        ThisType:LogicalExpression, ParentType:test, HasChildren:false, Source:inputVal != '' && operators.indexOf(lastChar) == -1, I:21, ID/Parent:8392/0, LeftRight:false-false, 
-        ThisType:BinaryExpression, ParentType:left, HasChildren:true, Source:inputVal != '', I:22, ID/Parent:8403/0, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:left, HasChildren:false, Source:inputVal, I:23, ID/Parent:8414/8403, LeftRight:true-true, 
-        ThisType:Literal, ParentType:right, HasChildren:false, Source:'', I:23, ID/Parent:8427/8403, LeftRight:true-false, 
-        ThisType:BinaryExpression, ParentType:right, HasChildren:true, Source:operators.indexOf(lastChar) == -1, I:22, ID/Parent:8441/0, LeftRight:true-false, 
-        ThisType:CallExpression, ParentType:left, HasChildren:true, Source:operators.indexOf(lastChar), I:23, ID/Parent:8452/8441, LeftRight:true-true, 
-        ThisType:MemberExpression, ParentType:callee, HasChildren:true, Source:operators.indexOf, I:24, ID/Parent:8463/8452, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:object, HasChildren:false, Source:operators, I:25, ID/Parent:8474/8463, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:property, HasChildren:false, Source:indexOf, I:25, ID/Parent:8486/8463, LeftRight:true-false, 
-        ThisType:Identifier, ParentType:0, HasChildren:false, Source:lastChar, I:25, ID/Parent:8500/8463, LeftRight:true-true, 
-        ThisType:UnaryExpression, ParentType:right, HasChildren:true, Source:-1, I:23, ID/Parent:8513/8441, LeftRight:true-false, 
-        ThisType:Literal, ParentType:argument, HasChildren:false, Source:1, I:24, ID/Parent:8526/8513, LeftRight:true-false, 
-NewRecordType:AssignmentExpression - I:24 - Ix:8562 - HelperParentType = ExpressionStatement - HelperParentName = 0
-    HelperXPath: p.0.expression.arguments.0.body.body.50.expression.arguments.0.body.body.3.alternate.alternate.consequent.body.1.consequent.body.0.expression
-    NestedParentType:BlockStatement > ExpressionStatement+
-    RECORDS (3):
-        ThisType:AssignmentExpression, ParentType:expression, HasChildren:false, Source:InputStr += btnVal, I:24, ID/Parent:8562/0, LeftRight:false-false, 
-        ThisType:Identifier, ParentType:left, HasChildren:false, Source:InputStr, I:25, ID/Parent:8574/0, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:right, HasChildren:false, Source:btnVal, I:25, ID/Parent:8586/0, LeftRight:true-false, 
-NewRecordType:LogicalExpression - I:22 - Ix:8680 - HelperParentType = IfStatement - HelperParentName = alternate
-    HelperXPath: p.0.expression.arguments.0.body.body.50.expression.arguments.0.body.body.3.alternate.alternate.consequent.body.1.alternate.test
-    NestedParentType:ExpressionStatement > IfStatement+
-    RECORDS (7):
-        ThisType:LogicalExpression, ParentType:test, HasChildren:false, Source:inputVal == '' && btnVal == '-', I:22, ID/Parent:8680/0, LeftRight:false-false, 
-        ThisType:BinaryExpression, ParentType:left, HasChildren:true, Source:inputVal == '', I:23, ID/Parent:8691/0, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:left, HasChildren:false, Source:inputVal, I:24, ID/Parent:8702/8691, LeftRight:true-true, 
-        ThisType:Literal, ParentType:right, HasChildren:false, Source:'', I:24, ID/Parent:8715/8691, LeftRight:true-false, 
-        ThisType:BinaryExpression, ParentType:right, HasChildren:true, Source:btnVal == '-', I:23, ID/Parent:8729/0, LeftRight:true-false, 
-        ThisType:Identifier, ParentType:left, HasChildren:false, Source:btnVal, I:24, ID/Parent:8740/8729, LeftRight:true-true, 
-        ThisType:Literal, ParentType:right, HasChildren:false, Source:'-', I:24, ID/Parent:8753/8729, LeftRight:true-false, 
-NewRecordType:AssignmentExpression - I:25 - Ix:8789 - HelperParentType = ExpressionStatement - HelperParentName = 0
-    HelperXPath: p.0.expression.arguments.0.body.body.50.expression.arguments.0.body.body.3.alternate.alternate.consequent.body.1.alternate.consequent.body.0.expression
-    NestedParentType:BlockStatement > ExpressionStatement+
-    RECORDS (3):
-        ThisType:AssignmentExpression, ParentType:expression, HasChildren:false, Source:InputStr += btnVal, I:25, ID/Parent:8789/0, LeftRight:false-false, 
-        ThisType:Identifier, ParentType:left, HasChildren:false, Source:InputStr, I:26, ID/Parent:8801/0, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:right, HasChildren:false, Source:btnVal, I:26, ID/Parent:8813/0, LeftRight:true-false, 
-NewRecordType:LogicalExpression - I:21 - Ix:8908 - HelperParentType = IfStatement - HelperParentName = 2
-    HelperXPath: p.0.expression.arguments.0.body.body.50.expression.arguments.0.body.body.3.alternate.alternate.consequent.body.2.test
-    NestedParentType:ExpressionStatement > IfStatement+
-    RECORDS (14):
-        ThisType:LogicalExpression, ParentType:test, HasChildren:false, Source:operators.indexOf(lastChar) > -1 && inputVal.length > 1, I:21, ID/Parent:8908/0, LeftRight:false-false, 
-        ThisType:BinaryExpression, ParentType:left, HasChildren:true, Source:operators.indexOf(lastChar) > -1, I:22, ID/Parent:8919/0, LeftRight:true-true, 
-        ThisType:CallExpression, ParentType:left, HasChildren:true, Source:operators.indexOf(lastChar), I:23, ID/Parent:8930/8919, LeftRight:true-true, 
-        ThisType:MemberExpression, ParentType:callee, HasChildren:true, Source:operators.indexOf, I:24, ID/Parent:8941/8930, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:object, HasChildren:false, Source:operators, I:25, ID/Parent:8952/8941, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:property, HasChildren:false, Source:indexOf, I:25, ID/Parent:8964/8941, LeftRight:true-false, 
-        ThisType:Identifier, ParentType:0, HasChildren:false, Source:lastChar, I:25, ID/Parent:8978/8941, LeftRight:true-true, 
-        ThisType:UnaryExpression, ParentType:right, HasChildren:true, Source:-1, I:23, ID/Parent:8991/8919, LeftRight:true-false, 
-        ThisType:Literal, ParentType:argument, HasChildren:false, Source:1, I:24, ID/Parent:9004/8991, LeftRight:true-false, 
-        ThisType:BinaryExpression, ParentType:right, HasChildren:true, Source:inputVal.length > 1, I:22, ID/Parent:9018/0, LeftRight:true-false, 
-        ThisType:MemberExpression, ParentType:left, HasChildren:true, Source:inputVal.length, I:23, ID/Parent:9029/9018, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:object, HasChildren:false, Source:inputVal, I:24, ID/Parent:9040/9029, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:property, HasChildren:false, Source:length, I:24, ID/Parent:9052/9029, LeftRight:true-false, 
-        ThisType:Literal, ParentType:right, HasChildren:false, Source:1, I:23, ID/Parent:9066/9018, LeftRight:true-false, 
-NewRecordType:AssignmentExpression - I:24 - Ix:9102 - HelperParentType = ExpressionStatement - HelperParentName = 0
-    HelperXPath: p.0.expression.arguments.0.body.body.50.expression.arguments.0.body.body.3.alternate.alternate.consequent.body.2.consequent.body.0.expression
-    NestedParentType:BlockStatement > ExpressionStatement+
-    RECORDS (8):
-        ThisType:AssignmentExpression, ParentType:expression, HasChildren:false, Source:InputStr = inputVal.replace(/.$/, btnVal), I:24, ID/Parent:9102/0, LeftRight:false-false, 
-        ThisType:Identifier, ParentType:left, HasChildren:false, Source:InputStr, I:25, ID/Parent:9114/0, LeftRight:true-true, 
-        ThisType:CallExpression, ParentType:right, HasChildren:true, Source:inputVal.replace(/.$/, btnVal), I:25, ID/Parent:9126/0, LeftRight:true-false, 
-        ThisType:MemberExpression, ParentType:callee, HasChildren:true, Source:inputVal.replace, I:26, ID/Parent:9137/9126, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:object, HasChildren:false, Source:inputVal, I:27, ID/Parent:9148/9137, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:property, HasChildren:false, Source:replace, I:27, ID/Parent:9160/9137, LeftRight:true-false, 
-        ThisType:Literal, ParentType:0, HasChildren:false, Source:/.$/, I:27, ID/Parent:9174/9137, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:1, HasChildren:false, Source:btnVal, I:27, ID/Parent:9190/9137, LeftRight:true-false, 
-NewRecordType:AssignmentExpression - I:21 - Ix:9285 - HelperParentType = ExpressionStatement - HelperParentName = 3
-    HelperXPath: p.0.expression.arguments.0.body.body.50.expression.arguments.0.body.body.3.alternate.alternate.consequent.body.3.expression
-    NestedParentType:ExpressionStatement > ExpressionStatement+
-    RECORDS (3):
-        ThisType:AssignmentExpression, ParentType:expression, HasChildren:false, Source:decimalAdded =false, I:21, ID/Parent:9285/0, LeftRight:false-false, 
-        ThisType:Identifier, ParentType:left, HasChildren:false, Source:decimalAdded, I:22, ID/Parent:9297/0, LeftRight:true-true, 
-        ThisType:Literal, ParentType:right, HasChildren:false, Source:false, I:22, ID/Parent:9309/0, LeftRight:true-false, 
-NewRecordType:BinaryExpression - I:19 - Ix:9333 - HelperParentType = IfStatement - HelperParentName = alternate
-    HelperXPath: p.0.expression.arguments.0.body.body.50.expression.arguments.0.body.body.3.alternate.alternate.alternate.test
-    NestedParentType:IfStatement+
-    RECORDS (3):
-        ThisType:BinaryExpression, ParentType:test, HasChildren:false, Source:btnVal == '.', I:19, ID/Parent:9333/0, LeftRight:false-false, 
-        ThisType:Identifier, ParentType:left, HasChildren:false, Source:btnVal, I:20, ID/Parent:9344/0, LeftRight:true-true, 
-        ThisType:Literal, ParentType:right, HasChildren:false, Source:'.', I:20, ID/Parent:9357/0, LeftRight:true-false, 
-NewRecordType:AssignmentExpression - I:25 - Ix:9441 - HelperParentType = ExpressionStatement - HelperParentName = 0
-    HelperXPath: p.0.expression.arguments.0.body.body.50.expression.arguments.0.body.body.3.alternate.alternate.alternate.consequent.body.0.consequent.body.0.expression
-    NestedParentType:BlockStatement > IfStatement > BlockStatement > ExpressionStatement+
-    RECORDS (3):
-        ThisType:AssignmentExpression, ParentType:expression, HasChildren:false, Source:InputStr += btnVal, I:25, ID/Parent:9441/0, LeftRight:false-false, 
-        ThisType:Identifier, ParentType:left, HasChildren:false, Source:InputStr, I:26, ID/Parent:9453/0, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:right, HasChildren:false, Source:btnVal, I:26, ID/Parent:9465/0, LeftRight:true-false, 
-NewRecordType:AssignmentExpression - I:25 - Ix:9559 - HelperParentType = ExpressionStatement - HelperParentName = 2
-    HelperXPath: p.0.expression.arguments.0.body.body.50.expression.arguments.0.body.body.3.alternate.alternate.alternate.consequent.body.0.consequent.body.2.expression
-    NestedParentType:ExpressionStatement > ExpressionStatement+
-    RECORDS (3):
-        ThisType:AssignmentExpression, ParentType:expression, HasChildren:false, Source:decimalAdded = true, I:25, ID/Parent:9559/0, LeftRight:false-false, 
-        ThisType:Identifier, ParentType:left, HasChildren:false, Source:decimalAdded, I:26, ID/Parent:9571/0, LeftRight:true-true, 
-        ThisType:Literal, ParentType:right, HasChildren:false, Source:true, I:26, ID/Parent:9583/0, LeftRight:true-false, 
-NewRecordType:AssignmentExpression - I:22 - Ix:9620 - HelperParentType = ExpressionStatement - HelperParentName = 0
-    HelperXPath: p.0.expression.arguments.0.body.body.50.expression.arguments.0.body.body.3.alternate.alternate.alternate.alternate.body.0.expression
-    NestedParentType:BlockStatement > ExpressionStatement+
-    RECORDS (3):
-        ThisType:AssignmentExpression, ParentType:expression, HasChildren:false, Source:InputStr += btnVal, I:22, ID/Parent:9620/0, LeftRight:false-false, 
-        ThisType:Identifier, ParentType:left, HasChildren:false, Source:InputStr, I:23, ID/Parent:9632/0, LeftRight:true-true, 
-        ThisType:Identifier, ParentType:right, HasChildren:false, Source:btnVal, I:23, ID/Parent:9644/0, LeftRight:true-false, 
+        ThisType:BinaryExpression, ParentType:0, HasChildren:false, Source:"bb:"+bb2(1,2,3), I:12, ID/Parent:5084/0, LeftRight:false-false, 
+        ThisType:Literal, ParentType:left, HasChildren:false, Source:"bb:", I:13, ID/Parent:5095/0, LeftRight:true-true, 
+        ThisType:CallExpression, ParentType:right, HasChildren:true, Source:bb2(1,2,3), I:13, ID/Parent:5109/0, LeftRight:true-false, 
+        ThisType:Identifier, ParentType:callee, HasChildren:true, Source:bb2, I:14, ID/Parent:5120/5109, LeftRight:true-true, 
+        ThisType:Literal, ParentType:0, HasChildren:false, Source:1, I:15, ID/Parent:5133/5120, LeftRight:true-true, 
+        ThisType:Literal, ParentType:1, HasChildren:false, Source:2, I:15, ID/Parent:5146/5120, LeftRight:true-false, 
+        ThisType:Literal, ParentType:2, HasChildren:false, Source:3, I:15, ID/Parent:5159/5120, LeftRight:true-true, 

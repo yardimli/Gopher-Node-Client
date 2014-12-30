@@ -7,11 +7,12 @@ body {
 
          table.fixed {table-layout:fixed; width:970px;}/*Setting the table width is important!*/
          table.fixed td {overflow:hidden;}/*Hide text outside the cell.*/
-         table.fixed td:nth-of-type(1) {width:50px;}/*Setting the width of column 3.*/
+         table.fixed td:nth-of-type(1) {width:120px;}/*Setting the width of column 3.*/
          table.fixed td:nth-of-type(2) {width:50px;}/*Setting the width of column 3.*/
-         table.fixed td:nth-of-type(4) {width:250px;}/*Setting the width of column 3.*/
-         table.fixed td:nth-of-type(6) {width:250px;}/*Setting the width of column 3.*/
-         table.fixed td:nth-of-type(7) {width:50px;}/*Setting the width of column 3.*/
+         table.fixed td:nth-of-type(3) {width:50px;}/*Setting the width of column 3.*/
+         table.fixed td:nth-of-type(4) {width:200px;}/*Setting the width of column 3.*/
+         table.fixed td:nth-of-type(6) {width:200px;}/*Setting the width of column 3.*/
+         table.fixed td:nth-of-type(7) {width:200px;}/*Setting the width of column 3.*/
 		 
 table { border: none; border-collapse: collapse; }
 table td { border-left: 1px solid #000; padding:2px;}

@@ -1,0 +1,127 @@
+VariableDeclarator
+ HelperParentType: VariableDeclaration HelperParentName: 0 NestedParentType: ExpressionStatement > BlockStatement > VariableDeclaration Parent Type: 0 Indent: 11 Length : 5 Source: keys = $('#calculator span') Operator: =
+ Left Var Name: keys
+ Right(2) Var Name: $('#calculator span')
+        C) EXT. VAR: $('#calculator span') CallExpression init 12
+VariableDeclarator
+ HelperParentType: VariableDeclaration HelperParentName: 1 NestedParentType: VariableDeclaration Parent Type: 0 Indent: 11 Length : 7 Source: operators = ['+', '-', 'x', '/'] Operator: =
+ Left Var Name: operators
+ Right(2) Var Name: ['+', '-', 'x', '/']
+VariableDeclarator
+ HelperParentType: VariableDeclaration HelperParentName: 2 NestedParentType: VariableDeclaration Parent Type: 0 Indent: 11 Length : 3 Source: decimalAdded = false Operator: =
+ Left Var Name: decimalAdded
+ Right(2) Var Name: false
+VariableDeclarator
+ HelperParentType: VariableDeclaration HelperParentName: 3 NestedParentType: VariableDeclaration Parent Type: 0 Indent: 11 Length : 3 Source: InputStr = "" Operator: =
+ Left Var Name: InputStr
+ Right(2) Var Name: ""
+VariableDeclarator
+ HelperParentType: VariableDeclaration HelperParentName: 0 NestedParentType: ExpressionStatement > BlockStatement > VariableDeclaration Parent Type: 0 Indent: 17 Length : 5 Source: input = $('.screen') Operator: =
+ Left Var Name: input
+ Right(2) Var Name: $('.screen')
+        C) EXT. VAR: $('.screen') CallExpression init 18
+VariableDeclarator
+ HelperParentType: VariableDeclaration HelperParentName: 1 NestedParentType: VariableDeclaration Parent Type: 0 Indent: 17 Length : 6 Source: inputVal = input.html() Operator: =
+ Left Var Name: inputVal
+ Right(2) Var Name: input.html()
+        C) EXT. VAR: input.html() CallExpression init 18
+VariableDeclarator
+ HelperParentType: VariableDeclaration HelperParentName: 2 NestedParentType: VariableDeclaration Parent Type: 0 Indent: 17 Length : 7 Source: btnVal = $(this).html() Operator: =
+ Left Var Name: btnVal
+ Right(2) Var Name: $(this).html()
+        C) EXT. VAR: $(this).html() CallExpression init 18
+
+BinaryExpression
+ HelperParentType: IfStatement HelperParentName: 3 NestedParentType: IfStatement Parent Type: test Indent: 16 Length : 3 Source: btnVal == 'C' Operator: ==
+AssignmentExpression
+ HelperParentType: ExpressionStatement HelperParentName: 0 NestedParentType: BlockStatement > ExpressionStatement Parent Type: expression Indent: 19 Length : 3 Source: InputStr="" Operator: =
+ Left Var Name: InputStr
+ Right(2) Var Name: ""
+AssignmentExpression
+ HelperParentType: ExpressionStatement HelperParentName: 2 NestedParentType: ExpressionStatement > ExpressionStatement Parent Type: expression Indent: 19 Length : 3 Source: decimalAdded = false Operator: =
+ Left Var Name: decimalAdded
+ Right(2) Var Name: false
+
+BinaryExpression
+ HelperParentType: IfStatement HelperParentName: alternate NestedParentType: IfStatement Parent Type: test Indent: 17 Length : 3 Source: btnVal == '=' Operator: ==
+VariableDeclarator
+ HelperParentType: VariableDeclaration HelperParentName: 0 NestedParentType: BlockStatement > VariableDeclaration Parent Type: 0 Indent: 21 Length : 3 Source: equation = inputVal Operator: =
+ Left Var Name: equation
+ Right(2) Var Name: inputVal
+VariableDeclarator
+ HelperParentType: VariableDeclaration HelperParentName: 1 NestedParentType: VariableDeclaration Parent Type: 0 Indent: 21 Length : 9 Source: lastChar = equation[equation.length - 1] Operator: =
+ Left Var Name: lastChar
+ Right(2) Var Name: equation[equation.length - 1]
+AssignmentExpression
+ HelperParentType: ExpressionStatement HelperParentName: 2 NestedParentType: ExpressionStatement Parent Type: expression Indent: 20 Length : 8 Source: equation = equation.replace(/x/g, '*') Operator: =
+ Left Var Name: equation
+ Right(2) Var Name: equation.replace(/x/g, '*')
+        C) EXT. VAR: equation.replace(/x/g, '*') CallExpression right 21
+LogicalExpression
+ HelperParentType: IfStatement HelperParentName: 3 NestedParentType: IfStatement Parent Type: test Indent: 20 Length : 12 Source: operators.indexOf(lastChar) > -1 || lastChar == '.' Operator: ||
+ Left Var Name: operators.indexOf(lastChar) > -1
+ Right(9) Var Name: lastChar == '.'
+        C) EXT. VAR: operators.indexOf(lastChar) CallExpression left 22
+AssignmentExpression
+ HelperParentType: ExpressionStatement HelperParentName: 0 NestedParentType: BlockStatement > ExpressionStatement Parent Type: expression Indent: 23 Length : 8 Source: equation = equation.replace(/.$/, '') Operator: =
+ Left Var Name: equation
+ Right(2) Var Name: equation.replace(/.$/, '')
+        C) EXT. VAR: equation.replace(/.$/, '') CallExpression right 24
+AssignmentExpression
+ HelperParentType: ExpressionStatement HelperParentName: 5 NestedParentType: IfStatement > BlockStatement > ExpressionStatement > ExpressionStatement Parent Type: expression Indent: 20 Length : 3 Source: decimalAdded = false Operator: =
+ Left Var Name: decimalAdded
+ Right(2) Var Name: false
+
+BinaryExpression
+ HelperParentType: IfStatement HelperParentName: alternate NestedParentType: IfStatement Parent Type: test Indent: 18 Length : 8 Source: operators.indexOf(btnVal) > -1 Operator: >
+        A) EXT. VAR: operators.indexOf(btnVal) CallExpression left 19
+VariableDeclarator
+ HelperParentType: VariableDeclaration HelperParentName: 0 NestedParentType: BlockStatement > VariableDeclaration Parent Type: 0 Indent: 22 Length : 9 Source: lastChar = inputVal[inputVal.length - 1] Operator: =
+ Left Var Name: lastChar
+ Right(2) Var Name: inputVal[inputVal.length - 1]
+LogicalExpression
+ HelperParentType: IfStatement HelperParentName: 1 NestedParentType: IfStatement Parent Type: test Indent: 21 Length : 12 Source: inputVal != '' && operators.indexOf(lastChar) == -1 Operator: &&
+ Left Var Name: inputVal != ''
+ Right(4) Var Name: operators.indexOf(lastChar) == -1
+        C) EXT. VAR: operators.indexOf(lastChar) CallExpression left 23
+AssignmentExpression
+ HelperParentType: ExpressionStatement HelperParentName: 0 NestedParentType: BlockStatement > ExpressionStatement Parent Type: expression Indent: 24 Length : 3 Source: InputStr += btnVal Operator: +=
+ Left Var Name: InputStr
+ Right(2) Var Name: btnVal
+LogicalExpression
+ HelperParentType: IfStatement HelperParentName: alternate NestedParentType: ExpressionStatement > IfStatement Parent Type: test Indent: 22 Length : 7 Source: inputVal == '' && btnVal == '-' Operator: &&
+ Left Var Name: inputVal == ''
+ Right(4) Var Name: btnVal == '-'
+AssignmentExpression
+ HelperParentType: ExpressionStatement HelperParentName: 0 NestedParentType: BlockStatement > ExpressionStatement Parent Type: expression Indent: 25 Length : 3 Source: InputStr += btnVal Operator: +=
+ Left Var Name: InputStr
+ Right(2) Var Name: btnVal
+LogicalExpression
+ HelperParentType: IfStatement HelperParentName: 2 NestedParentType: ExpressionStatement > IfStatement Parent Type: test Indent: 21 Length : 14 Source: operators.indexOf(lastChar) > -1 && inputVal.length > 1 Operator: &&
+ Left Var Name: operators.indexOf(lastChar) > -1
+ Right(9) Var Name: inputVal.length > 1
+        C) EXT. VAR: operators.indexOf(lastChar) CallExpression left 23
+AssignmentExpression
+ HelperParentType: ExpressionStatement HelperParentName: 0 NestedParentType: BlockStatement > ExpressionStatement Parent Type: expression Indent: 24 Length : 8 Source: InputStr = inputVal.replace(/.$/, btnVal) Operator: =
+ Left Var Name: InputStr
+ Right(2) Var Name: inputVal.replace(/.$/, btnVal)
+        C) EXT. VAR: inputVal.replace(/.$/, btnVal) CallExpression right 25
+AssignmentExpression
+ HelperParentType: ExpressionStatement HelperParentName: 3 NestedParentType: ExpressionStatement > ExpressionStatement Parent Type: expression Indent: 21 Length : 3 Source: decimalAdded =false Operator: =
+ Left Var Name: decimalAdded
+ Right(2) Var Name: false
+
+BinaryExpression
+ HelperParentType: IfStatement HelperParentName: alternate NestedParentType: IfStatement Parent Type: test Indent: 19 Length : 3 Source: btnVal == '.' Operator: ==
+AssignmentExpression
+ HelperParentType: ExpressionStatement HelperParentName: 0 NestedParentType: BlockStatement > IfStatement > BlockStatement > ExpressionStatement Parent Type: expression Indent: 25 Length : 3 Source: InputStr += btnVal Operator: +=
+ Left Var Name: InputStr
+ Right(2) Var Name: btnVal
+AssignmentExpression
+ HelperParentType: ExpressionStatement HelperParentName: 2 NestedParentType: ExpressionStatement > ExpressionStatement Parent Type: expression Indent: 25 Length : 3 Source: decimalAdded = true Operator: =
+ Left Var Name: decimalAdded
+ Right(2) Var Name: true
+AssignmentExpression
+ HelperParentType: ExpressionStatement HelperParentName: 0 NestedParentType: BlockStatement > ExpressionStatement Parent Type: expression Indent: 22 Length : 3 Source: InputStr += btnVal Operator: +=
+ Left Var Name: InputStr
+ Right(2) Var Name: btnVal

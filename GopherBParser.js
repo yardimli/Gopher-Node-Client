@@ -744,7 +744,7 @@ function AddCurly2LOOPs(contents)
 
 
 //------------------------------------------------------------------------------------------------------------------------------
-function AddVariableTracking(inFile, contents)
+function AddVariableTracking(inFile, contents, FileID)
 {
 	//******** Reparse Source
 	var options = {};
@@ -772,7 +772,7 @@ function AddVariableTracking(inFile, contents)
 			//function (xCodeLine, NestedParent, ParentType, LeftSideStr, LeftSideValue, RightSideStr, RightSideValue, Operator, VarDeclerator, _$gXLocal, InnerFunctionCount)
 			GopherObjectsA[ObjectCounter].InsertStr = "(tempVar = " + GopherObjectsA[ObjectCounter].Records[1].xSource + ", " +
 					GopherObjectsA[ObjectCounter].Records[1].xSource + "= " +
-					"_$set(" + GopherObjectsA[ObjectCounter].Records[0].XLine + "," +
+					"_$set(" + FileID + "," + GopherObjectsA[ObjectCounter].Records[0].XLine + "," +
 					"'" + GopherObjectsA[ObjectCounter].NestedParentType + "'," +
 					"'" + GopherObjectsA[ObjectCounter].Records[0].ParentType + "'," +
 					"'" + escapeSingleQuote(GopherObjectsA[ObjectCounter].Records[1].xSource) + "'," +
@@ -878,7 +878,7 @@ function AddVariableTracking(inFile, contents)
 
 			//function _$evl(xCodeLine, NestedParent, ParentType, StatemetStr, StatemetValue, InnerFunctionCount)
 			GopherObjectsA[ObjectCounter].InsertStr =
-					"_$evl(" + GopherObjectsA[ObjectCounter].Records[0].XLine + "," +
+					"_$evl(" + FileID + "," + GopherObjectsA[ObjectCounter].Records[0].XLine + "," +
 					"'" + GopherObjectsA[ObjectCounter].NestedParentType + "'," +
 					"'" + GopherObjectsA[ObjectCounter].Records[0].ParentType + "'," +
 					"'" + escapeSingleQuote(GopherObjectsA[ObjectCounter].Records[0].xSource) + "', " +
@@ -998,7 +998,7 @@ function AddVariableTracking(inFile, contents)
 				{
 					//function _$evl(xCodeLine, NestedParent, ParentType, StatemetStr, StatementValue, InnerFunctionCount)
 					GopherObjectsA[ObjectCounter].InsertStr =
-							"_$evl(" + GopherObjectsA[ObjectCounter].Records[0].XLine + "," +
+							"_$evl(" + FileID + "," + GopherObjectsA[ObjectCounter].Records[0].XLine + "," +
 							"'" + GopherObjectsA[ObjectCounter].NestedParentType + "'," +
 							"'" + GopherObjectsA[ObjectCounter].Records[0].ParentType + "'," +
 							"'" + escapeSingleQuote(GopherObjectsA[ObjectCounter].Records[0].xSource) + "', " +
@@ -1012,7 +1012,7 @@ function AddVariableTracking(inFile, contents)
 					{
 						GopherObjectsA[ObjectCounter].InsertStr =
 								GopherObjectsA[ObjectCounter].Records[1].xSource + " = " +
-								"_$set(" + GopherObjectsA[ObjectCounter].Records[0].XLine + "," +
+								"_$set(" + FileID + "," + GopherObjectsA[ObjectCounter].Records[0].XLine + "," +
 								"'" + GopherObjectsA[ObjectCounter].NestedParentType + "'," +
 								"'" + GopherObjectsA[ObjectCounter].Records[0].ParentType + "'," +
 								"'" + escapeSingleQuote(GopherObjectsA[ObjectCounter].Records[1].xSource) + "'," +
@@ -1039,7 +1039,7 @@ function AddVariableTracking(inFile, contents)
 					(GopherObjectsA[ObjectCounter].NestedParentType.indexOf("ForStatement") === -1))
 			{
 				contents = [contents.slice(0, GopherObjectsA[ObjectCounter].HelperParentStart),
-					"_$sb(" + GopherObjectsA[ObjectCounter].Records[0].XLine + ",'" + escapeSingleQuote(GopherObjectsA[ObjectCounter].Records[1].xSource) + "',_$gXLocal);"
+					"_$sb(" + FileID + "," + GopherObjectsA[ObjectCounter].Records[0].XLine + ",'" + escapeSingleQuote(GopherObjectsA[ObjectCounter].Records[1].xSource) + "',_$gXLocal);"
 							, contents.slice(GopherObjectsA[ObjectCounter].HelperParentStart)].join('');
 			}
 
@@ -1052,7 +1052,7 @@ function AddVariableTracking(inFile, contents)
 
 
 //------------------------------------------------------------------------------------------------------------------------------
-function AddFunctionTracking(inFile, contents)
+function AddFunctionTracking(inFile, contents, FileID)
 {
 	//******** Reparse Source
 	var options = {};
@@ -1153,7 +1153,7 @@ function AddFunctionTracking(inFile, contents)
 	//add FunctionEND tell before RETURNs
 	for (var ObjectCounter = FunctionsList.length - 1; ObjectCounter >= 0; ObjectCounter--)
 	{
-		var EndStr = "_$fe("+FunctionsList[ObjectCounter].Line+",'" + FunctionsList[ObjectCounter].FunctionID + " -RETURN',_$gXLocal); ";
+		var EndStr = "_$fe(" + FileID + "," + FunctionsList[ObjectCounter].Line+",'" + FunctionsList[ObjectCounter].FunctionID + " -RETURN',_$gXLocal); ";
 		contents = [contents.slice(0, FunctionsList[ObjectCounter].StartPos), EndStr, contents.slice(FunctionsList[ObjectCounter].StartPos)].join('');
 	}
 
@@ -1280,17 +1280,17 @@ function AddFunctionTracking(inFile, contents)
 
 	for (var ObjectCounter = FunctionsList.length - 1; ObjectCounter >= 0; ObjectCounter--)
 	{
-		var StartStr = "_$gX++; var _$gXLocal = _$gX; _$fs("+FunctionsList[ObjectCounter].StartLine+",'" + FunctionsList[ObjectCounter].FunctionID + "','" + FunctionsList[ObjectCounter].FunctionType + "','" + FunctionsList[ObjectCounter].FunctionParams + "',_$gXLocal); ";
+		var StartStr = "_$gX++; var _$gXLocal = _$gX; _$fs(" + FileID + "," + FunctionsList[ObjectCounter].StartLine+",'" + FunctionsList[ObjectCounter].FunctionID + "','" + FunctionsList[ObjectCounter].FunctionType + "','" + FunctionsList[ObjectCounter].FunctionParams + "',_$gXLocal); ";
 		
 		for (var ParamCounter = 0; ParamCounter <= FunctionsList[ObjectCounter].FunctionParams.length - 1; ParamCounter++)
 		{
 			var ParamName = FunctionsList[ObjectCounter].FunctionParams[ParamCounter];
 			//_$set = function (xCodeLine, NestedParent, ParentType, LeftSideStr, LeftSideValue, RightSideStr, RightSideValue, Operator, VarDeclerator, _$gXLocal, InnerFunctionCount)
-			StartStr += "_$set("+FunctionsList[ObjectCounter].StartLine+", 'VariableDeclaration', 'Function [" + FunctionsList[ObjectCounter].FunctionID + "]', '" + ParamName + "', null, '', " + ParamName + ", '=', '1', _$gXLocal, 0); ";
+			StartStr += "_$set(" + FileID + "," + FunctionsList[ObjectCounter].StartLine+", 'VariableDeclaration', 'Function [" + FunctionsList[ObjectCounter].FunctionID + "]', '" + ParamName + "', null, '', " + ParamName + ", '=', '1', _$gXLocal, 0); ";
 		}
 
 
-		var EndStr = "_$fe("+FunctionsList[ObjectCounter].EndLine+",'" + FunctionsList[ObjectCounter].FunctionID + "',_$gXLocal); ";
+		var EndStr = "_$fe(" + FileID + "," + FunctionsList[ObjectCounter].EndLine+",'" + FunctionsList[ObjectCounter].FunctionID + "',_$gXLocal); ";
 		contents = [contents.slice(0, FunctionsList[ObjectCounter].CopyStart + 1), StartStr, contents.slice(FunctionsList[ObjectCounter].CopyStart + 1)].join('');
 		contents = [contents.slice(0, FunctionsList[ObjectCounter].CopyEnd + StartStr.length - 1), EndStr, contents.slice(FunctionsList[ObjectCounter].CopyEnd + StartStr.length - 1)].join('');
 		for (var ObjectCounter2 = ObjectCounter - 1; ObjectCounter2 >= 0; ObjectCounter2--)
@@ -1319,7 +1319,7 @@ function AddFunctionTracking(inFile, contents)
 
 
 //----------------------------------------------------------------------------------------
-function GopherTellify(contents, inFile)
+function GopherTellify(contents, inFile, FileID)
 {
 	var DebugLines = false;
 	var TempVarStr = "";
@@ -1347,8 +1347,8 @@ function GopherTellify(contents, inFile)
 	
 	contents = AddCurly2IFs(contents);
 	contents = AddCurly2LOOPs(contents);
-	contents = AddVariableTracking(inFile, contents);
-	contents = AddFunctionTracking(inFile, contents);
+	contents = AddVariableTracking(inFile, contents, FileID);
+	contents = AddFunctionTracking(inFile, contents, FileID);
 	// **** IN RealTimeConsole_Temps.JS REF #001
 
 	//========================================
@@ -1384,7 +1384,7 @@ function copyFile(source, target, cb) {
     }
   }
 }
-function GopherTellFile(inFile)
+function GopherTellFile(inFile,FileID)
 {
 //	var InsertContent = fs.readFileSync(__dirname + '/GopherBInsert.js');
 	
@@ -1392,11 +1392,15 @@ function GopherTellFile(inFile)
 	
 	fs.readFile(inFile, function (err, contents) {
 		if (!err) {
-			contents = GopherTellify(contents, inFile);
+			contents = GopherTellify(contents, inFile, FileID);
 			fs.writeFile(inFile.replace(".js", "-gopher.js"), beautify(contents, {indent_size: 4})); //InsertContent + contents
 		}
 	});
 }
 
-GopherTellFile(__dirname + '/liveparser-root/js/app.js');
+GopherTellFile(__dirname + '/liveparser-root/js/app.js',1);
+GopherTellFile(__dirname + '/liveparser-root/js/app-func.js',2);
+GopherTellFile(__dirname + '/liveparser-root/js/calculator.js',3);
+GopherTellFile(__dirname + '/liveparser-root/js/snake.js',4);
+
 // **** IN RealTimeConsole.JS REF #002

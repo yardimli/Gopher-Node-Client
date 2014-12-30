@@ -1,0 +1,1425 @@
+Calle Line/Col:1/0 - I:3 - FirstType:ExpressionStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:1/0 - I:4 - FirstType:CallExpression - ParentType:expression - xOperator: - xSource:$(document).ready( function() {
+	//snake
+	//Canvas stuff
+	_$sb(4,4,'canvas',_$gXLocal);var canvas =  - ParentID:22 - ID:23
+Calle Line/Col:1/0 - I:5 - FirstType:MemberExpression - ParentType:callee - xOperator: - xSource:$(document).ready - ParentID:33 - ID:34
+Calle Line/Col:1/0 - I:6 - FirstType:CallExpression - ParentType:object - xOperator: - xSource:$(document) - ParentID:44 - ID:45
+Calle Line/Col:1/0 - I:7 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:$ - ParentID:55 - ID:56
+Calle Line/Col:1/2 - I:8 - FirstType:Identifier - ParentType:0 - xOperator: - xSource:document - ParentID:68 - ID:69
+Calle Line/Col:1/12 - I:6 - FirstType:Identifier - ParentType:property - xOperator: - xSource:ready - ParentID:80 - ID:81
+Calle Line/Col:1/19 - I:6 - FirstType:FunctionExpression - ParentType:0 - xOperator: - xSource:function() {
+	//snake
+	//Canvas stuff
+	_$sb(4,4,'canvas',_$gXLocal);var canvas = _$set(4,4,'Expressi - ParentID:94 - ID:95
+Calle Line/Col:1/30 - I:7 - FirstType:BlockStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:4/1 - I:9 - FirstType:ExpressionStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:4/1 - I:10 - FirstType:CallExpression - ParentType:expression - xOperator: - xSource:_$sb(4,4,'canvas',_$gXLocal) - ParentID:130 - ID:131
+Calle Line/Col:4/1 - I:11 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$sb - ParentID:141 - ID:142
+Calle Line/Col:4/6 - I:12 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:154 - ID:155
+Calle Line/Col:4/8 - I:12 - FirstType:Literal - ParentType:1 - xOperator: - xSource:4 - ParentID:167 - ID:168
+Calle Line/Col:4/10 - I:12 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'canvas' - ParentID:180 - ID:181
+Calle Line/Col:4/19 - I:12 - FirstType:Identifier - ParentType:3 - xOperator: - xSource:_$gXLocal - ParentID:193 - ID:194
+Calle Line/Col:4/30 - I:9 - FirstType:VariableDeclaration - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:4/34 - I:11 - FirstType:VariableDeclarator - ParentType:0 - xOperator:= - xSource:canvas = _$set(4,4,'ExpressionStatement > BlockStatement > VariableDeclaration','0','canvas',canvas, - ParentID:217 - ID:218
+Calle Line/Col:4/34 - I:12 - FirstType:Identifier - ParentType:id - xOperator: - xSource:canvas - ParentID:228 - ID:229
+Calle Line/Col:4/43 - I:12 - FirstType:CallExpression - ParentType:init - xOperator: - xSource:_$set(4,4,'ExpressionStatement > BlockStatement > VariableDeclaration','0','canvas',canvas,'$("#canv - ParentID:240 - ID:241
+Calle Line/Col:4/43 - I:13 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$set - ParentID:251 - ID:252
+Calle Line/Col:4/49 - I:14 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:264 - ID:265
+Calle Line/Col:4/51 - I:14 - FirstType:Literal - ParentType:1 - xOperator: - xSource:4 - ParentID:277 - ID:278
+Calle Line/Col:4/53 - I:14 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'ExpressionStatement > BlockStatement > VariableDeclaration' - ParentID:290 - ID:291
+Calle Line/Col:4/114 - I:14 - FirstType:Literal - ParentType:3 - xOperator: - xSource:'0' - ParentID:303 - ID:304
+Calle Line/Col:4/118 - I:14 - FirstType:Literal - ParentType:4 - xOperator: - xSource:'canvas' - ParentID:316 - ID:317
+Calle Line/Col:4/127 - I:14 - FirstType:Identifier - ParentType:5 - xOperator: - xSource:canvas - ParentID:329 - ID:330
+Calle Line/Col:4/134 - I:14 - FirstType:Literal - ParentType:6 - xOperator: - xSource:'$("#canvas")[0]' - ParentID:341 - ID:342
+Calle Line/Col:4/152 - I:14 - FirstType:MemberExpression - ParentType:7 - xOperator: - xSource:$("#canvas")[0] - ParentID:354 - ID:355
+Calle Line/Col:4/152 - I:15 - FirstType:CallExpression - ParentType:object - xOperator: - xSource:$("#canvas") - ParentID:365 - ID:366
+Calle Line/Col:4/152 - I:16 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:$ - ParentID:376 - ID:377
+Calle Line/Col:4/154 - I:17 - FirstType:Literal - ParentType:0 - xOperator: - xSource:"#canvas" - ParentID:389 - ID:390
+Calle Line/Col:4/165 - I:15 - FirstType:Literal - ParentType:property - xOperator: - xSource:0 - ParentID:402 - ID:403
+Calle Line/Col:4/168 - I:14 - FirstType:Literal - ParentType:8 - xOperator: - xSource:'=' - ParentID:416 - ID:417
+Calle Line/Col:4/172 - I:14 - FirstType:Literal - ParentType:9 - xOperator: - xSource:'1' - ParentID:429 - ID:430
+Calle Line/Col:4/176 - I:14 - FirstType:Identifier - ParentType:10 - xOperator: - xSource:_$gXLocal - ParentID:442 - ID:443
+Calle Line/Col:4/186 - I:14 - FirstType:Literal - ParentType:11 - xOperator: - xSource:0 - ParentID:454 - ID:455
+Calle Line/Col:5/1 - I:9 - FirstType:ExpressionStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:5/1 - I:10 - FirstType:CallExpression - ParentType:expression - xOperator: - xSource:_$sb(4,5,'ctx',_$gXLocal) - ParentID:479 - ID:480
+Calle Line/Col:5/1 - I:11 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$sb - ParentID:490 - ID:491
+Calle Line/Col:5/6 - I:12 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:503 - ID:504
+Calle Line/Col:5/8 - I:12 - FirstType:Literal - ParentType:1 - xOperator: - xSource:5 - ParentID:516 - ID:517
+Calle Line/Col:5/10 - I:12 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'ctx' - ParentID:529 - ID:530
+Calle Line/Col:5/16 - I:12 - FirstType:Identifier - ParentType:3 - xOperator: - xSource:_$gXLocal - ParentID:542 - ID:543
+Calle Line/Col:5/27 - I:9 - FirstType:VariableDeclaration - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:5/31 - I:11 - FirstType:VariableDeclarator - ParentType:0 - xOperator:= - xSource:ctx = _$set(4,5,'VariableDeclaration','0','ctx',ctx,'canvas.getContext("2d")',(_$v[1]=canvas.getCont - ParentID:566 - ID:567
+Calle Line/Col:5/31 - I:12 - FirstType:Identifier - ParentType:id - xOperator: - xSource:ctx - ParentID:577 - ID:578
+Calle Line/Col:5/37 - I:12 - FirstType:CallExpression - ParentType:init - xOperator: - xSource:_$set(4,5,'VariableDeclaration','0','ctx',ctx,'canvas.getContext("2d")',(_$v[1]=canvas.getContext("2 - ParentID:589 - ID:590
+Calle Line/Col:5/37 - I:13 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$set - ParentID:600 - ID:601
+Calle Line/Col:5/43 - I:14 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:613 - ID:614
+Calle Line/Col:5/45 - I:14 - FirstType:Literal - ParentType:1 - xOperator: - xSource:5 - ParentID:626 - ID:627
+Calle Line/Col:5/47 - I:14 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'VariableDeclaration' - ParentID:639 - ID:640
+Calle Line/Col:5/69 - I:14 - FirstType:Literal - ParentType:3 - xOperator: - xSource:'0' - ParentID:652 - ID:653
+Calle Line/Col:5/73 - I:14 - FirstType:Literal - ParentType:4 - xOperator: - xSource:'ctx' - ParentID:665 - ID:666
+Calle Line/Col:5/79 - I:14 - FirstType:Identifier - ParentType:5 - xOperator: - xSource:ctx - ParentID:678 - ID:679
+Calle Line/Col:5/83 - I:14 - FirstType:Literal - ParentType:6 - xOperator: - xSource:'canvas.getContext("2d")' - ParentID:690 - ID:691
+Calle Line/Col:5/110 - I:14 - FirstType:AssignmentExpression - ParentType:7 - xOperator:= - xSource:_$v[1]=canvas.getContext("2d") - ParentID:703 - ID:704
+Calle Line/Col:5/110 - I:15 - FirstType:MemberExpression - ParentType:left - xOperator: - xSource:_$v[1] - ParentID:715 - ID:716
+Calle Line/Col:5/110 - I:16 - FirstType:Identifier - ParentType:object - xOperator: - xSource:_$v - ParentID:726 - ID:727
+Calle Line/Col:5/114 - I:16 - FirstType:Literal - ParentType:property - xOperator: - xSource:1 - ParentID:738 - ID:739
+Calle Line/Col:5/117 - I:15 - FirstType:CallExpression - ParentType:right - xOperator: - xSource:canvas.getContext("2d") - ParentID:752 - ID:753
+Calle Line/Col:5/117 - I:16 - FirstType:MemberExpression - ParentType:callee - xOperator: - xSource:canvas.getContext - ParentID:763 - ID:764
+Calle Line/Col:5/117 - I:17 - FirstType:Identifier - ParentType:object - xOperator: - xSource:canvas - ParentID:774 - ID:775
+Calle Line/Col:5/124 - I:17 - FirstType:Identifier - ParentType:property - xOperator: - xSource:getContext - ParentID:786 - ID:787
+Calle Line/Col:5/135 - I:17 - FirstType:Literal - ParentType:0 - xOperator: - xSource:"2d" - ParentID:800 - ID:801
+Calle Line/Col:5/142 - I:14 - FirstType:Literal - ParentType:8 - xOperator: - xSource:'=' - ParentID:813 - ID:814
+Calle Line/Col:5/146 - I:14 - FirstType:Literal - ParentType:9 - xOperator: - xSource:'1' - ParentID:826 - ID:827
+Calle Line/Col:5/150 - I:14 - FirstType:Identifier - ParentType:10 - xOperator: - xSource:_$gXLocal - ParentID:839 - ID:840
+Calle Line/Col:5/160 - I:14 - FirstType:Literal - ParentType:11 - xOperator: - xSource:1 - ParentID:851 - ID:852
+Calle Line/Col:5/162 - I:14 - FirstType:Literal - ParentType:12 - xOperator: - xSource:'1=canvas.getContext("2d")' - ParentID:864 - ID:865
+Calle Line/Col:6/1 - I:9 - FirstType:ExpressionStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:6/1 - I:10 - FirstType:CallExpression - ParentType:expression - xOperator: - xSource:_$sb(4,6,'w',_$gXLocal) - ParentID:889 - ID:890
+Calle Line/Col:6/1 - I:11 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$sb - ParentID:900 - ID:901
+Calle Line/Col:6/6 - I:12 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:913 - ID:914
+Calle Line/Col:6/8 - I:12 - FirstType:Literal - ParentType:1 - xOperator: - xSource:6 - ParentID:926 - ID:927
+Calle Line/Col:6/10 - I:12 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'w' - ParentID:939 - ID:940
+Calle Line/Col:6/14 - I:12 - FirstType:Identifier - ParentType:3 - xOperator: - xSource:_$gXLocal - ParentID:952 - ID:953
+Calle Line/Col:6/25 - I:9 - FirstType:VariableDeclaration - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:6/29 - I:11 - FirstType:VariableDeclarator - ParentType:0 - xOperator:= - xSource:w = _$set(4,6,'VariableDeclaration','0','w',w,'$("#canvas").width()',(_$v[2]=$("#canvas").width()),' - ParentID:976 - ID:977
+Calle Line/Col:6/29 - I:12 - FirstType:Identifier - ParentType:id - xOperator: - xSource:w - ParentID:987 - ID:988
+Calle Line/Col:6/33 - I:12 - FirstType:CallExpression - ParentType:init - xOperator: - xSource:_$set(4,6,'VariableDeclaration','0','w',w,'$("#canvas").width()',(_$v[2]=$("#canvas").width()),'=',' - ParentID:999 - ID:1000
+Calle Line/Col:6/33 - I:13 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$set - ParentID:1010 - ID:1011
+Calle Line/Col:6/39 - I:14 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:1023 - ID:1024
+Calle Line/Col:6/41 - I:14 - FirstType:Literal - ParentType:1 - xOperator: - xSource:6 - ParentID:1036 - ID:1037
+Calle Line/Col:6/43 - I:14 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'VariableDeclaration' - ParentID:1049 - ID:1050
+Calle Line/Col:6/65 - I:14 - FirstType:Literal - ParentType:3 - xOperator: - xSource:'0' - ParentID:1062 - ID:1063
+Calle Line/Col:6/69 - I:14 - FirstType:Literal - ParentType:4 - xOperator: - xSource:'w' - ParentID:1075 - ID:1076
+Calle Line/Col:6/73 - I:14 - FirstType:Identifier - ParentType:5 - xOperator: - xSource:w - ParentID:1088 - ID:1089
+Calle Line/Col:6/75 - I:14 - FirstType:Literal - ParentType:6 - xOperator: - xSource:'$("#canvas").width()' - ParentID:1100 - ID:1101
+Calle Line/Col:6/99 - I:14 - FirstType:AssignmentExpression - ParentType:7 - xOperator:= - xSource:_$v[2]=$("#canvas").width() - ParentID:1113 - ID:1114
+Calle Line/Col:6/99 - I:15 - FirstType:MemberExpression - ParentType:left - xOperator: - xSource:_$v[2] - ParentID:1125 - ID:1126
+Calle Line/Col:6/99 - I:16 - FirstType:Identifier - ParentType:object - xOperator: - xSource:_$v - ParentID:1136 - ID:1137
+Calle Line/Col:6/103 - I:16 - FirstType:Literal - ParentType:property - xOperator: - xSource:2 - ParentID:1148 - ID:1149
+Calle Line/Col:6/106 - I:15 - FirstType:CallExpression - ParentType:right - xOperator: - xSource:$("#canvas").width() - ParentID:1162 - ID:1163
+Calle Line/Col:6/106 - I:16 - FirstType:MemberExpression - ParentType:callee - xOperator: - xSource:$("#canvas").width - ParentID:1173 - ID:1174
+Calle Line/Col:6/106 - I:17 - FirstType:CallExpression - ParentType:object - xOperator: - xSource:$("#canvas") - ParentID:1184 - ID:1185
+Calle Line/Col:6/106 - I:18 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:$ - ParentID:1195 - ID:1196
+Calle Line/Col:6/108 - I:19 - FirstType:Literal - ParentType:0 - xOperator: - xSource:"#canvas" - ParentID:1208 - ID:1209
+Calle Line/Col:6/119 - I:17 - FirstType:Identifier - ParentType:property - xOperator: - xSource:width - ParentID:1221 - ID:1222
+Calle Line/Col:6/128 - I:14 - FirstType:Literal - ParentType:8 - xOperator: - xSource:'=' - ParentID:1235 - ID:1236
+Calle Line/Col:6/132 - I:14 - FirstType:Literal - ParentType:9 - xOperator: - xSource:'1' - ParentID:1248 - ID:1249
+Calle Line/Col:6/136 - I:14 - FirstType:Identifier - ParentType:10 - xOperator: - xSource:_$gXLocal - ParentID:1261 - ID:1262
+Calle Line/Col:6/146 - I:14 - FirstType:Literal - ParentType:11 - xOperator: - xSource:1 - ParentID:1273 - ID:1274
+Calle Line/Col:6/148 - I:14 - FirstType:Literal - ParentType:12 - xOperator: - xSource:'2=$("#canvas").width()' - ParentID:1286 - ID:1287
+Calle Line/Col:7/1 - I:9 - FirstType:ExpressionStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:7/1 - I:10 - FirstType:CallExpression - ParentType:expression - xOperator: - xSource:_$sb(4,7,'h',_$gXLocal) - ParentID:1311 - ID:1312
+Calle Line/Col:7/1 - I:11 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$sb - ParentID:1322 - ID:1323
+Calle Line/Col:7/6 - I:12 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:1335 - ID:1336
+Calle Line/Col:7/8 - I:12 - FirstType:Literal - ParentType:1 - xOperator: - xSource:7 - ParentID:1348 - ID:1349
+Calle Line/Col:7/10 - I:12 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'h' - ParentID:1361 - ID:1362
+Calle Line/Col:7/14 - I:12 - FirstType:Identifier - ParentType:3 - xOperator: - xSource:_$gXLocal - ParentID:1374 - ID:1375
+Calle Line/Col:7/25 - I:9 - FirstType:VariableDeclaration - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:7/29 - I:11 - FirstType:VariableDeclarator - ParentType:0 - xOperator:= - xSource:h = _$set(4,7,'VariableDeclaration','0','h',h,'$("#canvas").height()',(_$v[3]=$("#canvas").height()) - ParentID:1398 - ID:1399
+Calle Line/Col:7/29 - I:12 - FirstType:Identifier - ParentType:id - xOperator: - xSource:h - ParentID:1409 - ID:1410
+Calle Line/Col:7/33 - I:12 - FirstType:CallExpression - ParentType:init - xOperator: - xSource:_$set(4,7,'VariableDeclaration','0','h',h,'$("#canvas").height()',(_$v[3]=$("#canvas").height()),'=' - ParentID:1421 - ID:1422
+Calle Line/Col:7/33 - I:13 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$set - ParentID:1432 - ID:1433
+Calle Line/Col:7/39 - I:14 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:1445 - ID:1446
+Calle Line/Col:7/41 - I:14 - FirstType:Literal - ParentType:1 - xOperator: - xSource:7 - ParentID:1458 - ID:1459
+Calle Line/Col:7/43 - I:14 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'VariableDeclaration' - ParentID:1471 - ID:1472
+Calle Line/Col:7/65 - I:14 - FirstType:Literal - ParentType:3 - xOperator: - xSource:'0' - ParentID:1484 - ID:1485
+Calle Line/Col:7/69 - I:14 - FirstType:Literal - ParentType:4 - xOperator: - xSource:'h' - ParentID:1497 - ID:1498
+Calle Line/Col:7/73 - I:14 - FirstType:Identifier - ParentType:5 - xOperator: - xSource:h - ParentID:1510 - ID:1511
+Calle Line/Col:7/75 - I:14 - FirstType:Literal - ParentType:6 - xOperator: - xSource:'$("#canvas").height()' - ParentID:1522 - ID:1523
+Calle Line/Col:7/100 - I:14 - FirstType:AssignmentExpression - ParentType:7 - xOperator:= - xSource:_$v[3]=$("#canvas").height() - ParentID:1535 - ID:1536
+Calle Line/Col:7/100 - I:15 - FirstType:MemberExpression - ParentType:left - xOperator: - xSource:_$v[3] - ParentID:1547 - ID:1548
+Calle Line/Col:7/100 - I:16 - FirstType:Identifier - ParentType:object - xOperator: - xSource:_$v - ParentID:1558 - ID:1559
+Calle Line/Col:7/104 - I:16 - FirstType:Literal - ParentType:property - xOperator: - xSource:3 - ParentID:1570 - ID:1571
+Calle Line/Col:7/107 - I:15 - FirstType:CallExpression - ParentType:right - xOperator: - xSource:$("#canvas").height() - ParentID:1584 - ID:1585
+Calle Line/Col:7/107 - I:16 - FirstType:MemberExpression - ParentType:callee - xOperator: - xSource:$("#canvas").height - ParentID:1595 - ID:1596
+Calle Line/Col:7/107 - I:17 - FirstType:CallExpression - ParentType:object - xOperator: - xSource:$("#canvas") - ParentID:1606 - ID:1607
+Calle Line/Col:7/107 - I:18 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:$ - ParentID:1617 - ID:1618
+Calle Line/Col:7/109 - I:19 - FirstType:Literal - ParentType:0 - xOperator: - xSource:"#canvas" - ParentID:1630 - ID:1631
+Calle Line/Col:7/120 - I:17 - FirstType:Identifier - ParentType:property - xOperator: - xSource:height - ParentID:1643 - ID:1644
+Calle Line/Col:7/130 - I:14 - FirstType:Literal - ParentType:8 - xOperator: - xSource:'=' - ParentID:1657 - ID:1658
+Calle Line/Col:7/134 - I:14 - FirstType:Literal - ParentType:9 - xOperator: - xSource:'1' - ParentID:1670 - ID:1671
+Calle Line/Col:7/138 - I:14 - FirstType:Identifier - ParentType:10 - xOperator: - xSource:_$gXLocal - ParentID:1683 - ID:1684
+Calle Line/Col:7/148 - I:14 - FirstType:Literal - ParentType:11 - xOperator: - xSource:1 - ParentID:1695 - ID:1696
+Calle Line/Col:7/150 - I:14 - FirstType:Literal - ParentType:12 - xOperator: - xSource:'3=$("#canvas").height()' - ParentID:1708 - ID:1709
+Calle Line/Col:10/1 - I:9 - FirstType:ExpressionStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:10/1 - I:10 - FirstType:CallExpression - ParentType:expression - xOperator: - xSource:_$sb(4,10,'cw',_$gXLocal) - ParentID:1733 - ID:1734
+Calle Line/Col:10/1 - I:11 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$sb - ParentID:1744 - ID:1745
+Calle Line/Col:10/6 - I:12 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:1757 - ID:1758
+Calle Line/Col:10/8 - I:12 - FirstType:Literal - ParentType:1 - xOperator: - xSource:10 - ParentID:1770 - ID:1771
+Calle Line/Col:10/11 - I:12 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'cw' - ParentID:1783 - ID:1784
+Calle Line/Col:10/16 - I:12 - FirstType:Identifier - ParentType:3 - xOperator: - xSource:_$gXLocal - ParentID:1796 - ID:1797
+Calle Line/Col:10/27 - I:9 - FirstType:VariableDeclaration - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:10/31 - I:11 - FirstType:VariableDeclarator - ParentType:0 - xOperator:= - xSource:cw = _$set(4,10,'VariableDeclaration','0','cw',cw,'10',10,'=','1',_$gXLocal,0) - ParentID:1820 - ID:1821
+Calle Line/Col:10/31 - I:12 - FirstType:Identifier - ParentType:id - xOperator: - xSource:cw - ParentID:1831 - ID:1832
+Calle Line/Col:10/36 - I:12 - FirstType:CallExpression - ParentType:init - xOperator: - xSource:_$set(4,10,'VariableDeclaration','0','cw',cw,'10',10,'=','1',_$gXLocal,0) - ParentID:1843 - ID:1844
+Calle Line/Col:10/36 - I:13 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$set - ParentID:1854 - ID:1855
+Calle Line/Col:10/42 - I:14 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:1867 - ID:1868
+Calle Line/Col:10/44 - I:14 - FirstType:Literal - ParentType:1 - xOperator: - xSource:10 - ParentID:1880 - ID:1881
+Calle Line/Col:10/47 - I:14 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'VariableDeclaration' - ParentID:1893 - ID:1894
+Calle Line/Col:10/69 - I:14 - FirstType:Literal - ParentType:3 - xOperator: - xSource:'0' - ParentID:1906 - ID:1907
+Calle Line/Col:10/73 - I:14 - FirstType:Literal - ParentType:4 - xOperator: - xSource:'cw' - ParentID:1919 - ID:1920
+Calle Line/Col:10/78 - I:14 - FirstType:Identifier - ParentType:5 - xOperator: - xSource:cw - ParentID:1932 - ID:1933
+Calle Line/Col:10/81 - I:14 - FirstType:Literal - ParentType:6 - xOperator: - xSource:'10' - ParentID:1944 - ID:1945
+Calle Line/Col:10/86 - I:14 - FirstType:Literal - ParentType:7 - xOperator: - xSource:10 - ParentID:1957 - ID:1958
+Calle Line/Col:10/89 - I:14 - FirstType:Literal - ParentType:8 - xOperator: - xSource:'=' - ParentID:1970 - ID:1971
+Calle Line/Col:10/93 - I:14 - FirstType:Literal - ParentType:9 - xOperator: - xSource:'1' - ParentID:1983 - ID:1984
+Calle Line/Col:10/97 - I:14 - FirstType:Identifier - ParentType:10 - xOperator: - xSource:_$gXLocal - ParentID:1996 - ID:1997
+Calle Line/Col:10/107 - I:14 - FirstType:Literal - ParentType:11 - xOperator: - xSource:0 - ParentID:2008 - ID:2009
+Calle Line/Col:11/1 - I:9 - FirstType:VariableDeclaration - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:11/5 - I:11 - FirstType:VariableDeclarator - ParentType:0 - xOperator:= - xSource:d - ParentID:2034 - ID:2035
+Calle Line/Col:11/5 - I:12 - FirstType:Identifier - ParentType:id - xOperator: - xSource:d - ParentID:2045 - ID:2046
+Calle Line/Col:12/1 - I:9 - FirstType:VariableDeclaration - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:12/5 - I:11 - FirstType:VariableDeclarator - ParentType:0 - xOperator:= - xSource:food - ParentID:2071 - ID:2072
+Calle Line/Col:12/5 - I:12 - FirstType:Identifier - ParentType:id - xOperator: - xSource:food - ParentID:2082 - ID:2083
+Calle Line/Col:13/1 - I:9 - FirstType:VariableDeclaration - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:13/5 - I:11 - FirstType:VariableDeclarator - ParentType:0 - xOperator:= - xSource:score - ParentID:2108 - ID:2109
+Calle Line/Col:13/5 - I:12 - FirstType:Identifier - ParentType:id - xOperator: - xSource:score - ParentID:2119 - ID:2120
+Calle Line/Col:16/1 - I:9 - FirstType:VariableDeclaration - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:16/5 - I:11 - FirstType:VariableDeclarator - ParentType:0 - xOperator:= - xSource:snake_array - ParentID:2145 - ID:2146
+Calle Line/Col:16/5 - I:12 - FirstType:Identifier - ParentType:id - xOperator: - xSource:snake_array - ParentID:2156 - ID:2157
+Calle Line/Col:18/1 - I:9 - FirstType:FunctionDeclaration - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:18/10 - I:10 - FirstType:Identifier - ParentType:id - xOperator: - xSource:init - ParentID:2181 - ID:2182
+Calle Line/Col:19/1 - I:10 - FirstType:BlockStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:20/2 - I:12 - FirstType:ExpressionStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:20/2 - I:13 - FirstType:AssignmentExpression - ParentType:expression - xOperator:= - xSource:d = _$set(4,20,'FunctionDeclaration > BlockStatement > ExpressionStatement','expression','d',d,'"rig - ParentID:2217 - ID:2218
+Calle Line/Col:20/2 - I:14 - FirstType:Identifier - ParentType:left - xOperator: - xSource:d - ParentID:2229 - ID:2230
+Calle Line/Col:20/6 - I:14 - FirstType:CallExpression - ParentType:right - xOperator: - xSource:_$set(4,20,'FunctionDeclaration > BlockStatement > ExpressionStatement','expression','d',d,'"right"' - ParentID:2241 - ID:2242
+Calle Line/Col:20/6 - I:15 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$set - ParentID:2252 - ID:2253
+Calle Line/Col:20/12 - I:16 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:2265 - ID:2266
+Calle Line/Col:20/14 - I:16 - FirstType:Literal - ParentType:1 - xOperator: - xSource:20 - ParentID:2278 - ID:2279
+Calle Line/Col:20/17 - I:16 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'FunctionDeclaration > BlockStatement > ExpressionStatement' - ParentID:2291 - ID:2292
+Calle Line/Col:20/78 - I:16 - FirstType:Literal - ParentType:3 - xOperator: - xSource:'expression' - ParentID:2304 - ID:2305
+Calle Line/Col:20/91 - I:16 - FirstType:Literal - ParentType:4 - xOperator: - xSource:'d' - ParentID:2317 - ID:2318
+Calle Line/Col:20/95 - I:16 - FirstType:Identifier - ParentType:5 - xOperator: - xSource:d - ParentID:2330 - ID:2331
+Calle Line/Col:20/97 - I:16 - FirstType:Literal - ParentType:6 - xOperator: - xSource:'"right"' - ParentID:2342 - ID:2343
+Calle Line/Col:20/107 - I:16 - FirstType:Literal - ParentType:7 - xOperator: - xSource:"right" - ParentID:2355 - ID:2356
+Calle Line/Col:20/115 - I:16 - FirstType:Literal - ParentType:8 - xOperator: - xSource:'=' - ParentID:2368 - ID:2369
+Calle Line/Col:20/119 - I:16 - FirstType:Literal - ParentType:9 - xOperator: - xSource:'0' - ParentID:2381 - ID:2382
+Calle Line/Col:20/123 - I:16 - FirstType:Identifier - ParentType:10 - xOperator: - xSource:_$gXLocal - ParentID:2394 - ID:2395
+Calle Line/Col:20/133 - I:16 - FirstType:Literal - ParentType:11 - xOperator: - xSource:0 - ParentID:2406 - ID:2407
+Calle Line/Col:21/2 - I:12 - FirstType:ExpressionStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:21/2 - I:13 - FirstType:CallExpression - ParentType:expression - xOperator: - xSource:create_snake() - ParentID:2430 - ID:2431
+Calle Line/Col:21/2 - I:14 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:create_snake - ParentID:2441 - ID:2442
+Calle Line/Col:22/2 - I:12 - FirstType:ExpressionStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:22/2 - I:13 - FirstType:CallExpression - ParentType:expression - xOperator: - xSource:create_food() - ParentID:2465 - ID:2466
+Calle Line/Col:22/2 - I:14 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:create_food - ParentID:2476 - ID:2477
+Calle Line/Col:24/2 - I:12 - FirstType:ExpressionStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:24/2 - I:13 - FirstType:AssignmentExpression - ParentType:expression - xOperator:= - xSource:score = _$set(4,24,'ExpressionStatement > ExpressionStatement > ExpressionStatement','expression','s - ParentID:2500 - ID:2501
+Calle Line/Col:24/2 - I:14 - FirstType:Identifier - ParentType:left - xOperator: - xSource:score - ParentID:2512 - ID:2513
+Calle Line/Col:24/10 - I:14 - FirstType:CallExpression - ParentType:right - xOperator: - xSource:_$set(4,24,'ExpressionStatement > ExpressionStatement > ExpressionStatement','expression','score',sc - ParentID:2524 - ID:2525
+Calle Line/Col:24/10 - I:15 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$set - ParentID:2535 - ID:2536
+Calle Line/Col:24/16 - I:16 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:2548 - ID:2549
+Calle Line/Col:24/18 - I:16 - FirstType:Literal - ParentType:1 - xOperator: - xSource:24 - ParentID:2561 - ID:2562
+Calle Line/Col:24/21 - I:16 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'ExpressionStatement > ExpressionStatement > ExpressionStatement' - ParentID:2574 - ID:2575
+Calle Line/Col:24/87 - I:16 - FirstType:Literal - ParentType:3 - xOperator: - xSource:'expression' - ParentID:2587 - ID:2588
+Calle Line/Col:24/100 - I:16 - FirstType:Literal - ParentType:4 - xOperator: - xSource:'score' - ParentID:2600 - ID:2601
+Calle Line/Col:24/108 - I:16 - FirstType:Identifier - ParentType:5 - xOperator: - xSource:score - ParentID:2613 - ID:2614
+Calle Line/Col:24/114 - I:16 - FirstType:Literal - ParentType:6 - xOperator: - xSource:'0' - ParentID:2625 - ID:2626
+Calle Line/Col:24/118 - I:16 - FirstType:Literal - ParentType:7 - xOperator: - xSource:0 - ParentID:2638 - ID:2639
+Calle Line/Col:24/120 - I:16 - FirstType:Literal - ParentType:8 - xOperator: - xSource:'=' - ParentID:2651 - ID:2652
+Calle Line/Col:24/124 - I:16 - FirstType:Literal - ParentType:9 - xOperator: - xSource:'0' - ParentID:2664 - ID:2665
+Calle Line/Col:24/128 - I:16 - FirstType:Identifier - ParentType:10 - xOperator: - xSource:_$gXLocal - ParentID:2677 - ID:2678
+Calle Line/Col:24/138 - I:16 - FirstType:Literal - ParentType:11 - xOperator: - xSource:0 - ParentID:2689 - ID:2690
+Calle Line/Col:28/2 - I:12 - FirstType:IfStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:28/5 - I:13 - FirstType:CallExpression - ParentType:test - xOperator: - xSource:_$evl(4,28,'IfStatement','test','typeof game_loop != "undefined"', typeof game_loop != "undefined",_ - ParentID:2713 - ID:2714
+Calle Line/Col:28/5 - I:14 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$evl - ParentID:2724 - ID:2725
+Calle Line/Col:28/11 - I:15 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:2737 - ID:2738
+Calle Line/Col:28/13 - I:15 - FirstType:Literal - ParentType:1 - xOperator: - xSource:28 - ParentID:2750 - ID:2751
+Calle Line/Col:28/16 - I:15 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'IfStatement' - ParentID:2763 - ID:2764
+Calle Line/Col:28/30 - I:15 - FirstType:Literal - ParentType:3 - xOperator: - xSource:'test' - ParentID:2776 - ID:2777
+Calle Line/Col:28/37 - I:15 - FirstType:Literal - ParentType:4 - xOperator: - xSource:'typeof game_loop != "undefined"' - ParentID:2789 - ID:2790
+Calle Line/Col:28/72 - I:15 - FirstType:BinaryExpression - ParentType:5 - xOperator:!= - xSource:typeof game_loop != "undefined" - ParentID:2802 - ID:2803
+Calle Line/Col:28/72 - I:16 - FirstType:UnaryExpression - ParentType:left - xOperator:typeof - xSource:typeof game_loop - ParentID:2813 - ID:2814
+Calle Line/Col:28/79 - I:17 - FirstType:Identifier - ParentType:argument - xOperator: - xSource:game_loop - ParentID:2826 - ID:2827
+Calle Line/Col:28/92 - I:16 - FirstType:Literal - ParentType:right - xOperator: - xSource:"undefined" - ParentID:2839 - ID:2840
+Calle Line/Col:28/104 - I:15 - FirstType:Identifier - ParentType:6 - xOperator: - xSource:_$gXLocal - ParentID:2852 - ID:2853
+Calle Line/Col:28/115 - I:15 - FirstType:Literal - ParentType:7 - xOperator: - xSource:0 - ParentID:2864 - ID:2865
+Calle Line/Col:28/120 - I:13 - FirstType:BlockStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:28/122 - I:15 - FirstType:ExpressionStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:28/122 - I:16 - FirstType:CallExpression - ParentType:expression - xOperator: - xSource:clearInterval(game_loop) - ParentID:2900 - ID:2901
+Calle Line/Col:28/122 - I:17 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:clearInterval - ParentID:2911 - ID:2912
+Calle Line/Col:28/136 - I:18 - FirstType:Identifier - ParentType:0 - xOperator: - xSource:game_loop - ParentID:2924 - ID:2925
+Calle Line/Col:29/2 - I:12 - FirstType:ExpressionStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:29/2 - I:13 - FirstType:AssignmentExpression - ParentType:expression - xOperator:= - xSource:game_loop = _$set(4,29,'BlockStatement > ExpressionStatement > ExpressionStatement','expression','ga - ParentID:2948 - ID:2949
+Calle Line/Col:29/2 - I:14 - FirstType:Identifier - ParentType:left - xOperator: - xSource:game_loop - ParentID:2960 - ID:2961
+Calle Line/Col:29/14 - I:14 - FirstType:CallExpression - ParentType:right - xOperator: - xSource:_$set(4,29,'BlockStatement > ExpressionStatement > ExpressionStatement','expression','game_loop',gam - ParentID:2972 - ID:2973
+Calle Line/Col:29/14 - I:15 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$set - ParentID:2983 - ID:2984
+Calle Line/Col:29/20 - I:16 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:2996 - ID:2997
+Calle Line/Col:29/22 - I:16 - FirstType:Literal - ParentType:1 - xOperator: - xSource:29 - ParentID:3009 - ID:3010
+Calle Line/Col:29/25 - I:16 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'BlockStatement > ExpressionStatement > ExpressionStatement' - ParentID:3022 - ID:3023
+Calle Line/Col:29/86 - I:16 - FirstType:Literal - ParentType:3 - xOperator: - xSource:'expression' - ParentID:3035 - ID:3036
+Calle Line/Col:29/99 - I:16 - FirstType:Literal - ParentType:4 - xOperator: - xSource:'game_loop' - ParentID:3048 - ID:3049
+Calle Line/Col:29/111 - I:16 - FirstType:Identifier - ParentType:5 - xOperator: - xSource:game_loop - ParentID:3061 - ID:3062
+Calle Line/Col:29/121 - I:16 - FirstType:Literal - ParentType:6 - xOperator: - xSource:'setInterval(paint, 500)' - ParentID:3073 - ID:3074
+Calle Line/Col:29/148 - I:16 - FirstType:AssignmentExpression - ParentType:7 - xOperator:= - xSource:_$v[4]=setInterval(paint, 500) - ParentID:3086 - ID:3087
+Calle Line/Col:29/148 - I:17 - FirstType:MemberExpression - ParentType:left - xOperator: - xSource:_$v[4] - ParentID:3098 - ID:3099
+Calle Line/Col:29/148 - I:18 - FirstType:Identifier - ParentType:object - xOperator: - xSource:_$v - ParentID:3109 - ID:3110
+Calle Line/Col:29/152 - I:18 - FirstType:Literal - ParentType:property - xOperator: - xSource:4 - ParentID:3121 - ID:3122
+Calle Line/Col:29/155 - I:17 - FirstType:CallExpression - ParentType:right - xOperator: - xSource:setInterval(paint, 500) - ParentID:3135 - ID:3136
+Calle Line/Col:29/155 - I:18 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:setInterval - ParentID:3146 - ID:3147
+Calle Line/Col:29/167 - I:19 - FirstType:Identifier - ParentType:0 - xOperator: - xSource:paint - ParentID:3159 - ID:3160
+Calle Line/Col:29/174 - I:19 - FirstType:Literal - ParentType:1 - xOperator: - xSource:500 - ParentID:3171 - ID:3172
+Calle Line/Col:29/180 - I:16 - FirstType:Literal - ParentType:8 - xOperator: - xSource:'=' - ParentID:3184 - ID:3185
+Calle Line/Col:29/184 - I:16 - FirstType:Literal - ParentType:9 - xOperator: - xSource:'0' - ParentID:3197 - ID:3198
+Calle Line/Col:29/188 - I:16 - FirstType:Identifier - ParentType:10 - xOperator: - xSource:_$gXLocal - ParentID:3210 - ID:3211
+Calle Line/Col:29/198 - I:16 - FirstType:Literal - ParentType:11 - xOperator: - xSource:1 - ParentID:3222 - ID:3223
+Calle Line/Col:29/200 - I:16 - FirstType:Literal - ParentType:12 - xOperator: - xSource:'4=setInterval(paint, 500)' - ParentID:3235 - ID:3236
+Calle Line/Col:31/1 - I:9 - FirstType:ExpressionStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:31/1 - I:10 - FirstType:CallExpression - ParentType:expression - xOperator: - xSource:init() - ParentID:3260 - ID:3261
+Calle Line/Col:31/1 - I:11 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:init - ParentID:3271 - ID:3272
+Calle Line/Col:33/1 - I:9 - FirstType:FunctionDeclaration - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:33/10 - I:10 - FirstType:Identifier - ParentType:id - xOperator: - xSource:create_snake - ParentID:3295 - ID:3296
+Calle Line/Col:34/1 - I:10 - FirstType:BlockStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:35/2 - I:12 - FirstType:ExpressionStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:35/2 - I:13 - FirstType:CallExpression - ParentType:expression - xOperator: - xSource:_$sb(4,35,'length',_$gXLocal) - ParentID:3331 - ID:3332
+Calle Line/Col:35/2 - I:14 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$sb - ParentID:3342 - ID:3343
+Calle Line/Col:35/7 - I:15 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:3355 - ID:3356
+Calle Line/Col:35/9 - I:15 - FirstType:Literal - ParentType:1 - xOperator: - xSource:35 - ParentID:3368 - ID:3369
+Calle Line/Col:35/12 - I:15 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'length' - ParentID:3381 - ID:3382
+Calle Line/Col:35/21 - I:15 - FirstType:Identifier - ParentType:3 - xOperator: - xSource:_$gXLocal - ParentID:3394 - ID:3395
+Calle Line/Col:35/32 - I:12 - FirstType:VariableDeclaration - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:35/36 - I:14 - FirstType:VariableDeclarator - ParentType:0 - xOperator:= - xSource:length = _$set(4,35,'ExpressionStatement > FunctionDeclaration > BlockStatement > VariableDeclaratio - ParentID:3418 - ID:3419
+Calle Line/Col:35/36 - I:15 - FirstType:Identifier - ParentType:id - xOperator: - xSource:length - ParentID:3429 - ID:3430
+Calle Line/Col:35/45 - I:15 - FirstType:CallExpression - ParentType:init - xOperator: - xSource:_$set(4,35,'ExpressionStatement > FunctionDeclaration > BlockStatement > VariableDeclaration','0','l - ParentID:3441 - ID:3442
+Calle Line/Col:35/45 - I:16 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$set - ParentID:3452 - ID:3453
+Calle Line/Col:35/51 - I:17 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:3465 - ID:3466
+Calle Line/Col:35/53 - I:17 - FirstType:Literal - ParentType:1 - xOperator: - xSource:35 - ParentID:3478 - ID:3479
+Calle Line/Col:35/56 - I:17 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'ExpressionStatement > FunctionDeclaration > BlockStatement > VariableDeclaration' - ParentID:3491 - ID:3492
+Calle Line/Col:35/139 - I:17 - FirstType:Literal - ParentType:3 - xOperator: - xSource:'0' - ParentID:3504 - ID:3505
+Calle Line/Col:35/143 - I:17 - FirstType:Literal - ParentType:4 - xOperator: - xSource:'length' - ParentID:3517 - ID:3518
+Calle Line/Col:35/152 - I:17 - FirstType:Identifier - ParentType:5 - xOperator: - xSource:length - ParentID:3530 - ID:3531
+Calle Line/Col:35/159 - I:17 - FirstType:Literal - ParentType:6 - xOperator: - xSource:'5' - ParentID:3542 - ID:3543
+Calle Line/Col:35/163 - I:17 - FirstType:Literal - ParentType:7 - xOperator: - xSource:5 - ParentID:3555 - ID:3556
+Calle Line/Col:35/165 - I:17 - FirstType:Literal - ParentType:8 - xOperator: - xSource:'=' - ParentID:3568 - ID:3569
+Calle Line/Col:35/169 - I:17 - FirstType:Literal - ParentType:9 - xOperator: - xSource:'1' - ParentID:3581 - ID:3582
+Calle Line/Col:35/173 - I:17 - FirstType:Identifier - ParentType:10 - xOperator: - xSource:_$gXLocal - ParentID:3594 - ID:3595
+Calle Line/Col:35/183 - I:17 - FirstType:Literal - ParentType:11 - xOperator: - xSource:0 - ParentID:3606 - ID:3607
+Calle Line/Col:36/2 - I:12 - FirstType:ExpressionStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:36/2 - I:13 - FirstType:AssignmentExpression - ParentType:expression - xOperator:= - xSource:snake_array = _$set(4,36,'ExpressionStatement','expression','snake_array',snake_array,'[]',[],'=','0 - ParentID:3631 - ID:3632
+Calle Line/Col:36/2 - I:14 - FirstType:Identifier - ParentType:left - xOperator: - xSource:snake_array - ParentID:3643 - ID:3644
+Calle Line/Col:36/16 - I:14 - FirstType:CallExpression - ParentType:right - xOperator: - xSource:_$set(4,36,'ExpressionStatement','expression','snake_array',snake_array,'[]',[],'=','0',_$gXLocal,0) - ParentID:3655 - ID:3656
+Calle Line/Col:36/16 - I:15 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$set - ParentID:3666 - ID:3667
+Calle Line/Col:36/22 - I:16 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:3679 - ID:3680
+Calle Line/Col:36/24 - I:16 - FirstType:Literal - ParentType:1 - xOperator: - xSource:36 - ParentID:3692 - ID:3693
+Calle Line/Col:36/27 - I:16 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'ExpressionStatement' - ParentID:3705 - ID:3706
+Calle Line/Col:36/49 - I:16 - FirstType:Literal - ParentType:3 - xOperator: - xSource:'expression' - ParentID:3718 - ID:3719
+Calle Line/Col:36/62 - I:16 - FirstType:Literal - ParentType:4 - xOperator: - xSource:'snake_array' - ParentID:3731 - ID:3732
+Calle Line/Col:36/76 - I:16 - FirstType:Identifier - ParentType:5 - xOperator: - xSource:snake_array - ParentID:3744 - ID:3745
+Calle Line/Col:36/88 - I:16 - FirstType:Literal - ParentType:6 - xOperator: - xSource:'[]' - ParentID:3756 - ID:3757
+Calle Line/Col:36/93 - I:16 - FirstType:ArrayExpression - ParentType:7 - xOperator: - xSource:[] - ParentID:3769 - ID:3770
+Calle Line/Col:36/96 - I:16 - FirstType:Literal - ParentType:8 - xOperator: - xSource:'=' - ParentID:3781 - ID:3782
+Calle Line/Col:36/100 - I:16 - FirstType:Literal - ParentType:9 - xOperator: - xSource:'0' - ParentID:3794 - ID:3795
+Calle Line/Col:36/104 - I:16 - FirstType:Identifier - ParentType:10 - xOperator: - xSource:_$gXLocal - ParentID:3807 - ID:3808
+Calle Line/Col:36/114 - I:16 - FirstType:Literal - ParentType:11 - xOperator: - xSource:0 - ParentID:3819 - ID:3820
+Calle Line/Col:37/2 - I:12 - FirstType:ForStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:37/6 - I:13 - FirstType:VariableDeclaration - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:37/10 - I:15 - FirstType:VariableDeclarator - ParentType:0 - xOperator:= - xSource:i = _$set(4,37,'ForStatement > VariableDeclaration','0','i',i,'length-1',length-1,'=','1',_$gXLocal, - ParentID:3855 - ID:3856
+Calle Line/Col:37/10 - I:16 - FirstType:Identifier - ParentType:id - xOperator: - xSource:i - ParentID:3866 - ID:3867
+Calle Line/Col:37/14 - I:16 - FirstType:CallExpression - ParentType:init - xOperator: - xSource:_$set(4,37,'ForStatement > VariableDeclaration','0','i',i,'length-1',length-1,'=','1',_$gXLocal,0) - ParentID:3878 - ID:3879
+Calle Line/Col:37/14 - I:17 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$set - ParentID:3889 - ID:3890
+Calle Line/Col:37/20 - I:18 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:3902 - ID:3903
+Calle Line/Col:37/22 - I:18 - FirstType:Literal - ParentType:1 - xOperator: - xSource:37 - ParentID:3915 - ID:3916
+Calle Line/Col:37/25 - I:18 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'ForStatement > VariableDeclaration' - ParentID:3928 - ID:3929
+Calle Line/Col:37/62 - I:18 - FirstType:Literal - ParentType:3 - xOperator: - xSource:'0' - ParentID:3941 - ID:3942
+Calle Line/Col:37/66 - I:18 - FirstType:Literal - ParentType:4 - xOperator: - xSource:'i' - ParentID:3954 - ID:3955
+Calle Line/Col:37/70 - I:18 - FirstType:Identifier - ParentType:5 - xOperator: - xSource:i - ParentID:3967 - ID:3968
+Calle Line/Col:37/72 - I:18 - FirstType:Literal - ParentType:6 - xOperator: - xSource:'length-1' - ParentID:3979 - ID:3980
+Calle Line/Col:37/83 - I:18 - FirstType:BinaryExpression - ParentType:7 - xOperator:- - xSource:length-1 - ParentID:3992 - ID:3993
+Calle Line/Col:37/83 - I:19 - FirstType:Identifier - ParentType:left - xOperator: - xSource:length - ParentID:4003 - ID:4004
+Calle Line/Col:37/90 - I:19 - FirstType:Literal - ParentType:right - xOperator: - xSource:1 - ParentID:4016 - ID:4017
+Calle Line/Col:37/92 - I:18 - FirstType:Literal - ParentType:8 - xOperator: - xSource:'=' - ParentID:4029 - ID:4030
+Calle Line/Col:37/96 - I:18 - FirstType:Literal - ParentType:9 - xOperator: - xSource:'1' - ParentID:4042 - ID:4043
+Calle Line/Col:37/100 - I:18 - FirstType:Identifier - ParentType:10 - xOperator: - xSource:_$gXLocal - ParentID:4055 - ID:4056
+Calle Line/Col:37/110 - I:18 - FirstType:Literal - ParentType:11 - xOperator: - xSource:0 - ParentID:4067 - ID:4068
+Calle Line/Col:37/114 - I:13 - FirstType:CallExpression - ParentType:test - xOperator: - xSource:_$evl(4,37,'ForStatement > VariableDeclaration','test','i>=0', i>=0,_$gXLocal, 0) - ParentID:4081 - ID:4082
+Calle Line/Col:37/114 - I:14 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$evl - ParentID:4092 - ID:4093
+Calle Line/Col:37/120 - I:15 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:4105 - ID:4106
+Calle Line/Col:37/122 - I:15 - FirstType:Literal - ParentType:1 - xOperator: - xSource:37 - ParentID:4118 - ID:4119
+Calle Line/Col:37/125 - I:15 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'ForStatement > VariableDeclaration' - ParentID:4131 - ID:4132
+Calle Line/Col:37/162 - I:15 - FirstType:Literal - ParentType:3 - xOperator: - xSource:'test' - ParentID:4144 - ID:4145
+Calle Line/Col:37/169 - I:15 - FirstType:Literal - ParentType:4 - xOperator: - xSource:'i>=0' - ParentID:4157 - ID:4158
+Calle Line/Col:37/177 - I:15 - FirstType:BinaryExpression - ParentType:5 - xOperator:>= - xSource:i>=0 - ParentID:4170 - ID:4171
+Calle Line/Col:37/177 - I:16 - FirstType:Identifier - ParentType:left - xOperator: - xSource:i - ParentID:4181 - ID:4182
+Calle Line/Col:37/180 - I:16 - FirstType:Literal - ParentType:right - xOperator: - xSource:0 - ParentID:4194 - ID:4195
+Calle Line/Col:37/182 - I:15 - FirstType:Identifier - ParentType:6 - xOperator: - xSource:_$gXLocal - ParentID:4207 - ID:4208
+Calle Line/Col:37/193 - I:15 - FirstType:Literal - ParentType:7 - xOperator: - xSource:0 - ParentID:4219 - ID:4220
+Calle Line/Col:37/198 - I:13 - FirstType:SequenceExpression - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:37/198 - I:15 - FirstType:AssignmentExpression - ParentType:0 - xOperator:= - xSource:tempVar = i - ParentID:4244 - ID:4245
+Calle Line/Col:37/198 - I:16 - FirstType:Identifier - ParentType:left - xOperator: - xSource:tempVar - ParentID:4256 - ID:4257
+Calle Line/Col:37/208 - I:16 - FirstType:Identifier - ParentType:right - xOperator: - xSource:i - ParentID:4268 - ID:4269
+Calle Line/Col:37/211 - I:15 - FirstType:AssignmentExpression - ParentType:1 - xOperator:= - xSource:i= _$set(4,37,'ForStatement > VariableDeclaration','update','i',i,'',0,'--',0,_$gXLocal,0) - ParentID:4280 - ID:4281
+Calle Line/Col:37/211 - I:16 - FirstType:Identifier - ParentType:left - xOperator: - xSource:i - ParentID:4292 - ID:4293
+Calle Line/Col:37/214 - I:16 - FirstType:CallExpression - ParentType:right - xOperator: - xSource:_$set(4,37,'ForStatement > VariableDeclaration','update','i',i,'',0,'--',0,_$gXLocal,0) - ParentID:4304 - ID:4305
+Calle Line/Col:37/214 - I:17 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$set - ParentID:4315 - ID:4316
+Calle Line/Col:37/220 - I:18 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:4328 - ID:4329
+Calle Line/Col:37/222 - I:18 - FirstType:Literal - ParentType:1 - xOperator: - xSource:37 - ParentID:4341 - ID:4342
+Calle Line/Col:37/225 - I:18 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'ForStatement > VariableDeclaration' - ParentID:4354 - ID:4355
+Calle Line/Col:37/262 - I:18 - FirstType:Literal - ParentType:3 - xOperator: - xSource:'update' - ParentID:4367 - ID:4368
+Calle Line/Col:37/271 - I:18 - FirstType:Literal - ParentType:4 - xOperator: - xSource:'i' - ParentID:4380 - ID:4381
+Calle Line/Col:37/275 - I:18 - FirstType:Identifier - ParentType:5 - xOperator: - xSource:i - ParentID:4393 - ID:4394
+Calle Line/Col:37/277 - I:18 - FirstType:Literal - ParentType:6 - xOperator: - xSource:'' - ParentID:4405 - ID:4406
+Calle Line/Col:37/280 - I:18 - FirstType:Literal - ParentType:7 - xOperator: - xSource:0 - ParentID:4418 - ID:4419
+Calle Line/Col:37/282 - I:18 - FirstType:Literal - ParentType:8 - xOperator: - xSource:'--' - ParentID:4431 - ID:4432
+Calle Line/Col:37/287 - I:18 - FirstType:Literal - ParentType:9 - xOperator: - xSource:0 - ParentID:4444 - ID:4445
+Calle Line/Col:37/289 - I:18 - FirstType:Identifier - ParentType:10 - xOperator: - xSource:_$gXLocal - ParentID:4457 - ID:4458
+Calle Line/Col:37/299 - I:18 - FirstType:Literal - ParentType:11 - xOperator: - xSource:0 - ParentID:4469 - ID:4470
+Calle Line/Col:37/303 - I:15 - FirstType:Identifier - ParentType:2 - xOperator: - xSource:tempVar - ParentID:4482 - ID:4483
+Calle Line/Col:38/2 - I:13 - FirstType:BlockStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:40/3 - I:15 - FirstType:ExpressionStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:40/3 - I:16 - FirstType:CallExpression - ParentType:expression - xOperator: - xSource:snake_array.push({x: i, y:0}) - ParentID:4517 - ID:4518
+Calle Line/Col:40/3 - I:17 - FirstType:MemberExpression - ParentType:callee - xOperator: - xSource:snake_array.push - ParentID:4528 - ID:4529
+Calle Line/Col:40/3 - I:18 - FirstType:Identifier - ParentType:object - xOperator: - xSource:snake_array - ParentID:4539 - ID:4540
+Calle Line/Col:40/15 - I:18 - FirstType:Identifier - ParentType:property - xOperator: - xSource:push - ParentID:4551 - ID:4552
+Calle Line/Col:40/20 - I:18 - FirstType:ObjectExpression - ParentType:0 - xOperator: - xSource:{x: i, y:0} - ParentID:4565 - ID:4566
+Calle Line/Col:40/21 - I:21 - FirstType:Identifier - ParentType:key - xOperator: - xSource:x - ParentID:4588 - ID:4589
+Calle Line/Col:40/24 - I:21 - FirstType:Identifier - ParentType:value - xOperator: - xSource:i - ParentID:4600 - ID:4601
+Calle Line/Col:40/27 - I:21 - FirstType:Identifier - ParentType:key - xOperator: - xSource:y - ParentID:4624 - ID:4625
+Calle Line/Col:40/29 - I:21 - FirstType:Literal - ParentType:value - xOperator: - xSource:0 - ParentID:4636 - ID:4637
+Calle Line/Col:45/1 - I:9 - FirstType:FunctionDeclaration - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:45/10 - I:10 - FirstType:Identifier - ParentType:id - xOperator: - xSource:create_food - ParentID:4662 - ID:4663
+Calle Line/Col:46/1 - I:10 - FirstType:BlockStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:47/2 - I:12 - FirstType:ExpressionStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:47/2 - I:13 - FirstType:AssignmentExpression - ParentType:expression - xOperator:= - xSource:food = _$set(4,47,'BlockStatement > ExpressionStatement > FunctionDeclaration > BlockStatement > Exp - ParentID:4698 - ID:4699
+Calle Line/Col:47/2 - I:14 - FirstType:Identifier - ParentType:left - xOperator: - xSource:food - ParentID:4710 - ID:4711
+Calle Line/Col:47/9 - I:14 - FirstType:CallExpression - ParentType:right - xOperator: - xSource:_$set(4,47,'BlockStatement > ExpressionStatement > FunctionDeclaration > BlockStatement > Expression - ParentID:4722 - ID:4723
+Calle Line/Col:47/9 - I:15 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$set - ParentID:4733 - ID:4734
+Calle Line/Col:47/15 - I:16 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:4746 - ID:4747
+Calle Line/Col:47/17 - I:16 - FirstType:Literal - ParentType:1 - xOperator: - xSource:47 - ParentID:4759 - ID:4760
+Calle Line/Col:47/20 - I:16 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'BlockStatement > ExpressionStatement > FunctionDeclaration > BlockStatement > ExpressionStatement' - ParentID:4772 - ID:4773
+Calle Line/Col:47/120 - I:16 - FirstType:Literal - ParentType:3 - xOperator: - xSource:'expression' - ParentID:4785 - ID:4786
+Calle Line/Col:47/133 - I:16 - FirstType:Literal - ParentType:4 - xOperator: - xSource:'food' - ParentID:4798 - ID:4799
+Calle Line/Col:47/140 - I:16 - FirstType:Identifier - ParentType:5 - xOperator: - xSource:food - ParentID:4811 - ID:4812
+Calle Line/Col:47/145 - I:16 - FirstType:Literal - ParentType:6 - xOperator: - xSource:'{\n			x: Math.round(Math.random()*(w-cw)/cw),\n			y: Math.round(Math.random()*(h-cw)/cw)\n		}' - ParentID:4823 - ID:4824
+Calle Line/Col:47/241 - I:16 - FirstType:ObjectExpression - ParentType:7 - xOperator: - xSource:{
+			x: Math.round((_$v[6]=Math.random())*(w-cw)/cw),
+			y: Math.round((_$v[5]=Math.random())*(h-cw) - ParentID:4836 - ID:4837
+Calle Line/Col:48/3 - I:19 - FirstType:Identifier - ParentType:key - xOperator: - xSource:x - ParentID:4859 - ID:4860
+Calle Line/Col:48/6 - I:19 - FirstType:CallExpression - ParentType:value - xOperator: - xSource:Math.round((_$v[6]=Math.random())*(w-cw)/cw) - ParentID:4871 - ID:4872
+Calle Line/Col:48/6 - I:20 - FirstType:MemberExpression - ParentType:callee - xOperator: - xSource:Math.round - ParentID:4882 - ID:4883
+Calle Line/Col:48/6 - I:21 - FirstType:Identifier - ParentType:object - xOperator: - xSource:Math - ParentID:4893 - ID:4894
+Calle Line/Col:48/11 - I:21 - FirstType:Identifier - ParentType:property - xOperator: - xSource:round - ParentID:4905 - ID:4906
+Calle Line/Col:48/17 - I:21 - FirstType:BinaryExpression - ParentType:0 - xOperator:/ - xSource:(_$v[6]=Math.random())*(w-cw)/cw - ParentID:4919 - ID:4920
+Calle Line/Col:48/17 - I:22 - FirstType:BinaryExpression - ParentType:left - xOperator:* - xSource:(_$v[6]=Math.random())*(w-cw) - ParentID:4930 - ID:4931
+Calle Line/Col:48/18 - I:23 - FirstType:AssignmentExpression - ParentType:left - xOperator:= - xSource:_$v[6]=Math.random() - ParentID:4941 - ID:4942
+Calle Line/Col:48/18 - I:24 - FirstType:MemberExpression - ParentType:left - xOperator: - xSource:_$v[6] - ParentID:4953 - ID:4954
+Calle Line/Col:48/18 - I:25 - FirstType:Identifier - ParentType:object - xOperator: - xSource:_$v - ParentID:4964 - ID:4965
+Calle Line/Col:48/22 - I:25 - FirstType:Literal - ParentType:property - xOperator: - xSource:6 - ParentID:4976 - ID:4977
+Calle Line/Col:48/25 - I:24 - FirstType:CallExpression - ParentType:right - xOperator: - xSource:Math.random() - ParentID:4990 - ID:4991
+Calle Line/Col:48/25 - I:25 - FirstType:MemberExpression - ParentType:callee - xOperator: - xSource:Math.random - ParentID:5001 - ID:5002
+Calle Line/Col:48/25 - I:26 - FirstType:Identifier - ParentType:object - xOperator: - xSource:Math - ParentID:5012 - ID:5013
+Calle Line/Col:48/30 - I:26 - FirstType:Identifier - ParentType:property - xOperator: - xSource:random - ParentID:5024 - ID:5025
+Calle Line/Col:48/41 - I:23 - FirstType:BinaryExpression - ParentType:right - xOperator:- - xSource:w-cw - ParentID:5039 - ID:5040
+Calle Line/Col:48/41 - I:24 - FirstType:Identifier - ParentType:left - xOperator: - xSource:w - ParentID:5050 - ID:5051
+Calle Line/Col:48/43 - I:24 - FirstType:Identifier - ParentType:right - xOperator: - xSource:cw - ParentID:5063 - ID:5064
+Calle Line/Col:48/47 - I:22 - FirstType:Identifier - ParentType:right - xOperator: - xSource:cw - ParentID:5076 - ID:5077
+Calle Line/Col:49/3 - I:19 - FirstType:Identifier - ParentType:key - xOperator: - xSource:y - ParentID:5100 - ID:5101
+Calle Line/Col:49/6 - I:19 - FirstType:CallExpression - ParentType:value - xOperator: - xSource:Math.round((_$v[5]=Math.random())*(h-cw)/cw) - ParentID:5112 - ID:5113
+Calle Line/Col:49/6 - I:20 - FirstType:MemberExpression - ParentType:callee - xOperator: - xSource:Math.round - ParentID:5123 - ID:5124
+Calle Line/Col:49/6 - I:21 - FirstType:Identifier - ParentType:object - xOperator: - xSource:Math - ParentID:5134 - ID:5135
+Calle Line/Col:49/11 - I:21 - FirstType:Identifier - ParentType:property - xOperator: - xSource:round - ParentID:5146 - ID:5147
+Calle Line/Col:49/17 - I:21 - FirstType:BinaryExpression - ParentType:0 - xOperator:/ - xSource:(_$v[5]=Math.random())*(h-cw)/cw - ParentID:5160 - ID:5161
+Calle Line/Col:49/17 - I:22 - FirstType:BinaryExpression - ParentType:left - xOperator:* - xSource:(_$v[5]=Math.random())*(h-cw) - ParentID:5171 - ID:5172
+Calle Line/Col:49/18 - I:23 - FirstType:AssignmentExpression - ParentType:left - xOperator:= - xSource:_$v[5]=Math.random() - ParentID:5182 - ID:5183
+Calle Line/Col:49/18 - I:24 - FirstType:MemberExpression - ParentType:left - xOperator: - xSource:_$v[5] - ParentID:5194 - ID:5195
+Calle Line/Col:49/18 - I:25 - FirstType:Identifier - ParentType:object - xOperator: - xSource:_$v - ParentID:5205 - ID:5206
+Calle Line/Col:49/22 - I:25 - FirstType:Literal - ParentType:property - xOperator: - xSource:5 - ParentID:5217 - ID:5218
+Calle Line/Col:49/25 - I:24 - FirstType:CallExpression - ParentType:right - xOperator: - xSource:Math.random() - ParentID:5231 - ID:5232
+Calle Line/Col:49/25 - I:25 - FirstType:MemberExpression - ParentType:callee - xOperator: - xSource:Math.random - ParentID:5242 - ID:5243
+Calle Line/Col:49/25 - I:26 - FirstType:Identifier - ParentType:object - xOperator: - xSource:Math - ParentID:5253 - ID:5254
+Calle Line/Col:49/30 - I:26 - FirstType:Identifier - ParentType:property - xOperator: - xSource:random - ParentID:5265 - ID:5266
+Calle Line/Col:49/41 - I:23 - FirstType:BinaryExpression - ParentType:right - xOperator:- - xSource:h-cw - ParentID:5280 - ID:5281
+Calle Line/Col:49/41 - I:24 - FirstType:Identifier - ParentType:left - xOperator: - xSource:h - ParentID:5291 - ID:5292
+Calle Line/Col:49/43 - I:24 - FirstType:Identifier - ParentType:right - xOperator: - xSource:cw - ParentID:5304 - ID:5305
+Calle Line/Col:49/47 - I:22 - FirstType:Identifier - ParentType:right - xOperator: - xSource:cw - ParentID:5317 - ID:5318
+Calle Line/Col:50/4 - I:16 - FirstType:Literal - ParentType:8 - xOperator: - xSource:'=' - ParentID:5330 - ID:5331
+Calle Line/Col:50/8 - I:16 - FirstType:Literal - ParentType:9 - xOperator: - xSource:'0' - ParentID:5343 - ID:5344
+Calle Line/Col:50/12 - I:16 - FirstType:Identifier - ParentType:10 - xOperator: - xSource:_$gXLocal - ParentID:5356 - ID:5357
+Calle Line/Col:50/22 - I:16 - FirstType:Literal - ParentType:11 - xOperator: - xSource:2 - ParentID:5368 - ID:5369
+Calle Line/Col:50/24 - I:16 - FirstType:Literal - ParentType:12 - xOperator: - xSource:'5=Math.random()' - ParentID:5381 - ID:5382
+Calle Line/Col:50/42 - I:16 - FirstType:Literal - ParentType:13 - xOperator: - xSource:'6=Math.random()' - ParentID:5394 - ID:5395
+Calle Line/Col:56/1 - I:9 - FirstType:FunctionDeclaration - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:56/10 - I:10 - FirstType:Identifier - ParentType:id - xOperator: - xSource:paint - ParentID:5419 - ID:5420
+Calle Line/Col:57/1 - I:10 - FirstType:BlockStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:60/2 - I:12 - FirstType:ExpressionStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:60/2 - I:13 - FirstType:AssignmentExpression - ParentType:expression - xOperator:= - xSource:ctx.fillStyle = _$set(4,60,'FunctionDeclaration > BlockStatement > ExpressionStatement','expression' - ParentID:5455 - ID:5456
+Calle Line/Col:60/2 - I:14 - FirstType:MemberExpression - ParentType:left - xOperator: - xSource:ctx.fillStyle - ParentID:5467 - ID:5468
+Calle Line/Col:60/2 - I:15 - FirstType:Identifier - ParentType:object - xOperator: - xSource:ctx - ParentID:5478 - ID:5479
+Calle Line/Col:60/6 - I:15 - FirstType:Identifier - ParentType:property - xOperator: - xSource:fillStyle - ParentID:5490 - ID:5491
+Calle Line/Col:60/18 - I:14 - FirstType:CallExpression - ParentType:right - xOperator: - xSource:_$set(4,60,'FunctionDeclaration > BlockStatement > ExpressionStatement','expression','ctx.fillStyle' - ParentID:5503 - ID:5504
+Calle Line/Col:60/18 - I:15 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$set - ParentID:5514 - ID:5515
+Calle Line/Col:60/24 - I:16 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:5527 - ID:5528
+Calle Line/Col:60/26 - I:16 - FirstType:Literal - ParentType:1 - xOperator: - xSource:60 - ParentID:5540 - ID:5541
+Calle Line/Col:60/29 - I:16 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'FunctionDeclaration > BlockStatement > ExpressionStatement' - ParentID:5553 - ID:5554
+Calle Line/Col:60/90 - I:16 - FirstType:Literal - ParentType:3 - xOperator: - xSource:'expression' - ParentID:5566 - ID:5567
+Calle Line/Col:60/103 - I:16 - FirstType:Literal - ParentType:4 - xOperator: - xSource:'ctx.fillStyle' - ParentID:5579 - ID:5580
+Calle Line/Col:60/119 - I:16 - FirstType:MemberExpression - ParentType:5 - xOperator: - xSource:ctx.fillStyle - ParentID:5592 - ID:5593
+Calle Line/Col:60/119 - I:17 - FirstType:Identifier - ParentType:object - xOperator: - xSource:ctx - ParentID:5603 - ID:5604
+Calle Line/Col:60/123 - I:17 - FirstType:Identifier - ParentType:property - xOperator: - xSource:fillStyle - ParentID:5615 - ID:5616
+Calle Line/Col:60/133 - I:16 - FirstType:Literal - ParentType:6 - xOperator: - xSource:'"white"' - ParentID:5628 - ID:5629
+Calle Line/Col:60/143 - I:16 - FirstType:Literal - ParentType:7 - xOperator: - xSource:"white" - ParentID:5641 - ID:5642
+Calle Line/Col:60/151 - I:16 - FirstType:Literal - ParentType:8 - xOperator: - xSource:'=' - ParentID:5654 - ID:5655
+Calle Line/Col:60/155 - I:16 - FirstType:Literal - ParentType:9 - xOperator: - xSource:'0' - ParentID:5667 - ID:5668
+Calle Line/Col:60/159 - I:16 - FirstType:Identifier - ParentType:10 - xOperator: - xSource:_$gXLocal - ParentID:5680 - ID:5681
+Calle Line/Col:60/169 - I:16 - FirstType:Literal - ParentType:11 - xOperator: - xSource:0 - ParentID:5692 - ID:5693
+Calle Line/Col:61/2 - I:12 - FirstType:ExpressionStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:61/2 - I:13 - FirstType:CallExpression - ParentType:expression - xOperator: - xSource:ctx.fillRect(0, 0, w, h) - ParentID:5716 - ID:5717
+Calle Line/Col:61/2 - I:14 - FirstType:MemberExpression - ParentType:callee - xOperator: - xSource:ctx.fillRect - ParentID:5727 - ID:5728
+Calle Line/Col:61/2 - I:15 - FirstType:Identifier - ParentType:object - xOperator: - xSource:ctx - ParentID:5738 - ID:5739
+Calle Line/Col:61/6 - I:15 - FirstType:Identifier - ParentType:property - xOperator: - xSource:fillRect - ParentID:5750 - ID:5751
+Calle Line/Col:61/15 - I:15 - FirstType:Literal - ParentType:0 - xOperator: - xSource:0 - ParentID:5764 - ID:5765
+Calle Line/Col:61/18 - I:15 - FirstType:Literal - ParentType:1 - xOperator: - xSource:0 - ParentID:5777 - ID:5778
+Calle Line/Col:61/21 - I:15 - FirstType:Identifier - ParentType:2 - xOperator: - xSource:w - ParentID:5790 - ID:5791
+Calle Line/Col:61/24 - I:15 - FirstType:Identifier - ParentType:3 - xOperator: - xSource:h - ParentID:5802 - ID:5803
+Calle Line/Col:62/2 - I:12 - FirstType:ExpressionStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:62/2 - I:13 - FirstType:AssignmentExpression - ParentType:expression - xOperator:= - xSource:ctx.strokeStyle = _$set(4,62,'ExpressionStatement > ExpressionStatement','expression','ctx.strokeSty - ParentID:5825 - ID:5826
+Calle Line/Col:62/2 - I:14 - FirstType:MemberExpression - ParentType:left - xOperator: - xSource:ctx.strokeStyle - ParentID:5837 - ID:5838
+Calle Line/Col:62/2 - I:15 - FirstType:Identifier - ParentType:object - xOperator: - xSource:ctx - ParentID:5848 - ID:5849
+Calle Line/Col:62/6 - I:15 - FirstType:Identifier - ParentType:property - xOperator: - xSource:strokeStyle - ParentID:5860 - ID:5861
+Calle Line/Col:62/20 - I:14 - FirstType:CallExpression - ParentType:right - xOperator: - xSource:_$set(4,62,'ExpressionStatement > ExpressionStatement','expression','ctx.strokeStyle',ctx.strokeStyl - ParentID:5873 - ID:5874
+Calle Line/Col:62/20 - I:15 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$set - ParentID:5884 - ID:5885
+Calle Line/Col:62/26 - I:16 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:5897 - ID:5898
+Calle Line/Col:62/28 - I:16 - FirstType:Literal - ParentType:1 - xOperator: - xSource:62 - ParentID:5910 - ID:5911
+Calle Line/Col:62/31 - I:16 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'ExpressionStatement > ExpressionStatement' - ParentID:5923 - ID:5924
+Calle Line/Col:62/75 - I:16 - FirstType:Literal - ParentType:3 - xOperator: - xSource:'expression' - ParentID:5936 - ID:5937
+Calle Line/Col:62/88 - I:16 - FirstType:Literal - ParentType:4 - xOperator: - xSource:'ctx.strokeStyle' - ParentID:5949 - ID:5950
+Calle Line/Col:62/106 - I:16 - FirstType:MemberExpression - ParentType:5 - xOperator: - xSource:ctx.strokeStyle - ParentID:5962 - ID:5963
+Calle Line/Col:62/106 - I:17 - FirstType:Identifier - ParentType:object - xOperator: - xSource:ctx - ParentID:5973 - ID:5974
+Calle Line/Col:62/110 - I:17 - FirstType:Identifier - ParentType:property - xOperator: - xSource:strokeStyle - ParentID:5985 - ID:5986
+Calle Line/Col:62/122 - I:16 - FirstType:Literal - ParentType:6 - xOperator: - xSource:'"black"' - ParentID:5998 - ID:5999
+Calle Line/Col:62/132 - I:16 - FirstType:Literal - ParentType:7 - xOperator: - xSource:"black" - ParentID:6011 - ID:6012
+Calle Line/Col:62/140 - I:16 - FirstType:Literal - ParentType:8 - xOperator: - xSource:'=' - ParentID:6024 - ID:6025
+Calle Line/Col:62/144 - I:16 - FirstType:Literal - ParentType:9 - xOperator: - xSource:'0' - ParentID:6037 - ID:6038
+Calle Line/Col:62/148 - I:16 - FirstType:Identifier - ParentType:10 - xOperator: - xSource:_$gXLocal - ParentID:6050 - ID:6051
+Calle Line/Col:62/158 - I:16 - FirstType:Literal - ParentType:11 - xOperator: - xSource:0 - ParentID:6062 - ID:6063
+Calle Line/Col:63/2 - I:12 - FirstType:ExpressionStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:63/2 - I:13 - FirstType:CallExpression - ParentType:expression - xOperator: - xSource:ctx.strokeRect(0, 0, w, h) - ParentID:6086 - ID:6087
+Calle Line/Col:63/2 - I:14 - FirstType:MemberExpression - ParentType:callee - xOperator: - xSource:ctx.strokeRect - ParentID:6097 - ID:6098
+Calle Line/Col:63/2 - I:15 - FirstType:Identifier - ParentType:object - xOperator: - xSource:ctx - ParentID:6108 - ID:6109
+Calle Line/Col:63/6 - I:15 - FirstType:Identifier - ParentType:property - xOperator: - xSource:strokeRect - ParentID:6120 - ID:6121
+Calle Line/Col:63/17 - I:15 - FirstType:Literal - ParentType:0 - xOperator: - xSource:0 - ParentID:6134 - ID:6135
+Calle Line/Col:63/20 - I:15 - FirstType:Literal - ParentType:1 - xOperator: - xSource:0 - ParentID:6147 - ID:6148
+Calle Line/Col:63/23 - I:15 - FirstType:Identifier - ParentType:2 - xOperator: - xSource:w - ParentID:6160 - ID:6161
+Calle Line/Col:63/26 - I:15 - FirstType:Identifier - ParentType:3 - xOperator: - xSource:h - ParentID:6172 - ID:6173
+Calle Line/Col:68/2 - I:12 - FirstType:ExpressionStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:68/2 - I:13 - FirstType:CallExpression - ParentType:expression - xOperator: - xSource:_$sb(4,68,'nx',_$gXLocal) - ParentID:6195 - ID:6196
+Calle Line/Col:68/2 - I:14 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$sb - ParentID:6206 - ID:6207
+Calle Line/Col:68/7 - I:15 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:6219 - ID:6220
+Calle Line/Col:68/9 - I:15 - FirstType:Literal - ParentType:1 - xOperator: - xSource:68 - ParentID:6232 - ID:6233
+Calle Line/Col:68/12 - I:15 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'nx' - ParentID:6245 - ID:6246
+Calle Line/Col:68/17 - I:15 - FirstType:Identifier - ParentType:3 - xOperator: - xSource:_$gXLocal - ParentID:6258 - ID:6259
+Calle Line/Col:68/28 - I:12 - FirstType:VariableDeclaration - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:68/32 - I:14 - FirstType:VariableDeclarator - ParentType:0 - xOperator:= - xSource:nx = _$set(4,68,'ExpressionStatement > VariableDeclaration','0','nx',nx,'snake_array[0].x',snake_arr - ParentID:6282 - ID:6283
+Calle Line/Col:68/32 - I:15 - FirstType:Identifier - ParentType:id - xOperator: - xSource:nx - ParentID:6293 - ID:6294
+Calle Line/Col:68/37 - I:15 - FirstType:CallExpression - ParentType:init - xOperator: - xSource:_$set(4,68,'ExpressionStatement > VariableDeclaration','0','nx',nx,'snake_array[0].x',snake_array[0] - ParentID:6305 - ID:6306
+Calle Line/Col:68/37 - I:16 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$set - ParentID:6316 - ID:6317
+Calle Line/Col:68/43 - I:17 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:6329 - ID:6330
+Calle Line/Col:68/45 - I:17 - FirstType:Literal - ParentType:1 - xOperator: - xSource:68 - ParentID:6342 - ID:6343
+Calle Line/Col:68/48 - I:17 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'ExpressionStatement > VariableDeclaration' - ParentID:6355 - ID:6356
+Calle Line/Col:68/92 - I:17 - FirstType:Literal - ParentType:3 - xOperator: - xSource:'0' - ParentID:6368 - ID:6369
+Calle Line/Col:68/96 - I:17 - FirstType:Literal - ParentType:4 - xOperator: - xSource:'nx' - ParentID:6381 - ID:6382
+Calle Line/Col:68/101 - I:17 - FirstType:Identifier - ParentType:5 - xOperator: - xSource:nx - ParentID:6394 - ID:6395
+Calle Line/Col:68/104 - I:17 - FirstType:Literal - ParentType:6 - xOperator: - xSource:'snake_array[0].x' - ParentID:6406 - ID:6407
+Calle Line/Col:68/123 - I:17 - FirstType:MemberExpression - ParentType:7 - xOperator: - xSource:snake_array[0].x - ParentID:6419 - ID:6420
+Calle Line/Col:68/123 - I:18 - FirstType:MemberExpression - ParentType:object - xOperator: - xSource:snake_array[0] - ParentID:6430 - ID:6431
+Calle Line/Col:68/123 - I:19 - FirstType:Identifier - ParentType:object - xOperator: - xSource:snake_array - ParentID:6441 - ID:6442
+Calle Line/Col:68/135 - I:19 - FirstType:Literal - ParentType:property - xOperator: - xSource:0 - ParentID:6453 - ID:6454
+Calle Line/Col:68/138 - I:18 - FirstType:Identifier - ParentType:property - xOperator: - xSource:x - ParentID:6467 - ID:6468
+Calle Line/Col:68/140 - I:17 - FirstType:Literal - ParentType:8 - xOperator: - xSource:'=' - ParentID:6480 - ID:6481
+Calle Line/Col:68/144 - I:17 - FirstType:Literal - ParentType:9 - xOperator: - xSource:'1' - ParentID:6493 - ID:6494
+Calle Line/Col:68/148 - I:17 - FirstType:Identifier - ParentType:10 - xOperator: - xSource:_$gXLocal - ParentID:6506 - ID:6507
+Calle Line/Col:68/158 - I:17 - FirstType:Literal - ParentType:11 - xOperator: - xSource:0 - ParentID:6518 - ID:6519
+Calle Line/Col:69/2 - I:12 - FirstType:ExpressionStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:69/2 - I:13 - FirstType:CallExpression - ParentType:expression - xOperator: - xSource:_$sb(4,69,'ny',_$gXLocal) - ParentID:6543 - ID:6544
+Calle Line/Col:69/2 - I:14 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$sb - ParentID:6554 - ID:6555
+Calle Line/Col:69/7 - I:15 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:6567 - ID:6568
+Calle Line/Col:69/9 - I:15 - FirstType:Literal - ParentType:1 - xOperator: - xSource:69 - ParentID:6580 - ID:6581
+Calle Line/Col:69/12 - I:15 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'ny' - ParentID:6593 - ID:6594
+Calle Line/Col:69/17 - I:15 - FirstType:Identifier - ParentType:3 - xOperator: - xSource:_$gXLocal - ParentID:6606 - ID:6607
+Calle Line/Col:69/28 - I:12 - FirstType:VariableDeclaration - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:69/32 - I:14 - FirstType:VariableDeclarator - ParentType:0 - xOperator:= - xSource:ny = _$set(4,69,'VariableDeclaration','0','ny',ny,'snake_array[0].y',snake_array[0].y,'=','1',_$gXLo - ParentID:6630 - ID:6631
+Calle Line/Col:69/32 - I:15 - FirstType:Identifier - ParentType:id - xOperator: - xSource:ny - ParentID:6641 - ID:6642
+Calle Line/Col:69/37 - I:15 - FirstType:CallExpression - ParentType:init - xOperator: - xSource:_$set(4,69,'VariableDeclaration','0','ny',ny,'snake_array[0].y',snake_array[0].y,'=','1',_$gXLocal,0 - ParentID:6653 - ID:6654
+Calle Line/Col:69/37 - I:16 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$set - ParentID:6664 - ID:6665
+Calle Line/Col:69/43 - I:17 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:6677 - ID:6678
+Calle Line/Col:69/45 - I:17 - FirstType:Literal - ParentType:1 - xOperator: - xSource:69 - ParentID:6690 - ID:6691
+Calle Line/Col:69/48 - I:17 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'VariableDeclaration' - ParentID:6703 - ID:6704
+Calle Line/Col:69/70 - I:17 - FirstType:Literal - ParentType:3 - xOperator: - xSource:'0' - ParentID:6716 - ID:6717
+Calle Line/Col:69/74 - I:17 - FirstType:Literal - ParentType:4 - xOperator: - xSource:'ny' - ParentID:6729 - ID:6730
+Calle Line/Col:69/79 - I:17 - FirstType:Identifier - ParentType:5 - xOperator: - xSource:ny - ParentID:6742 - ID:6743
+Calle Line/Col:69/82 - I:17 - FirstType:Literal - ParentType:6 - xOperator: - xSource:'snake_array[0].y' - ParentID:6754 - ID:6755
+Calle Line/Col:69/101 - I:17 - FirstType:MemberExpression - ParentType:7 - xOperator: - xSource:snake_array[0].y - ParentID:6767 - ID:6768
+Calle Line/Col:69/101 - I:18 - FirstType:MemberExpression - ParentType:object - xOperator: - xSource:snake_array[0] - ParentID:6778 - ID:6779
+Calle Line/Col:69/101 - I:19 - FirstType:Identifier - ParentType:object - xOperator: - xSource:snake_array - ParentID:6789 - ID:6790
+Calle Line/Col:69/113 - I:19 - FirstType:Literal - ParentType:property - xOperator: - xSource:0 - ParentID:6801 - ID:6802
+Calle Line/Col:69/116 - I:18 - FirstType:Identifier - ParentType:property - xOperator: - xSource:y - ParentID:6815 - ID:6816
+Calle Line/Col:69/118 - I:17 - FirstType:Literal - ParentType:8 - xOperator: - xSource:'=' - ParentID:6828 - ID:6829
+Calle Line/Col:69/122 - I:17 - FirstType:Literal - ParentType:9 - xOperator: - xSource:'1' - ParentID:6841 - ID:6842
+Calle Line/Col:69/126 - I:17 - FirstType:Identifier - ParentType:10 - xOperator: - xSource:_$gXLocal - ParentID:6854 - ID:6855
+Calle Line/Col:69/136 - I:17 - FirstType:Literal - ParentType:11 - xOperator: - xSource:0 - ParentID:6866 - ID:6867
+Calle Line/Col:73/2 - I:12 - FirstType:IfStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:73/5 - I:13 - FirstType:CallExpression - ParentType:test - xOperator: - xSource:_$evl(4,73,'IfStatement','test','d == "right"', d == "right",_$gXLocal, 0) - ParentID:6891 - ID:6892
+Calle Line/Col:73/5 - I:14 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$evl - ParentID:6902 - ID:6903
+Calle Line/Col:73/11 - I:15 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:6915 - ID:6916
+Calle Line/Col:73/13 - I:15 - FirstType:Literal - ParentType:1 - xOperator: - xSource:73 - ParentID:6928 - ID:6929
+Calle Line/Col:73/16 - I:15 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'IfStatement' - ParentID:6941 - ID:6942
+Calle Line/Col:73/30 - I:15 - FirstType:Literal - ParentType:3 - xOperator: - xSource:'test' - ParentID:6954 - ID:6955
+Calle Line/Col:73/37 - I:15 - FirstType:Literal - ParentType:4 - xOperator: - xSource:'d == "right"' - ParentID:6967 - ID:6968
+Calle Line/Col:73/53 - I:15 - FirstType:BinaryExpression - ParentType:5 - xOperator:== - xSource:d == "right" - ParentID:6980 - ID:6981
+Calle Line/Col:73/53 - I:16 - FirstType:Identifier - ParentType:left - xOperator: - xSource:d - ParentID:6991 - ID:6992
+Calle Line/Col:73/58 - I:16 - FirstType:Literal - ParentType:right - xOperator: - xSource:"right" - ParentID:7004 - ID:7005
+Calle Line/Col:73/66 - I:15 - FirstType:Identifier - ParentType:6 - xOperator: - xSource:_$gXLocal - ParentID:7017 - ID:7018
+Calle Line/Col:73/77 - I:15 - FirstType:Literal - ParentType:7 - xOperator: - xSource:0 - ParentID:7029 - ID:7030
+Calle Line/Col:73/82 - I:13 - FirstType:BlockStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:73/84 - I:15 - FirstType:ExpressionStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:73/85 - I:16 - FirstType:SequenceExpression - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:73/85 - I:18 - FirstType:AssignmentExpression - ParentType:0 - xOperator:= - xSource:tempVar = nx - ParentID:7077 - ID:7078
+Calle Line/Col:73/85 - I:19 - FirstType:Identifier - ParentType:left - xOperator: - xSource:tempVar - ParentID:7089 - ID:7090
+Calle Line/Col:73/95 - I:19 - FirstType:Identifier - ParentType:right - xOperator: - xSource:nx - ParentID:7101 - ID:7102
+Calle Line/Col:73/99 - I:18 - FirstType:AssignmentExpression - ParentType:1 - xOperator:= - xSource:nx= _$set(4,73,'BlockStatement > ExpressionStatement','expression','nx',nx,'',0,'++',0,_$gXLocal,0) - ParentID:7113 - ID:7114
+Calle Line/Col:73/99 - I:19 - FirstType:Identifier - ParentType:left - xOperator: - xSource:nx - ParentID:7125 - ID:7126
+Calle Line/Col:73/103 - I:19 - FirstType:CallExpression - ParentType:right - xOperator: - xSource:_$set(4,73,'BlockStatement > ExpressionStatement','expression','nx',nx,'',0,'++',0,_$gXLocal,0) - ParentID:7137 - ID:7138
+Calle Line/Col:73/103 - I:20 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$set - ParentID:7148 - ID:7149
+Calle Line/Col:73/109 - I:21 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:7161 - ID:7162
+Calle Line/Col:73/111 - I:21 - FirstType:Literal - ParentType:1 - xOperator: - xSource:73 - ParentID:7174 - ID:7175
+Calle Line/Col:73/114 - I:21 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'BlockStatement > ExpressionStatement' - ParentID:7187 - ID:7188
+Calle Line/Col:73/153 - I:21 - FirstType:Literal - ParentType:3 - xOperator: - xSource:'expression' - ParentID:7200 - ID:7201
+Calle Line/Col:73/166 - I:21 - FirstType:Literal - ParentType:4 - xOperator: - xSource:'nx' - ParentID:7213 - ID:7214
+Calle Line/Col:73/171 - I:21 - FirstType:Identifier - ParentType:5 - xOperator: - xSource:nx - ParentID:7226 - ID:7227
+Calle Line/Col:73/174 - I:21 - FirstType:Literal - ParentType:6 - xOperator: - xSource:'' - ParentID:7238 - ID:7239
+Calle Line/Col:73/177 - I:21 - FirstType:Literal - ParentType:7 - xOperator: - xSource:0 - ParentID:7251 - ID:7252
+Calle Line/Col:73/179 - I:21 - FirstType:Literal - ParentType:8 - xOperator: - xSource:'++' - ParentID:7264 - ID:7265
+Calle Line/Col:73/184 - I:21 - FirstType:Literal - ParentType:9 - xOperator: - xSource:0 - ParentID:7277 - ID:7278
+Calle Line/Col:73/186 - I:21 - FirstType:Identifier - ParentType:10 - xOperator: - xSource:_$gXLocal - ParentID:7290 - ID:7291
+Calle Line/Col:73/196 - I:21 - FirstType:Literal - ParentType:11 - xOperator: - xSource:0 - ParentID:7302 - ID:7303
+Calle Line/Col:73/200 - I:18 - FirstType:Identifier - ParentType:2 - xOperator: - xSource:tempVar - ParentID:7315 - ID:7316
+Calle Line/Col:74/7 - I:13 - FirstType:IfStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:74/10 - I:14 - FirstType:CallExpression - ParentType:test - xOperator: - xSource:_$evl(4,74,'IfStatement','test','d == "left"', d == "left",_$gXLocal, 0) - ParentID:7338 - ID:7339
+Calle Line/Col:74/10 - I:15 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$evl - ParentID:7349 - ID:7350
+Calle Line/Col:74/16 - I:16 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:7362 - ID:7363
+Calle Line/Col:74/18 - I:16 - FirstType:Literal - ParentType:1 - xOperator: - xSource:74 - ParentID:7375 - ID:7376
+Calle Line/Col:74/21 - I:16 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'IfStatement' - ParentID:7388 - ID:7389
+Calle Line/Col:74/35 - I:16 - FirstType:Literal - ParentType:3 - xOperator: - xSource:'test' - ParentID:7401 - ID:7402
+Calle Line/Col:74/42 - I:16 - FirstType:Literal - ParentType:4 - xOperator: - xSource:'d == "left"' - ParentID:7414 - ID:7415
+Calle Line/Col:74/57 - I:16 - FirstType:BinaryExpression - ParentType:5 - xOperator:== - xSource:d == "left" - ParentID:7427 - ID:7428
+Calle Line/Col:74/57 - I:17 - FirstType:Identifier - ParentType:left - xOperator: - xSource:d - ParentID:7438 - ID:7439
+Calle Line/Col:74/62 - I:17 - FirstType:Literal - ParentType:right - xOperator: - xSource:"left" - ParentID:7451 - ID:7452
+Calle Line/Col:74/69 - I:16 - FirstType:Identifier - ParentType:6 - xOperator: - xSource:_$gXLocal - ParentID:7464 - ID:7465
+Calle Line/Col:74/80 - I:16 - FirstType:Literal - ParentType:7 - xOperator: - xSource:0 - ParentID:7476 - ID:7477
+Calle Line/Col:74/85 - I:14 - FirstType:BlockStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:74/87 - I:16 - FirstType:ExpressionStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:74/88 - I:17 - FirstType:SequenceExpression - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:74/88 - I:19 - FirstType:AssignmentExpression - ParentType:0 - xOperator:= - xSource:tempVar = nx - ParentID:7524 - ID:7525
+Calle Line/Col:74/88 - I:20 - FirstType:Identifier - ParentType:left - xOperator: - xSource:tempVar - ParentID:7536 - ID:7537
+Calle Line/Col:74/98 - I:20 - FirstType:Identifier - ParentType:right - xOperator: - xSource:nx - ParentID:7548 - ID:7549
+Calle Line/Col:74/102 - I:19 - FirstType:AssignmentExpression - ParentType:1 - xOperator:= - xSource:nx= _$set(4,74,'BlockStatement > ExpressionStatement','expression','nx',nx,'',0,'--',0,_$gXLocal,0) - ParentID:7560 - ID:7561
+Calle Line/Col:74/102 - I:20 - FirstType:Identifier - ParentType:left - xOperator: - xSource:nx - ParentID:7572 - ID:7573
+Calle Line/Col:74/106 - I:20 - FirstType:CallExpression - ParentType:right - xOperator: - xSource:_$set(4,74,'BlockStatement > ExpressionStatement','expression','nx',nx,'',0,'--',0,_$gXLocal,0) - ParentID:7584 - ID:7585
+Calle Line/Col:74/106 - I:21 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$set - ParentID:7595 - ID:7596
+Calle Line/Col:74/112 - I:22 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:7608 - ID:7609
+Calle Line/Col:74/114 - I:22 - FirstType:Literal - ParentType:1 - xOperator: - xSource:74 - ParentID:7621 - ID:7622
+Calle Line/Col:74/117 - I:22 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'BlockStatement > ExpressionStatement' - ParentID:7634 - ID:7635
+Calle Line/Col:74/156 - I:22 - FirstType:Literal - ParentType:3 - xOperator: - xSource:'expression' - ParentID:7647 - ID:7648
+Calle Line/Col:74/169 - I:22 - FirstType:Literal - ParentType:4 - xOperator: - xSource:'nx' - ParentID:7660 - ID:7661
+Calle Line/Col:74/174 - I:22 - FirstType:Identifier - ParentType:5 - xOperator: - xSource:nx - ParentID:7673 - ID:7674
+Calle Line/Col:74/177 - I:22 - FirstType:Literal - ParentType:6 - xOperator: - xSource:'' - ParentID:7685 - ID:7686
+Calle Line/Col:74/180 - I:22 - FirstType:Literal - ParentType:7 - xOperator: - xSource:0 - ParentID:7698 - ID:7699
+Calle Line/Col:74/182 - I:22 - FirstType:Literal - ParentType:8 - xOperator: - xSource:'--' - ParentID:7711 - ID:7712
+Calle Line/Col:74/187 - I:22 - FirstType:Literal - ParentType:9 - xOperator: - xSource:0 - ParentID:7724 - ID:7725
+Calle Line/Col:74/189 - I:22 - FirstType:Identifier - ParentType:10 - xOperator: - xSource:_$gXLocal - ParentID:7737 - ID:7738
+Calle Line/Col:74/199 - I:22 - FirstType:Literal - ParentType:11 - xOperator: - xSource:0 - ParentID:7749 - ID:7750
+Calle Line/Col:74/203 - I:19 - FirstType:Identifier - ParentType:2 - xOperator: - xSource:tempVar - ParentID:7762 - ID:7763
+Calle Line/Col:75/7 - I:14 - FirstType:IfStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:75/10 - I:15 - FirstType:CallExpression - ParentType:test - xOperator: - xSource:_$evl(4,75,'IfStatement','test','d == "up"', d == "up",_$gXLocal, 0) - ParentID:7785 - ID:7786
+Calle Line/Col:75/10 - I:16 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$evl - ParentID:7796 - ID:7797
+Calle Line/Col:75/16 - I:17 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:7809 - ID:7810
+Calle Line/Col:75/18 - I:17 - FirstType:Literal - ParentType:1 - xOperator: - xSource:75 - ParentID:7822 - ID:7823
+Calle Line/Col:75/21 - I:17 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'IfStatement' - ParentID:7835 - ID:7836
+Calle Line/Col:75/35 - I:17 - FirstType:Literal - ParentType:3 - xOperator: - xSource:'test' - ParentID:7848 - ID:7849
+Calle Line/Col:75/42 - I:17 - FirstType:Literal - ParentType:4 - xOperator: - xSource:'d == "up"' - ParentID:7861 - ID:7862
+Calle Line/Col:75/55 - I:17 - FirstType:BinaryExpression - ParentType:5 - xOperator:== - xSource:d == "up" - ParentID:7874 - ID:7875
+Calle Line/Col:75/55 - I:18 - FirstType:Identifier - ParentType:left - xOperator: - xSource:d - ParentID:7885 - ID:7886
+Calle Line/Col:75/60 - I:18 - FirstType:Literal - ParentType:right - xOperator: - xSource:"up" - ParentID:7898 - ID:7899
+Calle Line/Col:75/65 - I:17 - FirstType:Identifier - ParentType:6 - xOperator: - xSource:_$gXLocal - ParentID:7911 - ID:7912
+Calle Line/Col:75/76 - I:17 - FirstType:Literal - ParentType:7 - xOperator: - xSource:0 - ParentID:7923 - ID:7924
+Calle Line/Col:75/81 - I:15 - FirstType:BlockStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:75/83 - I:17 - FirstType:ExpressionStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:75/84 - I:18 - FirstType:SequenceExpression - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:75/84 - I:20 - FirstType:AssignmentExpression - ParentType:0 - xOperator:= - xSource:tempVar = ny - ParentID:7971 - ID:7972
+Calle Line/Col:75/84 - I:21 - FirstType:Identifier - ParentType:left - xOperator: - xSource:tempVar - ParentID:7983 - ID:7984
+Calle Line/Col:75/94 - I:21 - FirstType:Identifier - ParentType:right - xOperator: - xSource:ny - ParentID:7995 - ID:7996
+Calle Line/Col:75/98 - I:20 - FirstType:AssignmentExpression - ParentType:1 - xOperator:= - xSource:ny= _$set(4,75,'BlockStatement > ExpressionStatement','expression','ny',ny,'',0,'--',0,_$gXLocal,0) - ParentID:8007 - ID:8008
+Calle Line/Col:75/98 - I:21 - FirstType:Identifier - ParentType:left - xOperator: - xSource:ny - ParentID:8019 - ID:8020
+Calle Line/Col:75/102 - I:21 - FirstType:CallExpression - ParentType:right - xOperator: - xSource:_$set(4,75,'BlockStatement > ExpressionStatement','expression','ny',ny,'',0,'--',0,_$gXLocal,0) - ParentID:8031 - ID:8032
+Calle Line/Col:75/102 - I:22 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$set - ParentID:8042 - ID:8043
+Calle Line/Col:75/108 - I:23 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:8055 - ID:8056
+Calle Line/Col:75/110 - I:23 - FirstType:Literal - ParentType:1 - xOperator: - xSource:75 - ParentID:8068 - ID:8069
+Calle Line/Col:75/113 - I:23 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'BlockStatement > ExpressionStatement' - ParentID:8081 - ID:8082
+Calle Line/Col:75/152 - I:23 - FirstType:Literal - ParentType:3 - xOperator: - xSource:'expression' - ParentID:8094 - ID:8095
+Calle Line/Col:75/165 - I:23 - FirstType:Literal - ParentType:4 - xOperator: - xSource:'ny' - ParentID:8107 - ID:8108
+Calle Line/Col:75/170 - I:23 - FirstType:Identifier - ParentType:5 - xOperator: - xSource:ny - ParentID:8120 - ID:8121
+Calle Line/Col:75/173 - I:23 - FirstType:Literal - ParentType:6 - xOperator: - xSource:'' - ParentID:8132 - ID:8133
+Calle Line/Col:75/176 - I:23 - FirstType:Literal - ParentType:7 - xOperator: - xSource:0 - ParentID:8145 - ID:8146
+Calle Line/Col:75/178 - I:23 - FirstType:Literal - ParentType:8 - xOperator: - xSource:'--' - ParentID:8158 - ID:8159
+Calle Line/Col:75/183 - I:23 - FirstType:Literal - ParentType:9 - xOperator: - xSource:0 - ParentID:8171 - ID:8172
+Calle Line/Col:75/185 - I:23 - FirstType:Identifier - ParentType:10 - xOperator: - xSource:_$gXLocal - ParentID:8184 - ID:8185
+Calle Line/Col:75/195 - I:23 - FirstType:Literal - ParentType:11 - xOperator: - xSource:0 - ParentID:8196 - ID:8197
+Calle Line/Col:75/199 - I:20 - FirstType:Identifier - ParentType:2 - xOperator: - xSource:tempVar - ParentID:8209 - ID:8210
+Calle Line/Col:76/7 - I:15 - FirstType:IfStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:76/10 - I:16 - FirstType:CallExpression - ParentType:test - xOperator: - xSource:_$evl(4,76,'IfStatement','test','d == "down"', d == "down",_$gXLocal, 0) - ParentID:8232 - ID:8233
+Calle Line/Col:76/10 - I:17 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$evl - ParentID:8243 - ID:8244
+Calle Line/Col:76/16 - I:18 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:8256 - ID:8257
+Calle Line/Col:76/18 - I:18 - FirstType:Literal - ParentType:1 - xOperator: - xSource:76 - ParentID:8269 - ID:8270
+Calle Line/Col:76/21 - I:18 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'IfStatement' - ParentID:8282 - ID:8283
+Calle Line/Col:76/35 - I:18 - FirstType:Literal - ParentType:3 - xOperator: - xSource:'test' - ParentID:8295 - ID:8296
+Calle Line/Col:76/42 - I:18 - FirstType:Literal - ParentType:4 - xOperator: - xSource:'d == "down"' - ParentID:8308 - ID:8309
+Calle Line/Col:76/57 - I:18 - FirstType:BinaryExpression - ParentType:5 - xOperator:== - xSource:d == "down" - ParentID:8321 - ID:8322
+Calle Line/Col:76/57 - I:19 - FirstType:Identifier - ParentType:left - xOperator: - xSource:d - ParentID:8332 - ID:8333
+Calle Line/Col:76/62 - I:19 - FirstType:Literal - ParentType:right - xOperator: - xSource:"down" - ParentID:8345 - ID:8346
+Calle Line/Col:76/69 - I:18 - FirstType:Identifier - ParentType:6 - xOperator: - xSource:_$gXLocal - ParentID:8358 - ID:8359
+Calle Line/Col:76/80 - I:18 - FirstType:Literal - ParentType:7 - xOperator: - xSource:0 - ParentID:8370 - ID:8371
+Calle Line/Col:76/85 - I:16 - FirstType:BlockStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:76/87 - I:18 - FirstType:ExpressionStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:76/88 - I:19 - FirstType:SequenceExpression - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:76/88 - I:21 - FirstType:AssignmentExpression - ParentType:0 - xOperator:= - xSource:tempVar = ny - ParentID:8418 - ID:8419
+Calle Line/Col:76/88 - I:22 - FirstType:Identifier - ParentType:left - xOperator: - xSource:tempVar - ParentID:8430 - ID:8431
+Calle Line/Col:76/98 - I:22 - FirstType:Identifier - ParentType:right - xOperator: - xSource:ny - ParentID:8442 - ID:8443
+Calle Line/Col:76/102 - I:21 - FirstType:AssignmentExpression - ParentType:1 - xOperator:= - xSource:ny= _$set(4,76,'BlockStatement > ExpressionStatement','expression','ny',ny,'',0,'++',0,_$gXLocal,0) - ParentID:8454 - ID:8455
+Calle Line/Col:76/102 - I:22 - FirstType:Identifier - ParentType:left - xOperator: - xSource:ny - ParentID:8466 - ID:8467
+Calle Line/Col:76/106 - I:22 - FirstType:CallExpression - ParentType:right - xOperator: - xSource:_$set(4,76,'BlockStatement > ExpressionStatement','expression','ny',ny,'',0,'++',0,_$gXLocal,0) - ParentID:8478 - ID:8479
+Calle Line/Col:76/106 - I:23 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$set - ParentID:8489 - ID:8490
+Calle Line/Col:76/112 - I:24 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:8502 - ID:8503
+Calle Line/Col:76/114 - I:24 - FirstType:Literal - ParentType:1 - xOperator: - xSource:76 - ParentID:8515 - ID:8516
+Calle Line/Col:76/117 - I:24 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'BlockStatement > ExpressionStatement' - ParentID:8528 - ID:8529
+Calle Line/Col:76/156 - I:24 - FirstType:Literal - ParentType:3 - xOperator: - xSource:'expression' - ParentID:8541 - ID:8542
+Calle Line/Col:76/169 - I:24 - FirstType:Literal - ParentType:4 - xOperator: - xSource:'ny' - ParentID:8554 - ID:8555
+Calle Line/Col:76/174 - I:24 - FirstType:Identifier - ParentType:5 - xOperator: - xSource:ny - ParentID:8567 - ID:8568
+Calle Line/Col:76/177 - I:24 - FirstType:Literal - ParentType:6 - xOperator: - xSource:'' - ParentID:8579 - ID:8580
+Calle Line/Col:76/180 - I:24 - FirstType:Literal - ParentType:7 - xOperator: - xSource:0 - ParentID:8592 - ID:8593
+Calle Line/Col:76/182 - I:24 - FirstType:Literal - ParentType:8 - xOperator: - xSource:'++' - ParentID:8605 - ID:8606
+Calle Line/Col:76/187 - I:24 - FirstType:Literal - ParentType:9 - xOperator: - xSource:0 - ParentID:8618 - ID:8619
+Calle Line/Col:76/189 - I:24 - FirstType:Identifier - ParentType:10 - xOperator: - xSource:_$gXLocal - ParentID:8631 - ID:8632
+Calle Line/Col:76/199 - I:24 - FirstType:Literal - ParentType:11 - xOperator: - xSource:0 - ParentID:8643 - ID:8644
+Calle Line/Col:76/203 - I:21 - FirstType:Identifier - ParentType:2 - xOperator: - xSource:tempVar - ParentID:8656 - ID:8657
+Calle Line/Col:82/2 - I:12 - FirstType:IfStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:82/5 - I:13 - FirstType:CallExpression - ParentType:test - xOperator: - xSource:_$evl(4,82,'IfStatement','test','nx == -1 || nx == w/cw || ny == -1 || ny == h/cw || check_collision - ParentID:8680 - ID:8681
+Calle Line/Col:82/5 - I:14 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$evl - ParentID:8691 - ID:8692
+Calle Line/Col:82/11 - I:15 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:8704 - ID:8705
+Calle Line/Col:82/13 - I:15 - FirstType:Literal - ParentType:1 - xOperator: - xSource:82 - ParentID:8717 - ID:8718
+Calle Line/Col:82/16 - I:15 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'IfStatement' - ParentID:8730 - ID:8731
+Calle Line/Col:82/30 - I:15 - FirstType:Literal - ParentType:3 - xOperator: - xSource:'test' - ParentID:8743 - ID:8744
+Calle Line/Col:82/37 - I:15 - FirstType:Literal - ParentType:4 - xOperator: - xSource:'nx == -1 || nx == w/cw || ny == -1 || ny == h/cw || check_collision(nx, ny, snake_array)' - ParentID:8756 - ID:8757
+Calle Line/Col:82/129 - I:15 - FirstType:LogicalExpression - ParentType:5 - xOperator:|| - xSource:nx == -1 || nx == w/cw || ny == -1 || ny == h/cw || (_$v[7]=check_collision(nx, ny, snake_array)) - ParentID:8769 - ID:8770
+Calle Line/Col:82/129 - I:16 - FirstType:LogicalExpression - ParentType:left - xOperator:|| - xSource:nx == -1 || nx == w/cw || ny == -1 || ny == h/cw - ParentID:8780 - ID:8781
+Calle Line/Col:82/129 - I:17 - FirstType:LogicalExpression - ParentType:left - xOperator:|| - xSource:nx == -1 || nx == w/cw || ny == -1 - ParentID:8791 - ID:8792
+Calle Line/Col:82/129 - I:18 - FirstType:LogicalExpression - ParentType:left - xOperator:|| - xSource:nx == -1 || nx == w/cw - ParentID:8802 - ID:8803
+Calle Line/Col:82/129 - I:19 - FirstType:BinaryExpression - ParentType:left - xOperator:== - xSource:nx == -1 - ParentID:8813 - ID:8814
+Calle Line/Col:82/129 - I:20 - FirstType:Identifier - ParentType:left - xOperator: - xSource:nx - ParentID:8824 - ID:8825
+Calle Line/Col:82/135 - I:20 - FirstType:UnaryExpression - ParentType:right - xOperator:- - xSource:-1 - ParentID:8837 - ID:8838
+Calle Line/Col:82/136 - I:21 - FirstType:Literal - ParentType:argument - xOperator: - xSource:1 - ParentID:8850 - ID:8851
+Calle Line/Col:82/141 - I:19 - FirstType:BinaryExpression - ParentType:right - xOperator:== - xSource:nx == w/cw - ParentID:8864 - ID:8865
+Calle Line/Col:82/141 - I:20 - FirstType:Identifier - ParentType:left - xOperator: - xSource:nx - ParentID:8875 - ID:8876
+Calle Line/Col:82/147 - I:20 - FirstType:BinaryExpression - ParentType:right - xOperator:/ - xSource:w/cw - ParentID:8888 - ID:8889
+Calle Line/Col:82/147 - I:21 - FirstType:Identifier - ParentType:left - xOperator: - xSource:w - ParentID:8899 - ID:8900
+Calle Line/Col:82/149 - I:21 - FirstType:Identifier - ParentType:right - xOperator: - xSource:cw - ParentID:8912 - ID:8913
+Calle Line/Col:82/155 - I:18 - FirstType:BinaryExpression - ParentType:right - xOperator:== - xSource:ny == -1 - ParentID:8925 - ID:8926
+Calle Line/Col:82/155 - I:19 - FirstType:Identifier - ParentType:left - xOperator: - xSource:ny - ParentID:8936 - ID:8937
+Calle Line/Col:82/161 - I:19 - FirstType:UnaryExpression - ParentType:right - xOperator:- - xSource:-1 - ParentID:8949 - ID:8950
+Calle Line/Col:82/162 - I:20 - FirstType:Literal - ParentType:argument - xOperator: - xSource:1 - ParentID:8962 - ID:8963
+Calle Line/Col:82/167 - I:17 - FirstType:BinaryExpression - ParentType:right - xOperator:== - xSource:ny == h/cw - ParentID:8976 - ID:8977
+Calle Line/Col:82/167 - I:18 - FirstType:Identifier - ParentType:left - xOperator: - xSource:ny - ParentID:8987 - ID:8988
+Calle Line/Col:82/173 - I:18 - FirstType:BinaryExpression - ParentType:right - xOperator:/ - xSource:h/cw - ParentID:9000 - ID:9001
+Calle Line/Col:82/173 - I:19 - FirstType:Identifier - ParentType:left - xOperator: - xSource:h - ParentID:9011 - ID:9012
+Calle Line/Col:82/175 - I:19 - FirstType:Identifier - ParentType:right - xOperator: - xSource:cw - ParentID:9024 - ID:9025
+Calle Line/Col:82/182 - I:16 - FirstType:AssignmentExpression - ParentType:right - xOperator:= - xSource:_$v[7]=check_collision(nx, ny, snake_array) - ParentID:9037 - ID:9038
+Calle Line/Col:82/182 - I:17 - FirstType:MemberExpression - ParentType:left - xOperator: - xSource:_$v[7] - ParentID:9049 - ID:9050
+Calle Line/Col:82/182 - I:18 - FirstType:Identifier - ParentType:object - xOperator: - xSource:_$v - ParentID:9060 - ID:9061
+Calle Line/Col:82/186 - I:18 - FirstType:Literal - ParentType:property - xOperator: - xSource:7 - ParentID:9072 - ID:9073
+Calle Line/Col:82/189 - I:17 - FirstType:CallExpression - ParentType:right - xOperator: - xSource:check_collision(nx, ny, snake_array) - ParentID:9086 - ID:9087
+Calle Line/Col:82/189 - I:18 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:check_collision - ParentID:9097 - ID:9098
+Calle Line/Col:82/205 - I:19 - FirstType:Identifier - ParentType:0 - xOperator: - xSource:nx - ParentID:9110 - ID:9111
+Calle Line/Col:82/209 - I:19 - FirstType:Identifier - ParentType:1 - xOperator: - xSource:ny - ParentID:9122 - ID:9123
+Calle Line/Col:82/213 - I:19 - FirstType:Identifier - ParentType:2 - xOperator: - xSource:snake_array - ParentID:9134 - ID:9135
+Calle Line/Col:82/227 - I:15 - FirstType:Identifier - ParentType:6 - xOperator: - xSource:_$gXLocal - ParentID:9146 - ID:9147
+Calle Line/Col:82/238 - I:15 - FirstType:Literal - ParentType:7 - xOperator: - xSource:1 - ParentID:9158 - ID:9159
+Calle Line/Col:82/240 - I:15 - FirstType:Literal - ParentType:8 - xOperator: - xSource:'7=check_collision(nx, ny, snake_array)' - ParentID:9171 - ID:9172
+Calle Line/Col:83/2 - I:13 - FirstType:BlockStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:85/3 - I:15 - FirstType:ExpressionStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:85/3 - I:16 - FirstType:CallExpression - ParentType:expression - xOperator: - xSource:init() - ParentID:9207 - ID:9208
+Calle Line/Col:85/3 - I:17 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:init - ParentID:9218 - ID:9219
+Calle Line/Col:87/3 - I:15 - FirstType:ReturnStatement - ParentType:1 - xOperator: - xSource:return; - ParentID:9231 - ID:9232
+Calle Line/Col:94/2 - I:12 - FirstType:IfStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:94/5 - I:13 - FirstType:CallExpression - ParentType:test - xOperator: - xSource:_$evl(4,94,'IfStatement','test','nx == food.x && ny == food.y', nx == food.x && ny == food.y,_$gXLoc - ParentID:9255 - ID:9256
+Calle Line/Col:94/5 - I:14 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$evl - ParentID:9266 - ID:9267
+Calle Line/Col:94/11 - I:15 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:9279 - ID:9280
+Calle Line/Col:94/13 - I:15 - FirstType:Literal - ParentType:1 - xOperator: - xSource:94 - ParentID:9292 - ID:9293
+Calle Line/Col:94/16 - I:15 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'IfStatement' - ParentID:9305 - ID:9306
+Calle Line/Col:94/30 - I:15 - FirstType:Literal - ParentType:3 - xOperator: - xSource:'test' - ParentID:9318 - ID:9319
+Calle Line/Col:94/37 - I:15 - FirstType:Literal - ParentType:4 - xOperator: - xSource:'nx == food.x && ny == food.y' - ParentID:9331 - ID:9332
+Calle Line/Col:94/69 - I:15 - FirstType:LogicalExpression - ParentType:5 - xOperator:&& - xSource:nx == food.x && ny == food.y - ParentID:9344 - ID:9345
+Calle Line/Col:94/69 - I:16 - FirstType:BinaryExpression - ParentType:left - xOperator:== - xSource:nx == food.x - ParentID:9355 - ID:9356
+Calle Line/Col:94/69 - I:17 - FirstType:Identifier - ParentType:left - xOperator: - xSource:nx - ParentID:9366 - ID:9367
+Calle Line/Col:94/75 - I:17 - FirstType:MemberExpression - ParentType:right - xOperator: - xSource:food.x - ParentID:9379 - ID:9380
+Calle Line/Col:94/75 - I:18 - FirstType:Identifier - ParentType:object - xOperator: - xSource:food - ParentID:9390 - ID:9391
+Calle Line/Col:94/80 - I:18 - FirstType:Identifier - ParentType:property - xOperator: - xSource:x - ParentID:9402 - ID:9403
+Calle Line/Col:94/85 - I:16 - FirstType:BinaryExpression - ParentType:right - xOperator:== - xSource:ny == food.y - ParentID:9416 - ID:9417
+Calle Line/Col:94/85 - I:17 - FirstType:Identifier - ParentType:left - xOperator: - xSource:ny - ParentID:9427 - ID:9428
+Calle Line/Col:94/91 - I:17 - FirstType:MemberExpression - ParentType:right - xOperator: - xSource:food.y - ParentID:9440 - ID:9441
+Calle Line/Col:94/91 - I:18 - FirstType:Identifier - ParentType:object - xOperator: - xSource:food - ParentID:9451 - ID:9452
+Calle Line/Col:94/96 - I:18 - FirstType:Identifier - ParentType:property - xOperator: - xSource:y - ParentID:9463 - ID:9464
+Calle Line/Col:94/98 - I:15 - FirstType:Identifier - ParentType:6 - xOperator: - xSource:_$gXLocal - ParentID:9476 - ID:9477
+Calle Line/Col:94/109 - I:15 - FirstType:Literal - ParentType:7 - xOperator: - xSource:0 - ParentID:9488 - ID:9489
+Calle Line/Col:95/2 - I:13 - FirstType:BlockStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:96/3 - I:15 - FirstType:ExpressionStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:96/3 - I:16 - FirstType:CallExpression - ParentType:expression - xOperator: - xSource:_$sb(4,96,'tail',_$gXLocal) - ParentID:9524 - ID:9525
+Calle Line/Col:96/3 - I:17 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$sb - ParentID:9535 - ID:9536
+Calle Line/Col:96/8 - I:18 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:9548 - ID:9549
+Calle Line/Col:96/10 - I:18 - FirstType:Literal - ParentType:1 - xOperator: - xSource:96 - ParentID:9561 - ID:9562
+Calle Line/Col:96/13 - I:18 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'tail' - ParentID:9574 - ID:9575
+Calle Line/Col:96/20 - I:18 - FirstType:Identifier - ParentType:3 - xOperator: - xSource:_$gXLocal - ParentID:9587 - ID:9588
+Calle Line/Col:96/31 - I:15 - FirstType:VariableDeclaration - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:96/35 - I:17 - FirstType:VariableDeclarator - ParentType:0 - xOperator:= - xSource:tail = _$set(4,96,'BlockStatement > VariableDeclaration','0','tail',tail,'{x: nx, y: ny}',{x: nx, y: - ParentID:9611 - ID:9612
+Calle Line/Col:96/35 - I:18 - FirstType:Identifier - ParentType:id - xOperator: - xSource:tail - ParentID:9622 - ID:9623
+Calle Line/Col:96/42 - I:18 - FirstType:CallExpression - ParentType:init - xOperator: - xSource:_$set(4,96,'BlockStatement > VariableDeclaration','0','tail',tail,'{x: nx, y: ny}',{x: nx, y: ny},'= - ParentID:9634 - ID:9635
+Calle Line/Col:96/42 - I:19 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$set - ParentID:9645 - ID:9646
+Calle Line/Col:96/48 - I:20 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:9658 - ID:9659
+Calle Line/Col:96/50 - I:20 - FirstType:Literal - ParentType:1 - xOperator: - xSource:96 - ParentID:9671 - ID:9672
+Calle Line/Col:96/53 - I:20 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'BlockStatement > VariableDeclaration' - ParentID:9684 - ID:9685
+Calle Line/Col:96/92 - I:20 - FirstType:Literal - ParentType:3 - xOperator: - xSource:'0' - ParentID:9697 - ID:9698
+Calle Line/Col:96/96 - I:20 - FirstType:Literal - ParentType:4 - xOperator: - xSource:'tail' - ParentID:9710 - ID:9711
+Calle Line/Col:96/103 - I:20 - FirstType:Identifier - ParentType:5 - xOperator: - xSource:tail - ParentID:9723 - ID:9724
+Calle Line/Col:96/108 - I:20 - FirstType:Literal - ParentType:6 - xOperator: - xSource:'{x: nx, y: ny}' - ParentID:9735 - ID:9736
+Calle Line/Col:96/125 - I:20 - FirstType:ObjectExpression - ParentType:7 - xOperator: - xSource:{x: nx, y: ny} - ParentID:9748 - ID:9749
+Calle Line/Col:96/126 - I:23 - FirstType:Identifier - ParentType:key - xOperator: - xSource:x - ParentID:9771 - ID:9772
+Calle Line/Col:96/129 - I:23 - FirstType:Identifier - ParentType:value - xOperator: - xSource:nx - ParentID:9783 - ID:9784
+Calle Line/Col:96/133 - I:23 - FirstType:Identifier - ParentType:key - xOperator: - xSource:y - ParentID:9807 - ID:9808
+Calle Line/Col:96/136 - I:23 - FirstType:Identifier - ParentType:value - xOperator: - xSource:ny - ParentID:9819 - ID:9820
+Calle Line/Col:96/140 - I:20 - FirstType:Literal - ParentType:8 - xOperator: - xSource:'=' - ParentID:9832 - ID:9833
+Calle Line/Col:96/144 - I:20 - FirstType:Literal - ParentType:9 - xOperator: - xSource:'1' - ParentID:9845 - ID:9846
+Calle Line/Col:96/148 - I:20 - FirstType:Identifier - ParentType:10 - xOperator: - xSource:_$gXLocal - ParentID:9858 - ID:9859
+Calle Line/Col:96/158 - I:20 - FirstType:Literal - ParentType:11 - xOperator: - xSource:0 - ParentID:9870 - ID:9871
+Calle Line/Col:97/3 - I:15 - FirstType:ExpressionStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:97/4 - I:16 - FirstType:SequenceExpression - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:97/4 - I:18 - FirstType:AssignmentExpression - ParentType:0 - xOperator:= - xSource:tempVar = score - ParentID:9907 - ID:9908
+Calle Line/Col:97/4 - I:19 - FirstType:Identifier - ParentType:left - xOperator: - xSource:tempVar - ParentID:9919 - ID:9920
+Calle Line/Col:97/14 - I:19 - FirstType:Identifier - ParentType:right - xOperator: - xSource:score - ParentID:9931 - ID:9932
+Calle Line/Col:97/21 - I:18 - FirstType:AssignmentExpression - ParentType:1 - xOperator:= - xSource:score= _$set(4,97,'ExpressionStatement','expression','score',score,'',0,'++',0,_$gXLocal,0) - ParentID:9943 - ID:9944
+Calle Line/Col:97/21 - I:19 - FirstType:Identifier - ParentType:left - xOperator: - xSource:score - ParentID:9955 - ID:9956
+Calle Line/Col:97/28 - I:19 - FirstType:CallExpression - ParentType:right - xOperator: - xSource:_$set(4,97,'ExpressionStatement','expression','score',score,'',0,'++',0,_$gXLocal,0) - ParentID:9967 - ID:9968
+Calle Line/Col:97/28 - I:20 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$set - ParentID:9978 - ID:9979
+Calle Line/Col:97/34 - I:21 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:9991 - ID:9992
+Calle Line/Col:97/36 - I:21 - FirstType:Literal - ParentType:1 - xOperator: - xSource:97 - ParentID:10004 - ID:10005
+Calle Line/Col:97/39 - I:21 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'ExpressionStatement' - ParentID:10017 - ID:10018
+Calle Line/Col:97/61 - I:21 - FirstType:Literal - ParentType:3 - xOperator: - xSource:'expression' - ParentID:10030 - ID:10031
+Calle Line/Col:97/74 - I:21 - FirstType:Literal - ParentType:4 - xOperator: - xSource:'score' - ParentID:10043 - ID:10044
+Calle Line/Col:97/82 - I:21 - FirstType:Identifier - ParentType:5 - xOperator: - xSource:score - ParentID:10056 - ID:10057
+Calle Line/Col:97/88 - I:21 - FirstType:Literal - ParentType:6 - xOperator: - xSource:'' - ParentID:10068 - ID:10069
+Calle Line/Col:97/91 - I:21 - FirstType:Literal - ParentType:7 - xOperator: - xSource:0 - ParentID:10081 - ID:10082
+Calle Line/Col:97/93 - I:21 - FirstType:Literal - ParentType:8 - xOperator: - xSource:'++' - ParentID:10094 - ID:10095
+Calle Line/Col:97/98 - I:21 - FirstType:Literal - ParentType:9 - xOperator: - xSource:0 - ParentID:10107 - ID:10108
+Calle Line/Col:97/100 - I:21 - FirstType:Identifier - ParentType:10 - xOperator: - xSource:_$gXLocal - ParentID:10120 - ID:10121
+Calle Line/Col:97/110 - I:21 - FirstType:Literal - ParentType:11 - xOperator: - xSource:0 - ParentID:10132 - ID:10133
+Calle Line/Col:97/114 - I:18 - FirstType:Identifier - ParentType:2 - xOperator: - xSource:tempVar - ParentID:10145 - ID:10146
+Calle Line/Col:99/3 - I:15 - FirstType:ExpressionStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:99/3 - I:16 - FirstType:CallExpression - ParentType:expression - xOperator: - xSource:create_food() - ParentID:10168 - ID:10169
+Calle Line/Col:99/3 - I:17 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:create_food - ParentID:10179 - ID:10180
+Calle Line/Col:102/2 - I:13 - FirstType:BlockStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:103/3 - I:15 - FirstType:ExpressionStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:103/3 - I:16 - FirstType:CallExpression - ParentType:expression - xOperator: - xSource:_$sb(4,103,'tail',_$gXLocal) - ParentID:10215 - ID:10216
+Calle Line/Col:103/3 - I:17 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$sb - ParentID:10226 - ID:10227
+Calle Line/Col:103/8 - I:18 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:10239 - ID:10240
+Calle Line/Col:103/10 - I:18 - FirstType:Literal - ParentType:1 - xOperator: - xSource:103 - ParentID:10252 - ID:10253
+Calle Line/Col:103/14 - I:18 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'tail' - ParentID:10265 - ID:10266
+Calle Line/Col:103/21 - I:18 - FirstType:Identifier - ParentType:3 - xOperator: - xSource:_$gXLocal - ParentID:10278 - ID:10279
+Calle Line/Col:103/32 - I:15 - FirstType:VariableDeclaration - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:103/36 - I:17 - FirstType:VariableDeclarator - ParentType:0 - xOperator:= - xSource:tail = _$set(4,103,'ExpressionStatement > BlockStatement > VariableDeclaration','0','tail',tail,'sna - ParentID:10302 - ID:10303
+Calle Line/Col:103/36 - I:18 - FirstType:Identifier - ParentType:id - xOperator: - xSource:tail - ParentID:10313 - ID:10314
+Calle Line/Col:103/43 - I:18 - FirstType:CallExpression - ParentType:init - xOperator: - xSource:_$set(4,103,'ExpressionStatement > BlockStatement > VariableDeclaration','0','tail',tail,'snake_arra - ParentID:10325 - ID:10326
+Calle Line/Col:103/43 - I:19 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$set - ParentID:10336 - ID:10337
+Calle Line/Col:103/49 - I:20 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:10349 - ID:10350
+Calle Line/Col:103/51 - I:20 - FirstType:Literal - ParentType:1 - xOperator: - xSource:103 - ParentID:10362 - ID:10363
+Calle Line/Col:103/55 - I:20 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'ExpressionStatement > BlockStatement > VariableDeclaration' - ParentID:10375 - ID:10376
+Calle Line/Col:103/116 - I:20 - FirstType:Literal - ParentType:3 - xOperator: - xSource:'0' - ParentID:10388 - ID:10389
+Calle Line/Col:103/120 - I:20 - FirstType:Literal - ParentType:4 - xOperator: - xSource:'tail' - ParentID:10401 - ID:10402
+Calle Line/Col:103/127 - I:20 - FirstType:Identifier - ParentType:5 - xOperator: - xSource:tail - ParentID:10414 - ID:10415
+Calle Line/Col:103/132 - I:20 - FirstType:Literal - ParentType:6 - xOperator: - xSource:'snake_array.pop()' - ParentID:10426 - ID:10427
+Calle Line/Col:103/153 - I:20 - FirstType:AssignmentExpression - ParentType:7 - xOperator:= - xSource:_$v[8]=snake_array.pop() - ParentID:10439 - ID:10440
+Calle Line/Col:103/153 - I:21 - FirstType:MemberExpression - ParentType:left - xOperator: - xSource:_$v[8] - ParentID:10451 - ID:10452
+Calle Line/Col:103/153 - I:22 - FirstType:Identifier - ParentType:object - xOperator: - xSource:_$v - ParentID:10462 - ID:10463
+Calle Line/Col:103/157 - I:22 - FirstType:Literal - ParentType:property - xOperator: - xSource:8 - ParentID:10474 - ID:10475
+Calle Line/Col:103/160 - I:21 - FirstType:CallExpression - ParentType:right - xOperator: - xSource:snake_array.pop() - ParentID:10488 - ID:10489
+Calle Line/Col:103/160 - I:22 - FirstType:MemberExpression - ParentType:callee - xOperator: - xSource:snake_array.pop - ParentID:10499 - ID:10500
+Calle Line/Col:103/160 - I:23 - FirstType:Identifier - ParentType:object - xOperator: - xSource:snake_array - ParentID:10510 - ID:10511
+Calle Line/Col:103/172 - I:23 - FirstType:Identifier - ParentType:property - xOperator: - xSource:pop - ParentID:10522 - ID:10523
+Calle Line/Col:103/179 - I:20 - FirstType:Literal - ParentType:8 - xOperator: - xSource:'=' - ParentID:10536 - ID:10537
+Calle Line/Col:103/183 - I:20 - FirstType:Literal - ParentType:9 - xOperator: - xSource:'1' - ParentID:10549 - ID:10550
+Calle Line/Col:103/187 - I:20 - FirstType:Identifier - ParentType:10 - xOperator: - xSource:_$gXLocal - ParentID:10562 - ID:10563
+Calle Line/Col:103/197 - I:20 - FirstType:Literal - ParentType:11 - xOperator: - xSource:1 - ParentID:10574 - ID:10575
+Calle Line/Col:103/199 - I:20 - FirstType:Literal - ParentType:12 - xOperator: - xSource:'8=snake_array.pop()' - ParentID:10587 - ID:10588
+Calle Line/Col:104/3 - I:15 - FirstType:ExpressionStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:104/3 - I:16 - FirstType:AssignmentExpression - ParentType:expression - xOperator:= - xSource:tail.x = _$set(4,104,'ExpressionStatement','expression','tail.x',tail.x,'nx',nx,'=','0',_$gXLocal,0) - ParentID:10612 - ID:10613
+Calle Line/Col:104/3 - I:17 - FirstType:MemberExpression - ParentType:left - xOperator: - xSource:tail.x - ParentID:10624 - ID:10625
+Calle Line/Col:104/3 - I:18 - FirstType:Identifier - ParentType:object - xOperator: - xSource:tail - ParentID:10635 - ID:10636
+Calle Line/Col:104/8 - I:18 - FirstType:Identifier - ParentType:property - xOperator: - xSource:x - ParentID:10647 - ID:10648
+Calle Line/Col:104/12 - I:17 - FirstType:CallExpression - ParentType:right - xOperator: - xSource:_$set(4,104,'ExpressionStatement','expression','tail.x',tail.x,'nx',nx,'=','0',_$gXLocal,0) - ParentID:10660 - ID:10661
+Calle Line/Col:104/12 - I:18 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$set - ParentID:10671 - ID:10672
+Calle Line/Col:104/18 - I:19 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:10684 - ID:10685
+Calle Line/Col:104/20 - I:19 - FirstType:Literal - ParentType:1 - xOperator: - xSource:104 - ParentID:10697 - ID:10698
+Calle Line/Col:104/24 - I:19 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'ExpressionStatement' - ParentID:10710 - ID:10711
+Calle Line/Col:104/46 - I:19 - FirstType:Literal - ParentType:3 - xOperator: - xSource:'expression' - ParentID:10723 - ID:10724
+Calle Line/Col:104/59 - I:19 - FirstType:Literal - ParentType:4 - xOperator: - xSource:'tail.x' - ParentID:10736 - ID:10737
+Calle Line/Col:104/68 - I:19 - FirstType:MemberExpression - ParentType:5 - xOperator: - xSource:tail.x - ParentID:10749 - ID:10750
+Calle Line/Col:104/68 - I:20 - FirstType:Identifier - ParentType:object - xOperator: - xSource:tail - ParentID:10760 - ID:10761
+Calle Line/Col:104/73 - I:20 - FirstType:Identifier - ParentType:property - xOperator: - xSource:x - ParentID:10772 - ID:10773
+Calle Line/Col:104/75 - I:19 - FirstType:Literal - ParentType:6 - xOperator: - xSource:'nx' - ParentID:10785 - ID:10786
+Calle Line/Col:104/80 - I:19 - FirstType:Identifier - ParentType:7 - xOperator: - xSource:nx - ParentID:10798 - ID:10799
+Calle Line/Col:104/83 - I:19 - FirstType:Literal - ParentType:8 - xOperator: - xSource:'=' - ParentID:10810 - ID:10811
+Calle Line/Col:104/87 - I:19 - FirstType:Literal - ParentType:9 - xOperator: - xSource:'0' - ParentID:10823 - ID:10824
+Calle Line/Col:104/91 - I:19 - FirstType:Identifier - ParentType:10 - xOperator: - xSource:_$gXLocal - ParentID:10836 - ID:10837
+Calle Line/Col:104/101 - I:19 - FirstType:Literal - ParentType:11 - xOperator: - xSource:0 - ParentID:10848 - ID:10849
+Calle Line/Col:104/105 - I:15 - FirstType:ExpressionStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:104/105 - I:16 - FirstType:AssignmentExpression - ParentType:expression - xOperator:= - xSource:tail.y = _$set(4,104,'ExpressionStatement','expression','tail.y',tail.y,'ny',ny,'=','0',_$gXLocal,0) - ParentID:10872 - ID:10873
+Calle Line/Col:104/105 - I:17 - FirstType:MemberExpression - ParentType:left - xOperator: - xSource:tail.y - ParentID:10884 - ID:10885
+Calle Line/Col:104/105 - I:18 - FirstType:Identifier - ParentType:object - xOperator: - xSource:tail - ParentID:10895 - ID:10896
+Calle Line/Col:104/110 - I:18 - FirstType:Identifier - ParentType:property - xOperator: - xSource:y - ParentID:10907 - ID:10908
+Calle Line/Col:104/114 - I:17 - FirstType:CallExpression - ParentType:right - xOperator: - xSource:_$set(4,104,'ExpressionStatement','expression','tail.y',tail.y,'ny',ny,'=','0',_$gXLocal,0) - ParentID:10920 - ID:10921
+Calle Line/Col:104/114 - I:18 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$set - ParentID:10931 - ID:10932
+Calle Line/Col:104/120 - I:19 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:10944 - ID:10945
+Calle Line/Col:104/122 - I:19 - FirstType:Literal - ParentType:1 - xOperator: - xSource:104 - ParentID:10957 - ID:10958
+Calle Line/Col:104/126 - I:19 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'ExpressionStatement' - ParentID:10970 - ID:10971
+Calle Line/Col:104/148 - I:19 - FirstType:Literal - ParentType:3 - xOperator: - xSource:'expression' - ParentID:10983 - ID:10984
+Calle Line/Col:104/161 - I:19 - FirstType:Literal - ParentType:4 - xOperator: - xSource:'tail.y' - ParentID:10996 - ID:10997
+Calle Line/Col:104/170 - I:19 - FirstType:MemberExpression - ParentType:5 - xOperator: - xSource:tail.y - ParentID:11009 - ID:11010
+Calle Line/Col:104/170 - I:20 - FirstType:Identifier - ParentType:object - xOperator: - xSource:tail - ParentID:11020 - ID:11021
+Calle Line/Col:104/175 - I:20 - FirstType:Identifier - ParentType:property - xOperator: - xSource:y - ParentID:11032 - ID:11033
+Calle Line/Col:104/177 - I:19 - FirstType:Literal - ParentType:6 - xOperator: - xSource:'ny' - ParentID:11045 - ID:11046
+Calle Line/Col:104/182 - I:19 - FirstType:Identifier - ParentType:7 - xOperator: - xSource:ny - ParentID:11058 - ID:11059
+Calle Line/Col:104/185 - I:19 - FirstType:Literal - ParentType:8 - xOperator: - xSource:'=' - ParentID:11070 - ID:11071
+Calle Line/Col:104/189 - I:19 - FirstType:Literal - ParentType:9 - xOperator: - xSource:'0' - ParentID:11083 - ID:11084
+Calle Line/Col:104/193 - I:19 - FirstType:Identifier - ParentType:10 - xOperator: - xSource:_$gXLocal - ParentID:11096 - ID:11097
+Calle Line/Col:104/203 - I:19 - FirstType:Literal - ParentType:11 - xOperator: - xSource:0 - ParentID:11108 - ID:11109
+Calle Line/Col:108/2 - I:12 - FirstType:ExpressionStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:108/2 - I:13 - FirstType:CallExpression - ParentType:expression - xOperator: - xSource:snake_array.unshift(tail) - ParentID:11132 - ID:11133
+Calle Line/Col:108/2 - I:14 - FirstType:MemberExpression - ParentType:callee - xOperator: - xSource:snake_array.unshift - ParentID:11143 - ID:11144
+Calle Line/Col:108/2 - I:15 - FirstType:Identifier - ParentType:object - xOperator: - xSource:snake_array - ParentID:11154 - ID:11155
+Calle Line/Col:108/14 - I:15 - FirstType:Identifier - ParentType:property - xOperator: - xSource:unshift - ParentID:11166 - ID:11167
+Calle Line/Col:108/22 - I:15 - FirstType:Identifier - ParentType:0 - xOperator: - xSource:tail - ParentID:11180 - ID:11181
+Calle Line/Col:110/2 - I:12 - FirstType:ForStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:110/6 - I:13 - FirstType:VariableDeclaration - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:110/10 - I:15 - FirstType:VariableDeclarator - ParentType:0 - xOperator:= - xSource:i = _$set(4,110,'ExpressionStatement > ForStatement > VariableDeclaration','0','i',i,'0',0,'=','1',_ - ParentID:11215 - ID:11216
+Calle Line/Col:110/10 - I:16 - FirstType:Identifier - ParentType:id - xOperator: - xSource:i - ParentID:11226 - ID:11227
+Calle Line/Col:110/14 - I:16 - FirstType:CallExpression - ParentType:init - xOperator: - xSource:_$set(4,110,'ExpressionStatement > ForStatement > VariableDeclaration','0','i',i,'0',0,'=','1',_$gXL - ParentID:11238 - ID:11239
+Calle Line/Col:110/14 - I:17 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$set - ParentID:11249 - ID:11250
+Calle Line/Col:110/20 - I:18 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:11262 - ID:11263
+Calle Line/Col:110/22 - I:18 - FirstType:Literal - ParentType:1 - xOperator: - xSource:110 - ParentID:11275 - ID:11276
+Calle Line/Col:110/26 - I:18 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'ExpressionStatement > ForStatement > VariableDeclaration' - ParentID:11288 - ID:11289
+Calle Line/Col:110/85 - I:18 - FirstType:Literal - ParentType:3 - xOperator: - xSource:'0' - ParentID:11301 - ID:11302
+Calle Line/Col:110/89 - I:18 - FirstType:Literal - ParentType:4 - xOperator: - xSource:'i' - ParentID:11314 - ID:11315
+Calle Line/Col:110/93 - I:18 - FirstType:Identifier - ParentType:5 - xOperator: - xSource:i - ParentID:11327 - ID:11328
+Calle Line/Col:110/95 - I:18 - FirstType:Literal - ParentType:6 - xOperator: - xSource:'0' - ParentID:11339 - ID:11340
+Calle Line/Col:110/99 - I:18 - FirstType:Literal - ParentType:7 - xOperator: - xSource:0 - ParentID:11352 - ID:11353
+Calle Line/Col:110/101 - I:18 - FirstType:Literal - ParentType:8 - xOperator: - xSource:'=' - ParentID:11365 - ID:11366
+Calle Line/Col:110/105 - I:18 - FirstType:Literal - ParentType:9 - xOperator: - xSource:'1' - ParentID:11378 - ID:11379
+Calle Line/Col:110/109 - I:18 - FirstType:Identifier - ParentType:10 - xOperator: - xSource:_$gXLocal - ParentID:11391 - ID:11392
+Calle Line/Col:110/119 - I:18 - FirstType:Literal - ParentType:11 - xOperator: - xSource:0 - ParentID:11403 - ID:11404
+Calle Line/Col:110/123 - I:13 - FirstType:CallExpression - ParentType:test - xOperator: - xSource:_$evl(4,110,'ExpressionStatement > ForStatement > VariableDeclaration','test','i < snake_array.lengt - ParentID:11417 - ID:11418
+Calle Line/Col:110/123 - I:14 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$evl - ParentID:11428 - ID:11429
+Calle Line/Col:110/129 - I:15 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:11441 - ID:11442
+Calle Line/Col:110/131 - I:15 - FirstType:Literal - ParentType:1 - xOperator: - xSource:110 - ParentID:11454 - ID:11455
+Calle Line/Col:110/135 - I:15 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'ExpressionStatement > ForStatement > VariableDeclaration' - ParentID:11467 - ID:11468
+Calle Line/Col:110/194 - I:15 - FirstType:Literal - ParentType:3 - xOperator: - xSource:'test' - ParentID:11480 - ID:11481
+Calle Line/Col:110/201 - I:15 - FirstType:Literal - ParentType:4 - xOperator: - xSource:'i < snake_array.length' - ParentID:11493 - ID:11494
+Calle Line/Col:110/227 - I:15 - FirstType:BinaryExpression - ParentType:5 - xOperator:< - xSource:i < snake_array.length - ParentID:11506 - ID:11507
+Calle Line/Col:110/227 - I:16 - FirstType:Identifier - ParentType:left - xOperator: - xSource:i - ParentID:11517 - ID:11518
+Calle Line/Col:110/231 - I:16 - FirstType:MemberExpression - ParentType:right - xOperator: - xSource:snake_array.length - ParentID:11530 - ID:11531
+Calle Line/Col:110/231 - I:17 - FirstType:Identifier - ParentType:object - xOperator: - xSource:snake_array - ParentID:11541 - ID:11542
+Calle Line/Col:110/243 - I:17 - FirstType:Identifier - ParentType:property - xOperator: - xSource:length - ParentID:11553 - ID:11554
+Calle Line/Col:110/250 - I:15 - FirstType:Identifier - ParentType:6 - xOperator: - xSource:_$gXLocal - ParentID:11566 - ID:11567
+Calle Line/Col:110/261 - I:15 - FirstType:Literal - ParentType:7 - xOperator: - xSource:0 - ParentID:11578 - ID:11579
+Calle Line/Col:110/266 - I:13 - FirstType:SequenceExpression - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:110/266 - I:15 - FirstType:AssignmentExpression - ParentType:0 - xOperator:= - xSource:tempVar = i - ParentID:11603 - ID:11604
+Calle Line/Col:110/266 - I:16 - FirstType:Identifier - ParentType:left - xOperator: - xSource:tempVar - ParentID:11615 - ID:11616
+Calle Line/Col:110/276 - I:16 - FirstType:Identifier - ParentType:right - xOperator: - xSource:i - ParentID:11627 - ID:11628
+Calle Line/Col:110/279 - I:15 - FirstType:AssignmentExpression - ParentType:1 - xOperator:= - xSource:i= _$set(4,110,'ExpressionStatement > ForStatement > VariableDeclaration','update','i',i,'',0,'++',0 - ParentID:11639 - ID:11640
+Calle Line/Col:110/279 - I:16 - FirstType:Identifier - ParentType:left - xOperator: - xSource:i - ParentID:11651 - ID:11652
+Calle Line/Col:110/282 - I:16 - FirstType:CallExpression - ParentType:right - xOperator: - xSource:_$set(4,110,'ExpressionStatement > ForStatement > VariableDeclaration','update','i',i,'',0,'++',0,_$ - ParentID:11663 - ID:11664
+Calle Line/Col:110/282 - I:17 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$set - ParentID:11674 - ID:11675
+Calle Line/Col:110/288 - I:18 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:11687 - ID:11688
+Calle Line/Col:110/290 - I:18 - FirstType:Literal - ParentType:1 - xOperator: - xSource:110 - ParentID:11700 - ID:11701
+Calle Line/Col:110/294 - I:18 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'ExpressionStatement > ForStatement > VariableDeclaration' - ParentID:11713 - ID:11714
+Calle Line/Col:110/353 - I:18 - FirstType:Literal - ParentType:3 - xOperator: - xSource:'update' - ParentID:11726 - ID:11727
+Calle Line/Col:110/362 - I:18 - FirstType:Literal - ParentType:4 - xOperator: - xSource:'i' - ParentID:11739 - ID:11740
+Calle Line/Col:110/366 - I:18 - FirstType:Identifier - ParentType:5 - xOperator: - xSource:i - ParentID:11752 - ID:11753
+Calle Line/Col:110/368 - I:18 - FirstType:Literal - ParentType:6 - xOperator: - xSource:'' - ParentID:11764 - ID:11765
+Calle Line/Col:110/371 - I:18 - FirstType:Literal - ParentType:7 - xOperator: - xSource:0 - ParentID:11777 - ID:11778
+Calle Line/Col:110/373 - I:18 - FirstType:Literal - ParentType:8 - xOperator: - xSource:'++' - ParentID:11790 - ID:11791
+Calle Line/Col:110/378 - I:18 - FirstType:Literal - ParentType:9 - xOperator: - xSource:0 - ParentID:11803 - ID:11804
+Calle Line/Col:110/380 - I:18 - FirstType:Identifier - ParentType:10 - xOperator: - xSource:_$gXLocal - ParentID:11816 - ID:11817
+Calle Line/Col:110/390 - I:18 - FirstType:Literal - ParentType:11 - xOperator: - xSource:0 - ParentID:11828 - ID:11829
+Calle Line/Col:110/394 - I:15 - FirstType:Identifier - ParentType:2 - xOperator: - xSource:tempVar - ParentID:11841 - ID:11842
+Calle Line/Col:111/2 - I:13 - FirstType:BlockStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:112/3 - I:15 - FirstType:ExpressionStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:112/3 - I:16 - FirstType:CallExpression - ParentType:expression - xOperator: - xSource:_$sb(4,112,'c',_$gXLocal) - ParentID:11876 - ID:11877
+Calle Line/Col:112/3 - I:17 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$sb - ParentID:11887 - ID:11888
+Calle Line/Col:112/8 - I:18 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:11900 - ID:11901
+Calle Line/Col:112/10 - I:18 - FirstType:Literal - ParentType:1 - xOperator: - xSource:112 - ParentID:11913 - ID:11914
+Calle Line/Col:112/14 - I:18 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'c' - ParentID:11926 - ID:11927
+Calle Line/Col:112/18 - I:18 - FirstType:Identifier - ParentType:3 - xOperator: - xSource:_$gXLocal - ParentID:11939 - ID:11940
+Calle Line/Col:112/29 - I:15 - FirstType:VariableDeclaration - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:112/33 - I:17 - FirstType:VariableDeclarator - ParentType:0 - xOperator:= - xSource:c = _$set(4,112,'BlockStatement > VariableDeclaration','0','c',c,'snake_array[i]',snake_array[i],'=' - ParentID:11963 - ID:11964
+Calle Line/Col:112/33 - I:18 - FirstType:Identifier - ParentType:id - xOperator: - xSource:c - ParentID:11974 - ID:11975
+Calle Line/Col:112/37 - I:18 - FirstType:CallExpression - ParentType:init - xOperator: - xSource:_$set(4,112,'BlockStatement > VariableDeclaration','0','c',c,'snake_array[i]',snake_array[i],'=','1' - ParentID:11986 - ID:11987
+Calle Line/Col:112/37 - I:19 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$set - ParentID:11997 - ID:11998
+Calle Line/Col:112/43 - I:20 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:12010 - ID:12011
+Calle Line/Col:112/45 - I:20 - FirstType:Literal - ParentType:1 - xOperator: - xSource:112 - ParentID:12023 - ID:12024
+Calle Line/Col:112/49 - I:20 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'BlockStatement > VariableDeclaration' - ParentID:12036 - ID:12037
+Calle Line/Col:112/88 - I:20 - FirstType:Literal - ParentType:3 - xOperator: - xSource:'0' - ParentID:12049 - ID:12050
+Calle Line/Col:112/92 - I:20 - FirstType:Literal - ParentType:4 - xOperator: - xSource:'c' - ParentID:12062 - ID:12063
+Calle Line/Col:112/96 - I:20 - FirstType:Identifier - ParentType:5 - xOperator: - xSource:c - ParentID:12075 - ID:12076
+Calle Line/Col:112/98 - I:20 - FirstType:Literal - ParentType:6 - xOperator: - xSource:'snake_array[i]' - ParentID:12087 - ID:12088
+Calle Line/Col:112/115 - I:20 - FirstType:MemberExpression - ParentType:7 - xOperator: - xSource:snake_array[i] - ParentID:12100 - ID:12101
+Calle Line/Col:112/115 - I:21 - FirstType:Identifier - ParentType:object - xOperator: - xSource:snake_array - ParentID:12111 - ID:12112
+Calle Line/Col:112/127 - I:21 - FirstType:Identifier - ParentType:property - xOperator: - xSource:i - ParentID:12123 - ID:12124
+Calle Line/Col:112/130 - I:20 - FirstType:Literal - ParentType:8 - xOperator: - xSource:'=' - ParentID:12136 - ID:12137
+Calle Line/Col:112/134 - I:20 - FirstType:Literal - ParentType:9 - xOperator: - xSource:'1' - ParentID:12149 - ID:12150
+Calle Line/Col:112/138 - I:20 - FirstType:Identifier - ParentType:10 - xOperator: - xSource:_$gXLocal - ParentID:12162 - ID:12163
+Calle Line/Col:112/148 - I:20 - FirstType:Literal - ParentType:11 - xOperator: - xSource:0 - ParentID:12174 - ID:12175
+Calle Line/Col:114/3 - I:15 - FirstType:ExpressionStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:114/3 - I:16 - FirstType:CallExpression - ParentType:expression - xOperator: - xSource:paint_cell(c.x, c.y) - ParentID:12199 - ID:12200
+Calle Line/Col:114/3 - I:17 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:paint_cell - ParentID:12210 - ID:12211
+Calle Line/Col:114/14 - I:18 - FirstType:MemberExpression - ParentType:0 - xOperator: - xSource:c.x - ParentID:12223 - ID:12224
+Calle Line/Col:114/14 - I:19 - FirstType:Identifier - ParentType:object - xOperator: - xSource:c - ParentID:12234 - ID:12235
+Calle Line/Col:114/16 - I:19 - FirstType:Identifier - ParentType:property - xOperator: - xSource:x - ParentID:12246 - ID:12247
+Calle Line/Col:114/19 - I:18 - FirstType:MemberExpression - ParentType:1 - xOperator: - xSource:c.y - ParentID:12259 - ID:12260
+Calle Line/Col:114/19 - I:19 - FirstType:Identifier - ParentType:object - xOperator: - xSource:c - ParentID:12270 - ID:12271
+Calle Line/Col:114/21 - I:19 - FirstType:Identifier - ParentType:property - xOperator: - xSource:y - ParentID:12282 - ID:12283
+Calle Line/Col:118/2 - I:12 - FirstType:ExpressionStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:118/2 - I:13 - FirstType:CallExpression - ParentType:expression - xOperator: - xSource:paint_cell(food.x, food.y) - ParentID:12306 - ID:12307
+Calle Line/Col:118/2 - I:14 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:paint_cell - ParentID:12317 - ID:12318
+Calle Line/Col:118/13 - I:15 - FirstType:MemberExpression - ParentType:0 - xOperator: - xSource:food.x - ParentID:12330 - ID:12331
+Calle Line/Col:118/13 - I:16 - FirstType:Identifier - ParentType:object - xOperator: - xSource:food - ParentID:12341 - ID:12342
+Calle Line/Col:118/18 - I:16 - FirstType:Identifier - ParentType:property - xOperator: - xSource:x - ParentID:12353 - ID:12354
+Calle Line/Col:118/21 - I:15 - FirstType:MemberExpression - ParentType:1 - xOperator: - xSource:food.y - ParentID:12366 - ID:12367
+Calle Line/Col:118/21 - I:16 - FirstType:Identifier - ParentType:object - xOperator: - xSource:food - ParentID:12377 - ID:12378
+Calle Line/Col:118/26 - I:16 - FirstType:Identifier - ParentType:property - xOperator: - xSource:y - ParentID:12389 - ID:12390
+Calle Line/Col:120/2 - I:12 - FirstType:ExpressionStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:120/2 - I:13 - FirstType:CallExpression - ParentType:expression - xOperator: - xSource:_$sb(4,120,'score_text',_$gXLocal) - ParentID:12413 - ID:12414
+Calle Line/Col:120/2 - I:14 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$sb - ParentID:12424 - ID:12425
+Calle Line/Col:120/7 - I:15 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:12437 - ID:12438
+Calle Line/Col:120/9 - I:15 - FirstType:Literal - ParentType:1 - xOperator: - xSource:120 - ParentID:12450 - ID:12451
+Calle Line/Col:120/13 - I:15 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'score_text' - ParentID:12463 - ID:12464
+Calle Line/Col:120/26 - I:15 - FirstType:Identifier - ParentType:3 - xOperator: - xSource:_$gXLocal - ParentID:12476 - ID:12477
+Calle Line/Col:120/37 - I:12 - FirstType:VariableDeclaration - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:120/41 - I:14 - FirstType:VariableDeclarator - ParentType:0 - xOperator:= - xSource:score_text = _$set(4,120,'ExpressionStatement > ExpressionStatement > VariableDeclaration','0','scor - ParentID:12500 - ID:12501
+Calle Line/Col:120/41 - I:15 - FirstType:Identifier - ParentType:id - xOperator: - xSource:score_text - ParentID:12511 - ID:12512
+Calle Line/Col:120/54 - I:15 - FirstType:CallExpression - ParentType:init - xOperator: - xSource:_$set(4,120,'ExpressionStatement > ExpressionStatement > VariableDeclaration','0','score_text',score - ParentID:12523 - ID:12524
+Calle Line/Col:120/54 - I:16 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$set - ParentID:12534 - ID:12535
+Calle Line/Col:120/60 - I:17 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:12547 - ID:12548
+Calle Line/Col:120/62 - I:17 - FirstType:Literal - ParentType:1 - xOperator: - xSource:120 - ParentID:12560 - ID:12561
+Calle Line/Col:120/66 - I:17 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'ExpressionStatement > ExpressionStatement > VariableDeclaration' - ParentID:12573 - ID:12574
+Calle Line/Col:120/132 - I:17 - FirstType:Literal - ParentType:3 - xOperator: - xSource:'0' - ParentID:12586 - ID:12587
+Calle Line/Col:120/136 - I:17 - FirstType:Literal - ParentType:4 - xOperator: - xSource:'score_text' - ParentID:12599 - ID:12600
+Calle Line/Col:120/149 - I:17 - FirstType:Identifier - ParentType:5 - xOperator: - xSource:score_text - ParentID:12612 - ID:12613
+Calle Line/Col:120/160 - I:17 - FirstType:Literal - ParentType:6 - xOperator: - xSource:'"Score: " + score' - ParentID:12624 - ID:12625
+Calle Line/Col:120/180 - I:17 - FirstType:BinaryExpression - ParentType:7 - xOperator:+ - xSource:"Score: " + score - ParentID:12637 - ID:12638
+Calle Line/Col:120/180 - I:18 - FirstType:Literal - ParentType:left - xOperator: - xSource:"Score: " - ParentID:12648 - ID:12649
+Calle Line/Col:120/192 - I:18 - FirstType:Identifier - ParentType:right - xOperator: - xSource:score - ParentID:12662 - ID:12663
+Calle Line/Col:120/198 - I:17 - FirstType:Literal - ParentType:8 - xOperator: - xSource:'=' - ParentID:12674 - ID:12675
+Calle Line/Col:120/202 - I:17 - FirstType:Literal - ParentType:9 - xOperator: - xSource:'1' - ParentID:12687 - ID:12688
+Calle Line/Col:120/206 - I:17 - FirstType:Identifier - ParentType:10 - xOperator: - xSource:_$gXLocal - ParentID:12700 - ID:12701
+Calle Line/Col:120/216 - I:17 - FirstType:Literal - ParentType:11 - xOperator: - xSource:0 - ParentID:12712 - ID:12713
+Calle Line/Col:121/2 - I:12 - FirstType:ExpressionStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:121/2 - I:13 - FirstType:CallExpression - ParentType:expression - xOperator: - xSource:ctx.fillText(score_text, 5, _$evl(4,121,'ExpressionStatement','2','h-5', h-5,_$gXLocal, 0)) - ParentID:12737 - ID:12738
+Calle Line/Col:121/2 - I:14 - FirstType:MemberExpression - ParentType:callee - xOperator: - xSource:ctx.fillText - ParentID:12748 - ID:12749
+Calle Line/Col:121/2 - I:15 - FirstType:Identifier - ParentType:object - xOperator: - xSource:ctx - ParentID:12759 - ID:12760
+Calle Line/Col:121/6 - I:15 - FirstType:Identifier - ParentType:property - xOperator: - xSource:fillText - ParentID:12771 - ID:12772
+Calle Line/Col:121/15 - I:15 - FirstType:Identifier - ParentType:0 - xOperator: - xSource:score_text - ParentID:12785 - ID:12786
+Calle Line/Col:121/27 - I:15 - FirstType:Literal - ParentType:1 - xOperator: - xSource:5 - ParentID:12797 - ID:12798
+Calle Line/Col:121/30 - I:15 - FirstType:CallExpression - ParentType:2 - xOperator: - xSource:_$evl(4,121,'ExpressionStatement','2','h-5', h-5,_$gXLocal, 0) - ParentID:12810 - ID:12811
+Calle Line/Col:121/30 - I:16 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$evl - ParentID:12821 - ID:12822
+Calle Line/Col:121/36 - I:17 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:12834 - ID:12835
+Calle Line/Col:121/38 - I:17 - FirstType:Literal - ParentType:1 - xOperator: - xSource:121 - ParentID:12847 - ID:12848
+Calle Line/Col:121/42 - I:17 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'ExpressionStatement' - ParentID:12860 - ID:12861
+Calle Line/Col:121/64 - I:17 - FirstType:Literal - ParentType:3 - xOperator: - xSource:'2' - ParentID:12873 - ID:12874
+Calle Line/Col:121/68 - I:17 - FirstType:Literal - ParentType:4 - xOperator: - xSource:'h-5' - ParentID:12886 - ID:12887
+Calle Line/Col:121/75 - I:17 - FirstType:BinaryExpression - ParentType:5 - xOperator:- - xSource:h-5 - ParentID:12899 - ID:12900
+Calle Line/Col:121/75 - I:18 - FirstType:Identifier - ParentType:left - xOperator: - xSource:h - ParentID:12910 - ID:12911
+Calle Line/Col:121/77 - I:18 - FirstType:Literal - ParentType:right - xOperator: - xSource:5 - ParentID:12923 - ID:12924
+Calle Line/Col:121/79 - I:17 - FirstType:Identifier - ParentType:6 - xOperator: - xSource:_$gXLocal - ParentID:12936 - ID:12937
+Calle Line/Col:121/90 - I:17 - FirstType:Literal - ParentType:7 - xOperator: - xSource:0 - ParentID:12948 - ID:12949
+Calle Line/Col:125/1 - I:9 - FirstType:FunctionDeclaration - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:125/10 - I:10 - FirstType:Identifier - ParentType:id - xOperator: - xSource:paint_cell - ParentID:12973 - ID:12974
+Calle Line/Col:125/21 - I:11 - FirstType:Identifier - ParentType:0 - xOperator: - xSource:x - ParentID:12986 - ID:12987
+Calle Line/Col:125/24 - I:11 - FirstType:Identifier - ParentType:1 - xOperator: - xSource:y - ParentID:12998 - ID:12999
+Calle Line/Col:126/1 - I:10 - FirstType:BlockStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:127/2 - I:12 - FirstType:ExpressionStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:127/2 - I:13 - FirstType:AssignmentExpression - ParentType:expression - xOperator:= - xSource:ctx.fillStyle = _$set(4,127,'FunctionDeclaration > BlockStatement > ExpressionStatement','expression - ParentID:13033 - ID:13034
+Calle Line/Col:127/2 - I:14 - FirstType:MemberExpression - ParentType:left - xOperator: - xSource:ctx.fillStyle - ParentID:13045 - ID:13046
+Calle Line/Col:127/2 - I:15 - FirstType:Identifier - ParentType:object - xOperator: - xSource:ctx - ParentID:13056 - ID:13057
+Calle Line/Col:127/6 - I:15 - FirstType:Identifier - ParentType:property - xOperator: - xSource:fillStyle - ParentID:13068 - ID:13069
+Calle Line/Col:127/18 - I:14 - FirstType:CallExpression - ParentType:right - xOperator: - xSource:_$set(4,127,'FunctionDeclaration > BlockStatement > ExpressionStatement','expression','ctx.fillStyle - ParentID:13081 - ID:13082
+Calle Line/Col:127/18 - I:15 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$set - ParentID:13092 - ID:13093
+Calle Line/Col:127/24 - I:16 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:13105 - ID:13106
+Calle Line/Col:127/26 - I:16 - FirstType:Literal - ParentType:1 - xOperator: - xSource:127 - ParentID:13118 - ID:13119
+Calle Line/Col:127/30 - I:16 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'FunctionDeclaration > BlockStatement > ExpressionStatement' - ParentID:13131 - ID:13132
+Calle Line/Col:127/91 - I:16 - FirstType:Literal - ParentType:3 - xOperator: - xSource:'expression' - ParentID:13144 - ID:13145
+Calle Line/Col:127/104 - I:16 - FirstType:Literal - ParentType:4 - xOperator: - xSource:'ctx.fillStyle' - ParentID:13157 - ID:13158
+Calle Line/Col:127/120 - I:16 - FirstType:MemberExpression - ParentType:5 - xOperator: - xSource:ctx.fillStyle - ParentID:13170 - ID:13171
+Calle Line/Col:127/120 - I:17 - FirstType:Identifier - ParentType:object - xOperator: - xSource:ctx - ParentID:13181 - ID:13182
+Calle Line/Col:127/124 - I:17 - FirstType:Identifier - ParentType:property - xOperator: - xSource:fillStyle - ParentID:13193 - ID:13194
+Calle Line/Col:127/134 - I:16 - FirstType:Literal - ParentType:6 - xOperator: - xSource:'"blue"' - ParentID:13206 - ID:13207
+Calle Line/Col:127/143 - I:16 - FirstType:Literal - ParentType:7 - xOperator: - xSource:"blue" - ParentID:13219 - ID:13220
+Calle Line/Col:127/150 - I:16 - FirstType:Literal - ParentType:8 - xOperator: - xSource:'=' - ParentID:13232 - ID:13233
+Calle Line/Col:127/154 - I:16 - FirstType:Literal - ParentType:9 - xOperator: - xSource:'0' - ParentID:13245 - ID:13246
+Calle Line/Col:127/158 - I:16 - FirstType:Identifier - ParentType:10 - xOperator: - xSource:_$gXLocal - ParentID:13258 - ID:13259
+Calle Line/Col:127/168 - I:16 - FirstType:Literal - ParentType:11 - xOperator: - xSource:0 - ParentID:13270 - ID:13271
+Calle Line/Col:128/2 - I:12 - FirstType:ExpressionStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:128/2 - I:13 - FirstType:CallExpression - ParentType:expression - xOperator: - xSource:ctx.fillRect(_$evl(4,128,'ExpressionStatement','0','x*cw', x*cw,_$gXLocal, 0), _$evl(4,128,'Expressi - ParentID:13294 - ID:13295
+Calle Line/Col:128/2 - I:14 - FirstType:MemberExpression - ParentType:callee - xOperator: - xSource:ctx.fillRect - ParentID:13305 - ID:13306
+Calle Line/Col:128/2 - I:15 - FirstType:Identifier - ParentType:object - xOperator: - xSource:ctx - ParentID:13316 - ID:13317
+Calle Line/Col:128/6 - I:15 - FirstType:Identifier - ParentType:property - xOperator: - xSource:fillRect - ParentID:13328 - ID:13329
+Calle Line/Col:128/15 - I:15 - FirstType:CallExpression - ParentType:0 - xOperator: - xSource:_$evl(4,128,'ExpressionStatement','0','x*cw', x*cw,_$gXLocal, 0) - ParentID:13342 - ID:13343
+Calle Line/Col:128/15 - I:16 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$evl - ParentID:13353 - ID:13354
+Calle Line/Col:128/21 - I:17 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:13366 - ID:13367
+Calle Line/Col:128/23 - I:17 - FirstType:Literal - ParentType:1 - xOperator: - xSource:128 - ParentID:13379 - ID:13380
+Calle Line/Col:128/27 - I:17 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'ExpressionStatement' - ParentID:13392 - ID:13393
+Calle Line/Col:128/49 - I:17 - FirstType:Literal - ParentType:3 - xOperator: - xSource:'0' - ParentID:13405 - ID:13406
+Calle Line/Col:128/53 - I:17 - FirstType:Literal - ParentType:4 - xOperator: - xSource:'x*cw' - ParentID:13418 - ID:13419
+Calle Line/Col:128/61 - I:17 - FirstType:BinaryExpression - ParentType:5 - xOperator:* - xSource:x*cw - ParentID:13431 - ID:13432
+Calle Line/Col:128/61 - I:18 - FirstType:Identifier - ParentType:left - xOperator: - xSource:x - ParentID:13442 - ID:13443
+Calle Line/Col:128/63 - I:18 - FirstType:Identifier - ParentType:right - xOperator: - xSource:cw - ParentID:13455 - ID:13456
+Calle Line/Col:128/66 - I:17 - FirstType:Identifier - ParentType:6 - xOperator: - xSource:_$gXLocal - ParentID:13467 - ID:13468
+Calle Line/Col:128/77 - I:17 - FirstType:Literal - ParentType:7 - xOperator: - xSource:0 - ParentID:13479 - ID:13480
+Calle Line/Col:128/81 - I:15 - FirstType:CallExpression - ParentType:1 - xOperator: - xSource:_$evl(4,128,'ExpressionStatement','1','y*cw', y*cw,_$gXLocal, 0) - ParentID:13492 - ID:13493
+Calle Line/Col:128/81 - I:16 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$evl - ParentID:13503 - ID:13504
+Calle Line/Col:128/87 - I:17 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:13516 - ID:13517
+Calle Line/Col:128/89 - I:17 - FirstType:Literal - ParentType:1 - xOperator: - xSource:128 - ParentID:13529 - ID:13530
+Calle Line/Col:128/93 - I:17 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'ExpressionStatement' - ParentID:13542 - ID:13543
+Calle Line/Col:128/115 - I:17 - FirstType:Literal - ParentType:3 - xOperator: - xSource:'1' - ParentID:13555 - ID:13556
+Calle Line/Col:128/119 - I:17 - FirstType:Literal - ParentType:4 - xOperator: - xSource:'y*cw' - ParentID:13568 - ID:13569
+Calle Line/Col:128/127 - I:17 - FirstType:BinaryExpression - ParentType:5 - xOperator:* - xSource:y*cw - ParentID:13581 - ID:13582
+Calle Line/Col:128/127 - I:18 - FirstType:Identifier - ParentType:left - xOperator: - xSource:y - ParentID:13592 - ID:13593
+Calle Line/Col:128/129 - I:18 - FirstType:Identifier - ParentType:right - xOperator: - xSource:cw - ParentID:13605 - ID:13606
+Calle Line/Col:128/132 - I:17 - FirstType:Identifier - ParentType:6 - xOperator: - xSource:_$gXLocal - ParentID:13617 - ID:13618
+Calle Line/Col:128/143 - I:17 - FirstType:Literal - ParentType:7 - xOperator: - xSource:0 - ParentID:13629 - ID:13630
+Calle Line/Col:128/147 - I:15 - FirstType:Identifier - ParentType:2 - xOperator: - xSource:cw - ParentID:13642 - ID:13643
+Calle Line/Col:128/151 - I:15 - FirstType:Identifier - ParentType:3 - xOperator: - xSource:cw - ParentID:13654 - ID:13655
+Calle Line/Col:129/2 - I:12 - FirstType:ExpressionStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:129/2 - I:13 - FirstType:AssignmentExpression - ParentType:expression - xOperator:= - xSource:ctx.strokeStyle = _$set(4,129,'ExpressionStatement','expression','ctx.strokeStyle',ctx.strokeStyle,' - ParentID:13677 - ID:13678
+Calle Line/Col:129/2 - I:14 - FirstType:MemberExpression - ParentType:left - xOperator: - xSource:ctx.strokeStyle - ParentID:13689 - ID:13690
+Calle Line/Col:129/2 - I:15 - FirstType:Identifier - ParentType:object - xOperator: - xSource:ctx - ParentID:13700 - ID:13701
+Calle Line/Col:129/6 - I:15 - FirstType:Identifier - ParentType:property - xOperator: - xSource:strokeStyle - ParentID:13712 - ID:13713
+Calle Line/Col:129/20 - I:14 - FirstType:CallExpression - ParentType:right - xOperator: - xSource:_$set(4,129,'ExpressionStatement','expression','ctx.strokeStyle',ctx.strokeStyle,'"white"',"white",' - ParentID:13725 - ID:13726
+Calle Line/Col:129/20 - I:15 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$set - ParentID:13736 - ID:13737
+Calle Line/Col:129/26 - I:16 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:13749 - ID:13750
+Calle Line/Col:129/28 - I:16 - FirstType:Literal - ParentType:1 - xOperator: - xSource:129 - ParentID:13762 - ID:13763
+Calle Line/Col:129/32 - I:16 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'ExpressionStatement' - ParentID:13775 - ID:13776
+Calle Line/Col:129/54 - I:16 - FirstType:Literal - ParentType:3 - xOperator: - xSource:'expression' - ParentID:13788 - ID:13789
+Calle Line/Col:129/67 - I:16 - FirstType:Literal - ParentType:4 - xOperator: - xSource:'ctx.strokeStyle' - ParentID:13801 - ID:13802
+Calle Line/Col:129/85 - I:16 - FirstType:MemberExpression - ParentType:5 - xOperator: - xSource:ctx.strokeStyle - ParentID:13814 - ID:13815
+Calle Line/Col:129/85 - I:17 - FirstType:Identifier - ParentType:object - xOperator: - xSource:ctx - ParentID:13825 - ID:13826
+Calle Line/Col:129/89 - I:17 - FirstType:Identifier - ParentType:property - xOperator: - xSource:strokeStyle - ParentID:13837 - ID:13838
+Calle Line/Col:129/101 - I:16 - FirstType:Literal - ParentType:6 - xOperator: - xSource:'"white"' - ParentID:13850 - ID:13851
+Calle Line/Col:129/111 - I:16 - FirstType:Literal - ParentType:7 - xOperator: - xSource:"white" - ParentID:13863 - ID:13864
+Calle Line/Col:129/119 - I:16 - FirstType:Literal - ParentType:8 - xOperator: - xSource:'=' - ParentID:13876 - ID:13877
+Calle Line/Col:129/123 - I:16 - FirstType:Literal - ParentType:9 - xOperator: - xSource:'0' - ParentID:13889 - ID:13890
+Calle Line/Col:129/127 - I:16 - FirstType:Identifier - ParentType:10 - xOperator: - xSource:_$gXLocal - ParentID:13902 - ID:13903
+Calle Line/Col:129/137 - I:16 - FirstType:Literal - ParentType:11 - xOperator: - xSource:0 - ParentID:13914 - ID:13915
+Calle Line/Col:130/2 - I:12 - FirstType:ExpressionStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:130/2 - I:13 - FirstType:CallExpression - ParentType:expression - xOperator: - xSource:ctx.strokeRect(_$evl(4,130,'ExpressionStatement','0','x*cw', x*cw,_$gXLocal, 0), _$evl(4,130,'Expres - ParentID:13938 - ID:13939
+Calle Line/Col:130/2 - I:14 - FirstType:MemberExpression - ParentType:callee - xOperator: - xSource:ctx.strokeRect - ParentID:13949 - ID:13950
+Calle Line/Col:130/2 - I:15 - FirstType:Identifier - ParentType:object - xOperator: - xSource:ctx - ParentID:13960 - ID:13961
+Calle Line/Col:130/6 - I:15 - FirstType:Identifier - ParentType:property - xOperator: - xSource:strokeRect - ParentID:13972 - ID:13973
+Calle Line/Col:130/17 - I:15 - FirstType:CallExpression - ParentType:0 - xOperator: - xSource:_$evl(4,130,'ExpressionStatement','0','x*cw', x*cw,_$gXLocal, 0) - ParentID:13986 - ID:13987
+Calle Line/Col:130/17 - I:16 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$evl - ParentID:13997 - ID:13998
+Calle Line/Col:130/23 - I:17 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:14010 - ID:14011
+Calle Line/Col:130/25 - I:17 - FirstType:Literal - ParentType:1 - xOperator: - xSource:130 - ParentID:14023 - ID:14024
+Calle Line/Col:130/29 - I:17 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'ExpressionStatement' - ParentID:14036 - ID:14037
+Calle Line/Col:130/51 - I:17 - FirstType:Literal - ParentType:3 - xOperator: - xSource:'0' - ParentID:14049 - ID:14050
+Calle Line/Col:130/55 - I:17 - FirstType:Literal - ParentType:4 - xOperator: - xSource:'x*cw' - ParentID:14062 - ID:14063
+Calle Line/Col:130/63 - I:17 - FirstType:BinaryExpression - ParentType:5 - xOperator:* - xSource:x*cw - ParentID:14075 - ID:14076
+Calle Line/Col:130/63 - I:18 - FirstType:Identifier - ParentType:left - xOperator: - xSource:x - ParentID:14086 - ID:14087
+Calle Line/Col:130/65 - I:18 - FirstType:Identifier - ParentType:right - xOperator: - xSource:cw - ParentID:14099 - ID:14100
+Calle Line/Col:130/68 - I:17 - FirstType:Identifier - ParentType:6 - xOperator: - xSource:_$gXLocal - ParentID:14111 - ID:14112
+Calle Line/Col:130/79 - I:17 - FirstType:Literal - ParentType:7 - xOperator: - xSource:0 - ParentID:14123 - ID:14124
+Calle Line/Col:130/83 - I:15 - FirstType:CallExpression - ParentType:1 - xOperator: - xSource:_$evl(4,130,'ExpressionStatement','1','y*cw', y*cw,_$gXLocal, 0) - ParentID:14136 - ID:14137
+Calle Line/Col:130/83 - I:16 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$evl - ParentID:14147 - ID:14148
+Calle Line/Col:130/89 - I:17 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:14160 - ID:14161
+Calle Line/Col:130/91 - I:17 - FirstType:Literal - ParentType:1 - xOperator: - xSource:130 - ParentID:14173 - ID:14174
+Calle Line/Col:130/95 - I:17 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'ExpressionStatement' - ParentID:14186 - ID:14187
+Calle Line/Col:130/117 - I:17 - FirstType:Literal - ParentType:3 - xOperator: - xSource:'1' - ParentID:14199 - ID:14200
+Calle Line/Col:130/121 - I:17 - FirstType:Literal - ParentType:4 - xOperator: - xSource:'y*cw' - ParentID:14212 - ID:14213
+Calle Line/Col:130/129 - I:17 - FirstType:BinaryExpression - ParentType:5 - xOperator:* - xSource:y*cw - ParentID:14225 - ID:14226
+Calle Line/Col:130/129 - I:18 - FirstType:Identifier - ParentType:left - xOperator: - xSource:y - ParentID:14236 - ID:14237
+Calle Line/Col:130/131 - I:18 - FirstType:Identifier - ParentType:right - xOperator: - xSource:cw - ParentID:14249 - ID:14250
+Calle Line/Col:130/134 - I:17 - FirstType:Identifier - ParentType:6 - xOperator: - xSource:_$gXLocal - ParentID:14261 - ID:14262
+Calle Line/Col:130/145 - I:17 - FirstType:Literal - ParentType:7 - xOperator: - xSource:0 - ParentID:14273 - ID:14274
+Calle Line/Col:130/149 - I:15 - FirstType:Identifier - ParentType:2 - xOperator: - xSource:cw - ParentID:14286 - ID:14287
+Calle Line/Col:130/153 - I:15 - FirstType:Identifier - ParentType:3 - xOperator: - xSource:cw - ParentID:14298 - ID:14299
+Calle Line/Col:133/1 - I:9 - FirstType:FunctionDeclaration - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:133/10 - I:10 - FirstType:Identifier - ParentType:id - xOperator: - xSource:check_collision - ParentID:14322 - ID:14323
+Calle Line/Col:133/26 - I:11 - FirstType:Identifier - ParentType:0 - xOperator: - xSource:x - ParentID:14335 - ID:14336
+Calle Line/Col:133/29 - I:11 - FirstType:Identifier - ParentType:1 - xOperator: - xSource:y - ParentID:14347 - ID:14348
+Calle Line/Col:133/32 - I:11 - FirstType:Identifier - ParentType:2 - xOperator: - xSource:array - ParentID:14359 - ID:14360
+Calle Line/Col:134/1 - I:10 - FirstType:BlockStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:137/2 - I:12 - FirstType:ForStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:137/6 - I:13 - FirstType:VariableDeclaration - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:137/10 - I:15 - FirstType:VariableDeclarator - ParentType:0 - xOperator:= - xSource:i = _$set(4,137,'FunctionDeclaration > BlockStatement > ForStatement > VariableDeclaration','0','i', - ParentID:14406 - ID:14407
+Calle Line/Col:137/10 - I:16 - FirstType:Identifier - ParentType:id - xOperator: - xSource:i - ParentID:14417 - ID:14418
+Calle Line/Col:137/14 - I:16 - FirstType:CallExpression - ParentType:init - xOperator: - xSource:_$set(4,137,'FunctionDeclaration > BlockStatement > ForStatement > VariableDeclaration','0','i',i,'0 - ParentID:14429 - ID:14430
+Calle Line/Col:137/14 - I:17 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$set - ParentID:14440 - ID:14441
+Calle Line/Col:137/20 - I:18 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:14453 - ID:14454
+Calle Line/Col:137/22 - I:18 - FirstType:Literal - ParentType:1 - xOperator: - xSource:137 - ParentID:14466 - ID:14467
+Calle Line/Col:137/26 - I:18 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'FunctionDeclaration > BlockStatement > ForStatement > VariableDeclaration' - ParentID:14479 - ID:14480
+Calle Line/Col:137/102 - I:18 - FirstType:Literal - ParentType:3 - xOperator: - xSource:'0' - ParentID:14492 - ID:14493
+Calle Line/Col:137/106 - I:18 - FirstType:Literal - ParentType:4 - xOperator: - xSource:'i' - ParentID:14505 - ID:14506
+Calle Line/Col:137/110 - I:18 - FirstType:Identifier - ParentType:5 - xOperator: - xSource:i - ParentID:14518 - ID:14519
+Calle Line/Col:137/112 - I:18 - FirstType:Literal - ParentType:6 - xOperator: - xSource:'0' - ParentID:14530 - ID:14531
+Calle Line/Col:137/116 - I:18 - FirstType:Literal - ParentType:7 - xOperator: - xSource:0 - ParentID:14543 - ID:14544
+Calle Line/Col:137/118 - I:18 - FirstType:Literal - ParentType:8 - xOperator: - xSource:'=' - ParentID:14556 - ID:14557
+Calle Line/Col:137/122 - I:18 - FirstType:Literal - ParentType:9 - xOperator: - xSource:'1' - ParentID:14569 - ID:14570
+Calle Line/Col:137/126 - I:18 - FirstType:Identifier - ParentType:10 - xOperator: - xSource:_$gXLocal - ParentID:14582 - ID:14583
+Calle Line/Col:137/136 - I:18 - FirstType:Literal - ParentType:11 - xOperator: - xSource:0 - ParentID:14594 - ID:14595
+Calle Line/Col:137/140 - I:13 - FirstType:CallExpression - ParentType:test - xOperator: - xSource:_$evl(4,137,'FunctionDeclaration > BlockStatement > ForStatement > VariableDeclaration','test','i <  - ParentID:14608 - ID:14609
+Calle Line/Col:137/140 - I:14 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$evl - ParentID:14619 - ID:14620
+Calle Line/Col:137/146 - I:15 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:14632 - ID:14633
+Calle Line/Col:137/148 - I:15 - FirstType:Literal - ParentType:1 - xOperator: - xSource:137 - ParentID:14645 - ID:14646
+Calle Line/Col:137/152 - I:15 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'FunctionDeclaration > BlockStatement > ForStatement > VariableDeclaration' - ParentID:14658 - ID:14659
+Calle Line/Col:137/228 - I:15 - FirstType:Literal - ParentType:3 - xOperator: - xSource:'test' - ParentID:14671 - ID:14672
+Calle Line/Col:137/235 - I:15 - FirstType:Literal - ParentType:4 - xOperator: - xSource:'i < array.length' - ParentID:14684 - ID:14685
+Calle Line/Col:137/255 - I:15 - FirstType:BinaryExpression - ParentType:5 - xOperator:< - xSource:i < array.length - ParentID:14697 - ID:14698
+Calle Line/Col:137/255 - I:16 - FirstType:Identifier - ParentType:left - xOperator: - xSource:i - ParentID:14708 - ID:14709
+Calle Line/Col:137/259 - I:16 - FirstType:MemberExpression - ParentType:right - xOperator: - xSource:array.length - ParentID:14721 - ID:14722
+Calle Line/Col:137/259 - I:17 - FirstType:Identifier - ParentType:object - xOperator: - xSource:array - ParentID:14732 - ID:14733
+Calle Line/Col:137/265 - I:17 - FirstType:Identifier - ParentType:property - xOperator: - xSource:length - ParentID:14744 - ID:14745
+Calle Line/Col:137/272 - I:15 - FirstType:Identifier - ParentType:6 - xOperator: - xSource:_$gXLocal - ParentID:14757 - ID:14758
+Calle Line/Col:137/283 - I:15 - FirstType:Literal - ParentType:7 - xOperator: - xSource:0 - ParentID:14769 - ID:14770
+Calle Line/Col:137/288 - I:13 - FirstType:SequenceExpression - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:137/288 - I:15 - FirstType:AssignmentExpression - ParentType:0 - xOperator:= - xSource:tempVar = i - ParentID:14794 - ID:14795
+Calle Line/Col:137/288 - I:16 - FirstType:Identifier - ParentType:left - xOperator: - xSource:tempVar - ParentID:14806 - ID:14807
+Calle Line/Col:137/298 - I:16 - FirstType:Identifier - ParentType:right - xOperator: - xSource:i - ParentID:14818 - ID:14819
+Calle Line/Col:137/301 - I:15 - FirstType:AssignmentExpression - ParentType:1 - xOperator:= - xSource:i= _$set(4,137,'FunctionDeclaration > BlockStatement > ForStatement > VariableDeclaration','update', - ParentID:14830 - ID:14831
+Calle Line/Col:137/301 - I:16 - FirstType:Identifier - ParentType:left - xOperator: - xSource:i - ParentID:14842 - ID:14843
+Calle Line/Col:137/304 - I:16 - FirstType:CallExpression - ParentType:right - xOperator: - xSource:_$set(4,137,'FunctionDeclaration > BlockStatement > ForStatement > VariableDeclaration','update','i' - ParentID:14854 - ID:14855
+Calle Line/Col:137/304 - I:17 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$set - ParentID:14865 - ID:14866
+Calle Line/Col:137/310 - I:18 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:14878 - ID:14879
+Calle Line/Col:137/312 - I:18 - FirstType:Literal - ParentType:1 - xOperator: - xSource:137 - ParentID:14891 - ID:14892
+Calle Line/Col:137/316 - I:18 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'FunctionDeclaration > BlockStatement > ForStatement > VariableDeclaration' - ParentID:14904 - ID:14905
+Calle Line/Col:137/392 - I:18 - FirstType:Literal - ParentType:3 - xOperator: - xSource:'update' - ParentID:14917 - ID:14918
+Calle Line/Col:137/401 - I:18 - FirstType:Literal - ParentType:4 - xOperator: - xSource:'i' - ParentID:14930 - ID:14931
+Calle Line/Col:137/405 - I:18 - FirstType:Identifier - ParentType:5 - xOperator: - xSource:i - ParentID:14943 - ID:14944
+Calle Line/Col:137/407 - I:18 - FirstType:Literal - ParentType:6 - xOperator: - xSource:'' - ParentID:14955 - ID:14956
+Calle Line/Col:137/410 - I:18 - FirstType:Literal - ParentType:7 - xOperator: - xSource:0 - ParentID:14968 - ID:14969
+Calle Line/Col:137/412 - I:18 - FirstType:Literal - ParentType:8 - xOperator: - xSource:'++' - ParentID:14981 - ID:14982
+Calle Line/Col:137/417 - I:18 - FirstType:Literal - ParentType:9 - xOperator: - xSource:0 - ParentID:14994 - ID:14995
+Calle Line/Col:137/419 - I:18 - FirstType:Identifier - ParentType:10 - xOperator: - xSource:_$gXLocal - ParentID:15007 - ID:15008
+Calle Line/Col:137/429 - I:18 - FirstType:Literal - ParentType:11 - xOperator: - xSource:0 - ParentID:15019 - ID:15020
+Calle Line/Col:137/433 - I:15 - FirstType:Identifier - ParentType:2 - xOperator: - xSource:tempVar - ParentID:15032 - ID:15033
+Calle Line/Col:138/2 - I:13 - FirstType:BlockStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:139/3 - I:15 - FirstType:IfStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:139/6 - I:16 - FirstType:CallExpression - ParentType:test - xOperator: - xSource:_$evl(4,139,'BlockStatement > IfStatement','test','array[i].x == x && array[i].y == y', array[i].x = - ParentID:15067 - ID:15068
+Calle Line/Col:139/6 - I:17 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$evl - ParentID:15078 - ID:15079
+Calle Line/Col:139/12 - I:18 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:15091 - ID:15092
+Calle Line/Col:139/14 - I:18 - FirstType:Literal - ParentType:1 - xOperator: - xSource:139 - ParentID:15104 - ID:15105
+Calle Line/Col:139/18 - I:18 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'BlockStatement > IfStatement' - ParentID:15117 - ID:15118
+Calle Line/Col:139/49 - I:18 - FirstType:Literal - ParentType:3 - xOperator: - xSource:'test' - ParentID:15130 - ID:15131
+Calle Line/Col:139/56 - I:18 - FirstType:Literal - ParentType:4 - xOperator: - xSource:'array[i].x == x && array[i].y == y' - ParentID:15143 - ID:15144
+Calle Line/Col:139/94 - I:18 - FirstType:LogicalExpression - ParentType:5 - xOperator:&& - xSource:array[i].x == x && array[i].y == y - ParentID:15156 - ID:15157
+Calle Line/Col:139/94 - I:19 - FirstType:BinaryExpression - ParentType:left - xOperator:== - xSource:array[i].x == x - ParentID:15167 - ID:15168
+Calle Line/Col:139/94 - I:20 - FirstType:MemberExpression - ParentType:left - xOperator: - xSource:array[i].x - ParentID:15178 - ID:15179
+Calle Line/Col:139/94 - I:21 - FirstType:MemberExpression - ParentType:object - xOperator: - xSource:array[i] - ParentID:15189 - ID:15190
+Calle Line/Col:139/94 - I:22 - FirstType:Identifier - ParentType:object - xOperator: - xSource:array - ParentID:15200 - ID:15201
+Calle Line/Col:139/100 - I:22 - FirstType:Identifier - ParentType:property - xOperator: - xSource:i - ParentID:15212 - ID:15213
+Calle Line/Col:139/103 - I:21 - FirstType:Identifier - ParentType:property - xOperator: - xSource:x - ParentID:15225 - ID:15226
+Calle Line/Col:139/108 - I:20 - FirstType:Identifier - ParentType:right - xOperator: - xSource:x - ParentID:15239 - ID:15240
+Calle Line/Col:139/113 - I:19 - FirstType:BinaryExpression - ParentType:right - xOperator:== - xSource:array[i].y == y - ParentID:15252 - ID:15253
+Calle Line/Col:139/113 - I:20 - FirstType:MemberExpression - ParentType:left - xOperator: - xSource:array[i].y - ParentID:15263 - ID:15264
+Calle Line/Col:139/113 - I:21 - FirstType:MemberExpression - ParentType:object - xOperator: - xSource:array[i] - ParentID:15274 - ID:15275
+Calle Line/Col:139/113 - I:22 - FirstType:Identifier - ParentType:object - xOperator: - xSource:array - ParentID:15285 - ID:15286
+Calle Line/Col:139/119 - I:22 - FirstType:Identifier - ParentType:property - xOperator: - xSource:i - ParentID:15297 - ID:15298
+Calle Line/Col:139/122 - I:21 - FirstType:Identifier - ParentType:property - xOperator: - xSource:y - ParentID:15310 - ID:15311
+Calle Line/Col:139/127 - I:20 - FirstType:Identifier - ParentType:right - xOperator: - xSource:y - ParentID:15324 - ID:15325
+Calle Line/Col:139/129 - I:18 - FirstType:Identifier - ParentType:6 - xOperator: - xSource:_$gXLocal - ParentID:15336 - ID:15337
+Calle Line/Col:139/140 - I:18 - FirstType:Literal - ParentType:7 - xOperator: - xSource:0 - ParentID:15348 - ID:15349
+Calle Line/Col:140/4 - I:16 - FirstType:ReturnStatement - ParentType:consequent - xOperator: - xSource:return true; - ParentID:15361 - ID:15362
+Calle Line/Col:140/11 - I:17 - FirstType:Literal - ParentType:argument - xOperator: - xSource:true - ParentID:15372 - ID:15373
+Calle Line/Col:142/2 - I:12 - FirstType:ReturnStatement - ParentType:1 - xOperator: - xSource:return false; - ParentID:15386 - ID:15387
+Calle Line/Col:142/9 - I:13 - FirstType:Literal - ParentType:argument - xOperator: - xSource:false - ParentID:15397 - ID:15398
+Calle Line/Col:146/1 - I:9 - FirstType:ExpressionStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:146/1 - I:10 - FirstType:CallExpression - ParentType:expression - xOperator: - xSource:$(document).keydown(function(e){
+		_$sb(4,147,'key',_$gXLocal);var key = _$set(4,147,'ExpressionStat - ParentID:15422 - ID:15423
+Calle Line/Col:146/1 - I:11 - FirstType:MemberExpression - ParentType:callee - xOperator: - xSource:$(document).keydown - ParentID:15433 - ID:15434
+Calle Line/Col:146/1 - I:12 - FirstType:CallExpression - ParentType:object - xOperator: - xSource:$(document) - ParentID:15444 - ID:15445
+Calle Line/Col:146/1 - I:13 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:$ - ParentID:15455 - ID:15456
+Calle Line/Col:146/3 - I:14 - FirstType:Identifier - ParentType:0 - xOperator: - xSource:document - ParentID:15468 - ID:15469
+Calle Line/Col:146/13 - I:12 - FirstType:Identifier - ParentType:property - xOperator: - xSource:keydown - ParentID:15480 - ID:15481
+Calle Line/Col:146/21 - I:12 - FirstType:FunctionExpression - ParentType:0 - xOperator: - xSource:function(e){
+		_$sb(4,147,'key',_$gXLocal);var key = _$set(4,147,'ExpressionStatement > BlockStateme - ParentID:15494 - ID:15495
+Calle Line/Col:146/30 - I:14 - FirstType:Identifier - ParentType:0 - xOperator: - xSource:e - ParentID:15507 - ID:15508
+Calle Line/Col:146/32 - I:13 - FirstType:BlockStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:147/2 - I:15 - FirstType:ExpressionStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:147/2 - I:16 - FirstType:CallExpression - ParentType:expression - xOperator: - xSource:_$sb(4,147,'key',_$gXLocal) - ParentID:15542 - ID:15543
+Calle Line/Col:147/2 - I:17 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$sb - ParentID:15553 - ID:15554
+Calle Line/Col:147/7 - I:18 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:15566 - ID:15567
+Calle Line/Col:147/9 - I:18 - FirstType:Literal - ParentType:1 - xOperator: - xSource:147 - ParentID:15579 - ID:15580
+Calle Line/Col:147/13 - I:18 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'key' - ParentID:15592 - ID:15593
+Calle Line/Col:147/19 - I:18 - FirstType:Identifier - ParentType:3 - xOperator: - xSource:_$gXLocal - ParentID:15605 - ID:15606
+Calle Line/Col:147/30 - I:15 - FirstType:VariableDeclaration - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:147/34 - I:17 - FirstType:VariableDeclarator - ParentType:0 - xOperator:= - xSource:key = _$set(4,147,'ExpressionStatement > BlockStatement > VariableDeclaration','0','key',key,'e.whic - ParentID:15629 - ID:15630
+Calle Line/Col:147/34 - I:18 - FirstType:Identifier - ParentType:id - xOperator: - xSource:key - ParentID:15640 - ID:15641
+Calle Line/Col:147/40 - I:18 - FirstType:CallExpression - ParentType:init - xOperator: - xSource:_$set(4,147,'ExpressionStatement > BlockStatement > VariableDeclaration','0','key',key,'e.which',e.w - ParentID:15652 - ID:15653
+Calle Line/Col:147/40 - I:19 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$set - ParentID:15663 - ID:15664
+Calle Line/Col:147/46 - I:20 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:15676 - ID:15677
+Calle Line/Col:147/48 - I:20 - FirstType:Literal - ParentType:1 - xOperator: - xSource:147 - ParentID:15689 - ID:15690
+Calle Line/Col:147/52 - I:20 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'ExpressionStatement > BlockStatement > VariableDeclaration' - ParentID:15702 - ID:15703
+Calle Line/Col:147/113 - I:20 - FirstType:Literal - ParentType:3 - xOperator: - xSource:'0' - ParentID:15715 - ID:15716
+Calle Line/Col:147/117 - I:20 - FirstType:Literal - ParentType:4 - xOperator: - xSource:'key' - ParentID:15728 - ID:15729
+Calle Line/Col:147/123 - I:20 - FirstType:Identifier - ParentType:5 - xOperator: - xSource:key - ParentID:15741 - ID:15742
+Calle Line/Col:147/127 - I:20 - FirstType:Literal - ParentType:6 - xOperator: - xSource:'e.which' - ParentID:15753 - ID:15754
+Calle Line/Col:147/137 - I:20 - FirstType:MemberExpression - ParentType:7 - xOperator: - xSource:e.which - ParentID:15766 - ID:15767
+Calle Line/Col:147/137 - I:21 - FirstType:Identifier - ParentType:object - xOperator: - xSource:e - ParentID:15777 - ID:15778
+Calle Line/Col:147/139 - I:21 - FirstType:Identifier - ParentType:property - xOperator: - xSource:which - ParentID:15789 - ID:15790
+Calle Line/Col:147/145 - I:20 - FirstType:Literal - ParentType:8 - xOperator: - xSource:'=' - ParentID:15802 - ID:15803
+Calle Line/Col:147/149 - I:20 - FirstType:Literal - ParentType:9 - xOperator: - xSource:'1' - ParentID:15815 - ID:15816
+Calle Line/Col:147/153 - I:20 - FirstType:Identifier - ParentType:10 - xOperator: - xSource:_$gXLocal - ParentID:15828 - ID:15829
+Calle Line/Col:147/163 - I:20 - FirstType:Literal - ParentType:11 - xOperator: - xSource:0 - ParentID:15840 - ID:15841
+Calle Line/Col:149/2 - I:15 - FirstType:IfStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:149/5 - I:16 - FirstType:CallExpression - ParentType:test - xOperator: - xSource:_$evl(4,149,'IfStatement','test','key == "37" && d != "right"', key == "37" && d != "right",_$gXLoca - ParentID:15865 - ID:15866
+Calle Line/Col:149/5 - I:17 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$evl - ParentID:15876 - ID:15877
+Calle Line/Col:149/11 - I:18 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:15889 - ID:15890
+Calle Line/Col:149/13 - I:18 - FirstType:Literal - ParentType:1 - xOperator: - xSource:149 - ParentID:15902 - ID:15903
+Calle Line/Col:149/17 - I:18 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'IfStatement' - ParentID:15915 - ID:15916
+Calle Line/Col:149/31 - I:18 - FirstType:Literal - ParentType:3 - xOperator: - xSource:'test' - ParentID:15928 - ID:15929
+Calle Line/Col:149/38 - I:18 - FirstType:Literal - ParentType:4 - xOperator: - xSource:'key == "37" && d != "right"' - ParentID:15941 - ID:15942
+Calle Line/Col:149/69 - I:18 - FirstType:LogicalExpression - ParentType:5 - xOperator:&& - xSource:key == "37" && d != "right" - ParentID:15954 - ID:15955
+Calle Line/Col:149/69 - I:19 - FirstType:BinaryExpression - ParentType:left - xOperator:== - xSource:key == "37" - ParentID:15965 - ID:15966
+Calle Line/Col:149/69 - I:20 - FirstType:Identifier - ParentType:left - xOperator: - xSource:key - ParentID:15976 - ID:15977
+Calle Line/Col:149/76 - I:20 - FirstType:Literal - ParentType:right - xOperator: - xSource:"37" - ParentID:15989 - ID:15990
+Calle Line/Col:149/84 - I:19 - FirstType:BinaryExpression - ParentType:right - xOperator:!= - xSource:d != "right" - ParentID:16003 - ID:16004
+Calle Line/Col:149/84 - I:20 - FirstType:Identifier - ParentType:left - xOperator: - xSource:d - ParentID:16014 - ID:16015
+Calle Line/Col:149/89 - I:20 - FirstType:Literal - ParentType:right - xOperator: - xSource:"right" - ParentID:16027 - ID:16028
+Calle Line/Col:149/97 - I:18 - FirstType:Identifier - ParentType:6 - xOperator: - xSource:_$gXLocal - ParentID:16040 - ID:16041
+Calle Line/Col:149/108 - I:18 - FirstType:Literal - ParentType:7 - xOperator: - xSource:0 - ParentID:16052 - ID:16053
+Calle Line/Col:149/113 - I:16 - FirstType:BlockStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:149/115 - I:18 - FirstType:ExpressionStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:149/115 - I:19 - FirstType:AssignmentExpression - ParentType:expression - xOperator:= - xSource:d = _$set(4,149,'BlockStatement > ExpressionStatement','expression','d',d,'"left"',"left",'=','0',_$ - ParentID:16088 - ID:16089
+Calle Line/Col:149/115 - I:20 - FirstType:Identifier - ParentType:left - xOperator: - xSource:d - ParentID:16100 - ID:16101
+Calle Line/Col:149/119 - I:20 - FirstType:CallExpression - ParentType:right - xOperator: - xSource:_$set(4,149,'BlockStatement > ExpressionStatement','expression','d',d,'"left"',"left",'=','0',_$gXLo - ParentID:16112 - ID:16113
+Calle Line/Col:149/119 - I:21 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$set - ParentID:16123 - ID:16124
+Calle Line/Col:149/125 - I:22 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:16136 - ID:16137
+Calle Line/Col:149/127 - I:22 - FirstType:Literal - ParentType:1 - xOperator: - xSource:149 - ParentID:16149 - ID:16150
+Calle Line/Col:149/131 - I:22 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'BlockStatement > ExpressionStatement' - ParentID:16162 - ID:16163
+Calle Line/Col:149/170 - I:22 - FirstType:Literal - ParentType:3 - xOperator: - xSource:'expression' - ParentID:16175 - ID:16176
+Calle Line/Col:149/183 - I:22 - FirstType:Literal - ParentType:4 - xOperator: - xSource:'d' - ParentID:16188 - ID:16189
+Calle Line/Col:149/187 - I:22 - FirstType:Identifier - ParentType:5 - xOperator: - xSource:d - ParentID:16201 - ID:16202
+Calle Line/Col:149/189 - I:22 - FirstType:Literal - ParentType:6 - xOperator: - xSource:'"left"' - ParentID:16213 - ID:16214
+Calle Line/Col:149/198 - I:22 - FirstType:Literal - ParentType:7 - xOperator: - xSource:"left" - ParentID:16226 - ID:16227
+Calle Line/Col:149/205 - I:22 - FirstType:Literal - ParentType:8 - xOperator: - xSource:'=' - ParentID:16239 - ID:16240
+Calle Line/Col:149/209 - I:22 - FirstType:Literal - ParentType:9 - xOperator: - xSource:'0' - ParentID:16252 - ID:16253
+Calle Line/Col:149/213 - I:22 - FirstType:Identifier - ParentType:10 - xOperator: - xSource:_$gXLocal - ParentID:16265 - ID:16266
+Calle Line/Col:149/223 - I:22 - FirstType:Literal - ParentType:11 - xOperator: - xSource:0 - ParentID:16277 - ID:16278
+Calle Line/Col:150/7 - I:16 - FirstType:IfStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:150/10 - I:17 - FirstType:CallExpression - ParentType:test - xOperator: - xSource:_$evl(4,150,'IfStatement','test','key == "38" && d != "down"', key == "38" && d != "down",_$gXLocal, - ParentID:16301 - ID:16302
+Calle Line/Col:150/10 - I:18 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$evl - ParentID:16312 - ID:16313
+Calle Line/Col:150/16 - I:19 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:16325 - ID:16326
+Calle Line/Col:150/18 - I:19 - FirstType:Literal - ParentType:1 - xOperator: - xSource:150 - ParentID:16338 - ID:16339
+Calle Line/Col:150/22 - I:19 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'IfStatement' - ParentID:16351 - ID:16352
+Calle Line/Col:150/36 - I:19 - FirstType:Literal - ParentType:3 - xOperator: - xSource:'test' - ParentID:16364 - ID:16365
+Calle Line/Col:150/43 - I:19 - FirstType:Literal - ParentType:4 - xOperator: - xSource:'key == "38" && d != "down"' - ParentID:16377 - ID:16378
+Calle Line/Col:150/73 - I:19 - FirstType:LogicalExpression - ParentType:5 - xOperator:&& - xSource:key == "38" && d != "down" - ParentID:16390 - ID:16391
+Calle Line/Col:150/73 - I:20 - FirstType:BinaryExpression - ParentType:left - xOperator:== - xSource:key == "38" - ParentID:16401 - ID:16402
+Calle Line/Col:150/73 - I:21 - FirstType:Identifier - ParentType:left - xOperator: - xSource:key - ParentID:16412 - ID:16413
+Calle Line/Col:150/80 - I:21 - FirstType:Literal - ParentType:right - xOperator: - xSource:"38" - ParentID:16425 - ID:16426
+Calle Line/Col:150/88 - I:20 - FirstType:BinaryExpression - ParentType:right - xOperator:!= - xSource:d != "down" - ParentID:16439 - ID:16440
+Calle Line/Col:150/88 - I:21 - FirstType:Identifier - ParentType:left - xOperator: - xSource:d - ParentID:16450 - ID:16451
+Calle Line/Col:150/93 - I:21 - FirstType:Literal - ParentType:right - xOperator: - xSource:"down" - ParentID:16463 - ID:16464
+Calle Line/Col:150/100 - I:19 - FirstType:Identifier - ParentType:6 - xOperator: - xSource:_$gXLocal - ParentID:16476 - ID:16477
+Calle Line/Col:150/111 - I:19 - FirstType:Literal - ParentType:7 - xOperator: - xSource:0 - ParentID:16488 - ID:16489
+Calle Line/Col:150/116 - I:17 - FirstType:BlockStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:150/118 - I:19 - FirstType:ExpressionStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:150/118 - I:20 - FirstType:AssignmentExpression - ParentType:expression - xOperator:= - xSource:d = _$set(4,150,'BlockStatement > ExpressionStatement','expression','d',d,'"up"',"up",'=','0',_$gXLo - ParentID:16524 - ID:16525
+Calle Line/Col:150/118 - I:21 - FirstType:Identifier - ParentType:left - xOperator: - xSource:d - ParentID:16536 - ID:16537
+Calle Line/Col:150/122 - I:21 - FirstType:CallExpression - ParentType:right - xOperator: - xSource:_$set(4,150,'BlockStatement > ExpressionStatement','expression','d',d,'"up"',"up",'=','0',_$gXLocal, - ParentID:16548 - ID:16549
+Calle Line/Col:150/122 - I:22 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$set - ParentID:16559 - ID:16560
+Calle Line/Col:150/128 - I:23 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:16572 - ID:16573
+Calle Line/Col:150/130 - I:23 - FirstType:Literal - ParentType:1 - xOperator: - xSource:150 - ParentID:16585 - ID:16586
+Calle Line/Col:150/134 - I:23 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'BlockStatement > ExpressionStatement' - ParentID:16598 - ID:16599
+Calle Line/Col:150/173 - I:23 - FirstType:Literal - ParentType:3 - xOperator: - xSource:'expression' - ParentID:16611 - ID:16612
+Calle Line/Col:150/186 - I:23 - FirstType:Literal - ParentType:4 - xOperator: - xSource:'d' - ParentID:16624 - ID:16625
+Calle Line/Col:150/190 - I:23 - FirstType:Identifier - ParentType:5 - xOperator: - xSource:d - ParentID:16637 - ID:16638
+Calle Line/Col:150/192 - I:23 - FirstType:Literal - ParentType:6 - xOperator: - xSource:'"up"' - ParentID:16649 - ID:16650
+Calle Line/Col:150/199 - I:23 - FirstType:Literal - ParentType:7 - xOperator: - xSource:"up" - ParentID:16662 - ID:16663
+Calle Line/Col:150/204 - I:23 - FirstType:Literal - ParentType:8 - xOperator: - xSource:'=' - ParentID:16675 - ID:16676
+Calle Line/Col:150/208 - I:23 - FirstType:Literal - ParentType:9 - xOperator: - xSource:'0' - ParentID:16688 - ID:16689
+Calle Line/Col:150/212 - I:23 - FirstType:Identifier - ParentType:10 - xOperator: - xSource:_$gXLocal - ParentID:16701 - ID:16702
+Calle Line/Col:150/222 - I:23 - FirstType:Literal - ParentType:11 - xOperator: - xSource:0 - ParentID:16713 - ID:16714
+Calle Line/Col:151/7 - I:17 - FirstType:IfStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:151/10 - I:18 - FirstType:CallExpression - ParentType:test - xOperator: - xSource:_$evl(4,151,'IfStatement','test','key == "39" && d != "left"', key == "39" && d != "left",_$gXLocal, - ParentID:16737 - ID:16738
+Calle Line/Col:151/10 - I:19 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$evl - ParentID:16748 - ID:16749
+Calle Line/Col:151/16 - I:20 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:16761 - ID:16762
+Calle Line/Col:151/18 - I:20 - FirstType:Literal - ParentType:1 - xOperator: - xSource:151 - ParentID:16774 - ID:16775
+Calle Line/Col:151/22 - I:20 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'IfStatement' - ParentID:16787 - ID:16788
+Calle Line/Col:151/36 - I:20 - FirstType:Literal - ParentType:3 - xOperator: - xSource:'test' - ParentID:16800 - ID:16801
+Calle Line/Col:151/43 - I:20 - FirstType:Literal - ParentType:4 - xOperator: - xSource:'key == "39" && d != "left"' - ParentID:16813 - ID:16814
+Calle Line/Col:151/73 - I:20 - FirstType:LogicalExpression - ParentType:5 - xOperator:&& - xSource:key == "39" && d != "left" - ParentID:16826 - ID:16827
+Calle Line/Col:151/73 - I:21 - FirstType:BinaryExpression - ParentType:left - xOperator:== - xSource:key == "39" - ParentID:16837 - ID:16838
+Calle Line/Col:151/73 - I:22 - FirstType:Identifier - ParentType:left - xOperator: - xSource:key - ParentID:16848 - ID:16849
+Calle Line/Col:151/80 - I:22 - FirstType:Literal - ParentType:right - xOperator: - xSource:"39" - ParentID:16861 - ID:16862
+Calle Line/Col:151/88 - I:21 - FirstType:BinaryExpression - ParentType:right - xOperator:!= - xSource:d != "left" - ParentID:16875 - ID:16876
+Calle Line/Col:151/88 - I:22 - FirstType:Identifier - ParentType:left - xOperator: - xSource:d - ParentID:16886 - ID:16887
+Calle Line/Col:151/93 - I:22 - FirstType:Literal - ParentType:right - xOperator: - xSource:"left" - ParentID:16899 - ID:16900
+Calle Line/Col:151/100 - I:20 - FirstType:Identifier - ParentType:6 - xOperator: - xSource:_$gXLocal - ParentID:16912 - ID:16913
+Calle Line/Col:151/111 - I:20 - FirstType:Literal - ParentType:7 - xOperator: - xSource:0 - ParentID:16924 - ID:16925
+Calle Line/Col:151/116 - I:18 - FirstType:BlockStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:151/118 - I:20 - FirstType:ExpressionStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:151/118 - I:21 - FirstType:AssignmentExpression - ParentType:expression - xOperator:= - xSource:d = _$set(4,151,'BlockStatement > ExpressionStatement','expression','d',d,'"right"',"right",'=','0', - ParentID:16960 - ID:16961
+Calle Line/Col:151/118 - I:22 - FirstType:Identifier - ParentType:left - xOperator: - xSource:d - ParentID:16972 - ID:16973
+Calle Line/Col:151/122 - I:22 - FirstType:CallExpression - ParentType:right - xOperator: - xSource:_$set(4,151,'BlockStatement > ExpressionStatement','expression','d',d,'"right"',"right",'=','0',_$gX - ParentID:16984 - ID:16985
+Calle Line/Col:151/122 - I:23 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$set - ParentID:16995 - ID:16996
+Calle Line/Col:151/128 - I:24 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:17008 - ID:17009
+Calle Line/Col:151/130 - I:24 - FirstType:Literal - ParentType:1 - xOperator: - xSource:151 - ParentID:17021 - ID:17022
+Calle Line/Col:151/134 - I:24 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'BlockStatement > ExpressionStatement' - ParentID:17034 - ID:17035
+Calle Line/Col:151/173 - I:24 - FirstType:Literal - ParentType:3 - xOperator: - xSource:'expression' - ParentID:17047 - ID:17048
+Calle Line/Col:151/186 - I:24 - FirstType:Literal - ParentType:4 - xOperator: - xSource:'d' - ParentID:17060 - ID:17061
+Calle Line/Col:151/190 - I:24 - FirstType:Identifier - ParentType:5 - xOperator: - xSource:d - ParentID:17073 - ID:17074
+Calle Line/Col:151/192 - I:24 - FirstType:Literal - ParentType:6 - xOperator: - xSource:'"right"' - ParentID:17085 - ID:17086
+Calle Line/Col:151/202 - I:24 - FirstType:Literal - ParentType:7 - xOperator: - xSource:"right" - ParentID:17098 - ID:17099
+Calle Line/Col:151/210 - I:24 - FirstType:Literal - ParentType:8 - xOperator: - xSource:'=' - ParentID:17111 - ID:17112
+Calle Line/Col:151/214 - I:24 - FirstType:Literal - ParentType:9 - xOperator: - xSource:'0' - ParentID:17124 - ID:17125
+Calle Line/Col:151/218 - I:24 - FirstType:Identifier - ParentType:10 - xOperator: - xSource:_$gXLocal - ParentID:17137 - ID:17138
+Calle Line/Col:151/228 - I:24 - FirstType:Literal - ParentType:11 - xOperator: - xSource:0 - ParentID:17149 - ID:17150
+Calle Line/Col:152/7 - I:18 - FirstType:IfStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:152/10 - I:19 - FirstType:CallExpression - ParentType:test - xOperator: - xSource:_$evl(4,152,'IfStatement','test','key == "40" && d != "up"', key == "40" && d != "up",_$gXLocal, 0) - ParentID:17173 - ID:17174
+Calle Line/Col:152/10 - I:20 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$evl - ParentID:17184 - ID:17185
+Calle Line/Col:152/16 - I:21 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:17197 - ID:17198
+Calle Line/Col:152/18 - I:21 - FirstType:Literal - ParentType:1 - xOperator: - xSource:152 - ParentID:17210 - ID:17211
+Calle Line/Col:152/22 - I:21 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'IfStatement' - ParentID:17223 - ID:17224
+Calle Line/Col:152/36 - I:21 - FirstType:Literal - ParentType:3 - xOperator: - xSource:'test' - ParentID:17236 - ID:17237
+Calle Line/Col:152/43 - I:21 - FirstType:Literal - ParentType:4 - xOperator: - xSource:'key == "40" && d != "up"' - ParentID:17249 - ID:17250
+Calle Line/Col:152/71 - I:21 - FirstType:LogicalExpression - ParentType:5 - xOperator:&& - xSource:key == "40" && d != "up" - ParentID:17262 - ID:17263
+Calle Line/Col:152/71 - I:22 - FirstType:BinaryExpression - ParentType:left - xOperator:== - xSource:key == "40" - ParentID:17273 - ID:17274
+Calle Line/Col:152/71 - I:23 - FirstType:Identifier - ParentType:left - xOperator: - xSource:key - ParentID:17284 - ID:17285
+Calle Line/Col:152/78 - I:23 - FirstType:Literal - ParentType:right - xOperator: - xSource:"40" - ParentID:17297 - ID:17298
+Calle Line/Col:152/86 - I:22 - FirstType:BinaryExpression - ParentType:right - xOperator:!= - xSource:d != "up" - ParentID:17311 - ID:17312
+Calle Line/Col:152/86 - I:23 - FirstType:Identifier - ParentType:left - xOperator: - xSource:d - ParentID:17322 - ID:17323
+Calle Line/Col:152/91 - I:23 - FirstType:Literal - ParentType:right - xOperator: - xSource:"up" - ParentID:17335 - ID:17336
+Calle Line/Col:152/96 - I:21 - FirstType:Identifier - ParentType:6 - xOperator: - xSource:_$gXLocal - ParentID:17348 - ID:17349
+Calle Line/Col:152/107 - I:21 - FirstType:Literal - ParentType:7 - xOperator: - xSource:0 - ParentID:17360 - ID:17361
+Calle Line/Col:152/112 - I:19 - FirstType:BlockStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:152/114 - I:21 - FirstType:ExpressionStatement - ParentType:undefined - xOperator:undefined - xSource:undefined - ParentID:undefined - ID:undefined
+Calle Line/Col:152/114 - I:22 - FirstType:AssignmentExpression - ParentType:expression - xOperator:= - xSource:d = _$set(4,152,'BlockStatement > ExpressionStatement','expression','d',d,'"down"',"down",'=','0',_$ - ParentID:17396 - ID:17397
+Calle Line/Col:152/114 - I:23 - FirstType:Identifier - ParentType:left - xOperator: - xSource:d - ParentID:17408 - ID:17409
+Calle Line/Col:152/118 - I:23 - FirstType:CallExpression - ParentType:right - xOperator: - xSource:_$set(4,152,'BlockStatement > ExpressionStatement','expression','d',d,'"down"',"down",'=','0',_$gXLo - ParentID:17420 - ID:17421
+Calle Line/Col:152/118 - I:24 - FirstType:Identifier - ParentType:callee - xOperator: - xSource:_$set - ParentID:17431 - ID:17432
+Calle Line/Col:152/124 - I:25 - FirstType:Literal - ParentType:0 - xOperator: - xSource:4 - ParentID:17444 - ID:17445
+Calle Line/Col:152/126 - I:25 - FirstType:Literal - ParentType:1 - xOperator: - xSource:152 - ParentID:17457 - ID:17458
+Calle Line/Col:152/130 - I:25 - FirstType:Literal - ParentType:2 - xOperator: - xSource:'BlockStatement > ExpressionStatement' - ParentID:17470 - ID:17471
+Calle Line/Col:152/169 - I:25 - FirstType:Literal - ParentType:3 - xOperator: - xSource:'expression' - ParentID:17483 - ID:17484
+Calle Line/Col:152/182 - I:25 - FirstType:Literal - ParentType:4 - xOperator: - xSource:'d' - ParentID:17496 - ID:17497
+Calle Line/Col:152/186 - I:25 - FirstType:Identifier - ParentType:5 - xOperator: - xSource:d - ParentID:17509 - ID:17510
+Calle Line/Col:152/188 - I:25 - FirstType:Literal - ParentType:6 - xOperator: - xSource:'"down"' - ParentID:17521 - ID:17522
+Calle Line/Col:152/197 - I:25 - FirstType:Literal - ParentType:7 - xOperator: - xSource:"down" - ParentID:17534 - ID:17535
+Calle Line/Col:152/204 - I:25 - FirstType:Literal - ParentType:8 - xOperator: - xSource:'=' - ParentID:17547 - ID:17548
+Calle Line/Col:152/208 - I:25 - FirstType:Literal - ParentType:9 - xOperator: - xSource:'0' - ParentID:17560 - ID:17561
+Calle Line/Col:152/212 - I:25 - FirstType:Identifier - ParentType:10 - xOperator: - xSource:_$gXLocal - ParentID:17573 - ID:17574
+Calle Line/Col:152/222 - I:25 - FirstType:Literal - ParentType:11 - xOperator: - xSource:0 - ParentID:17585 - ID:17586
