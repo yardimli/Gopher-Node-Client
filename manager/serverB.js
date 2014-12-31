@@ -4,10 +4,13 @@ var FileManager = require('./js/fileManager.js');
 var StringDecoder = require('string_decoder').StringDecoder;
 var decoder = new StringDecoder('utf8');
 var xxxx = '';
+var pageMark = 0;
+
 
 
 var ServerB = Global.http.createServer(onRequest).listen(1337, function (err) {
-    Global.Servers.push(ServerB);
+    Global.Servers.push(ServerB);   
+
 });
 
 var FileMap = {
@@ -122,8 +125,6 @@ function mangerOnHttpRequest(request, response, ModifieidUrl) {
                 if (FileExt === '.do') {
                     switch (Command) {
                         case 'getProjects':
-                            console.log('===== getProjects =======');
-                            console.log(Global.Servers);
                             Global.dbConn(function (error, database) {
                                 if (error === null) {
                                     var AjaxToProject = require('./js/ajaxToProjects.js');
@@ -259,46 +260,68 @@ function mangerOnHttpRequest(request, response, ModifieidUrl) {
                             });
 
                             break;
-                        case 'lunchProject':
-                            var matchPortInUse = 0;
-                            for (var i = 0; i < Global.Servers.length; i++) {
-                                var connectionKey = Global.Servers[i]._connectionKey;
-                                var keySplit = connectionKey.split(':');
-                                if (Number(RecievedData['proxyHostPort']) === Number(keySplit[keySplit.length - 1])) {
-                                    matchPortInUse++;
-                                }
-                            }
-                            
-                            if(matchPortInUse === 0){
-                                var ProxyServer = Global.http.createServer(function (request, response) {
-                                    proxyOnHttpRequest(request, response, RecievedData['forwardHostName'], Number(RecievedData['forwardHostPort']));
-                                }).listen(Number(RecievedData['proxyHostPort']), function (err) {
-                                    if (err) {
-                                        response.end('error');
+                        case 'lunchProject':                            
+                            var portManager = require('./js/portManager.js');
+                            var portOpened = portManager.isPortOpen(Number(RecievedData['proxyHostPort']),function(error, result){
+                                if(error !== null){
+                                    response.end('error:'+error);
+                                }else{
+                                    if(result === false){
+                                        Global.dbConn(function (error, database) {
+                                            if (error === null) {
+                                                var project = require('./js/ajaxToProjects.js');
+                                                project.getProjectDetail(Number(RecievedData['projectID']), database, function (result) {
+                                                    var ProxyServer = Global.http.createServer(function (request, response) {
+                                                        proxyOnHttpRequest(request, response, RecievedData['forwardHostName'], Number(RecievedData['forwardHostPort']), Number(RecievedData['projectID']),result.ignored);
+                                                    }).listen(Number(RecievedData['proxyHostPort']), function (err) {
+                                                        if (err) {
+                                                            response.end('error');
+                                                        }
+                                                        ProxyServer.projectID = Number(RecievedData['projectID']);
+                                                        ProxyServer.usePort = Number(RecievedData['proxyHostPort']);
+                                                        Global.Servers.push(ProxyServer);
+                                                        response.end('ready');
+                                                    });
+                                                    
+                                                    database.close();
+                                                });
+                                            } else {
+                                                response.end(error);
+                                            }
+                                        });
+                                        
+                                        
+                                        
+                                    }else{
+                                        response.end('running');
+                                        console.log('port '+RecievedData['proxyHostPort']+' is already open.');
                                     }
-                                    //check if this proxy port has been added!!
-                                    ProxyServer.projectID = Number(RecievedData['projectID']);
-                                    Global.Servers.push(ProxyServer);
-                                    response.end('ready');
-                                    //console.log('start listening to proxy port ' + RecievedData['proxyHostPort']);
-                                    console.log('================lucn project, Global.Servers===============================');
-                                    console.log(Global.Servers);
-                                });
-                            }else{
-                                response.end('running');
-                                console.log('port '+RecievedData['proxyHostPort']+' is already open.');
-                            }                            
+                                }   
+                            });
+                            
+                            /*var exec = require('child_process').exec;
+                            var child = exec('node ./js/html5server.js gopher myProject run',function(error,stdout,stderr){
+                                console.log('====== stdout =========');
+                                console.log(stdout.trim());
+                                console.log('====== stderr =========');
+                                console.log(stderr);
+                                if(error !== null){
+                                    console.log(error);
+                                } 
+                            });*/
                             break;
 
                         case 'closeServer':
                             console.log('================before closeServer starts, Global.Servers===============================');
                             console.log(Global.Servers);
                             for(var i=0; i<Global.Servers.length; i++){
-                                if(Number(RecievedData['projectID']) === Global.Servers[i].projectID){
+                                var connKey = Global.Servers[i]._connectionKey;
+                                
+                                if(connKey.search(':'+RecievedData['proxyHostPort'])>-1){
                                     Global.Servers[i].close(function(){                                        
-                                        for(var i=0; i<Global.Servers.length; i++){
-                                            if(Number(RecievedData['projectID']) === Global.Servers[i].projectID){
-                                                Global.Servers.splice(i,1);
+                                        for(var j=0; j<Global.Servers.length; j++){
+                                            if(Global.Servers[j]._connectionKey.search(':'+RecievedData['proxyHostPort'])>-1){
+                                                Global.Servers.splice(j,1);
                                             }
                                         }
                                         response.end('success');
@@ -394,11 +417,15 @@ function mangerOnHttpRequest(request, response, ModifieidUrl) {
         }
     }
 }
-
-function proxyOnHttpRequest(request, response, forwardHostName, forwardHostPort) {
-    console.log('>>using proxy<<');
-    console.log(Global.Servers);
-    console.log('-------------------------------');
+var pageStack = [];
+function proxyOnHttpRequest(request, response, forwardHostName, forwardHostPort, projectID, ignoredFiles) {
+    //console.log('>>using proxy<<');
+    //console.log(Global.Servers);
+    //console.log(projectID);
+    //console.log(ignoredFiles);
+    //console.log('-------------------------------');
+    
+    
     //console.log(request.headers);
     //console.log(request.headers['referer']);
     var hostSplit = (request.headers['host']).split(':');
@@ -418,6 +445,14 @@ function proxyOnHttpRequest(request, response, forwardHostName, forwardHostPort)
     var projectHost = forwardHostName; //'localhost';
     var gopherHost =  proxyHostName; //'localhost';
     var gopherPort = proxyHostPort; //1338;
+    
+    console.log('fileName'+FileMap.getCleanFileName(request.url)+'    '+'ext ' +FileMap.getFileExtension(request.url));
+    pageMark++; 
+    if(pageMark > 1000000000){
+        pageMark=1;
+    }
+    var pageTrackerNum = projectID+''+pageMark+'';
+    
 
     var BrowserData = [];
     request.on('data', function (chunk) {
@@ -431,16 +466,86 @@ function proxyOnHttpRequest(request, response, forwardHostName, forwardHostPort)
         path: request.url,
         method: request.method,
         headers: request.headers
-    };
-    request.on('end', function () {
+    };    
+    
+    
+    request.on('end', function () {   
         var NodeProxyRequest = Global.http.request(ProxyOptions, function (ApacheResponse) {
-            ApacheResponse.on('data', function (chunk) {
-                if ((request.url.indexOf('.png') == -1) && (request.url.indexOf('.jpg') == -1) && (request.url.indexOf('.gif') == -1)) {
-                    var chunkStr = decoder.write(chunk);
+            ApacheResponse.on('data', function (chunk) {                
+                var chunkStr = decoder.write(chunk);
+                
+                //Replace the port in hard code address
+                if(FileMap.getFileExtension(request.url)!=='.png' || FileMap.getFileExtension(request.url)!=='.jpg' || FileMap.getFileExtension(request.url)!=='.jpeg' || FileMap.getFileExtension(request.url)!=='.gif' || FileMap.getFileExtension(request.url)!=='.pdf' || FileMap.getFileExtension(request.url)!=='.exe'){
                     var regx1 = new RegExp('http://' + projectHost, 'g');
                     chunkStr = chunkStr.replace(regx1, 'http://' + gopherHost);
                     var regx2 = new RegExp('http://' + projectHost + ':' + projectOnPort, 'g');
                     chunkStr = chunkStr.replace(regx2, 'http://' + gopherHost + ':' + gopherPort);
+                }
+                
+                //Add gopher helper file reference
+                if(FileMap.getFileExtension(request.url)==='.php' || FileMap.getFileExtension(request.url)==='.html' || FileMap.getFileExtension(request.url)==='.htm' || FileMap.getFileExtension(request.url)===''){                    
+                    var regx3 = new RegExp(/(<script([^>]*)>)/ig);
+                    var scriptTag, scriptTagArr=[];
+                    while((scriptTag = regx3.exec(chunkStr)) !== null){
+                        scriptTagArr.push(scriptTag);
+                    }
+                    
+                    if(scriptTagArr.length>0){
+                        var gopherHelper = '<script src="gopherHelper.js?GopherPage='+pageTrackerNum+'" type="text/javascript"></script>';
+                        chunkStr = [chunkStr.slice(0,scriptTagArr[0].index), gopherHelper, chunkStr.slice(scriptTagArr[0].index)].join('');
+                        
+                        for(var i=0; i<scriptTagArr.length; i++){
+                             pageStack.push(scriptTagArr[i][1]); 
+                            //Get src value
+                            var regFindSrc;
+                            var scriptTagStr = (scriptTagArr[i][1]).toLowerCase();
+                            if(scriptTagStr.search('src="')>-1){
+                                regFindSrc = new RegExp(/<script.*?src="(.*?)"/ig);
+                            }else{
+                                regFindSrc = new RegExp(/<script.*?src='(.*?)'/ig);
+                            }
+
+                            var findSrcRst = regFindSrc.exec(scriptTagArr[i][1]);//console.log('findSrcRst[1] '+findSrcRst[1]);
+
+                            //Varify the value
+                            var unqualified = 0;
+                            var slashes = (findSrcRst[1]).split('/');
+                            if( ((slashes[slashes.length-1]).toLowerCase()).search('.js') === -1){
+                                unqualified++;
+                            }
+                            
+                            for(var j=0; j<ignoredFiles.length; j++){
+                                var srcVal = (findSrcRst[1]).toLowerCase();
+                                var newSrcVal='';
+                                var splashes = srcVal.split('/');
+                                for(var k=0; k<splashes.length; k++){
+                                    if(splashes[k] == '.' || splashes[k]=='..'){
+                                        splashes[k] = '';
+                                    }
+                                    newSrcVal += splashes[k];
+                                }
+                                srcVal = newSrcVal;
+                                
+                                var path = (ignoredFiles[j].FilePath).replace(/\\/g,'');
+                                if(path.search(srcVal) > -1){
+                                    unqualified++;
+                                }
+                            }
+                            
+                            if(unqualified === 0){
+                                var changeSrcTo = '';
+                                
+                                if((findSrcRst[1]+'').indexOf('?') == -1){
+                                    changeSrcTo = findSrcRst[1] + '?GopherPage='+pageTrackerNum;
+                                }else{
+                                    changeSrcTo = findSrcRst[1] + '&GopherPage='+pageTrackerNum;
+                                }
+                                var srcreg = new RegExp(findSrcRst[1]);
+                                chunkStr = chunkStr.replace(srcreg,changeSrcTo,'g');
+                            }
+                        }
+                    }                     
+                    
                     chunk = new Buffer(chunkStr, 'utf8');
                 }
                 ApacheChunk.push(chunk);
@@ -448,8 +553,26 @@ function proxyOnHttpRequest(request, response, forwardHostName, forwardHostPort)
             });
 
             ApacheResponse.on('end', function () {
-                var ApacheBytes = Buffer.concat(ApacheChunk);
+                var ApacheBytes;
+                
+                if(request.url.indexOf('gopherHelper.js')>-1){
+                    console.log('request gopherHelper content');
+                    var helperContent = 'var pageStack=[';
+                    for(var i=0; i<pageStack.length; i++){
+                        helperContent += pageStack[i];
+                        if(i<pageStack.length-1){
+                            helperContent += ',';
+                        }
+                    }
+                    helperContent += '];';
+                    var makeChunk = new Buffer(helperContent,'utf8');
+                    ApacheBytes = makeChunk;
+                }else{
+                    ApacheBytes = Buffer.concat(ApacheChunk);
+                }
+                
                 ApacheResponse.headers['content-length'] = ApacheBytes.length;
+                ApacheResponse.headers['Cache-Control'] = 'no-cache';
                 response.writeHead(ApacheResponse.statusCode, ApacheResponse.headers);
                 response.write(ApacheBytes, 'binary');
                 response.end();
@@ -458,6 +581,7 @@ function proxyOnHttpRequest(request, response, forwardHostName, forwardHostPort)
             ApacheResponse.on('error', function (e) {
                 console.log('problem with proxy response: ' + e.message);
             });
+            
         });
 
         var BrowserBytes = Buffer.concat(BrowserData);

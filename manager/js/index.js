@@ -34,6 +34,12 @@ $(document).ready(function () {
                         rows += row;
                     }
                     $('#projects').append(rows);
+                    
+                    $('#projects').find('div[data-role="project"]').each(function(){
+                       if($(this).find('div[data-role="power"]').hasClass('poweroff') === false){
+                           $(this).find('div[data-role="edit"]').hide();
+                       } 
+                    });
                 }
             },
             error: function (jqXHR, textStatus, errorThrown) {
@@ -44,36 +50,7 @@ $(document).ready(function () {
         });
     }
     
-    function lunchProject(_projectID,_link, _proxyHostPort,_forwardHostName, _forwardHostPort) {
-        var sendData = {
-            projectID: Number(_projectID),
-            proxyHostPort: Number(_proxyHostPort),
-            forwardHostName: _forwardHostName,
-            forwardHostPort: Number(_forwardHostPort)
-        };
-        console.log(sendData);
-        
-        $.ajax({
-            type: 'POST',
-            url: 'lunchProject.do',
-            traditional: true,
-            data: sendData,
-            success: function (data) {
-                if(data === 'ready' || data==='running'){
-                    $('#projects').find('div[data-projectid="'+_projectID+'"] div[data-role="power"]').removeClass('poweroff');
-                    setTimeout(function(){
-                        window.open(_link);
-                    },500);
-                    
-                }
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-
-            },
-            complete: function (jqXHR, textStatus) {
-            }
-        });
-    }
+    
     
     function closeServer(_projectID,_callBack) {
         $.ajax({
@@ -110,19 +87,56 @@ $(document).ready(function () {
     });
     
     $('#projects').on('click','div[data-role="project"] div[data-role="lunch"]',function(){
-        var projectElm = $(this).closest('div[data-role="project"]'); 
-        lunchProject($(projectElm).data('projectid'), $(projectElm).data('project_link'), $(projectElm).data('proxy_host_port'),$(projectElm).data('forward_host_name'), $(projectElm).data('forward_host_port'));
+        var projectElm = $(this).closest('div[data-role="project"]');
+        var postData = {
+            projectID: Number($(projectElm).data('projectid')),
+            proxyHostPort: Number($(projectElm).data('proxy_host_port')),
+            forwardHostName: $(projectElm).data('forward_host_name'),
+            forwardHostPort: Number($(projectElm).data('forward_host_port'))
+        };
+        
+        $.ajax({
+            type: 'POST',
+            url: 'lunchProject.do',
+            traditional: true,
+            data: postData,
+            success: function (data) {
+                if(data === 'ready' || data==='running'){
+                    $('#projects').find('div[data-projectid="'+$(projectElm).data('projectid') +'"] div[data-role="power"]').removeClass('poweroff');
+                    setTimeout(function(){
+                        window.open($(projectElm).data('project_link'));
+                    },500);
+                    
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+
+            },
+            complete: function (jqXHR, textStatus) {
+            }
+        });
     });
     
-    $('#projects').on('click','div[class="action-pane"] div[data-role="power"]',function(){
-       var powerBtn = $(this);
-       if($(powerBtn).hasClass('poweroff') === false){
-           closeServer($(powerBtn).closest('div[data-role="project"]').data('projectid'),function(err){
-               if(err === null){
-                   $(powerBtn).addClass('poweroff');
-               }
-           });
-       } 
+    $('#projects').on('click', 'div[class="action-pane"] div[data-role="power"]', function () {
+        var powerBtn = $(this);
+        if ($(powerBtn).hasClass('poweroff') === false) {
+            $.ajax({
+                type: 'POST',
+                url: 'closeServer.do',
+                traditional: true,
+                data: {proxyHostPort: $(powerBtn).closest('div[data-role="project"]').data('proxy_host_port')},
+                success: function (data) {
+                    console.log(data);
+                    $(powerBtn).addClass('poweroff');
+                    $(powerBtn).siblings('div[data-role="edit"]').show();
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+
+                },
+                complete: function (jqXHR, textStatus) {
+                }
+            });
+        }
     });
     
     

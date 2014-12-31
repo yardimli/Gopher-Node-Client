@@ -166,45 +166,7 @@ $(document).ready(function () {
         });
     }
 
-    function ajaxSaveProject(_postData, _beforeSend, _callBack) {
-        $.ajax({
-            type: 'POST',
-            url: 'saveProject.do',
-            traditional: true,
-            data: _postData,
-            beforeSend: function () {
-                if (typeof (_beforeSend) !== 'undefined') {
-                    _beforeSend();
-                }
-            },
-            success: function (data) {
-                var Data, hasNodeError, errorMessage = '';
-                try {
-                    Data = $.parseJSON(data);
-                    if (Data.ID > 0) {
-                        hasNodeError = 0;
-                    } else {
-                        hasNodeError = 1;
-                        errorMessage = 'Unable to save the project. Error: ' + Data.code;
-                    }
-                } catch (e) {
-                    hasNodeError = 1;
-                    errorMessage += data.toString();
-                }
-
-                if (hasNodeError === 0) {
-                    _callBack(null, Data);
-                } else {
-                    _callBack(errorMessage, null);
-                }
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                _callBack('Can not save the project. Request status: ' + textStatus + ' Error: ' + errorThrown, null);
-            },
-            complete: function (jqXHR, textStatus) {
-            }
-        });
-    }
+    
 
     function displayFileList(data, listContainer, errorMessage) {
         $(listContainer).find('ul').remove();
@@ -541,6 +503,14 @@ $(document).ready(function () {
     });
 
     $('#btn_save_project').click(function () {
+        
+        if($('#is_gopher_html5').is(':checked')){
+           $('#original_project_link').find('input[data-role="host name"]').val('');
+           $('#original_project_link').find('input[data-role="port"]').val('');
+           $('#original_project_link').find('input[data-role="path"]').val('');
+        }
+        
+        
         var postData = {
             projectID: Number($('#project_id').val()),
             projectName: $('#in_projectName').val(),
@@ -618,86 +588,18 @@ $(document).ready(function () {
     
     $('#is_gopher_html5').click(function(){
        if($(this).is(':checked')){
-           $('#original_project_link').find('input[data-role="host name"]').val('');
-           $('#original_project_link').find('input[data-role="port"]').val('');
-           $('#original_project_link').find('input[data-role="path"]').val('');
-           $('#set_gopher_link').find('input[data-role="path"]').val('');
+           
            $('#set_gopher_link').find('input[data-role="path"]').prop('readonly',false);
            
            $('#original_project_link').slideUp('fast');
        }else{
-           $('#set_gopher_link').find('input[data-role="path"]').val('');
+           $('#original_project_link').find('input[data-role="path"]').val($('#set_gopher_link').find('input[data-role="path"]').val());
+           
            $('#set_gopher_link').find('input[data-role="path"]').prop('readonly',true);
            
            $('#original_project_link').slideDown('fast');
        } 
     });
-    
-    
-    /**** Page Starts *****/
-    template.bottomAlert = (function () {
-        var elmTxt = $('div[data-role="template-bottom-alert"]').prop('outerHTML');
-        var newElm = $(elmTxt).attr('data-role', 'bottom-alert');
-        $('div[data-role="template-bottom-alert"]').remove();
-        return $(newElm).prop('outerHTML');
-    }());
-
-    //Get the poject detail in edit mode
-    var projectID = getQureyString('projectID');
-    if (Number(projectID) > 0) {
-        $('#btn_openProjectDir').removeAttr('data-edit_mode');
-        $('#btn_openProjectDir').attr('data-edit_mode',true);
-        
-        ajaxGetProjectDetail(Number(projectID), null, function (error, data) {
-            if (error !== null) {
-
-            } else {
-                $('#project_id').val(data.detail.ID);
-                $('#in_projectName').val(data.detail.Name);
-                $('#selected_project_folder').val(data.detail.FolderPath);
-                IgnoredFiles = [];
-                for (var i = 0; i < data.ignored.length; i++) {
-                    IgnoredFiles.push(data.ignored[i].FilePath);
-                }
-                
-                $('#original_project_link').find('input[data-role="host name"]').val(data.detail.ForwardHostName);  
-                $('#original_project_link').find('input[data-role="port"]').val(data.detail.ForwardHostPort);
-                $('#original_project_link').find('input[data-role="path"]').val(data.detail.ProjectLink.replace('http://'+data.detail.ProxyHostName+':'+data.detail.ProxyHostPort+'/',''));
-                $('#set_gopher_link').find('input[data-role="host name"]').val(data.detail.ProxyHostName);
-                $('#set_gopher_link').find('input[data-role="port"]').val(data.detail.ProxyHostPort);
-                $('#set_gopher_link').find('input[data-role="path"]').val(data.detail.ProjectLink.replace('http://'+data.detail.ProxyHostName+':'+data.detail.ProxyHostPort+'/',''));
-                
-                var selectedPath = $('#current_drive_val').val() + $('#selected_project_folder').val();
-                var fileListContainer = $('#new_project_files').find('div[data-role="display files"]');
-                var currentDirectory = $('#new_project_files').find('div[data-role="current directory"]');
-                var arrowNavigator = $('new_project_files').find('div[data-role="fileList_arrow_navigate"]');
-
-                $('#btn_save_project').removeClass('disabled');
-                $('#selected_project_folder').val(selectedPath);
-                
-                $(fileListContainer).find('div[role="alert"]').remove();
-
-                ajaxGetFileList(selectedPath, false, function (error, data) {
-                    if (error === null) {
-                        dialogFileListView = new listViewHistory();
-                        dialogFileListView.trace.push(selectedPath);
-                        dialogFileListView.currentAtIndex = dialogFileListView.currentAtIndex + 1;
-
-                        displayFileList(data, $(fileListContainer), 'There are no javascript files here.');
-
-                        $(currentDirectory).text(selectedPath);
-                        updateArrowState(dialogFileListView, $(arrowNavigator));
-
-                        
-                        updateFileIgnoredView();
-                        markIgnoredFiles();
-                    } else {
-                        $(fileListContainer).append('<div class="alert alert-warning" role="alert">' + error + '</div>');
-                    }
-                });
-            }
-        });
-    }
     
     $('#btn_port_auto').click(function () {
         var alert = $(template.bottomAlert);
@@ -742,4 +644,113 @@ $(document).ready(function () {
             }
         });
     });
+    
+    
+    /**** Page Starts *****/
+    template.bottomAlert = (function () {
+        var elmTxt = $('div[data-role="template-bottom-alert"]').prop('outerHTML');
+        var newElm = $(elmTxt).attr('data-role', 'bottom-alert');
+        $('div[data-role="template-bottom-alert"]').remove();
+        return $(newElm).prop('outerHTML');
+    }());
+
+    //Get the poject detail in edit mode
+    var projectID = Number(getQureyString('projectID'));
+    if (projectID > 0) {
+        $('#btn_openProjectDir').removeAttr('data-edit_mode');
+        $('#btn_openProjectDir').attr('data-edit_mode',true);
+        
+        var sendData = {
+            projectID: projectID
+        };
+
+        $.ajax({
+            type: 'POST',
+            url: 'getProjectDetail.do',
+            traditional: true,
+            data: sendData,
+            success: function (data) {
+                var Data = $.parseJSON(data);
+                
+                if (Data.detail.ID > 0) {
+                    getDetailSuccess(Data);
+                } else {
+                   // _callBack('Can not get project details.', null);
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                //_callBack('textStatus:' + textStatus + ' errorThrown:' + errorThrown);
+            },
+            complete: function (jqXHR, textStatus) {
+
+            }
+        });
+        
+        
+        function getDetailSuccess(data) {
+            $('#project_id').val(data.detail.ID);
+            $('#in_projectName').val(data.detail.Name);
+            $('#selected_project_folder').val(data.detail.FolderPath);
+            IgnoredFiles = [];
+            for (var i = 0; i < data.ignored.length; i++) {
+                IgnoredFiles.push(data.ignored[i].FilePath);
+            }
+
+            $('#original_project_link').find('input[data-role="host name"]').val(data.detail.ForwardHostName);
+            
+            $('#set_gopher_link').find('input[data-role="host name"]').val(data.detail.ProxyHostName);
+            $('#set_gopher_link').find('input[data-role="port"]').val(data.detail.ProxyHostPort);
+            
+
+            var linkPath = data.detail.ProjectLink.replace('http://' + data.detail.ProxyHostName + ':' + data.detail.ProxyHostPort + '/', '');
+            if(data.detail.ForwardHostName === '' && data.detail.ForwardHostPort === 0){
+                $('#is_gopher_html5').prop('checked',true);
+                $('#original_project_link').find('input[data-role="port"]').val('');
+                $('#set_gopher_link').find('input[data-role="path"]').val(linkPath);
+                $('#set_gopher_link').find('input[data-role="path"]').prop('readonly',false);
+                $('#original_project_link').slideUp('fast');
+            }else{
+                $('#is_gopher_html5').prop('checked',false);
+                $('#original_project_link').find('input[data-role="port"]').val(data.detail.ForwardHostPort);
+                $('#original_project_link').find('input[data-role="path"]').val(linkPath);
+                $('#set_gopher_link').find('input[data-role="path"]').val(linkPath);
+                $('#set_gopher_link').find('input[data-role="path"]').prop('readonly',true);
+                $('#original_project_link').slideDown('fast');
+            }
+            
+            
+            var selectedPath = $('#current_drive_val').val() + $('#selected_project_folder').val();
+            var fileListContainer = $('#new_project_files').find('div[data-role="display files"]');
+            var currentDirectory = $('#new_project_files').find('div[data-role="current directory"]');
+            var arrowNavigator = $('new_project_files').find('div[data-role="fileList_arrow_navigate"]');
+
+            $('#btn_save_project').removeClass('disabled');
+            $('#selected_project_folder').val(selectedPath);
+            
+
+            //GET PROJECT FILES 
+            $(fileListContainer).find('div[role="alert"]').remove();
+
+            ajaxGetFileList(selectedPath, false, function (error, data) {
+                if (error === null) {
+                    dialogFileListView = new listViewHistory();
+                    dialogFileListView.trace.push(selectedPath);
+                    dialogFileListView.currentAtIndex = dialogFileListView.currentAtIndex + 1;
+
+                    displayFileList(data, $(fileListContainer), 'There are no javascript files here.');
+
+                    $(currentDirectory).text(selectedPath);
+                    updateArrowState(dialogFileListView, $(arrowNavigator));
+
+                    updateFileIgnoredView();
+                    markIgnoredFiles();
+                } else {
+                    $(fileListContainer).append('<div class="alert alert-warning" role="alert">' + error + '</div>');
+                }
+            });
+        }
+       
+    }
+    
+    
 });

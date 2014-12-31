@@ -1,21 +1,6 @@
 var Global = require("../global.js");
+var portManager = require('./portManager.js');
 
-function isPortOpen(projectID){
-    console.log('isPortOpen() Servers=====,find '+projectID);
-    console.log(Global.Servers);
-    var foundMatch = 0;
-    for(var i=0; i<Global.Servers.length; i++){
-        if(Number(Global.Servers[i].projectID) === Number(projectID)){
-            foundMatch++;
-        }
-    }
-    console.log(foundMatch);
-    if(foundMatch >0){
-        return true;
-    }else{
-        return false;
-    }
-}
 
 exports.getProjects = function (projectID, db, callBack) {
     db.serialize(function () {
@@ -27,8 +12,11 @@ exports.getProjects = function (projectID, db, callBack) {
             qSelectProject = 'select * FROM projects WHERE ID=' + projectID;
         }
         db.each(qSelectProject, function (err, row) {
-            row.isProxyPortRunning = isPortOpen(row.ID);
-            result.push(row);
+            portManager.isPortOpen(row.ProxyHostPort, function(error, _result){
+                row.isProxyPortRunning = _result;
+                result.push(row);
+            });
+            
         }, function complete() {
             return callBack(result);
         });
@@ -120,16 +108,17 @@ exports.saveProject = function (postData, db, callBack) {
 };
 
 exports.getProjectDetail = function (projectID, db, callBack) {
-    console.log(projectID);
     db.serialize(function () {
         var result = {
             detail: null,
             ignored: []
         };
-        db.each('SELECT * FROM projects WHERE ID=' + projectID, function (err, row) {
-            row.isProxyPortRunning = isPortOpen(row.ID);
-            console.log(row);
+        db.each('SELECT * FROM projects WHERE ID=' + projectID, function (err, row) {  
             result.detail = row;
+            /*portManager.isPortOpen(row.ProxyHostPort, function(error, _result){
+                row.isProxyPortRunning = _result;
+                result.detail = row;
+            });*/
         }, function complete() {
             db.each('SELECT * FROM ignoredFiles WHERE ProjectID=' + projectID, function (err, row) {
                 result.ignored.push(row);
@@ -139,3 +128,4 @@ exports.getProjectDetail = function (projectID, db, callBack) {
         });
     });
 };
+

@@ -42,3 +42,5 @@ var Servers = exports.Servers = [];
         console.log('database does not exist.');
     }
 });*/
+
+var testVar = exports.testVar = 1;
