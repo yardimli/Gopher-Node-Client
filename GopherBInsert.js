@@ -8,17 +8,27 @@ var _$v = [];
 var _$gX = 1000; //gopher scope tracker
 var _$gXLocal = _$gX;
 
-var DebugLines = 0;
-var MaxDebugLines = 1000;
+var GMsgArray = [];
+
+
+
+
+var xRuntimeTimeStamp = Math.floor(Date.now() / 1000);
+
+var xProjectID = "1"; //**** updated from proxy
+var xParentFileName = "index.html"; //**** updated from proxy
 
 var GFileMap = [];
-
+//***** list built from proxy
 GFileMap[1] = "app.js";
 GFileMap[2] = "app-func.js";
 GFileMap[3] = "calculator.js";
 GFileMap[4] = "snake.js";
 
-var GMsgArray = [];
+
+
+
+
 
 
 JSON.stringifyOnce = function(obj, replacer, indent){
@@ -73,26 +83,6 @@ function isFunction(functionToCheck) {
  return functionToCheck && getType.toString.call(functionToCheck) === '[object Function]';
 }
 
-/*
-setTimeout(function() {
-	console.log(GMsgArray.length);
-//	console.log(JSON.stringifyOnce(GMsgArray));
-
-	$.ajax({				
-		url: "http://localhost/gopher/getgopher.php"
-	,   type: 'POST'
-	,	crossDomain:true
-	,   contentType: "application/x-www-form-urlencoded; charset=UTF-8"
-	,   data: {data:JSON.stringifyOnce(GMsgArray) } //stringify is important
-	,	dataType: "json"
-	,   success: function(response) { console.log("Response:"+response); GMsgArray = []; }
-	,   error: function(response) { console.log("Error Response:"+response); }
-	});
-	GMsgArray = [];
-	
-},2000);
-*/
-
 var DebugUpdate = setInterval(function() {
 	console.log(GMsgArray.length);
 	if (GMsgArray.length !== 0)
@@ -100,14 +90,14 @@ var DebugUpdate = setInterval(function() {
 		//var strdata = JSON.stringifyOnce(GMsgArray);
 		var strdata = JSON.stringify(GMsgArray);
 		
-		console.log(strdata);
+//		console.log(strdata);
 		
 		$.ajax({				
 			url: "http://localhost/gopher/getgopher.php"
 		,   type: 'POST'
 		,	crossDomain:true
 		,   contentType: "application/x-www-form-urlencoded; charset=UTF-8"
-		,   data: {data:strdata } //stringify is important
+		,   data: {ProjectID:xProjectID, RuntimeTimeStamp:xRuntimeTimeStamp, ParentFileName:xParentFileName, data:strdata }
 		,	dataType: "json"
 		,   success: function() 
 			{ 
@@ -124,6 +114,9 @@ var DebugUpdate = setInterval(function() {
 
 
 
+
+
+
 //-------------------------------------------------------------------------------
 var ESQ = function (inStr) {
 	var outStr = String(inStr).replace(/\'/g, "\\'");
@@ -135,25 +128,6 @@ var ESQ = function (inStr) {
 
 //------------------------------------------------------------------------------
 _$fs = function (FileID, xCodeLine, FunctionName, FunctionType, FunctionParams, _$gXLocal) {
-
-	DebugLines++;
-	if (DebugLines < MaxDebugLines)
-	{
-		$("#DebugTable").append("\
-					<tr style='background-color:#bbb'>\
-						<td>" + FileID + "(" + GFileMap[FileID] + ")" + "</td>\
-						<td>" + xCodeLine + "</td>\
-						<td>" + _$gXLocal + "</td>\
-						<td>" + FunctionName + "</td>\
-						<td>" + FunctionType + "</td>\
-						<td>FUNCTION START</td>\
-						<td>" + FunctionParams + "</td>\
-						<td></td>\
-					</tr>");
-
-		var objDiv = document.getElementById("debug-div");
-		objDiv.scrollTop = objDiv.scrollHeight;
-	}
 
 	var GMsg = new Object();
 	GMsg.Type = "fs";
@@ -168,24 +142,6 @@ _$fs = function (FileID, xCodeLine, FunctionName, FunctionType, FunctionParams, 
 
 //------------------------------------------------------------------------------
 _$fe = function (FileID, xCodeLine, FunctionName, _$gXLocal) {
-	DebugLines++;
-	if (DebugLines < MaxDebugLines)
-	{
-		$("#DebugTable").append("\
-					<tr style='background-color:#bbb'>\
-						<td>" + FileID + "(" + GFileMap[FileID] + ")" + "</td>\
-						<td>" + xCodeLine + "</td>\
-						<td>" + _$gXLocal + "</td>\
-						<td>" + FunctionName + "</td>\
-						<td></td>\
-						<td>FUNCTION END</td>\
-						<td></td>\
-						<td></td>\
-					</tr>");
-		var objDiv = document.getElementById("debug-div");
-		objDiv.scrollTop = objDiv.scrollHeight;
-	}
-
 	var GMsg = new Object();
 	GMsg.Type = "fe";
 	GMsg.FileID = FileID;
@@ -197,24 +153,6 @@ _$fe = function (FileID, xCodeLine, FunctionName, _$gXLocal) {
 
 //------------------------------------------------------------------------------
 _$sb = function (FileID, xCodeLine, LeftSideStr, _$gXLocal) {
-	DebugLines++;
-	if (DebugLines < MaxDebugLines)
-	{
-		$("#DebugTable").append("\
-					<tr style='background-color:#ccc'>\
-						<td>" + FileID + "(" + GFileMap[FileID] + ")" + "</td>\
-						<td>" + xCodeLine + "</td>\
-						<td>" + _$gXLocal + "</td>\
-						<td>" + LeftSideStr + "</td>\
-						<td></td>\
-						<td>BEGIN SET VARIABLE</td>\
-						<td></td>\
-						<td></td>\
-					</tr>");
-		var objDiv = document.getElementById("debug-div");
-		objDiv.scrollTop = objDiv.scrollHeight;
-	}
-
 	var GMsg = new Object();
 	GMsg.Type = "sb";
 	GMsg.FileID = FileID;
@@ -238,53 +176,38 @@ _$set = function (FileID, xCodeLine, NestedParent, ParentType, LeftSideStr, Left
 		{
 			var TempVar = arguments[12 + i].split(/=(.+)?/);
 
-			DebugLines++;
-			if (DebugLines < MaxDebugLines)
+			var GMsg = new Object();
+			GMsg.Type = "hs";
+			GMsg.FileID = FileID;
+			GMsg.Line = xCodeLine;
+
+			GMsg.VarName = TempVar[1];
+			if (typeof(_$v[parseInt(TempVar[0], 10)])==="undefined")
 			{
-				$("#DebugTable").append("\
-					<tr style='background-color:#aaa'>\
-						<td>" + FileID + "(" + GFileMap[FileID] + ")" + "</td>\
-								<td>" + xCodeLine + "</td>\
-								<td>" + _$gXLocal + "</td>\
-								<td><span title='" + ESQ(TempVar[0]) + "'>" + TempVar[1] + "</span></td>\
-								<td>" + _$v[parseInt(TempVar[0], 10)] + "</td>\
-								<td>HELPER</td>\
-								<td></td>\
-								<td></td>\
-							</tr>");
+				GMsg.VarVal = "{UNDEFINED}";
+			} else
+			if (Array.isArray(_$v[parseInt(TempVar[0], 10)]))
+			{
+				GMsg.VarVal = _$v[parseInt(TempVar[0], 10)].toString();
+			} else
+			if (typeof(_$v[parseInt(TempVar[0], 10)])==="object")
+			{
+				GMsg.VarVal = "{OBJECT}";
+	//			GMsg.VarVal = JSON.stringifyOnce(_$v[parseInt(TempVar[0], 10)]);
+			} else
+			if (isFunction(_$v[parseInt(TempVar[0], 10)]))
+			{
+				GMsg.VarVal = "{FUNCTION}";
+			} else
+			{
+				GMsg.VarVal = _$v[parseInt(TempVar[0], 10)];
 			}
 
-		var GMsg = new Object();
-		GMsg.Type = "hs";
-		GMsg.FileID = FileID;
-		GMsg.Line = xCodeLine;
-		
-		GMsg.VarName = TempVar[1];
-		if (typeof(_$v[parseInt(TempVar[0], 10)])==="undefined")
-		{
-			GMsg.VarVal = "{UNDEFINED}";
-		} else
-		if (Array.isArray(_$v[parseInt(TempVar[0], 10)]))
-		{
-			GMsg.VarVal = _$v[parseInt(TempVar[0], 10)].toString();
-		} else
-		if (typeof(_$v[parseInt(TempVar[0], 10)])==="object")
-		{
-			GMsg.VarVal = "{OBJECT}";
-//			GMsg.VarVal = JSON.stringifyOnce(_$v[parseInt(TempVar[0], 10)]);
-		} else
-		if (isFunction(_$v[parseInt(TempVar[0], 10)]))
-		{
-			GMsg.VarVal = "{FUNCTION}";
-		} else
-		{
-			GMsg.VarVal = _$v[parseInt(TempVar[0], 10)];
-		}
-		
-		GMsg.Scope = _$gXLocal;
-		GMsgArray.push(GMsg);
+			GMsg.Scope = _$gXLocal;
+			GMsgArray.push(GMsg);
 		}
 	}
+	
 	var OutPut = null;
 
 	if (Operator == '++') {
@@ -371,25 +294,6 @@ _$set = function (FileID, xCodeLine, NestedParent, ParentType, LeftSideStr, Left
 	GMsg.Scope = _$gXLocal;
 	GMsgArray.push(GMsg);
 	
-
-	DebugLines++;
-	if (DebugLines < MaxDebugLines)
-	{
-		$("#DebugTable").append("\
-					<tr>\
-						<td>" + FileID + "(" + GFileMap[FileID] + ")" + "</td>\
-						<td>" + xCodeLine + "</td>\
-						<td>" + _$gXLocal + "</td>\
-						<td><span title='" + ESQ(LS) + "'>" + VarDeclerator2 + LeftSideStr + "</span></td>\
-						<td><span title='" + RightSideStr + "'>" + OutPut + "</span></td>\
-						<td></td>\
-						<td>" + NestedParent + " - " + ParentType + "</td>\
-						<td>" + Operator + "</td>\
-					</tr>");
-		var objDiv = document.getElementById("debug-div");
-		objDiv.scrollTop = objDiv.scrollHeight;
-	}
-
 	return OutPut;
 };
 
@@ -401,51 +305,35 @@ _$evl = function (FileID, xCodeLine, NestedParent, ParentType, StatementStr, Sta
 		{
 			var TempVar = arguments[8 + i].split(/=(.+)?/);
 
-			DebugLines++;
-			if (DebugLines < MaxDebugLines)
+			var GMsg = new Object();
+			GMsg.Type = "he";
+			GMsg.FileID = FileID;
+			GMsg.Line = xCodeLine;
+
+			GMsg.VarName = TempVar[1];
+			if (typeof(_$v[parseInt(TempVar[0], 10)])==="undefined")
 			{
-				$("#DebugTable").append("\
-					<tr style='background-color:#aaa'>\
-								<td>" + FileID + "(" + GFileMap[FileID] + ")" + "</td>\
-								<td>" + xCodeLine + "</td>\
-								<td>" + _$gXLocal + "</td>\
-								<td><span title='" + ESQ(TempVar[0]) + "'>" + TempVar[1] + "</span></td>\
-								<td>" + _$v[parseInt(TempVar[0], 10)] + "</td>\
-								<td>HELPER</td>\
-								<td></td>\
-								<td></td>\
-							</tr>");
-				
-				var GMsg = new Object();
-				GMsg.Type = "he";
-				GMsg.FileID = FileID;
-				GMsg.Line = xCodeLine;
-
-				GMsg.VarName = TempVar[1];
-				if (typeof(_$v[parseInt(TempVar[0], 10)])==="undefined")
-				{
-					GMsg.VarVal = "{UNDEFINED}";
-				} else
-				if (Array.isArray(_$v[parseInt(TempVar[0], 10)]))
-				{
-					GMsg.VarVal = _$v[parseInt(TempVar[0], 10)].toString();
-				} else
-				if (typeof(_$v[parseInt(TempVar[0], 10)])==="object")
-				{
+				GMsg.VarVal = "{UNDEFINED}";
+			} else
+			if (Array.isArray(_$v[parseInt(TempVar[0], 10)]))
+			{
+				GMsg.VarVal = _$v[parseInt(TempVar[0], 10)].toString();
+			} else
+			if (typeof(_$v[parseInt(TempVar[0], 10)])==="object")
+			{
 //					GMsg.VarVal = JSON.stringifyOnce(_$v[parseInt(TempVar[0], 10)]);
-					GMsg.VarVal = "{OBJECT}";
-				} else
-				if (isFunction(_$v[parseInt(TempVar[0], 10)]))
-				{
-					GMsg.VarVal = "{FUNCTION}";
-				} else
-				{
-					GMsg.VarVal = _$v[parseInt(TempVar[0], 10)];
-				}
-
-				GMsg.Scope = _$gXLocal;
-				GMsgArray.push(GMsg);
+				GMsg.VarVal = "{OBJECT}";
+			} else
+			if (isFunction(_$v[parseInt(TempVar[0], 10)]))
+			{
+				GMsg.VarVal = "{FUNCTION}";
+			} else
+			{
+				GMsg.VarVal = _$v[parseInt(TempVar[0], 10)];
 			}
+
+			GMsg.Scope = _$gXLocal;
+			GMsgArray.push(GMsg);
 		}
 	}
 
@@ -484,26 +372,6 @@ _$evl = function (FileID, xCodeLine, NestedParent, ParentType, StatementStr, Sta
 
 	GMsg.Scope = _$gXLocal;
 	GMsgArray.push(GMsg);
-	
-
-	DebugLines++;
-	if (DebugLines < MaxDebugLines)
-	{
-		$("#DebugTable").append("\
-					<tr>\
-						<td>" + FileID + "(" + GFileMap[FileID] + ")" + "</td>\
-						<td>" + xCodeLine + "</td>\
-						<td>" + _$gXLocal + "</td>\
-						<td>" + StatementStr + "</td>\
-						<td>" + OutPut + "</span></td>\
-						<td>EVALUATE</td>\
-						<td>" + NestedParent + " - " + ParentType + "</td>\
-						<td></td>\
-					</tr>");
-		var objDiv = document.getElementById("debug-div");
-		objDiv.scrollTop = objDiv.scrollHeight;
-	}
-
 
 	return OutPut;
 };
