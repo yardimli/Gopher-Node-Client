@@ -5,20 +5,20 @@ path = require('path');
 acorn = require("./acorn/acorn.js");
 beautify = require('js-beautify').js_beautify;
 util = require('util');
-//------------------------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------
 var PadLeft = function (nr, n, str) {
 	return Array(n - String(nr).length + 1).join(str || ' ') + nr;
 }
 
-//------------------------------------------------------------------------------------------------------------------------------
-var escapeSingleQuote = function (inStr) {
+//-----------------------------------------------------------------------------------------------
+var ESQ = function (inStr) {
 	var outStr = String(inStr).replace(/\'/g, "\\'");
 	outStr = outStr.replace(/(?:\r\n|\r|\n)/g, '\\n');
 	return outStr;
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------
 function recurse(TreeHTML, key, val)
 {
 //		list += "<li>";
@@ -57,7 +57,7 @@ function recurse(TreeHTML, key, val)
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------
 function MakeJSONTreeFromJS(parsed, filePath)
 {
 	var TreeHTML2;
@@ -76,7 +76,7 @@ function MakeJSONTreeFromJS(parsed, filePath)
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------
 function recurseJSON(key, val, indent, GopherObjectsA, parentStr, SelfValue, ParentID)
 {
 	if (val instanceof Object) {
@@ -129,7 +129,7 @@ function recurseJSON(key, val, indent, GopherObjectsA, parentStr, SelfValue, Par
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------
 function LoopGopherS(inFile, DataListSource, SourceCode, IncludeBlocks, ReturnBData)
 {
 	IncludeBlocks = (typeof IncludeBlocks === "undefined") ? false : IncludeBlocks;
@@ -609,7 +609,7 @@ function LoopGopherS(inFile, DataListSource, SourceCode, IncludeBlocks, ReturnBD
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------
 function IFArrayCompare(a, b) {
 	if (a.AddPosition < b.AddPosition)
 		return -1;
@@ -619,7 +619,7 @@ function IFArrayCompare(a, b) {
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------
 function AddCurly2IFs(contents)
 {
 	//******** Reparse Source
@@ -683,7 +683,7 @@ function AddCurly2IFs(contents)
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------
 function AddCurly2LOOPs(contents)
 {
 	//******** Reparse Source
@@ -743,7 +743,7 @@ function AddCurly2LOOPs(contents)
 }
 
 
-//------------------------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------
 function AddVariableTracking(inFile, contents, FileID)
 {
 	//******** Reparse Source
@@ -756,7 +756,7 @@ function AddVariableTracking(inFile, contents, FileID)
 	Object.keys(parsed).forEach(function (key) {
 		DataList = recurseJSON(key, parsed[key], 0, DataList, "p", "", 0);
 	});
-	//-------------------------------------------------------------------------------------------------------------------
+	//--------------------------------------------------------------------------------------------------
 	//1) Loop all Variable Expressions and add Gopher.Tell's
 	//2) find the function calls and enclose them in tracking variables
 	GopherObjectsA = LoopGopherS(inFile, DataList, contents, false, false);
@@ -765,7 +765,7 @@ function AddVariableTracking(inFile, contents, FileID)
 	for (var ObjectCounter = 0; ObjectCounter < GopherObjectsA.length; ObjectCounter++)
 	{
 //		LogStr += ("======: " + ObjectCounter + "/" + GopherObjectsA.length + " " + GopherObjectsA[ObjectCounter].NewRecordType) + "\n";
-		//----------------------------------------------------------------------------------------------------------------
+		//--------------------------------------------------------------------------------------------------
 		if ((GopherObjectsA[ObjectCounter].NewRecordType == "UpdateExpression")) //++, --
 		{
 			//first print to screen
@@ -775,7 +775,7 @@ function AddVariableTracking(inFile, contents, FileID)
 					"_$set(" + FileID + "," + GopherObjectsA[ObjectCounter].Records[0].XLine + "," +
 					"'" + GopherObjectsA[ObjectCounter].NestedParentType + "'," +
 					"'" + GopherObjectsA[ObjectCounter].Records[0].ParentType + "'," +
-					"'" + escapeSingleQuote(GopherObjectsA[ObjectCounter].Records[1].xSource) + "'," +
+					"'" + ESQ(GopherObjectsA[ObjectCounter].Records[1].xSource) + "'," +
 					(GopherObjectsA[ObjectCounter].Records[1].xSource) + "," +
 					"'',0,'" + GopherObjectsA[ObjectCounter].Records[0].Operator + "',0,_$gXLocal,0), tempVar)";
 			LogStr += ("\n" + GopherObjectsA[ObjectCounter].NewRecordType) + "\n";
@@ -792,7 +792,7 @@ function AddVariableTracking(inFile, contents, FileID)
 			;
 		} else
 
-		//----------------------------------------------------------------------------------------------------------------
+		//--------------------------------------------------------------------------------------------------
 		if (GopherObjectsA[ObjectCounter].NewRecordType == "BinaryExpression") //j>10, k+1, "hello "+"world"
 		{
 			LogStr += ("\n" + GopherObjectsA[ObjectCounter].NewRecordType) + "\n";
@@ -873,7 +873,7 @@ function AddVariableTracking(inFile, contents, FileID)
 
 			var ExtraParams = "";
 			for (var zCounter = 0; zCounter < FunctionCalls.length; zCounter++) {
-				ExtraParams = ",'" + escapeSingleQuote(FunctionCalls[zCounter].xSource) + "'" + ExtraParams;
+				ExtraParams = ",'" + ESQ(FunctionCalls[zCounter].xSource) + "'" + ExtraParams;
 			}
 
 			//function _$evl(xCodeLine, NestedParent, ParentType, StatemetStr, StatemetValue, InnerFunctionCount)
@@ -881,12 +881,12 @@ function AddVariableTracking(inFile, contents, FileID)
 					"_$evl(" + FileID + "," + GopherObjectsA[ObjectCounter].Records[0].XLine + "," +
 					"'" + GopherObjectsA[ObjectCounter].NestedParentType + "'," +
 					"'" + GopherObjectsA[ObjectCounter].Records[0].ParentType + "'," +
-					"'" + escapeSingleQuote(GopherObjectsA[ObjectCounter].Records[0].xSource) + "', " +
+					"'" + ESQ(GopherObjectsA[ObjectCounter].Records[0].xSource) + "', " +
 					"" + (Tcontents) + ",_$gXLocal, " +
 					(FunctionCalls.length) + ExtraParams + ")";
 		} else
 
-		//----------------------------------------------------------------------------------------------------------------
+		//--------------------------------------------------------------------------------------------------
 		//If AssignmentExpression,VariableDeclarator and first operator is =
 		if ((GopherObjectsA[ObjectCounter].NewRecordType == "AssignmentExpression") || //a = 5;
 				(GopherObjectsA[ObjectCounter].NewRecordType == "VariableDeclarator") || //var a = 5;
@@ -984,7 +984,7 @@ function AddVariableTracking(inFile, contents, FileID)
 				}
 				var ExtraParams = "";
 				for (var zCounter = 0; zCounter < FunctionCalls.length; zCounter++) {
-					ExtraParams = ",'" + escapeSingleQuote(FunctionCalls[zCounter].xSource) + "'" + ExtraParams;
+					ExtraParams = ",'" + ESQ(FunctionCalls[zCounter].xSource) + "'" + ExtraParams;
 				}
 
 				var VarDeclerator = "0";
@@ -1001,7 +1001,7 @@ function AddVariableTracking(inFile, contents, FileID)
 							"_$evl(" + FileID + "," + GopherObjectsA[ObjectCounter].Records[0].XLine + "," +
 							"'" + GopherObjectsA[ObjectCounter].NestedParentType + "'," +
 							"'" + GopherObjectsA[ObjectCounter].Records[0].ParentType + "'," +
-							"'" + escapeSingleQuote(GopherObjectsA[ObjectCounter].Records[0].xSource) + "', " +
+							"'" + ESQ(GopherObjectsA[ObjectCounter].Records[0].xSource) + "', " +
 							"" + (Tcontents) + ",_$gXLocal, " +
 							(FunctionCalls.length) + ExtraParams + ")";
 				} else
@@ -1015,9 +1015,9 @@ function AddVariableTracking(inFile, contents, FileID)
 								"_$set(" + FileID + "," + GopherObjectsA[ObjectCounter].Records[0].XLine + "," +
 								"'" + GopherObjectsA[ObjectCounter].NestedParentType + "'," +
 								"'" + GopherObjectsA[ObjectCounter].Records[0].ParentType + "'," +
-								"'" + escapeSingleQuote(GopherObjectsA[ObjectCounter].Records[1].xSource) + "'," +
-								"" + escapeSingleQuote(GopherObjectsA[ObjectCounter].Records[1].xSource) + "," +
-								"'" + escapeSingleQuote(GopherObjectsA[ObjectCounter].Records[RightSideFound].xSource) + "'," +
+								"'" + ESQ(GopherObjectsA[ObjectCounter].Records[1].xSource) + "'," +
+								"" + ESQ(GopherObjectsA[ObjectCounter].Records[1].xSource) + "," +
+								"'" + ESQ(GopherObjectsA[ObjectCounter].Records[RightSideFound].xSource) + "'," +
 								"" + (Tcontents) + "," +
 								"'" + GopherObjectsA[ObjectCounter].Records[0].Operator + "','" + VarDeclerator + "',_$gXLocal," +
 								(FunctionCalls.length) + ExtraParams + ")";
@@ -1039,7 +1039,7 @@ function AddVariableTracking(inFile, contents, FileID)
 					(GopherObjectsA[ObjectCounter].NestedParentType.indexOf("ForStatement") === -1))
 			{
 				contents = [contents.slice(0, GopherObjectsA[ObjectCounter].HelperParentStart),
-					"_$sb(" + FileID + "," + GopherObjectsA[ObjectCounter].Records[0].XLine + ",'" + escapeSingleQuote(GopherObjectsA[ObjectCounter].Records[1].xSource) + "',_$gXLocal);"
+					"_$sb(" + FileID + "," + GopherObjectsA[ObjectCounter].Records[0].XLine + ",'" + ESQ(GopherObjectsA[ObjectCounter].Records[1].xSource) + "',_$gXLocal);"
 							, contents.slice(GopherObjectsA[ObjectCounter].HelperParentStart)].join('');
 			}
 
@@ -1051,7 +1051,7 @@ function AddVariableTracking(inFile, contents, FileID)
 
 
 
-//------------------------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------
 function AddFunctionTracking(inFile, contents, FileID)
 {
 	//******** Reparse Source
@@ -1080,7 +1080,7 @@ function AddFunctionTracking(inFile, contents, FileID)
 	var GTVarCounter = 0;
 	for (var ObjectCounter = 0; ObjectCounter < GopherObjectsB.length; ObjectCounter++)
 	{
-		//----------------------------------------------------------------------------------------------------------------
+		//--------------------------------------------------------------------------------------------------
 		if ((GopherObjectsB[ObjectCounter].FirstType == "ReturnStatement")) //++, --
 		{
 			console.log("\n======: Line/Pos:" + GopherObjectsB[ObjectCounter].Line + "/" + GopherObjectsB[ObjectCounter].StartPos + " Indent:" + GopherObjectsB[ObjectCounter].Indent + " C:" + ObjectCounter);
@@ -1404,3 +1404,7 @@ GopherTellFile(__dirname + '/liveparser-root/js/calculator.js',3);
 GopherTellFile(__dirname + '/liveparser-root/js/snake.js',4);
 
 // **** IN RealTimeConsole.JS REF #002
+
+
+//***** From Proxy Modify content with:
+//contents = GopherTellify(contents, inFile, FileID);
