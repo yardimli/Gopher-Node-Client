@@ -494,8 +494,7 @@ function proxyOnHttpRequest(request, response, forwardHostName, forwardHostPort,
                         var gopherHelper = '<script src="gopherHelper.js?GopherPage='+pageTrackerNum+'" type="text/javascript"></script>';
                         chunkStr = [chunkStr.slice(0,scriptTagArr[0].index), gopherHelper, chunkStr.slice(scriptTagArr[0].index)].join('');
                         
-                        for(var i=0; i<scriptTagArr.length; i++){
-                             pageStack.push(scriptTagArr[i][1]); 
+                        for(var i=0; i<scriptTagArr.length; i++){ 
                             //Get src value
                             var regFindSrc;
                             var scriptTagStr = (scriptTagArr[i][1]).toLowerCase();
@@ -529,6 +528,8 @@ function proxyOnHttpRequest(request, response, forwardHostName, forwardHostPort,
                                 var path = (ignoredFiles[j].FilePath).replace(/\\/g,'');
                                 if(path.search(srcVal) > -1){
                                     unqualified++;
+                                }else{
+                                    pageStack.push(scriptTagArr[i][1]********<-find another place to put the push***********);
                                 }
                             }
                             
