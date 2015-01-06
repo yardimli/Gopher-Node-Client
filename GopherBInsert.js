@@ -25,8 +25,23 @@ GFileMap[2] = "app-func.js";
 GFileMap[3] = "calculator.js";
 GFileMap[4] = "snake.js";
 
+TrackObjectArray = [];
+TrackObjectArray.push("a");
+TrackObjectArray.push("info");
+TrackObjectArray.push("blockA");
+TrackObjectArray.push("block1");
+TrackObjectArray.push("block2");
+TrackObjectArray.push("operators");
 
 
+
+
+function array_search(arr, val) {
+	for (var i = 0, len = arr.length; i < len; i++) {
+		if (arr[i] == val) return i;
+	}
+	return -1;
+}
 
 
 
@@ -93,7 +108,7 @@ var DebugUpdate = setInterval(function() {
 //		console.log(strdata);
 		
 		$.ajax({				
-			url: "http://localhost/gopher/getgopher.php"
+			url: "http://localhost/gopherA/getgopher.php"
 		,   type: 'POST'
 		,	crossDomain:true
 		,   contentType: "application/x-www-form-urlencoded; charset=UTF-8"
@@ -188,12 +203,17 @@ _$set = function (FileID, xCodeLine, NestedParent, ParentType, LeftSideStr, Left
 			} else
 			if (Array.isArray(_$v[parseInt(TempVar[0], 10)]))
 			{
-				GMsg.VarVal = _$v[parseInt(TempVar[0], 10)].toString();
+				GMsg.VarVal = "{ARRAY}";
+				if (array_search(TrackObjectArray, GMsg.VarName) != -1) {
+					GMsg.VarVal = _$v[parseInt(TempVar[0], 10)].toString();
+				}
 			} else
 			if (typeof(_$v[parseInt(TempVar[0], 10)])==="object")
 			{
 				GMsg.VarVal = "{OBJECT}";
-	//			GMsg.VarVal = JSON.stringifyOnce(_$v[parseInt(TempVar[0], 10)]);
+				if (array_search(TrackObjectArray, GMsg.VarName) != -1) {
+					GMsg.VarVal = JSON.stringifyOnce(_$v[parseInt(TempVar[0], 10)]);
+				}
 			} else
 			if (isFunction(_$v[parseInt(TempVar[0], 10)]))
 			{
@@ -249,12 +269,17 @@ _$set = function (FileID, xCodeLine, NestedParent, ParentType, LeftSideStr, Left
 	} else
 	if (Array.isArray(LeftSideValue))
 	{
-		GMsg.VarVal = LeftSideValue.toString();
+		GMsg.VarVal = "{ARRAY}";
+		if (array_search(TrackObjectArray, GMsg.VarName) != -1) {
+			GMsg.VarVal = LeftSideValue.toString();
+		}
 	} else
 	if (typeof(LeftSideValue)==="object")
 	{
-//		GMsg.VarVal = JSON.stringifyOnce(LeftSideValue);
 		GMsg.VarVal = "{OBJECT}";
+		if (array_search(TrackObjectArray, GMsg.VarName) != -1) {
+			GMsg.VarVal = JSON.stringifyOnce(LeftSideValue);
+		}
 	} else
 	if (isFunction(LeftSideValue))
 	{
@@ -272,12 +297,17 @@ _$set = function (FileID, xCodeLine, NestedParent, ParentType, LeftSideStr, Left
 	} else
 	if (Array.isArray(OutPut))
 	{
-		GMsg.AssignVal = OutPut.toString();
+		GMsg.AssignVal = "{ARRAY}";
+		if (array_search(TrackObjectArray, GMsg.VarName) != -1) {
+			GMsg.AssignVal = OutPut.toString();
+		}
 	} else
 	if (typeof(OutPut)==="object")
 	{
-		GMsg.AssignVal = JSON.stringifyOnce(OutPut);
-//		GMsg.AssignVal = "{OBJECT}";
+		GMsg.AssignVal = "{OBJECT}";
+		if (array_search(TrackObjectArray, GMsg.VarName) != -1) {
+			GMsg.AssignVal = JSON.stringifyOnce(OutPut);
+		}
 	} else
 	if (isFunction(OutPut))
 	{
@@ -317,12 +347,17 @@ _$evl = function (FileID, xCodeLine, NestedParent, ParentType, StatementStr, Sta
 			} else
 			if (Array.isArray(_$v[parseInt(TempVar[0], 10)]))
 			{
-				GMsg.VarVal = _$v[parseInt(TempVar[0], 10)].toString();
+				GMsg.VarVal = "{ARRAY}";
+				if (array_search(TrackObjectArray, GMsg.VarName) != -1) {
+					GMsg.VarVal = _$v[parseInt(TempVar[0], 10)].toString();
+				}
 			} else
 			if (typeof(_$v[parseInt(TempVar[0], 10)])==="object")
 			{
-//					GMsg.VarVal = JSON.stringifyOnce(_$v[parseInt(TempVar[0], 10)]);
 				GMsg.VarVal = "{OBJECT}";
+				if (array_search(TrackObjectArray, GMsg.VarName) != -1) {
+					GMsg.VarVal = JSON.stringifyOnce(_$v[parseInt(TempVar[0], 10)]);
+				}
 			} else
 			if (isFunction(_$v[parseInt(TempVar[0], 10)]))
 			{
@@ -354,12 +389,17 @@ _$evl = function (FileID, xCodeLine, NestedParent, ParentType, StatementStr, Sta
 	} else
 	if (Array.isArray(StatementValue))
 	{
-		GMsg.StatementVal = StatementValue.toString();
+		GMsg.StatementVal = "{ARRAY}";
+		if (array_search(TrackObjectArray, GMsg.StatementStr) != -1) {
+			GMsg.StatementVal = StatementValue.toString();
+		}
 	} else
 	if (typeof(StatementValue)==="object")
 	{
-		GMsg.StatementVal = JSON.stringifyOnce(StatementValue);
-//		GMsg.StatementVal = "{OBJECT}";
+		GMsg.StatementVal = "{OBJECT}";
+		if (array_search(TrackObjectArray, GMsg.StatementStr) != -1) {
+			GMsg.StatementVal = JSON.stringifyOnce(StatementValue);
+		}
 	} else
 	if (isFunction(StatementValue))
 	{
