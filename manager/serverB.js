@@ -4,12 +4,12 @@ var FileManager = require('./js/fileManager.js');
 var StringDecoder = require('string_decoder').StringDecoder;
 var decoder = new StringDecoder('utf8');
 var xxxx = '';
-var pageMark = 0;
+var requestMarker = 0;
 
 
 
 var ServerB = Global.http.createServer(onRequest).listen(1337, function (err) {
-    Global.Servers.push(ServerB);   
+    Global.Servers.push(ServerB);
 
 });
 
@@ -139,41 +139,41 @@ function mangerOnHttpRequest(request, response, ModifieidUrl) {
                             break;
 
                         case 'saveProject':
-                            if(RecievedData['forwardHostPort'] === ''){
-                               RecievedData['forwardHostPort'] = 0; 
+                            if (RecievedData['forwardHostPort'] === '') {
+                                RecievedData['forwardHostPort'] = 0;
                             }
-                            if(RecievedData['proxyHostPort'] === ''){
-                               RecievedData['proxyHostPort'] = 0; 
+                            if (RecievedData['proxyHostPort'] === '') {
+                                RecievedData['proxyHostPort'] = 0;
                             }
-                            
+
                             //check ports already claimed by another project
                             Global.dbConn(function (error, database) {
                                 if (error === null) {
                                     var AjaxToProject = require('./js/ajaxToProjects.js');
                                     AjaxToProject.getProjects(0, database, function (result) {
                                         var countOccupied = 0;
-                                        
-                                        for(var i=0; i<result.length; i++){
-                                            if( Number(result[i].ProxyHostPort) === Number(RecievedData['proxyHostPort'])){
-                                                if(Number(result[i].ID) !== Number(RecievedData['projectID'])){
-                                                    countOccupied ++;
+
+                                        for (var i = 0; i < result.length; i++) {
+                                            if (Number(result[i].ProxyHostPort) === Number(RecievedData['proxyHostPort'])) {
+                                                if (Number(result[i].ID) !== Number(RecievedData['projectID'])) {
+                                                    countOccupied++;
                                                 }
                                             }
                                         }
                                         database.close();
-                                        
-                                        if(countOccupied > 0 ){
+
+                                        if (countOccupied > 0) {
                                             var _result = {
                                                 error: 'Choosen port is already used in another project.',
                                                 result: null
                                             };
                                             response.end(JSON.stringify(_result));
-                                        }else{
+                                        } else {
                                             var server = new Global.net.createServer();
                                             server.listen(Number(RecievedData['proxyHostPort']));
 
-                                            server.once('error',function(error){ 
-                                                if(error.code === 'EADDRINUSE'){
+                                            server.once('error', function (error) {
+                                                if (error.code === 'EADDRINUSE') {
                                                     var _result = {
                                                         error: 'The choosen port is buy or occupied.',
                                                         result: null
@@ -192,12 +192,12 @@ function mangerOnHttpRequest(request, response, ModifieidUrl) {
                                                             database.close();
                                                         });
                                                     } else {
-                                                        response.end({error:err,result:null});
+                                                        response.end({error: err, result: null});
                                                     }
                                                 });
                                             });
                                         }
-                                        
+
                                     });
                                 } else {
                                     resposne.end(error);
@@ -260,19 +260,19 @@ function mangerOnHttpRequest(request, response, ModifieidUrl) {
                             });
 
                             break;
-                        case 'lunchProject':                            
+                        case 'lunchProject':
                             var portManager = require('./js/portManager.js');
-                            var portOpened = portManager.isPortOpen(Number(RecievedData['proxyHostPort']),function(error, result){
-                                if(error !== null){
-                                    response.end('error:'+error);
-                                }else{
-                                    if(result === false){
+                            var portOpened = portManager.isPortOpen(Number(RecievedData['proxyHostPort']), function (error, result) {
+                                if (error !== null) {
+                                    response.end('error:' + error);
+                                } else {
+                                    if (result === false) {
                                         Global.dbConn(function (error, database) {
                                             if (error === null) {
                                                 var project = require('./js/ajaxToProjects.js');
                                                 project.getProjectDetail(Number(RecievedData['projectID']), database, function (result) {
                                                     var ProxyServer = Global.http.createServer(function (request, response) {
-                                                        proxyOnHttpRequest(request, response, RecievedData['forwardHostName'], Number(RecievedData['forwardHostPort']), Number(RecievedData['projectID']),result.ignored);
+                                                        proxyOnHttpRequest(request, response, RecievedData['forwardHostName'], Number(RecievedData['forwardHostPort']), Number(RecievedData['projectID']), result.ignored);
                                                     }).listen(Number(RecievedData['proxyHostPort']), function (err) {
                                                         if (err) {
                                                             response.end('error');
@@ -282,71 +282,71 @@ function mangerOnHttpRequest(request, response, ModifieidUrl) {
                                                         Global.Servers.push(ProxyServer);
                                                         response.end('ready');
                                                     });
-                                                    
+
                                                     database.close();
                                                 });
                                             } else {
                                                 response.end(error);
                                             }
                                         });
-                                        
-                                        
-                                        
-                                    }else{
+
+
+
+                                    } else {
                                         response.end('running');
-                                        console.log('port '+RecievedData['proxyHostPort']+' is already open.');
+                                        console.log('port ' + RecievedData['proxyHostPort'] + ' is already open.');
                                     }
-                                }   
+                                }
                             });
-                            
+
                             /*var exec = require('child_process').exec;
-                            var child = exec('node ./js/html5server.js gopher myProject run',function(error,stdout,stderr){
-                                console.log('====== stdout =========');
-                                console.log(stdout.trim());
-                                console.log('====== stderr =========');
-                                console.log(stderr);
-                                if(error !== null){
-                                    console.log(error);
-                                } 
-                            });*/
+                             var child = exec('node ./js/html5server.js gopher myProject run',function(error,stdout,stderr){
+                             console.log('====== stdout =========');
+                             console.log(stdout.trim());
+                             console.log('====== stderr =========');
+                             console.log(stderr);
+                             if(error !== null){
+                             console.log(error);
+                             } 
+                             });*/
                             break;
 
                         case 'closeServer':
                             console.log('================before closeServer starts, Global.Servers===============================');
                             console.log(Global.Servers);
-                            for(var i=0; i<Global.Servers.length; i++){
+                            for (var i = 0; i < Global.Servers.length; i++) {
                                 var connKey = Global.Servers[i]._connectionKey;
-                                
-                                if(connKey.search(':'+RecievedData['proxyHostPort'])>-1){
-                                    Global.Servers[i].close(function(){                                        
-                                        for(var j=0; j<Global.Servers.length; j++){
-                                            if(Global.Servers[j]._connectionKey.search(':'+RecievedData['proxyHostPort'])>-1){
-                                                Global.Servers.splice(j,1);
+
+                                if (connKey.search(':' + RecievedData['proxyHostPort']) > -1) {
+                                    Global.Servers[i].close(function () {
+                                        for (var j = 0; j < Global.Servers.length; j++) {
+                                            if (Global.Servers[j]._connectionKey.search(':' + RecievedData['proxyHostPort']) > -1) {
+                                                Global.Servers.splice(j, 1);
                                             }
                                         }
                                         response.end('success');
                                     });
                                 }
                             }
-                            
+
                             break;
-                            
+
                         case 'getAnAvailablePort':
-                            var start=1338, end=2338;
+                            var start = 1338, end = 2338;
                             var stopSearching = false;
                             var occupied = [];
-                            
+
                             Global.dbConn(function (error, database) {
                                 if (error === null) {
                                     var AjaxToProject = require('./js/ajaxToProjects.js');
                                     AjaxToProject.getProjects(0, database, function (result) {
-                                        for(var i=0; i<result.length; i++){
-                                            occupied.push(Number(result[i].ProxyHostPort));                                            
+                                        for (var i = 0; i < result.length; i++) {
+                                            occupied.push(Number(result[i].ProxyHostPort));
                                         }
                                         database.close();
-                                        console.log('========= start looking for open port,'+ start +' =================');
+                                        console.log('========= start looking for open port,' + start + ' =================');
                                         checkPort(start);
-                                        
+
                                     });
                                 } else {
                                     var _response = {
@@ -356,27 +356,27 @@ function mangerOnHttpRequest(request, response, ModifieidUrl) {
                                     resposne.end(_response);
                                 }
                             });
-                            
-                            function checkPort(_port){
+
+                            function checkPort(_port) {
                                 var server = new Global.net.createServer();
                                 server.listen(_port);
-                                
-                                server.once('error',function(error){ 
+
+                                server.once('error', function (error) {
                                     console.log(error);
-                                    start ++;
-                                    if(error.code === 'EADDRINUSE'){
-                                        if(start<=end && stopSearching === false){
+                                    start++;
+                                    if (error.code === 'EADDRINUSE') {
+                                        if (start <= end && stopSearching === false) {
                                             checkPort(start);
-                                        }else{
+                                        } else {
                                             var result = {
                                                 error: 'Can not find an open port',
-                                                port:null
+                                                port: null
                                             };
                                             response.end(JSON.stringify(result));
                                         }
                                     }
                                 });
-                                
+
                                 server.once('listening', function () {
                                     server.close();
                                     var countOccupied = 0;
@@ -386,13 +386,13 @@ function mangerOnHttpRequest(request, response, ModifieidUrl) {
                                         }
                                     }
 
-                                    if(stopSearching === false){
-                                        if(countOccupied > 0){
+                                    if (stopSearching === false) {
+                                        if (countOccupied > 0) {
                                             start++;
-                                            if(start<=end){
+                                            if (start <= end) {
                                                 checkPort(start);
                                             }
-                                        }else{
+                                        } else {
                                             stopSearching = true;
                                             var result = {
                                                 error: null,
@@ -403,11 +403,11 @@ function mangerOnHttpRequest(request, response, ModifieidUrl) {
                                     }
                                 });
                             }
-                            
-                            
-                            
+
+
+
                             break;
-                            
+
                         default:
                             response.end('Command is not recognized.');
                             break;
@@ -417,6 +417,7 @@ function mangerOnHttpRequest(request, response, ModifieidUrl) {
         }
     }
 }
+
 var pageStack = [];
 function proxyOnHttpRequest(request, response, forwardHostName, forwardHostPort, projectID, ignoredFiles) {
     //console.log('>>using proxy<<');
@@ -424,8 +425,8 @@ function proxyOnHttpRequest(request, response, forwardHostName, forwardHostPort,
     //console.log(projectID);
     //console.log(ignoredFiles);
     //console.log('-------------------------------');
-    
-    
+
+
     //console.log(request.headers);
     //console.log(request.headers['referer']);
     var hostSplit = (request.headers['host']).split(':');
@@ -443,16 +444,13 @@ function proxyOnHttpRequest(request, response, forwardHostName, forwardHostPort,
     //forward request through proxy 
     var projectOnPort = forwardHostPort; //8003;
     var projectHost = forwardHostName; //'localhost';
-    var gopherHost =  proxyHostName; //'localhost';
+    var gopherHost = proxyHostName; //'localhost';
     var gopherPort = proxyHostPort; //1338;
-    
-    console.log('fileName'+FileMap.getCleanFileName(request.url)+'    '+'ext ' +FileMap.getFileExtension(request.url));
-    pageMark++; 
-    if(pageMark > 1000000000){
-        pageMark=1;
-    }
-    var pageTrackerNum = projectID+''+pageMark+'';
-    
+
+    console.log('(fileName)' + FileMap.getCleanFileName(request.url) + '    ' + 'ext ' + FileMap.getFileExtension(request.url));
+    console.log(' ');
+    var pageMarker = projectID + '' + requestMarker + '';
+
 
     var BrowserData = [];
     request.on('data', function (chunk) {
@@ -466,123 +464,178 @@ function proxyOnHttpRequest(request, response, forwardHostName, forwardHostPort,
         path: request.url,
         method: request.method,
         headers: request.headers
-    };    
-    
-    
-    request.on('end', function () {   
+    };
+
+
+    request.on('end', function () {
+        requestMarker++;
+        if (requestMarker > 1000000000) {
+            requestMarker = 1;
+        }
+        pageMarker = projectID + '' + requestMarker + '';
+        //console.log('request.on end '+pageMarker); console.log(' ');
+
+
         var NodeProxyRequest = Global.http.request(ProxyOptions, function (ApacheResponse) {
-            ApacheResponse.on('data', function (chunk) {                
-                var chunkStr = decoder.write(chunk);
-                
-                //Replace the port in hard code address
-                if(FileMap.getFileExtension(request.url)!=='.png' || FileMap.getFileExtension(request.url)!=='.jpg' || FileMap.getFileExtension(request.url)!=='.jpeg' || FileMap.getFileExtension(request.url)!=='.gif' || FileMap.getFileExtension(request.url)!=='.pdf' || FileMap.getFileExtension(request.url)!=='.exe'){
-                    var regx1 = new RegExp('http://' + projectHost, 'g');
-                    chunkStr = chunkStr.replace(regx1, 'http://' + gopherHost);
-                    var regx2 = new RegExp('http://' + projectHost + ':' + projectOnPort, 'g');
-                    chunkStr = chunkStr.replace(regx2, 'http://' + gopherHost + ':' + gopherPort);
-                }
-                
-                //Add gopher helper file reference
-                if(FileMap.getFileExtension(request.url)==='.php' || FileMap.getFileExtension(request.url)==='.html' || FileMap.getFileExtension(request.url)==='.htm' || FileMap.getFileExtension(request.url)===''){                    
-                    var regx3 = new RegExp(/(<script([^>]*)>)/ig);
-                    var scriptTag, scriptTagArr=[];
-                    while((scriptTag = regx3.exec(chunkStr)) !== null){
-                        scriptTagArr.push(scriptTag);
-                    }
-                    
-                    if(scriptTagArr.length>0){
-                        var gopherHelper = '<script src="gopherHelper.js?GopherPage='+pageTrackerNum+'" type="text/javascript"></script>';
-                        chunkStr = [chunkStr.slice(0,scriptTagArr[0].index), gopherHelper, chunkStr.slice(scriptTagArr[0].index)].join('');
-                        
-                        for(var i=0; i<scriptTagArr.length; i++){ 
-                            //Get src value
-                            var regFindSrc;
-                            var scriptTagStr = (scriptTagArr[i][1]).toLowerCase();
-                            if(scriptTagStr.search('src="')>-1){
-                                regFindSrc = new RegExp(/<script.*?src="(.*?)"/ig);
-                            }else{
-                                regFindSrc = new RegExp(/<script.*?src='(.*?)'/ig);
-                            }
-
-                            var findSrcRst = regFindSrc.exec(scriptTagArr[i][1]);//console.log('findSrcRst[1] '+findSrcRst[1]);
-
-                            //Varify the value
-                            var unqualified = 0;
-                            var slashes = (findSrcRst[1]).split('/');
-                            if( ((slashes[slashes.length-1]).toLowerCase()).search('.js') === -1){
-                                unqualified++;
-                            }
-                            
-                            for(var j=0; j<ignoredFiles.length; j++){
-                                var srcVal = (findSrcRst[1]).toLowerCase();
-                                var newSrcVal='';
-                                var splashes = srcVal.split('/');
-                                for(var k=0; k<splashes.length; k++){
-                                    if(splashes[k] == '.' || splashes[k]=='..'){
-                                        splashes[k] = '';
-                                    }
-                                    newSrcVal += splashes[k];
-                                }
-                                srcVal = newSrcVal;
-                                
-                                var path = (ignoredFiles[j].FilePath).replace(/\\/g,'');
-                                if(path.search(srcVal) > -1){
-                                    unqualified++;
-                                }else{
-                                    pageStack.push(scriptTagArr[i][1]********<-find another place to put the push***********);
-                                }
-                            }
-                            
-                            if(unqualified === 0){
-                                var changeSrcTo = '';
-                                
-                                if((findSrcRst[1]+'').indexOf('?') == -1){
-                                    changeSrcTo = findSrcRst[1] + '?GopherPage='+pageTrackerNum;
-                                }else{
-                                    changeSrcTo = findSrcRst[1] + '&GopherPage='+pageTrackerNum;
-                                }
-                                var srcreg = new RegExp(findSrcRst[1]);
-                                chunkStr = chunkStr.replace(srcreg,changeSrcTo,'g');
-                            }
-                        }
-                    }                     
-                    
-                    chunk = new Buffer(chunkStr, 'utf8');
-                }
+            ApacheResponse.on('data', function (chunk) {
                 ApacheChunk.push(chunk);
 
             });
 
             ApacheResponse.on('end', function () {
-                var ApacheBytes;
+                var ResponseBuffer = Buffer.concat(ApacheChunk);
                 
-                if(request.url.indexOf('gopherHelper.js')>-1){
-                    console.log('request gopherHelper content');
-                    var helperContent = 'var pageStack=[';
-                    for(var i=0; i<pageStack.length; i++){
-                        helperContent += pageStack[i];
-                        if(i<pageStack.length-1){
-                            helperContent += ',';
+
+                if (FileMap.getFileExtension(request.url) !== '.png' && FileMap.getFileExtension(request.url) !== '.jpg' && FileMap.getFileExtension(request.url) !== '.jpeg' && FileMap.getFileExtension(request.url) !== '.gif' && FileMap.getFileExtension(request.url) !== '.pdf' && FileMap.getFileExtension(request.url) !== '.exe') {
+
+                    var chunkStr = decoder.write(ResponseBuffer);
+
+                    //Replace the port in hard code address
+                    var regHttp = new RegExp('[\'"]http:\/\/' + projectHost + '(.*?)[\'"]', 'ig');
+                    while ((strWithHttp = regHttp.exec(chunkStr)) !== null) {
+                        var afterHttp = (strWithHttp[0]).substring((strWithHttp[0]).indexOf('http://') + 7);
+
+                        if (afterHttp.indexOf('/') > -1) {
+                            var splashes = afterHttp.split('/');
+                            splashes[0] = gopherHost + ':' + gopherPort;
+                            afterHttp = splashes.join('\/');
+                        } else {
+                            afterHttp = gopherHost + ':' + gopherPort;
+                        }
+
+                        var newStrWithHttp = (strWithHttp[0]).substring(0, (strWithHttp[0]).indexOf('http://')) + 'http://' + afterHttp;
+                        console.log(newStrWithHttp);
+                        console.log(' ');
+                        chunkStr = chunkStr.replace(strWithHttp[0], newStrWithHttp);
+
+                    }
+
+                    //Add gopherHealper reference
+                    if (FileMap.getFileExtension(request.url) === '.php' || FileMap.getFileExtension(request.url) === '.html' || FileMap.getFileExtension(request.url) === '.htm' || FileMap.getFileExtension(request.url) === '') {
+                        pageStack.push(pageMarker+':'+FileMap.getCleanFileName(request.url));
+                        var regx3 = new RegExp(/(<script([^>]*)>)/ig);
+                        var scriptTag, scriptTagArr = [];
+
+                        while ((scriptTag = regx3.exec(chunkStr)) !== null) {
+                            scriptTagArr.push(scriptTag);
+                        }
+
+                        if (scriptTagArr.length > 0) {
+                            var gopherHelper = '<script src="gopherHelper.js?GopherPage=' + pageMarker + '" type="text/javascript"></script>';
+                            chunkStr = [chunkStr.slice(0, scriptTagArr[0].index), gopherHelper, chunkStr.slice(scriptTagArr[0].index)].join('');
+
+                            for (var i = 0; i < scriptTagArr.length; i++) {
+                                //Get src value
+                                var regFindSrc;
+                                var scriptTagStr = (scriptTagArr[i][1]).toLowerCase();
+                                if (scriptTagStr.search('src="') > -1) {
+                                    regFindSrc = new RegExp(/<script.*?src="(.*?)"/ig);
+                                } else {
+                                    regFindSrc = new RegExp(/<script.*?src='(.*?)'/ig);
+                                }
+
+                                var findSrcRst = regFindSrc.exec(scriptTagArr[i][1]);//console.log('findSrcRst[1] '+findSrcRst[1]);
+
+                                //Varify the value
+                                var unqualified = 0;
+                                if (findSrcRst !== null) {
+                                    var slashes = (findSrcRst[1]).split('/');
+                                    if (((slashes[slashes.length - 1]).toLowerCase()).search('.js') === -1) {
+                                        unqualified++;
+                                    }
+
+                                    var ignoredCount = 0;
+                                    for (var j = 0; j < ignoredFiles.length; j++) {
+                                        var srcVal = (findSrcRst[1]).toLowerCase();
+                                        var srcSplashes = srcVal.split('/');
+                                        for (var k = 0; k < srcSplashes.length; k++) {
+                                            if (srcSplashes[k] == '.' || srcSplashes[k] == '..') {
+                                                srcSplashes[k] = '';
+                                            }
+                                        }
+                                        srcVal = srcSplashes.join('');
+
+                                        var path = (ignoredFiles[j].FilePath).replace(/\\/g, '');
+                                        if (path.search(srcVal) > -1) {
+                                            unqualified++;
+                                            ignoredCount++;
+                                        }
+                                    }
+                                    
+                                    if(ignoredCount === 0){
+                                        pageStack.push(pageMarker+':'+findSrcRst[1]);
+                                    }
+                                    
+                                    if (unqualified === 0) {
+                                        var changeSrcTo = '';
+
+                                        if ((findSrcRst[1] + '').indexOf('?') == -1) {
+                                            changeSrcTo = findSrcRst[1] + '?GopherPage=' + pageMarker;
+                                        } else {
+                                            changeSrcTo = findSrcRst[1] + '&GopherPage=' + pageMarker;
+                                        }
+                                        var srcreg = new RegExp(findSrcRst[1]);
+                                        chunkStr = chunkStr.replace(srcreg, changeSrcTo, 'g');
+                                    }
+                                }
+
+                            }
                         }
                     }
-                    helperContent += '];';
-                    var makeChunk = new Buffer(helperContent,'utf8');
-                    ApacheBytes = makeChunk;
-                }else{
-                    ApacheBytes = Buffer.concat(ApacheChunk);
+                    
+                    
+                    if((FileMap.getCleanFileName(request.url)).indexOf('gopherHelper.js')>-1){
+                        console.log('request gopherHelper content');
+                        console.log(pageStack);
+                        var queries = Global.QueryString.parse((request.url).substring(request.url.indexOf('?')+1));
+                        var parentPage='';
+                        var childPage=[];
+                        for(var i=0; i<pageStack.length; i++){
+                            if((pageStack[i]).indexOf(queries['GopherPage']+':')>-1){
+                                var dots = (pageStack[i]).split('.');
+                                var page = (pageStack[i]).substring((pageStack[i]).indexOf(':')+1);
+                                if(dots[dots.length-1] !== 'js'){
+                                    parentPage = page;
+                                }else{
+                                    childPage.push(page);
+                                }
+                            }
+                            
+                            
+                            
+                        }
+                        
+                        var helperContent = 'var parentPage='+parentPage+'; var pageStack=[';
+                        for(var j=0; j<childPage.length; j++){
+                            helperContent += childPage[j];
+                            if(j<childPage.length-1){
+                                helperContent += ',';
+                            }
+                        }
+                        helperContent += '];';
+                        
+                        console.log(queries['GopherPage']);
+                        chunkStr = helperContent;
+                    }                
+
+
+                    ResponseBuffer = new Buffer(chunkStr, 'utf8');
                 }
-                
-                ApacheResponse.headers['content-length'] = ApacheBytes.length;
-                ApacheResponse.headers['Cache-Control'] = 'no-cache';
+
+
+                ApacheResponse.headers['content-length'] = ResponseBuffer.length;
+                ApacheResponse.headers['Cache-Control'] = 'no-cache, must-revalidate';
+                ApacheResponse.headers['Expires'] = '-1';
+                ApacheResponse.headers['Pragma'] = 'no-cache';
                 response.writeHead(ApacheResponse.statusCode, ApacheResponse.headers);
-                response.write(ApacheBytes, 'binary');
+                response.write(ResponseBuffer, 'binary');
                 response.end();
             });
 
             ApacheResponse.on('error', function (e) {
                 console.log('problem with proxy response: ' + e.message);
             });
-            
+
         });
 
         var BrowserBytes = Buffer.concat(BrowserData);
@@ -597,10 +650,10 @@ function proxyOnHttpRequest(request, response, forwardHostName, forwardHostPort,
 }
 
 /*var ProxyServer = Global.http.createServer(function (request, response) {
-    proxyOnHttpRequest(request,response);
-}).listen(1338, function () {
-    Servers.push(ProxyServer);
-});*/
+ proxyOnHttpRequest(request,response);
+ }).listen(1338, function () {
+ Servers.push(ProxyServer);
+ });*/
 
 
 
