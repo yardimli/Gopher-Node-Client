@@ -17,7 +17,8 @@ exports.extensions = {
     ".jpg": "image/jpeg",
     ".do": "application/javascript",
     ".woff":"application/x-font-woff",
-    ".ttf":"application/x-font-woff"
+    ".ttf":"application/x-font-woff",
+    ".eot":"application/x-font-eot"
 };
 
 exports.ignoredByDefault = ['jquery.','jquery-','jquery-ui','bootstrap.min.js','bootstrap.js'];
@@ -43,4 +44,4 @@ var Servers = exports.Servers = [];
     }
 });*/
 
-var testVar = exports.testVar = 1;
+exports.GopherHelperFile = '/Gopher/liveparser-root/js/GopherBInsert.js';

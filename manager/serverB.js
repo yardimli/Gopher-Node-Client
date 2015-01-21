@@ -53,7 +53,6 @@ var FileMap = {
 
 function onRequest(request, response) {
     var RequestUrl = request.url;
-    //console.log('request.url '+request.url);
 
     if (RequestUrl === '/' || RequestUrl === '/' + Global.gopherManagerRoot || RequestUrl === '/' + Global.gopherManagerRoot + '/') {
         RequestUrl = '/manager/index.html';
@@ -62,20 +61,17 @@ function onRequest(request, response) {
     }
 
     if (RequestUrl.indexOf('/' + Global.gopherManagerRoot) === 0) {
-        //console.log('>>not using proxy<<');
         mangerOnHttpRequest(request, response, RequestUrl);
     } else {
 
     }
 
     request.on('end', function () {
-        //console.log('*******************');
     });
 }
 
 function mangerOnHttpRequest(request, response, ModifieidUrl) {
     if (!Global.extensions[FileMap.getFileExtension(ModifieidUrl)]) {
-        //console.log(ModifieidUrl);
         response.writeHead(404, {'Content-Type': 'text/html'});
         response.end("<html><head></head><body>The requested file type is not supported</body></html>");
 
@@ -110,7 +106,6 @@ function mangerOnHttpRequest(request, response, ModifieidUrl) {
             });
 
         } else {
-            //console.log('Is a xmlhttprequest ' + FileMap.getCleanFileName(request.url));
             var FileExt = FileMap.getFileExtension(request.url);
             var Command = (FileMap.getCleanFileName(request.url)).replace(FileExt, '');
             var RecievedChunk = [];
@@ -294,11 +289,11 @@ function mangerOnHttpRequest(request, response, ModifieidUrl) {
 
                                     } else {
                                         response.end('running');
-                                        console.log('port ' + RecievedData['proxyHostPort'] + ' is already open.');
                                     }
                                 }
                             });
-
+                            
+                            //Execute line in command from node
                             /*var exec = require('child_process').exec;
                              var child = exec('node ./js/html5server.js gopher myProject run',function(error,stdout,stderr){
                              console.log('====== stdout =========');
@@ -312,8 +307,6 @@ function mangerOnHttpRequest(request, response, ModifieidUrl) {
                             break;
 
                         case 'closeServer':
-                            console.log('================before closeServer starts, Global.Servers===============================');
-                            console.log(Global.Servers);
                             for (var i = 0; i < Global.Servers.length; i++) {
                                 var connKey = Global.Servers[i]._connectionKey;
 
@@ -344,9 +337,7 @@ function mangerOnHttpRequest(request, response, ModifieidUrl) {
                                             occupied.push(Number(result[i].ProxyHostPort));
                                         }
                                         database.close();
-                                        console.log('========= start looking for open port,' + start + ' =================');
                                         checkPort(start);
-
                                     });
                                 } else {
                                     var _response = {
@@ -362,7 +353,6 @@ function mangerOnHttpRequest(request, response, ModifieidUrl) {
                                 server.listen(_port);
 
                                 server.once('error', function (error) {
-                                    console.log(error);
                                     start++;
                                     if (error.code === 'EADDRINUSE') {
                                         if (start <= end && stopSearching === false) {
@@ -403,9 +393,6 @@ function mangerOnHttpRequest(request, response, ModifieidUrl) {
                                     }
                                 });
                             }
-
-
-
                             break;
 
                         default:
@@ -420,15 +407,6 @@ function mangerOnHttpRequest(request, response, ModifieidUrl) {
 
 var pageStack = [];
 function proxyOnHttpRequest(request, response, forwardHostName, forwardHostPort, projectID, ignoredFiles) {
-    //console.log('>>using proxy<<');
-    //console.log(Global.Servers);
-    //console.log(projectID);
-    //console.log(ignoredFiles);
-    //console.log('-------------------------------');
-
-
-    //console.log(request.headers);
-    //console.log(request.headers['referer']);
     var hostSplit = (request.headers['host']).split(':');
     var proxyHostPort, proxyHostName;
     if (hostSplit.length > 1) {
@@ -438,17 +416,15 @@ function proxyOnHttpRequest(request, response, forwardHostName, forwardHostPort,
         proxyHostPort = 80;
         proxyHostName = hostSplit[0];
     }
-    //console.log(proxyHostPort);
-    //console.log(proxyHostName);
-    //console.log('-------------------------------');
+    
     //forward request through proxy 
     var projectOnPort = forwardHostPort; //8003;
     var projectHost = forwardHostName; //'localhost';
     var gopherHost = proxyHostName; //'localhost';
     var gopherPort = proxyHostPort; //1338;
 
-    console.log('(fileName)' + FileMap.getCleanFileName(request.url) + '    ' + 'ext ' + FileMap.getFileExtension(request.url));
-    console.log(' ');
+    //console.log('(fileName)' + FileMap.getCleanFileName(request.url) + '    ' + 'ext ' + FileMap.getFileExtension(request.url));
+    //console.log(' ');
     var pageMarker = projectID + '' + requestMarker + '';
 
 
@@ -473,10 +449,13 @@ function proxyOnHttpRequest(request, response, forwardHostName, forwardHostPort,
             requestMarker = 1;
         }
         pageMarker = projectID + '' + requestMarker + '';
-        //console.log('request.on end '+pageMarker); console.log(' ');
-
-
+        var trackImageByteIndex = 0;
         var NodeProxyRequest = Global.http.request(ProxyOptions, function (ApacheResponse) {
+            /*if (FileMap.getFileExtension(request.url) === '.png' || FileMap.getFileExtension(request.url) === '.jpg' || FileMap.getFileExtension(request.url) === '.jpeg' || FileMap.getFileExtension(request.url) === '.gif' || FileMap.getFileExtension(request.url) === '.pdf' || FileMap.getFileExtension(request.url) === '.exe' && FileMap.getFileExtension(request.url) === '.eot') {
+                ApacheResponseContentLength = parseInt(ApacheResponse.headers['Cache-Control']);
+                trackImageByteIndex = ApacheResponseContentLength;
+            }*/
+                
             ApacheResponse.on('data', function (chunk) {
                 ApacheChunk.push(chunk);
 
@@ -486,7 +465,7 @@ function proxyOnHttpRequest(request, response, forwardHostName, forwardHostPort,
                 var ResponseBuffer = Buffer.concat(ApacheChunk);
                 
 
-                if (FileMap.getFileExtension(request.url) !== '.png' && FileMap.getFileExtension(request.url) !== '.jpg' && FileMap.getFileExtension(request.url) !== '.jpeg' && FileMap.getFileExtension(request.url) !== '.gif' && FileMap.getFileExtension(request.url) !== '.pdf' && FileMap.getFileExtension(request.url) !== '.exe') {
+                if (FileMap.getFileExtension(request.url) !== '.png' && FileMap.getFileExtension(request.url) !== '.jpg' && FileMap.getFileExtension(request.url) !== '.jpeg' && FileMap.getFileExtension(request.url) !== '.gif' && FileMap.getFileExtension(request.url) !== '.pdf' && FileMap.getFileExtension(request.url) !== '.exe' && FileMap.getFileExtension(request.url) !== '.ico' && FileMap.getFileExtension(request.url) !== '.woff' && FileMap.getFileExtension(request.url) !== '.eot') {
 
                     var chunkStr = decoder.write(ResponseBuffer);
 
@@ -504,10 +483,7 @@ function proxyOnHttpRequest(request, response, forwardHostName, forwardHostPort,
                         }
 
                         var newStrWithHttp = (strWithHttp[0]).substring(0, (strWithHttp[0]).indexOf('http://')) + 'http://' + afterHttp;
-                        console.log(newStrWithHttp);
-                        console.log(' ');
                         chunkStr = chunkStr.replace(strWithHttp[0], newStrWithHttp);
-
                     }
 
                     //Add gopherHealper reference
@@ -521,7 +497,7 @@ function proxyOnHttpRequest(request, response, forwardHostName, forwardHostPort,
                         }
 
                         if (scriptTagArr.length > 0) {
-                            var gopherHelper = '<script src="gopherHelper.js?GopherPage=' + pageMarker + '" type="text/javascript"></script>';
+                            var gopherHelper = '<script src="GopherBHelper.js?GopherPage=' + pageMarker + '" type="text/javascript"></script>';
                             chunkStr = [chunkStr.slice(0, scriptTagArr[0].index), gopherHelper, chunkStr.slice(scriptTagArr[0].index)].join('');
 
                             for (var i = 0; i < scriptTagArr.length; i++) {
@@ -534,7 +510,7 @@ function proxyOnHttpRequest(request, response, forwardHostName, forwardHostPort,
                                     regFindSrc = new RegExp(/<script.*?src='(.*?)'/ig);
                                 }
 
-                                var findSrcRst = regFindSrc.exec(scriptTagArr[i][1]);//console.log('findSrcRst[1] '+findSrcRst[1]);
+                                var findSrcRst = regFindSrc.exec(scriptTagArr[i][1]);
 
                                 //Varify the value
                                 var unqualified = 0;
@@ -584,9 +560,7 @@ function proxyOnHttpRequest(request, response, forwardHostName, forwardHostPort,
                     }
                     
                     
-                    if((FileMap.getCleanFileName(request.url)).indexOf('gopherHelper.js')>-1){
-                        console.log('request gopherHelper content');
-                        console.log(pageStack);
+                    if((FileMap.getCleanFileName(request.url)).indexOf('GopherBHelper.js')>-1){
                         var queries = Global.QueryString.parse((request.url).substring(request.url.indexOf('?')+1));
                         var parentPage='';
                         var childPage=[];
@@ -599,37 +573,59 @@ function proxyOnHttpRequest(request, response, forwardHostName, forwardHostPort,
                                 }else{
                                     childPage.push(page);
                                 }
-                            }
-                            
-                            
-                            
+                            } 
                         }
                         
-                        var helperContent = 'var parentPage='+parentPage+'; var pageStack=[';
-                        for(var j=0; j<childPage.length; j++){
-                            helperContent += childPage[j];
-                            if(j<childPage.length-1){
-                                helperContent += ',';
-                            }
-                        }
-                        helperContent += '];';
                         
-                        console.log(queries['GopherPage']);
-                        chunkStr = helperContent;
-                    }                
-
-
-                    ResponseBuffer = new Buffer(chunkStr, 'utf8');
+                        var helperFilePath =  '../liveparser-root/js/GopherBInsert.js';
+                        Global.fs.exists(Global.GopherHelperFile, function (exists) {
+                            if (exists) {
+                                Global.fs.readFile(Global.GopherHelperFile, function (err, contents) {
+                                    contents = decoder.write(contents);
+                                    contents = contents.replace('var xProjectID = "1";','var xProjectID = "'+projectID+'";');
+                                    contents = contents.replace('var xParentFileName = "index.html";','var xParentFileName = "'+parentPage+'";');
+                                    
+                                    var buildFileMapStr = 'var GFileMap=[';
+                                    for(var j=0; j<childPage.length; j++){
+                                        buildFileMapStr += '"'+childPage[j]+'"';
+                                        if(j<childPage.length-1){
+                                            buildFileMapStr += ',';
+                                        }
+                                    }
+                                    buildFileMapStr += '];';
+                                    
+                                    contents = contents.replace('var GFileMap = [];',buildFileMapStr);
+                                    chunkStr = contents;
+                                    
+                                    ResponseBuffer = new Buffer(chunkStr, 'utf8');
+                                    ApacheResponse.headers['content-length'] = ResponseBuffer.length;
+                                    ApacheResponse.headers['Cache-Control'] = 'no-cache, must-revalidate';
+                                    ApacheResponse.headers['Expires'] = '-1';
+                                    ApacheResponse.headers['Pragma'] = 'no-cache';
+                                    response.writeHead(ApacheResponse.statusCode, ApacheResponse.headers);
+                                    response.write(ResponseBuffer, 'binary');
+                                    response.end();
+                                });
+                            }
+                        }); 
+                    }else{                         
+                        ResponseBuffer = new Buffer(chunkStr, 'utf8');
+                    }
                 }
-
-
-                ApacheResponse.headers['content-length'] = ResponseBuffer.length;
-                ApacheResponse.headers['Cache-Control'] = 'no-cache, must-revalidate';
-                ApacheResponse.headers['Expires'] = '-1';
-                ApacheResponse.headers['Pragma'] = 'no-cache';
-                response.writeHead(ApacheResponse.statusCode, ApacheResponse.headers);
-                response.write(ResponseBuffer, 'binary');
-                response.end();
+                
+                if((FileMap.getCleanFileName(request.url)).indexOf('GopherBHelper.js') == -1){
+                    console.log(request.url);
+                    console.log('ResponseBuffer.length '+ResponseBuffer.length);
+                    console.log('TrackBytesIndex ' + trackImageByteIndex);
+                    console.log(' ');
+                    ApacheResponse.headers['content-length'] = ResponseBuffer.length;
+                    ApacheResponse.headers['Cache-Control'] = 'no-cache, must-revalidate';
+                    ApacheResponse.headers['Expires'] = '-1';
+                    ApacheResponse.headers['Pragma'] = 'no-cache';
+                    response.writeHead(ApacheResponse.statusCode, ApacheResponse.headers);
+                    response.write(ResponseBuffer, 'binary');
+                    response.end();
+                }
             });
 
             ApacheResponse.on('error', function (e) {
@@ -649,11 +645,7 @@ function proxyOnHttpRequest(request, response, forwardHostName, forwardHostPort,
     });
 }
 
-/*var ProxyServer = Global.http.createServer(function (request, response) {
- proxyOnHttpRequest(request,response);
- }).listen(1338, function () {
- Servers.push(ProxyServer);
- });*/
+
 
 
 

@@ -37,7 +37,9 @@ $(document).ready(function () {
                     
                     $('#projects').find('div[data-role="project"]').each(function(){
                        if($(this).find('div[data-role="power"]').hasClass('poweroff') === false){
-                           $(this).find('div[data-role="edit"]').hide();
+                           $(this).find('div[data-role="edit"]').addClass('disabled');
+                       }else{
+                           $(this).find('div[data-role="edit"]').removeClass('disabled');
                        } 
                     });
                 }
@@ -72,14 +74,7 @@ $(document).ready(function () {
     
     
 
-    
-    $('#projects').on('mouseover','div[data-role="project"]',function(){
-       $(this).find('.action-pane').show(); 
-    });
-    
-    $('#projects').on('mouseout','div[data-role="project"]',function(){
-       $(this).find('.action-pane').hide(); 
-    });
+    //Event binding 
     
     $('#projects').on('click','div[data-role="project"] div[data-role="edit"]',function(){
         var projectID = $(this).closest('div[data-role="project"]').data('projectid');
@@ -141,6 +136,7 @@ $(document).ready(function () {
     
     
     
+    //Page Starts
     template.project = (function(){
         var elm = $('#projects').find('div[data-role="template-project"]').prop('outerHTML');
         var newElm = $(elm).removeClass('initial-state');

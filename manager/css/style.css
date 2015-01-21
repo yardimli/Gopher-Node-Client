@@ -27,7 +27,7 @@ body {
 
 /***** MANAGER RELATED PART********/
 .manager-content, .myContent{
-    margin-top: 43px;
+    margin-top: 40px;
 }
 
 .show-current-dir{
@@ -119,7 +119,7 @@ body {
 
 
 .myContent{
-    padding: 20px;
+ 
 }
 
 div[data-role^="template"]{
@@ -130,20 +130,30 @@ div[data-role^="template"]{
     padding:0px;
 }
 .projects .item-block{
-    color: #B6D1EA;
+    color: rgb(235,235,235);/*#B6D1EA;*/
     min-height: 32px;
-    margin:5px 5px 0px 0px;
-    padding:15px;
-    background-color: #283949;
+    margin:0px 0px 6px 0px;
+    padding:18px;
+    background-color: #283B4C;/*#283949;*/
+    border:1px solid #283B4C;
+    border-radius: 4px;
     cursor: default;
+     display:inline-block;
+     width: 100%;
+    
 }
 .projects .item-block .name{
-
-    margin: 10px;
-    font-size: 140%;
+    display:inline-block;
+    width:88.5%;
+    font-size: 19px;
+    float:left;
 }
 .projects .item-block .action-pane{
-    position: relative; z-index: 100; display:none;
+    display:inline-block;
+    width:11.5%;
+    float:left;
+    text-align: right;
+    border-left:1px solid #314354;
 }
 .action-pane div.button{
     display: inline-block;
@@ -153,12 +163,12 @@ div[data-role^="template"]{
     line-height: 24px;
     text-align: center;
     margin-left:15px;
-    font-size:16px;
+    font-size:17px;
 }
-.action-pane div.button:hover{
+.action-pane div.button:not(.disabled):hover{
     cursor:pointer;
     background-color: transparent;
-    color:#FFFFFF;
+    color:rgb(223,105,26);
 }
 .action-pane div[data-role="power"].button{
     color:#66cc00;
@@ -170,6 +180,10 @@ div[data-role^="template"]{
 }
 .action-pane div[data-role="power"].button.poweroff:hover{
     background-color:transparent;
+}
+.action-pane .button.disabled{
+    color: #54687A;
+    cursor:default;
 }
     
 
