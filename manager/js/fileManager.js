@@ -1,4 +1,5 @@
 var Global = require("../global.js");
+var os = require('os');
 
 var fileNode = exports.fileNode = function(_name,_path,_isDirectory){
     return {
@@ -28,16 +29,36 @@ var pathHelper = exports.pathHelper = {
 };
 
 var getDriveList = exports.getDriveList = function (_callBack) {
-    require('child_process').exec("wmic logicaldisk get name", function (error, stdout, stderr) {
+    var command = '';
+    switch(os.platform().toLowerCase()){
+        case 'win32':
+            command = 'wmic logicaldisk get name';
+            break;
+        case 'darwin':
+            command = 'df -kl | awk \'{print $1}\'';
+            break;
+        default:
+            command = 'wmic logicaldisk get name';
+            break;
+    }
+    
+    require('child_process').exec(command, function (error, stdout, stderr) {
         var stdoutStr = decoder.write(stdout);
         stdoutStr = stdoutStr.trim(); //console.log('(stdoutStr)'+stdoutStr);
 
-        var lines = stdoutStr.toString().split('\n');
+        /*var lines = stdoutStr.toString().split('\n');
         var result = [];
         for (var i = 1; i < lines.length; i++) {
             result.push(new fileNode(lines[i].trim(), lines[i].trim() + '\\'));
+        }*/
+        var lines = stdout.split('\n');
+        lines.splice(0,1);
+        lines.splice(-1,1);
+        lines = lines.filter(function(item){ return item.trim() != ""});
+        var result = [];
+        for (var i = 0; i < lines.length; i++) {
+            result.push(new fileNode(lines[i].trim(), lines[i].trim() + '\\'));
         }
-        //console.log('stderr: ' + stderr);
         return _callBack(result,error);
 
     });

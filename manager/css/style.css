@@ -119,7 +119,7 @@ body {
 
 
 .myContent{
- 
+    padding-top: 54px;
 }
 
 div[data-role^="template"]{
