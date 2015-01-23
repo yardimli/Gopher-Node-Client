@@ -55,6 +55,7 @@ var getDriveList = exports.getDriveList = function (_callBack) {
         lines.splice(0,1);
         lines.splice(-1,1);
         lines = lines.filter(function(item){ return item.trim() != ""});
+        console.log(lines);
         var result = [];
         for (var i = 0; i < lines.length; i++) {
             result.push(new fileNode(lines[i].trim(), lines[i].trim() + '\\'));
