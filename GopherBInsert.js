@@ -20,10 +20,10 @@ var xParentFileName = "index.html"; //**** updated from proxy
 
 var GFileMap = [];
 //***** list built from proxy
-GFileMap[1] = "app.js";
-GFileMap[2] = "app-func.js";
-GFileMap[3] = "calculator.js";
-GFileMap[4] = "snake.js";
+GFileMap[0] = "app.js";
+GFileMap[1] = "app-func.js";
+GFileMap[2] = "calculator.js";
+GFileMap[3] = "snake.js";
 
 TrackObjectArray = [];
 TrackObjectArray.push("a");
@@ -32,6 +32,24 @@ TrackObjectArray.push("blockA");
 TrackObjectArray.push("block1");
 TrackObjectArray.push("block2");
 TrackObjectArray.push("operators");
+
+
+setTimeout(function() {
+	$.ajax({				
+		url: "http://localhost/gopherA/getgopher.php"
+	,   type: 'POST'
+	,	crossDomain:true
+	,   contentType: "application/x-www-form-urlencoded; charset=UTF-8"
+	,   data: {type:"header", ProjectID:xProjectID, RuntimeTimeStamp:xRuntimeTimeStamp, ParentFileName:xParentFileName, FileMap:GFileMap.toString(), TrackObject:TrackObjectArray.toString() }
+	,	dataType: "json"
+	,   success: function() 
+		{ 
+			while(GMsgArray.length > 0) {   GMsgArray.pop(); } 
+		} 
+	});
+			
+},1000);
+
 
 
 
@@ -112,7 +130,7 @@ var DebugUpdate = setInterval(function() {
 		,   type: 'POST'
 		,	crossDomain:true
 		,   contentType: "application/x-www-form-urlencoded; charset=UTF-8"
-		,   data: {ProjectID:xProjectID, RuntimeTimeStamp:xRuntimeTimeStamp, ParentFileName:xParentFileName, data:strdata }
+		,   data: {type:"body", ProjectID:xProjectID, RuntimeTimeStamp:xRuntimeTimeStamp, ParentFileName:xParentFileName, data:strdata }
 		,	dataType: "json"
 		,   success: function() 
 			{ 

@@ -1083,7 +1083,7 @@ function AddFunctionTracking(inFile, contents, FileID)
 		//--------------------------------------------------------------------------------------------------
 		if ((GopherObjectsB[ObjectCounter].FirstType == "ReturnStatement")) //++, --
 		{
-			console.log("\n======: Line/Pos:" + GopherObjectsB[ObjectCounter].Line + "/" + GopherObjectsB[ObjectCounter].StartPos + " Indent:" + GopherObjectsB[ObjectCounter].Indent + " C:" + ObjectCounter);
+//			console.log("\n======: Line/Pos:" + GopherObjectsB[ObjectCounter].Line + "/" + GopherObjectsB[ObjectCounter].StartPos + " Indent:" + GopherObjectsB[ObjectCounter].Indent + " C:" + ObjectCounter);
 			var TempObjectCounter = ObjectCounter;
 			var TempIndent = 0; //A Vitual Indet tracker to compansate for BlockStatement that belong to IF etc. that will prevent the ReturnStatment to find its real parent
 			var TempBlockIndent = GopherObjectsB[ObjectCounter].Indent;
@@ -1144,7 +1144,7 @@ function AddFunctionTracking(inFile, contents, FileID)
 				NewQ.FunctionID = FuncID;
 				FunctionsList.push(NewQ);
 
-				console.log("--------: Line/Pos:" + GopherObjectsB[TempObjectCounter].Line+"/"+GopherObjectsB[TempObjectCounter].StartPos + " Indent:" + GopherObjectsB[TempObjectCounter].Indent + " Type:" + GopherObjectsB[TempObjectCounter].FirstType + " - " + FuncID);
+//				console.log("--------: Line/Pos:" + GopherObjectsB[TempObjectCounter].Line+"/"+GopherObjectsB[TempObjectCounter].StartPos + " Indent:" + GopherObjectsB[TempObjectCounter].Indent + " Type:" + GopherObjectsB[TempObjectCounter].FirstType + " - " + FuncID);
 
 			}
 		}
@@ -1361,50 +1361,10 @@ function GopherTellify(contents, inFile, FileID)
 	return contents;
 }
 
-function copyFile(source, target, cb) {
-  var cbCalled = false;
-
-  var rd = fs.createReadStream(source);
-  rd.on("error", function(err) {
-    done(err);
-  });
-  var wr = fs.createWriteStream(target);
-  wr.on("error", function(err) {
-    done(err);
-  });
-  wr.on("close", function(ex) {
-    done();
-  });
-  rd.pipe(wr);
-
-  function done(err) {
-    if (!cbCalled) {
-      cb(err);
-      cbCalled = true;
-    }
-  }
-}
-function GopherTellFile(inFile,FileID)
+module.exports = 
 {
-//	var InsertContent = fs.readFileSync(__dirname + '/GopherBInsert.js');
-	
-	copyFile(__dirname + '/GopherBInsert.js',__dirname + '/liveparser-root/js/GopherBInsert.js', function() {} );
-	
-	fs.readFile(inFile, function (err, contents) {
-		if (!err) {
-			contents = GopherTellify(contents, inFile, FileID);
-			fs.writeFile(inFile.replace(".js", "-gopher.js"), beautify(contents, {indent_size: 4})); //InsertContent + contents
-		}
-	});
-}
-
-GopherTellFile(__dirname + '/liveparser-root/js/app.js',1);
-GopherTellFile(__dirname + '/liveparser-root/js/app-func.js',2);
-GopherTellFile(__dirname + '/liveparser-root/js/calculator.js',3);
-GopherTellFile(__dirname + '/liveparser-root/js/snake.js',4);
-
-// **** IN RealTimeConsole.JS REF #002
-
-
-//***** From Proxy Modify content with:
-//contents = GopherTellify(contents, inFile, FileID);
+	ParseJSSource : function (contents, inFile, FileID)
+	{
+		return GopherTellify(contents, inFile, FileID);
+	}
+};

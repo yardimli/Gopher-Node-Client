@@ -14,20 +14,20 @@
 5:            R:I:11 Literal right () [2]  Parent:142, Self:143
 --------------- END --------------- 
 8:       ExpressionStatement
-8:        I:7 CallExpression expression () [_$sb(2,8,'bb',_$gXLocal)]  Parent:167, Self:168
+8:        I:7 CallExpression expression () [_$sb(1,8,'bb',_$gXLocal)]  Parent:167, Self:168
 8:         I:8 Identifier callee () [_$sb]  Parent:178, Self:179
-8:          I:9 Literal 0 () [2]  Parent:191, Self:192
+8:          I:9 Literal 0 () [1]  Parent:191, Self:192
 8:          I:9 Literal 1 () [8]  Parent:204, Self:205
 8:          I:9 Literal 2 () ['bb']  Parent:217, Self:218
 8:          I:9 Identifier 3 () [_$gXLocal]  Parent:230, Self:231
 8:       VariableDeclaration
 --------------- START VAR --------------- 
  path:p.0.body.body.2.declarations.0
-8:         I:8 VariableDeclarator 0 (=) [bb = _$set(2,8,'VariableDeclaration','0','bb',bb,'b55(b)*4',(_$v[1]=b55(b))*4,'=','1',_$gXLocal,1,'1]  Parent:254, Self:255
+8:         I:8 VariableDeclarator 0 (=) [bb = _$set(1,8,'VariableDeclaration','0','bb',bb,'b55(b)*4',(_$v[1]=b55(b))*4,'=','1',_$gXLocal,1,'1]  Parent:254, Self:255
 8:          L:I:9 Identifier id () [bb]  Parent:265, Self:266
-8:          R:I:9 CallExpression init () [_$set(2,8,'VariableDeclaration','0','bb',bb,'b55(b)*4',(_$v[1]=b55(b))*4,'=','1',_$gXLocal,1,'1=b55(]  Parent:277, Self:278
+8:          R:I:9 CallExpression init () [_$set(1,8,'VariableDeclaration','0','bb',bb,'b55(b)*4',(_$v[1]=b55(b))*4,'=','1',_$gXLocal,1,'1=b55(]  Parent:277, Self:278
 8:           L:I:10 Identifier callee () [_$set]  Parent:288, Self:289
-8:            L:I:11 Literal 0 () [2]  Parent:301, Self:302
+8:            L:I:11 Literal 0 () [1]  Parent:301, Self:302
 8:            R:I:11 Literal 1 () [8]  Parent:314, Self:315
 8:            L:I:11 Literal 2 () ['VariableDeclaration']  Parent:327, Self:328
 8:            R:I:11 Literal 3 () ['0']  Parent:340, Self:341
@@ -70,29 +70,29 @@
 14:    VariableDeclaration
 --------------- START VAR --------------- 
  path:p.2.declarations.0
-14:      I:5 VariableDeclarator 0 (=) [bb = function(a,b,c) { _$sb(2,14,'d',_$gXLocal);var d = _$set(2,14,'BlockStatement > VariableDeclara]  Parent:688, Self:689
+14:      I:5 VariableDeclarator 0 (=) [bb = function(a,b,c) { _$sb(1,14,'d',_$gXLocal);var d = _$set(1,14,'BlockStatement > VariableDeclara]  Parent:688, Self:689
 14:       L:I:6 Identifier id () [bb]  Parent:699, Self:700
-14:       R:I:6 FunctionExpression init () [function(a,b,c) { _$sb(2,14,'d',_$gXLocal);var d = _$set(2,14,'BlockStatement > VariableDeclaration']  Parent:711, Self:712
+14:       R:I:6 FunctionExpression init () [function(a,b,c) { _$sb(1,14,'d',_$gXLocal);var d = _$set(1,14,'BlockStatement > VariableDeclaration']  Parent:711, Self:712
 14:         L:I:8 Identifier 0 () [a]  Parent:724, Self:725
 14:         R:I:8 Identifier 1 () [b]  Parent:736, Self:737
 14:         L:I:8 Identifier 2 () [c]  Parent:748, Self:749
 --------------- END --------------- 
 14:        BlockStatement
 14:          ExpressionStatement
-14:           I:10 CallExpression expression () [_$sb(2,14,'d',_$gXLocal)]  Parent:783, Self:784
+14:           I:10 CallExpression expression () [_$sb(1,14,'d',_$gXLocal)]  Parent:783, Self:784
 14:            I:11 Identifier callee () [_$sb]  Parent:794, Self:795
-14:             I:12 Literal 0 () [2]  Parent:807, Self:808
+14:             I:12 Literal 0 () [1]  Parent:807, Self:808
 14:             I:12 Literal 1 () [14]  Parent:820, Self:821
 14:             I:12 Literal 2 () ['d']  Parent:833, Self:834
 14:             I:12 Identifier 3 () [_$gXLocal]  Parent:846, Self:847
 14:          VariableDeclaration
 --------------- START VAR --------------- 
  path:p.2.declarations.0.init.body.body.1.declarations.0
-14:            I:11 VariableDeclarator 0 (=) [d = _$set(2,14,'BlockStatement > VariableDeclaration','0','d',d,'0',0,'=','1',_$gXLocal,0)]  Parent:870, Self:871
+14:            I:11 VariableDeclarator 0 (=) [d = _$set(1,14,'BlockStatement > VariableDeclaration','0','d',d,'0',0,'=','1',_$gXLocal,0)]  Parent:870, Self:871
 14:             L:I:12 Identifier id () [d]  Parent:881, Self:882
-14:             R:I:12 CallExpression init () [_$set(2,14,'BlockStatement > VariableDeclaration','0','d',d,'0',0,'=','1',_$gXLocal,0)]  Parent:893, Self:894
+14:             R:I:12 CallExpression init () [_$set(1,14,'BlockStatement > VariableDeclaration','0','d',d,'0',0,'=','1',_$gXLocal,0)]  Parent:893, Self:894
 14:              L:I:13 Identifier callee () [_$set]  Parent:904, Self:905
-14:               L:I:14 Literal 0 () [2]  Parent:917, Self:918
+14:               L:I:14 Literal 0 () [1]  Parent:917, Self:918
 14:               R:I:14 Literal 1 () [14]  Parent:930, Self:931
 14:               L:I:14 Literal 2 () ['BlockStatement > VariableDeclaration']  Parent:943, Self:944
 14:               R:I:14 Literal 3 () ['0']  Parent:956, Self:957
@@ -108,11 +108,11 @@
 14:          ExpressionStatement
 --------------- START ASSIGN --------------- 
  path:p.2.declarations.0.init.body.body.2.expression
-14:           I:10 AssignmentExpression expression (=) [d = _$set(2,14,'ExpressionStatement','expression','d',d,'b+c',b+c,'=','0',_$gXLocal,0)]  Parent:1083, Self:1084
+14:           I:10 AssignmentExpression expression (=) [d = _$set(1,14,'ExpressionStatement','expression','d',d,'b+c',b+c,'=','0',_$gXLocal,0)]  Parent:1083, Self:1084
 14:            L:I:11 Identifier left () [d]  Parent:1095, Self:1096
-14:            R:I:11 CallExpression right () [_$set(2,14,'ExpressionStatement','expression','d',d,'b+c',b+c,'=','0',_$gXLocal,0)]  Parent:1107, Self:1108
+14:            R:I:11 CallExpression right () [_$set(1,14,'ExpressionStatement','expression','d',d,'b+c',b+c,'=','0',_$gXLocal,0)]  Parent:1107, Self:1108
 14:             L:I:12 Identifier callee () [_$set]  Parent:1118, Self:1119
-14:              L:I:13 Literal 0 () [2]  Parent:1131, Self:1132
+14:              L:I:13 Literal 0 () [1]  Parent:1131, Self:1132
 14:              R:I:13 Literal 1 () [14]  Parent:1144, Self:1145
 14:              L:I:13 Literal 2 () ['ExpressionStatement']  Parent:1157, Self:1158
 14:              R:I:13 Literal 3 () ['expression']  Parent:1170, Self:1171
@@ -158,20 +158,20 @@
 26:            R:I:11 Literal right () [1]  Parent:1549, Self:1550
 --------------- END --------------- 
 29:       ExpressionStatement
-29:        I:7 CallExpression expression () [_$sb(2,29,'aa',_$gXLocal)]  Parent:1574, Self:1575
+29:        I:7 CallExpression expression () [_$sb(1,29,'aa',_$gXLocal)]  Parent:1574, Self:1575
 29:         I:8 Identifier callee () [_$sb]  Parent:1585, Self:1586
-29:          I:9 Literal 0 () [2]  Parent:1598, Self:1599
+29:          I:9 Literal 0 () [1]  Parent:1598, Self:1599
 29:          I:9 Literal 1 () [29]  Parent:1611, Self:1612
 29:          I:9 Literal 2 () ['aa']  Parent:1624, Self:1625
 29:          I:9 Identifier 3 () [_$gXLocal]  Parent:1637, Self:1638
 29:       VariableDeclaration
 --------------- START VAR --------------- 
  path:p.4.body.body.2.declarations.0
-29:         I:8 VariableDeclarator 0 (=) [aa = _$set(2,29,'VariableDeclaration','0','aa',aa,'a55(a)*2',(_$v[2]=a55(a))*2,'=','1',_$gXLocal,1,']  Parent:1661, Self:1662
+29:         I:8 VariableDeclarator 0 (=) [aa = _$set(1,29,'VariableDeclaration','0','aa',aa,'a55(a)*2',(_$v[2]=a55(a))*2,'=','1',_$gXLocal,1,']  Parent:1661, Self:1662
 29:          L:I:9 Identifier id () [aa]  Parent:1672, Self:1673
-29:          R:I:9 CallExpression init () [_$set(2,29,'VariableDeclaration','0','aa',aa,'a55(a)*2',(_$v[2]=a55(a))*2,'=','1',_$gXLocal,1,'2=a55]  Parent:1684, Self:1685
+29:          R:I:9 CallExpression init () [_$set(1,29,'VariableDeclaration','0','aa',aa,'a55(a)*2',(_$v[2]=a55(a))*2,'=','1',_$gXLocal,1,'2=a55]  Parent:1684, Self:1685
 29:           L:I:10 Identifier callee () [_$set]  Parent:1695, Self:1696
-29:            L:I:11 Literal 0 () [2]  Parent:1708, Self:1709
+29:            L:I:11 Literal 0 () [1]  Parent:1708, Self:1709
 29:            R:I:11 Literal 1 () [29]  Parent:1721, Self:1722
 29:            L:I:11 Literal 2 () ['VariableDeclaration']  Parent:1734, Self:1735
 29:            R:I:11 Literal 3 () ['0']  Parent:1747, Self:1748
@@ -194,9 +194,9 @@
 29:            L:I:11 Literal 12 () ['2=a55(a)']  Parent:1959, Self:1960
 --------------- END --------------- 
 31:       IfStatement
-31:        I:7 CallExpression test () [_$evl(2,31,'IfStatement','test','a<10', a<10,_$gXLocal, 0)]  Parent:1984, Self:1985
+31:        I:7 CallExpression test () [_$evl(1,31,'IfStatement','test','a<10', a<10,_$gXLocal, 0)]  Parent:1984, Self:1985
 31:         I:8 Identifier callee () [_$evl]  Parent:1995, Self:1996
-31:          I:9 Literal 0 () [2]  Parent:2008, Self:2009
+31:          I:9 Literal 0 () [1]  Parent:2008, Self:2009
 31:          I:9 Literal 1 () [31]  Parent:2021, Self:2022
 31:          I:9 Literal 2 () ['IfStatement']  Parent:2034, Self:2035
 31:          I:9 Literal 3 () ['test']  Parent:2047, Self:2048
@@ -218,9 +218,9 @@
 31:            R:I:11 Literal right () [10]  Parent:2182, Self:2183
 --------------- END --------------- 
 32:        IfStatement
-32:         I:8 CallExpression test () [_$evl(2,32,'IfStatement','test','a>100', a>100,_$gXLocal, 0)]  Parent:2206, Self:2207
+32:         I:8 CallExpression test () [_$evl(1,32,'IfStatement','test','a>100', a>100,_$gXLocal, 0)]  Parent:2206, Self:2207
 32:          I:9 Identifier callee () [_$evl]  Parent:2217, Self:2218
-32:           I:10 Literal 0 () [2]  Parent:2230, Self:2231
+32:           I:10 Literal 0 () [1]  Parent:2230, Self:2231
 32:           I:10 Literal 1 () [32]  Parent:2243, Self:2244
 32:           I:10 Literal 2 () ['IfStatement']  Parent:2256, Self:2257
 32:           I:10 Literal 3 () ['test']  Parent:2269, Self:2270
@@ -251,20 +251,20 @@
 37:      I:5 Identifier 0 () [a]  Parent:2466, Self:2467
 38:     BlockStatement
 39:       ExpressionStatement
-39:        I:7 CallExpression expression () [_$sb(2,39,'aaa',_$gXLocal)]  Parent:2501, Self:2502
+39:        I:7 CallExpression expression () [_$sb(1,39,'aaa',_$gXLocal)]  Parent:2501, Self:2502
 39:         I:8 Identifier callee () [_$sb]  Parent:2512, Self:2513
-39:          I:9 Literal 0 () [2]  Parent:2525, Self:2526
+39:          I:9 Literal 0 () [1]  Parent:2525, Self:2526
 39:          I:9 Literal 1 () [39]  Parent:2538, Self:2539
 39:          I:9 Literal 2 () ['aaa']  Parent:2551, Self:2552
 39:          I:9 Identifier 3 () [_$gXLocal]  Parent:2564, Self:2565
 39:       VariableDeclaration
 --------------- START VAR --------------- 
  path:p.5.body.body.1.declarations.0
-39:         I:8 VariableDeclarator 0 (=) [aaa = _$set(2,39,'FunctionDeclaration > BlockStatement > VariableDeclaration','0','aaa',aaa,'a',a,'=]  Parent:2588, Self:2589
+39:         I:8 VariableDeclarator 0 (=) [aaa = _$set(1,39,'FunctionDeclaration > BlockStatement > VariableDeclaration','0','aaa',aaa,'a',a,'=]  Parent:2588, Self:2589
 39:          L:I:9 Identifier id () [aaa]  Parent:2599, Self:2600
-39:          R:I:9 CallExpression init () [_$set(2,39,'FunctionDeclaration > BlockStatement > VariableDeclaration','0','aaa',aaa,'a',a,'=','1',]  Parent:2611, Self:2612
+39:          R:I:9 CallExpression init () [_$set(1,39,'FunctionDeclaration > BlockStatement > VariableDeclaration','0','aaa',aaa,'a',a,'=','1',]  Parent:2611, Self:2612
 39:           L:I:10 Identifier callee () [_$set]  Parent:2622, Self:2623
-39:            L:I:11 Literal 0 () [2]  Parent:2635, Self:2636
+39:            L:I:11 Literal 0 () [1]  Parent:2635, Self:2636
 39:            R:I:11 Literal 1 () [39]  Parent:2648, Self:2649
 39:            L:I:11 Literal 2 () ['FunctionDeclaration > BlockStatement > VariableDeclaration']  Parent:2661, Self:2662
 39:            R:I:11 Literal 3 () ['0']  Parent:2674, Self:2675
