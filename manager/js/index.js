@@ -1,6 +1,7 @@
 $(document).ready(function () {    
     var template = {
-        project: '' 
+        project: '',
+        bottomAlert: ''
     };
        
     function ajaxGetProjects(){
@@ -75,8 +76,7 @@ $(document).ready(function () {
     
 
     //Event binding 
-    
-    $('#projects').on('click','div[data-role="project"] div[data-role="edit"]',function(){
+    $('#projects').on('click','div[data-role="project"] div[data-role="edit"]:not(.disabled)',function(){
         var projectID = $(this).closest('div[data-role="project"]').data('projectid');
         location.replace('project.html?projectID='+projectID);
     });
@@ -98,6 +98,7 @@ $(document).ready(function () {
             success: function (data) {
                 if(data === 'ready' || data==='running'){
                     $('#projects').find('div[data-projectid="'+$(projectElm).data('projectid') +'"] div[data-role="power"]').removeClass('poweroff');
+                    $('#projects').find('div[data-projectid="'+$(projectElm).data('projectid') +'"] div[data-role="edit"]').addClass('disabled');
                     setTimeout(function(){
                         window.open($(projectElm).data('project_link'));
                     },500);
@@ -115,14 +116,32 @@ $(document).ready(function () {
     $('#projects').on('click', 'div[class="action-pane"] div[data-role="power"]', function () {
         var powerBtn = $(this);
         if ($(powerBtn).hasClass('poweroff') === false) {
+            var alert = $(template.bottomAlert);
+            var ramid = Number(new Date());
+            $(alert).attr('id', ramid);
+            
             $.ajax({
                 type: 'POST',
                 url: 'closeServer.do',
                 traditional: true,
                 data: {proxyHostPort: $(powerBtn).closest('div[data-role="project"]').data('proxy_host_port')},
+                beforeSend: function(){
+                    $(alert).find('div[data-role="message"]').text('Closing server...');
+                    $(alert).addClass('loading');
+                    $('body').append($(alert).prop('outerHTML'));
+                    $('#' + ramid).fadeIn('fast');
+                },
                 success: function (data) {
-                    console.log(data);
+                    $('#' + ramid).removeClass('loading');
+                    $('#' + ramid).addClass('ok');
+                    $('#' + ramid).find('div[data-role="message"]').text('Server is closed.');
+                    setTimeout(function () {
+                        $('#' + ramid).hide();
+                        $('#' + ramid).remove();
+                    }, 2000);
+                    
                     $(powerBtn).addClass('poweroff');
+                    $(powerBtn).closest('.action-pane').find('div[data-role="edit"]').removeClass('disabled');
                     $(powerBtn).siblings('div[data-role="edit"]').show();
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
@@ -142,6 +161,13 @@ $(document).ready(function () {
         var newElm = $(elm).removeClass('initial-state');
         $(newElm).attr('data-role','project');
         $('#projects').empty();
+        return $(newElm).prop('outerHTML');
+    }());
+    
+    template.bottomAlert = (function () {
+        var elmTxt = $('div[data-role="template-bottom-alert"]').prop('outerHTML');
+        var newElm = $(elmTxt).attr('data-role', 'bottom-alert');
+        $('div[data-role="template-bottom-alert"]').remove();
         return $(newElm).prop('outerHTML');
     }());
     

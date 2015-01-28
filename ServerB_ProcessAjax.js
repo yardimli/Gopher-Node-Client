@@ -1,5 +1,4 @@
-var Global = require("../global.js");
-var portManager = require('./portManager.js');
+var portManager = require('./ServerB_PortManager.js');
 
 
 exports.getProjects = function (projectID, db, callBack) {

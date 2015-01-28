@@ -1,5 +1,10 @@
-var Global = require("../global.js");
+var fs = require('fs');
 var os = require('os');
+var StringDecoder = require('string_decoder').StringDecoder;
+
+var decoder = new StringDecoder('utf8');
+
+
 
 var fileNode = exports.fileNode = function(_name,_path,_isDirectory){
     return {
@@ -9,8 +14,6 @@ var fileNode = exports.fileNode = function(_name,_path,_isDirectory){
     };
 };
 
-var StringDecoder = require('string_decoder').StringDecoder;
-var decoder = new StringDecoder('utf8');
 var pathHelper = exports.pathHelper = {
     getFileName: function (_filePath) {
         var fileArr = _filePath.split('\\');
@@ -76,14 +79,14 @@ var getFileList = exports.getFileList = function(_targetFilePath, _onlyFolders, 
         }
     }
     
-    Global.fs.readdir(_targetFilePath,function(err,fileList){
+    fs.readdir(_targetFilePath,function(err,fileList){
         if(err !== null){
-            return _callBack('node server error(js/fileManager.js ln-41): '+err,null);
+            return _callBack('Error in ServerB FileManager: '+err,null);
         }
         var pending = fileList.length; 
         
         fileList.forEach(function(file){
-            Global.fs.stat(_targetFilePath+file, function(err, stats){
+            fs.stat(_targetFilePath+file, function(err, stats){
                 --pending; 
                 if (err !== null) {
                     console.log('error at read stat'+err);
@@ -154,14 +157,14 @@ var findFiles = exports.findFiles = function (_options, _end, _result) {
         result = [];
     }
     
-    Global.fs.readdir(_options.targetFolder, function (err, fileList) {
+    fs.readdir(_options.targetFolder, function (err, fileList) {
         var pending = fileList.length;
         if (!pending) {
             return _end(null, result);
         }
 
         fileList.forEach(function (file) {
-            Global.fs.stat(_options.targetFolder + file, function (err, stats) {
+            fs.stat(_options.targetFolder + file, function (err, stats) {
                 if(err !== null){
                     console.log('error at read stat'+err);
                     return;
@@ -233,9 +236,9 @@ var findFiles = exports.findFiles = function (_options, _end, _result) {
 (function test() {
     
     var dir = "C:\\";
-    var files = Global.fs.readdir(dir, function (err, fileList) {
+    var files = fs.readdir(dir, function (err, fileList) {
         fileList.forEach(function (file) {
-            Global.fs.stat(dir + file, function (err, stats) {
+            fs.stat(dir + file, function (err, stats) {
                 if (err !== null) {
                     console.log(err);
                     return;
