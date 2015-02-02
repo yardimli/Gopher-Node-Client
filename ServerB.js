@@ -1,5 +1,13 @@
-var Global = require('../manager/global.js');
-var FileManager = require('./js/fileManager.js');
+var fs = require('fs');
+var http = require('http');
+var url = require('url');
+var path = require('path');
+var queryString = require('querystring');
+
+var Global = require('./ServerB_Global.js');
+var FileManager = require('./ServerB_FileManager.js');
+var portManager = require('./ServerB_PortManager.js');
+var ajaxProcessor = require('./ServerB_ProcessAjax.js');
 
 var StringDecoder = require('string_decoder').StringDecoder;
 var decoder = new StringDecoder('utf8');
@@ -8,15 +16,15 @@ var requestMarker = 0;
 
 
 
-var ServerB = Global.http.createServer(onRequest).listen(1337, function (err) {
+var ServerB = http.createServer(onRequest).listen(1337, function (err) {
     Global.Servers.push(ServerB);
 
 });
 
 var FileMap = {
-    root: __dirname + '/../',
+    root: __dirname+'/',
     getCleanFileName: function (_requestUrl) {
-        var UrlObj = Global.url.parse(_requestUrl);
+        var UrlObj = url.parse(_requestUrl);
         if (UrlObj.pathname !== '') {
             var FileName = '';
             var PathArr = UrlObj.pathname.split('/');
@@ -30,7 +38,7 @@ var FileMap = {
         }
     },
     getFilePath: function (_requestUrl) {
-        var PhysicalDirName = Global.path.dirname(_requestUrl);
+        var PhysicalDirName = path.dirname(_requestUrl);
         if (PhysicalDirName !== '/') {
             PhysicalDirName += '/';
         }
@@ -62,8 +70,6 @@ function onRequest(request, response) {
 
     if (RequestUrl.indexOf('/' + Global.gopherManagerRoot) === 0) {
         mangerOnHttpRequest(request, response, RequestUrl);
-    } else {
-
     }
 
     request.on('end', function () {
@@ -78,9 +84,9 @@ function mangerOnHttpRequest(request, response, ModifieidUrl) {
     } else {
         if (request.headers['x-requested-with'] !== 'XMLHttpRequest') {
             var FilePath = FileMap.getFilePath(ModifieidUrl);
-            Global.fs.exists(FilePath, function (exists) {
+            fs.exists(FilePath, function (exists) {
                 if (exists) {
-                    Global.fs.readFile(FilePath, function (err, contents) {
+                    fs.readFile(FilePath, function (err, contents) {
                         if (!err) {
                             response.writeHead(200, {
                                 "Content-type": FileMap.getMimeType(ModifieidUrl),
@@ -92,7 +98,7 @@ function mangerOnHttpRequest(request, response, ModifieidUrl) {
                         }
                     });
                 } else {
-                    Global.fs.readFile('404.html', function (err, contents) {
+                    fs.readFile('./'+Global.gopherManagerRoot+'/404.html', function (err, contents) {
                         if (!err) {
                             response.writeHead(404, {'Content-Type': 'text/html'});
                             response.end(contents);
@@ -115,15 +121,14 @@ function mangerOnHttpRequest(request, response, ModifieidUrl) {
             });
 
             request.on('end', function () {
-                RecievedData = Global.QueryString.parse(decoder.write(RecievedChunk));
+                RecievedData = queryString.parse(decoder.write(RecievedChunk));
 
                 if (FileExt === '.do') {
                     switch (Command) {
                         case 'getProjects':
                             Global.dbConn(function (error, database) {
                                 if (error === null) {
-                                    var AjaxToProject = require('./js/ajaxToProjects.js');
-                                    AjaxToProject.getProjects(Number(RecievedData['projectID']), database, function (result) {
+                                    ajaxProcessor.getProjects(Number(RecievedData['projectID']), database, function (result) {
                                         response.end(JSON.stringify(result));
                                         database.close();
                                     });
@@ -144,8 +149,7 @@ function mangerOnHttpRequest(request, response, ModifieidUrl) {
                             //check ports already claimed by another project
                             Global.dbConn(function (error, database) {
                                 if (error === null) {
-                                    var AjaxToProject = require('./js/ajaxToProjects.js');
-                                    AjaxToProject.getProjects(0, database, function (result) {
+                                    ajaxProcessor.getProjects(0, database, function (result) {
                                         var countOccupied = 0;
 
                                         for (var i = 0; i < result.length; i++) {
@@ -164,33 +168,35 @@ function mangerOnHttpRequest(request, response, ModifieidUrl) {
                                             };
                                             response.end(JSON.stringify(_result));
                                         } else {
-                                            var server = new Global.net.createServer();
-                                            server.listen(Number(RecievedData['proxyHostPort']));
-
-                                            server.once('error', function (error) {
-                                                if (error.code === 'EADDRINUSE') {
+                                            portManager.isPortOpen(Number(RecievedData['proxyHostPort']),function(err, result){
+                                                if(err == null){
+                                                    if(result===true){
+                                                        var _result = {
+                                                            error: 'The choosen port is buy or occupied.',
+                                                            result: null
+                                                        };
+                                                        response.end(JSON.stringify(_result));
+                                                    }else{
+                                                        Global.dbConn(function (err, database) {
+                                                            if (err === null) {
+                                                                ajaxProcessor.saveProject(RecievedData, database, function (result) {
+                                                                    response.end(JSON.stringify(result));
+                                                                    database.close();
+                                                                });
+                                                            } else {
+                                                                response.end({error: err, result: null});
+                                                            }
+                                                        });
+                                                    }
+                                                }else{
                                                     var _result = {
-                                                        error: 'The choosen port is buy or occupied.',
+                                                        error: err,
                                                         result: null
                                                     };
                                                     response.end(JSON.stringify(_result));
                                                 }
                                             });
-
-                                            server.once('listening', function () {
-                                                server.close();
-                                                Global.dbConn(function (err, database) {
-                                                    if (err === null) {
-                                                        var project = require('./js/ajaxToProjects.js');
-                                                        project.saveProject(RecievedData, database, function (result) {
-                                                            response.end(JSON.stringify(result));
-                                                            database.close();
-                                                        });
-                                                    } else {
-                                                        response.end({error: err, result: null});
-                                                    }
-                                                });
-                                            });
+                                            
                                         }
 
                                     });
@@ -203,8 +209,7 @@ function mangerOnHttpRequest(request, response, ModifieidUrl) {
                         case 'getProjectDetail':
                             Global.dbConn(function (error, database) {
                                 if (error === null) {
-                                    var project = require('./js/ajaxToProjects.js');
-                                    project.getProjectDetail(Number(RecievedData['projectID']), database, function (result) {
+                                    ajaxProcessor.getProjectDetail(Number(RecievedData['projectID']), database, function (result) {
                                         response.end(JSON.stringify(result));
                                         database.close();
                                         response.end();
@@ -256,7 +261,6 @@ function mangerOnHttpRequest(request, response, ModifieidUrl) {
 
                             break;
                         case 'lunchProject':
-                            var portManager = require('./js/portManager.js');
                             var portOpened = portManager.isPortOpen(Number(RecievedData['proxyHostPort']), function (error, result) {
                                 if (error !== null) {
                                     response.end('error:' + error);
@@ -264,9 +268,9 @@ function mangerOnHttpRequest(request, response, ModifieidUrl) {
                                     if (result === false) {
                                         Global.dbConn(function (error, database) {
                                             if (error === null) {
-                                                var project = require('./js/ajaxToProjects.js');
-                                                project.getProjectDetail(Number(RecievedData['projectID']), database, function (result) {
-                                                    var ProxyServer = Global.http.createServer(function (request, response) {
+                                                ajaxProcessor.getProjectDetail(Number(RecievedData['projectID']), database, function (result) {
+                                                    
+                                                    var ProxyServer = http.createServer(function (request, response) {
                                                         proxyOnHttpRequest(request, response, RecievedData['forwardHostName'], Number(RecievedData['forwardHostPort']), Number(RecievedData['projectID']), result.ignored);
                                                     }).listen(Number(RecievedData['proxyHostPort']), function (err) {
                                                         if (err) {
@@ -284,9 +288,6 @@ function mangerOnHttpRequest(request, response, ModifieidUrl) {
                                                 response.end(error);
                                             }
                                         });
-
-
-
                                     } else {
                                         response.end('running');
                                     }
@@ -295,7 +296,7 @@ function mangerOnHttpRequest(request, response, ModifieidUrl) {
                             
                             //Execute line in command from node
                             /*var exec = require('child_process').exec;
-                             var child = exec('node ./js/html5server.js gopher myProject run',function(error,stdout,stderr){
+                             var child = exec('node ./ServerB_createHtml5Server.js gopher myProject run',function(error,stdout,stderr){
                              console.log('====== stdout =========');
                              console.log(stdout.trim());
                              console.log('====== stderr =========');
@@ -317,6 +318,7 @@ function mangerOnHttpRequest(request, response, ModifieidUrl) {
                                                 Global.Servers.splice(j, 1);
                                             }
                                         }
+                                        console.log(Global.Servers);
                                         response.end('success');
                                     });
                                 }
@@ -325,19 +327,17 @@ function mangerOnHttpRequest(request, response, ModifieidUrl) {
                             break;
 
                         case 'getAnAvailablePort':
-                            var start = 1338, end = 2338;
-                            var stopSearching = false;
-                            var occupied = [];
-
                             Global.dbConn(function (error, database) {
                                 if (error === null) {
-                                    var AjaxToProject = require('./js/ajaxToProjects.js');
-                                    AjaxToProject.getProjects(0, database, function (result) {
+                                    var occupied = [];
+                                    ajaxProcessor.getProjects(0, database, function (result) {
                                         for (var i = 0; i < result.length; i++) {
                                             occupied.push(Number(result[i].ProxyHostPort));
                                         }
                                         database.close();
-                                        checkPort(start);
+                                        portManager.getAvailablePort(occupied,function(result){
+                                           response.end(JSON.stringify(result)); 
+                                        });
                                     });
                                 } else {
                                     var _response = {
@@ -347,52 +347,6 @@ function mangerOnHttpRequest(request, response, ModifieidUrl) {
                                     response.end(_response);
                                 }
                             });
-
-                            function checkPort(_port) {
-                                var server = new Global.net.createServer();
-                                server.listen(_port);
-
-                                server.once('error', function (error) {
-                                    start++;
-                                    if (error.code === 'EADDRINUSE') {
-                                        if (start <= end && stopSearching === false) {
-                                            checkPort(start);
-                                        } else {
-                                            var result = {
-                                                error: 'Can not find an open port',
-                                                port: null
-                                            };
-                                            response.end(JSON.stringify(result));
-                                        }
-                                    }
-                                });
-
-                                server.once('listening', function () {
-                                    server.close();
-                                    var countOccupied = 0;
-                                    for (var i = 0; i < occupied.length; i++) {
-                                        if (occupied[i] === _port) {
-                                            countOccupied++;
-                                        }
-                                    }
-
-                                    if (stopSearching === false) {
-                                        if (countOccupied > 0) {
-                                            start++;
-                                            if (start <= end) {
-                                                checkPort(start);
-                                            }
-                                        } else {
-                                            stopSearching = true;
-                                            var result = {
-                                                error: null,
-                                                port: _port
-                                            };
-                                            response.end(JSON.stringify(result));
-                                        }
-                                    }
-                                });
-                            }
                             break;
 
                         default:
@@ -450,7 +404,7 @@ function proxyOnHttpRequest(request, response, forwardHostName, forwardHostPort,
         }
         pageMarker = projectID + '' + requestMarker + '';
         var trackImageByteIndex = 0;
-        var NodeProxyRequest = Global.http.request(ProxyOptions, function (ApacheResponse) {
+        var NodeProxyRequest = http.request(ProxyOptions, function (ApacheResponse) {
             /*if (FileMap.getFileExtension(request.url) === '.png' || FileMap.getFileExtension(request.url) === '.jpg' || FileMap.getFileExtension(request.url) === '.jpeg' || FileMap.getFileExtension(request.url) === '.gif' || FileMap.getFileExtension(request.url) === '.pdf' || FileMap.getFileExtension(request.url) === '.exe' && FileMap.getFileExtension(request.url) === '.eot') {
                 ApacheResponseContentLength = parseInt(ApacheResponse.headers['Cache-Control']);
                 trackImageByteIndex = ApacheResponseContentLength;
@@ -561,7 +515,7 @@ function proxyOnHttpRequest(request, response, forwardHostName, forwardHostPort,
                     
                     
                     if((FileMap.getCleanFileName(request.url)).indexOf('GopherBHelper.js')>-1){
-                        var queries = Global.QueryString.parse((request.url).substring(request.url.indexOf('?')+1));
+                        var queries = queryString.parse((request.url).substring(request.url.indexOf('?')+1));
                         var parentPage='';
                         var childPage=[];
                         for(var i=0; i<pageStack.length; i++){
@@ -578,9 +532,9 @@ function proxyOnHttpRequest(request, response, forwardHostName, forwardHostPort,
                         
                         
                         var helperFilePath =  '../liveparser-root/js/GopherBInsert.js';
-                        Global.fs.exists(Global.GopherHelperFile, function (exists) {
+                        fs.exists(Global.GopherHelperFile, function (exists) {
                             if (exists) {
-                                Global.fs.readFile(Global.GopherHelperFile, function (err, contents) {
+                                fs.readFile(Global.GopherHelperFile, function (err, contents) {
                                     contents = decoder.write(contents);
                                     contents = contents.replace('var xProjectID = "1";','var xProjectID = "'+projectID+'";');
                                     contents = contents.replace('var xParentFileName = "index.html";','var xParentFileName = "'+parentPage+'";');
@@ -614,10 +568,6 @@ function proxyOnHttpRequest(request, response, forwardHostName, forwardHostPort,
                 }
                 
                 if((FileMap.getCleanFileName(request.url)).indexOf('GopherBHelper.js') == -1){
-                    console.log(request.url);
-                    console.log('ResponseBuffer.length '+ResponseBuffer.length);
-                    console.log('TrackBytesIndex ' + trackImageByteIndex);
-                    console.log(' ');
                     ApacheResponse.headers['content-length'] = ResponseBuffer.length;
                     ApacheResponse.headers['Cache-Control'] = 'no-cache, must-revalidate';
                     ApacheResponse.headers['Expires'] = '-1';

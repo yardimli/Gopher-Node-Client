@@ -1,5 +1,4 @@
-var Global = require("../global.js");
-var portManager = require('./portManager.js');
+var portManager = require('./ServerB_PortManager.js');
 
 
 exports.getProjects = function (projectID, db, callBack) {
@@ -31,14 +30,14 @@ exports.saveProject = function (postData, db, callBack) {
         } else {
             queryP = "UPDATE projects SET Name='" + postData.projectName + "',FolderPath='" + postData.projectFolder + "',ForwardHostPort="+ postData.forwardHostPort +",ProxyHostPort="+ postData.proxyHostPort +",ForwardHostName='"+ postData.forwardHostName +"',ProxyHostName='"+ postData.proxyHostName +"',ProjectLink='"+ postData.projectLink +"' WHERE ID=" + postData.projectID;
         }
-        console.log(queryP);
+        //console.log(queryP);
         db.run(queryP, function (error) {
             if (error !== null) {
                 return callBack(error,null);
             } else {
                 var projectID = 0;
-                console.log('ajaxToProject.js (detail,changes)' + this.changes);
-                console.log('ajaxToProject.js (detail,lastID)' + this.lastID);
+                //console.log('ajaxToProject.js (detail,changes)' + this.changes);
+                //console.log('ajaxToProject.js (detail,lastID)' + this.lastID);
 
                 if (this.changes > 0) {
                     if (Number(postData.projectID) === 0) {
