@@ -168,32 +168,35 @@ function mangerOnHttpRequest(request, response, ModifieidUrl) {
                                             };
                                             response.end(JSON.stringify(_result));
                                         } else {
-                                            var server = new http.createServer();
-                                            server.listen(Number(RecievedData['proxyHostPort']));
-
-                                            server.once('error', function (error) {
-                                                if (error.code === 'EADDRINUSE') {
+                                            portManager.isPortOpen(Number(RecievedData['proxyHostPort']),function(err, result){
+                                                if(err == null){
+                                                    if(result===true){
+                                                        var _result = {
+                                                            error: 'The choosen port is buy or occupied.',
+                                                            result: null
+                                                        };
+                                                        response.end(JSON.stringify(_result));
+                                                    }else{
+                                                        Global.dbConn(function (err, database) {
+                                                            if (err === null) {
+                                                                ajaxProcessor.saveProject(RecievedData, database, function (result) {
+                                                                    response.end(JSON.stringify(result));
+                                                                    database.close();
+                                                                });
+                                                            } else {
+                                                                response.end({error: err, result: null});
+                                                            }
+                                                        });
+                                                    }
+                                                }else{
                                                     var _result = {
-                                                        error: 'The choosen port is buy or occupied.',
+                                                        error: err,
                                                         result: null
                                                     };
                                                     response.end(JSON.stringify(_result));
                                                 }
                                             });
-
-                                            server.once('listening', function () {
-                                                server.close();
-                                                Global.dbConn(function (err, database) {
-                                                    if (err === null) {
-                                                        ajaxProcessor.saveProject(RecievedData, database, function (result) {
-                                                            response.end(JSON.stringify(result));
-                                                            database.close();
-                                                        });
-                                                    } else {
-                                                        response.end({error: err, result: null});
-                                                    }
-                                                });
-                                            });
+                                            
                                         }
 
                                     });
@@ -258,7 +261,6 @@ function mangerOnHttpRequest(request, response, ModifieidUrl) {
 
                             break;
                         case 'lunchProject':
-                            
                             var portOpened = portManager.isPortOpen(Number(RecievedData['proxyHostPort']), function (error, result) {
                                 if (error !== null) {
                                     response.end('error:' + error);
@@ -267,6 +269,7 @@ function mangerOnHttpRequest(request, response, ModifieidUrl) {
                                         Global.dbConn(function (error, database) {
                                             if (error === null) {
                                                 ajaxProcessor.getProjectDetail(Number(RecievedData['projectID']), database, function (result) {
+                                                    
                                                     var ProxyServer = http.createServer(function (request, response) {
                                                         proxyOnHttpRequest(request, response, RecievedData['forwardHostName'], Number(RecievedData['forwardHostPort']), Number(RecievedData['projectID']), result.ignored);
                                                     }).listen(Number(RecievedData['proxyHostPort']), function (err) {
@@ -285,9 +288,6 @@ function mangerOnHttpRequest(request, response, ModifieidUrl) {
                                                 response.end(error);
                                             }
                                         });
-
-
-
                                     } else {
                                         response.end('running');
                                     }
@@ -318,6 +318,7 @@ function mangerOnHttpRequest(request, response, ModifieidUrl) {
                                                 Global.Servers.splice(j, 1);
                                             }
                                         }
+                                        console.log(Global.Servers);
                                         response.end('success');
                                     });
                                 }
@@ -567,10 +568,6 @@ function proxyOnHttpRequest(request, response, forwardHostName, forwardHostPort,
                 }
                 
                 if((FileMap.getCleanFileName(request.url)).indexOf('GopherBHelper.js') == -1){
-                    console.log(request.url);
-                    console.log('ResponseBuffer.length '+ResponseBuffer.length);
-                    console.log('TrackBytesIndex ' + trackImageByteIndex);
-                    console.log(' ');
                     ApacheResponse.headers['content-length'] = ResponseBuffer.length;
                     ApacheResponse.headers['Cache-Control'] = 'no-cache, must-revalidate';
                     ApacheResponse.headers['Expires'] = '-1';
