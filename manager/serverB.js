@@ -128,7 +128,7 @@ function mangerOnHttpRequest(request, response, ModifieidUrl) {
                                         database.close();
                                     });
                                 } else {
-                                    resposne.end(error);
+                                    response.end(error);
                                 }
                             });
                             break;
@@ -195,7 +195,7 @@ function mangerOnHttpRequest(request, response, ModifieidUrl) {
 
                                     });
                                 } else {
-                                    resposne.end(error);
+                                    response.end(error);
                                 }
                             });
                             break;
@@ -344,7 +344,7 @@ function mangerOnHttpRequest(request, response, ModifieidUrl) {
                                         error: error,
                                         result: null
                                     };
-                                    resposne.end(_response);
+                                    response.end(_response);
                                 }
                             });
 
