@@ -9,6 +9,9 @@ var FileManager = require('./ServerB_FileManager.js');
 var portManager = require('./ServerB_PortManager.js');
 var ajaxProcessor = require('./ServerB_ProcessAjax.js');
 
+var enableDestroy = require('./ServerB_DestroyHelper.js');
+
+
 var StringDecoder = require('string_decoder').StringDecoder;
 var decoder = new StringDecoder('utf8');
 var xxxx = '';
@@ -78,6 +81,7 @@ function onRequest(request, response) {
 
 function mangerOnHttpRequest(request, response, ModifieidUrl) {
     if (!Global.extensions[FileMap.getFileExtension(ModifieidUrl)]) {
+		console.log("404 not found on 2: "+ModifieidUrl);
         response.writeHead(404, {'Content-Type': 'text/html'});
         response.end("<html><head></head><body>The requested file type is not supported</body></html>");
 
@@ -98,6 +102,7 @@ function mangerOnHttpRequest(request, response, ModifieidUrl) {
                         }
                     });
                 } else {
+					consoel.log("404 not found on: "+ModifieidUrl);
                     fs.readFile('./'+Global.gopherManagerRoot+'/404.html', function (err, contents) {
                         if (!err) {
                             response.writeHead(404, {'Content-Type': 'text/html'});
@@ -231,6 +236,7 @@ function mangerOnHttpRequest(request, response, ModifieidUrl) {
 
                         case 'getFileList':
                             var path = RecievedData['path'];
+//							console.log(path);
                             FileManager.getFileList(RecievedData['path'], RecievedData['onlyFolders'], function (error, result) {
                                 if (error !== null) {
                                     response.end(error.toString());
@@ -278,9 +284,12 @@ function mangerOnHttpRequest(request, response, ModifieidUrl) {
                                                         }
                                                         ProxyServer.projectID = Number(RecievedData['projectID']);
                                                         ProxyServer.usePort = Number(RecievedData['proxyHostPort']);
+														
+														enableDestroy(ProxyServer);
                                                         Global.Servers.push(ProxyServer);
                                                         response.end('ready');
                                                     });
+													
 
                                                     database.close();
                                                 });
@@ -308,12 +317,20 @@ function mangerOnHttpRequest(request, response, ModifieidUrl) {
                             break;
 
                         case 'closeServer':
+							console.log("running server:"+Global.Servers.length+" looking for port:"+RecievedData['proxyHostPort']);
+							
                             for (var i = 0; i < Global.Servers.length; i++) {
                                 var connKey = Global.Servers[i]._connectionKey;
-
+								
+								console.log("connKey:"+connKey);
+								
                                 if (connKey.search(':' + RecievedData['proxyHostPort']) > -1) {
-                                    Global.Servers[i].close(function () {
+									console.log("found... closing.. "+i+" "+Global.Servers.length+" "+ Global.Servers[i].projectID);
+                                    //Global.Servers[i].close(
+											
+									Global.Servers[i].destroy(function () {
                                         for (var j = 0; j < Global.Servers.length; j++) {
+											console.log(Global.Servers[j]._connectionKey+" search for: "+':' + RecievedData['proxyHostPort']);
                                             if (Global.Servers[j]._connectionKey.search(':' + RecievedData['proxyHostPort']) > -1) {
                                                 Global.Servers.splice(j, 1);
                                             }
@@ -323,7 +340,7 @@ function mangerOnHttpRequest(request, response, ModifieidUrl) {
                                     });
                                 }
                             }
-
+							console.log("end of close");
                             break;
 
                         case 'getAnAvailablePort':
@@ -387,6 +404,12 @@ function proxyOnHttpRequest(request, response, forwardHostName, forwardHostPort,
         BrowserData.push(chunk);
     });
 
+
+	//  ****** REMOVE the headers responsible for asking apache etc. if the request can be used from local cache **
+	request.headers['if-none-match'] = '';
+	request.headers['if-modified-since'] = '';
+	//---------------
+	
     var ApacheChunk = [];
     var ProxyOptions = {
         host: projectHost,
@@ -395,6 +418,8 @@ function proxyOnHttpRequest(request, response, forwardHostName, forwardHostPort,
         method: request.method,
         headers: request.headers
     };
+	
+//	console.dir(request.headers);
 
 
     request.on('end', function () {
@@ -417,9 +442,9 @@ function proxyOnHttpRequest(request, response, forwardHostName, forwardHostPort,
 
             ApacheResponse.on('end', function () {
                 var ResponseBuffer = Buffer.concat(ApacheChunk);
-                
-
-                if (FileMap.getFileExtension(request.url) !== '.png' && FileMap.getFileExtension(request.url) !== '.jpg' && FileMap.getFileExtension(request.url) !== '.jpeg' && FileMap.getFileExtension(request.url) !== '.gif' && FileMap.getFileExtension(request.url) !== '.pdf' && FileMap.getFileExtension(request.url) !== '.exe' && FileMap.getFileExtension(request.url) !== '.ico' && FileMap.getFileExtension(request.url) !== '.woff' && FileMap.getFileExtension(request.url) !== '.eot') {
+                var CurrentExt = FileMap.getFileExtension(request.url).toLowerCase();
+                if (CurrentExt === '.php' || CurrentExt === '.htm' || CurrentExt === '.html' || CurrentExt === '.js'  ) {
+					
 
                     var chunkStr = decoder.write(ResponseBuffer);
 
@@ -440,35 +465,69 @@ function proxyOnHttpRequest(request, response, forwardHostName, forwardHostPort,
                         chunkStr = chunkStr.replace(strWithHttp[0], newStrWithHttp);
                     }
 
+					if (CurrentExt === '.js') {
+						
+						var srcVal =  (request.url).toLowerCase();
+						var srcSplashes = srcVal.split('/');
+						for (var k = 0; k < srcSplashes.length; k++) {
+							if (srcSplashes[k] == '.' || srcSplashes[k] == '..') {
+								srcSplashes[k] = '';
+							}
+						}
+						srcVal = srcSplashes.join('');
+
+						//if js file has a querysting of its own then. 
+						//if not found then the returning array will have the origial string in [0]
+						var srcVal2 = srcVal.split('?');
+						srcVal = srcVal2[0];
+						
+						
+						for (var j = 0; j < ignoredFiles.length; j++) {
+                            var path = (ignoredFiles[j].FilePath).replace(/\//g, '');
+							console.log(path+" "+srcVal);
+						}
+						
+						chunkStr = "testXYZ=1;\n"+chunkStr;
+					}
+					
                     //Add gopherHealper reference
-                    if (FileMap.getFileExtension(request.url) === '.php' || FileMap.getFileExtension(request.url) === '.html' || FileMap.getFileExtension(request.url) === '.htm' || FileMap.getFileExtension(request.url) === '') {
+                    if (CurrentExt === '.php' || CurrentExt === '.html' || CurrentExt === '.htm') {
                         pageStack.push(pageMarker+':'+FileMap.getCleanFileName(request.url));
-                        var regx3 = new RegExp(/(<script([^>]*)>)/ig);
+						
+						var regx3 = new RegExp('(<script([^>]*)>)', 'ig');
                         var scriptTag, scriptTagArr = [];
+						
+//						console.log("*************** ADD GOPHER HELPERS");
+//						console.log(chunkStr);
 
                         while ((scriptTag = regx3.exec(chunkStr)) !== null) {
+//							console.log("scriptTag:"+scriptTag);
                             scriptTagArr.push(scriptTag);
                         }
 
                         if (scriptTagArr.length > 0) {
+							console.log("*** ADD GOPHER HELPERS");
                             var gopherHelper = '<script src="GopherBHelper.js?GopherPage=' + pageMarker + '" type="text/javascript"></script>';
                             chunkStr = [chunkStr.slice(0, scriptTagArr[0].index), gopherHelper, chunkStr.slice(scriptTagArr[0].index)].join('');
 
                             for (var i = 0; i < scriptTagArr.length; i++) {
+								//console.log("JAVASCRIPTS: "+(scriptTagArr[i][1]).toLowerCase());
                                 //Get src value
                                 var regFindSrc;
                                 var scriptTagStr = (scriptTagArr[i][1]).toLowerCase();
                                 if (scriptTagStr.search('src="') > -1) {
-                                    regFindSrc = new RegExp(/<script.*?src="(.*?)"/ig);
+									regFindSrc = new RegExp('<script.*?src="(.*?)"', 'ig');
                                 } else {
-                                    regFindSrc = new RegExp(/<script.*?src='(.*?)'/ig);
+									regFindSrc = new RegExp('<script.*?src=\'(.*?)\'', 'ig');
                                 }
 
                                 var findSrcRst = regFindSrc.exec(scriptTagArr[i][1]);
-
                                 //Varify the value
                                 var unqualified = 0;
                                 if (findSrcRst !== null) {
+									
+									//console.log("findSrcRst: "+findSrcRst[1]);
+									
                                     var slashes = (findSrcRst[1]).split('/');
                                     if (((slashes[slashes.length - 1]).toLowerCase()).search('.js') === -1) {
                                         unqualified++;
@@ -484,8 +543,13 @@ function proxyOnHttpRequest(request, response, forwardHostName, forwardHostPort,
                                             }
                                         }
                                         srcVal = srcSplashes.join('');
+										
+										//if js file has a querysting of its own then. 
+										//if not found then the returning array will have the origial string in [0]
+										var srcVal2 = srcVal.split('?');
+										srcVal = srcVal2[0];
 
-                                        var path = (ignoredFiles[j].FilePath).replace(/\\/g, '');
+                                        var path = (ignoredFiles[j].FilePath).replace(/\//g, '');
                                         if (path.search(srcVal) > -1) {
                                             unqualified++;
                                             ignoredCount++;
@@ -493,6 +557,7 @@ function proxyOnHttpRequest(request, response, forwardHostName, forwardHostPort,
                                     }
                                     
                                     if(ignoredCount === 0){
+										//console.log('        '+pageMarker+':'+findSrcRst[1]);
                                         pageStack.push(pageMarker+':'+findSrcRst[1]);
                                     }
                                     
@@ -504,8 +569,7 @@ function proxyOnHttpRequest(request, response, forwardHostName, forwardHostPort,
                                         } else {
                                             changeSrcTo = findSrcRst[1] + '&GopherPage=' + pageMarker;
                                         }
-                                        var srcreg = new RegExp(findSrcRst[1]);
-                                        chunkStr = chunkStr.replace(srcreg, changeSrcTo, 'g');
+										chunkStr = chunkStr.replace(findSrcRst[1], changeSrcTo, 'g');
                                     }
                                 }
 
@@ -513,8 +577,8 @@ function proxyOnHttpRequest(request, response, forwardHostName, forwardHostPort,
                         }
                     }
                     
-                    
                     if((FileMap.getCleanFileName(request.url)).indexOf('GopherBHelper.js')>-1){
+						console.log("INSERT GOPHER HELPER");
                         var queries = queryString.parse((request.url).substring(request.url.indexOf('?')+1));
                         var parentPage='';
                         var childPage=[];
@@ -522,7 +586,15 @@ function proxyOnHttpRequest(request, response, forwardHostName, forwardHostPort,
                             if((pageStack[i]).indexOf(queries['GopherPage']+':')>-1){
                                 var dots = (pageStack[i]).split('.');
                                 var page = (pageStack[i]).substring((pageStack[i]).indexOf(':')+1);
-                                if(dots[dots.length-1] !== 'js'){
+								
+								//if js file has a querysting of its own then. 
+								//if not found then the returning array will have the origial string in [0]
+								
+								var puredots = (dots[dots.length-1]).split('?');
+								
+								//console.log(pageStack[i]+" "+dots[dots.length-1]+" "+page+" "+puredots[0]);
+								
+                                if(puredots[0] !== 'js'){
                                     parentPage = page;
                                 }else{
                                     childPage.push(page);
@@ -530,37 +602,49 @@ function proxyOnHttpRequest(request, response, forwardHostName, forwardHostPort,
                             } 
                         }
                         
-                        
-                        var helperFilePath =  '../liveparser-root/js/GopherBInsert.js';
+
+                        var helperFilePath =  './liveparser-root/js/GopherBInsert.js';
                         fs.exists(Global.GopherHelperFile, function (exists) {
                             if (exists) {
+								//console.log("INSERT GOPHER HELPER 2");
                                 fs.readFile(Global.GopherHelperFile, function (err, contents) {
+									//console.log("INSERT GOPHER HELPER 3 ");
                                     contents = decoder.write(contents);
-                                    contents = contents.replace('var xProjectID = "1";','var xProjectID = "'+projectID+'";');
-                                    contents = contents.replace('var xParentFileName = "index.html";','var xParentFileName = "'+parentPage+'";');
+									
+									/*PLACEHOLDERFORINSERT*/
+									PLACEHOLDERFORINSERT = '\nvar xProjectID = "'+projectID+'";\n';
+                                    PLACEHOLDERFORINSERT += 'var xParentFileName = "'+parentPage+'";\n';
                                     
                                     var buildFileMapStr = 'var GFileMap=[';
                                     for(var j=0; j<childPage.length; j++){
                                         buildFileMapStr += '"'+childPage[j]+'"';
                                         if(j<childPage.length-1){
-                                            buildFileMapStr += ',';
+                                            buildFileMapStr += ',\n';
                                         }
                                     }
                                     buildFileMapStr += '];';
+									
+									PLACEHOLDERFORINSERT += buildFileMapStr;
                                     
-                                    contents = contents.replace('var GFileMap = [];',buildFileMapStr);
+                                    contents = contents.replace('/*PLACEHOLDERFORINSERT*/',PLACEHOLDERFORINSERT);
                                     chunkStr = contents;
                                     
+				//					console.dir(ApacheResponse);
                                     ResponseBuffer = new Buffer(chunkStr, 'utf8');
                                     ApacheResponse.headers['content-length'] = ResponseBuffer.length;
                                     ApacheResponse.headers['Cache-Control'] = 'no-cache, must-revalidate';
                                     ApacheResponse.headers['Expires'] = '-1';
                                     ApacheResponse.headers['Pragma'] = 'no-cache';
+									ApacheResponse.statusCode = 200;
+									ApacheResponse.statusMessage = "OK";
                                     response.writeHead(ApacheResponse.statusCode, ApacheResponse.headers);
                                     response.write(ResponseBuffer, 'binary');
                                     response.end();
                                 });
-                            }
+                            } else
+							{
+								console.log("***** FATAL ERROR: CANT FIND HELPER!!");
+							}
                         }); 
                     }else{                         
                         ResponseBuffer = new Buffer(chunkStr, 'utf8');
@@ -572,6 +656,12 @@ function proxyOnHttpRequest(request, response, forwardHostName, forwardHostPort,
                     ApacheResponse.headers['Cache-Control'] = 'no-cache, must-revalidate';
                     ApacheResponse.headers['Expires'] = '-1';
                     ApacheResponse.headers['Pragma'] = 'no-cache';
+					//change status to 200 for 304 so file will be downloaded every time
+					if (ApacheResponse.statusCode==304) {
+						ApacheResponse.statusCode = 200;
+						ApacheResponse.statusMessage = "OK";
+					}
+					//-----------------
                     response.writeHead(ApacheResponse.statusCode, ApacheResponse.headers);
                     response.write(ResponseBuffer, 'binary');
                     response.end();

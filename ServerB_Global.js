@@ -32,4 +32,4 @@ exports.extensions = {
 
 exports.ignoredByDefault = ['jquery.','jquery-','jquery-ui','bootstrap.min.js','bootstrap.js'];
 
-exports.GopherHelperFile = 'GopherBInsert.js';
+exports.GopherHelperFile = './GopherBInsert.js';

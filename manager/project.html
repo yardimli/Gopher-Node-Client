@@ -38,7 +38,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Gopher Manager</a>
+                    <a class="navbar-brand" href="index.html">Gopher Manager</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
@@ -55,13 +55,14 @@
 
         <div class="container myContent new-edit-project">
             <div class="row">
-                <div class="col-md-12" style="padding-bottom: 20px;"><input type="text" class="form-control" placeholder="Project Name" id="in_projectName" style="background-color:#253849;font-weight: bold;font-size:150%;height:46px;color:#EFEFEF;">
+                <div class="col-md-12" style="padding-bottom: 20px;"><input type="text" class="form-control" placeholder="Project Name" id="in_projectName" style="font-weight: bold;font-size:150%;height:46px;">
                 </div>
                 <div id="new_project_files" class="col-md-12 new-project-files">
                     <div class="col-md-9 dialog-file-list-header">
+  
                         <div data-role="fileList_arrow_navigate" data-forid="new_project_files" class="btn-group" role="group" aria-label="...">
-                            <a data-role="backward" class="btn btn-default"><div class="backward-arrow disabled">&nbsp;</div></a>
-                            <a data-role="forward" class="btn btn-default"><div class="forward-arrow disabled">&nbsp;</div></a>
+							<a data-role="backward" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left backward-arrow disabled" aria-hidden="true"></span></a>
+							<a data-role="forward" class="btn btn-default"><span class="glyphicon glyphicon-chevron-right forward-arrow" aria-hidden="true"></span></a>
                         </div>
                         <div data-role="current directory" class="show-current-dir"></div>  
                     </div>
@@ -165,25 +166,29 @@
                     </div>
                     <div class="modal-body" style="margin-bottom:0px; padding-bottom:0px;">
                         <div class="dialog-file-list-header">
-                            <div data-role="fileList_arrow_navigate" data-forid="dialog_select_dir" class="btn-group" role="group" aria-label="...">
-                                <a data-role="backward" class="btn btn-default"><div class="backward-arrow disabled">&nbsp;</div></a>
-                                <a data-role="forward" class="btn btn-default"><div class="forward-arrow disabled">&nbsp;</div></a>
+                            <div data-role="fileList_arrow_navigate" data-forid="dialog_select_dir" class="btn-group" role="group" aria-label="..." style="margin-right:5px;">
+								<a data-role="backward" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left backward-arrow" aria-hidden="true"></span></a>
+								<a data-role="forward" class="btn btn-default"><span class="glyphicon glyphicon-chevron-right forward-arrow" aria-hidden="true"></span></a>
                             </div>
-                            <div class="combo-edit-box">
-                                <div class="holder edit-input">
-                                    <input id="current_drive" class="form-control" value="" style=""/>
-                                    <input type="hidden" id="current_drive_val" value="">
-                                </div>
-                                <div id="select_drive_option" class="combo-edit-box-options">
-                                    <ul>
-                                    </ul>
-                                </div>
-                                <div class="holder select-arrow" id="arrow_select_drive" ><div class="icon">&nbsp;</div></div>
-                            </div>
+							
+							<div class="input-group" style="width:30%">
+								<input class="form-control" id="current_drive" size="16" type="text" >
+                                   <input type="hidden" id="current_drive_val" value="">
+								<a class="input-group-addon btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
+									<span class="caret"></span>
+								</a>
+								<ul id="select_drive_option"  class="dropdown-menu">
+									<li><a href="#"><i class="icon-pencil"></i> Edit</a></li>
+									<li><a href="#"><i class="icon-trash"></i> Delete</a></li>
+									<li><a href="#"><i class="icon-ban-circle"></i> Ban</a></li>
+									<li class="divider"></li>
+									<li><a href="#"><i class="i"></i> Make admin</a></li>
+								</ul>
+							</div>
                             <div data-role="current directory" class="show-current-dir"></div>
                         </div>
 
-                        <div data-role="display files" class="target-dir" data-forid="dialog_select_dir" data-only_folders="true" data-multi_select="false"></div>
+                        <div data-role="display files" class="list-group target-dir" data-forid="dialog_select_dir" data-only_folders="true" data-multi_select="false"></div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" id="btn_openProjectDir" data-dismiss="modal" data-edit_mode="false">

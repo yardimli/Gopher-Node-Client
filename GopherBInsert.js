@@ -15,15 +15,20 @@ var GMsgArray = [];
 
 var xRuntimeTimeStamp = Math.floor(Date.now() / 1000);
 
+/*PLACEHOLDERFORINSERT*/
+
+/*
+var GFileMap = [];
 var xProjectID = "1"; //**** updated from proxy
 var xParentFileName = "index.html"; //**** updated from proxy
-
-var GFileMap = [];
-//***** list built from proxy
+*/
+//***** list built from proxy ***
+/*
 GFileMap[0] = "app.js";
 GFileMap[1] = "app-func.js";
 GFileMap[2] = "calculator.js";
 GFileMap[3] = "snake.js";
+*/
 
 TrackObjectArray = [];
 TrackObjectArray.push("a");

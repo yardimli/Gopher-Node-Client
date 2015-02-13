@@ -1,0 +1,36 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    font-family: Helvetica Neue,Arial,Helvetica,'Liberation Sans',FreeSans,sans-serif;
+    font-size: 13px;
+}
+
+::selection{ background-color: transparent;}
+::moz-selection{ background-color: transparent;}
+::webkit-selection{ background-color: transparent;}
+
+#footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 30px;
+    background-color: #283949;
+    color:#FFFFFF;
+}
+
+
+.backward-arrow{
+    width: 24px; height: 24px;
+    background: url('../images/left207-white.png') no-repeat;
+}
+.backward-arrow.disabled{
+    background: url('../images/left207-disabled.png') no-repeat;
+}
+.forward-arrow{
+    width:24px; height: 24px;
+    background: url('../images/right218-white.png') no-repeat;
+}
+.forward-arrow.disabled{
+    background: url('../images/right218-disabled.png') no-repeat;
+}

@@ -75,12 +75,12 @@ $(document).ready(function () {
                 var dataObj = $.parseJSON(data);
 
                 if (dataObj.length > 0) {
-                    $('#select_drive_option ul').empty();
+                    $('#select_drive_option').empty();
 
                     $('#current_drive').val(dataObj[0].name);
                     $('#current_drive_val').val(dataObj[0].path);
                     for (var i = 0; i < dataObj.length; i++) {
-                        $('#select_drive_option ul').append('<li data-path="' + dataObj[i].path + '">' + dataObj[i].name + '</li>');
+                        $('#select_drive_option').append('<li data-path="' + dataObj[i].path + '"><a href="#">' + dataObj[i].name + '</a></li>');
                     }
                 }
                 _callBack(null);
@@ -113,9 +113,9 @@ $(document).ready(function () {
                 } catch (e) {
                     hasNodeError = 1;
                     if (data.search('UNKNOWN, readdir') > -1) {
-                        errorMessage = 'Can not find directory ' + sendData.path;
+                        errorMessage = "ajaxGetFileList1: "+'Can not find directory ' + sendData.path;
                     } else {
-                        errorMessage = e;
+						errorMessage = "ajaxGetFileList2: "+e;
                     }
                 }
 
@@ -126,7 +126,7 @@ $(document).ready(function () {
                 }
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                _callBack(textStatus + ' ' + errorThrown, null);
+                _callBack("ajaxGetFileList3: "+textStatus + ' ' + errorThrown, null);
             },
             complete: function (jqXHR, textStatus) {
             }
@@ -174,24 +174,28 @@ $(document).ready(function () {
         if (data.length > 0) {
             $(listContainer).append($('<ul class="' + liClass + '"></ul>'));
             var assignClass;
+			var iconClass;
             for (var i = 0; i < data.length; i++) {
                 if (data[i].isDirectory == true) {
                     assignClass = 'item';
+					iconClass = "glyphicon glyphicon-folder-close";
                 } else {
                     assignClass = 'item file';
+					iconClass = "glyphicon glyphicon-file";
                 }
                 var li = $('<li></li>');
                 $(li).attr('class', assignClass);
                 $(li).attr('data-path', data[i].path);
                 $(li).attr('data-is_directory', data[i].isDirectory);
 
-                $(li).append('<span>' + data[i].name + '</span>');
+                $(li).append('<span class="'+iconClass+'" aria-hidden="true"></span> <span>' + data[i].name + '</span>');
                 $(listContainer).find('ul').append(li.prop('outerHTML'));
             }
         } else {
             console.log('show msg no folders');
             $(listContainer).append('<div class="alert alert-info" role="alert">' + errorMessage + '</div>');
         }
+		
 
     }
 
@@ -230,7 +234,7 @@ $(document).ready(function () {
         $('#file_ignored_list').empty();
         $('#file_ignored_list').append('<ul class="ignored-file"></ul>');
         var fileName = function (path) {
-            var splashes = path.split('\\');
+            var splashes = path.split('/');
             return splashes[splashes.length - 1];
         };
 
@@ -249,7 +253,7 @@ $(document).ready(function () {
     $('#dialog_select_dir').on('show.bs.modal', function () {
         var targetDirElm = $('#dialog_select_dir').find('div[data-role="display files"]');
         $(targetDirElm).css({
-            'height': ($('#dialog_select_dir').find('.modal-body').height() - 14) + 'px',
+            'height': ($('#dialog_select_dir').find('.modal-body').height() - 100) + 'px',
             'width': $('#dialog_select_dir').find('.modal-body').width() + 'px'
         });
 
@@ -266,17 +270,13 @@ $(document).ready(function () {
 
                     displayFileList(data, $('#dialog_select_dir').find('div[data-role="display files"]'), 'There has no folders here.');
 
-                    $('#dialog_select_dir').find('div[data-role="current directory"]').text('');
+                    $('#dialog_select_dir').find('div[data-role="current directory"]').text($('#current_drive_val').val());
                     updateArrowState(dialogFileListView, $('#dialog_select_dir').find('div[data-role="fileList_arrow_navigate"]'));
                 } else {
                     $('#dialog_select_dir').find('div[data-role="display files"]').append('<div class="alert alert-warning" role="alert">' + error + '</div>');
                 }
             });
         });
-    });
-
-    $('#arrow_select_drive').click(function () {
-        $('#select_drive_option').slideDown('fast');
     });
 
     $('#select_drive_option').on('click', 'li', function () {
@@ -286,11 +286,12 @@ $(document).ready(function () {
 
         $('#current_drive').val($(this).text());
         $('#current_drive_val').val($(this).data('path'));
-        $('#select_drive_option').hide();
+		
+		$('#' + $(fileListContainer).data('forid')).find('div[data-role="current directory"]').text($(this).text());
 
         $(fileListContainer).find('div[role="alert"]').remove();
         ajaxGetFileList($(this).data('path'), true, function (error, data) {
-            $(currentDirectory).text('');
+            //$(currentDirectory).text('');
             //$('#'+$(fileListContainer).data('forid')).find('input[data-role="remember home"]').val('0');
             $(fileListContainer).find('ul').remove();
 
@@ -311,9 +312,6 @@ $(document).ready(function () {
     });
 
     $(document).click(function (e) {
-        if ($(e.target).is(':not(#arrow_select_drive)') && $('#arrow_select_drive').has(e.target).length === 0) {
-            $('#select_drive_option').hide();
-        }
         
         /*if($(e.target).is(':not(#set_gopher_link div[data-role="select arrow"])') && $('#set_gopher_link div[data-role="select arrow"]').has(e.target).length===0){
             $('#gopher_port_option').hide();
@@ -365,7 +363,9 @@ $(document).ready(function () {
                 }
 
                 var showPath = $(_senderJ).data('path');
-                showPath = showPath.replace($('#current_drive').val() + '\\', '');
+                
+				//showPath = showPath.replace($('#current_drive').val() + '/', '');
+				
                 $('#' + $(listContainer).data('forid')).find('div[data-role="current directory"]').text(showPath);
 
                 dialogFileListView.trace.push($(_senderJ).data('path'));
@@ -414,7 +414,7 @@ $(document).ready(function () {
                 }
 
                 var showPath = dialogFileListView.trace[dialogFileListView.currentAtIndex];
-                showPath = showPath.replace($('#current_drive').val() + '\\', '');
+//                showPath = showPath.replace($('#current_drive').val() + '/', '');
                 $(currentDirectoryObj).text(showPath);
 
                 updateArrowState(dialogFileListView, arrowsContainerObj);
@@ -423,7 +423,7 @@ $(document).ready(function () {
     });
 
     $('#btn_openProjectDir').click(function () {
-        var selectedPath = $('#current_drive_val').val() + $('#dialog_select_dir').find('div[data-role="current directory"]').text();
+        var selectedPath = $('#dialog_select_dir').find('div[data-role="current directory"]').text(); //$('#current_drive_val').val() + 
         var fileListContainer = $('#new_project_files').find('div[data-role="display files"]');
         var currentDirectory = $('#new_project_files').find('div[data-role="current directory"]');
         var arrowNavigator = $('new_project_files').find('div[data-role="fileList_arrow_navigate"]');
@@ -431,10 +431,17 @@ $(document).ready(function () {
         $('#btn_save_project').removeClass('disabled');
         $('#selected_project_folder').val(selectedPath);
         var fileName = function (path) {
-            var splashes = path.split('\\');
+            var splashes = path.split('/');
             return splashes[splashes.length - 2];
         };
-        $('#in_projectName').val(fileName(selectedPath));
+		
+		//Ekim -- bug fix if project name is not written replace it otherwise dont change it when selecting folder
+		if ($('#in_projectName').val()=="") 
+		{
+			$('#in_projectName').val(fileName(selectedPath));
+		}
+		//-----
+		
         $(fileListContainer).find('div[role="alert"]').remove();
 
         ajaxGetFileList(selectedPath, false, function (error, data) {
@@ -719,7 +726,7 @@ $(document).ready(function () {
             }
             
             
-            var selectedPath = $('#current_drive_val').val() + $('#selected_project_folder').val();
+            var selectedPath = $('#selected_project_folder').val(); //$('#current_drive_val').val() + 
             var fileListContainer = $('#new_project_files').find('div[data-role="display files"]');
             var currentDirectory = $('#new_project_files').find('div[data-role="current directory"]');
             var arrowNavigator = $('new_project_files').find('div[data-role="fileList_arrow_navigate"]');
