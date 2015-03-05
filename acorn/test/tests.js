@@ -43,8 +43,8 @@ test("this\n", {
       column: 0
     },
     end: {
-      line: 1,
-      column: 4
+      line: 2,
+      column: 0
     }
   }
 });
@@ -86,8 +86,8 @@ test("null\n", {
       column: 0
     },
     end: {
-      line: 1,
-      column: 4
+      line: 2,
+      column: 0
     }
   }
 });
@@ -125,12 +125,12 @@ test("\n    42\n\n", {
   ],
   loc: {
     start: {
-      line: 2,
-      column: 4
+      line: 1,
+      column: 0
     },
     end: {
-      line: 2,
-      column: 6
+      line: 4,
+      column: 0
     }
   }
 });
@@ -169,7 +169,7 @@ test("/[a-z]/g", {
       type: "ExpressionStatement",
       expression: {
         type: "Literal",
-        value: /[a-z]/,
+        value: /[a-z]/g,
         regex: {
           pattern: "[a-z]",
           flags: "g"
@@ -403,7 +403,7 @@ test("(1 + 2 ) * 3", {
   preserveParens: true
 });
 
-test("(x) = 23", {}, { preserveParens: true });
+testFail("(x) = 23", "Assigning to rvalue (1:0)", { preserveParens: true });
 
 test("x = []", {
   type: "Program",
@@ -4916,7 +4916,7 @@ test("/* block comment */ 42", {
   loc: {
     start: {
       line: 1,
-      column: 20
+      column: 0
     },
     end: {
       line: 1,
@@ -4963,7 +4963,7 @@ test("42 /*The*/ /*Answer*/", {
     },
     end: {
       line: 1,
-      column: 2
+      column: 21
     }
   }
 });
@@ -5006,7 +5006,7 @@ test("42 /*the*/ /*answer*/", {
     },
     end: {
       line: 1,
-      column: 2
+      column: 21
     }
   }
 });
@@ -5044,8 +5044,8 @@ test("/* multiline\ncomment\nshould\nbe\nignored */ 42", {
   ],
   loc: {
     start: {
-      line: 5,
-      column: 11
+      line: 1,
+      column: 0
     },
     end: {
       line: 5,
@@ -5087,8 +5087,8 @@ test("/*a\r\nb*/ 42", {
   ],
   loc: {
     start: {
-      line: 2,
-      column: 4
+      line: 1,
+      column: 0
     },
     end: {
       line: 2,
@@ -5130,8 +5130,8 @@ test("/*a\rb*/ 42", {
   ],
   loc: {
     start: {
-      line: 2,
-      column: 4
+      line: 1,
+      column: 0
     },
     end: {
       line: 2,
@@ -5173,8 +5173,8 @@ test("/*a\nb*/ 42", {
   ],
   loc: {
     start: {
-      line: 2,
-      column: 4
+      line: 1,
+      column: 0
     },
     end: {
       line: 2,
@@ -5216,8 +5216,8 @@ test("/*a\nc*/ 42", {
   ],
   loc: {
     start: {
-      line: 2,
-      column: 4
+      line: 1,
+      column: 0
     },
     end: {
       line: 2,
@@ -5259,7 +5259,7 @@ test("// line comment\n42", {
   ],
   loc: {
     start: {
-      line: 2,
+      line: 1,
       column: 0
     },
     end: {
@@ -5307,7 +5307,7 @@ test("42 // line comment", {
     },
     end: {
       line: 1,
-      column: 2
+      column: 18
     }
   }
 });
@@ -5345,7 +5345,7 @@ test("// Hello, world!\n42", {
   ],
   loc: {
     start: {
-      line: 2,
+      line: 1,
       column: 0
     },
     end: {
@@ -5360,7 +5360,7 @@ test("// Hello, world!\n", {
   body: [],
   loc: {
     start: {
-      line: 2,
+      line: 1,
       column: 0
     },
     end: {
@@ -5375,7 +5375,7 @@ test("// Hallo, world!\n", {
   body: [],
   loc: {
     start: {
-      line: 2,
+      line: 1,
       column: 0
     },
     end: {
@@ -5418,7 +5418,7 @@ test("//\n42", {
   ],
   loc: {
     start: {
-      line: 2,
+      line: 1,
       column: 0
     },
     end: {
@@ -5434,7 +5434,7 @@ test("//", {
   loc: {
     start: {
       line: 1,
-      column: 2
+      column: 0
     },
     end: {
       line: 1,
@@ -5449,7 +5449,7 @@ test("// ", {
   loc: {
     start: {
       line: 1,
-      column: 3
+      column: 0
     },
     end: {
       line: 1,
@@ -5492,7 +5492,7 @@ test("/**/42", {
   loc: {
     start: {
       line: 1,
-      column: 4
+      column: 0
     },
     end: {
       line: 1,
@@ -5534,7 +5534,7 @@ test("// Hello, world!\n\n//   Another hello\n42", {
   ],
   loc: {
     start: {
-      line: 4,
+      line: 1,
       column: 0
     },
     end: {
@@ -7331,7 +7331,7 @@ test("var x = /[a-z]/i", {
           },
           init: {
             type: "Literal",
-            value: {},
+            value: /[a-z]/i,
             loc: {
               start: {
                 line: 1,
@@ -7404,7 +7404,7 @@ test("var x = /[x-z]/i", {
           },
           init: {
             type: "Literal",
-            value: {},
+            value: /[x-z]/i,
             loc: {
               start: {
                 line: 1,
@@ -7477,7 +7477,7 @@ test("var x = /[a-c]/i", {
           },
           init: {
             type: "Literal",
-            value: {},
+            value: /[a-c]/i,
             loc: {
               start: {
                 line: 1,
@@ -7550,7 +7550,7 @@ test("var x = /[P QR]/i", {
           },
           init: {
             type: "Literal",
-            value: {},
+            value: /[P QR]/i,
             loc: {
               start: {
                 line: 1,
@@ -7623,7 +7623,7 @@ test("var x = /foo\\/bar/", {
           },
           init: {
             type: "Literal",
-            value: {},
+            value: /foo\/bar/,
             loc: {
               start: {
                 line: 1,
@@ -7696,7 +7696,7 @@ test("var x = /=([^=\\s])+/g", {
           },
           init: {
             type: "Literal",
-            value: {},
+            value: /=([^=\s])+/g,
             loc: {
               start: {
                 line: 1,
@@ -7769,7 +7769,7 @@ test("var x = /[P QR]/\\u0067", {
           },
           init: {
             type: "Literal",
-            value: {},
+            value: /[P QR]/g,
             loc: {
               start: {
                 line: 1,
@@ -23788,21 +23788,23 @@ test("function hello(...rest) { }", {
           }
         }
       },
-      params: [],
-      rest: {
-        type: "Identifier",
-        name: "rest",
-        loc: {
-          start: {
-            line: 1,
-            column: 18
-          },
-          end: {
-            line: 1,
-            column: 22
+      params: [{
+        type: "RestElement",
+        argument: {
+          type: "Identifier",
+          name: "rest",
+          loc: {
+            start: {
+              line: 1,
+              column: 18
+            },
+            end: {
+              line: 1,
+              column: 22
+            }
           }
         }
-      },
+      }],
       body: {
         type: "BlockStatement",
         body: [],
@@ -23877,22 +23879,25 @@ test("function hello(a, ...rest) { }", {
               column: 16
             }
           }
-        }
-      ],
-      rest: {
-        type: "Identifier",
-        name: "rest",
-        loc: {
-          start: {
-            line: 1,
-            column: 21
-          },
-          end: {
-            line: 1,
-            column: 25
+        },
+        {
+          type: "RestElement",
+          argument: {
+            type: "Identifier",
+            name: "rest",
+            loc: {
+              start: {
+                line: 1,
+                column: 21
+              },
+              end: {
+                line: 1,
+                column: 25
+              }
+            }
           }
         }
-      },
+      ],
       body: {
         type: "BlockStatement",
         body: [],
@@ -24089,21 +24094,23 @@ test("var hi = function (...r) { sayHi() };", {
           init: {
             type: "FunctionExpression",
             id: null,
-            params: [],
-            rest: {
-              type: "Identifier",
-              name: "r",
-              loc: {
-                start: {
-                  line: 1,
-                  column: 22
-                },
-                end: {
-                  line: 1,
-                  column: 23
+            params: [{
+              type: "RestElement",
+              argument: {
+                type: "Identifier",
+                name: "r",
+                loc: {
+                  start: {
+                    line: 1,
+                    column: 22
+                  },
+                  end: {
+                    line: 1,
+                    column: 23
+                  }
                 }
               }
-            },
+            }],
             body: {
               type: "BlockStatement",
               body: [
@@ -26687,6 +26694,22 @@ test("a.in / b", {
   ]
 });
 
+// A number of slash-disambiguation corner cases
+test("return {} / 2", {}, {allowReturnOutsideFunction: true});
+test("return\n{}\n/foo/", {}, {allowReturnOutsideFunction: true});
+test("+{} / 2", {});
+test("{}\n/foo/", {});
+test("x++\n{}\n/foo/", {});
+test("{{}\n/foo/}", {});
+test("while (1) /foo/", {});
+test("(1) / 2", {});
+test("({a: [1]}+[]) / 2", {});
+test("{[1]}\n/foo/", {});
+test("switch(a) { case 1: {}\n/foo/ }", {});
+test("({1: {} / 2})", {});
+test("+x++ / 2", {});
+test("foo.in\n{}\n/foo/", {});
+
 test("{}/=/", {
   type: "Program",
   body: [
@@ -28666,191 +28689,228 @@ testFail("for(x of a);", "Unexpected token (1:6)");
 testFail("for(var x of a);", "Unexpected token (1:10)");
 
 // Assertion Tests
-(function() {
-  var actualComments = [],
-      expectedComments = [
-        " Bear class",
-        " Whatever",
-        [" 1",
-         "         2",
-         "         3"
-        ].join('\n'),
-        "stuff"
-      ];
-  testAssert(
-    function TestComments() {
-      // Bear class
-      function Bear(x,y,z) {
-        this.position = [x||0,y||0,z||0]
-      }
-
-      Bear.prototype.roar = function(message) {
-        return 'RAWWW: ' + message; // Whatever
-      };
-
-      function Cat() {
-      /* 1
-         2
-         3*/
-      }
-
-      Cat.prototype.roar = function(message) {
-        return 'MEOOWW: ' + /*stuff*/ message;
-      };
-    }.toString().replace(/\r\n/g, '\n'),
-    function assert(ast) {
-      if (actualComments.length !== expectedComments.length) {
-        return JSON.stringify(actualComments) + " !== " + JSON.stringify(expectedComments);
-      } else {
-        for (var i=0, n=actualComments.length; i < n; i++) {
-          if (actualComments[i] !== expectedComments[i])
-            return JSON.stringify(actualComments[i]) + ' !== ' + JSON.stringify(expectedComments[i]);
-        }
-      }
-    },
-    {
-      onComment: function(isMultiline, text) {
-        actualComments.push(text);
-      }
+test(function TestComments() {
+    // Bear class
+    function Bear(x,y,z) {
+      this.position = [x||0,y||0,z||0]
     }
-  );
-})();
+
+    Bear.prototype.roar = function(message) {
+      return 'RAWWW: ' + message; // Whatever
+    };
+
+    function Cat() {
+    /* 1
+       2
+       3*/
+    }
+
+    Cat.prototype.roar = function(message) {
+      return 'MEOOWW: ' + /*stuff*/ message;
+    };
+}.toString().replace(/\r\n/g, '\n'), {}, {
+  onComment: [
+    {type: "Line", value: " Bear class"},
+    {type: "Line", value: " Whatever"},
+    {type: "Block",  value: [
+            " 1",
+      "       2",
+      "       3"
+    ].join('\n')},
+    {type: "Block", value: "stuff"}
+  ]
+});
 
 test("<!--\n;", {
   type: "Program",
-  body: [
-    {
-      type: "EmptyStatement"
+  body: [{
+    type: "EmptyStatement"
+  }]
+});
+
+test("\nfunction plop() {\n'use strict';\n/* Comment */\n}", {}, {
+  locations: true,
+  onComment: [{
+    type: "Block",
+    value: " Comment ",
+    loc: {
+      start: { line: 4, column: 0 },
+      end: { line: 4, column: 13 }
     }
-  ]
-}
-);
+  }]
+});
 
-(function() {
-  test("\nfunction plop() {\n'use strict';\n/* Comment */\n}", {}, {locations: true},
-  [{
-    block: true,
-    text: " Comment ",
-    startLoc: { line: 4, column: 0 },
-    endLoc: { line: 4, column: 13 }
-  }]);
+test("// line comment", {}, {
+  locations: true,
+  onComment: [{
+    type: "Line",
+    value: " line comment",
+    loc: {
+      start: { line: 1, column: 0 },
+      end: { line: 1, column: 15 }
+    }
+  }]
+});
 
-  test("// line comment", {}, {locations: true},
-  [{
-    block: false,
-    text: " line comment",
-    startLoc: { line: 1, column: 0 },
-    endLoc: { line: 1, column: 15 }
-  }]);
+test("<!-- HTML comment", {}, {
+  locations: true,
+  onComment: [{
+    type: "Line",
+    value: " HTML comment",
+    loc: {
+      start: { line: 1, column: 0 },
+      end: { line: 1, column: 17 }
+    }
+  }]
+});
 
-  test("<!-- HTML comment", {}, {locations: true},
-  [{
-    block: false,
-    text: " HTML comment",
-    startLoc: { line: 1, column: 0 },
-    endLoc: { line: 1, column: 17 }
-  }]);
+test(";\n--> HTML comment", {}, {
+  locations: true,
+  onComment: [{
+    type: "Line",
+    value: " HTML comment",
+    loc: {
+      start: { line: 2, column: 0 },
+      end: { line: 2, column: 16 }
+    }
+  }]
+});
 
-  test(";\n--> HTML comment", {}, {locations: true},
-  [{
-    block: false,
-    text: " HTML comment",
-    startLoc: { line: 2, column: 0 },
-    endLoc: { line: 2, column: 16 }
-  }]);
-})();
+var tokTypes = acorn.tokTypes;
 
-(function() {
-  var tokTypes = acorn.tokTypes;
-
-  var actualTokens = [],
-      expectedTokens = [
-        {
-          type: tokTypes._var,
-          value: "var",
-          loc: {
-            start: {line: 1, column: 0},
-            end: {line: 1, column: 3}
-          }
-        },
-        {
-          type: tokTypes.name,
-          value: "x",
-          loc: {
-            start: {line: 1, column: 4},
-            end: {line: 1, column: 5}
-          }
-        },
-        {
-          type: tokTypes.eq,
-          value: "=",
-          loc: {
-            start: {line: 1, column: 6},
-            end: {line: 1, column: 7}
-          }
-        },
-        {
-          type: tokTypes.parenL,
-          value: undefined,
-          loc: {
-            start: {line: 1, column: 8},
-            end: {line: 1, column: 9}
-          }
-        },
-        {
-          type: tokTypes.num,
-          value: 1,
-          loc: {
-            start: {line: 1, column: 9},
-            end: {line: 1, column: 10}
-          }
-        },
-        {
-          type: {binop: 9, prefix: true, beforeExpr: true},
-          value: "+",
-          loc: {
-            start: {line: 1, column: 11},
-            end: {line: 1, column: 12}
-          }
-        },
-        {
-          type: tokTypes.num,
-          value: 2,
-          loc: {
-            start: {line: 1, column: 13},
-            end: {line: 1, column: 14}
-          }
-        },
-        {
-          type: tokTypes.parenR,
-          value: undefined,
-          loc: {
-            start: {line: 1, column: 14},
-            end: {line: 1, column: 15}
-          }
-        },
-        {
-          type: tokTypes.eof,
-          value: undefined,
-          loc: {
-            start: {line: 1, column: 15},
-            end: {line: 1, column: 15}
-          }
-        }
-      ];
-  testAssert('var x = (1 + 2)', function assert(ast) {
-    if (actualTokens.length !== expectedTokens.length) {
-      return "Bad token stream length: expected " + expectedTokens.length + ", got " + actualTokens.length;
-    } else {
-      for (var i=0, n=actualTokens.length; i < n; i++) {
-        var mis = misMatch(expectedTokens[i], actualTokens[i]);
-        if (mis) return mis;
+test('var x = (1 + 2)', {}, {
+  locations: true,
+  loose: false,
+  onToken: [
+    {
+      type: tokTypes._var,
+      value: "var",
+      loc: {
+        start: {line: 1, column: 0},
+        end: {line: 1, column: 3}
+      }
+    },
+    {
+      type: tokTypes.name,
+      value: "x",
+      loc: {
+        start: {line: 1, column: 4},
+        end: {line: 1, column: 5}
+      }
+    },
+    {
+      type: tokTypes.eq,
+      value: "=",
+      loc: {
+        start: {line: 1, column: 6},
+        end: {line: 1, column: 7}
+      }
+    },
+    {
+      type: tokTypes.parenL,
+      value: undefined,
+      loc: {
+        start: {line: 1, column: 8},
+        end: {line: 1, column: 9}
+      }
+    },
+    {
+      type: tokTypes.num,
+      value: 1,
+      loc: {
+        start: {line: 1, column: 9},
+        end: {line: 1, column: 10}
+      }
+    },
+    {
+      type: {binop: 9, prefix: true, beforeExpr: true},
+      value: "+",
+      loc: {
+        start: {line: 1, column: 11},
+        end: {line: 1, column: 12}
+      }
+    },
+    {
+      type: tokTypes.num,
+      value: 2,
+      loc: {
+        start: {line: 1, column: 13},
+        end: {line: 1, column: 14}
+      }
+    },
+    {
+      type: tokTypes.parenR,
+      value: undefined,
+      loc: {
+        start: {line: 1, column: 14},
+        end: {line: 1, column: 15}
+      }
+    },
+    {
+      type: tokTypes.eof,
+      value: undefined,
+      loc: {
+        start: {line: 1, column: 15},
+        end: {line: 1, column: 15}
       }
     }
-  }, {
-    locations: true,
-    onToken: actualTokens
-  });
-})();
+  ]
+});
 
 test("function f(f) { 'use strict'; }", {});
+
+// https://github.com/marijnh/acorn/issues/180
+test("#!/usr/bin/node\n;", {}, {
+  allowHashBang: true,
+  onComment: [{
+    type: "Line",
+    value: "/usr/bin/node",
+    start: 0,
+    end: 15
+  }]
+});
+
+// https://github.com/marijnh/acorn/issues/204
+test("(function () {} / 1)", {
+  type: "Program",
+  body: [{
+    type: "ExpressionStatement",
+    expression: {
+      type: "BinaryExpression",
+      left: {
+        type: "FunctionExpression",
+        id: null,
+        params: [],
+        body: {
+          type: "BlockStatement",
+          body: []
+        }
+      },
+      operator: "/",
+      right: {type: "Literal", value: 1}
+    }
+  }]
+});
+
+test("function f() {} / 1 /", {
+  type: "Program",
+  body: [
+    {
+      type: "FunctionDeclaration",
+      id: {type: "Identifier", name: "f"},
+      params: [],
+      body: {
+        type: "BlockStatement",
+        body: []
+      }
+    },
+    {
+      type: "ExpressionStatement",
+      expression: {
+        type: "Literal",
+        regex: {pattern: " 1 ", flags: ""},
+        value: / 1 /
+      }
+    }
+  ]
+});

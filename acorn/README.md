@@ -68,6 +68,14 @@ object referring to that same position.
   the top level raises an error. Set this to `true` to accept such
   code.
 
+- **allowImportExportEverywhere**: By default, `import` and `export`
+  declarations can only appear at a program's top level. Setting this
+  option to `true` allows them anywhere where a statement is allowed.
+
+- **allowHashBang**: When this is enabled (off by default), if the
+  code starts with the characters `#!` (as in a shellscript), the
+  first line will be treated as a comment.
+
 - **locations**: When `true`, each node has a `loc` object attached
   with `start` and `end` subobjects, each of which contains the
   one-based line and zero-based column numbers in `{line, column}`
@@ -154,6 +162,17 @@ token, and returns a `{start, end, type, value}` object (with added
 `loc` property when the `locations` option is enabled and `range`
 property when the `ranges` option is enabled).
 
+In ES6 environment, returned result can be used as any other protocol-compliant iterable:
+
+```javascript
+for (let token of acorn.tokenize(str)) {
+  // iterate over the tokens
+}
+
+// transform code to array of tokens:
+var tokens = [...acorn.tokenize(str)];
+```
+
 **tokTypes** holds an object mapping names to the token type objects
 that end up in the `type` properties of tokens.
 
@@ -211,7 +230,7 @@ but never raises an error, and will do its best to parse syntactically
 invalid code in as meaningful a way as it can. It'll insert identifier
 nodes with name `"✖"` as placeholders in places where it can't make
 sense of the input. Depends on `acorn.js`, because it uses the same
-tokenizer. The loose parser does not support ECMAScript 6 syntax yet.
+tokenizer.
 
 ### util/walk.js ###
 

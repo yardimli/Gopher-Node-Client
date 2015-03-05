@@ -165,15 +165,13 @@ var ESQ = function (inStr) {
 };
 
 //------------------------------------------------------------------------------
-_$fs = function (FileID, xCodeLine, FunctionName, FunctionType, FunctionParams, _$gXLocal) {
+_$fs = function (FileID, xCodeLine, FunctionName, _$gXLocal) {
 
 	var GMsg = new Object();
 	GMsg.Type = "fs";
 	GMsg.FileID = FileID;
 	GMsg.Line = xCodeLine;
 	GMsg.FName = FunctionName;
-	GMsg.FType = FunctionType;
-	GMsg.FParam = FunctionParams;
 	GMsg.Scope = _$gXLocal;
 	GMsgArray.push(GMsg);
 };
@@ -204,116 +202,50 @@ _$sb = function (FileID, xCodeLine, LeftSideStr, _$gXLocal) {
 	return 0;
 };
 
+//------------------------------------------------------------------------------
+_$fr = function (FileID, xCodeLine, ReturnValue, _$gXLocal) {
+	var GMsg = new Object();
+	GMsg.Type = "fr";
+	GMsg.FileID = FileID;
+	GMsg.Line = xCodeLine;
+	GMsg.AssignVal = ReturnValue;
+	GMsg.Scope = _$gXLocal;
+	GMsgArray.push(GMsg);
+	
+	return ReturnValue;
+};
+
 
 //------------------------------------------------------------------------------
-_$set = function (FileID, xCodeLine, NestedParent, ParentType, LeftSideStr, LeftSideValue, RightSideStr, RightSideValue, Operator, VarDeclerator, _$gXLocal, InnerFunctionCount) {
-
-	if (InnerFunctionCount > 0)
-	{
-		for (var i = 0; i < (InnerFunctionCount); i++)
-		{
-			var TempVar = arguments[12 + i].split(/=(.+)?/);
-
-			var GMsg = new Object();
-			GMsg.Type = "hs";
-			GMsg.FileID = FileID;
-			GMsg.Line = xCodeLine;
-
-			GMsg.VarName = TempVar[1];
-			if (typeof(_$v[parseInt(TempVar[0], 10)])==="undefined")
-			{
-				GMsg.VarVal = "{UNDEFINED}";
-			} else
-			if (Array.isArray(_$v[parseInt(TempVar[0], 10)]))
-			{
-				GMsg.VarVal = "{ARRAY}";
-				if (array_search(TrackObjectArray, GMsg.VarName) != -1) {
-					GMsg.VarVal = _$v[parseInt(TempVar[0], 10)].toString();
-				}
-			} else
-			if (typeof(_$v[parseInt(TempVar[0], 10)])==="object")
-			{
-				GMsg.VarVal = "{OBJECT}";
-				if (array_search(TrackObjectArray, GMsg.VarName) != -1) {
-					GMsg.VarVal = JSON.stringifyOnce(_$v[parseInt(TempVar[0], 10)]);
-				}
-			} else
-			if (isFunction(_$v[parseInt(TempVar[0], 10)]))
-			{
-				GMsg.VarVal = "{FUNCTION}";
-			} else
-			{
-				GMsg.VarVal = _$v[parseInt(TempVar[0], 10)];
-			}
-
-			GMsg.Scope = _$gXLocal;
-			GMsgArray.push(GMsg);
-		}
-	}
+_$set = function (FileID, xCodeLine, LeftSideStr, RightSideValue, Operator, _$gXLocal) {
 	
 	var OutPut = null;
 
 	if (Operator == '++') {
-		OutPut = LeftSideValue + 1;
+		OutPut = RightSideValue + 1;
 	} else
 	if (Operator == '--') {
-		OutPut = LeftSideValue - 1;
+		OutPut = RightSideValue - 1;
 	} else
-	if (Operator == '+=') {
+/*	if (Operator == '+=') {
 		OutPut = LeftSideValue + RightSideValue;
 	} else
 	if (Operator == '-=') {
 		OutPut = LeftSideValue - RightSideValue;
 	} else
+	*/
 	{
 		OutPut = RightSideValue;
 	}
-	
-	var LS = "(" + LeftSideValue + ")";
-	if (typeof LeftSideValue == "undefined") {
-		var LS = "";
-	}
-	var VarDeclerator2 = "";
-	if (VarDeclerator == "1") {
-		VarDeclerator2 = "var ";
-	}
+	   
 	
 	var GMsg = new Object();
 	GMsg.Type = "se";
 	GMsg.FileID = FileID;
 	GMsg.Line = xCodeLine;
-	GMsg.Parent = NestedParent;
-	GMsg.ParentType = ParentType;
 
 	GMsg.VarName = LeftSideStr;
-	if (typeof(LeftSideValue)==="undefined")
-	{
-		GMsg.VarVal = "{UNDEFINED}";
-	} else
-	if (Array.isArray(LeftSideValue))
-	{
-		GMsg.VarVal = "{ARRAY}";
-		if (array_search(TrackObjectArray, GMsg.VarName) != -1) {
-			GMsg.VarVal = LeftSideValue.toString();
-		}
-	} else
-	if (typeof(LeftSideValue)==="object")
-	{
-		GMsg.VarVal = "{OBJECT}";
-		if (array_search(TrackObjectArray, GMsg.VarName) != -1) {
-			GMsg.VarVal = JSON.stringifyOnce(LeftSideValue);
-		}
-	} else
-	if (isFunction(LeftSideValue))
-	{
-		GMsg.VarVal = "{FUNCTION}";
-	} else
-	{
-		GMsg.VarVal = LeftSideValue;
-	}
-	
 
-	GMsg.AssignStr = RightSideStr;
 	if (typeof(OutPut)==="undefined")
 	{
 		GMsg.AssignVal = "{UNDEFINED}";
@@ -342,8 +274,7 @@ _$set = function (FileID, xCodeLine, NestedParent, ParentType, LeftSideStr, Left
 
 
 	GMsg.Op = Operator;
-	GMsg.VarDec = VarDeclerator;
-
+	
 	GMsg.Scope = _$gXLocal;
 	GMsgArray.push(GMsg);
 	

@@ -18,6 +18,9 @@ var xxxx = '';
 var requestMarker = 0;
 
 
+var GopherBParser = require('./GopherBParser.js');
+
+
 
 var ServerB = http.createServer(onRequest).listen(1337, function (err) {
     Global.Servers.push(ServerB);
@@ -377,6 +380,7 @@ function mangerOnHttpRequest(request, response, ModifieidUrl) {
 }
 
 var pageStack = [];
+
 function proxyOnHttpRequest(request, response, forwardHostName, forwardHostPort, projectID, ignoredFiles) {
     var hostSplit = (request.headers['host']).split(':');
     var proxyHostPort, proxyHostName;
@@ -468,6 +472,7 @@ function proxyOnHttpRequest(request, response, forwardHostName, forwardHostPort,
 					if (CurrentExt === '.js') {
 						
 						var srcVal =  (request.url).toLowerCase();
+						/*
 						var srcSplashes = srcVal.split('/');
 						for (var k = 0; k < srcSplashes.length; k++) {
 							if (srcSplashes[k] == '.' || srcSplashes[k] == '..') {
@@ -475,23 +480,26 @@ function proxyOnHttpRequest(request, response, forwardHostName, forwardHostPort,
 							}
 						}
 						srcVal = srcSplashes.join('');
+						*/
 
 						//if js file has a querysting of its own then. 
 						//if not found then the returning array will have the origial string in [0]
-						var srcVal2 = srcVal.split('?');
-						srcVal = srcVal2[0];
+						//var srcVal2 = srcVal.split('?');
+						//srcVal = srcVal2[0];
 						
 						
 						for (var j = 0; j < ignoredFiles.length; j++) {
-                            var path = (ignoredFiles[j].FilePath).replace(/\//g, '');
-							console.log(path+" "+srcVal);
+                            //var path = (ignoredFiles[j].FilePath).replace(/\//g, '');
+							console.log(ignoredFiles[j].FilePath+" --> "+srcVal);
 						}
 						
-						chunkStr = "testXYZ=1;\n"+chunkStr;
+						//parse code here ****
+						//chunkStr = "testXYZ=1;\n"+chunkStr;
 					}
 					
                     //Add gopherHealper reference
                     if (CurrentExt === '.php' || CurrentExt === '.html' || CurrentExt === '.htm') {
+						pageStack = [];
                         pageStack.push(pageMarker+':'+FileMap.getCleanFileName(request.url));
 						
 						var regx3 = new RegExp('(<script([^>]*)>)', 'ig');
@@ -565,9 +573,9 @@ function proxyOnHttpRequest(request, response, forwardHostName, forwardHostPort,
                                         var changeSrcTo = '';
 
                                         if ((findSrcRst[1] + '').indexOf('?') == -1) {
-                                            changeSrcTo = findSrcRst[1] + '?GopherPage=' + pageMarker;
+                                            changeSrcTo = findSrcRst[1] + '?GopherPage=' + pageMarker+'&FileIndex='+(pageStack.length-2);
                                         } else {
-                                            changeSrcTo = findSrcRst[1] + '&GopherPage=' + pageMarker;
+                                            changeSrcTo = findSrcRst[1] + '&GopherPage=' + pageMarker+'&FileIndex='+(pageStack.length-2);
                                         }
 										chunkStr = chunkStr.replace(findSrcRst[1], changeSrcTo, 'g');
                                     }

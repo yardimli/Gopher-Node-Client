@@ -5,6 +5,12 @@ path = require('path');
 acorn = require("./acorn/acorn.js");
 beautify = require('js-beautify').js_beautify;
 util = require('util');
+
+
+
+var DebugToFiles = true;
+
+
 //-----------------------------------------------------------------------------------------------
 var PadLeft = function (nr, n, str) {
 	return Array(n - String(nr).length + 1).join(str || ' ') + nr;
@@ -551,7 +557,7 @@ function LoopGopherS(inFile, DataListSource, SourceCode, IncludeBlocks, ReturnBD
 		}
 	}
 
-	fs.writeFile(inFile.replace(".js", "-parsed-object.dat"), LogStr);
+	if (DebugToFiles) { fs.writeFile(inFile.replace(".js", "-parsed-object.dat"), LogStr); }
 
 	if (ReturnBData)
 	{
@@ -568,7 +574,7 @@ function LoopGopherS(inFile, DataListSource, SourceCode, IncludeBlocks, ReturnBD
 					"ParentID:" + GopherObjectsB[i].ParentID + " - " +
 					"ID:" + GopherObjectsB[i].ID + "\n";
 		}
-		fs.writeFile(inFile.replace(".js", "-parsed-objectB.dat"), LogStr);
+		if (DebugToFiles) { fs.writeFile(inFile.replace(".js", "-parsed-objectB.dat"), LogStr); }
 		return GopherObjectsB;
 	} else
 	{
@@ -603,7 +609,7 @@ function LoopGopherS(inFile, DataListSource, SourceCode, IncludeBlocks, ReturnBD
 						"\n";
 			}
 		}
-		fs.writeFile(inFile.replace(".js", "-parsed-objectA.dat"), LogStr);
+		if (DebugToFiles) { fs.writeFile(inFile.replace(".js", "-parsed-objectA.dat"), LogStr); }
 		return GopherObjectsA;
 	}
 }
@@ -1035,6 +1041,12 @@ function AddVariableTracking(inFile, contents, FileID)
 		{
 			//console.log( GopherObjectsA[i].InsertStr + "\n"   );
 			contents = [contents.slice(0, GopherObjectsA[ObjectCounter].CopyStart), GopherObjectsA[ObjectCounter].InsertStr, contents.slice(GopherObjectsA[ObjectCounter].CopyEnd)].join('');
+			//******
+			//******
+			//******
+			//******
+			//******
+			/***** PROBLEM WHEN MULTIPLE VARS AR SEPARATED WITH COMMAS ********
 			if ((GopherObjectsA[ObjectCounter].NewRecordType == "VariableDeclarator") && //var a = 5;
 					(GopherObjectsA[ObjectCounter].NestedParentType.indexOf("ForStatement") === -1))
 			{
@@ -1042,10 +1054,16 @@ function AddVariableTracking(inFile, contents, FileID)
 					"_$sb(" + FileID + "," + GopherObjectsA[ObjectCounter].Records[0].XLine + ",'" + ESQ(GopherObjectsA[ObjectCounter].Records[1].xSource) + "',_$gXLocal);"
 							, contents.slice(GopherObjectsA[ObjectCounter].HelperParentStart)].join('');
 			}
+			//******
+			//******
+			//******
+			//******
+			//******
+			 */
 
 		}
 	}
-	fs.writeFile(inFile.replace(".js", "-var-track.dat"), LogStr);
+	if (DebugToFiles) { fs.writeFile(inFile.replace(".js", "-var-track.dat"), LogStr); }
 	return contents;
 }
 
@@ -1151,11 +1169,15 @@ function AddFunctionTracking(inFile, contents, FileID)
 	}
 
 	//add FunctionEND tell before RETURNs
+	/*
 	for (var ObjectCounter = FunctionsList.length - 1; ObjectCounter >= 0; ObjectCounter--)
 	{
-		var EndStr = "_$fe(" + FileID + "," + FunctionsList[ObjectCounter].Line+",'" + FunctionsList[ObjectCounter].FunctionID + " -RETURN',_$gXLocal); ";
+		var EndStr = ";_$fe(" + FileID + "," + FunctionsList[ObjectCounter].Line+",'" + FunctionsList[ObjectCounter].FunctionID + " -RETURN',_$gXLocal); ";
 		contents = [contents.slice(0, FunctionsList[ObjectCounter].StartPos), EndStr, contents.slice(FunctionsList[ObjectCounter].StartPos)].join('');
 	}
+	*/
+
+
 
 	//find Function Starts and modify code
 	var DataList = [];
@@ -1280,7 +1302,7 @@ function AddFunctionTracking(inFile, contents, FileID)
 
 	for (var ObjectCounter = FunctionsList.length - 1; ObjectCounter >= 0; ObjectCounter--)
 	{
-		var StartStr = "_$gX++; var _$gXLocal = _$gX; _$fs(" + FileID + "," + FunctionsList[ObjectCounter].StartLine+",'" + FunctionsList[ObjectCounter].FunctionID + "','" + FunctionsList[ObjectCounter].FunctionType + "','" + FunctionsList[ObjectCounter].FunctionParams + "',_$gXLocal); ";
+		var StartStr = "if (typeof _$gX != \"undefined\") {_$gX++; var _$gXLocal = _$gX; _$fs(" + FileID + "," + FunctionsList[ObjectCounter].StartLine+",'" + FunctionsList[ObjectCounter].FunctionID + "','" + FunctionsList[ObjectCounter].FunctionType + "','" + FunctionsList[ObjectCounter].FunctionParams + "',_$gXLocal); }";
 		
 		for (var ParamCounter = 0; ParamCounter <= FunctionsList[ObjectCounter].FunctionParams.length - 1; ParamCounter++)
 		{
@@ -1290,27 +1312,28 @@ function AddFunctionTracking(inFile, contents, FileID)
 		}
 
 
-		var EndStr = "_$fe(" + FileID + "," + FunctionsList[ObjectCounter].EndLine+",'" + FunctionsList[ObjectCounter].FunctionID + "',_$gXLocal); ";
+//		var EndStr = ";_$fe(" + FileID + "," + FunctionsList[ObjectCounter].EndLine+",'" + FunctionsList[ObjectCounter].FunctionID + "',_$gXLocal); ";
 		contents = [contents.slice(0, FunctionsList[ObjectCounter].CopyStart + 1), StartStr, contents.slice(FunctionsList[ObjectCounter].CopyStart + 1)].join('');
-		contents = [contents.slice(0, FunctionsList[ObjectCounter].CopyEnd + StartStr.length - 1), EndStr, contents.slice(FunctionsList[ObjectCounter].CopyEnd + StartStr.length - 1)].join('');
+//		contents = [contents.slice(0, FunctionsList[ObjectCounter].CopyEnd + StartStr.length - 1), EndStr, contents.slice(FunctionsList[ObjectCounter].CopyEnd + StartStr.length - 1)].join('');
 		for (var ObjectCounter2 = ObjectCounter - 1; ObjectCounter2 >= 0; ObjectCounter2--)
 		{
 			if (FunctionsList[ObjectCounter2].CopyStart > FunctionsList[ObjectCounter].CopyStart) {
 				FunctionsList[ObjectCounter2].CopyStart = FunctionsList[ObjectCounter2].CopyStart + StartStr.length;
 			}
 
-			if (FunctionsList[ObjectCounter2].CopyStart > FunctionsList[ObjectCounter].CopyEnd) {
-				FunctionsList[ObjectCounter2].CopyStart = FunctionsList[ObjectCounter2].CopyStart + EndStr.length;
-			}
+//			if (FunctionsList[ObjectCounter2].CopyStart > FunctionsList[ObjectCounter].CopyEnd) {
+//				FunctionsList[ObjectCounter2].CopyStart = FunctionsList[ObjectCounter2].CopyStart + EndStr.length;
+//			}
 
-			if (FunctionsList[ObjectCounter2].CopyEnd > FunctionsList[ObjectCounter].CopyStart) {
-				FunctionsList[ObjectCounter2].CopyEnd = FunctionsList[ObjectCounter2].CopyEnd + StartStr.length;
-			}
+//			if (FunctionsList[ObjectCounter2].CopyEnd > FunctionsList[ObjectCounter].CopyStart) {
+//				FunctionsList[ObjectCounter2].CopyEnd = FunctionsList[ObjectCounter2].CopyEnd + StartStr.length;
+//			}
 
-			if (FunctionsList[ObjectCounter2].CopyEnd > FunctionsList[ObjectCounter].CopyEnd) {
-				FunctionsList[ObjectCounter2].CopyEnd = FunctionsList[ObjectCounter2].CopyEnd + EndStr.length;
-			}
+//			if (FunctionsList[ObjectCounter2].CopyEnd > FunctionsList[ObjectCounter].CopyEnd) {
+//				FunctionsList[ObjectCounter2].CopyEnd = FunctionsList[ObjectCounter2].CopyEnd + EndStr.length;
+//			}
 		}
+		
 	}
 
 	return contents;
@@ -1321,6 +1344,9 @@ function AddFunctionTracking(inFile, contents, FileID)
 //----------------------------------------------------------------------------------------
 function GopherTellify(contents, inFile, FileID)
 {
+	
+	if (DebugToFiles) { fs.writeFile(inFile.replace(".js", "-source.txt"), contents); }
+	
 	var DebugLines = false;
 	var TempVarStr = "";
 	var options = {};
@@ -1347,8 +1373,10 @@ function GopherTellify(contents, inFile, FileID)
 	
 	contents = AddCurly2IFs(contents);
 	contents = AddCurly2LOOPs(contents);
+	
 	contents = AddVariableTracking(inFile, contents, FileID);
 	contents = AddFunctionTracking(inFile, contents, FileID);
+	
 	// **** IN RealTimeConsole_Temps.JS REF #001
 
 	//========================================
